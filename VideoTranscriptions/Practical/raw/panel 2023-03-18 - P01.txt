@@ -1,0 +1,4258 @@
+Bueno, un par de cosas que les quería comentar
+Con respecto a cómo cargamos las cosas
+Y demás
+En el campus, yo voy a ir cargando semana a semana
+A los CPS
+Abajo de esta
+Clases prácticas 2023
+Acá va a haber un link a las grabaciones
+Y el Dropbox
+Que es lo más fácil
+De actualizar
+Así que ahí van a tener
+Por Problem Set
+Las carpetitas con código, data y docs
+Así que se los cargan
+Y si quieren ir siguiendo los códigos en vivo
+Igualmente van a tener las grabaciones
+Y los códigos, si los quieren mirar después
+Así que nada
+Voy a arrancar con el tt de hoy
+Que es el Problem Set 0
+Por ahora viene todo siendo más un repaso de econometría
+Asumo que la gran mayoría ya la habrá hecho
+Probablemente
+Pero en lugar de tener una dimensión
+Lo que vamos a tener son unidades de individuos
+Personas, firmas
+Y vamos a agregar en el tiempo como una nueva dimensión
+Así que lo que vamos a ver en el Problem Set 1
+Son cosas que probablemente ya no suenan de otras materias
+Así que
+En algún momento voy a correr
+Porque el primer código es bastante largo
+Pero nada, cualquier duda
+Me avisan y lo vemos con más detalle
+Tenemos tres ejercicios
+El primero es un poco más cuentoso
+Porque te pide hacer un par de cosas a mano
+Que al final del día
+Cuando hagamos realmente las estimaciones
+Con datos y temas
+No vamos a hacer tanta cuenta a mano
+Pero está bueno tenerlo de base
+En el segundo ejercicio vamos a ver un poco
+Es un poco más cortito
+Y vamos a ver cómo manejar los datos de panel
+Cuando no están en el formato que nos gusta
+Para usar en Stata
+Y el último es un poco más interesante
+Porque le agregamos una dificultad extra al modelo
+Que es qué pasa cuando los errores
+No cumplen con los supuestos usuales
+Que nos gustaría que cumplan para que los estimadores sean todos lindos
+Y los estadísticos
+Nos sirvan para hacer inferencias
+Voy a arrancar por el ejercicio 1
+Vamos a ir en orden hoy
+Voy a tratar de cortar hoy 5 minutos antes si puedo
+10 sería un goleazo
+Porque después de esta
+Más de uno seguro que usamos series de tiempo
+Y es justo en esta misma doble
+Así que para darle tiempo a Pato
+Para reacomodarnos
+Nada, aviso desde ya
+Si corro un poco es por eso
+Bueno
+Nos piden que consideremos este modelo de regresión
+Que está basado en esta base de datos
+Que ahora la vamos a ver
+El modelo tiene una constante
+Y después empezamos a agregar las variables
+Que aparecen acá
+Este modelo tiene
+Este dataset tiene datos de corte transversal
+De gastos médicos
+Y la idea es, bueno
+Ver cómo
+Cómo setear primero el dataset
+En Stata
+Para acostumbrarnos un poco
+Y entrar en calor
+Y después
+Ver cómo podemos
+Realizar las regresiones
+Que habitualmente uno hace con
+Regress
+Variable independiente
+Variable independiente
+Pero con matrices
+Así que
+Nada
+Voy directo a Stata
+En algún momento probablemente
+Tendrán igual saltar
+Acá la tablet
+Así que vamos a ver
+Cómo funciona esa
+Gimnasia
+Es medio
+Multitasker la situación
+Pero nada
+Vamos a romper
+Bueno
+Entonces
+Decíamos que
+En este ejercicio
+Consideramos un modelo de regresión
+Que lo tengo acá escrito
+Más o menos
+Y nos piden que
+Usemos la base de datos
+Para estimar la ecuación
+Por mínimos cuadrados clásicos
+Usando comandos de matrices
+Reportar los errores estándares
+De OLS
+Y reportar los estadísticos
+Que asociados
+Entonces
+Como siempre
+Lo primero que vamos a hacer
+Inicializar el código
+Con los comandos de
+Clear y set more off
+Clear es para remover
+Toda la data
+Que pueda estar ahí
+Haciéndonos
+Molestándonos
+Cuando abramos
+El dataset nuevo
+Y set more off
+Es un tema de visualización
+En el Stata
+Para que
+Para que cuando vayan
+Apareciendo los resultados
+Acá en esta ventana
+No tenga que ir manualmente
+Diciendo el Stata
+No me
+Seguir corriendo
+La pantalla
+Bueno
+Acá tenemos
+Para indicar
+El directorio
+Vamos a correr eso
+Primero
+Y voy a cargar
+La base de datos
+Yo asumo que
+Muchos de estos comandos
+Ya están familiarizados
+Pero si hay algunos
+Que no conocen
+Avisen
+Lo vemos
+Básicamente acá
+Dije
+Donde
+Donde está la carpeta
+Donde voy a sacar
+La base de datos
+Y acá
+Le dije
+Acá está
+La data
+Entonces lo primero
+Que vamos a hacer
+Es ver
+De qué se tratan
+Las variables
+Para eso
+Vamos a usar
+El comando
+Sky
+Y con
+Summarize
+Vamos a ver
+Cómo se estructura
+El corte transversal
+Vamos a ver
+Que por ejemplo
+Para esta variable
+Tenemos 2955 observaciones
+Y para el resto
+Tenemos 3064
+Entonces acá
+Tenemos que estar atentos
+Porque
+¿Se acuerdan que dijimos
+Que íbamos a hacer
+Las cuentas
+Como a mano
+Usando las matrices
+Bueno
+Si usamos las matrices
+Sin tener en cuenta
+Que tenemos acá
+Estos valores faltantes
+Va a haber un problema
+Y no nos va
+A dar nada
+Básicamente
+Porque las matrices
+No van a ser
+Van a tener
+Puntitos
+Entonces no
+Va a tener sentido
+La cuenta
+Así que vamos a ver
+Cómo trabajar
+Para evitar
+Ese problema
+Antes de arrancar
+Creo que
+Lo que voy a hacer
+Es hacer un poco
+La parte más
+Analítica
+De hacer las cuentitas
+Para ver
+Qué es lo que tenemos
+Que calcular
+O qué matrices
+Tenemos que ir a buscar
+Para calcular
+Así que para eso
+Voy a
+Venir acá
+Y empezar
+A compartir
+Desde acá
+Y acá es donde
+La tecnología
+Nos supera
+De acúmen
+La tecnología
+No
+Bueno, en teoría ahí estamos.
+Bueno, entonces, de vuelta recapitulando, lo que queremos hacer es con esa base de datos hacer la estimación por mínimos cuadrados.
+Entonces, nosotros ya no sabemos recontra de memoria, asumo, que la estimación por mínimos cuadrados matricial, o sea, va a ser X traspuesta por X inversa X traspuesta por Y.
+Entonces, primero, esto es a lo que queremos llegar, o sea, esto es a lo que queremos calcular, y después los estadísticos, y los testes y demás.
+Primero vamos a ver cómo nos generamos esto, o qué significa tener esto.
+Acá las X saben que son matrices de las variables explicativas, la Y es el vector de la variable dependiente,
+Entonces, X lo que es, es una matriz
+X es una matriz
+que se compone por
+En este caso, en este caso, X, si se acuerdan, tiene, en nuestro modelo en específico tiene la constante adelante de todo, así que vamos a tener el vector de unos adelante.
+Y después el resto de las variables, que eran, no le estaría gustando la pocha de mano, subpins, etcétera, etcétera, hasta la última, que es in-con,
+Donde, dentro de las X tenemos las 8 variables en total, y hacia abajo tenemos los n observaciones, entonces esto es n por 8.
+Entonces nada, es fácil conformar, es fácil verificar que esto es conformable, porque bueno, tenemos X respuesta por X, al menos 1, X respuesta por Y, y todo esto nos da el vector de los betas,
+que, no sé si hace falta acabar la cuota, pero, para cada uno de los, para cada una de las variables más la constante vamos a querer uno de los betas, entonces vamos a tener desde el beta 0,
+beta 1, hasta el beta 7.
+Entonces eso es lo que vamos a ir a buscar.
+Aparte de eso, lo que vamos a necesitar también, es la parte de los errores estándar, y los estadísticos T.
+Entonces primero que nada, vamos a armar los errores estándar, para este caso.
+Entonces, de vuelta, hay muchos conceptos que yo voy a asumir como dados, si no es en las slides de esta materia, en las slides de econometría, y si no es en las slides de econometría, en cualquiera de los libros, en los slides de cualquier otra materia que dé Martín.
+Va a pasar bastante tanto en esta materia como, no sé por ejemplo, microeconometría 1, microeconometría 2, no sé si ya las hicieron, pero si las quitan hacer se van a repetir muchas veces.
+Entonces todas estas clases introductorias parecen todas iguales.
+Entonces, en este caso en particular, donde el modelo es bastante simple y asumimos que se cumplen todos los supuestos usuales, sabemos que la varianza del beta estimado es igual a sigma cuadrado,
+sigma cuadrado, x transpuesta por x a la menos 1, pero en general, como no conocemos a sigma, como es en este caso, lo que tenemos que hacer es enchufar ahí, para generar la varianza gorrito, por así decirlo, que también la podemos llamar sigma gorrito.
+Lo que queremos hacer es incluir en lugar del sigma, que no lo conocemos, el s cuadrado.
+Ahora la pregunta es, ¿de dónde sacamos el s cuadrado? Si hacemos un poco de memoria, el s cuadrado se conformaba haciendo la suma de residuos al cuadrado, sobre n-1.
+O sea que en definitiva, todo esto para decir, en estatua lo que vamos a tener que ir a buscar es esta suma de residuos al cuadrado,
+armar un parametrío para n-k, y después armar el s cuadrado,
+lo juntamos con las x transpuesta por x a la menos 1, y ya después, nada, seguimos haciendo las cuentas.
+Y lo último que quiero decir por ahora es la parte del estadístico, el estadístico tj,
+más bien, el estadístico t para la variable j, es el beta estimado sobre el standard error,
+que es básicamente, nada, si a este de acá le llamamos, pensando en este,
+y bueno, nada, ya con eso tenemos como toda la parte de las cuentas resuelta.
+Y ahora sí, voy a pasar esto acá.
+Y vamos con el código.
+Algunas, esto de vuelta, cosas introductorias, pero capaz que les sirven.
+En esta parte lo que vamos a hacer es jugar un poco con las matrices,
+y hay cosas que Stata no sabe hacer por su cuenta, hay cosas que sí,
+entonces vamos a ver dónde tenemos que operar nosotros, y dónde tenemos que,
+nada, podemos aprovechar las virtudes de Stata para bases de datos de este estilo.
+Acá hay tres archivos de la help section, por así decirlo, de Stata.
+Tenemos por un lado Help Matrix, acá van a tener como, nada, un par de documentos que están buenos
+cuando empiezan a...
+¿Sabes todo acá? Perdón.
+No, estamos viendo la mitad de la matriz.
+De acá, los que más nos interesan van a ser, por ejemplo, acá.
+Esta que está acá, es muy útil para convertir variables a matrices.
+Para los que ya están más familiarizados con Stata saben que
+lo que son las matrices no son las mismas que las variables en los datasets,
+entonces pueden generar un poco de confusión a la hora de crear los códigos.
+Después, dentro de Matrix Functions,
+esta de Cholesky está buena, porque hay descomposiciones que uno tiene que hacer
+para llegar a ciertos resultados que les gustan.
+Y bueno, esto te tira la descomposición de Cholesky.
+A ver qué más hay.
+Hadamard, esta la vamos a usar hoy.
+Básicamente, lo que te permite esto hacer es hacer la multiplicación
+elemento a elemento entre dos matrices.
+Para eso, obviamente, requerimos que las matrices tengan el mismo tamaño.
+Pero bueno, nada.
+De otra forma, lo que hace Stata es reportar como
+la multiplicación acumulativa entre matrices, la que es la más común.
+En lugar de hacerlo componente a componente.
+Y después hay otro que creo que está por acá.
+A ver.
+Bueno, este lo vamos a usar hoy.
+Es básicamente cómo crear una matriz de R por C
+que contiene lo que pongamos acá.
+O sea, si quieres una matriz de unos, le pones uno.
+Si quieres una matriz de cero, le pones cero.
+Y tenemos también VEC o VEC-DIAG.
+VEC-DIAG, esta la vamos a usar hoy.
+Es básicamente, si tenés una matriz, te devuelve los vectores que...
+Un vector con los elementos que están en la matriz de...
+Que llamas acá.
+Y esa la vamos a usar después para extraer las varianzas
+de la matriz de varianzas y covariantes.
+Y bueno, por último, Matrix MakeMath.
+Que acaban de encontrar la documentación para MakeMath y SMMath.
+Probablemente ya la usaron si hicieron TPs anteriores de econometría.
+Que te permite ir de matrices a variables y de variables a matrices.
+Esto es porque hay muchas cuentas que quizás con matrices no las podés hacer
+o que con variables no las podés hacer.
+Entonces, nada.
+Para eso va a ser el uso.
+Acá tengo un par de ejemplos.
+Volvemos a...
+Y acá.
+Por ejemplo, acá tenemos esta que les decía hace un rato.
+La de...
+La función J, que es básicamente...
+Quiero una matriz...
+3 por 2 llena de ceros.
+3 por 2 llena de ceros.
+La otra opción es...
+Embutear la matriz manualmente.
+Entonces ahí le digo, bueno, en la primera fila quiero el 1, el 2.
+Cortá.
+Vas a la otra fila, 3, 4.
+Y otra cosa que ahora esto sí va más relacionado al DP hoy es que cuando nosotros calculamos
+el x-transpuesta por x inversa, x-transpuesta por y, lo que estamos buscando hacer es la multiplicación
+acumulativa.
+Estata tiene unos comandos que automáticamente te tiran el x-transpuesta por x.
+O el x-transpuesta por y.
+Entonces vamos a usarlos porque son mucho más rápidos y no tenemos que estar computando
+esta multiplicación manualmente.
+Porque, como vimos hace un rato, hay cosas que está tasada y hay cosas que no.
+Entonces, acá está la documentación para estas cuentas.
+Después cualquier cosa la revitamos y nos queda muy en claro cuando hagamos la cuenta de sí.
+¿Masta ahora alguna pregunta?
+Bien.
+Otra cosa que vamos a anotar ahora antes de...
+Siento que es mucha introducción antes de ir a las cuentas, pero bueno, justo en este caso hacía falta.
+Lo que decíamos antes de los valores faltantes lo vamos a revisar en este caso usando la parte frames.
+No sé si lo usaron alguna vez, los frames en esta tab.
+Pero es básicamente...
+No sé si usan R o si usaron R.
+En R vos podés definir data frames.
+Vos tenés el dataset completo y decís, bueno, me quedo con este pedazo del dataset y hago un data frame.
+Es muy parecido.
+Entonces, por ejemplo, corro frame solo y me dice cuál es el frame actual, que es el default, que es todo el dataset.
+Si corro frames dir, es lo mismo poner frame o frames.
+Solo usen como que lo que sea más consistente de lo que estén hablando.
+Si están hablando de uno solo o de dos.
+Hasta ahora tenemos creado solo el default, que tenía las 3.064 por 33 observaciones.
+Después tenemos...
+Nada.
+Con este comando creamos un frame nuevo.
+Cuando creamos un frame nuevo, creamos un frame vacío.
+Entonces, si yo vuelvo a correr frame clear, este frame es 0 por 0.
+Entonces, lo que vamos a hacer es, a partir de los frames, crear un frame donde contengamos un dataset que no tenga valores faltantes.
+Los valores faltantes que tengamos faltantes.
+Entonces, es como cuando vos activás el frame, o lo cambiás, que es lo que vamos a hacer después, el frame change.
+Le decís a Stata, ahora voy a trabajar sobre este frame.
+Ignorá el otro frame.
+El otro frame déjalo como estaba.
+Entonces, vamos a hacer eso.
+Primero, vamos a crear el frame que es copia de uno que ya existe.
+Para eso tengo que usar frame copy.
+Agarrá el default, copialo, y ahora ponele el nombre no missing while.
+Y, de vuelta, frames clear.
+Ahora sí, tengo el default y el que es la copia.
+Que, obviamente, son milímetros.
+Ahora, voy a cambiar de frame.
+Para, como que saltamos del default al no missing while.
+Entonces, si yo corro frame de vuelta, me tiene que dar el frame actual sobre el que estamos trabajando, que es no missing while.
+Ya que estamos en no missing while, lo que vamos a hacer es mantener solamente las que no tengan los missing values que nos estábamos realizando hace un rato.
+Esto no me detuve mucho.
+Déjame volver.
+El data set lo que tenemos es total expenditure, creo que era un tema de salud, total medical expenditure.
+Tenemos el logaritmo de este valor.
+Que existe solamente si total expenditure es mayor que cero.
+Entonces, el missing value que teníamos hace un rato, acá, es sobre la variable log del total expenditure.
+Que, de vuelta, vale cero si total expenditure es menor que cero.
+Entonces, vamos a hacer como la...
+La condición va a ser sobre que total expenditure sea mayor que cero.
+Después del resto estaba todo bien.
+Básicamente tenemos una dummy que nos dice si...
+Tenía insurance.
+Una dummy que nos dice si la persona tenía functional limitations, si tiene activity limitation.
+Number of chronic problems, edad, una dummy si es mujer, y el income de lo barrio.
+Entonces, nada.
+Mantenemos...
+Si, total expenditure es mayor que cero.
+Y ahora sí, vamos a entrar a la parte cuendosa de calcular los parámetros.
+Y todo lo que necesitamos para los estadísticos.
+Primero que nada, las matrices, como les contaba, tenemos una...
+Este matrix acumen, que creo que ya lo cerré.
+Que lo que hace es calcular el accumulate trust product para formar X traspuesta por X.
+Entonces, es recontra conveniente y...
+Oye, a ver, no es casualidad, ¿no?
+La gente justamente usa Stata para hacer este tipo de cuentas.
+Entonces a alguien se le ocurrió dejarlo ya programado.
+Entonces, básicamente lo que hace el matrix acumen es...
+Te genera una matriz A a partir de estas variables que incluís en tu bar list.
+Y bueno, le podés agregar más opciones, ¿no?
+Pero vamos al ejemplo así vemos bien cómo lo calculo.
+Entonces, matrix acumen, nombre de la matriz que quiero que me guarde.
+Y le empiezo a meter las matrices.
+Este comando incluye la constante, así que no se la tengo que agregar como...
+No es que tuve que crear un vector de unos para...
+Para incluirlo en esta lista.
+Así que no, vamos a correr esto.
+Vitex es...
+Perdón, se dice feo.
+No sé si se achicó un poco la letra.
+Seguirá viendo bien las dudas.
+Vamos a volver.
+Entonces, bueno, X traspuesta por X, sabemos que es una matriz simétrica.
+Todo lindo, porque bueno, la vamos a tener que invertir y qué sé yo.
+Y como ven acá esto ya nos incluye la constante y ya nos hizo el producto acumulativo y ya está.
+Ya tenemos el primer choclo de lo que necesitábamos antes de la X traspuesta por X.
+Y otro pequeño detalle como técnico es que la primera parte de la ecuación era X traspuesta por X.
+La segunda parte es el X traspuesta por X.
+El tema es que cuando vos corres...
+Perdón, ¿podrías...
+¿Qué son esos números de matriz?
+¿Cómo, cómo?
+¿Cómo?
+¿Puedes repetir la pregunta?
+Se entrecordó un poco lo que es.
+¿Explicar qué son esos números de la matriz?
+X traspuesta por X y qué son esos números.
+Por ejemplo, 1748, que es el primero.
+¿Qué significa?
+Ah, no, es el resultado de la multiplicación.
+Mágame, a ver.
+Ah, ok, ok.
+Sería ideal que pueda escribir...
+A ver, anotar...
+Si tengo X traspuesta...
+No, pará.
+Esto va a salir un momento.
+Básicamente, habíamos dicho que X era la matriz donde tengo los unos.
+Para, digamos, si me anotó acá el ID hasta la persona N.
+Tengo la variable...
+Vamos a ponerle X1, X1, X1, X1...
+La variable...
+Papá que es más fácil decirlo, ¿no?
+Lo que es un H.
+Tengo la variable...
+Tengo la variable...
+Ah, no, a ver, si me anotó acá.
+Ahí va.
+El valor que toma la variable supiens para la persona 1.
+Supiens...
+Así para todas las personas.
+N, digamos.
+Después, lo mismo para...
+La variable que sigue...
+Así sucesivamente.
+Así hasta la última variable que era income.
+Hasta income.
+Entonces, ¿qué pasa?
+Esto es X.
+X traspuesta sería esto traspuesta.
+Sería 1, 1, 1...
+Así hasta income.
+Perdón la letra.
+Entonces, cuando multiplico X traspuesta por X...
+A ver si puedo hacer esto.
+En realidad es así.
+No, se me ha muerto.
+Entonces, X traspuesta por X...
+Lo que termina siendo es la multiplicación...
+Este por este...
+Bueno, no sé si está bien.
+Este por este, más este por este, más este por este.
+Entonces, sería como el componente de arriba de todo.
+Que no sé si está en el mismo orden en el startup.
+Porque me parece que la constante estaba abajo de todo.
+Pero...
+Esa es un poco la idea.
+No sé si aclareo o confundí más de lo que...
+Sí, sí, se entiende. Gracias.
+Perfecto.
+Vamos de vuelta ahí.
+Partimos.
+Y nada, acá como que no están los valores porque es simétrico.
+O sea, este se replica acá.
+Este se replica acá.
+Este se replica acá.
+Este se replica.
+Bien.
+Entonces, eso con la parte de X traspuesta por X...
+Nos falta la otra parte del beta...
+Para estimar los betas...
+Que es el X traspuesta por Y...
+Y...
+Lo que les iba a comentar era esto.
+El comando que vamos a usar es...
+Que es hacer esta multiplicación acumulativa...
+Entre un vector y una matriz.
+Y lo que hace es acumular la primera variable...
+Contra las remaining variables.
+Algo que igual quiero hacer notar...
+De estos comandos...
+De por qué usamos estos comandos...
+Si no multiplicás las matrices directamente...
+Es que no tenemos las matrices X definidas todavía.
+O sea, todavía no definimos ninguna matriz.
+Estamos usando las variables directo del dataset.
+No tuvimos que convertir nada.
+Entonces, ahí es donde ganamos tiempo.
+Y no tenemos que preocuparnos por la conformabilidad...
+Ni nada de eso.
+Agarrás la lista de variables...
+Y te calcula la matriz...
+Que es el producto acumulativo.
+Entonces, esto lo que hace es acumular...
+La primera variable...
+Contra las que le siguen.
+El tema es que si hacemos eso...
+Digamos, si vamos y generamos...
+Y lo hacemos de memoria...
+Que es el X transpuesto por Y...
+O sea, X transpuesto por Y...
+Lo que vamos a tener es...
+La matriz...
+Transpuesta...
+Por Y...
+Y es como que la multiplicación...
+No la estás acumulando...
+Como te gustaría a vos...
+Porque...
+Está tal a...
+La acumula al revés.
+Es medio raro...
+Diciéndolo así, pero...
+Nada...
+Es por cómo funciona...
+El proceso de acumulación...
+Por así decirlo...
+Cuando haces esta multiplicación...
+Entonces...
+En lugar de X transpuesta por Y...
+Hacemos Y transpuesta por X...
+Y después...
+Lo transponemos de vuelta...
+Cuando lo usamos en la...
+En la cuenta...
+Si quieren después igual...
+Les puedo pasar como...
+Cuál es la diferencia...
+Bien escrita a mano...
+Que creo que va a tener más sentido...
+Pero por ahora...
+Si quieren...
+Crean...
+Creamos que...
+Que esto lo vamos a usar...
+Para transformarlo en X...
+Transpuesta por Y...
+Bueno...
+Entonces...
+Acá ya tenemos...
+La segunda parte del...
+Iba a decir X transpuesta por Y...
+Pero esto es Y transpuesta por X...
+Y bueno...
+Ya tenemos todo lo que necesitábamos...
+Tenemos...
+X transpuesta por X...
+Y transpuesta por X...
+Que la voy a transponer...
+Para que me quede...
+X transpuesta por Y...
+Y la primera parte...
+La necesito inversa...
+Entonces esto es...
+X transpuesta por X inversa...
+X transpuesta por Y...
+A esto lo voy a llamar de...
+Y ya tenemos...
+Y ya tenemos...
+Nuestra lista de estimadores...
+Después tenemos la opción alternativa...
+De ver qué pasa...
+Si ignoramos las missing values...
+Entonces...
+Y aparte lo calculamos a mano...
+O sea decimos...
+Bueno...
+Me tiro a la pileta...
+Calculo todo a mano...
+Y me olvido de las missing...
+Primero veamos qué pasa...
+Usando como...
+El dataset que estamos usando ahora...
+Que es el de los frames...
+El frames de no missing while...
+Esto lo que hace es...
+Primero le doy todo el código...
+Y después lo corremos...
+Esta línea de acá...
+Me genera un vector de unos...
+Para todas las observaciones que tengo...
+Esta de acá...
+Me genera...
+Te arma la matriz...
+Que necesitas...
+O sea...
+Una matriz a la que le voy a poner de nombre...
+Y bis...
+A partir de la variable...
+El logaritmo de total expenditure...
+Después vamos a hacer otra matriz...
+Que le voy a poner de nombre...
+X bis...
+Que va a estar conformada por...
+Todas las variables explicativas...
+Más el vector de unos que nos creamos recién...
+Acá...
+Y ya una vez que tengo eso...
+Hago la cuenta a mano...
+X transpuesta por X...
+X transpuesta por X...
+Y esto inverso...
+Entonces...
+Veamos qué nos da...
+De vuelta...
+Esto...
+Usando el mismo...
+El frame que estábamos usando recién...
+¿No?
+Punto 25...
+Punto 30...
+6.7...
+Punto 25...
+Punto 30...
+6.7...
+O sea...
+Exactamente lo mismo...
+Nada...
+Es la otra forma de hacer esto...
+En lugar de usar...
+Los...
+Productos estos acumulativos...
+Creamos las matrices...
+Y después...
+Calculamos...
+Ahora...
+Vamos a cambiar el change...
+El frame...
+Sorry...
+Y en lugar del frame...
+No missing while...
+Vamos a trabajar con el default...
+El que sí tenía los missing values...
+Así que...
+El frame...
+Que estamos ahora...
+Es el default...
+Y vamos a correr de vuelta a esto...
+Disculpa...
+Te puedo preguntar algo...
+Sorry...
+¿Cómo?
+Te hago una pregunta...
+¿El capture...
+Ahí cuando generas el vector de uno...
+¿Para qué era?
+El capture...
+El capture es como para...
+Si ya la generaste...
+Y lo volvés a correr...
+Como que el código no te...
+Mirá...
+Por ejemplo...
+Si yo no lo pongo...
+Gen...
+Test...
+What one...
+Si lo vuelvo a correr...
+Me va a decir...
+La variable test...
+Ya la definiste...
+Si en cambio...
+Corro...
+Capture...
+Gen...
+Test...
+Dos...
+Tifo...
+One...
+La corro...
+Corro de vuelta...
+Y me deja...
+Es por un tema de comodidad...
+Y esto pasa un montón...
+Cuando hacen loops...
+Si yo le digo a Stata...
+Generame una variable...
+Inmediatamente después...
+Le digo...
+Generame una variable...
+Con el mismo nombre...
+Me va a decir...
+No, no...
+Esa ya la generaste...
+El capture...
+Le dice a Stata...
+Agarra...
+Generá una variable...
+Si volvés a correr...
+Capture Gen...
+Lo que Stata va a decir es...
+Ya existe una variable...
+Pero como me dijiste...
+Capture...
+No importa...
+Es como usar un...
+Reemplazo...
+Por así decirlo...
+Ignorás que ya la tenías...
+Y gracias...
+No, nada...
+También se puede resumir...
+Capture...
+Pero sí es especialmente útil...
+Es en los loops...
+Que tengan que hacer...
+Bueno, nada...
+Entonces vimos que...
+No lo podemos calcular...
+Porque como decíamos...
+Teníamos missing values...
+Nos da todo puntito...
+Estando en el frame...
+Bueno...
+Voy a volver al frame...
+Del no missing why...
+Y nos queda...
+Un poco más de cuentas...
+Para calcular la parte de la matriz de varianzas y covarianzas...
+De los coeficientes...
+Porque lo que vamos a hacer es...
+Agarramos los coeficientes...
+Necesito la matriz de varianzas y covarianzas...
+Para sacar las varianzas de la diagonal...
+Y una vez que tengo las varianzas de la diagonal...
+Vamos a poder armar los estadísticos...
+Que habíamos visto hace un rato...
+¿Os acuerdan que...
+Teníamos que dividir el beta por la raíz del...
+Del sigma...
+Bueno...
+Va...
+Esa es la motivación de todas las cuentas que vamos a hacer ahora...
+Creo que voy a tener que volver acá un rato igual...
+Para hacer un poco más de cuentas...
+Pero...
+Sí...
+Sí, porque vamos a hacer un atajo que creo que está...
+Romina, ¿te puedo hacer una consulta?
+Sí...
+En esta base de datos...
+¿Cuál es la variable que define el panel?
+Y no que sea solamente corte transversal...
+Es que esta no es un panel...
+Ah, ok...
+Perfecto, está bien...
+Listo...
+Buena pregunta...
+Porque...
+Exacto...
+Miré esa variable...
+Miré la variable YER...
+Y tiene todo uno...
+¿Cuál variable, perdón?
+YER...
+La segunda...
+La segunda columna...
+Esa...
+La habla del año es todo el primer año...
+Claro...
+Y bueno, los ID siguen cambiando...
+Pero sí, tenés toda la razón...
+Es corte transversal...
+¿No?
+Sí, sí...
+Está bien...
+Gracias...
+No, por favor...
+Bueno...
+Ah, las cuentas...
+Aparentemente...
+Vuelvo al...
+¿Vuelvemos acá?
+Ok...
+Entonces...
+Lo que nos quedaba hacer...
+Básicamente...
+Era...
+De acá...
+Agarrar...
+Digamos...
+Si hacemos...
+El recuento...
+Esta parte ya la tenemos...
+Esta parte no la tenemos...
+Pero la vamos a calcular con esto que está acá...
+Y después lo mismo...
+Para esto...
+¿Sí?
+Entonces vamos a...
+Trabajar un poquito con eso...
+Bueno...
+Nos faltaba...
+Para la parte del S cuadrado...
+La suma de residuos al cuadrado...
+Sobre N menos K...
+Y para los T...
+Así que vamos a arrancar por el S cuadrado...
+Que es...
+La suma...
+De residuos al cuadrado...
+Sobre N menos K...
+Y sabemos que...
+Voy a...
+Voy a arrancar primero por la parte de...
+La suma de residuos al cuadrado...
+O bueno...
+Yo estoy diciendo...
+RSS...
+Así que...
+Voy a caer con esto...
+Si se acuerdan...
+Esto es...
+E traspuesta por E...
+No sé si...
+Estamos todos de acuerdo con esto...
+Porque esto es lo que nos termina dando...
+Es justamente...
+Esta expresión...
+Como si yo tengo...
+Un vector...
+Y tengo...
+Lo mismo pero...
+Traspuesto...
+Bueno, lo volví a escribir al revés...
+Si hago esta multiplicación...
+Tengo este por este...
+Este por este...
+Que es la suma de estos...
+La suma de estos...
+La suma de estos ahí al cuadrado...
+Que es lo que quiero justamente para...
+La suma de residuos al cuadrado...
+Matricialmente...
+Esto que está acá...
+Lo voy a escribir más abajo...
+Lo podemos escribir como...
+Si se acuerdan...
+Si se acuerdan...
+Que Y...
+Igual a...
+Xb más E...
+Causando esto...
+Despejo el E de acá...
+Y acá me queda...
+Y...
+Xb menos Xb...
+Todo esto traspuesto...
+Hasta ahí...
+Estamos bueno...
+Por ahora...
+Mencionado...
+Ahora...
+Vamos a...
+Operar un poco con esto...
+¿Por qué?
+Porque...
+Digamos...
+Los recibos en sí...
+Del cálculo de variables...
+Y de matrices que decimos...
+No los tenemos...
+Pero...
+Nos van a aparecer cosas...
+Cuando hagamos estas multiplicaciones...
+Digamos...
+Esta distributiva acá...
+Que sí...
+Ya las tenemos...
+Entonces nada...
+Por eso...
+Entonces...
+Fíjense que lo que tenemos acá...
+Es...
+Y traspuesta por Y...
+Cuando hago la distributiva...
+O sea...
+Este con este...
+Después voy a tener...
+Menos...
+Y...
+Traspuesta...
+Por X...
+Por beta...
+Voy a ver...
+Otra cosa que...
+Tengo que hacer...
+Y...
+Y...
+Traspuesta...
+Por X...
+Z...
+Menos...
+X...
+Beta...
+Traspuesto...
+Por Y...
+Y...
+O sea...
+X...
+Beta...
+Más...
+X...
+Beta...
+Traspuesto...
+Por X...
+Beta...
+Esto lo vamos a...
+Ordenar un poco...
+Y...
+Y...
+Y...
+Y...
+Y...
+Y...
+Y...
+Y...
+Y...
+Y...
+Y...
+Y...
+Y...
+Y...
+Y...
+Y...
+Y...
+Y...
+Acá...
+Y...
+Acá...
+Vamos a agarrar...
+Estos términos...
+Que están acá...
+Y acá vamos a agarrar
+Estos términos que están acá
+Que después van a ser muy parecidos
+También que están acá
+Y vamos a hacer
+Quién es
+X transpuesta por Y
+Por esto que habíamos dicho acá
+X transpuesta por Y
+Se puede escribir como
+X transpuesta por
+X beta más E
+Entonces esto cuando distribuyo me queda
+X transpuesta por X por beta
+Más X transpuesta por E
+X
+X B
+X transpuesta por E
+Este
+Ahora
+No sé si alguien se acuerda de memoria
+Cuánto vale esto
+O si tienen algún
+Cero
+¿No?
+Pablo, ¿no?
+Sí
+Muy bien, sí
+Esto da cero
+Porque sabemos que vale
+Exogenidad
+Entonces
+X transpuesta por Y
+Lo podemos cambiar por esto
+Entonces
+Si yo a todo esto
+Lo premultiplico por beta
+Lo que hace
+Entonces
+Esto era como un paréntesis
+Para seguir operando
+Así que seguimos
+Siguiendo como
+Un truquito así
+Medio similar
+Digamos
+Este lo voy a decir
+Paréntesis 1
+Paréntesis 2
+Pueden encontrar que
+Y
+Transpuesta
+Por X
+O sea
+Esto mismo
+Pero
+Transpuesta
+Lo post multiplico
+Por beta
+De acá se llega
+A que
+Esta nos da
+Beta
+X
+Transpuesta
+Por X
+No hago toda la cuenta
+Porque me parece que no vale la pena
+Y nada
+Nos vamos a quedar sin tiempo
+Para hacerse
+¿Qué más?
+Entonces
+Cuando reemplacen
+Esto
+Iría
+Acá
+Lo que nos va a quedar
+Es
+Y
+Transpuesta
+Por Y
+Menos
+Beta
+X
+Transpuesta
+Por X
+Beta
+Menos
+Beta
+X
+Transpuesta
+Por X
+Más
+Más
+Beta
+X
+Transpuesta
+Por X
+Y
+Bueno
+Se cancelan
+Un par de cosas
+Entonces nos queda
+Que la suma
+De residuos al cuadrado
+Que era lo que
+Estábamos buscando
+Es
+Y
+Transpuesta
+Por Y
+Menos
+Beta
+X
+Transpuesta
+Por X
+Y
+Entonces vamos a usar esta expresión
+Para ir a Stata
+Y
+Y calcular
+Lo que nos faltaba
+De
+Bueno
+La suma de residuos al cuadrado
+De vuelta
+Aparte de eso
+Lo que nos quedaba calcular
+Ya que estoy acá
+Era
+Para armar estos
+Nos faltan todavía
+Los
+El
+Digamos
+El error estándar
+Que sería
+Enchufar esta cuenta
+Que hicimos acá
+Para sacar
+Lo que sacamos recién
+Fue esto
+¿No?
+Vamos a bordo
+La suma de residuos al cuadrado
+Eso lo vamos a dividir
+Por N-K
+Nos da S
+Una vez que tengo S
+Lo enchufo acá
+Y ahí me calculo
+El Sigma
+Sombrerito
+Y una vez que tengo eso
+Lo voy a enchufar acá abajo
+Lo digo más alta
+Para no tener que volver
+Después al OneDrive de vuelta
+O sea si quieren
+Volvamos
+Volvemos
+Y hacemos la cuenta
+Pero
+Para que después
+No perdamos de vista
+Qué es lo que vamos a hacer
+En Stata
+¿Vuelvo a Stata?
+Avísenme igual
+Si hay alguna pregunta
+Vale
+Y ahora
+Si
+Si se acuerdan
+Teníamos
+La primer parte era
+Y
+Transpuesta por Y
+Menos
+La segunda parte
+Que era
+Beta
+Transpuesta
+X
+Transpuesta
+X por Beta
+Y
+Transpuesta por Y
+La hago acá
+Con el Matrix Acune
+Que es el que usamos
+Hace un rato
+E
+Transpuesta por E
+Voy a crear una matriz
+Que es la suma
+De residencia al cuadrado
+Que va a ser
+Y
+Transpuesta por Y
+Menos
+Beta
+Que ya los habíamos sacado antes
+Transpuesto por X
+Transpuesta por X
+Que ya la teníamos de antes
+Por los betas
+¿Sí?
+Nos vamos a correr
+Esas primeras
+Y bueno
+Y bueno
+Agregamos
+El K
+Y el N
+Que es lo que vamos a usar
+Para el denominador
+Como les dije
+Lo que nos quedaba hacer
+Era enchufar
+La suma de residuos
+Al cuadrado
+En esta expresión
+Divirla por N
+Menos K
+Y ahí tenemos
+El S
+Cuadrado
+Acá está el detalle
+Del cálculo auxiliar
+Que hicimos hace un rato
+Y
+Acá ya nos armamos
+La matriz de varianzas y covarianzas
+Que es
+El S
+Cuadrado
+Por
+X
+Transpuesta por X
+Inversa
+No sé que les estoy pidiendo
+Acá mucha memoria
+Pero bueno
+Estamos limitados
+En recursos
+Si pudiéramos
+Varias pantallas
+Compartiendose
+En el video
+Y bueno
+Acá podemos ver
+Si
+La matriz de varianzas y covarianzas
+Que de vuelta
+Es simétrica
+Y lo que nos interesa
+De esta matriz en particular
+Van a ser
+Los valores de la diagonal
+Para sacar
+Después
+La raíz
+De estos valorcitos
+Y tener el error estándar
+De cada uno de los
+Coeficientes
+¿Sí?
+¿Eso se entendió?
+Eso
+Vamos a ver
+Entonces
+Para hacer eso
+De extraer los valores
+De la diagonal
+Usamos
+La función
+Vecviag
+Entonces
+Sobre esta matriz
+Agarro
+Vecviag
+Y
+Le digo
+Vecuef
+A esa matriz
+Y cuando la leemos
+Fíjense
+Tenemos el
+0021
+0032
+0021
+0032
+Etc
+Bien
+Y bueno
+Ahora que ya tenemos
+La matriz de los coeficientes
+Y el vectorcito
+Con
+Con los errores estándar
+Podemos computar
+Los estadísticos
+Y bueno
+Los errores estándar
+Porque justamente
+Es lo que calculamos
+Pequeña advertencia
+Stata
+No nos deja
+Hacer divisiones
+Elemento por elemento
+Y tampoco
+Hacer
+Si tienes una matriz
+No le puedes sacar
+La raíz
+A los componentes
+Individuales
+De la matriz
+Así que vamos a
+Tener que hacer
+Un par de
+Un par de
+Trucos
+Extra
+Acá
+Primero
+Lo que vamos a hacer
+Extraer los valores
+De la matriz
+De varianzas
+Y covarianzas
+Lo voy a correr
+Igual
+Porque
+Y nos generamos
+Ah
+Esto porque
+Había más cuentas
+Última
+Creo que es la
+Última
+Última tonda
+De cuentas
+De esta parte
+¿Vieron lo que les decía
+De que Stata
+No te permite
+Sacar la raíz cuadrada?
+Nosotros lo que tenemos
+Ahora mismo
+Es la matriz
+De varianzas
+Y covarianzas
+Que calculamos
+Usando como
+Todo lo que hicimos
+Recién
+Y en
+La diagonal
+Tenemos
+Omega 1
+Omega 2
+Para todas
+Las variables
+Como esta matriz
+Lo que vamos a hacer
+Es
+Nosotros
+Lo que nos interesa
+Si se acuerdan
+Por esta cuenta
+Que tenemos que hacer acá
+Por esta cuenta
+Que tenemos que hacer acá
+Necesito la raíz
+De esa matriz
+De varianzas
+De los vetos
+Pero como no le puedo
+Aplicar la raíz
+Elemento a elemento
+Vamos a tener que pensar
+En alguna alternativa
+No vamos a tener
+Que pensar demasiado
+Porque bueno
+Ya les voy a dar
+La respuesta
+En dos segundos
+Pero
+El truco
+Que vamos a usar
+Es que
+Por ser una matriz
+Definida positiva
+Esto lo vamos a escribir
+Como P
+Transpuesto por P
+Esto es todo
+Lo que se llama
+La descomposición
+De Cholesky
+En particular
+En particular
+Con este tipo
+De matrices
+Lo que vamos a encontrar
+Es que P
+Va a ser
+La raíz
+De omega 1
+Ceros
+La raíz
+De omega 2
+La raíz
+De omega 8
+Entonces
+Cuando calculas
+P
+Transpuesta por P
+Volves a esta
+A esta matriz
+De omega
+Y esto nos sirve
+Un montón
+Porque
+Si yo agarro
+Esta matriz
+Le digo a esta
+Que me haga
+La descomposición
+De Cholesky
+Y a esa matriz
+Que es esta
+Que está acá
+Le saco
+Estos componentes
+Ahí sí
+Ya tenemos
+Lo que necesitábamos
+Para
+Hacer esta
+Cuenta de agarrío
+Entonces
+Nada
+Me digo
+No es que acá
+Dar toda esa vuelta
+Pero
+Por suerte
+Es una matriz
+Que nos permite
+Hacer este
+Este truquito
+¿Alguna pregunta
+Con esto?
+¿Se entendió?
+Sí, sí
+Se entiende
+Pero tengo
+Otra consulta
+Lo que pasa
+Es que
+De un poco
+Tarda
+No sé
+Si al inicio
+Lo dijiste
+Estamos como
+Probando
+Con mis inválios
+O
+Ignorándolos
+No sé
+Y por ahí
+No
+No entiendo
+Qué es lo que
+Queremos ver
+O si eso
+Influye
+En algo
+Perdón
+Se escucha un poco
+Bajito
+Ay, perdón
+Ahí me escuchas mejor
+Creo que sí
+Perdón
+Sí
+Te decía que
+Como entré un poco
+Tarde
+No sé si al inicio
+Lo comentaste
+Porque vi en el do file
+Que es como que
+Hay dos enfoques
+Uno con missing values
+Y otro
+Fin
+No sé
+Cuál es como que
+El objetivo
+En ese sentido
+No
+El chiste era
+A ver
+Arrancamos con una base
+De datos
+Y tenés dos opciones
+O
+No mirás mucho
+La base de datos
+Y decís
+Bueno
+Me pongo a hacer las cuentas
+El tema es que
+Si vos no mirabas
+La base de datos
+Y no te dabas cuenta
+De que había missing values
+No te iba a dar nada
+Ibas a estar capaz
+Que renegando
+Con el código
+Diciendo
+¿Por qué no me dabas
+Si tengo todas las cuentas bien?
+Y era porque tenías
+Mis sim values
+Ah, perfecto
+Ahora ya seguimos operando
+Con el
+Con el data frame
+Cambiado
+El que no tiene
+Los missing values
+Genial
+Gracias
+No, de nuevo
+Bárbaro
+Ok
+Vuelvo a Stata entonces
+Y bueno
+Tengan esto en mente
+Creo que estamos
+Aprovecho para una
+Transcriptat, perdón
+¿Cómo, perdón?
+Aprovecho para hacer
+Una consultita
+Sí, obvio
+En realidad tiene que ver
+Con lo que explicaste
+Al principio
+De Stata
+De trabajar con frames
+En vez de trabajar
+Con la base de datos
+Original
+Si trabajamos
+Una base de datos
+A la vez
+Como sería este caso
+Por ejemplo
+O incluso varias bases
+De datos
+Pero que no usemos
+En simultáneo
+¿Cuál es la ventaja
+De usar frame?
+O sea, ¿por qué
+Habríamos de
+Dejar como una base
+De datos
+En segundo plano
+Por decirlo de una forma
+Para trabajar
+Con un subconjunto
+De esa base original?
+Es que entiendo
+Que en Stata
+No podés
+Trabajar con
+Trabajar con varios
+Datasets
+Al mismo tiempo
+Tenés
+Un solo
+Dataset
+Que es el que está acá
+Y ya
+No es como que
+Puedo abrir varios
+Mis conocimientos
+De Stata
+Llegan hasta ahí
+Creo que no se pueden
+Tener varios
+Datasets abiertos
+Lo que a mí
+Me habían enseñado
+En un momento
+Era hacer el
+Reserve
+Y Restore
+Que básicamente
+Lo que hacía es
+Si vos
+Yo digo
+Preserve
+Drop all
+Me tira todas las variables
+Y si le pongo
+El restore
+Me devuelve el
+Dataset
+Que tenías antes
+No lo voy a hacer
+Porque seguro
+Me sale mal
+Y perdemos todo
+Pero
+El data frame
+El frame
+En realidad
+En Stata
+Lo que te ayuda
+Es eso
+A no tener que
+Recurrir al preserve
+Que puede ser
+Después de trabajar
+Muchas veces
+Con varios preserves
+Te podés marear
+Y muy propenso
+A que haya errores
+O a que pierdas
+La base de datos
+Y eso
+A tener esos subsets
+De la base de datos
+Pero
+Tengo entendido
+Que Stata
+Solo te permite uno
+Que es este
+El que tengas abierto acá
+Claro
+Perfecto
+En todo caso
+Te estaría ahorrando
+Poner si estás trabajando
+Mucho con una base de datos
+Y de la nada
+No sé
+Te mandas alguna
+Macana o algo
+No tener que volver a correr
+Toda la parte de arriba
+En la que traes
+La base de datos
+Las limpiadas
+Por ejemplo
+Por ejemplo eso
+Y en este ejercicio
+Ponele
+Ahora no lo estamos viendo
+Pero
+Sirve mucho
+Si querés
+Redefinir tu base
+De datos
+Como matrices
+Sin
+Actually
+Usar las matrices
+O sea
+Si querés definir
+Variables nuevas
+También
+Porque a veces pasa
+Que ponele
+Yo tengo esta matriz
+¿No?
+Que tiene
+Creo que eran
+2955 observaciones
+Si yo quiero guardar
+La lista de betas
+Como una variable
+Va a venir acá
+Y como que la van a sumar
+Al final
+Y me va a aparecer
+Beta 1
+Beta 2
+Beta 3
+Beta 4
+Beta 5
+6
+7
+8
+Me va a quedar la columna acá
+Y eso puede ser un poco
+Nada
+No muy limpio
+Para manejar la base de datos
+Pero
+Claro
+Perfecto
+Debe haber ejemplos más interesantes
+Seguramente
+Podemos
+Me lo anoto para la próxima
+Bárbaro
+Buenísimo
+Gracias
+No
+Por favor
+Sospecho que es un poco nuevo
+Porque yo la verdad que
+No lo conocía
+Y ya te digo
+Estuve
+Por lo menos en grado
+Usábamos siempre
+Preserve
+Restore
+Preserve
+Restore
+Y era un poco confuso
+Hola
+Después la podemos buscar
+En internet
+El full documento
+Para
+Para ver de dónde sale
+Guarda que el frame
+Nada más se puede usar
+A partir del
+Stata 16
+Por las dudas
+Si alguno tiene
+Alguna vieja
+Yo tenía el 14
+Y no lo podía usar
+Perdón
+¿Podés hablar un poquito más alto?
+Se escucha re bájito acá
+Sí
+Que
+El frame
+Nada más se puede usar
+En el Stata 16
+En adelante
+Bárbaro
+Buenísimo
+Yo tenía el 14
+Y no lo podía usar
+Así que guarda
+Si alguno
+Hay que descargarse
+Los nuevos
+El 16 o el 17
+Genial
+No vi bien
+Quién estaba hablando
+Pero gracias por
+El testeo
+Y la aclaración
+Después vamos
+Igual
+De última
+Si
+Creo que en los links
+Que les mandé
+Estaba uno un poco
+No sé si era el 16
+Y yo de algún lado
+Tengo que haber descargado
+El 17
+Así que
+De última
+Veo cómo
+Pasarles esto
+O bueno
+Buscamos si hay alguna
+Alternativa
+Frames
+Que
+Pueda usarse
+En eso
+Probablemente
+El preserve
+Y restore
+Igual en este caso
+Lo que hicimos
+Nos servía
+Que era sacar
+Los missing values
+Era algo que
+No es que vamos
+A volver al dataset
+Que tiene
+Los missing values
+Porque nos sirve
+Para algo
+En esta aplicación
+Así que
+Última
+Dropea
+Los missing values
+Y listo
+Ok
+Entonces
+Volviendo a esto
+Queríamos
+Calcular
+Bueno
+Dijimos que
+Lo que teníamos que hacer
+Era
+Armar una matriz
+Que sean ceros
+Y en las diagonales
+Las varianzas
+Después
+Esa matriz
+La vamos a invertir
+Para que nos quede
+Uno sobre las varianzas
+Y una vez que tengo
+El uno sobre las varianzas
+Le sacamos la raíz
+Cuando le saco la raíz
+Ahí ya tengo como
+Los componentes
+Para multiplicar
+Con los betas
+Porque es uno
+Sobre vale la varianza
+O sea estoy dividiendo
+Por la varianza
+Y ahí ya nos
+Calculamos este
+Estándar
+Error
+Esas son las cuentas
+Que están hechas acá
+Parece que no es muy interesante
+Para verlo en detalle
+De hecho acá tienen
+Como una línea
+Donde te corre
+Todo eso
+De una sola vez
+Ya después
+Hacemos el producto
+Elemento a elemento
+Para dividir los betas
+Por los SD
+Lo que dijimos recién
+Y ahí nos quedan
+Los D
+Armaditos
+Y por último
+El error estándar
+Que es algo que
+Les cuento
+Cómo se lee esto
+Que es medio
+Extraño
+De la matriz B
+Agarro
+Y extraigo
+Lo que haya en la diagonal
+BackDiab
+Después
+Con Diab
+De vuelta
+Lo que hago es
+Armar una matriz
+Que tenga todos ceros
+Y bueno
+En la diagonal
+Ponemos los
+Valorsitos
+Hacemos la descomposición
+De Cholesky
+Para que nos quede
+La raíz
+De esas cosas
+Y de vuelta
+BackDiab
+Para
+Esa matriz
+Que era
+Ceros
+Y la raíz
+De las varianzas
+Nos devuelve
+Un solo vector
+Entonces
+Vamos a hacer esto
+Y ahí tenemos
+Los errores
+Estándar
+Acá lo que voy a hacer
+Es juntar todo
+En una sola matriz
+Le voy a poner
+De nombre
+Results
+Y me voy a juntar
+V
+S E
+Y T
+Le voy a cambiar
+Los nombres
+A las columnas
+Matrix
+CallNames
+Results
+O sea
+Para la matriz
+Results
+Voy a aplicar
+Una función
+Dentro de
+Sorry
+¿Habrá alguien?
+Ah
+Me pareció
+Porque se escucha raro
+Uso la función
+Matrix
+CallNames
+Para aplicarla
+A la matriz
+Results
+Y le pongo
+A la primera
+Coeficientes
+Al segundo
+Standard Error
+Al último
+KeyStack
+Y bueno
+Ahora podemos
+Mirar la matriz
+Con todo armadito
+Nada
+Fui un poco
+Detenidamente
+A lo largo de esto
+Porque había funciones
+Que está bueno
+Que sepan
+Cómo se usan
+Lo del Hadamard
+Lo de los frames
+Lo de Cholesky
+Esos truquitos
+Que les pueden servir
+Pero al final del día
+No me estresaría mucho
+Porque
+Usamos el comando
+Regres
+Y fíjense
+Los coeficientes
+.25
+6.70
+.25
+6.70
+Error estándar
+0.46
+.27
+0.46
+.27
+O sea
+Es una forma
+De decir
+Todo este trabajo
+Que hicimos manual
+Recién
+Funcionó
+Bueno
+Acá tenemos
+La forma
+Para hacer los tests
+Final
+Final
+Creo
+Acá
+Testeamos
+La hipótesis nula
+De que sean iguales
+A cero
+Este es
+El test
+Individual
+Y acá
+El conjunto
+Este f
+Que aparece acá
+Es el test
+De significatividad
+Conjunta
+Sobre todas las variables
+Pero no
+No creo que sea
+Nada nuevo
+Y si lo quieren
+Calcular a mano
+Acá están las cuentas
+No lo voy a hacer todo
+Porque si no
+Nos vamos a quedar
+Sin tiempo
+Para el próximo
+Y al final
+Del día
+Son cuentas
+Muy parecidas
+A las que hicimos
+Hace un rato
+Si quieren
+Mírenlo
+Y cualquier duda
+Que tengan
+Lo podemos ver
+La que viene
+Pero es básicamente
+Vieron cuando
+Dijimos que
+Para sacar
+El
+El test
+Statistic
+Tengo que sacarme
+El beta
+Dividirlo
+Por la raíz
+De la varianza
+Pero para la varianza
+Tengo que ir
+A estimarla
+Porque no conozco
+El sigma
+Entonces me armó el S
+Bueno
+Todo eso parecía
+Pero he hecho a mano acá
+Así que nada
+Eso era como
+Lo más importante
+De la parte
+Este del TP
+Vuelvo para arriba
+Un toque
+Lo que nos pedían
+Era entonces
+Estimar la ocasión
+Por OLS
+Usando comandos
+De matrices
+Lo hicimos
+Y lo chequeamos
+Con el comando
+Regres que dio bien
+Reportar los errores
+Estándar
+Lo hicimos
+Y los estadísticos
+T
+Así que con eso
+Finalizado
+Del ejercicio 1
+Que era más
+De jugar un poco
+Con el álgebra
+Y con
+Las funciones
+De Stata
+Para entrar en calor
+Ahí con Stata
+¿Alguna pregunta
+De esta?
+If not
+Vamos al ejercicio 2
+Ahora en el ejercicio 2
+Sí vamos a pasar
+A un dataset
+En panel
+Como quería
+Creo que era Pablo
+Para eso
+Lo que vamos a hacer
+Es usar
+Dos bases de datos
+Una se llama
+MWS08
+Y la otra
+PIGWAYS
+Así que nada
+Ah
+Y bueno
+La parte más interesante
+De este ejercicio
+Capaz
+Es la parte
+De simulaciones
+Que tenemos
+En el inciso C
+Así que voy
+A ir directo a Stata
+Lo bueno es que acá
+No hay tantas cuentas
+Para hacer
+Bien
+Bueno
+Arrancamos
+No más
+Igual que siempre
+Tenemos que cargar
+El dataset
+Y vamos a
+Describir
+Y summarize
+Como
+Hacemos habitualmente
+Tenemos acá
+La lista de variables
+Y lo que tenemos es
+Por ejemplo
+Experiencia
+Años de full time
+Work experience
+Weeks
+Semanas trabajadas
+Occupation
+Si estás en blue collar
+Industria
+Si estás en manufacturing
+O no
+Residence
+Si estás
+En el área sur
+Es igual a uno
+Marital status
+Si sos hombre o mujer
+Años de educación
+Esto supongo que es
+Etnicidad
+O sea
+De la etnia negra
+El logaritmo
+El logaritmo del salario
+Y después tenemos
+Domies para el tiempo
+Entonces
+Si
+Vamos a ver la base de datos
+Fíjense que acá
+Tenemos el ID acá
+Y el tiempo acá
+Así que vamos a reordenar esto
+Para poder visualizarlo
+Un poco más lindo
+Entonces vamos a hacer order
+Ahí vamos a poner
+El ID primero
+Y el tiempo después
+Supongo que está habitual
+Entonces con esto
+Lo que le digo a Stata es
+Ordename las variables
+Agarra ID
+T
+Y ponelas adelante
+De todo
+Entonces cuando pongo
+El bravo hace vuelta
+Ahí ya me las puso adelante
+Este
+Y bueno
+Sabemos que esto
+Ya es un panel
+Por las dos voy a sort
+Por ahí
+Pero esto creo que
+Ya está ordenado
+Notar que la data
+Está en formato
+Long
+No sé si
+Saben o se acuerdan
+La diferencia entre
+Long y Wide
+Si no lo repasamos
+Porque medio que lo vamos a hacer
+Formato Long
+Significa que
+Las variables ID
+Se repiten
+En esta primera columna
+¿Sí?
+O sea tengo el individuo 1
+Lo mido
+A través de diferentes tiempos
+Y
+Le pongo las variables así
+Entonces es como que
+Para el individuo 1
+Tengo
+Una matriz
+Y después está la forma Wide
+Que es como
+Tengo el individuo 1
+Y en lugar de tener
+El tiempo hacia abajo
+Tengo el tiempo hacia el costado
+Entonces capaz que tenés
+Individuo 1
+Y después para el costado tenés
+Experiencia 1
+Experiencia 2
+Experiencia 3
+Experiencia 4
+Así hasta
+Experiencia 7
+En este caso
+En ese caso
+En el caso Wide
+Vamos a tener
+Una fila para cada ID
+O sea el individuo 1
+Va a tener
+X1
+X2
+X3
+X4
+El individuo 2
+Va a tener
+X1
+X2
+X3
+X4
+Con todas las variables
+Hacemos esta diferenciación
+Porque
+Cuando
+Ahora vamos a ver
+Algunos comandos
+De Stata
+Que se aplican
+Para bases
+En forma de panel
+Pero usan
+Formas
+Datasets
+Que estén en forma
+Long
+¿Sí?
+O sea
+En esta forma que está acá
+Así que
+Estamos viendo
+Bien
+Otra cosa que quería comentar
+Es que
+Estas variables
+Digo
+Estas funciones
+Describe
+Y summarize
+No toman en cuenta
+El hecho de que
+Estás mirando un panel
+O sea
+Es como que
+Agarran todo el dataset
+Ignoran la parte
+De que los IDs
+Representan a la misma
+A la misma persona
+O a la misma
+Unidad
+Que estás observando
+Y te calculan
+Por ejemplo
+El promedio
+Sobre toda la muestra
+Y las varianzas
+O sea
+Los desvíos
+Sobre toda la muestra
+En total
+Vamos a ver
+Algunos
+Algunos de los comandos
+Que se suelen usar
+Para analizar
+Los datasets
+En panel
+Ahora sí
+Entonces
+Vamos a arrancar
+Con el más importante
+De todos
+Que es
+XTC
+ID
+T
+XTC
+Lo que hace
+Es decir
+La Stata
+Lo que tengo
+Es un
+Un dataset
+En forma de panel
+Y le pones
+Primero la variable
+Que representa
+Los identificadores
+De cada individuo
+Y después
+La de los tiempos
+Entonces
+Acá tenemos
+Que tenemos data
+Que va del 76
+Al 82
+Para 595 individuos
+Lo cual tiene más sentido
+Que estas 4165
+Observaciones
+Que teníamos antes
+En cuanto a variables
+En cuanto a variables
+Del tiempo
+Vemos que va del 1
+Al 7
+Y que el delta
+O sea los saltos
+Que tiene el tiempo
+Son de a 1 unidad
+Otro de los comandos
+Que vamos a usar
+Es XT
+Describe
+En lugar de
+Describe
+Que teníamos antes
+Fíjense
+Como nos describe
+Ahora el dataset
+Nos dice
+Que tenemos
+595
+Observaciones
+Digamos
+IDs en realidad
+Para cada uno
+De ellos
+Tenemos 7
+Periodos de tiempo
+Y
+Lo que nos devuelve
+Acá abajo
+Es cómo se distribuye
+El tiempo
+O sea
+Para cada observación
+El mínimo
+De periodos observados
+Es 7
+Sobre todo el dataset
+El máximo
+De periodos observados
+Para alguna observación
+Es 7
+O sea que en el medio
+Todas tienen 7
+Periodos observados
+Lo que nos dice
+Que el panel
+Es balanceado
+¿Sí?
+O sea que
+No va a suceder
+Un caso donde
+A algún individuo
+En un año
+En particular
+No le mediste
+Por alguna razón
+Y esto acá
+Lo que nos da
+Es el pattern
+O sea el patrón
+De repetición
+O más bien
+De presencia
+De información
+A lo largo
+De los periodos
+Esto nos quiere decir
+Que el 100%
+De estas 595
+Personas
+Individuos
+Lo que sea
+Tenían datos
+En el año 1
+Tenían datos
+Tenían datos
+En el año 2
+Tenían datos
+En el año 3
+Si no tuvieran datos
+O sea
+Si observáramos
+Algún caso
+O algunos casos
+Donde por ejemplo
+Para el año 2003
+No hubo datos
+Esto sería un puntito
+Que ahora creo que
+Tenemos otro ejemplo
+Donde lo podemos ver
+Un poco más en detalle
+Pero
+Nada
+Vamos con
+Zoom
+El Zoom
+Como vimos hace un rato
+Nos calculaba
+El promedio
+El desvío
+El mínimo
+Y el máximo
+Sobre todo
+El dataset
+Entonces
+Fíjense la diferencia
+Entre Zoom
+Y XT Zoom
+XT Zoom
+Nos va a dar
+Para las variables
+Que le pongamos
+Nos va a devolver
+El promedio
+Overall
+Para todo
+El dataset
+Y aparte
+Nos va a dar
+El desvío
+Between
+Y Within
+Bajamos un poquito
+La diferencia
+Entre estas dos cosas
+Entre Between
+Y Within
+Es básicamente
+Overall
+Obviamente es como
+La variabilidad
+A lo largo
+De todo el dataset
+Within
+Es la variabilidad
+Dentro
+De una sola persona
+O sea
+Dentro de un mismo ID
+Si yo medía
+A lo largo
+De los años
+Cómo cambiaba
+No sé
+La cantidad de horas
+Que paso sentada
+Within
+Lo que mide es eso
+La variabilidad
+Dentro de cada individuo
+Between
+Lo que hace
+Es medir
+La variabilidad
+En diferentes puntos
+Del tiempo
+Para todos los individuos
+La forma más fácil
+De verlo
+Es mirando
+Qué pasa con ID
+Qué pasa con T
+ID
+Qué pasa
+Para un mismo individuo
+Para un mismo individuo
+El ID
+Es el mismo
+A través de todo
+El tiempo que medimos
+Porque
+Vos cuando nacés
+Te dan un DNI
+Y el DNI
+Es el mismo
+Para toda la vida
+Entonces
+En ese caso
+El ID
+No tiene variabilidad
+Within
+Lo mismo con el tiempo
+Si lo medamos
+Between
+Si yo agarro
+Y digo
+Bueno
+Me fijo en el primer
+Periodo
+Que observo
+¿Cuánto vale el T
+Para la persona 1
+Para la persona
+2
+Para la persona 3
+Vale 1 para todos
+Entonces ahí
+No hay variabilidad
+Por eso la variabilidad
+Between
+Para el tiempo
+Es 0
+Esos son los casos
+Como
+Obvio
+Como que
+Es como tiene que funcionar
+Y bueno
+Otras formas de verlo
+Por ejemplo
+Acá vemos que la educación
+Tiene variación
+Within
+0
+O sea que para una misma persona
+La educación
+No cambió
+Durante el span
+De tiempo
+Observado
+Yo supongo que es
+No sé si lo dice acá
+Years of education
+Yo supongo que es tipo
+Educación máxima alcanzada
+Durante todo ese periodo
+Capaz
+Y por eso no cambia
+Pero si no
+Uno debería esperar
+Que cambie
+Que estás en
+Edad
+Escolar
+Edad
+De educarte
+No sé si había
+Algún otro interesante
+Parece que no
+Pero bueno
+Este me llamó la atención
+Por eso
+Solo para confirmar
+Disculpame que te interrumpa
+Sí, obvio
+Por ejemplo
+La variabilidad
+Within
+Sería
+Yo tengo el individuo
+Uno
+Tengo muchas
+Muchas observaciones
+En el tiempo
+Le calculo el salario
+Este individuo
+Uno va a tener
+Una varianza
+Una varianza
+Típica
+Del individuo
+Uno
+Después lo mismo
+Para el individuo
+Dos
+Lo mismo
+Para el individuo
+Tres
+Lo que estamos mirando
+Acá es el promedio
+De esas varianzas
+¿Correcto?
+La cuenta
+Exactamente
+No te la sabía decir
+Diría que sí
+Que sería el promedio
+De esas varianzas
+Pero
+A ver si
+Creo que esto está
+Aquí está Zoom
+Y si vas al manual
+Completo del PDF
+Tiene que haber
+Una parte al final
+Donde dice
+Porque acá no te va a aparecer
+Podemos buscarlo
+Y lo chequeamos
+Exacto
+Cuál es la cuenta
+Sospecho que sí
+Como calculan
+La varianza
+Para cada individuo
+Y después la promediarán
+Pero lo busco
+Y se lo paso
+Dale, buenísimo
+Gracias
+No, por favor
+¿Alguna otra pregunta?
+Ok
+Voy a meterlo un poco
+Porque
+Nada
+Vamos a quedar sin tiempo
+Acá hay otro ejemplo
+Usando una base de datos
+Que está como
+En el directorio de Stata
+Por eso usamos
+El WebViews
+NLS Work
+Acá cargué otro dataset
+Y tenemos
+Acá
+Tenemos una encuesta
+Longitudinal
+Of young women
+De 14 a 24 años
+En 1968
+Vamos a correr
+Lo que habíamos
+Hecho antes
+Primero declarar el panel
+Después ponemos
+El Describe
+Y después el Exit Summarize
+Para ver
+Para aprender
+Un poco más
+Del panel
+Fíjense que acá
+Lo que tenemos
+Es
+Que tenemos
+Un dataset
+Primero lo voy a abrir
+Tenemos el ID code
+Para la mujer 1
+¿Cuántos años tenía?
+Tenía 70
+71
+72
+73
+75
+77
+78
+80
+Acá capaz que
+Cambiaron la fecha
+En la que realizaron
+La encuesta
+Y tipo
+Si cumpliste justo antes
+O justo después
+Pegó ese salto
+¿No?
+¿En qué año nació
+En el 51?
+¿O alguien le pidió
+Cuando
+La edad
+Race
+Y bueno
+El resto de las variables
+Entonces fíjense
+¿Qué tenemos?
+Que la variable del tiempo
+Es year
+Como le dijimos
+A esta taquera
+Que va del 68
+Al 88
+Pero tiene gaps
+En algunos casos
+El delta es de un año
+Y el span
+Es de 21 periodos
+Nos dice que
+ID code
+Por tiempo
+Por year
+Unically
+Identifies each observation
+Lo cual
+Está bien que suceda
+Cada observación
+Corresponde a una persona
+En un momento en el tiempo
+Una persona
+En un momento en el tiempo
+Ah no
+Sorry
+El year
+Es el año
+De la encuesta
+No el año
+De la persona
+Sería raro
+Sería raro
+Que tenga 71 años
+Si nacía en el 51
+Por eso está este gap acá
+O sea
+Para esta persona
+No se la midió
+En el 74
+Y acá tenemos
+Un ejemplo
+De un gap
+Y esto es lo que
+Y esto es lo que les decía
+Del pattern
+Que tenemos
+Que
+Por ejemplo
+136 veces
+Sucede que
+Tenés el primer año
+Y para el resto
+No me diste nada
+114 veces
+No me diste nada
+No me diste nada
+No me diste nada
+Y el último aparece
+89 veces
+Tenés este patrón
+El patrón
+Digamos
+En el
+En 86
+Caso
+Tenés
+Que
+Este patrón de acá
+Que es como
+Bastante
+Bastantes observaciones
+O sea que este panel
+Claramente no está balanceado
+No tenemos todas las observaciones
+¿Qué más?
+Bueno, acá tenemos
+El resumen
+De las variables
+Solamente para
+Birth, year
+Y race
+Porque bueno
+Esto es un claro ejemplo
+De qué pasa con la variabilidad
+Within
+Y between
+El año en el que naciste
+No cambia a lo largo del tiempo
+Variabilidad within
+Cero
+La raza que tenés
+Te supone que
+No cambia a lo largo del tiempo
+Variabilidad within
+Cero
+Un pequeño ejemplito
+Que es un poco capaz
+Que más interesante
+Para ver cómo funciona
+El patrón
+Ese era como
+El inciso A
+Para el inciso B
+Voy a volver a tanto que
+Nos piden que usemos
+La base
+Pick weights
+Los datos se encuentran
+En formato wide
+Es lo que hablábamos hace un rato
+Y nos piden que usemos
+El comando reshape
+Para llevarlos a formato long
+Y luego
+Despigamos la base
+Entonces
+Vamos con eso
+Voy a usar
+Cargo la base de datos
+Que ya la tengo en la compu
+Esto es lo que vamos a hacer
+Esta es la forma long
+Que decíamos hace un rato
+El id se repite varias veces
+En la primera columna
+Porque el tiempo
+Nos da una fila
+Para cada momento en el tiempo
+Para cada observación
+Wide
+Es esta situación
+Tengo la variable 1
+En el momento 1
+Para el individuo 1
+Acá
+Y después lo mismo
+Pero para el individuo 2
+Es como que tengo
+Variables y tiempo
+En forma wide
+Y acá está
+La explicación de los comandos
+De cómo pasar
+De wide a long
+Y de long a wide
+En este caso
+Nos vamos a encontrar
+Con que
+El dataset va a estar
+En formato wide
+Y lo queremos pasar a long
+Para poder usar
+XT
+Entonces
+Vamos con eso
+Primero
+Voy a
+Mirar un poco la base
+Fíjense que tenemos
+Weight 1
+Peso 2
+Peso 3
+Peso 4
+Peso 5
+Para cada uno
+De los peaks
+Entonces
+Para el peak 1
+El peso
+A lo largo del tiempo
+Peak 2
+El peso a lo largo del tiempo
+Veamos cómo cambia esto
+Cuando usamos
+La función
+Reshade
+Quiero pasarla
+A formato long
+¿Qué cosa?
+Basado
+En la variable
+Weight
+A la variable
+ID
+Le quiero decir
+ID
+Y a la variable
+Del tiempo
+Le quiero poner
+T
+Y acá nos dice
+Cuáles fueron
+Los cambios
+Que hicimos
+Estábamos en formato
+Wide
+Teníamos 48
+Observaciones
+O sea
+48 peaks
+A los que medíamos
+A través del tiempo
+Cuando pasamos
+Al formato long
+Fíjense que tenemos
+El peak 1
+Momento 1
+Peso 24
+Peak 1
+Momento 2
+Peso 32
+Y así sucesivamente
+Entonces lógicamente
+Ahora en lugar de tener
+Las 10 variables
+Que eran
+El número del peak
+Y los 9 momentos
+En el tiempo
+Que medíamos
+Vamos a tener
+Tres variables
+Que son
+El id
+El tiempo
+Y el peso
+Y acá ya tenemos
+Toda la información
+Para el peak 1
+Para el peak 2
+Alguna pregunta
+Con esto
+Creo que es
+Bastante
+Straightforward
+Pero
+Acá hay
+Otra opción
+Que es más rápida
+Pero no la voy a correr
+Porque
+No es nada
+Demasiado útil
+Para esta clase
+Pero se las dejo
+Por si les sirve
+Para
+Datas que son
+Un poco más
+Extensos
+Creo que no
+Que en lugar de usar
+Reshape
+Usas
+G-R-E-Shape
+Tenés que instalar
+Esto que está acá
+Pero
+Y el s-time
+Digamos
+Después
+La idea es la misma
+Pero lo que cambia
+Es que
+Le agregamos el s-time
+Para medir
+Cuánto tiempo
+De diferencia
+Hay
+Entre
+Un comando
+Y el otro
+Bueno
+Y ahora sí
+Voy a pasar
+Al inciso 3
+Ah, sí
+Ah, pero Michael Jackson
+Por el tema de la raza
+Por eso dije
+Teóricamente
+Es todo un tema eso
+Lo mismo con el
+Con el sexo
+Y eso
+O sea
+Tenés que hablar de
+Sexo biológico
+Asignado al nacer
+Como no te quedan
+Muchos
+Bien
+Ok
+Inciso C
+Tenemos que generar
+Un panel de 5000 observaciones
+Con 10 periodos temporales
+Y 500 unidades
+En el corte transversal
+El panel
+Debe estar en formato
+Long
+Genera observaciones
+De
+X
+Normal 01
+U
+Normal 01
+Y además
+Y
+Se compone así
+Y después de estimar
+Por
+GLS
+Así que
+No hace falta
+Mucha introducción
+Acá
+Creo
+Voy directo
+Al código
+Y
+Este es uno
+De los
+Nada
+Están buenos
+Estos ejercicios
+Porque después van a servir
+Para los TPS
+Si no hicieron simulaciones
+De ver
+Nada
+Un buen punto de partida
+Cuando uno hace simulaciones
+Lo primero que tiene que tener en cuenta
+Es
+Cómo quiere
+Que finalmente
+Sea la base de datos
+Con las que va a trabajar
+En nuestro caso
+De vuelta
+Lo que necesitamos es
+5000 observaciones
+Con 10 periodos temporales
+500 unidades
+En el corte transversal
+O sea
+Para cada periodo temporal
+500 unidades
+O sea
+Básicamente
+Lo que estamos haciendo es
+Medir a 500 personas
+A lo largo de 10 periodos
+Y nos dicen que el panel
+Tiene que estar en formato long
+Entonces ya sabemos
+Que necesitamos
+En la primera columna
+Los ID's
+Que van
+Del 1
+Al 500
+Y para cada uno
+De los periodos temporales
+Cada uno de los ID's
+Se va a tener que repetir
+10 veces
+Entonces va a tener
+1, 1, 1, 1, 1
+2, 2, 2, 2, 2
+Así
+Hasta llegar al 500
+Y ahí viene el
+El chiste de trabajar
+Con
+Esta función
+Que está acá
+Que se llama sec
+Que hace la secuencia
+Entonces
+Arranco por lo más básico
+Que es
+Ciro
+Set more off
+Y seteamos un zip
+Para poder replicar
+Los resultados
+Y
+Como voy a tener que usar
+Un local
+Este
+No se saben la diferencia
+Entre local
+Y local
+En stata
+Local es
+Si yo
+Por ejemplo
+Corro esto ahora
+Que es básicamente
+Genero
+Este numerito
+Que vale 5000
+Este numerito
+Que vale 10
+Este numerito
+Que es 5000
+Sobre 10
+Lo corrí
+End of the file
+Si le digo a stata
+Ahora
+Mostrame
+Este
+No me está mostrando
+Nada
+Porque lo guardé local
+Entonces
+Cuando volví a correr
+El código
+Estata no se acuerda
+De lo que me tiene que mostrar
+Todo esto para decir
+Que voy a correr
+Todo este choclo
+De una sola vez
+Para que
+En esta cuenta
+En esta línea
+Me lo
+Me tome
+Estas local
+Que guardé acá
+Entonces
+Primero
+Le asigno
+El NT
+La cantidad total
+De observaciones
+N por T
+O sea
+Cuántas filas
+Necesito en mi datos
+10 es la cantidad
+De periodos temporales
+N
+Que es la cantidad
+De individuos
+Va a ser
+La cantidad total
+De observaciones
+Divido
+La cantidad de periodos
+Está bueno
+No
+Digamos
+No dejarlo hardcoded
+Esta parte de acá
+Y usar estas referencias
+Porque si ustedes después
+En un ejercicio
+Inmediatamente después
+Le dicen
+Modificar la cantidad
+De periodos
+A
+No sé
+100
+En lugar de 10
+Cambias
+Solo este
+Y te despreocupás
+This
+Me muestra el N
+SetObs
+Lo que hace es
+Setear el número
+De observaciones
+Del dataset
+A NT
+5.000
+Que es un poco
+Lo que
+Debería haber pasado
+Pero bueno
+No
+No corrimos nada
+Todavía
+Entonces
+Acá viene la parte más
+Divertida
+Ponerle
+Que es
+Generar
+La variable
+ID
+Y la variable
+T
+Para eso
+Vamos a usar
+La función
+Sec
+Que si quieren
+Pueden buscar
+Más info
+Acá
+Bueno
+No era tan
+Rápida la búsqueda
+Pero
+Básicamente
+Lo que hace es
+Lo que hace es
+Generar una secuencia
+De números
+Siguiendo estas reglas
+Que tenemos acá
+Entonces
+En el primer caso
+Lo que hacemos es
+Desde
+F
+Que lo pueden tomar
+Como
+From
+1
+Hasta
+To
+Lo que pongo acá adentro
+Hasta el n
+O sea
+Desde 1
+Hasta n
+Que eran 500
+Y quiero que la repitas
+T veces
+O sea
+B
+B es como
+Block
+Entonces
+Género una secuencia
+Que vaya
+Desde el 1
+Hasta el n
+Bloqueándola
+10 veces
+Bueno
+Eso me pasó
+Porque
+No volví a correr
+El local
+Como les decía
+Voy a correr
+Todos juntos
+Y ahora
+Lo vemos
+El comando
+Este de acá
+Es
+Algo parecido
+Solo que
+Le estoy diciendo
+Armame una secuencia
+Que vaya desde el 1
+Hasta el T
+Ya
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+Y después
+Se reinicia
+Solo
+Entonces
+Para la primera observación
+Que ya está repetida
+10 veces
+Va del 1 al 10
+Para la segunda observación
+Que está repetida
+O bloqueada
+10 veces
+Va del 1 al 10
+Pues ahora sí
+Vamos al
+Y ahí nos queda ya
+La primera estructura
+De
+Del panel
+¿Sí?
+ID 1
+Del 1 al 10
+¿Alguna pregunta con este?
+Bárbaro
+Ya después lo que queda
+Es bastante normalito
+Lo que hacemos es tirar
+Gen X y T
+Que es una normal
+0,1
+U y T
+Que es una normal
+0,1
+Como nos decía el TP
+Y armamos
+La variable dependiente
+Como 1
+Más
+X
+Más
+1
+Fíjense que
+Lo que hacen estas dos
+Es
+Para cada una de las filas
+Te
+Te
+Te agarra un número
+De una normal 0,1
+O sea
+No hay mucha más ciencia
+Que eso
+Y esto
+Nada de simple
+Porque en este ejercicio
+Era simple
+Y todas las observaciones
+Eran independientes
+Y qué sé yo
+Vamos a ver
+En el próximo ejercicio
+En el tiempo que nos queda
+Qué pasa cuando
+No es tan sencillo
+Ese
+Ese
+Agarrar los datos
+Ahora que tengo esto
+Corro
+Ah
+¿Sí?
+Te consulto algo
+Ahí
+La secuencia
+No sé si me escuchas
+Sí, sí
+Sí
+La secuencia
+¿Cómo sabe
+Que la tiene que hacer
+En función
+Como que del ID
+Porque yo he hecho secuencias
+Pero usando el Bison
+Y ahí
+Obvio toma como referencia
+Otra variable
+Pero aquí
+No sé
+Cómo el comando
+Solo
+Que genera la variable T
+Identifica eso
+Porque la lógica
+Porque la lógica
+Que siga la secuencia
+Es esta
+Yo le estoy diciendo
+Generame una variable
+Que se llame ID
+Que tiene que ser esto
+Es una secuencia
+De números
+Ok
+Es una secuencia
+De números
+Que va
+Desde el número 1
+From 1
+Hasta el número
+N
+Que N era
+500
+O sea del 1 al 500
+Pero no la repitas
+Así
+Digamos de 1 en 1
+Ni de 2 en 2
+Sino que repetímela
+T veces
+Cada vez que vamos
+¿Cuál es un número?
+Repetilo 10 veces
+Pasá al siguiente
+Repetilo 10 veces
+Pasá al siguiente
+Ok
+Sí, sí
+Ahí me confundí
+Pero sí
+Claro
+La T mayúscula
+Te dice
+Claro
+La T mayúscula
+Te dice cuántas veces
+Querés
+Repetirlo
+Porque tenés que dejar
+El espacio
+Para estos de acá
+Ok
+Sí, sí
+Gracias
+No, no
+Bien
+Acá ya corrí la Y
+Y ahora
+Que tenemos
+El panelcito
+Armado
+Le digo a Stata
+Esto es un panel
+Y corremos
+Describe
+Y XT Zoom
+Que bueno
+Lo mismo que vimos antes
+Obviamente
+Acá observamos todo
+Porque justamente
+Lo creamos
+Y
+Finally
+Pulled OLS
+Es básicamente hacer OLS
+Sobre todo
+El dataset
+Así que usamos
+El comando
+Regress
+Fíjense que
+El XT
+Nos da
+.99
+Que está
+Muy cerquita
+De
+De lo que
+Se supone que era
+El beta
+Igual a 1
+Y la constante
+Que era igual a 1
+Nos dio
+1.01
+O sea
+Bastante bien
+Bueno
+Eso fue el ejercicio 2
+¿Alguna pregunta con esto?
+Voy a pasar al ejercicio 3
+Quedan 15 minutos
+Vamos a ver cómo sale
+No, última
+Si después nos llegamos
+O lo seguimos viendo
+La clase que viene
+O
+Ok
+Este es un poco más
+Tiene un poquito de picante extra
+Que es
+Que nos dan un modelo
+Que es
+Beta 1
+Más beta 2
+Por X2
+Más beta 3
+Por X3
+Más el error
+Y nos dicen que el error
+No se distribuye
+Normal 0.1
+Como en el caso anterior
+Sino que tiene una distribución
+Que va a depender
+De la variable X2
+¿Sí?
+Por
+Bueno
+Un error que sí es
+Normal 0.25
+En este caso
+¿Qué pasa?
+Cuando
+Quizás se acuerdan
+Que cuando el error
+No
+No está
+Bien comportado
+Ya no podemos
+Salir a hacer
+Las regresiones
+Que hacíamos
+Habitualmente
+Porque
+Si bien los estimadores
+Los betas
+Van a seguir
+Siendo consistentes
+Sin sesgados
+Y asentóticamente
+Normales
+La varianza
+Que va a salir
+¿Se acuerdan?
+Que cuando calculábamos
+La varianza
+Hacíamos la suma
+De los residuos al cuadrado
+Y qué sé yo
+Bueno
+Eso nos va a afectar
+La varianza
+De
+De
+De la regresión
+Que queramos hacer
+Entonces el error
+Deja de ser homosedástico
+Vas a ser
+Heterosedástico
+Y acá ya te dicen
+Que la varianza condicional
+Es 25 por
+Esto
+Depende de
+X2
+O sea
+No es
+La
+La matriz de variantes
+Única varianzas
+No va a ser
+Un numerito
+Constante
+O
+Sigma
+Por una identidad
+Como veíamos antes
+Sino que
+Va a ir cambiando
+Para las observaciones
+Entonces acá
+Lo que tenemos que hacer
+Es ver
+Cómo nos generamos
+Un panel
+Que tenga
+Mil muestras
+Más bien
+Queremos un panel
+De
+N igual a
+10 observaciones
+A partir del momento
+Presentado
+Y para cada muestra
+Queremos estimar
+Por OLS
+CLS
+Y FTLS
+Y después repetir
+El punto anterior
+Con diferentes tamaños
+De muestras
+Fíjense que acá
+No tenemos tiempo
+Esto no va a ser
+Un panel
+Pero es para ver
+Cómo
+Cómo cambian
+Los resultados
+O cómo cambian
+Los procedimientos
+Cuando tenemos
+Errores
+Que no siguen
+El comportamiento
+Habitual
+O
+Que no siguen
+Los assumptions
+Actuales
+Bueno
+Voy a ir al código
+Y
+Vamos a hacerlo
+Digamos
+El objetivo
+De este ejercicio
+De forma última
+Es
+Hacer
+Una replicación
+Mil veces
+Para esta única muestra
+Si
+O sea
+Tenemos una muestra
+Que era
+De
+N igual a 10
+Y la queremos correr
+Mil veces
+O sea
+Mil veces
+Quiero replicar
+Ese dataset
+Para
+Para hacer la simulación
+Primero
+Lo que
+Yo recomiendo
+Es
+Armate una sola
+Y después
+Y después
+Y después ves
+Como la metes
+En el loop
+O en el programa
+Que quieras usar
+Para replicarla
+Mil veces
+Pero primero
+Lo vamos a hacer
+De una sola muestra
+Entonces
+De vuelta
+Vamos a arrancar
+Con
+Lo
+Primero
+Setemos la SID
+Y las observaciones
+Que van a ser
+10
+Para
+Estar
+Y vamos a generar
+¿Se acuerdan que teníamos?
+A ver
+Quiero armar
+Esto que está acá
+Y para armarlo
+Necesito
+X2
+X3
+UI
+Pero UI
+Es todo esto
+Y después tengo
+Las betas
+Que son todos
+Iguales a 1
+Entonces
+Para hacer eso
+Primero
+Me armo
+X2
+Que es
+5 por una normal
+0,1
+Porque
+Nada
+Cuando la multiplicas
+Por el 5
+Después para la varianza
+Se queda al cuadrado
+Se queda todo bien
+Entonces es una normal
+0,1
+Multiplicada por 5
+Lo mismo con X3
+Lo mismo con E
+Y después tenemos
+Los errores
+Que se distribuyen así
+E ya lo tengo armadito
+X2 ya lo tengo
+Entonces multiplico acá
+Por 0,2
+Resto 1
+Aplico exponente
+Le saco la raíz
+Y ahí tengo
+El U también
+Que ahí ya lo corrí
+Y bueno
+Por último
+Ahora que tengo
+Todo lo que necesitaba
+Puedo armar
+Y
+Que va a ser
+1 más X2
+Más X3
+Más U
+Entonces
+Ahí corrí todo
+Y vamos a ver
+Cómo se ve esto
+Ya tenemos
+Para nuestro
+Dataset
+De 10 observaciones
+Los valores
+Los valores que toma
+X2
+Los valores que toma
+X3
+Que es el componente
+Lindo por así decirlo
+De U
+U que es el error
+De la regresión
+Y
+Y
+Y bueno
+Nos piden que
+Estimemos por
+OLS
+GLS
+Y
+FGLS
+Si se acuerdan
+Recapitulando lo que dije
+Hace un rato
+En presencia de errores
+Heterosedásticos
+Los coeficientes
+Siguen siendo
+Asintóticamente normales
+Consistentes
+Y
+E
+Incesgados
+Lo que va a cambiar
+Es la matriz de variantes
+Y covarianzas
+Que no va a ser correcta
+Vamos a tener que hacer
+Como una
+Modificación
+O un ajuste
+El ajuste
+Se hace por
+GLS
+En casos donde
+Conocemos la forma
+De la
+Heterosedasticidad
+O sea
+Conocemos lo que
+Hace que el error
+No sea
+Como sedástico
+Que es lo que pasa acá
+Y también tenemos
+FGLS
+Que
+Si se acuerdan
+Es básicamente
+Estimás los errores
+Porque asumís
+Que no los conoces
+No asumís
+La forma
+De la
+Heterosedasticidad
+De los errores
+Entonces la estimás
+Y a partir de esa estimación
+Hacés
+Una transformación
+Parecida
+A la de GLS
+Bien
+Entonces
+Vamos con eso
+Primero corro
+OLS
+Que sería
+Si se acuerdan
+OLS nos da
+Estimadores
+Consistentes
+Blablabla
+Con varianzas
+Que son válidas
+Para hacer inferencia
+Estadística
+Porque
+Porque asume
+Que los errores
+Son homoseásticos
+En este caso
+Los errores
+No son homoseásticos
+La varianza acá
+No va a ser
+La correcta
+Entonces
+Toda la inferencia
+La inferencia
+No va a ser
+Correcta
+Pero los coeficientes
+Si tienen las propiedades
+Ahora voy a correr
+GLS
+Lo corro
+Y ahora vemos bien
+Que es
+GLS
+Que nos da
+Fíjense los coeficientes
+1.12
+1.86
+1.41
+Cambiar un cachito
+Podríamos
+A ver
+Cuánto tiempo
+Nos queda
+Voy a usar
+Dos minutitos
+Para hablar
+Un poco
+De GLS
+Y de FGLS
+Pero
+Si
+Pasa que no vamos a llegar
+A ver lo que sigue
+Básicamente
+Lo que haces con GLS
+Es aplicarle una transformación
+A la variable
+Para que la matriz
+De varianzas
+Y covarianzas
+Quede
+Como algo adecuado
+Para correr la regresión
+En este caso
+Como sabemos
+La forma
+Que sigue
+La
+Heterosegasticidad
+De los errores
+Que es esto
+Y sabemos
+Que la varianza
+Condicional
+Es igual a esto
+Lo que podemos hacer
+Es
+Transformar
+A las variables
+X2
+X3
+UI
+Y
+Y
+Y
+Y la constante
+Que tenemos acá
+Dividirlas
+Por esto
+Que tengo acá
+Y una vez
+Que yo divido
+Por eso
+Me voy a sacar
+De encima
+La heterosegasticidad
+No voy a llegar
+A entrar
+En mucho detalle
+A esto
+Pero
+Debería estar
+Por acá
+Si el supuesto 3
+No se satisface
+Una alternativa
+A mínimos cuadrados
+Es mínimos cuadrados
+Generalizados
+Acá se explica
+La consistencia
+De mínimos cuadrados
+Generalizados
+Y a ver
+Si encuentro
+Rápido
+La transformación
+Si la ve alguien
+Bueno
+La transformación
+Está por acá
+Pero no está
+Tan clara
+Después le puedo pasar
+De último
+Unas notas
+Viéndolo más
+En detalle
+Pero la transformación
+Que se hace
+Es básicamente
+Así que le tengo
+Ajeito un poco
+Más ordenado
+Para viendo
+Todo
+Esto sería
+Ejercicio 2
+Entonces
+Sabemos
+Que
+Esto lo podemos
+Escribir
+Como
+Sigma
+Cuadrado
+De u
+Pero
+¿Qué nos pasaba?
+En nuestro caso
+En particular
+Como esto
+De vuelta
+No cumplía
+Con homosegasticidad
+Podemos
+Descomponerlo
+Un poco
+Para hacer
+La transformación
+A las variables
+Al final
+Al final de vida
+La transformación
+Que queremos hacer
+Es
+Llegar a un modelo
+Que tiene esta pinta
+Que son las
+Y estrellitas
+Que le dicen a veces
+Esto está en forma matricial
+Si estos son
+Vectores
+Esto es matriz
+Esto es un vector
+Esto es un vector
+Donde
+Y estrellita
+X estrellita
+U
+Ay sorry
+No, no está viendo
+Nadie
+Gracias
+Perdón
+La transformación
+Que mencionás
+Es simplemente
+Dividir
+Por la varianza
+Muestral
+O no
+Sí, en realidad
+Quieres dividir
+Por la raíz
+Pero sí
+Ok, ok
+Pero sí
+Es
+Esta transformación
+Que está acá
+De escribir
+Y estrellita
+Como
+P
+Por
+Y original
+P
+Por
+X original
+P
+Por
+U original
+Donde
+P
+Sale de
+Esa descomposición
+De choleji
+Que habíamos hecho antes
+Entonces
+P
+Termina siendo
+1
+Sobre
+Todo el choclazo
+Que nos generaba
+Heterosegasticidad
+En el modelo
+Que era
+El exponente
+De menos 1
+Más 0.2
+Bla, bla, bla
+Más bien
+Esto sería la raíz
+Esto repetido
+Sobre la diagonal
+No sé si eso se entiende
+Como un repetido
+Pero
+Parecen ceros
+Esto
+Acá
+Acá
+Acá
+Y en el resto
+De la matriceros
+Entonces
+Cuando vos
+Empezás
+A multiplicar
+Esto
+O más bien
+Esto
+Por esto
+Por esto
+Y por esto
+Si te quedan
+Errores
+Que cumplen
+Digamos
+Estos errores
+Acá
+Van a cumplir
+Con homicidasticidad
+Básicamente
+Le estás anulando
+El componente
+Que te genera
+La heterosegasticidad
+Dividiendo
+Todo tu modelo
+Por eso
+Lo único
+Que hay que
+Tener cuidado
+Ahí
+Es que
+La constante
+Te va a quedar
+Dividido por esto
+Entonces
+Tenés que
+Como que
+Rescalar
+Tus interpretaciones
+Por así decirlo
+Pero el resto
+Es
+Muy similar
+Ya es casi la hora
+Así que
+Déjenme mostrarles
+Un segundo
+Como
+Como era esto
+Bien
+Entonces
+Y la vez
+Lo que va a hacer
+Es
+Primero
+Te generas
+El ponderador
+W
+Que es ese
+Exponente
+De menos 1
+Más 0,2
+Por x2
+Que es lo que
+Nos estaba generando
+Etros
+Easticidad
+Regresas
+Y
+Contra x2
+Contra x3
+Y le agregas
+El ponderador
+Con esta función
+Que está acá
+A weight
+No hace falta
+Hacer como
+La transformación
+Manual
+Porque tenés
+La opción
+De agregar
+El ponderador
+El ponderador
+En estatal
+Lo que te hace
+Es eso
+Bueno
+Esto ya lo habíamos
+Por arriba
+Pero acá
+Tenemos los resultados
+El check
+Que tienen acá abajo
+Es hacer esto
+Que les digo
+De transformar
+Las variables
+Con el estrellita
+Entonces sería
+Agarro la variable
+Original y
+La divido
+Por la raíz
+Hacer el ajuste
+Ese que decíamos
+Recién
+Y bueno
+Después regresar
+Las variables
+Nuevas
+Tenemos
+Y sobre
+Ese ajuste
+X2
+Sobre el ajuste
+X3
+Sobre el ajuste
+Y CC
+Que es
+1
+Sobre el ajuste
+Porque recuerden
+Que la constante
+Estaba incluida
+En el modelo
+Y si yo divido
+Todo el modelo
+La constante
+También la estoy
+Dividiendo
+Entonces ahí
+Hacemos
+La regresión
+De todo el modelo
+Sin la constante
+Porque ya la puse acá
+Y bueno
+Nos debería dar
+Lo mismo
+Sorry que fui
+Un poco
+Como a las chapas
+En esta parte
+Pero nada
+FGLS
+Si quieren
+Mírenlo ustedes
+Por su cuenta
+Básicamente es
+Predecir los residuos
+Y en base a esos residuos
+Predecidos
+Armarte esto
+Este ponderador
+Y ya después
+Para las simulaciones
+Acá
+Tienen toda
+La explicación
+Pero es básicamente
+Creas matrices
+Para guardar los resultados
+Y después creas el loop
+Y el loop
+Te va rellenando
+Los resultados
+Pero de vuelta
+Esto creo que está bueno
+Que lo miren ustedes
+Con calma
+Y sentados
+Al lado del TP
+Y vayan corriendo
+Y prueben
+Qué es lo que hace
+Cada loop
+Y qué es lo que
+Rellena
+Cada línea
+Pero nada
+Eso era lo más importante
+Para
+No sé si quedó
+Alguna pregunta
+Con esto
+O con alguna otra cosa
+No, bárbara
+Romina
+De mi parte
+Muchas gracias
+Te hago una consulta
+¿Las anotaciones
+Las vas a subir
+Al campus?
+Puedo armarles
+Algo un poco más
+Trolijo
+Y después se los subo
+Ah
+Bueno, bueno
+Como quieras
+Por mí así está bien
+Pero como quieras
+Gracias
+Sí, tranqui
+Les voy a armar
+Un poco más prolijito
+Con esta parte
+Y lo anterior
+Y después se los paso
+Gracias
+Bárbaro
+Bueno

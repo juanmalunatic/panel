@@ -1,0 +1,4751 @@
+Acordé justo
+Bueno, vamos a arrancar entonces con el ejercicio 1
+La primera parte, nada, bastante ya conocido
+Vamos a cargar la base de datos con estos comandos
+Y voy a usar el comando DES de describe
+Para ver de qué se trata la base
+Acuérdense que este describe lo que hace no es el describe sobre la estructura de panel todavía
+Sino como el describe de todo el dataset
+A ver si tengo que modificar esto
+Bueno, cualquier cosa si necesitan la letra más grande o más chica
+Entonces arrancamos
+Corro esta primera parte
+Ahí tengo cargada la base de datos
+Y uso el describe
+Fíjense que las variables que queríamos usar
+Voy a ir un segundo
+Tenemos
+Queremos construir un modelo de pool double S
+Que relacione la tasa de crimen
+Que va a ser esta crime rate
+Con PRBAR, PRB, PRB, PRB, PRB, PRS, Average, CEN, PUL, PC
+Que tenemos
+Probability of arrest, probability of conviction, probability of prison sentence
+Duración promedio de la sentencia en días
+Y cantidad de policías per cápita
+Y bueno, vamos a estar trabajando sobre esas variables e ir comparando modelos
+Ok, ya hicimos esta parte de escribir
+Vamos ahora a declarar el panel
+Primero veamos, un segundo, cómo se ve la base de datos
+Fíjense que lo que tenemos es datos de condados
+Condado 1, condado 3, condado 5
+Para los años del 81 al 87
+Y ya después las variables
+Algo que también está bueno ver
+Es que en esta base de datos ya tenemos una dummy para el año creada
+Entonces, por ejemplo, esta fila de acá, la fila 1
+Corresponde al condado 1, año 81
+Y dentro de las dummies que tenemos
+Dummies del 82 al 87, todas valen 0
+Y ya a partir de la segunda fila se activa la dummy del 82
+La tercera la dummy del 83, así sucesivamente
+Y acá se reinicia con el siguiente condado
+Ya están también calculados los logaritmos de las variables que vamos a usar
+Así que no hace falta que los generemos nosotros
+Las que arrancan con L es porque son el logaritmo
+Y nada, en su palabra
+Entonces vamos a declarar el panel
+Ya sabemos que con XTZ le decimos a Stata
+Mi panel es estructurado con la variable ID en el condado
+Y bueno, el tiempo con los años
+Y fíjense que nos dice que tenés un N de 90
+Periodos temporales 7
+Y el delta para los años es de una unidad
+O sea, vamos saltando de un año en un año
+Condado por año
+Identificada de forma unívoca a cada observación
+Y para todas las observaciones
+Encontramos este pattern de información
+Donde todas tienen información para todos los años
+O sea, es un panel balanceado
+Y vamos a correr Summarize
+Para entender un poco cómo se estructura el dataset y el panel
+Este es el Summarize normal
+Sobre toda la base de datos
+Ahí lo corrimos
+Entonces, bueno, tenemos
+Fíjense que acá lo corrí solamente para las variables
+Que nos interesa agregar a la regresión
+No para todas
+Sino esto sería infinito
+Para todas tenemos 630 observaciones
+Así que, todo bien
+Y ahora voy a correr XTZoom
+Para hacer el Summarize
+Pero respetando la dinámica del panel
+Y se acuerdan lo que hablábamos el otro día
+De que
+Para las variables, por ejemplo, de año
+La varianza between va a ser 0
+Entre las observaciones
+Porque, bueno, en el 82
+Para todos los condados
+El año era el 82
+Entonces la variable no va a cambiar
+Between condados
+¿Qué más vemos?
+Bueno, vemos los valores promedios
+Overall
+Para las variables que nos interesan
+Y nada
+No hay mucho más que decir acá
+Ahora vamos a hacer pull double S
+Que es lo que nos pedía el ejercicio
+Y acá tenemos dos opciones
+O sea, más bien
+La primera línea es el pull double S
+Sin tener en cuenta las dummies de tiempo
+Pero como nos están pidiendo que
+Incluyamos las dummies de tiempo
+Vamos a correr la de abajo
+Y fíjense que lo podemos incluir
+Como ya están las dummies escritas
+De vuelta
+Le pedimos a esta data
+Que nos incluya desde el D82
+Hasta el D87
+Todas las del medio
+Y acá tenemos
+El output
+Tenemos los coeficientes
+Y si quieren usar
+Outreg
+Store
+T1
+C
+Lo que nos hace es generar un poco
+La salida
+Como si fuese un paper
+Algo
+Como ya más formateado
+Más lindo de ver
+Y podemos ver acá
+Fácil
+La significatividad
+De
+De estas variables
+De acá lo que podemos ir viendo
+Por ejemplo
+Es
+Cómo afecta
+Cada una de estas variables
+Independientes
+A la tasa de criminalidad
+Por ejemplo
+Esta que teníamos acá
+LPR BAR
+Vamos un poquito más arriba
+PR BAR
+Era la probabilidad de arresto
+PRB COM
+Probabilidad de conviction
+PRB PRIS
+Probabilidad de
+Que la sentencia sea en prisión
+Duración de la sentencia
+Y policías per cápita
+Entonces
+Veamos si tiene un poco de
+Lógica
+Por así decirlo
+Esto se lee
+Como esto está en logaritmos
+Y esto está en logaritmos
+Lo pueden pensar un poco
+Como una elasticidad
+O como decir
+Un cambio de un 1%
+En la probabilidad de arresto
+Nos lleva a una caída
+En el
+0.72%
+De la tasa de criminalidad
+Lo cual
+Tiene sentido
+Lógico si querés
+La que es interesante
+Es esta
+La de los policías
+Que básicamente
+Un aumento
+En la cantidad de policías
+Llega un aumento
+En la tasa de criminalidad
+Pero hay que tener
+Como cuidado
+Porque
+Quizás tengas condados
+Donde es tan alta
+Si es más alta
+La tasa de criminalidad
+Necesitas más policías
+Como que la causalidad
+Va al revés
+Entonces
+Nada
+Pequeno comentario
+Que hay que tener cuidado
+Con eso siempre
+En este tipo
+De regresiones
+En cuanto a significatividad
+Vemos que
+La probabilidad
+De arresto
+La
+Conviction
+Que la sentencia
+Sea en prisión
+Que
+La presencia
+De policías
+Estas son todas
+Significativas
+Esta acá
+No tanto
+Es cercana a cero
+Pero negativa
+Y bueno
+Finalmente
+Tenemos las dummies
+Eso es
+Full doble
+Ya
+Trabajamos un montón
+Con esto
+Así que
+No me
+No me voy a
+Detener mucho más acá
+Si quisieras decir
+Que
+Las dummies
+Las tenemos como
+Controles por endogeneidad
+Porque acuérdense
+Que las dummies
+Capturan este efecto
+De año
+O de periodo temporal
+Para
+Todos
+Para todos los condados
+Por igual
+Entonces lo podés pensar así
+Pero bueno
+Ninguna es significativa
+Bien
+El inciso B
+Ya nos pedía
+Computar errores
+Estándar
+Robustos
+Alterosedasticidad
+Arbitraria
+Como vieron con Martín
+Supongo
+Solamente necesitamos
+Dos supuestos
+Para que los retas
+Sean consistentes
+Bajo pool dobles
+El primero
+Era el supuesto
+A ver si tengo
+Las slides acá
+Así
+De paso
+Probablemente es muy fácil
+Si lo ven acá
+A ver
+Ahí va
+Este es el supuesto
+Uno
+El supuesto
+Uno
+Básicamente
+Lo que nos dice
+Es que
+Se impone
+La exogeneidad
+Contemporánea
+De las variables
+Con los errores
+No impone
+Exogeneidad estricta
+Es mucho
+Más
+Más
+Te restringe
+Mucho más
+Pero si se pide
+Exogeneidad contemporánea
+Y
+El supuesto
+Número dos
+Es que esta matriz
+Sea no aleatoria
+Singular
+O sea que el rango
+De esta matriz
+Sea igual acá
+Con eso
+Con esos dos supuestos
+A lo que hoy
+No es el objetivo
+Analizar tanto
+Estos supuestos
+Pero sí pensar
+Qué tipo de restricción
+Imponen esos impuestos
+Sobre la estructura
+De los errores
+Estándar del modelo
+La respuesta
+La respuesta es que
+Ninguna
+O sea
+No nos dice nada
+Acerca de
+Por ejemplo
+Los errores
+Tienen que no tener
+Heterosedasticidad
+Para que los estimadores
+Sean consistentes
+Eso no
+Como no le estamos pidiendo
+Nada en ese sentido
+¿Qué pasa?
+Estos estimadores
+Son consistentes
+Incluso aunque pueda haber
+Heterosedasticidad
+O autocorrelación
+En los errores
+Pero el tema es que
+Digamos
+Como a priori
+No sabemos nada
+De los errores
+Esta inferencia estadística
+Que estamos haciendo acá
+De decir
+Esto es estadísticamente
+Significativo
+Y esto no
+Esa validez
+Va a depender
+De si los errores
+Son
+Bien comportados
+Como nos gustan
+O no
+Como en este caso
+No sabemos a priori
+Cuál es la estructura
+De los errores
+Lo que podemos decir es
+Bueno
+Como no sabemos
+Cuál es la estructura
+Verdadera
+Del proceso
+Que genera los errores
+Armate
+Porque existe
+Un estimador
+Dentro de la regresión
+Armate un estimador
+De la varianza
+Que contemple
+Esa posible
+Heterosedasticidad
+Arbitraria
+¿Y por qué
+Podríamos pensar esto
+En este caso particular?
+Simplemente por el hecho
+De que estamos
+Midiendo data
+Que es referente
+A condados
+Entonces
+Año a año
+Cada condado
+Probablemente tenga
+Autocorrelación
+En los errores
+Este condado
+Con sí mismo
+Este condado
+Con sí mismo
+Este condado
+Con sí mismo
+Entonces lo que vamos
+A querer hacer
+Es decirle a esta
+Taché
+Tene en cuenta
+Que los condados
+Dentro de la data
+De cada condado
+A través de los años
+Probablemente tenga
+Algún tipo de autocorrelación
+La forma en la que hacemos eso
+Con Stata
+Es usando este
+Comando de acá
+Esta opción
+No es un comando
+Es una opción
+VCE
+VCE
+Cluster
+County
+Lo que estamos
+Haciendo acá
+Es agrupar
+Por así decirlo
+Los errores estándar
+Por condado
+Le decimos
+Clustereame
+Generame clusters
+Por condado
+Y en base a eso
+Calculame
+Las varianzas
+Porque ahí ya
+Le imponemos
+Una restricción
+A cómo se deberían
+Ver las varianzas
+Del modelo
+Y después
+Bueno nada
+Corremos la regresión
+Normal
+Por las dudas
+Déjenme
+Expandir esto
+Un poquito más
+Para que se entienda
+Como el syntax
+Pero simplemente
+Correr la regresión
+Que teníamos recién
+Con la opción
+VCE
+Cluster County
+Hay diferentes formas
+De modelar
+La heterosidasticidad
+Por así decirlo
+Esta es una de ellas
+Si quieren ver más
+Lo que pueden hacer
+Es abrir el
+Help
+File
+De VCE
+Y bueno
+Esto un poco
+Te explica
+Cómo es el cálculo
+Dentro de Regress
+También van a encontrar
+Deberían encontrar
+Digamos
+Sí
+Van por el lado
+De Regress
+Acá por ejemplo
+VCE
+VCE
+Type
+Y bueno
+Ahí tienen todas
+Las descripciones
+Y las opciones
+Que podrían usar
+Ahora estamos usando
+El de Cluster
+Que bueno
+Te estima la varianza
+Siguiendo un
+Cluster
+Sandwich
+Approach
+Esto igual
+Probablemente
+No sé si ya
+Se usaba
+En econometría
+La verdad que no recuerdo
+Pero quizás
+También la es una
+De otras materias
+Bueno
+Entonces vamos
+A correr esto
+Y a comparar
+Los resultados
+Fíjense
+Que acá tenemos
+La primera
+Regresión
+Y acá la segunda
+En la primera
+Regresión
+En la segunda
+Pueden ver que
+Los estimadores
+Son idénticos
+Porque de vuelta
+Este cluster
+Que le agregamos
+Va a afectar
+A las varianzas
+A la matriz de varianzas
+Y covarianzas
+De los estimadores
+Y de los errores
+Pero no
+No el valor
+Que toman los betas
+Porque justamente
+El chiste que hacíamos
+Antes era
+El beta va a ser
+Consistente
+Entonces eso no va a cambiar
+Lo que sí vemos
+Que cambian
+Son
+Acá los errores
+Estándar
+De los estimadores
+Y por lo tanto
+El nivel de significatividad
+En algunos casos
+Fíjense que
+Esta variable
+Por ejemplo
+Si bien sigue siendo
+Significativa
+Deja de ser significativa
+Al mismo nivel
+Que antes
+Antes era
+Significativa
+Al 5
+Ahora es
+Significativa
+Al 10
+A ver si hay algo
+Más que podamos ver
+Por ejemplo
+Acá está
+Una de las damis
+Se vuelve significativa
+Entonces hay que tener
+Un poco de
+Nada
+Tenemos que decidir
+A qué estimador
+Le creemos más
+Básicamente
+Al que está
+Clusteriado
+Al que no
+Entonces
+Cómo
+Decidir
+A qué
+Estimador
+Te gusta más
+Podés hacer contrastes
+Que es lo que vamos a hacer
+En los próximos ejercicios
+De correlación serial
+Y de heterocidasticidad
+Y si en los contrastes
+Te da
+Que
+Tenés evidencia
+Para decir
+Que tenés
+Correlación serial
+O que tenés
+Heterocidasticidad
+Entonces
+Créele al
+Clusteriado
+O créele al
+Que le
+Trabajaste algo
+Para sacarte
+Esa correlación serial
+O la heterocidasticidad
+Encima
+Entonces
+Bueno
+Nada
+Lo que dije
+Ejercicio D
+C
+Nos piden
+Contraste
+De correlación serial
+Ejercicio D
+Nos piden
+Contraste
+De heterocidasticidad
+Ok
+Antes de
+Pasar
+Como al código
+Les muestro
+Dónde está esto
+En las slides
+De clase
+Por si lo quieren
+Ir viendo
+Como paralelo
+Si tuviera la opción
+De compartir
+Dos pantallas
+Estaría bueno
+Para
+Para tenerlo al lado
+Pero esto está
+En la página 36
+De las slides
+Mentira
+37
+Tienen
+El de correlación
+Serial
+Y en la slide
+Que sigue
+El de heterocidasticidad
+Y acá están
+Los pasos
+Que vamos a seguir
+Para el contraste
+De correlación
+Serial
+Lo que vamos
+A decir es
+Primero que nada
+Suponer que existe
+Correlación serial
+De primer orden
+Y
+En la estructura
+De los errores
+Entonces ahí
+Ya le decimos
+Supongamos
+Eso
+Que la correlación
+De serial
+Es del primer orden
+Por lo tanto
+Los errores
+Se estructuran
+Como un
+R1
+Y acá
+Hacemos como
+Un crossover
+Con series de tiempo
+Y tenemos
+Que los errores
+Son U
+Igual a
+Igual a alfa 1
+Por el lag
+De U
+Más
+EJT
+Una vez que
+Definiste eso
+Lo que vas a hacer
+Es estimar
+Por pull
+WS
+Esta regresión
+De acá
+O sea
+La que ya
+Teníamos hecha
+Y obtener
+De ahí
+Los residuos
+Una vez que
+Tenemos los residuos
+Estimamos
+Por pull
+WS
+Una regresión
+Que va a tener
+Las variables
+Independientes
+De tu modelo
+Más
+Alfa 1
+Por el lag
+De U
+Más
+Los errores
+Y a esta
+Le vas a decir
+Como
+Una ecuación
+Auxiliar
+Entonces
+Tu regla
+De decisión
+Va a depender
+Del R
+Cuadrado
+De esta regresión
+O sea
+Básicamente
+En otras
+Como que un poco
+Lo que queremos ver
+Es
+Cuánto de este lag
+Explica
+El error
+Este
+Para determinar
+Si efectivamente
+Hay correlación
+De serial
+De primer orden
+O no
+La regla
+De decisión
+Es bueno
+Si el p-value
+Del estadístico
+Este que te haces
+Acá
+Es menor
+Que el nivel
+De error
+Del test
+Entonces
+Rechazas
+La H0
+Que de vuelta
+La H0
+Era
+Que alfa 1
+Es igual a 0
+O sea que no hay
+Correlación serial
+De primer orden
+Porque esto se te anula
+Y U es igual a E
+Así que nada
+Eso
+Vamos a arrancar
+Por ahí
+El de correlación
+Serial
+Entonces
+De vuelta
+Pensando en el procedimiento
+Que teníamos escrito
+Primero quiero
+La regresión
+De las variables
+Para poder
+De las variables
+Independientes
+Solitas
+Las que habíamos
+Hecho antes
+Para predecir
+De ahí los errores
+Entonces
+Corro la regresión
+Y inmediatamente
+Le digo
+Ok
+Los recibos
+Predecilos
+Ponerles nombre
+UIT
+Ahí ya me predijo
+Los recibos
+Con el nombre
+UIT
+Y ahora
+Y ahora lo que queremos
+Hacer es
+La regresión
+De estos residuos
+Que calculamos
+Que estimamos
+Contra las variables
+Independientes
+Y contra el lag
+Del residuo
+Del residuo
+En Stata
+Cuando tenemos
+Los datos
+En forma de panel
+Podemos
+Usar este
+Comando
+Operador
+L punto
+La variable
+Que quiero
+Rezagar
+Y
+Me toma
+El rezago
+Entonces
+Hacemos la regresión
+Y ya
+Después de eso
+Lo que hacemos
+Es
+Calcular
+El LM
+Que era
+El R
+Cuadrado
+Por N
+Acá
+Cantidad de observaciones
+Por el R
+Cuadrado
+De esa regresión
+Auxiliar
+Y fíjense
+Cómo
+Le pedimos
+A Stata
+Que nos devuelva
+Esto
+Le estamos diciendo
+E
+No sé
+Qué tan familiarizados
+Están
+Con el E
+Si me dicen
+Ya sé lo que es
+Bárbaro
+Si no
+Lo
+Voy a mostrar
+Pero
+Algo que puede ser
+Un poco de ayuda
+Espero
+El E
+El E
+Es básicamente
+Donde guarda
+Stata
+Los resultados
+De la regresión
+Entonces
+Esto
+Al principio
+Cuando uno recién
+Arranca en Stata
+Es medio
+Complicado
+Hasta que le agarrás
+La vuelta
+Porque muchas veces
+Vos lo que querés hacer
+Es correr la regresión
+Y después guardar
+Los resultados
+Porque lo estás usando
+Ponerle en una
+En 5000 simulaciones
+Y si le tenés que pedir
+A Stata
+Que te guarde
+El R cuadrado
+De la simulación
+No le podés decir
+Hola Stata
+Dame el R cuadrado
+Le tenés que decir
+Qué es lo que le querés
+Guardar
+Entonces
+Si van a
+Help Regress
+Hay una parte
+Y en general
+Con todos los comandos
+Que hay
+Si buscan en Google
+Comando
+Stata
+Store Results
+Van a encontrar
+Algo de este estilo
+Entonces
+Por ejemplo
+Lo que es escalares
+El número de observaciones
+Estata a la guarda
+Bajo el nombre
+O bajo la instrucción
+Si quieren
+EN
+El R cuadrado
+ER2
+Las macros
+Son así
+Y también tenemos
+Las matrices
+Entonces ojo con eso
+Porque cuando quieran
+Extraer
+Componentes específicos
+De las matrices
+Estimadas
+En una regresión
+Tienen que usar
+E
+Paréntesis B
+Y después
+Indicar el componente
+De la matriz
+Esto es como
+Bastante típico
+Pero bueno
+Esto es cuestión
+De jugar un poco
+Con Stata
+Y
+Darse la cabeza
+Contra la pared
+Un par de veces
+Hasta que sale
+En este caso
+Acá ya tienen
+Como una pista
+Que es
+Dame el R cuadrado
+Multiplicarlo
+Por el N
+De la regresión
+Y ahí ya
+Nos generamos
+El M
+Como lo voy a guardar
+En un local
+Necesito correr
+Todo esto junto
+Así que
+Vamos a hacer eso
+Entonces fíjense
+Que nos da
+Un chico
+A grado
+Altísimo
+P valor 0
+Por lo tanto
+Rechazamos
+El H0
+Que de vuelta
+El H0
+Recuerden que era
+Que alfa 1
+Era igual a 0
+Es decir
+Que no hay
+Correlación
+Serial
+De primer orden
+Nosotros rechazamos
+Esta H0
+O sea
+Tenemos evidencia
+Para decir
+Que hay
+Correlación
+Serial
+De primer orden
+En el caso
+De que asumamos
+Exogeneidad estricta
+También se puede correr
+Esta
+Esta opción
+Que es básicamente
+Una regresión
+De los errores
+En el mismo lag
+Y por qué
+Necesitas
+Digamos
+Cuál es la diferencia
+Entre esto
+Y
+Esto
+Este procedimiento
+Como enterito
+Fíjense que acá
+Estamos regresando
+UI
+Contra
+Las independientes
+Y el lag
+Acá nos olvidamos
+De las independientes
+Porque justamente
+Ya estamos asumiendo
+Exogeneidad estricta
+Entonces
+Si asumís
+Exogeneidad estricta
+¿Para qué buscas
+Cuando te explican
+Estas
+El error?
+Entonces
+Con exogeneidad estricta
+Lo podés simplificar
+Un poco
+Y de ahí
+Podés sacar también
+El Rho
+Que va a ser
+El beta
+Que le asignás
+A este
+Al lag
+Que nosotros le decimos
+Alpha en realidad
+Entonces
+Nada
+Podríamos hacer eso
+Para ver qué sale
+Acá nos da
+.79
+Acá nos da
+.84
+O sea
+No es tan distinto
+Pero nada
+Decisión de cada uno
+Un poco cuál usar
+O a cuál de los dos
+Creerle por así decir
+Voy a correr esto
+De vuelta igual
+Me voy a quedar
+Con este
+Escalar
+Y me voy a guardar
+El Rho
+Que es
+El coeficiente
+Como el coeficiente
+Este que teníamos acá
+Antes de pasar
+A heterocisticidad
+¿Alguna pregunta?
+Robina
+Tal vez hay
+Algún comando
+Directo
+Para el
+Para este tema
+De correlación serial
+Como esto
+Creo que en
+Series de tiempo
+Era el de
+Osh
+Osh
+Algo así
+Que era como que
+Ponías ya
+El código
+O el comando
+La verdad que
+No lo
+Si hay un comando
+Directo
+Para calcular esto
+Decís
+Ajá
+Sí, sí
+La verdad que
+No sé
+Estoy tentada
+Decir que no
+Porque estos
+Son como
+Procedimientos
+Entonces
+A menos que haya
+Que alguien haya
+Creado como
+El
+El programita
+Para automatizar
+El procedimiento
+La verdad que no
+La verdad que no lo sé
+Pero lo averiguo
+Y te digo
+Ok, gracias
+No
+Me lo voy a
+Anotar igual
+Porque
+Después me olvido
+Estas cosas
+Y cuando digo
+Ah, ¿Qué les debo?
+Pero
+Sospecho que no
+Porque
+Uno
+Por eso
+Y dos
+Porque
+Siento que
+Como que
+Por ejemplo
+En el
+Word
+Aparecería
+Igual
+Mirá que
+Puedes usar
+Este comando
+De dos
+Líneas
+Pero nada
+Esa es
+Mi
+Bueno
+Eso por un lado
+Para heterosegasticidad
+La idea va a ser
+Un poco
+Parecida
+Acá tenemos
+Los pasitos
+Acá tenemos
+Qué necesitamos
+Asumir
+Y
+Lo que vamos a hacer
+Con heterosegasticidad
+Es decir
+Bueno
+La hipótesis nula
+Es que
+La esperanza
+De los errores
+Al cuadrado
+Condicional en las X
+Es igual a
+Sigma al cuadrado
+Para todos los
+Periodos del tiempo
+O sea que
+Básicamente
+Eso
+La varianza
+Es la misma
+En toda la matriz
+Y fíjense
+Que lo que estamos
+Diciendo es que
+El
+El lugar al cuadrado
+Si es constante
+Entonces
+No está correlacionado
+Con ninguna
+Función de X
+Porque justamente
+Es constante
+Si es constante
+No cambia
+Con ninguna
+Función de X
+Entonces
+Lo que vamos a hacer
+Es
+Arrancamos
+Del mismo lugar
+Que antes
+Vamos a estimar
+Por pool
+La variable
+La variable
+La variable
+Dependiente
+Con las variables
+Independientes
+Y
+El error
+Y de acá
+Estimamos el error
+Y el error
+Al cuadrado
+Y después
+Y después
+Vamos a estimar
+Por pool
+El error
+Al cuadrado
+Sobre una constante
+Que eso estaría bien
+Digamos
+Es la parte que nos gusta
+Por así decirlo
+Y HJ
+Donde HJ
+Es un vector
+Que tiene funciones
+No constantes
+De X
+O sea
+Nada
+Un vector
+De funciones
+Que dependen
+De X
+Y básicamente
+La idea es medio
+Parecida
+A lo que
+Estábamos haciendo
+Antes
+De decir
+Bueno
+Esa parte
+La que depende
+De las X
+Te explica
+Parte de estos
+Horrores
+Al cuadrado
+Si o no
+Y eso
+Lo vamos a ver
+En el R
+Cuadrado
+Auxiliar
+En base a eso
+Te construís
+El estadístico
+Al M
+Que se distribuye
+Y cuadrado
+Y bueno
+Ahí tenés
+La regla de decisión
+O sea
+Es bastante
+Como
+Si seguís
+Los pasitos
+No deberías
+Tener ningún
+Problema
+Por así
+Algo que
+Está bueno
+Igual
+Ver de
+De esto
+En
+Woodridge
+O donde sea
+Que lo puedan ver
+A ver si lo tengo
+Por acá
+De
+Woodridge
+Acá
+Este creo
+Que es el
+De 2010
+El
+El
+El libro
+En la sección
+785
+Acá tienen
+Los test
+De serial
+Correlation
+Que es lo que hicimos
+Hace un ratito
+Y el de heterosegasticidad
+Y acá lo que te dicen
+Bueno
+Es lo que decíamos
+Recién
+Asumimos
+Entonces
+Que bajo
+La hipótesis
+Nula
+Los errores
+Al cuadrado
+Están
+Un correlated
+Con cualquier
+Función
+De x
+Acá te dice
+Un poco
+La procedure
+Que es lo que
+Dijimos recién
+Y esto
+Esta aclaración
+Que está acá
+Les quería mostrar
+Lo que estamos
+Testeando acá
+Es si se viola
+O no
+El assumption
+Peoless
+3a
+Que es
+La assumption
+De
+Homosegasticidad
+O ausencia
+Autocorrelación
+Entonces querés ver
+Si viola eso
+Por lo tanto
+Tiene sentido
+Incluir
+Dice Woodridge
+Y quienes somos
+Nosotros para
+Criticar a Woodridge
+Incluir elementos
+De x
+Pero no solo
+Como la variable
+En sí
+Sino
+Cuadrados
+De las x
+Y productos
+Cruzados
+De los elementos
+De x
+Entonces vamos a hacer eso
+Todo esto
+Digamos
+Toda esta explicación
+Para justificar
+Por qué es
+Esta la regresión
+Entonces
+Esperen que
+Esto lo voy a expandir
+Un poquito
+De la regresión
+Anterior
+Ya teníamos
+El predict
+De los errores
+Solitos
+Y ahora
+Vamos a generar
+El square
+De u y t
+Multiplicándole
+Por sí mismo
+Y después
+Vamos a hacer
+La regresión
+Donde incluimos
+La regresión es
+De vuelta
+Vuelva con segundo
+Eso ya lo hicimos
+Ya obtuve este
+Y ya obtuve este
+Me queda regresar
+Los errores al cuadrado
+Sobre una constante
+Y esa
+Este vector
+De funciones
+De x
+Entonces tengo
+El error al cuadrado
+Y lo regreso
+Contra
+Funciones
+De x
+Tengo
+LPR bar
+La multiplicación
+De LPR bar
+Con LPR bar
+Que es el cuadrado
+De LPR bar
+LPRB pris
+El cuadrado
+De eso
+Y vamos
+Con la interacción
+De estas dos
+¿Podrían usar
+Otras configuraciones?
+Sí
+Agregar más
+Menos variables
+Lo que sí
+Es que cuanto más
+Variables
+De estas
+O interacciones
+Agregadas
+Menos grados
+De libertad
+Tenés
+Entonces
+Hay que ser
+Un poco
+Cautelosos
+Con ello
+Perdón
+Tengo una pregunta
+Para multiplicar
+¿Es el asterisco
+O es el numeral?
+¿O qué diferencia hay?
+El asterisco
+Si no me equivoco
+Es cuando multiplicas
+Escalares
+Y después
+El número
+Es con variables
+Ah, ok
+Ok, gracias
+De hecho
+Fíjense
+Este C que está acá
+Le estamos indicando
+A Stata
+Que lo que estoy multiplicando
+Son variables continuas
+Si fuese una I
+Digamos
+Si tuviera una variable
+Dummy
+O dicotómica
+O de categorías
+Tendría que usar la I
+Y la Tina
+Bueno
+Vamos con eso
+Entonces
+Voy a correr
+Todo esto junto
+Y ver que nos da
+A ver
+Esperen que
+Esto
+Medio que nos ajusta
+Mucho a estas cosas
+No
+Bueno
+Esperen
+No
+Esto queda horrible
+Bueno
+Vamos a correr
+Todo de cero
+Y
+Hasta acá
+Bueno
+De vuelta
+Chi cuadrado
+Bastante alto
+El P
+Valor
+1.28
+E a la menos
+Cero
+Nueve
+O sea
+Casi cero
+Así que rechazamos
+Al 5%
+Y de vuelta
+La hipótesis nula
+Era que
+Esto era constante
+Rechazamos esto
+Ergo
+Tenemos evidencia
+Para decir que hay
+Heterosegasticidad
+Entonces
+Nada
+Si comparamos
+De vuelta
+Lo que teníamos
+En pool
+Doble
+Versus
+Lo que teníamos
+Cuando
+Clustereábamos
+Por
+O más bien
+Cuando usábamos
+Un estimador
+De la varianza
+Que fuera
+Robusto
+A heterosegasticidad
+Autocorrelación
+Le creería
+Más a este
+Porque si
+Ya dijimos
+Que tenemos
+Evidencia
+Para decir que hay
+Autocorrelación
+Y heterosegasticidad
+¿Por qué le creerías
+Al otro?
+Y nada
+Esos eran
+Los ejercicios
+C y D
+Y después
+Tenemos
+E y F
+Que se hacen
+Juntos
+Pero
+Lo que vamos
+A decir
+Ahora
+Es hacer un
+Poder
+De supuestos
+Adicionales
+El primero
+Es que vale
+El supuesto
+Exogeneidad
+Estricta
+Y el segundo
+Es que los errores
+Siguen un proceso
+Aruno
+Exogeneidad
+Estricta
+Recuerden que
+Era un poco
+Más
+Contundente
+Que exogeneidad
+Contemporánea
+O sea
+Ahora no solo
+Le pedimos
+A las variables
+Independientes
+Que
+No correlacionen
+Con los errores
+De su mismo
+Periodo
+Sino que
+Que no correlacionen
+Con ningún error
+De ningún
+Periodo
+Y aparte
+Vamos a decir
+O vamos a estructurar
+El proceso
+Autocorrelativo
+De los errores
+Bajo un Aruno
+Y vamos a
+Computar
+El estimador
+De FGLS
+Siguiendo el enfoque
+Price
+Winslow
+Acá
+Dos como
+Recordatorios
+FGLS
+Acuérdense
+Que era básicamente
+Es decir
+Como no conozco
+La estructura exacta
+O la varianza real
+De los errores
+Lo que hago
+Es estimarlo
+Y en base a eso
+Correr
+Pull doubles
+De vuelta
+Pero con
+Pesos
+O ponderadores
+Que es lo que hicimos
+La semana pasada
+Con las diferentes opciones
+Que teníamos
+De calcular la varianza
+O asumir la varianza
+Y aparte
+Vamos a seguir
+En el enfoque
+De Price
+Winston
+Que nos va a ayudar
+En la parte
+Del proceso
+Aruno
+Entonces
+Para que tengan
+Esas dos cosas
+En mente
+Una descripción
+Del procedimiento
+Puedo encontrarla
+En Woodridge
+Sección 786
+Por si lo quieren
+Mirar después
+Bueno
+Acá ya
+Mencionaba
+Price
+Winston
+Ah sí
+Es esto que está
+FGLS
+Under strict
+Exogenity
+O sea
+En el TP
+Te ponen
+Asumir
+Exogenidad
+Estricta
+Justamente
+Para que veamos
+Esto
+Básicamente
+Woodridge
+Lo que te dice
+Es
+Si estás
+Comfortado
+Si estás
+Cómodo
+Con el supuesto
+Exogenidad
+Estricta
+O sea
+Si no te rompe
+Mucho
+Los supuestos
+Originales
+Que tenías
+Del modelo
+Proba a usar
+FGLS
+Y si asumís
+Que los errores
+Siguen un proceso
+Aruno
+Que es lo que
+Estamos asumiendo
+Entonces te dicen
+Es fácil
+Transformar las variables
+Y computar
+El estimador
+De FGLS
+A partir
+De una regresión
+De pool
+WLS
+Y acá ya te dicen
+Cuál es la transformación
+Que le querés hacer
+A las variables
+Pero vamos a ver
+Un cachitito
+De dónde sale esto
+Para que
+Nada
+Tengamos un poco
+Más de contexto
+Porque capaz que acá
+Sale medio de la galera
+Se acuerdan
+Que en el
+TP pasado
+Transformábamos
+Las variables
+Con la inversa
+De la varianza
+Y que para llegar
+A la inversa
+De la varianza
+Tenemos que hacer
+Un montón de cuentas
+Bueno
+Va a ser medio
+Parecido
+¿Pool WLS?
+Poole WLS
+Es correr
+Mínimos cuadrados
+Sobre todo
+El dataset
+Sin tener en cuenta
+La estructura
+De panel
+Del
+Poole
+Es como decir
+Agarrá todo
+Es hacer WLS
+Sí
+Sobre todo
+La muestra
+Pero bueno
+La forma linda
+De decir
+Es simplemente
+Es
+Exacto
+No de nada
+Entonces
+Nada
+Vamos a hacer
+Un par de cuentitas
+Para ver
+De dónde sale
+Esto que estamos
+Aplicando acá
+Porque
+Acá
+WLS ya te dice
+Para
+Y
+Y
+Uno
+Agarrá
+Lo original
+Y multiplicarlo
+Por la raíz
+De uno
+Menos
+Ro al cuadrado
+Para X1
+Lo mismo
+Uno
+El tiempo
+Y después
+Para los periodos
+Temporales
+Que siguen
+Lo que vas a hacer
+Es
+Agarrar
+Agarrá
+La original
+Restale
+Ro
+Por el rezago
+Y con eso
+Armate
+La Y
+Tilde
+Entonces
+Hay un
+Pequeño detallecito
+Ahí
+Que creo que está
+Bueno
+Que lo miremos
+Especialmente
+Porque nada
+Supongo que
+Varios deben estar
+También en series
+Así que podría ser
+Una entrada en calor
+Para la hora que viene
+Ok
+Ahí se ve
+Acá también
+Bueno
+Bueno
+Eso que veíamos hace un rato
+Vamos a ver
+De dónde sale
+La
+De dónde sale
+La estructura
+O más bien
+La corrección
+Que te proponen
+Siguiendo
+Siguiendo el enfoque
+De Price
+Mistor
+Que
+Vamos a
+Empezar acá
+Sería correr
+FGLS
+Para
+Correlación
+Sería
+Entonces
+Primero que nada
+Acuérdense que
+Arrancamos de
+Suponer
+Que los errores
+Siguen
+A ver si puedo
+Apoyar la mano
+Más
+Si
+Esta estructura
+Acá
+UT
+Igual a
+Rho
+Por
+UIT
+Menos
+Uno
+Una R
+Y lo que estamos
+Haciendo acá
+Con toda esta
+Jodita
+O lo que hacíamos
+La clase pasada
+Era decir
+Bueno
+Conseguite un
+Estimador
+De la
+Varianza
+Y con ese
+Estimador
+Agarrá los
+Componentes
+Del
+Estimador
+De la
+Varianza
+Y
+Transformá
+Tus variables
+Para
+Desenchufarte
+Un poco
+La
+Heteroseasticidad
+O la
+Correlación
+Cereal
+Entonces
+Básicamente
+Lo que queríamos
+Buscar
+Era
+Un
+Estimador
+De
+Vamos a
+Escribirlo
+Bien
+Entonces
+Pensemos
+Que tenemos
+Acá
+En
+Los
+Componentes
+Lo primero
+Que tenemos
+Acá
+Va a ser
+La varianza
+De
+U
+Y
+1
+Que es
+La
+Covarianza
+De
+U
+Y
+1
+Con
+U
+Y
+1
+Sigo
+La
+Diagonal
+La
+Varianza
+De
+U
+Y
+2
+Voy a
+Hacer un
+Caso
+Como con
+3
+Nada
+Más
+Así
+Es
+Para que
+Se
+Entienda
+El chiste
+Y
+En
+Los
+Componentes
+Que nos
+Quedan
+Lo que
+Tenemos
+Es
+Acá
+Tengo
+La
+Covarianza
+No me
+Va a
+Entrar
+La
+Covarianza
+De
+U
+Y
+1
+Mentira
+U
+2
+U
+Y
+1
+La
+Covarianza
+U
+Y
+3
+U
+Y
+1
+Covarianza
+De
+U
+Y
+1
+U
+Y
+2
+Covarianza
+De
+U
+Y
+1
+U
+Y
+3
+Y
+Después
+De
+Los que
+Nos
+Quedan
+Tenemos
+La
+Covarianza
+De
+U
+Y
+3
+U
+Y
+2
+Covarianza
+Covarianza
+De
+U
+Y
+2
+U
+Y
+3
+Sí
+Entonces
+Nos queremos
+armar esto
+Pero sabiendo
+Que los errores
+Siguen esta
+Estructura
+Entonces
+Lo que te
+Proponen
+Es decir
+Bueno
+Si ya sabes
+Que los errores
+Siguen esta
+Estructura
+Vamos a armar
+Las varianzas
+Y después
+Algunas
+Covarianzas
+Por un lado
+La
+Covarianza
+Vamos a hacer
+La covarianza
+De
+U
+Y
+1
+Con
+U
+Y
+2
+Pero que lo
+Hago en otro
+color
+Fíjense que esto es igual
+A decir
+La covarianza
+Entre
+U
+Y
+1
+Y
+U
+Y
+2
+Que es
+Por esto
+Que habíamos
+Dicho
+Acá
+U
+Y
+2
+Es igual
+A
+Rho
+Por
+U
+Y
+1
+Más
+Epsilon
+Y
+2
+O sea
+Usando
+Esto
+Entonces
+U
+Y
+2
+Es
+Rho
+U
+Y
+1
+Más
+Epsilon
+Y
+2
+Y
+Esto ya tiene
+Mucha pinta
+De lo que
+Hacemos
+Con
+Pato
+En general
+Que es
+Sacar la
+Covarianza
+De
+De estas dos cosas
+Que es
+Hacer esta
+Cebo
+Distributiva
+Y tenemos
+Por un lado
+La covarianza
+Entre
+U
+Y
+1
+Y
+U
+Y
+1
+Por
+Rho
+Entonces
+Saco
+El Rho
+Multiplicando
+Y me queda
+La varianza
+De
+U
+Y
+1
+Más
+La covarianza
+Entre
+U
+Y
+1
+Y
+Epsilon
+Y
+2
+Ahora
+Esto que está guapo
+¿Cuándo vale?
+No sé si alguien respondió
+De casa
+Pero no
+No se escuchó
+Nemesis contestó
+Cero
+Pero creo que no se escuchó
+Gracias
+Esto vale cero
+¿Sí?
+Por
+Lo que decíamos
+Por los supuestos
+Que hacemos siempre
+Entonces
+Todo esto termina
+Siendo Rho
+Por la varianza
+De U y 1
+Que es básicamente
+Sigma al cuadrado de U
+Y ahora
+Vamos a hacer lo mismo
+Pero
+Para la covarianza
+Entre
+U y 1
+U y 3
+Tenemos
+Que esto es la covarianza
+De U y 1
+Misma idea que antes
+U y 3
+Lo puedo escribir
+Como Rho
+Por U y 2
+Más
+Epsilon
+Y 3
+Entonces
+Rho por U y 2
+Más
+Epsilon y 3
+Y esto va a ser igual a
+Rho
+Por la covarianza
+Entre este y este
+Más la covarianza
+Entre U y 1
+Epsilon y 3
+Que esto de vuelta
+Va a ser cero
+Como decíamos recién
+Y esto de acá
+¿Cuánto es?
+¿Cuánto es?
+La varianza de U
+¿Cómo?
+Perdón
+No es igual a la varianza de U
+Parecido
+Le falta un cachito más
+Porque acá lo que tengo
+Es la covarianza
+Entre U y 1
+Y U y 2
+Es lo que calculamos recién
+¿No?
+Rho
+Varianza de U
+Exacto
+Es esto que está acá
+Entonces
+Rho
+Por Rho
+Por
+La varianza de U
+Entonces lo que vemos
+Es que
+Cuando el lag
+Es de un periodo
+A ver si puedo
+Señalar
+No sé si
+¿Se ve el cursor ahí?
+¿Lo promuevo o no?
+No
+¿Ahí tampoco?
+No
+Ah
+Bueno
+Supongo de tener
+No
+Bueno
+Quizás un día
+Encuentre
+La opción para señalar
+Bueno
+Vamos con esto
+Lo que vemos es que
+Cuando el lag
+Acá
+Es de un periodo
+Desde el 1
+Hasta el 2
+La covarianza
+Entre esos dos
+Componentes
+Es
+Rho
+Por
+Varianza de U
+Cuando el lag
+Es de dos periodos
+O sea
+Me mueve
+Desde el 1
+Hasta el 3
+Lo que tengo
+Es Rho
+Cuadrado
+Sigma
+Cuadrado
+Entonces
+Ya con esto
+Nos alcanza
+Como para decir
+Bueno
+Entonces
+La covarianza
+U y T
+Contra
+U y T
+Menos J
+O bueno
+Más J
+Según como lo quieran escribir
+La distancia
+Entre X
+Periodos
+Va a ser
+Entre J
+Periodos
+Va a tener esa forma
+Entonces
+Nada
+Ya con eso
+Volvemos
+En este acá
+Exacto
+Claro
+Esta covarianza
+En realidad
+Estos son los errores
+Más bien
+Vuelvo
+Un poquito más
+Acá
+Acordémonos
+Que la estructura
+Que estamos haciendo
+Sobre los errores
+Es esta
+Estos son los errores
+Habituales
+Los del modelo
+Que tenemos nosotros
+Donde decimos que
+Y es igual a
+X beta más U
+Estos son los U
+Sobre estos U
+Decimos que hay
+Autocorrelación
+Porque son los mismos
+Condados
+Y por todo lo que
+Hablamos antes
+¿Qué tipo de correlación?
+Bueno
+Asumamos que es un R1
+O sea que
+El error del periodo T
+Este error
+En el periodo T
+Se relaciona con el
+Del anterior
+De esta forma
+Y aparte un error
+Porque obviamente
+Seguramente
+Haya parte de este error
+De acá
+Que efectivamente
+Sea un shock exógeno
+Que no tiene nada
+Que ver con el shock
+Del periodo anterior
+Que estamos modelizando
+Acá
+Entonces
+Este que está acá
+Si se comporta bien
+Con este U
+Por así decirlo
+Si es exógeno
+Y cumple todas esas cosas
+Que
+Las que no cumple U
+Acá
+Digamos
+Por eso decimos
+Que la covarianza
+Entre
+U y E
+Que es
+Este que está acá
+Claro
+Claro
+Claro
+Eso sí es cero
+Lo que queremos ver
+Cómo covaría
+Es
+El error U
+Este que está acá
+Lo sé y la U
+Claro
+Es que claro
+Todos son errores
+Sí sí sí tal cual
+Claro sí sí
+Gracias
+No de nada
+Entonces lo que queremos ver
+Es eso
+Cómo correlacionan
+Entre distintos periodos
+Y para diferentes rangos
+O para diferentes rezagos
+U1
+Con U2
+U1 con U3
+U2 con U3
+Fíjense que la distancia
+Entre U2 y U3
+Bueno voy con otro color
+Esto
+No
+A ver
+Eso quería hacer
+Básicamente
+La distancia
+La covarianza
+Entre
+Este
+Y este
+Que se lleva en un periodo
+Este
+Y este va a ser la misma
+Y este va a tener
+Este con este
+Va a ser otra
+Entonces nada
+Ahora que tenemos esto
+Sí podemos decir que
+La
+Esta matriz
+De la que hablábamos antes
+La que queríamos estimar
+Va a tener forma
+Sigma
+Cuadrado
+De U
+No por la identidad
+Que es lo que nos gustaría
+Que suceda
+Pero por algo
+Que no es tan terrible
+Que es
+Uno
+Porque recuerden
+Que en las diagonales
+Tenemos la varianza
+Y después
+¿Qué más tenemos?
+Cuando
+Yo me muevo
+De la diagonal
+Digamos
+Uno para arriba
+O uno para el costado
+Fíjense que
+Lo que estamos haciendo
+Es el lag
+O sea me refiero
+A estos puntitos acá
+Estamos haciendo
+El lag
+De dos periodos
+Que son consecutivos
+Por así decirlo
+Entonces ahí ya tenemos
+Rho
+No mentira
+Rho
+Por sigma cuadrado
+El sigma cuadrado
+Yo lo puse
+Me falta el Rho
+¿Y qué pasa
+Cuando hay dos periodos
+De distancia?
+Rho cuadrado
+Acá
+Un periodo de distancia
+Un periodo de distancia
+Bueno y así sucesivamente
+Si tuviéramos más periodos
+La clase pasada
+Cuando hacíamos
+FGLS
+Lo que hacíamos
+Era decir
+Bueno
+Esta parte
+Que está acá
+Eso
+Lo estimábamos
+Con los residuos
+Y después
+Hacíamos el ajuste
+Este
+De decir
+Bueno
+Esta matriz
+Por ser de esta forma
+O por ser de la forma
+Que veíamos la vez pasada
+La podemos escribir
+Como P
+Transpuesta por P
+Con la transformación
+De Cholesky
+Y de ahí
+Sacábamos
+La raíz
+De esa matriz
+Que era lo que
+Después usábamos
+Para
+Transformar
+Las variables
+En i tilde
+Igual a
+Por ejemplo
+P
+Por la griega original
+Ahora
+Lo que nos dice
+Woodridge
+En el libro
+Es cómo
+Transformar
+La variable
+Usando
+Este assumption
+Por así decirlo
+O esto que estamos
+Suponiendo
+Sobre la estructura
+De los errores
+Que te lleva
+A este tipo
+De matriz
+De varianzas
+Y covarianzas
+Te lleva
+A una transformación
+Un cachito distinto
+A la que veíamos
+La vez pasada
+Es de allá
+¿No?
+Ah, ok
+Es básicamente
+Decir
+No, tranca
+No pasa nada
+O sea
+No sé cómo saldrá
+Desde Zoom
+No creo que se escuche
+Tanto
+Ni en pedo
+Le dieron
+Los altavos
+Al altavos
+Sí, no sé
+Estarán medio sordos
+Entonces
+Nada
+De acá
+Lo que sacamos
+Es que
+La transformación
+Va a ser de la forma
+Y, y
+Y, y, y, tilde
+Para el primer periodo
+Hay que tener un poquito
+De cuidado
+Y por eso
+Digamos
+Es distinto
+Para el primer periodo
+Versus el segundo periodo
+Para el primer periodo
+Es
+Uno
+Menos
+Ro
+Al cuadrado
+Así
+Por, y, y, y, uno
+Que es como la original
+Y lo mismo
+Para las x
+Y después
+Ya
+Para
+Uy
+Muy buena la letra
+Para t
+Igual a
+Dos
+En adelante
+Si
+Ya podemos hacer algo más
+Automático
+Que es esto de
+Calcular el rezago
+O
+O usar el lag
+De la observación
+Acá
+Por ro
+Que es ese componente
+La parte autorregresiva
+Y bueno
+Lo mismo para las x
+Notar que no podemos hacer esto
+Con el primer periodo
+Porque nada
+Antes del periodo 1
+No tenemos nada
+Entonces no podría
+Encontrar el lag
+Del cero
+Porque se supone
+Que no lo tenemos
+Entonces
+Nada
+Todo esto para justificar
+La forma que
+En la que vamos a
+Transformar la variable
+Ahora en statua
+Cuando pasemos a statua
+No sé si estaban copiando este
+O alguien necesita como
+Ver algo
+De acá
+Del OneNote
+Antes de que pase a statua
+De abajo
+De abajo
+De abajo
+No sé si
+Pasamos
+Ahora que entendemos
+De dónde sale esto
+Y esto
+Seguimos las instrucciones
+Y estimamos fTLS
+Haciendo la regresión
+De pool dobles
+De la y tilde en x tilde
+Entonces vamos a hacer eso a Stata
+Bueno, lo primero que tenemos que hacer entonces es
+Generarnos las variables tilde
+Para esto hay dos opciones
+Esta opción es medio vieja
+Pero bueno, si la quieren ver se las dejo
+Yo acabo de usar esta opción
+Lo que vamos a hacer es generar primero
+Los unos
+Que va a ser la constante del modelo
+Y una lista global
+De variables
+Donde vamos a incluir
+Las variables que usábamos en nuestro modelo
+La constante
+Y las dummies de años
+Y acá tenemos este código
+Que
+Vamos a verlo
+Un poquito más en detalle
+Bueno, espero que se vea bien
+Lo que le estamos diciendo acá es
+En lugar
+Olvidémonos por un segundo
+Del for each
+Y vamos a ver
+Lo que hace el código en sí
+Y en lugar de var
+Si quieren reemplácelo
+Por esta que está acá
+LPR var
+O
+LPL
+Pol PC
+Que era la presencia policial
+Entonces
+Genera
+Una variable
+Vacía
+Que se llame tilde
+LPOLPC
+La versión tilde
+De presencia policial
+Sobre esa variable
+Tilde
+Presencia de
+Policías
+Reemplazala
+Con que
+Si el año es el 81
+Reemplazala por
+La raíz de 1
+Menos ro al cuadrado
+Por la variable en sí misma
+Y si el año es distinto
+De 81
+Reemplazalo por
+La variable
+Menos
+L punto
+La variable
+Que es el lag
+Por ro
+Que es esto que
+A lo que llegábamos recién
+¿No?
+Esto de acá
+Estamos diciendo a esta ta
+Que me arme
+Esta para el periodo del 81
+Que es el momento 1
+Y después para del 82 en adelante
+Que usé
+Esta expresión de acá
+¿Y quién es ro?
+Es el ro que habíamos estimado antes
+Y que lo guardamos
+A ver
+Acá
+Sí
+Bueno
+Ahora vamos a hacer eso
+Pero para todas las variables
+De esta lista que dijimos acá
+Así que nada
+Voy a correr eso
+Entonces fíjense que lo que hizo esta ta es
+Primero generó 630 missing values
+Y después hizo 90 real changes
+Para
+Las casos en donde el año es el 81
+Y 540 para los casos donde
+El año es distinto de 81
+Y bueno
+Con eso
+Si lo voy a ver
+Fíjense que ahí tenemos
+Las variables tildes
+La de los unos
+Y por ejemplo tenemos también
+Bueno
+Tilde 82
+Tilde 83
+Y acá tenemos un ejemplito
+De cómo ser
+Una vez que creamos
+Las variables tilde
+Lo que tenemos que hacer
+Es correr la regresión
+De pull dobles
+Con las variables tilde
+Sin constante
+Porque de vuelta
+Se acuerdan que teníamos los unos
+Los estandarizamos
+Por así decirlo
+Entonces ya no quiero que tenga
+La constante de este modelo
+Porque
+Tengo una constante nueva
+Y bueno
+Acá tenemos los resultados
+La interpretación es la misma
+Porque sigue siendo como
+Representando el logaritmo
+Entonces
+Pero fíjense que
+Las magnitudes y los signos
+De los estimadores
+Son bastante similares
+Hay un comando
+En este sí hay un comando
+Como
+Solito
+Que se llama price
+Y hay dos versiones
+Una es
+Two steps estimates
+Y otro sin
+Sin el
+Two steps estimates
+Les muestro lo que sale
+Menos 4.61
+Menos 3.22
+Menos 1.65
+Grande
+Menos 4.61
+Menos 3.22
+Sí
+Da todo lo mismo
+Esto como siempre
+Tiene su propia
+Versión del help section
+Fíjense que lo que hace
+El two step
+Es decir
+La stata
+Nosotros lo que hicimos
+Recién
+Es hacer lo que hicimos
+Recién a mano
+De parar
+Luego de la primera iteración
+En el sentido de
+Nosotros dijimos
+Bueno
+Probemos con un ar1
+Le dimos a los errores
+De estructura
+De ar1
+Modificamos las variables
+Diciéndole
+Los errores siguen un ar1
+Modificalo
+Acordingly a eso
+Pero hay otra opción
+Que sería
+Seguir como
+Iterando
+Hasta que no tengas
+Ningún tipo
+Autocorrelación
+De ninguna
+De otro tipo
+Que es la
+Como
+La versión
+Sin el two step
+Que es este
+C-O-R-C
+Que es el default
+Cochrane
+Orca
+Así que nada
+Si les interesa
+Esto
+Lo pueden mirar
+Acá lo voy a borrar
+De vuelta
+Fíjense que acá
+Va iterando
+Sobre el RO
+Y se termina
+Quedando con un RO
+De punto 94
+Como que va iterando
+Diciendo
+A ver
+Cuál es el RO
+Que más me convence
+Y se queda en este
+El RO
+Que habíamos usado
+Nosotros
+Que se lo dijimos
+Era este punto 79
+Pero nada
+Como que se queda
+Con el primero
+Que encuentra
+Y bueno
+Finalmente
+Nos piden
+Computar
+Errores
+Estándar
+Robustos
+A heterosegasticidad
+Arbitraria
+Y autocorrelación
+Serial
+Que es
+Lo que habíamos
+Hecho antes
+De clusterear
+Los errores
+Copiamos
+La regresión
+Hicimos recién
+Pero clustereamos
+Los errores
+Y listo
+Entonces de vuelta
+El valor
+De los estimadores
+Es el mismo
+Lo que cambia
+Van a ser
+Obviamente
+Los errores
+Estándar
+Porque ahora
+Aparte de considerar
+El caso
+De autocorrelación
+Y heterosegasticidad
+Y de decirle
+Tenemos un proceso
+De autocorrelación
+De orden
+Uno
+Queremos que nos
+Clusteree
+Los errores
+Por campi
+Y bueno
+Eso sería
+El ejercicio
+Uno
+Capaz que
+Esta parte
+Era medio
+Tricky
+De seguir
+Pero
+Nada
+Si se entendió
+Más o menos
+De dónde sale
+Más bien
+Qué es lo que
+Tiene de particular
+El enfoque
+De Price
+Winston
+Estoy conforme
+¿Alguna pregunta
+Antes de pasar
+Al 2?
+Ok
+Bueno
+En el 2
+Lo que tenemos
+Es
+Esta
+Esta función
+Que busca
+Modelar
+El logaritmo
+De los costos
+De
+Costo total
+De producción
+En la industria
+Aeronáutica
+Y para eso
+Lo que van a usar
+Es
+Una variable
+Output
+Una variable
+Que se llama
+Load Factor
+Que es como
+La capacidad
+De producción
+Utilizada
+El logaritmo
+De
+Fuel Price
+Y después
+Tenemos
+Dummies
+Por firmas
+Porque vamos a tener
+6 firmas
+En total
+Por eso
+Las dummies
+Van desde
+Delta 2
+Hasta Delta 6
+Y el error
+Nos dicen
+Utilice la base
+De datos
+Provista
+La cual contiene
+Datos para
+6 compañías
+Aéreas
+Observadas
+Anualmente
+Durante 15 años
+Estima la ecuación
+Por
+Full
+Dobles
+Ahora que lo pienso
+Creo que nunca
+Les cargué
+Los códigos
+En el Dropbox
+Podría hacerlo
+Ahora
+Por si quieren
+Seguir
+Esta audio
+Valencia 1
+Código
+Bueno nada
+Si quieren seguirlo
+Con el 2
+Pueden hacerlo
+Y bueno
+Que estimen
+Por pull
+Dobles
+Eso va a ser fácil
+Lo más
+Interesante del ejercicio
+Viene acá
+En el inciso B
+Donde tenemos que asumir
+Que para cada
+Compañía aérea
+Vale que la varianza
+De los errores
+Es sigma
+Cuadrado
+J
+O sea
+Vamos a tener
+Vamos a tener
+Una varianza
+Para cada
+Firma
+Va a ser constante
+En los años
+Para cada
+Firma
+Pero distinta
+Entre firmas
+Entonces vamos a tener
+Como dos opciones
+Acá
+Una opción
+Es estimar el modelo
+Calculando el estimador
+Necesario
+Para la varianza
+Específica
+De la compañía
+A partir de los residuos
+O sea
+Lo que veníamos
+Haciendo habitualmente
+Pero
+Vamos a
+Clusteriar a mano
+Por así decirlo
+La varianza
+Y la otra forma
+Es utilizar el modelo
+Como una forma
+Del modelo
+De heterosegasticidad
+Multiplicativa
+De Harvey
+Esto se explica
+Hay un paper
+Que si lo buscan
+En internet
+Sale
+Que es este
+Estimating
+Regression Models
+For Multiplicative
+Heterosegasticity
+Si quieren leer más
+Sobre esto
+Está el paper original
+Y también está en green
+Acá
+Les diría que arranca
+Como por esta sección
+De acá
+Después si quieren
+Igual les paso bien
+El libro
+Y la sección
+Por si lo quieren leer
+Pero
+Nada
+Acá un poco
+Explica
+Qué significa
+El two step estimation
+Y
+Qué es lo que se hace
+En esta
+En este procedimiento
+Pero nada
+Vamos a verlo
+Directo en Stata
+Así
+Avanzamos un poco más
+Arranco cargando
+La base de datos
+Tenemos
+Es
+Chiquita
+La base de datos
+Tenemos
+El ID
+De la aerolínea
+Año
+Costo
+Output
+Fuel Price
+Y Load Factor
+Acá tenemos
+Compañía 1
+Compañía 2
+Desde el 70
+Al 79
+No mentira
+Del 70
+Al 84
+15 años
+Y
+Bueno
+Con el describe
+Nos describimos
+Las variables
+Y podríamos
+Hacer también
+No bueno
+Vamos directo
+A lo que nos dicen
+Teníamos esta función
+De costos
+Y nos piden
+Que la estimemos
+Por pool doubles
+La de la firma
+Ya está
+Se arma fácil
+Con el
+I.id
+Esto nos genera
+Las dummies
+De firma
+Nos faltaría
+Crear el logaritmo
+Del costo
+El logaritmo
+Del output
+El logaritmo
+Del fuel price
+Esto lo que hace
+Es decirte
+Mira
+Yo tengo
+Una variable
+I.d
+Que
+Es categórica
+Y la quiero
+Incluir en la regresión
+Entonces
+Se lo aclaras
+Stata
+Y Stata
+Lo que hace
+Es decir
+Bueno
+Sí
+Es como que
+Te las incluye
+En la regresión
+No te las genera
+Acá
+Pero te las incluye
+En la regresión
+Claro
+Sí
+Sí
+Sí
+Sí
+Es re útil
+Para estas cosas
+Sí
+Porque
+Después ya
+Te queda más lindo
+El reporte
+Acá
+Y bueno
+La vamos a guardar
+Acá
+Y
+¿Qué tenemos?
+Por ejemplo
+Que el logaritmo
+Del output
+Fluye en el costo
+En un
+Punto 91
+O sea
+Aumento del 1%
+En el
+Output
+Genera un aumento
+Del 0.9%
+En el
+Costo
+Lo mismo
+Con el resto
+Sí
+Fíjense que
+Ciertas aerolíneas
+Aparentemente
+Tienen como
+Relativo
+A la aerolínea
+1
+Que es la que
+Estamos usando
+Como benchmark
+El resto
+Esta se mueve
+Para abajo
+Esta se mueve
+Para arriba
+El costo
+Sí
+Como que
+Pertenecer a cierta
+Aerolínea
+Te genera una estructura
+De costos
+Más altas
+Por
+Efectos
+Que son
+Particulares
+De cada aerolíneo
+Sí
+Oh
+Para que
+Esto
+Súper
+Ahí va
+Pequeño
+Detalle
+Pero bueno
+Como no es lo que vamos a ver
+Ahora
+Sigo de largo
+Estimamos por
+Pueblo
+OLS
+Y ahora queremos
+Como
+Modelar
+Esa heterosegasticidad
+Que se especifica
+Para cada grupo
+Como no conocemos
+La varianza en sí
+Tenemos estas dos opciones
+Que decíamos recién
+Estimar la varianza
+De la compañía aérea
+Manual
+Con los residuos
+De OLS
+O usar el modelo
+De heterosegasticidad
+Multiplicativa
+De Harvey
+Vamos con la opción 1
+De vuelta
+Queremos
+Estimar la varianza
+Asignarle
+A cada firma
+Una varianza
+Un sigma cuadrado
+De U
+Que se va a repetir
+A lo largo de los años
+Para la misma firma
+Entonces
+Vamos de vuelta
+Regresión OLS
+Lo mismo que hicimos recién
+Y vamos a predecir
+Los residuos
+Voy a correr todo junto
+Porque es
+A los residuos
+Le decimos E
+Y ahora lo que queremos hacer
+Fíjense
+Lo que tenemos acá
+Firma 1
+Residuo E
+Firma 1
+Año 71
+Residuo E
+Firma 1
+Año 2
+Año 72
+Residuo E
+Y así para todas las firmas
+Lo que vamos a hacer
+Es decir
+Bueno
+Para la firma 1
+Agarrate estos 15 valores
+Y con eso
+Ármate
+Un valor
+Que va a ser
+La varianza estimada
+Y asignale
+Esa misma varianza
+Para todos los años
+Para la firma 1
+Y para la firma 2
+Lo mismo
+Agarra estos 15 valores
+Que tenés acá
+Estima la varianza
+Asignale la misma varianza
+Para todos los años
+Para la firma 2
+Y así con todas las firmas
+Y eso es lo que hace
+Esta parte del código acá
+Teníamos la variable E
+Y lo que vamos a estar haciendo
+Es
+De vuelta
+Ignoremos la parte del loop
+Veamos esto
+Esto solito
+Le vamos a decir
+Estata
+Tengo un parámetro
+Que es 1
+Y otro parámetro
+Que es 15
+Quiero que hagas lo siguiente
+La variable E
+Que la creamos acá
+Agarra los valores
+Que van
+Desde el 1
+Hasta el 15
+Y metelos en una matriz
+Que se va a llamar E
+Y en este caso
+1
+En la primera iteración
+Entonces
+Imagínense que
+Estata arranca a leer el código
+Bueno
+Agarro la variable E
+Para los valores del 1 al 15
+Te armo una matriz
+Que se llama E1
+Una vez que generamos
+La matriz C1
+Estata lee esto
+Y dice
+Bueno
+Al 1 que tenías acá
+Súmale 15
+Al 15 que tenías acá
+Súmale 15
+Entonces pasamos a
+El nuevo local
+Vendría a ser 16
+30
+Entonces volvemos al principio
+Agarra la variable E
+Del 16
+Al 30
+Y guardalo en una matriz
+Que se llama E2
+Que esa sería la firma 2
+A 16
+Súmale 15
+A 30
+Súmale 15
+Y pasas al 3
+Y así va corriendo el otro
+Perdón
+¿Por qué se lo pedís que lo hagas 6 veces?
+Porque son 6 firmas
+Porque son 6 firmas las que tenemos
+Ah, perfecto
+Y sumarle 15
+¿A qué se debe?
+Porque lo que querés hacer es
+Agarra este E
+Y agárralo desde el 1
+Hasta el 15
+Esa es la parte
+Digamos
+Esto que está acá
+Ahora
+Este indicador
+De qué parte
+De la variable
+Agarro para hacer la matriz
+Súmale 15
+Para pararte acá
+Desde este valor de acá
+Que ya es la firma 2
+Claro, está bien
+Es porque son 15 años
+Es por lo que dijiste
+La cantidad
+¿No?
+Claro
+Exacto
+Está bien
+Gracias
+Me muevo
+Nada
+Vas como moviendo la ventanita
+Con la que armás el vector
+Y ya con eso
+Podríamos hacer
+Matrix
+List
+Por ejemplo
+E1
+Entonces
+Para la firma 1
+Tengo
+Estos errores
+Para la firma 2
+Tengo estos errores
+Fíjense que son distintos
+Y que básicamente son
+Las posiciones que tenemos acá
+O sea
+Firma 2
+Firma 2
+Acá
+Menos .10
+Es la primera
+Y
+.16
+Es la última
+Está bien
+Ahí hacemos el sanity check
+Para ver que esté todo bien
+Bueno
+¿Qué es esto?
+Y ahora lo que vamos a hacer es
+Como tengo un vector
+Para cada aerolínea
+De errores
+No voy a calcular
+Un solo
+Sigma cuadrado de U
+Para todas las firmas
+Por igual
+Para todos los años
+Por igual
+Sino que voy a hacer
+Un sigma cuadrado de U
+Para cada firma
+Para todos los años
+Y eso es lo que vamos a hacer acá
+Lo que estamos diciendo acá
+En el loop
+Es
+Si quieren
+Reemplacen la I
+Por un 2
+Entonces voy a trabajar
+Con la firma 2
+Generamos una matriz
+Que se llame sigma 2
+Lo que vamos a hacer es
+E2
+Transpuesta
+Por E2
+Divido 15
+O sea que es
+Esto
+Transpuesto
+Por esto
+Sobre 15
+Que es básicamente
+La suma de residuos al cuadrado
+Sobre 15
+Que es como estimamos
+La varianza habitualmente
+Mostrame la lista
+O sea
+Si quieren
+Podríamos hacerlo
+A mano
+Matrix
+Sigma
+Test
+Lo voy a poner
+Igual a
+Esperen que
+Lo voy a poner acá
+Y
+En lugar de
+E
+Y
+Ya le voy a decir
+Tipo
+E2
+E2
+Ah
+Me falta
+Ahí va
+Y ahora
+Mostrame la
+Matrix
+List
+Sigma
+Test
+Porque de vuelta
+Acuérdense que esto es la suma
+De residuos
+Al cuadrado
+Divido 15
+Nos da esto
+Mostrame la
+Matrix
+List
+Sigma
+Test
+Y a esa
+A esa misma
+Sigma
+Generamos un escalar
+Que se llame igual
+Y el escalar
+Que va a ser
+El componente
+1-1
+De esta
+Matrix
+O sea
+Lo vamos a guardar
+Como un escalar
+Así que nada
+Corro todo esto
+Que lo va a repetir
+Para las 6 aerolíneas
+Y ahí nos da
+Los resultados
+Ahora que tengo
+La estimación
+A ver si ya aparece
+Acá
+Parece que
+Los escalares
+Que vamos a usar
+Para
+Como ponderadores
+Vamos a
+Generar
+W
+Por weights
+Como una variable
+Vacía
+Y vamos a
+Reemplazar
+Para las posiciones
+1 a 15
+El ponderador
+Sigma 1
+De 16 a 30
+Sigma 2
+Sigma 3
+Que son estos
+Sigmas
+Que calculamos acá
+Que de vuelta
+Salen de hacer
+Suma de residuos
+Al cuadrado
+Sobre 15
+Para cada una
+De las aerolíneas
+Y esto
+Ya lo vemos acá
+Fíjense
+Como pasamos
+De
+Estos valorcitos
+Al cuadrado
+Sumados
+Sobre 15
+Nos dan esto
+Y lo repetimos
+15 años
+Para cada aerolínea
+Fíjense que va cambiando
+Por aerolínea
+Y ahora lo único
+Que nos queda por hacer
+Es usar
+Estos ponderadores
+En la regresión
+Como hicimos la vez pasada
+Cuando hacíamos
+FTLS
+Y ya
+Ahí nos queda
+La regresión armada
+Con los ponderadores
+Y bueno
+Tenemos los resultados
+Fíjense que esto
+Es bastante
+Parecido
+O sea
+No cambia
+Cuando la comparamos
+Con PULLS
+Pero bueno
+Para comparar
+Está bueno
+¿Está todo bien?
+¿Alguna pregunta?
+A ver
+Para lo que es el procedimiento
+De Harvey
+La idea es un poco
+Parecida
+Pero no tanto
+O sea
+Vamos a
+El procedimiento
+De Harvey
+Últimamente
+Ultimately
+No sé cuál es
+Como
+La versión
+Español
+De
+Ultimately
+Lo que hace
+Es
+Correr
+FGLS
+Usa
+Ponderadores
+El chiste es
+Bueno
+¿Qué usamos
+De ponderador
+Acá?
+Eso es lo que
+Diferencia Harvey
+De lo que hicimos recién
+El ponderador
+Que usan acá
+Va a salir
+De
+Los residuos
+Que habíamos
+Hecho antes
+El E
+Creamos el logaritmo
+De
+De esos residuos
+Al cuadrado
+Después regresamos
+Ese logaritmo
+De los residuos
+Por firma
+O sea
+Es como
+Ir un poquito
+Más allá
+Y preguntarle
+Estata
+Decime
+Cómo se relaciona
+La pertenencia
+A cada firma
+Con ese residuo
+En base a esta relación
+Que saquemos de acá
+Vamos a predecir
+Los valores
+De la varianza
+O más bien
+Del logaritmo
+De ese valor
+De la varianza
+Lo exponenciamos
+Para que nos quede
+La varianza de vuelta
+O sea
+Acá
+Aplicamos el logaritmo
+Después la exponencial
+Para volver a tener niveles
+Y ya después
+Eso lo usamos
+Como
+Ponderador
+¿Sí?
+Nada
+Lo que cambia
+Es el approach
+Con el que estimás
+La varianza
+Básicamente
+Acá arriba
+Lo que hacíamos
+Era decir
+Agarrá los residuos
+Multiplicalos al cuadrado
+Sumalos
+Divídelos por 15
+Acá es un poquito
+Distinto
+Acá agarrás
+Los residuos
+Hacés una regresión
+De los residuos
+Contra las firmas
+Y en base a eso
+Predecís
+La varianza
+Acá no hay mucho
+Digamos
+Los comandos
+Ya los usamos todos
+Me parece que no hay nada raro
+De vuelta
+Lo podemos ver acá
+Sí
+Generamos
+LNE2
+Que es el
+Logaritmo
+Del cuadrado
+De los residuos
+Al cuadrado
+Regresamos
+Ese logaritmo
+De los residuos
+Al cuadrado
+Contra las firmas
+Que es
+Esto que está acá
+Cómo afecta
+Pertenecer
+Por así decirlo
+A cada firma
+Al
+Logaritmo
+De los residuos
+Al cuadrado
+Después
+Usando
+Estos coeficientes
+.93
+Y menos 7.48
+Calculamos
+La predicción
+Que es esto
+Que está acá
+Del valor
+Del logaritmo
+De la varianza
+Para cada una
+De las firmas
+Exponenciamos
+Este logaritmo
+Para que en lugar
+Del logaritmo
+De B
+Nos quede B
+Y ahora sí
+Hacemos la regresión
+Usando B
+Como
+Weight
+Nada
+Esto capaz
+Que suena
+Medio
+Confuso
+Dicho
+Como
+Así tan
+En el aire
+Pero
+Mírenlo
+Después
+Tranqui
+Y
+Seguramente
+Cobre más
+Sentido
+Este procedimiento
+De vuelta
+Está en
+El libro
+De Green
+Que es
+Este
+Y
+Y bueno
+De vuelta
+También
+En el
+Paper
+De acá
+Básicamente
+¿Qué pasa
+Si le quiero
+Dar otra
+Forma
+A esa
+Heteroseasticidad?
+Y
+Y también
+Se puede
+Usar
+Este
+Comando
+Que se llama
+Head
+Regress
+Que hace
+Esta
+Two step
+GLS
+Estimation
+Donde
+Los dos
+Pasos
+Vendrían
+A ser
+Primero
+Haces
+Una
+Regresión
+Del logaritmo
+De los residuos
+Contra los
+IDs
+Y después
+Si agregas
+Eso
+Como un
+Peso
+FGLS
+Y
+Como siempre
+Head
+Head
+Regress
+Para ver
+Cómo
+Funciona
+La estimación
+Y
+Qué cosas
+Podemos agregarle
+O sacarle
+Al modelo
+Eso es el ejercicio
+Dos
+El chiste
+Era un poco
+Comparar eso
+Cómo es la performance
+De
+De estas dos
+Opciones
+Todo va a depender
+Obviamente
+De
+Qué nos
+Convence
+Más
+A la hora
+De
+Según la base
+De datos
+Que tengamos
+¿Alguna pregunta
+Con el dos
+O
+Paso al tres?
+No preguntas
+Gracias
+Gracias
+En general
+Me gusta dejar
+Como un ratito
+No me jode el silencio
+Para nada
+Pero bueno
+Capaz que
+Alguno
+Se quedó pensando
+Dice
+Ah
+Y le hacen la pregunta
+Ejercicio tres
+Tenemos una ecuación
+De salarios
+Y diego
+Igual a beta cero
+Más beta uno
+Por X
+Más U
+Donde
+Beta cero
+Beta uno
+Es igual a uno
+Los errores
+Se distribuyen
+Normales
+Cero
+Sigma
+Sigma
+¿No?
+Omega
+Omega
+Por eso venía como
+Sigma
+Sigma
+Sigma
+Esto no es sigma
+Gracias
+1
+0
+04
+¿Sí?
+Fíjense que tenemos
+Dos periodos temporales
+Entonces lo que estamos diciendo
+Es que la varianza
+En el periodo uno
+Para todas las observaciones
+Es uno
+La varianza
+En el periodo dos
+Para todas las observaciones
+Es cuatro
+Y XJ
+Se distribuye
+Uniforme
+1 a 20
+Y este ya es más de
+De simulaciones
+Así que
+Creo que
+Debería ser
+No debería ser nada raro
+Ya acá no hay
+Ningún procedimiento extraño
+Queremos generar
+Queremos generar
+Mil muestras
+De cinco observaciones
+De corte transversal
+A partir de este modelo
+Para cada muestra
+Vamos a después
+Estimar por FGLS
+Los parámetros del modelo
+Y hacer un test de hipótesis
+Para contrastar
+Beta 1
+Igual a 1
+O sea
+La verdad
+Y vamos a ver
+Qué tan bueno
+Es el procedimiento
+De FGLS
+Basado en
+Tamaño del test
+Y poder del test
+En los TPs
+Lo que se suele ver
+En los TPs
+Para entregar
+Se suelen hacer esto
+No solo con FGLS
+Sino con FGLS
+Con pool do Ls
+Como con diferentes
+Procedimientos
+Entonces vos
+Te generás
+Estas muestras
+Donde ya
+Como nosotros
+Generamos el proceso
+Underlying
+De los datos
+Es fácil decir
+Bueno
+Pongo a prueba
+Los modelos
+Y veo cuál
+Me da mejor
+Dado que
+Sabemos exacto
+De dónde venían
+Los datos
+Y bueno
+Después repetir
+El procedimiento
+Con N igual a 500
+O sea
+Lo hacemos con
+Cinco observaciones
+Y con 500
+Y vemos qué tanto
+Mejora el poder
+Y el tamaño del test
+Si es que mejora
+Ese es un poco
+El chiste del ejercicio
+Bueno
+Vamos a todo
+Cierro esto
+Cierro esto
+Ahí vamos
+Bueno
+Como acá tenemos
+Los local
+Armados
+Toda esta parte
+La voy a tener que correr
+Toda junta
+Así que les cuento
+Lo que es
+Clear all
+Set more off
+Sabemos
+Acá
+Le vamos a pedir
+A Stata
+Que
+Que pasa
+Más adelante
+En el ejercicio
+Vamos a tener
+Una matriz
+Que se llama
+P valor
+De 2
+Entonces si lo están
+Corriendo varias veces
+Le voy a decir
+Que la dropees
+Y quedó guardada
+Básicamente porque
+El clear all
+Por lo que entiendo
+Te afecta a las variables
+Y no a las matrices
+Entonces
+No
+Después
+Vamos a
+Setear esta seed
+Para replicar
+Los resultados
+Podríamos cambiar
+Los 20
+23
+Y local
+N
+500
+T
+Es igual a 2
+El primer ejercicio
+Igual nos pedía
+N igual a 5
+Así que arranquemos
+Con eso
+Y hasta te lo voy a decir
+Bueno
+N por T
+Porque de vuelta
+Vamos a ponernos
+En mentalidad
+Quiero crear
+Un
+Un dataset
+De 0
+Se acuerdan
+En el
+TEP anterior
+Que lo que hacíamos
+Era
+Como queríamos
+Generar un panel
+Necesitaba la variable ID
+Y la variable T
+La variable ID
+¿Qué era?
+Crear una secuencia
+Que va desde el número 1
+Hasta el número N
+Que son las 5 observaciones
+O sea
+Estoy creando
+Un corte transversal
+Mentira
+Estoy creando como
+5 valores de ID
+Que después los voy a rellenar
+Con
+1
+2
+3
+4
+5
+Periodos temporales
+O la cantidad de periodos temporales
+Que tenga
+En este caso
+Tenemos 2 periodos temporales
+Entonces
+Voy a bloquear
+El ID
+Por 2 posiciones
+ID se repite
+1
+2
+Entonces
+1
+1
+2
+2
+3
+3
+4
+4
+Y después
+T
+Va a ser una secuencia
+Que va del 1 al 2
+1
+2
+ID
+1
+1
+2
+ID
+2
+1
+2
+ID
+3
+Voy a dejar de hablar
+Y lo voy a correr
+Es fácil
+Verlo
+Ahí tenemos
+ID 1
+Lo bloqueo 2 posiciones
+Lo bloqueo 2 posiciones
+Lo bloqueo 2 posiciones
+Y el otro no lo bloqueo nada
+Porque necesito que se mueva
+Para las variables
+Estos ya son datos
+Sí
+Ahora que tengo la variable
+ID
+Mil vueltas
+De una
+De una sola vez
+Y si están testeando
+El código
+Al principio
+Capaz que vale la pena
+Digamos
+Decir
+NREP
+Y ya cuando
+Chequean que funciona
+Todo bien
+Ahí lo ponen para mil
+Porque
+Si es un código largo
+O un procedimiento
+Medio pesado
+Para la compu
+Y lo corren mil
+Capaz que están horas
+Hasta que corre
+Y al final
+No era lo que estaban
+Buscando
+Y es un
+Y acá también
+Tendríamos que poner
+El NREP
+Pero bueno
+De última
+Lo cambiamos a mano
+Si esto no
+Lo estoy haciendo bien
+Lo cambiamos a mano
+Porque puede suceder
+La verdad que no me acuerdo
+Si era
+Si se llamaban así
+Estas cosas
+Pero bueno
+Vamos a arrancar
+Con 10 repeticiones
+De la simulación
+Para
+5 observaciones
+Para 2 periodos
+Temporales
+Y después
+Para las simulaciones
+Vamos a generar
+Variables vacías
+Que las vamos a ir
+Reemplazando
+Con lo que
+Sabemos que valen
+Y
+Voy a ir a la parte
+Adentro del lupa
+Si después
+Corremos todos juntos
+Ya habíamos generado
+Estas variables
+Y
+X
+U
+Los residuos
+Y encima al cuadrado
+X
+Sabemos que
+Si distribuye
+Uniforme
+1 o 20
+Entonces
+Para la variable
+X
+Que tiene una cantidad
+De observaciones
+Que sentíamos acá
+Ponele a cada
+Valorcito
+Un valor
+Que agarrás
+De uno
+Uniforme
+1 o 20
+UJ
+UJ
+Sabíamos que
+Por lo que veíamos acá
+Si el periodo temporal
+Que estoy mirando
+Es el 1
+Vale 1
+Más bien
+Se distribuye
+Normal 0,1
+Y si el periodo temporal
+Y si el periodo temporal
+Que estoy mirando
+Es el 2
+U se distribuye
+Normal 0
+4
+Entonces
+Eso es lo que
+Decíamos acá
+Bueno
+2 porque es
+La raíz
+De 4
+De 4
+Del 4
+Que teníamos
+En el omega
+Para T
+Para T igual a 1
+Para T igual a 2
+En este caso
+Es como medio
+Sencillo
+Por así decirlo
+De modelar
+Porque no es que cambia
+Entre periodos
+Y para observaciones
+Porque esto se podría
+Complejizar un poco más
+De repente
+Pero bueno
+En este caso
+Con esta condición
+Nos alcanza
+Reemplazamos
+El valor de Y
+Por lo que es
+Que es
+1 más
+1 por X
+Más 1 por U
+Beta 0
+Más beta 1
+Y después
+Hacemos FGLS
+¿Qué es FGLS?
+Primero
+Regreso
+Regreso Y
+Contra X
+Eso
+Nos devuelve
+Una regresión
+Generás los residuos
+Y los residuos es
+Y
+Menos
+El coeficiente
+Asociado a la constante
+Menos el coeficiente
+Asociado a las X
+Por X
+Después agarramos
+Estos residuos
+Que
+Que generamos
+Y
+Y los guardamos
+En una matriz
+Si el periodo
+Temporal es 1
+La matriz se llama
+ET1
+Si el periodo
+Temporal es el 2
+La matriz es ET2
+Con esos residuos
+Lo que vamos a hacer
+Es
+Computar los estimadores
+De las varianzas
+Específicas
+Para cada periodo
+Que traspuesta
+Por E sobre N
+Lo mismo que hicimos antes
+Pero en lugar de
+Dividirlo
+Por condados
+O por aerolíneas
+Lo dividimos
+Por periodos temporales
+O sea
+Va a ser el mismo
+Entre individuos
+Pero diferente
+En periodos temporales
+Una vez que hacemos eso
+Reemplazamos
+Con lo que nos haya dado
+Esta cuenta de acá
+Que de vuelta
+E traspuesta por E sobre N
+Es un escalar
+Es un número solo
+Lo reemplazamos ahí
+Y ya después
+Si podemos hacer
+La regresión
+De FGLS
+Que es
+Y contra X
+Pero usando como ponderador
+1 sobre sigma
+Sigma cuadrado
+Después
+Después calculamos
+El tamaño del test
+Que sería
+Bueno
+Testear
+Si
+El coeficiente
+Asociado a las X
+Es igual a 1
+Que nosotros sabemos
+Que sí
+Efectivamente es igual a 1
+Porque así hicimos el modelo
+Pero bueno
+Quiero que lo testees
+Y me digas
+En cuántos de las simulaciones
+O más bien
+Lo que vamos a contar después
+Es en cuántas de las simulaciones
+Que corremos
+El p-valor
+Termina
+Dando
+Menor que el umbral
+Que le decimos
+Y
+Ponele que lo testees
+Contra otro parámetro
+Contra 0.8
+Nosotros sabemos
+Que en la realidad
+Lo debería rechazar siempre
+Porque
+Dijimos que era 1
+Pero bueno
+Veamos justamente
+El poder
+Del test
+De rechazar
+Cuando
+La hipótesis nula es falsa
+Bueno
+Voy a correr
+Esto todo junto
+Espero que la parte
+Del n-rep
+Haya salido bien
+Lo descubriremos
+Ya corrió todo
+Entonces
+Fíjense
+Lo que fue haciendo
+El código
+O sea
+Súper rápido
+Porque de vuelta
+Hicimos solamente
+10 iteraciones
+Tenemos los p-valores
+De cada uno
+De los tests
+Que hicimos
+¿Sí?
+Y si buscamos
+La matriz
+Donde teníamos guardados
+Estos valores
+Porque digamos
+Lo que veo acá
+Es el p-valor
+De cada uno
+De los IDs
+De cada uno
+De las regresiones
+Para la última iteración
+Que hizo el loop
+Si yo quiero ver
+Si yo quiero ver
+Si yo quiero ver
+Qué fue lo que fue
+Guardando
+Matrix
+List
+Se llamaba
+P-valor
+B1
+Y ahí tengo
+El acumulado
+El acumulado
+De todos los p-valores
+Con todos
+Esos p-valores
+Ya sí podemos
+Hacer la cuentita
+Tamaño del test
+Es
+Conta
+Cuántas veces
+El p-valor
+Te dio
+Menor que 0.01
+0
+El tamaño del test
+Es
+0
+De vuelta
+Igual esto es porque
+¿Qué pasa?
+Hicimos 5 repeticiones
+Con 5 observaciones
+Veamos qué pasa
+Si en el rep
+Es 1000
+Como nos proponen
+En el ejercicio
+Corro todo de vuelta
+Este sí va a tardar
+Un poquito más
+Ahí va
+Ven
+Van por la silla
+Pero bueno
+Mientras corre
+No sé si
+Alguna pregunta
+Del código
+Soy consciente
+De que lo pasé
+Medio corriendo
+Pero bueno
+Ya nos quedan
+5000
+Y estas cosas
+Terminan
+Se terminan
+Como de
+De aprender
+Cuando te sentás
+Y lo haces de 0
+Entonces acá
+Ahora sí
+Vemos cómo cambia
+El tamaño del test
+Y el poder del test
+Que de vuelta
+El tamaño es
+¿Cuántas veces
+Rechazaste H0
+Si H0 era verdadera?
+En el anterior
+Nos había dado
+Que 0 veces
+Rechazábamos H0
+Cuando H0 es verdadera
+Lo cual está bien
+Acá bueno
+Hubo algunos casos
+Donde se nos
+Chispoteó la cuenta
+Por así decirlo
+Y tenés 0.01
+De hecho
+14 veces
+De 1000
+Nos dio
+Que rechazabas H0
+Cuando H0 es verdadera
+Y 323 veces
+Rechazaste H0
+Cuando H0 es falsa
+Entonces
+Vos le dijiste
+Che
+¿Puede ser que
+Beta 1
+Sea 0.8?
+Lo testeás
+323 veces
+Se dio
+Y lo que podemos hacer
+Ahora también
+Es cambiar el N
+Pasar de 5 a 500
+Individuos
+Y ver cómo cambia
+Borro todo de vuelta
+Y esto sí
+De vuelta
+Va a tardar
+Un cachito más
+Pero
+Nada
+Ya es lo último
+Igual esto
+Así que
+Hoy llegamos bien
+Una consulta
+Veo que hizo
+Algunas
+Modificaciones
+En el
+DoFile
+¿Lo podría después
+Subir
+DoFile
+Corregido?
+Sí
+Gracias
+Yo lo guardo
+Sí
+Quizás
+Lo más
+Importante
+Es este
+Local
+En el
+Rep
+Para poder
+Automatizarlo
+Y bueno
+Fíjense
+Cómo cambia
+Antes
+En las
+Mil
+Repeticiones
+Había
+Creo que
+Eran 14
+Veces
+Acá son 12
+Y acá
+Le preguntamos
+Esto
+¿Cuántas veces
+Rechazó
+H0
+Cuando H0
+Es falsa?
+Mil veces
+B
+Valor
+B
+Dos
+Ah
+Porque es una
+Pequeño detalle
+Que no lo dije
+Svmap
+Lo vimos
+En la clase
+Anterior
+Muy para arriba
+Pero lo que hace
+Es
+Agarrar
+La matriz
+Que se llama
+Pvalor
+B1
+Y la convierte
+En una variable
+Para que vos después
+Puedas aplicar
+Este
+Countif
+Como que no puedo
+Aplicar
+Countif
+Sobre una matriz
+Lo tengo que aplicar
+Si o si
+Sobre una variable
+Nada
+Entonces lo que quiero hacer
+En realidad es
+Math
+List
+De valor
+De 1
+Y ahí tienes
+La matriz entera
+Si querés
+Y si la querés ver
+Como una variable
+La ves acá
+Pero nada
+Eso
+No sé si
+Alguna pregunta
+Bueno
+Mientras dejo
+De grabar
+No sé si
+Hay alguna
+Aclaración
+Para la semana
+Que viene
+La semana
+Que viene
+Primero de abril
+Nada
+Seguimos con
+El Problem Set 2
+Que se los cargo
+Después del lunes
+Seguramente
+Y la otra semana
+Que es fin
+De Semana Santa
+Ya así
+Nos la tomamos
+Suficiente
+Con
+Este no fue tan grave
+Porque no sé
+Que tanta gente
+Viajó
+Y qué sé yo
+Pero el de Semana Santa
+Sería un
+Así que
+Nada
+Semana Santa
+Si nos la tomamos
+Y después
+Del 1
+Volveríamos
+El 15
+Si será todo bien
+Once again
+Also
+Son

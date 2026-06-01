@@ -1,0 +1,4677 @@
+start	end	text
+0	9320	Bueno, hoy tenemos para arrancar el Problem Set 2.
+10380	15480	Les dejé ya todo cargado en el Dropbox, así que si quieren ir siguiendo los códigos, van a estar acá.
+17420	25300	Y en el campus también tienen más fácil el enunciado, y no voy a dejar las soluciones a mano
+25300	28460	porque hay algunas cosas que va a ser más fácil leerlas de ahí directo.
+30960	32660	Hay que decirlas solamente en vivo.
+36580	43380	Mi idea para hoy es llegar a cubrir los ejercicios 1 y 2 para no ir corriendo porque son 4 ejercicios.
+43380	49380	Y nada, la verdad que estamos bien de tiempo, así que no...
+49380	50760	Vamos a ir por ahí.
+51960	56960	Pequeño comentario, semana que viene, Semana Santa, así que sábado no nos vemos.
+57400	58740	Nos vemos el próximo sábado.
+60000	66760	Nada, buen momento para ponerse al día con todas las cosas que tengamos pendientes por ahí.
+68520	72300	Lo cual es una gran mentira porque después llega el fin de semana y no hacemos nada productivo.
+73920	74820	Y si no es imposible.
+74820	79780	Así que, bueno, nada, vamos a seguir arrancando.
+79780	89180	Bueno, en este problem set lo que vamos a hacer es, digamos, hasta ahora veníamos hablando más bien de modelos lineales.
+89180	96960	Y con este problem set vamos a trabajar con modelos lineales que tienen una particularidad más, que son los componentes no observados.
+97140	98620	Esto con Martín entiendo que ya lo vieron.
+99320	103420	Si no, creo que hace dos clases o tres ya habrán arrancado con este tema.
+103420	112360	Así que acá van a empezar a surgir cosas más orientadas a panel en sí, y no tanto repaso de econometría.
+112360	123620	Voy a ir compartiendo acá porque quiero hacer un mini repasito de un par de cosas, así después no lo tengo que decir de cero.
+123620	127660	Así que voy a compartir.
+144460	150240	Solamente para hacer un mini repaso de las cosas, más bien de las modelos teóricos que vamos a estar viendo hoy.
+150240	155060	Y para tener las ecuaciones en algún lado, en otra vez.
+156560	167880	Primero que nada, recordar que la motivación de estas últimas clases fue partir del modelo lineal que teníamos originalmente.
+168280	171240	Pero ahora lo que vamos a hacer es considerar un modelo...
+180240	185180	Un modelo que va a tener esta forma.
+186700	193140	C y más x y beta, más u y p.
+195640	199020	Donde lo que estamos haciendo es agregarle esta C y acá al modelo.
+199740	202160	C y vamos a decir que es un efecto no observado.
+202820	205780	Que no cambia en el tiempo para cada una de las unidades observacionales.
+205780	207940	Por ejemplo, personas, counties, la que sea.
+211020	216820	Y este efecto se le suele llamar efectividad, heterogeneidad individual, heterogeneidad no observada, etc.
+216820	224640	En base a esta, a decir, bueno, para mí la estructura de los datos sigue de esta forma,
+224880	231000	lo que se hace en esta materia, en datos de panel y en la econometría de datos de panel en general,
+231460	237620	es proponer dos visiones acerca de qué es lo que creemos del CI.
+237620	247060	Y lo que vieron en clase es que tenemos, por un lado, el modelo de random effects.
+254180	256620	Y por otro lado, el modelo...
+256620	269380	O sea, efectos fijos versus efectos aleatorios.
+272180	274620	Históricamente lo que se decía era como que...
+275220	278400	Random effects considera que el CI que tenemos acá
+278400	282740	es como una variable aleatoria.
+282740	289440	Mientras que fixed effects lo que decía, una forma de pensarlo era
+289440	293680	decir, lo trato como un parámetro a ser estimado.
+293840	299400	O sea, cuál es el efecto de pertenecer a, no sé, California en la variable que estamos viviendo.
+300840	304740	Otra forma de pensarlo, que para mí me parece un poco más intuitiva o más ajustada
+305260	307220	a lo que vamos a trabajar en FTP,
+307220	313920	es pensar en el modelo de random effects como un modelo donde...
+313920	316140	Como estamos tratando al CI como una variable aleatoria,
+316200	318600	lo que estamos diciendo es que hay ausencia
+318600	322140	de correlación
+322140	327080	entre el error y las variables explicativas.
+327080	334780	Y el modelo de fixed effects lo que va a hacer es plantear,
+334780	337780	o más bien permitir presencia...
+341780	346380	De correlación, sí.
+351040	356940	De vuelta, esto igual, entiendo que ya lo vieron con Martín...
+357080	363140	Basado en estos dos modelos, lo que vamos a decir es, bueno, queremos estimar, ¿no?
+363980	366660	¿Qué vamos a usar hoy para estimar, o sea, en el TP de hoy?
+367320	372060	Pool do del ES, ya estamos todos de acuerdo, aquí es la respuesta por X inversa, aquí es la respuesta por Y,
+372160	372580	nada raro.
+374060	380160	El problema con pool do del ES es que según qué modelo estemos teniendo en mente,
+382000	385580	bueno, vamos a ver, problema en los errores, porque si hay correlación en los errores,
+385580	391780	ya vimos la semana pasada que la estimación de la matriz de varianzas y covarianzas no va a ser la correcta,
+391840	394240	por lo tanto la diferencia que hagamos no va a ser la correcta.
+396340	401580	Y ya después, en el caso de random effects, lo que vamos a hacer es...
+401580	414200	Esto, de vuelta, es un punteo súper artesanal para ponernos un poco en contexto antes de ir al código, así.
+414200	424960	En random effects lo que vamos a hacer es básicamente incluir a este componente no observable en el término de error.
+424960	436020	Y es lo mismo que hacemos en pool do ELS, solo que en pool do ELS lo dejamos en el término de error y nos queda ahí.
+436020	450300	Acá vamos a hacer el supuesto de que los seis de vuelta son ortogonales.
+450300	464540	Esto va a ser como la parte más fuerte, la más fuerte de aplicar este modelo, porque se está pidiendo dos cosas.
+464720	469540	Una, exostenibilidad estricta, y dos, ortogonalidad entre CI y X y T.
+470840	475300	Que después en el TP igual vamos a ver casos donde por qué podría no cumplirse la ortogonalidad.
+475300	486160	Y aparte, como dijimos antes, que también aplica al caso de OLS,
+486840	489500	como lo que estamos haciendo es reescribir un poco el modelo...
+489500	495620	Nosotros partíamos de este modelo, ¿no?
+499760	500600	¿Puedo operar?
+502760	503160	¿Puedo operar?
+505300	512140	Partíamos de este modelo, ¿no?
+512760	517680	Lo que vamos a hacer en Random Effects, que es lo que se hace también en PIO, en pool do ELS,
+518220	526320	es este y este juntarlos en un mismo componente, que es el error compuesto.
+531560	533760	Esto es una B, y esto es una U.
+533760	535280	Y esto es una U.
+535300	548880	Donde este error compuesto, que va a ser CI más U y T,
+552180	557200	nos va a estar generando este problemita sobre los errores, como dijimos antes,
+557200	564200	entonces lo que vamos a hacer es usar GLS, como hicimos la semana pasada, para calcular la matriz correcta.
+567180	568740	Eso por el lado de Random Effects.
+569280	571200	Por el lado de Efectos Fijos...
+571200	589660	Lo que vamos a tener es, repito un poco el modelo, vamos a pensar, Y y T igual a X y T subeta, más CI más U y T.
+589660	605840	Pero como decíamos, lo que nos hace este modelo es permitir que la covarianza entre CI y X y T sea distinto de cero.
+605840	617420	Entonces, básicamente lo que estamos pensando es que algunas de estas variables que no podemos observar correlacionan con el error compuesto,
+617560	628160	entonces FGLS nos va a dar estimaciones sesgadas e inconsistentes, entonces vamos a tener que trabajar un poquito más para mejorar la estimación.
+628160	637240	Cada uno tiene sus ventajas y desventajas, Random Effects versus Fixed Effects.
+638500	642100	Asumo que ya hablaron un poco de esto en clase, pero básicamente, ¿qué pasa?
+642540	647700	En Random Effects lo que vamos a hacer es despegarnos de este CI,
+648380	653400	y en Fixed Effects lo que vamos a hacer es hacer transformaciones sobre este modelo,
+653400	657520	para estimar variables que son un poquito distintas, se interpretan de forma un poquito distinta,
+658160	660780	pero nos vamos a sacar de encima este CI.
+663000	666800	Y al sacarnos de encima este CI, nos estamos sacando de encima también, digamos,
+667340	668860	más bien, no incluimos
+668860	673180	factores
+673180	675480	constantes en el tiempo.
+678880	681680	Porque van a ver cuando hagamos las transformaciones que tenemos que hacer
+681680	688800	en Fixed Effects para borrar el CI, que todos esos valores van a desaparecer.
+689480	693540	Dentro de Fixed Effects lo que vamos a hacer hoy es ver algunas transformaciones,
+693920	697260	no todas, vamos a ver, Within,
+698100	700420	que también se le dice estimador de Fixed Effects.
+702640	705340	Vamos a ver la transformación del
+705340	709220	LSDD, o modelo de variables binarias.
+715720	718060	No incluimos factores constantes en el tiempo.
+719180	721640	O sea, no vamos a poder analizar eso.
+721640	728000	Bueno, la transformación within, no sé si se lo acuerdan,
+728180	731420	si no, igual lo vamos a ver, pero básicamente es promediar
+731420	734380	esta ecuación que tenemos acá.
+736260	738260	Y una vez que la promediamos, la restamos,
+738260	741060	o sea, estamos generando un nuevo modelo,
+742060	745600	que es la diferencia respecto del promedio para alguna de las observaciones.
+745600	752600	Cuando hacemos esa transformación,
+752700	754000	de vuelta el CI va a desaparecer,
+755400	756880	y ahí ya vamos a estimar por OLS.
+757840	759000	Pero vamos a ver que ese
+759000	762160	que ese approach tiene un pequeño problemita,
+762580	764260	que nada, no se los voy a explotar ahora.
+765620	767560	Pero está relacionado con los grados de libertad,
+768220	769840	capaz que esto le suena de la clase.
+771600	773540	Después, el modelo de LSDD,
+773540	777140	que es mínimos cuadrados con dummy variables,
+777920	779520	es básicamente agregar una dummy,
+779720	782140	o sea, si yo creo que hay un efecto
+782140	786540	por pertenecer a Arizona, California, etc.,
+787420	790580	agrego pertenencia a Arizona, California, etc.,
+790580	791500	como una dummy y ya está.
+792660	794360	Entonces capturamos eso.
+795440	797920	Y este modelo vamos a ver que sí produce el estimador correcto
+797920	803080	de la varianza de los errores.
+803540	805420	porque sí va a tener en cuenta
+805420	807280	esos grados de libertad que nos faltaban antes.
+809980	810720	¿Qué más?
+810940	813020	Y vamos a ver First Differences,
+813840	815200	o Primeras Diferencias,
+816200	817460	que es básicamente
+817460	821180	restar para cada observación
+821180	824080	la información que tengamos del periodo anterior.
+824080	826460	No siempre va a ser el año anterior,
+826620	828200	depende de cómo esté estructurada la base de datos,
+828360	830560	pero vamos a trabajar un poco con eso.
+834400	834800	Nada.
+835220	836580	Quería hacer esos comentarios
+836580	838380	como para ponernos un poco un contexto,
+838780	839980	y ahora sí vamos
+839980	841900	directo
+841900	844040	al código.
+844040	846220	Valter Pérez.
+851440	853180	Soy un poco feucho.
+859860	860800	Bueno, vamos.
+863460	863940	Entonces,
+864320	865620	el ejercicio 1 nos propone
+865620	867560	volver a la base de datos de Cornwell,
+867680	870140	que era la que tenía información del sistema penitenciario,
+870140	871740	y considerar
+871740	872980	este modelo de regresión
+872980	873600	que tenemos acá.
+874280	875140	Fíjense que tenemos
+875140	875960	el logaritmo
+875960	877140	de la tasa de criminalidad
+877760	879520	explicado por una constante,
+879660	880300	más beta 1
+880300	881060	por el logaritmo
+881060	882340	de la probabilidad de arresto,
+882880	883500	más beta 2
+883500	884280	por el logaritmo
+884280	885240	de la probabilidad
+885240	886880	del conviction,
+887780	888340	beta 3
+888340	889380	por el logaritmo
+889380	890420	de la probabilidad
+890420	891740	de ir a la prisión,
+891960	892380	beta 4
+892380	893160	por el logaritmo
+893160	894640	de la duración promedio
+894640	895280	de la sentencia,
+896360	896940	beta 5
+896940	897520	por la cantidad
+897520	898580	de policías
+898580	899400	per cápita,
+900060	900840	y estamos agregando
+900840	903100	beta T
+903100	904380	por esto de acá,
+904580	905500	que fíjense que lo que es,
+905700	906620	es simplemente
+906620	907340	sumar
+907340	908240	beta T
+908240	909400	por una indicadora
+909400	910260	para el año 82,
+911220	912240	beta 83
+912240	913340	por la indicadora
+913340	914220	para el año 83,
+915100	916280	beta 84
+916280	917440	por la indicadora
+917440	918380	para el año 84,
+918480	918940	y es precisamente,
+919220	919360	o sea,
+919440	919880	una dummy
+919880	920820	por periodo temporal.
+923460	924440	Vamos a tener
+924440	926320	un efecto
+926320	927800	mui,
+928240	928800	que esto va a ser
+928800	929700	como la gran diferencia
+929700	930740	respecto al del pasado
+930740	932040	y los errores.
+933140	933540	Fíjense que
+933540	934480	mui no cambia
+934480	935060	en el tiempo
+935060	939380	para ninguna
+939380	940080	de las observaciones,
+940200	940760	es constante
+940760	942040	para las observaciones.
+943640	944340	Acá nos piden,
+944520	945360	utilizamos el comando
+945360	946980	igen de stata,
+947160	947900	construir las medias
+947900	948440	individuales
+948440	948940	de las variables
+948940	949540	del modelo,
+950300	951340	aplicar la transformación
+951340	951680	within,
+951840	952600	como me lo decía recién,
+952600	953820	después estimar
+953820	954160	el modelo
+954160	955260	por pull double S,
+955780	956460	comentar la validez
+956460	956980	de los errores
+956980	957460	estándar,
+957580	958360	que ya los despoilé,
+958440	959380	que no van a ser
+959380	959940	los correctos,
+961060	961460	después usar
+961460	962440	el comando
+962440	963040	xtr
+963040	963980	para estimar
+963980	964340	nuevamente
+964340	964640	el modelo
+964640	965740	usando efectos fijos,
+966020	966700	y finalmente
+966700	968040	estimar el modelo
+968040	968680	usando diferencias
+968680	969500	finitas del primero red.
+970260	970600	O sea,
+970820	971340	vamos a hacer
+971340	972800	transformación
+972800	973200	within,
+973460	973940	transformación
+973940	974960	de efectos fijos
+974960	976180	con xtr,
+976620	977280	y después
+977280	978220	diferencias finitas
+978220	978820	del primero red.
+978820	983220	Voy al código.
+988540	989480	Va a haber cosas
+989480	990540	del código
+990540	991740	que las voy a pasar
+991740	992540	un poco más rápido
+992540	992880	porque
+992880	994840	creo que ya hicimos
+994840	996020	bastante de la gimnasia
+996020	996360	de
+996360	1001000	de stata,
+1001780	1003160	y así nos queda tiempo
+1003160	1003840	para concentrarnos
+1003840	1004640	en cosas que son
+1004640	1005420	un poquito más nuevas.
+1006940	1007160	Bien,
+1007560	1008220	primero que nada,
+1008220	1009960	cargo la base de datos,
+1010500	1011420	declaro el panel,
+1011900	1012720	y lo describimos
+1012720	1013160	para ver,
+1013620	1014540	para recordar
+1014540	1015600	qué es lo que teníamos.
+1017600	1018500	Voy a chicar esto un poco.
+1022820	1023820	Ahí se ve bien, ¿no?
+1027820	1028860	Lo que pasa es que
+1028860	1029480	después cuando empezás
+1029480	1030340	a correr las direcciones
+1030340	1031700	y la tabla es un poquito
+1031700	1032220	más grande
+1032220	1033460	de lo que tenés al usar.
+1036340	1036740	Bien,
+1036740	1037640	vamos con
+1037640	1042300	con los primeros incisos.
+1042780	1044020	Antes de hacer cualquier cosa,
+1044160	1045120	antes de hacer
+1045120	1045960	las transformaciones
+1045960	1046440	y demás,
+1046580	1047140	vamos a correr
+1047140	1047800	pool dobles
+1047800	1050040	para ver
+1050040	1050380	desde que
+1050380	1051360	benchmarks se iba.
+1052760	1053520	Tengamos en cuenta
+1053520	1055340	que al
+1055340	1057060	considerar
+1057060	1057960	que hay un efecto
+1057960	1058520	fijo
+1058520	1060060	entre las counties,
+1060840	1062800	por pool dobles
+1062800	1063360	todo eso
+1063360	1063940	va a ir a parar
+1063940	1064700	a los errores.
+1064700	1065520	yendo a parar
+1065520	1066220	a los errores.
+1066820	1067560	Entonces voy a arrancar
+1067560	1068480	directamente con
+1068480	1070480	una regresión
+1070480	1070820	de
+1070820	1072600	el logaritmo
+1072600	1072960	de
+1072960	1075200	la tasa de criminalidad
+1075200	1076320	con todas las variables
+1076320	1077600	independientes
+1077600	1078400	que dijimos antes
+1078400	1079340	y vamos a agregar
+1079340	1079720	también
+1079720	1080980	una dummy
+1080980	1081620	para el año.
+1082780	1083640	Acá lo que le estoy diciendo
+1083640	1083980	a Stata
+1083980	1084460	es
+1084460	1085480	tomame el 81
+1085480	1086120	como base
+1086120	1087560	que es igual
+1087560	1088380	lo que va a terminar
+1088380	1089080	haciendo por default
+1089080	1089520	porque es como
+1089520	1090440	las tenemos ordenadas.
+1090440	1092120	La otra opción
+1092120	1092840	es
+1092840	1094080	escribirlo
+1094080	1094880	D82
+1094880	1095780	a D87
+1095780	1099300	Esto va a funcionar
+1099300	1100020	tipo
+1100020	1100680	hago el recordatorio
+1100680	1101740	por las dudas
+1101740	1103980	solamente
+1103980	1104900	porque
+1104900	1105220	digamos
+1105220	1106480	la sintaxe
+1106480	1106780	esa de
+1106780	1107500	D82
+1107500	1108340	D87
+1108340	1109080	funciona
+1109080	1109440	porque
+1109440	1110300	ya tengo
+1110300	1111340	las variables creadas
+1111340	1111900	uno
+1111900	1112520	y dos
+1112520	1112940	porque
+1112940	1118300	ya están
+1118300	1118760	ordenadas
+1118760	1119120	en la base
+1119120	1119420	de datos
+1119420	1120300	si estuviera
+1120300	1120700	por ejemplo
+1120700	1121880	esta columna
+1121880	1122400	metida por acá
+1122400	1122640	adentro
+1122640	1123100	tendría que
+1123100	1123700	reordenarla
+1123700	1126420	si en algún momento
+1126420	1127120	no les funciona
+1127120	1127960	puede ser por eso
+1127960	1132200	para ordenarlo
+1132200	1132680	lo hacen
+1132680	1132960	como
+1132960	1133560	order
+1133560	1137320	y pueden
+1137320	1137640	poner
+1137640	1138440	D82
+1138440	1140740	D87
+1140740	1160240	y ahora
+1160240	1160920	esto me las trajo
+1160920	1161260	adelante
+1161260	1173060	hay que darle
+1173060	1173860	hay que tener
+1173860	1174580	más confianza
+1174580	1180020	hay cosas
+1180020	1180420	mejores
+1180420	1180980	en la vida
+1180980	1181320	pero
+1181320	1182220	no
+1182220	1187560	yo digo
+1187560	1188300	en general
+1188300	1190560	salir a caminar
+1190560	1192300	ver la luz
+1192300	1192960	del sol
+1192960	1195140	D87
+1195140	1196000	hace cosas buenas
+1196000	1198920	yo
+1198920	1200980	al principio
+1200980	1201480	renegaba
+1201480	1201800	mucho
+1201800	1202260	de Stata
+1202260	1202880	porque
+1202880	1203260	como que
+1203260	1203600	arranqué
+1203600	1203780	más
+1203780	1204240	por el lado
+1204240	1204620	de R
+1204620	1206400	y R
+1206400	1206920	me resultaba
+1206920	1207440	más sencillo
+1207440	1207980	porque le decía
+1207980	1208320	a R
+1208320	1208960	hacen esto
+1208960	1209360	y lo hacía
+1209360	1209780	con Stata
+1209780	1210080	medio que
+1210080	1210440	tenés que
+1210440	1210660	aprender
+1210660	1211240	los comandos
+1211240	1211520	y todas
+1211520	1211920	las mañas
+1211920	1212260	que tiene
+1212260	1213120	con los
+1213120	1213500	local
+1213500	1213780	y los
+1213780	1214240	global
+1214240	1215220	tiene ese
+1215220	1215480	costo
+1215480	1215740	de entrada
+1215740	1216040	un poquito
+1216040	1216440	más alto
+1216440	1216680	pero
+1216680	1217340	una vez que
+1217340	1218180	le agarrás
+1218180	1218360	un poco
+1218360	1218660	la mano
+1218660	1219020	ya deja
+1219020	1219320	de ser
+1219320	1219560	tan
+1219560	1220020	terrible
+1220020	1230980	bueno
+1230980	1231700	entonces
+1231700	1231920	lo que
+1231920	1232080	estamos
+1232080	1232360	haciendo
+1232360	1232660	acá
+1232660	1233600	la regresión
+1233600	1233800	por
+1233800	1234060	pool
+1234060	1234660	dobles
+1234660	1235640	clusteríamos
+1235640	1235940	por
+1235940	1236280	Panti
+1236280	1236740	como vimos
+1236740	1237100	la vez
+1237100	1237580	pasada
+1237580	1238060	para
+1238060	1238960	decir
+1238960	1239340	la Stata
+1239340	1239720	que nos
+1239720	1240100	agrupe
+1240100	1240320	los
+1240320	1241000	errores
+1241000	1241700	a nivel
+1241700	1242220	county
+1242220	1242520	porque
+1242520	1242760	como
+1242760	1243460	vimos la vez
+1243460	1244000	pasada
+1244000	1244680	asumimos
+1244680	1245140	que tenemos
+1245140	1246060	correlación
+1246060	1247160	para una
+1247160	1247540	misma
+1247540	1249000	observación
+1249000	1249560	a través
+1249560	1249920	de los
+1249920	1250340	diferentes
+1250340	1250840	periodos
+1250840	1251120	en el
+1251120	1251460	tiempo
+1251460	1253780	y
+1253780	1254020	veamos
+1254020	1254360	qué
+1254360	1254580	nos
+1254580	1254760	da
+1254760	1255260	esto
+1255260	1258280	fíjense
+1258280	1258560	que acá
+1258560	1258800	tenemos
+1258800	1259020	los
+1259020	1259740	coeficientes
+1259740	1260200	del
+1260200	1260660	logaritmo
+1260660	1260880	de la
+1260880	1261280	probabilidad
+1261280	1261700	de arresto
+1261700	1261940	sobre
+1261940	1262100	el
+1262100	1262340	crime
+1262340	1262760	rate
+1262760	1263560	los
+1263560	1263920	errores
+1263920	1264600	estándar
+1264600	1265920	y el
+1265920	1266280	p-value
+1266280	1270280	esto
+1270280	1270300	esto
+1270300	1270520	nada
+1270520	1270800	más que
+1270800	1270940	nada
+1270940	1271140	para
+1271140	1271340	ver
+1271340	1271640	de dónde
+1271640	1272200	partimos
+1272200	1272520	o cuál
+1272520	1272760	sería
+1272760	1272900	la
+1272900	1273140	opción
+1273140	1273460	más
+1273460	1274360	simple
+1274360	1274960	de estimar
+1274960	1275400	sin tener
+1275400	1275880	en cuenta
+1275880	1276840	este
+1276840	1277180	efecto
+1277180	1277580	fijo
+1277580	1278320	que decíamos
+1278320	1280020	que ahora
+1280020	1280340	se nos
+1280340	1280740	está yendo
+1280740	1281120	todo al
+1281120	1281460	término
+1281460	1281760	de error
+1281760	1282500	porque no
+1282500	1282740	hicimos
+1282740	1283200	absolutamente
+1283200	1283600	nada
+1283600	1283820	para
+1283820	1284440	tratarlo
+1284440	1287780	básicamente
+1287780	1288280	lo que
+1288280	1288520	estamos
+1288520	1288860	diciendo
+1288860	1289220	acá
+1289220	1289660	que
+1289660	1290300	un
+1290300	1290840	aumento
+1290840	1291100	de un
+1291100	1291620	1%
+1291620	1292020	en la
+1292020	1292520	probabilidad
+1292520	1293140	de arresto
+1293140	1293540	tiene un
+1293540	1293940	efecto
+1293940	1294260	de una
+1294260	1294900	caída
+1294900	1295960	del
+1295960	1297520	0.71%
+1297520	1297980	en
+1297980	1299660	el
+1299660	1299940	crime
+1299940	1300300	rate
+1300300	1305160	acá
+1305160	1305480	tenemos
+1305480	1305740	las
+1305740	1306180	dummies
+1306180	1307100	temporales
+1307100	1311460	estoy
+1311460	1312320	olvidando
+1312320	1313100	de decirles
+1313100	1313660	algo
+1313660	1316260	creo que
+1316260	1316360	no
+1316360	1318900	bueno
+1318900	1321480	le acabamos
+1321480	1321920	a pasar
+1321920	1322280	sí
+1322280	1322600	al
+1322600	1323460	punto
+1323460	1323740	a
+1323740	1324200	que
+1324200	1324540	era
+1324540	1326540	volvemos
+1326540	1326680	un
+1326680	1327040	segundo
+1327040	1328900	utilizando
+1328900	1329040	el
+1329040	1329340	comando
+1329340	1329620	y
+1329620	1329800	en
+1329800	1329900	de
+1329900	1330160	stata
+1330160	1330620	construir
+1330620	1330860	las
+1330860	1331120	medias
+1331120	1331800	individuales
+1331800	1332100	de las
+1332100	1332440	variables
+1332440	1332700	del
+1332700	1333040	modelo
+1333040	1335820	para
+1335820	1336100	hacer
+1336100	1336400	eso
+1336400	1336940	lo que
+1336940	1337180	vamos
+1337180	1337340	a
+1337340	1337560	hacer
+1337560	1337940	es
+1337940	1340100	comando
+1340100	1340480	y
+1340480	1342320	voy
+1342320	1342480	a
+1342480	1342820	crear
+1342820	1343300	la
+1343300	1343760	media
+1343760	1344140	del
+1344140	1344460	crime
+1344460	1344920	rate
+1344920	1345560	que
+1345560	1345740	es
+1345740	1346300	min
+1346300	1346760	del
+1346760	1347060	crime
+1347060	1347400	rate
+1347400	1348300	pero
+1348300	1348680	no quiero
+1348680	1348860	que
+1348860	1349100	todas
+1349100	1349340	las
+1349340	1350000	observaciones
+1350000	1350340	tengan
+1350340	1350760	el mismo
+1350760	1351240	promedio
+1351240	1351420	o sea
+1351420	1351600	yo
+1351600	1354040	no quiero
+1354040	1355160	agarrar
+1355160	1355480	y para
+1355480	1356040	el county
+1356040	1356440	1
+1356440	1357540	ponerle
+1357540	1358940	el promedio
+1358940	1359400	de
+1359400	1365340	el promedio
+1365340	1365680	de todo
+1365680	1366140	esto
+1366140	1367040	sino
+1367040	1367320	lo que
+1367320	1367700	vamos a
+1367700	1368000	calcular
+1368000	1368440	es el
+1368440	1368940	promedio
+1368940	1369300	para
+1369300	1369460	el
+1369460	1369940	condado
+1369940	1370260	1
+1370260	1370600	a través
+1370600	1370920	de todos
+1370920	1371140	los
+1371140	1371600	años
+1371600	1372740	del
+1372740	1373220	81
+1373220	1373340	al
+1373340	1373820	87
+1373820	1374100	y
+1374100	1377240	eso
+1377240	1377460	después
+1377460	1377740	lo vamos
+1377740	1377900	a
+1377900	1378380	repetir
+1378380	1378660	para
+1378660	1379460	todos
+1379460	1380220	los
+1380220	1380880	condados
+1380880	1381480	entonces
+1381480	1381700	para
+1381700	1381840	el
+1381840	1382160	condado
+1382160	1382500	1
+1382500	1382800	le voy
+1382800	1382860	a
+1382860	1382960	decir
+1382960	1383060	a
+1383060	1383280	Stata
+1383280	1384060	calculame
+1384060	1384940	el
+1384940	1385400	promedio
+1385400	1385540	que
+1385540	1385780	tuvo
+1385780	1386020	desde
+1386020	1386620	el 81
+1386620	1386880	hasta
+1386880	1387640	el 87
+1387640	1388040	el
+1388040	1388460	prime
+1388460	1388820	rate
+1388820	1389380	probabilidad
+1389380	1389820	de arrest
+1389820	1390120	etc
+1390120	1390380	etc
+1390380	1392420	eso
+1392420	1392620	como
+1392620	1393240	lo hacemos
+1393240	1394380	by
+1394380	1394940	county
+1394940	1395960	generamos
+1395960	1396140	esa
+1396140	1396480	variable
+1396480	1399280	esto
+1399280	1399560	si lo
+1399560	1399740	quieren
+1399740	1399980	hacer
+1399980	1400160	para
+1400160	1400320	una
+1400320	1400600	sola
+1400600	1401300	y
+1401300	1401580	digamos
+1401580	1402080	que
+1402080	1405980	cuando
+1405980	1406200	nos
+1406200	1406540	genera
+1406540	1406660	la
+1406660	1406980	variable
+1406980	1407340	fíjense
+1407340	1407480	que
+1407480	1407600	se
+1407600	1407900	repite
+1407900	1410220	7
+1410220	1410540	veces
+1410540	1410840	que son
+1410840	1410960	los
+1410960	1411120	7
+1411120	1411580	años
+1411580	1411820	para
+1411820	1411940	el
+1411940	1412120	primer
+1412120	1412580	county
+1412580	1413020	7
+1413020	1413340	años
+1413340	1413520	para
+1413520	1413660	el
+1413660	1414180	segundo
+1414180	1414600	7
+1414600	1414800	años
+1414800	1414940	para
+1414940	1415020	el
+1415020	1415420	tercero
+1415420	1419800	para
+1419800	1420360	automáticos
+1420360	1421040	como son
+1421040	1421400	bastantes
+1421400	1421880	las variables
+1421880	1423080	que vamos
+1423080	1423740	a incluir
+1423740	1424000	y no
+1424000	1424160	tiene
+1424160	1424480	sentido
+1424480	1424700	hacer
+1424700	1424840	la
+1424840	1425020	mano
+1425020	1425340	porque
+1425340	1425680	Stata
+1425680	1425880	nos
+1425880	1426200	deja
+1426200	1426800	hacerlo
+1426800	1427040	de una
+1427040	1427200	sola
+1427200	1427500	vez
+1427500	1427900	vamos
+1427900	1428040	a
+1428040	1428240	hacerlo
+1428240	1429560	para
+1429560	1429720	eso
+1429720	1429860	nos
+1429860	1430260	generamos
+1430260	1430480	una
+1430480	1430940	macro
+1430940	1431440	que nos
+1431440	1431920	guarde
+1431920	1432580	en
+1432580	1433000	extra
+1433000	1434120	xlist
+1434120	1435380	la
+1435380	1435740	lista
+1435740	1435920	de
+1435920	1436420	variables
+1436420	1439220	y
+1439220	1439400	vamos
+1439400	1439500	a
+1439500	1439760	decir
+1439760	1440120	for
+1440120	1440660	any
+1440660	1442540	xlist
+1442540	1443560	by
+1443560	1444060	county
+1444060	1445020	generame
+1445020	1446420	el
+1446420	1446640	min
+1446640	1446760	de
+1446760	1447160	x
+1447160	1447400	que
+1447400	1447660	es
+1447660	1447900	el
+1447900	1448080	min
+1448080	1448180	de
+1448180	1448500	x
+1448500	1452240	y
+1452240	1456600	vuelvo
+1456600	1456900	acá
+1456900	1458040	fíjense
+1458040	1458200	que
+1458200	1458480	tenemos
+1458480	1458680	ya
+1458680	1458940	los
+1458940	1459700	promedios
+1459700	1462660	esto
+1462660	1462940	acá
+1462940	1463280	sería
+1463280	1463540	como
+1463540	1464320	el
+1464320	1464860	promedio
+1464860	1465320	temporal
+1465320	1465780	para
+1465780	1465980	el
+1465980	1466320	condado
+1466320	1466740	1
+1466740	1467300	promedio
+1467300	1467720	temporal
+1467720	1467980	para
+1467980	1468140	el
+1468140	1468440	condado
+1468440	1468940	2
+1468940	1475480	listo
+1475480	1475840	ese era
+1475840	1476620	el inciso
+1476620	1477280	a
+1477280	1480680	ruminado
+1480680	1482500	ese
+1482500	1483380	for any
+1483380	1484060	es igual
+1484060	1484500	que el
+1484500	1485060	for each
+1485060	1485520	verdad
+1485520	1494100	después
+1494100	1494640	tenemos
+1494640	1499340	aplicar la
+1499340	1499920	transformación
+1499920	1500780	al modelo
+1500780	1501400	y luego
+1501400	1501840	estimé
+1501840	1502220	el modelo
+1502220	1503140	transformado
+1503140	1503800	por
+1503800	1505300	full
+1505300	1505740	dobles
+1505740	1507300	lo voy a
+1507300	1507580	escribir
+1507580	1507920	un poquito
+1507920	1508200	acá
+1508200	1508700	ya que estamos
+1508700	1510040	creo que
+1510040	1511420	espero no
+1511420	1511920	tener que correr
+1511920	1512200	mucho
+1512200	1512640	al final
+1512640	1527920	bueno voy a
+1527920	1528440	seguir escribiendo
+1528440	1528780	en rojo
+1528780	1529340	para no
+1529340	1530020	confundirnos
+1530020	1531460	esto es
+1531460	1532680	ejercicio
+1532680	1535080	1
+1535080	1535540	y queremos
+1535540	1536080	aplicar la
+1536080	1536700	transformación
+1536700	1537100	un fin
+1537100	1540080	¿cómo se
+1540080	1540620	aplica la
+1540620	1541260	transformación
+1541260	1541580	un fin?
+1541680	1542260	bueno partiendo
+1542260	1543180	primero que nada
+1543180	1545580	del modelo
+1545580	1546060	original
+1546060	1546860	que tenía
+1546860	1547300	más o menos
+1547300	1547880	esta forma
+1547880	1560440	el alfa
+1560440	1560940	es la constante
+1560940	1561460	creo que antes
+1561460	1561700	no lo
+1561700	1563080	lo que hicimos
+1563080	1563400	recién
+1563400	1563900	fue calcular
+1563900	1564240	las medidas
+1564240	1564920	temporales
+1564920	1565720	y
+1567100	1582880	es igual
+1582880	1583660	a su promedio
+1583660	1584240	más
+1584240	1585700	¿dónde?
+1586040	1586660	la variable
+1586660	1587380	por ejemplo
+1587380	1590080	y y rayita
+1590080	1590480	es
+1590480	1591940	la sumatoria
+1591940	1592420	de
+1592420	1593340	y y t
+1593340	1594280	sobre
+1594280	1595020	todos los t
+1595020	1601600	en nuestro
+1601600	1601860	caso
+1601860	1602400	como vimos
+1602400	1603060	como ya habíamos
+1603060	1603480	visto la vez
+1603480	1603760	pasada
+1603760	1604160	este panel
+1604160	1605040	es balanceado
+1605040	1605620	entonces
+1605620	1606680	los ti
+1606680	1607760	van a ser
+1607760	1610300	igual a
+1610300	1610480	t
+1610480	1611360	igual a 7
+1611360	1612100	para todo i
+1612100	1614280	pero bueno
+1614280	1614540	en el caso
+1614540	1614960	de paneles
+1614960	1615620	no balanceados
+1615620	1616140	tendríamos que
+1616140	1616760	tener en cuenta
+1616760	1618000	esto
+1618000	1621600	y para hacer
+1621600	1622220	la transformación
+1622220	1622660	within
+1622660	1624700	lo que vamos a hacer
+1624700	1626180	es restar
+1626180	1627180	miembro a miembro
+1627180	1628540	1 con 2
+1628540	1630700	entonces
+1630700	1631800	esto nos va a quedar
+1631800	1632920	y y t
+1632920	1634840	menos y y rayita
+1634840	1635580	igual a
+1635580	1636860	alfa menos alfa
+1636860	1637400	se va
+1637400	1639080	y después
+1639080	1639760	la otra parte
+1639760	1640360	nos queda
+1640360	1641380	beta
+1641380	1642200	por
+1642200	1643960	x y t
+1643960	1645620	menos x y rayita
+1645620	1649320	muy contra muy
+1649320	1650000	se van
+1650000	1656960	entonces
+1656960	1657720	ahora que no
+1657720	1658460	tengo estos
+1658460	1659160	efectos
+1659160	1659920	déjame hacer
+1659920	1660600	un pasito más
+1660600	1661380	y rescribir esto
+1661380	1662460	como están las slides
+1662460	1663160	que creo que es
+1663160	1665020	con dos puntitos
+1665020	1678560	acá estoy escribiendo
+1678560	1686000	entonces esto es lo que
+1686000	1686720	vamos a estar estimando
+1686720	1687280	por OLS
+1687280	1689000	o sea que
+1689000	1690040	nosotros recién
+1690040	1690840	ya calculamos
+1690840	1691420	este de acá
+1691420	1692580	este bueno
+1692580	1693180	es el modelo
+1693180	1694200	así que nos queda
+1694200	1696420	generar esta diferencia
+1696420	1697940	y
+1697940	1699460	y bueno
+1699460	1700420	y esquimarlo por OLS
+1700420	1701160	así que
+1701160	1702160	vuelvo acá
+1702160	1707100	y vamos a hacer eso
+1707100	1709820	bien
+1709820	1715780	lo que vamos a hacer ahora
+1715780	1717280	aparte de generar
+1717280	1717880	la
+1717880	1718920	la media
+1718920	1720000	que es lo que ya hicimos
+1720000	1720520	como que es
+1720520	1721300	la ecuación 2
+1721300	1722260	de lo que escribí recién
+1722260	1724340	vamos a hacer
+1724340	1724940	efectivamente
+1724940	1725600	la transformación
+1725600	1725940	within
+1725940	1726420	que es
+1726420	1727660	generar una variable
+1727660	1728300	que es
+1728300	1730300	la variable original
+1730300	1731340	menos la media
+1731340	1733740	la vamos a generar
+1733740	1734460	una vez
+1734460	1734900	para
+1734900	1735900	la
+1735900	1737500	dependiente
+1737500	1738460	y después
+1738460	1739240	voy a hacer
+1739240	1740240	el truquito este
+1740240	1740520	de
+1740520	1742220	para cada
+1742220	1743640	x list
+1743640	1744520	lo genero
+1744520	1745040	como
+1745040	1746220	lo vuelto
+1746220	1747160	x menos
+1747160	1748000	la media de x
+1748000	1752820	bien
+1752820	1754140	acá ya nos dice
+1754140	1755040	que ya nos las generó
+1755040	1755480	todas
+1755480	1756400	lo único que nos queda
+1756400	1756960	hacer es la
+1756960	1757700	regresión
+1757700	1759380	¿cómo es la
+1759380	1759840	regresión?
+1759920	1760560	por pull doubles
+1760560	1761560	igual que siempre
+1761560	1762100	reg
+1762100	1763080	porque no estoy
+1763080	1763960	considerando nada
+1763960	1764660	de la estructura
+1764660	1765000	de panel
+1765000	1765940	within
+1765940	1768420	el logaritmo
+1768420	1769120	de la tasa
+1769120	1769540	de
+1769540	1771180	criminalidad
+1771180	1771960	within
+1771960	1772960	del logaritmo
+1772960	1773660	de la probabilidad
+1773660	1774220	de arresto
+1774220	1775740	así con todas
+1775740	1776280	las variables
+1776280	1778520	y
+1778520	1779440	fíjense
+1779440	1780040	que le estamos
+1780040	1780800	indicando a Stata
+1780800	1781500	que no nos ponga
+1781500	1782120	una constante
+1782120	1782920	porque como vimos
+1782920	1783340	recién
+1783340	1784200	cuando
+1784200	1786120	hacíamos la resta
+1786120	1787420	nos quedaba
+1787420	1788460	sin constante
+1788460	1788920	el modelo
+1788920	1789600	porque justamente
+1789600	1790120	el alfa
+1790120	1791120	cuando haces la transformación
+1791120	1791420	se va
+1791420	1793640	y lo voy a guardar
+1793640	1794080	con el nombre
+1794080	1794380	de wifi
+1794380	1801560	entonces acá
+1801560	1801960	ya tenemos
+1801960	1803020	los coeficientes
+1803020	1803860	y
+1803860	1804960	¿qué más podemos ver?
+1805740	1806880	notemos la cantidad
+1806880	1808180	de grados
+1808180	1808880	de libertad
+1808880	1809760	del modelo
+1809760	1817340	nosotros no le estamos
+1817340	1818060	poniendo constante
+1818060	1818600	acá al modelo
+1818600	1819160	pero en caso
+1819160	1819680	de que esté bien
+1819680	1820320	especificado
+1820320	1820900	esa constante
+1820900	1821660	te debería dar
+1821660	1822620	no significativa
+1822620	1823100	¿correcto?
+1824480	1825280	¿vos decís
+1825280	1826840	si saco esto
+1826840	1827760	y calculo?
+1828360	1828620	claro
+1828620	1829380	yo pensando un poco
+1829380	1830240	en la naturaleza
+1830240	1830620	del C
+1830620	1831760	porque si es que
+1831760	1832420	te da que
+1832420	1833800	es significativa
+1833800	1834460	entonces te puede
+1834460	1835380	dar pie a pensar
+1835380	1836500	que en efecto
+1836500	1836840	los C
+1836840	1837600	tenían correlación
+1837600	1837920	con alguna
+1837920	1838360	de las X
+1838360	1839740	sí
+1839740	1839960	eso
+1839960	1841160	totalmente
+1841160	1842840	el tema
+1842840	1843300	es que si vos
+1843300	1843840	le estás
+1843840	1845420	creyendo
+1845420	1848540	o sea
+1848540	1849200	tenés que ver
+1849200	1849920	cuál es tu prioridad
+1849920	1850580	si tu prioridad
+1850580	1851260	es estimar
+1851260	1851900	la constante
+1851900	1852540	del modelo
+1852540	1853140	entonces
+1853140	1854720	no deberías
+1854720	1855440	estar usando
+1855440	1856140	modelos
+1856140	1856800	que no te
+1856800	1857320	permitan
+1857320	1858020	calcular
+1858020	1859160	o
+1859160	1860480	el estimado
+1860480	1861000	o más bien
+1861000	1861520	estimar
+1861520	1863540	el estadístico
+1863540	1864060	o estimar
+1864060	1864940	el beta
+1864940	1865760	de cosas
+1865760	1866060	que sean
+1866060	1866480	constantes
+1866480	1866940	en el tiempo
+1866940	1869800	acá como
+1869800	1870820	no nos interesa
+1870820	1871760	esa constante
+1871760	1872840	decimos
+1872840	1873060	mira
+1873060	1873560	¿sabés qué?
+1874080	1874900	voy a transformar
+1874900	1875380	el modelo
+1875380	1876560	¿a costa de qué?
+1876700	1877400	a costa de no
+1877400	1878120	poder incluir
+1878120	1878560	variables
+1878560	1879360	que no cambian
+1879360	1879900	en el tiempo
+1879900	1882020	entonces
+1882020	1884200	yo creo que
+1884200	1885040	dependería ahí
+1885040	1885440	de cuál es
+1885440	1885880	el objetivo
+1885880	1886740	de la radiación
+1886740	1889700	ok
+1889700	1890240	perfecto
+1890240	1890480	gracias
+1890480	1891800	y también
+1891800	1892320	en este caso
+1892320	1893000	cuando haces
+1893000	1894040	la transformación
+1894040	1894680	no se
+1894680	1895520	no se
+1895520	1897120	te desaparece
+1897120	1898500	la constante
+1898500	1899560	será como
+1899560	1900740	el punto
+1900740	1901380	también
+1901380	1901720	claro
+1901720	1902360	claro
+1902360	1902660	por eso
+1902660	1902920	porque
+1902920	1903980	al final del día
+1903980	1904960	lo que decimos es
+1904960	1906120	mira
+1906120	1907540	tengo una base
+1907540	1908040	de datos
+1908040	1909360	quiero explicar
+1909360	1910720	cómo se mueve
+1910720	1911900	la tasa
+1911900	1912720	de criminalidad
+1912720	1914980	con estas variables
+1914980	1917080	pero
+1917080	1920120	tengo como
+1920120	1921040	evidencia
+1921040	1922080	o me suena
+1922080	1922460	que
+1922460	1923460	los datos
+1923460	1924720	podrían tener
+1924720	1925680	un efecto
+1925680	1926200	fijo
+1926200	1927940	por counting
+1927940	1929300	en este caso
+1929300	1932080	¿cómo hago para controlar
+1932080	1932800	para ese efecto
+1932800	1933160	fijo?
+1933280	1933500	bueno
+1933500	1934780	veo qué transformaciones
+1934780	1935340	puedo hacer
+1935340	1936420	una de las transformaciones
+1936420	1936940	que puedo hacer
+1936940	1938280	es restar la media temporal
+1938280	1939180	el tema es que
+1939180	1939380	claro
+1939380	1940660	cuando hacemos esa resta
+1940660	1941260	la constante
+1941260	1941920	se nos va
+1941920	1942800	desaparece
+1942800	1944300	entonces
+1944300	1945320	este no sería
+1945320	1945920	un buen modelo
+1945920	1947040	para estimar esa constante
+1947040	1950520	perfecto
+1950520	1950940	gracias
+1950940	1952500	no por favor
+1952500	1954980	está buena la pregunta
+1954980	1955220	digo
+1955220	1956020	al final del día
+1956020	1958040	lo que vemos acá
+1958040	1958380	son
+1958380	1959340	modelitos
+1959340	1960320	después cada uno
+1960320	1961360	según para qué
+1961360	1962300	quiera usar el modelo
+1962300	1963380	qué es lo que quiera medir
+1963380	1964780	tiene que
+1964780	1965720	justamente jugar
+1965720	1966280	con esto
+1966280	1966660	y ver
+1966660	1967840	qué modelo
+1967840	1968920	qué estimación
+1968920	1969320	qué
+1969320	1971120	qué procedimiento
+1971120	1971820	se ajusta mejor
+1971820	1972700	a lo que estás buscando
+1972700	1974480	porque por ejemplo
+1974480	1975300	pensalo
+1975300	1975900	si quisieras
+1975900	1976380	explicar
+1976380	1977380	el salario
+1977380	1978220	de una persona
+1978220	1980100	y qué sé yo
+1980100	1980700	cosas que son
+1980700	1981320	constantes
+1981320	1981920	en el tiempo
+1981920	1984080	haciendo estas transformaciones
+1984080	1984820	y te van a ir
+1984820	1987000	el género
+1987000	1987600	por ejemplo
+1987600	1992700	entonces hay que tener
+1992700	1993480	cuidado con eso
+1993480	1996820	ok
+1996820	2000160	¿qué más?
+2000160	2005380	ah bueno
+2005380	2007620	y acá
+2007620	2010240	voy a hacer una
+2010240	2010820	pequeña
+2010820	2011160	como
+2011160	2012380	pausa
+2012380	2012620	igual
+2012620	2013360	de vuelta
+2013360	2013840	esto seguro
+2013840	2014300	ya lo vieron
+2014300	2014880	en clase
+2014880	2016120	pero
+2016120	2017760	un pequeño comentario
+2017760	2018500	que vamos a hacer acá
+2018500	2020120	es que
+2020120	2021000	los errores
+2021000	2021600	estándar
+2021600	2022360	calculados
+2022360	2022960	con esta
+2022960	2024980	con este procedimiento
+2024980	2026100	no son válidos
+2026100	2027280	básicamente
+2027280	2028220	porque estamos
+2028220	2029080	considerando
+2029080	2029640	una cantidad
+2029640	2030560	incorrecta
+2030560	2031160	de grados
+2031160	2032180	de libertad
+2032180	2035140	paso un segundo
+2035140	2036060	escribirlo acá
+2036060	2047080	esto igual
+2047080	2047960	seguro que está
+2047960	2048700	en las slides
+2048700	2050000	seguro que está
+2050000	2050440	en
+2050440	2051760	en
+2051760	2052000	en
+2052000	2052060	en
+2052060	2052620	también
+2052620	2053540	tiene que estar
+2053540	2054700	pero
+2054700	2056600	básicamente
+2056600	2057900	lo que vamos
+2057900	2058460	a encontrar
+2058460	2059820	es que
+2059820	2066640	bajo la estimación
+2066640	2067260	de este modelo
+2067260	2068380	la varianza
+2068380	2069280	de los errores
+2069280	2073680	va a ser
+2073680	2074420	sigma
+2074420	2075280	al cuadrado
+2075280	2076560	vieron que
+2076560	2077380	teníamos que
+2077380	2079420	estimar esto
+2079420	2079800	de acá
+2079800	2080580	para exponerlo
+2080580	2081100	en la matriz
+2081100	2081440	bueno
+2081440	2084080	y habíamos visto
+2084080	2084860	en las primeras clases
+2084860	2085480	que era la suma
+2085480	2086280	de raciones al cuadrado
+2086280	2086760	sobre n
+2086760	2090160	¿quién es n?
+2090320	2091080	en realidad n
+2091080	2091740	como estamos
+2091740	2092360	haciendo punto
+2092360	2092860	ls
+2092860	2093620	nos está teniendo
+2093620	2094000	en cuenta
+2094000	2094980	n por t
+2094980	2096780	o sea
+2096780	2097920	county por year
+2097920	2099460	menos k
+2099460	2100080	que son
+2100080	2100860	las variables
+2100860	2101980	independientes
+2101980	2102420	desde
+2102420	2104200	el logaritmo
+2104200	2104880	de la probabilidad
+2104880	2105500	de arresto
+2105500	2106480	la cantidad de policías
+2106480	2106880	las datos
+2106880	2107380	de los años
+2107380	2107660	etc
+2107660	2111860	entonces
+2111860	2112620	en este caso
+2112620	2113900	si uno
+2113900	2114700	piensa
+2114700	2114960	bueno
+2114960	2115800	¿cómo son
+2115800	2116380	estos números?
+2116760	2117980	n por t
+2117980	2118980	a ver si tengo
+2118980	2119640	el valor
+2119640	2133020	n por t
+2133020	2134340	es 90 por 7
+2134340	2139980	630
+2139980	2143220	menos k
+2143220	2144420	que las k
+2144420	2144900	son
+2144900	2147160	las k
+2147160	2147620	variables
+2147620	2148240	que incluimos
+2148240	2148860	en el modelo
+2148860	2152580	que son
+2152580	2153080	estas 11
+2153080	2153580	variables
+2153580	2155060	las de
+2155060	2156660	las within
+2156660	2157180	¿sí?
+2158620	2159220	within
+2159220	2160360	de la probabilidad
+2160360	2160960	de arresto
+2160960	2161320	within
+2161320	2162180	de la probabilidad
+2162180	2162720	de conviction
+2162720	2163180	within
+2163180	2164480	de la cantidad
+2164480	2165080	de policías
+2165080	2165740	y las within
+2165740	2166340	de las damos
+2166340	2171060	o sea
+2171060	2171920	630
+2171920	2172800	menos 11
+2172800	2183360	ahora
+2183360	2184760	pensemos
+2184760	2185060	que
+2185060	2188940	hay un pequeño detalle
+2188940	2189200	acá
+2189200	2190000	que
+2190000	2191620	que se menciona
+2191620	2192460	en la bibliografía
+2192460	2192980	y en las clases
+2192980	2193680	ya lo vieron
+2193680	2195780	que esto en realidad
+2195780	2197560	no es tan así
+2197560	2197960	porque
+2197960	2199200	pensemos que
+2199200	2200060	en realidad
+2200060	2201160	del modelo original
+2201160	2202100	lo que nos está
+2202100	2202840	o lo que estábamos
+2202840	2203240	haciendo era
+2203240	2204340	controlar también
+2204340	2205500	por los muy
+2205500	2207240	que eran
+2207240	2208020	uno para cada
+2208020	2208600	condado
+2208600	2209520	uno para
+2209520	2210600	Arizona
+2210600	2211620	uno para
+2211620	2216560	California
+2216560	2217260	etcétera
+2217260	2218960	y nosotros
+2218960	2219700	teníamos 90
+2219700	2220180	condados
+2220180	2220880	incluidos
+2220880	2221680	creo que era
+2221680	2222380	a ver
+2222380	2226020	si mal no recuerdo
+2226020	2227780	entonces
+2227780	2228380	en realidad
+2228380	2230520	pensando
+2230520	2231020	en el modelo
+2231020	2231620	original
+2231620	2233780	este 619
+2233780	2235440	no
+2235440	2236200	no son
+2236200	2236560	realmente
+2236560	2236920	los grados
+2236920	2237460	de libertad
+2237460	2238480	sino que
+2238480	2239400	o sea
+2239400	2239680	esto
+2239680	2240300	no
+2240300	2241080	sí
+2241080	2245000	sería
+2245000	2245980	n
+2245980	2246840	por t
+2246840	2247920	menos k
+2247920	2248620	que son las variables
+2248620	2249640	menos las variables
+2249640	2250200	de las mu
+2250200	2251360	que era este 90
+2251360	2252240	que teníamos antes
+2252240	2254920	que esto
+2254920	2255300	después
+2255300	2256480	en las firminas
+2256480	2257220	creo que la notación
+2257220	2257940	que usan es
+2257940	2258620	n
+2258620	2259000	t
+2259000	2259760	menos uno
+2259760	2260640	menos k
+2260640	2263880	digamos
+2263880	2264480	acá estoy
+2264480	2265160	incorporando
+2265160	2265520	el hecho
+2265520	2266020	de que
+2266020	2266780	en el modelo
+2266780	2267300	original
+2267300	2267720	teníamos
+2267720	2268340	las mu
+2268340	2268460	y
+2268460	2269400	cuando hicimos
+2269400	2270240	la transformación
+2270240	2270600	un poco
+2270600	2271640	perdimos
+2271640	2272280	esas
+2272280	2273800	esas variables
+2273800	2275400	entonces
+2275400	2276440	para que el error
+2276440	2277180	que estamos
+2277180	2278660	teniendo en cuenta
+2278660	2281200	en la regresión
+2281200	2282360	sea
+2282360	2283440	válido
+2283440	2285140	vamos a tener que hacer
+2285140	2286440	este ajuste
+2286440	2292100	vuelvo
+2292100	2292680	al startup
+2292680	2295500	y
+2295500	2297020	hay
+2297020	2297940	diferentes
+2297940	2298340	formas
+2298340	2298800	de hacer
+2298800	2299620	el ajuste
+2299620	2300340	una opción
+2300340	2300780	sería como
+2300780	2301460	hacerlo a mano
+2301460	2303040	pero es como
+2303040	2303720	digamos
+2303720	2304240	matemáticamente
+2304240	2304800	simple
+2304800	2305820	multiplicar
+2305820	2306400	si dividís
+2306400	2307000	por lo que
+2307000	2308360	por el
+2308360	2309200	630
+2309200	2309640	menos 11
+2309640	2310300	menos 90
+2310300	2311940	y sobre
+2311940	2313800	el que
+2313800	2314120	te querés
+2314120	2314360	sacar
+2314360	2314800	de encima
+2314800	2315200	que es
+2315200	2315620	el n
+2315620	2315960	por t
+2315960	2316500	menos k
+2316500	2317060	o sea
+2317060	2317620	el que estaba mal
+2317620	2319440	pero
+2319440	2320520	con
+2320520	2320780	esta
+2320780	2323100	nada
+2323100	2323640	lo vamos a dar
+2323640	2324000	de una forma
+2324000	2324300	un poquito
+2324300	2324660	distinta
+2324660	2332500	para eso
+2332500	2333180	vamos a usar
+2333180	2333780	el comando
+2333780	2334480	xtreg
+2334480	2335400	fixed effects
+2335400	2338020	voy a correr
+2338020	2340660	lo que hace esto
+2340660	2340920	es
+2340920	2342280	xtreg
+2342280	2344400	y nos
+2344400	2344860	pulea
+2344860	2345700	la transformación
+2345700	2346700	de fixed effects
+2346700	2347820	pero ya calculada
+2347820	2348120	así
+2348120	2357120	el xtreg
+2357120	2358940	para ponerle
+2358940	2359540	este pena
+2359540	2360300	¿cómo?
+2361020	2362020	el xtreg
+2362020	2364080	¿para qué?
+2364520	2365740	el xtreg
+2365740	2366060	es
+2366060	2368220	es el
+2368220	2368600	rey
+2368600	2369540	pero el xtre
+2369540	2370120	lo que nos dice
+2370120	2370600	ok
+2370600	2371340	lo estás aplicando
+2371340	2372400	a una base de datos
+2372400	2373180	que tiene estructura
+2373180	2373520	de panel
+2373520	2376960	y como
+2376960	2378160	lo estás usando
+2378160	2378700	para un panel
+2378700	2379380	te voy a dar
+2379380	2379920	opciones
+2379920	2383060	para que
+2383060	2385980	estimes
+2385980	2387140	usando modelos
+2387140	2387760	para panel
+2387760	2389420	entonces fíjense
+2389420	2390320	que acá
+2390320	2391940	ya nos dice
+2391940	2393360	que los grados
+2393360	2393900	de libertad
+2393900	2395180	son 529
+2395180	2396760	que es básicamente
+2396760	2398420	630
+2398420	2399020	que era
+2399020	2400040	el n por t
+2400040	2401580	menos 11
+2401580	2402720	que son las variables
+2402720	2403820	menos 90
+2403820	2406580	que son los counties
+2406580	2408080	que no estábamos contando
+2408080	2409720	o sea que
+2409720	2410700	esto ya te saca
+2410700	2410960	como
+2410960	2412900	la estimación
+2412900	2413400	con
+2413400	2414800	los errores
+2414800	2415360	estándares
+2415360	2416680	corregidos
+2416680	2417140	por
+2417140	2418180	esa diferencia
+2418180	2420200	y fíjense
+2420200	2420520	cómo
+2420520	2421120	digamos
+2421120	2421940	cómo va a ser
+2421940	2422620	la
+2422620	2425260	la diferencia
+2425260	2426160	en la varianza
+2426160	2426740	estimada
+2426740	2429620	y en el coeficiente
+2429620	2430360	el coeficiente es
+2430360	2431400	0.35
+2431400	2432180	0.28
+2432180	2432660	para el caso
+2432660	2433380	de fixed effects
+2433380	2435100	para el modelo
+2435100	2436460	within a mano
+2436460	2437360	0.35
+2437360	2437860	0.28
+2437860	2438080	o sea
+2438080	2438820	son los mismos
+2438820	2440300	porque de vuelta
+2440300	2441640	el issue
+2441640	2442180	o el ajuste
+2442180	2442500	que hicimos
+2442500	2442840	es sobre
+2442840	2443400	los errores
+2443400	2443860	estándar
+2443860	2447380	y en la
+2447380	2448580	transformación
+2448580	2449020	within
+2449020	2449980	más pool
+2449980	2450340	dobles
+2450340	2451320	lo que nos sale
+2451320	2451560	es
+2451560	2452800	0.29
+2452800	2454100	0.19
+2454100	2455100	0.30
+2455100	2457820	0.32
+2457820	2458920	0.21
+2458920	2459820	0.32
+2459820	2460680	o sea
+2460680	2461660	estos son un poquito
+2461660	2462400	más altos
+2462400	2463800	que estos
+2463800	2466080	lo cual
+2466080	2467100	tiene sentido
+2467100	2467980	porque acuérdense
+2467980	2468500	que lo que estamos
+2468500	2468860	haciendo
+2468860	2469760	es ajustar
+2469760	2471460	por un factor
+2471460	2473160	que es básicamente
+2473160	2475260	multiplicar
+2475260	2476060	por 529
+2476060	2477180	y dir
+2477180	2478040	por 630
+2478040	2479980	630
+2479980	2480400	era lo que
+2480400	2480720	queríamos
+2480720	2481460	tachar
+2481460	2484500	del cálculo
+2484500	2484960	original
+2484960	2485760	y 529
+2485760	2488440	no mentira
+2488440	2488840	al revés
+2488840	2491840	porque lo tengo
+2491840	2492620	en el denominador
+2492620	2493940	nada
+2493940	2495760	detalle
+2495760	2496220	para tener
+2496220	2496700	en cuenta
+2496700	2499500	porque esto
+2499500	2500580	puede parecer
+2500580	2501240	un poco trivial
+2501240	2502620	pero
+2502620	2504460	digamos
+2504460	2505180	va a ser trivial
+2505180	2505800	en casos
+2505800	2506680	donde tengas
+2506680	2507280	un n
+2507280	2509180	lo suficientemente
+2509180	2509620	grande
+2509620	2510400	como para que
+2510400	2510960	no te cambie
+2510960	2511320	tanto
+2511320	2511960	porque si vos
+2511960	2512420	tenés un n
+2512420	2513040	muy grande
+2513040	2516160	por t
+2516160	2517100	ponele que t
+2517100	2517680	sea en 7
+2517680	2518260	períodos
+2518260	2520020	y le restás
+2520020	2520960	las 11 variables
+2520960	2522060	y las 90 counties
+2522060	2522760	no te va a dar
+2522760	2523640	algo tan distinto
+2523640	2524140	que hacer
+2524140	2525540	esa cantidad
+2525540	2526680	arbitrariamente alta
+2526680	2527120	de n
+2527120	2527920	por 7
+2527920	2528680	menos 11
+2528680	2529660	entonces ahí
+2529660	2530260	no va a cambiar
+2530260	2531200	tanto al final
+2531200	2531620	del día
+2531620	2532260	pero bueno
+2532260	2532720	igual
+2532720	2533340	hay que
+2533340	2535120	hay que hacer
+2535120	2535620	la corrección
+2535620	2535920	y hay que
+2535920	2536200	digamos
+2536200	2537380	estimarlo bien
+2537380	2537900	ahora que sabemos
+2537900	2538560	cómo estimarlo
+2538560	2540100	y tenerlos en cuenta
+2540100	2543980	aparte de hacer
+2543980	2544740	la transformación
+2544740	2545680	de fixed effects
+2545680	2546540	con
+2546540	2547140	xtr
+2547140	2548260	que
+2548260	2549680	ya que estamos
+2549680	2550380	help
+2550380	2551360	xtr
+2551360	2554320	fíjense que acá
+2554320	2554840	nos da todas
+2554840	2555340	las opciones
+2555340	2556120	disponibles
+2556120	2560460	y si clickean acá
+2560460	2561780	pueden ir a las opciones
+2561780	2562140	que tenemos
+2562140	2563040	para fixed effects
+2563040	2564360	una de las opciones
+2564360	2564880	que tenemos
+2564880	2566420	es agregar
+2566420	2567160	la parte del
+2567160	2567620	cluster
+2567620	2568540	que ya es un
+2568540	2569180	gran amigo
+2569180	2569960	de la casa
+2569960	2572520	para decirle
+2572520	2573100	esta tamirá
+2573100	2574060	clustereame
+2574060	2574580	los errores
+2574580	2575180	por contado
+2575180	2583160	creo que
+2583160	2583840	de este lado
+2583840	2584640	nada más
+2584640	2588200	yo ya lo corrí
+2588200	2588540	no creo
+2588540	2595180	y algo a comentar
+2595180	2595580	que
+2595580	2596680	viene súper
+2596680	2597880	relacionado
+2597880	2598340	con la pregunta
+2598340	2599200	que hicieron hace un rato
+2599200	2600120	desde casa
+2600120	2601780	fíjense que acá
+2601780	2602500	nos está apareciendo
+2602500	2603160	una constante
+2603160	2604620	pero nosotros
+2604620	2605800	acabamos de decir
+2605800	2606140	que
+2606140	2607640	en la transformación
+2607640	2608340	fixed effects
+2608340	2609020	la constante
+2609020	2609540	se iba
+2609540	2611060	no sé
+2611060	2611700	si de casualidad
+2611700	2612360	alguien sabe
+2612360	2613160	que
+2613160	2614420	es esa constante
+2614420	2625840	estuvimos 15 minutos
+2625840	2626420	hablando de
+2626420	2627840	por qué en estos modelos
+2627840	2629000	no incluimos la constante
+2629000	2630420	si lo tenemos que hacer a mano
+2630420	2630960	porque ahora
+2630960	2631180	esta
+2631180	2633140	me la tirai
+2633140	2637100	acá
+2637100	2639180	hay una explicación
+2639180	2642040	pero
+2642040	2643560	digamos
+2643560	2644120	la explicación
+2644120	2644960	resumida es
+2644960	2648540	nosotros
+2648540	2649380	cuando hacemos
+2649380	2650220	aplicamos
+2650220	2650640	el modelo
+2650640	2651380	de fixed effects
+2651380	2652540	como decíamos recién
+2652540	2653860	lo que queríamos hacer
+2653860	2654640	era sacarnos
+2654640	2655180	de encima
+2655180	2656120	este factor
+2656120	2656800	que es constante
+2656800	2657320	en el tiempo
+2657320	2658800	para todas las observaciones
+2658800	2660240	por observación
+2660240	2661500	para eso
+2661500	2661960	lo que hacemos
+2661960	2662580	es restarle
+2662580	2663420	la media temporal
+2663420	2664860	a todas las observaciones
+2664860	2668480	y medio que nos perdemos
+2668480	2668960	la constante
+2668960	2669440	en el medio
+2669440	2670920	ahora
+2670920	2671940	si vos querés
+2671940	2673080	hacer predicción
+2673080	2673620	o sea
+2673620	2674180	si vos querés
+2674180	2674700	calcular
+2674700	2677400	y
+2677400	2678300	y
+2678300	2678980	t
+2678980	2680540	sombrerito
+2680540	2681640	vos tenés que volver
+2681640	2682540	al modelo original
+2682540	2683860	y si en el modelo original
+2683860	2684300	tenías
+2684300	2684840	alfa
+2684840	2685360	más
+2685360	2686140	beta
+2686140	2687340	por
+2687340	2688140	x
+2688140	2688620	y
+2688620	2689400	t
+2689400	2690460	más
+2690460	2691940	muy
+2691940	2693360	más
+2693360	2694060	y
+2694060	2694880	t
+2694880	2696200	está bien
+2696200	2697080	vos podés usar
+2697080	2699100	¿qué va a ser
+2699100	2699700	la predicción
+2699700	2699920	de
+2699920	2702700	y y t
+2702700	2703520	la predicción
+2703520	2704100	de y y t
+2704100	2704560	va a ser
+2704560	2705900	el beta
+2705900	2706600	estimado
+2706600	2707060	por
+2707060	2708300	tu conjunto
+2708300	2708960	de variables
+2708960	2709560	que tomaste
+2709560	2710680	de tu medición
+2710680	2711380	de tu encuesta
+2711380	2713940	estos
+2713940	2717240	con los métodos
+2717240	2717520	que hicimos
+2717520	2717780	ahora
+2717780	2718520	no los pudimos
+2718520	2719040	estimar
+2719040	2719520	aún
+2719520	2720220	los vamos a
+2720220	2721380	meter en el error
+2721380	2723240	por así decirlo
+2723240	2725940	pero este alfa
+2725940	2726320	de acá
+2726320	2727420	Stata te lo tira
+2727420	2728260	y eso es lo que
+2728260	2728780	vemos ahí
+2728780	2729580	digamos
+2729580	2731620	la motivación
+2731620	2732140	de Stata
+2732140	2732520	de
+2732520	2735400	de tirar
+2735400	2735980	la constante
+2735980	2736280	ahí
+2736280	2736940	es para que vos
+2736940	2737660	te puedas armar
+2737660	2738320	esta estimación
+2738320	2738540	de la
+2738540	2740880	esta predicción
+2740880	2741020	de
+2741020	2745000	entonces
+2745000	2748500	¿cómo hace
+2748500	2749420	esa estimación?
+2751460	2752100	es medio
+2752100	2752760	apuntoso
+2752760	2755460	no sé si voy a
+2755460	2755840	llegar
+2755840	2756520	pero de última
+2756520	2757540	si nos sobra
+2757540	2757920	un ratito
+2757920	2758660	al final de la clase
+2758660	2759280	lo podemos ver
+2759280	2761980	pero básicamente
+2761980	2763680	la transformación
+2763680	2764460	que hace
+2764460	2765760	está acá
+2765760	2768680	como que
+2768680	2769740	agarra
+2769740	2770140	el modelo
+2770140	2770760	original
+2770760	2772520	le resta
+2772520	2773000	esta media
+2773000	2773440	temporal
+2773440	2774280	que habíamos visto
+2774280	2776320	que calculamos
+2776320	2778240	y le suma
+2778240	2779800	otro
+2779800	2781000	otro promedio
+2781000	2781800	que te indica
+2781800	2781960	acá
+2781960	2782840	cómo se calcula
+2782840	2785360	con eso
+2785360	2786620	recupera
+2786620	2787000	el a
+2787000	2789580	the left side
+2789580	2790060	variable
+2790060	2790680	es
+2790680	2791280	y
+2791280	2791580	y
+2791580	2791680	y
+2791680	2791700	y
+2791700	2792100	t
+2792100	2792720	menos
+2792720	2793320	el within
+2793320	2793640	group
+2793640	2794060	means
+2794060	2794500	que es lo que
+2794500	2795160	calculamos
+2795160	2797060	pero le agrego
+2797060	2797680	el grand
+2797680	2798100	mean
+2798100	2798780	que el grand
+2798780	2799200	mean es
+2799200	2800780	el promedio
+2800780	2802540	sobre toda la población
+2802540	2803600	lo que dijimos que no íbamos a hacer
+2803600	2804260	al principio
+2804260	2804800	porque no
+2804800	2806740	lo queríamos agrucar con nada
+2806740	2807000	bueno
+2807000	2808880	calcular el promedio para todo
+2808880	2810380	sobre
+2810380	2811180	y sobre t
+2811180	2812740	que es esto
+2812740	2814180	suma sobre n
+2814180	2815840	suma sobre t
+2815840	2816320	de y
+2816320	2818000	dividilo por la cantidad
+2818000	2818900	total de observaciones
+2818900	2819520	y eso te da
+2819520	2820600	rayita a rayita
+2820600	2824820	y lo mismo
+2824820	2825460	del otro lado
+2825460	2826320	es como la misma
+2826320	2826860	transformación
+2826860	2827300	a las x
+2827300	2829700	y con eso
+2829700	2830300	nos devuelve
+2830300	2830460	la
+2830460	2832960	esto
+2832960	2833680	nada
+2833680	2834580	se los puede enviar
+2834580	2835020	si quieren
+2835020	2835640	mírenlo
+2835640	2836140	pero
+2836140	2837540	si
+2837540	2840440	se los comento
+2840440	2841000	por si
+2841000	2843520	cuando están
+2843520	2844000	haciendo algún
+2844000	2844380	tp
+2844380	2844860	o
+2844860	2847840	o
+2847840	2848020	mismo
+2848020	2848980	digamos
+2848980	2849720	haciendo ese tp
+2849720	2851140	vemos que aparece la constante ahí
+2851140	2852040	donde sale la constante
+2852040	2852260	bueno
+2852260	2853320	sale de ese cálculo
+2853320	2854440	sale de esa estimación
+2854440	2856120	de agarrar
+2856120	2857720	de vuelta
+2857720	2858740	variable
+2858740	2861400	la variable tal como la tenemos
+2861400	2862480	le resto
+2862480	2864200	le hago la transformación
+2864200	2864680	within
+2864680	2866140	le resto esa media temporal
+2866140	2868100	le sumo el promedio
+2868100	2869200	el grand mean
+2869200	2870740	que es este promedio
+2870740	2871920	sobre n y sobre t
+2871920	2873000	de la variable
+2873000	2876800	y ahí recupero la
+2876800	2879280	recuperaste la
+2879280	2880060	joya
+2880060	2880900	a todo esto
+2880900	2881700	llámalo y
+2881700	2882760	moñito por ejemplo
+2882760	2883820	a todo esto
+2883820	2885220	llámalo x moñito
+2885220	2886140	y te queda
+2886140	2889320	algo
+2889320	2890680	de esta forma
+2890680	2891940	y moñito
+2891940	2892560	y
+2892560	2893620	t
+2893620	2895520	igual a
+2895520	2896900	alfa
+2896900	2898000	más
+2898000	2899160	x
+2899160	2899660	y
+2899660	2900120	t
+2900120	2900880	moñito
+2900880	2901860	beta
+2901860	2903740	más el noise
+2903740	2907180	era más fácil
+2907180	2907860	escribir la e
+2907860	2908480	pero bueno
+2908480	2909640	elegí
+2909640	2910200	convicarme la
+2910200	2912300	de acá
+2912300	2912640	nada
+2912640	2913420	o el es
+2913420	2914260	y te estiman esto
+2914260	2920040	pero básicamente
+2920040	2920500	es eso
+2920500	2921520	renombrar esto
+2921520	2921860	y
+2921860	2922380	moñito
+2922380	2923340	renombrar esto
+2923340	2924280	x moñito
+2924280	2924900	y
+2924900	2925460	estimar
+2925460	2925780	¿ok?
+2928100	2928700	nada
+2928700	2929540	se los
+2929540	2930020	dejo
+2930020	2930780	si quieren
+2930780	2931660	lo pueden ver
+2931660	2932640	más tranqui
+2932640	2933120	después
+2933120	2934220	pero sale
+2934220	2934400	de ahí
+2934400	2934920	esa constante
+2934920	2938220	y paso
+2938220	2938880	al
+2938880	2939520	próximo
+2939520	2940180	ejercicio
+2940180	2943700	nos dicen
+2943700	2946080	bueno
+2946080	2946920	eso ya lo hicimos
+2946920	2947760	estima el modelo
+2947760	2948580	usando diferencias
+2948580	2948940	finitas
+2948940	2950080	de primer orden
+2950080	2954020	para hacer diferencias
+2954020	2954520	finitas
+2954520	2955360	acuérdense que
+2955360	2956340	lo que vamos a estar
+2956340	2956920	haciendo es
+2956920	2968500	cambio de color de vuelta
+2968500	2969200	ya que estamos
+2969200	2985100	acá creo que voy a tener
+2985100	2985720	que hacer un poquito
+2985720	2987140	más de cuentos
+2987140	2998880	partiendo del modelo
+2998880	2999960	original que teníamos
+2999960	3000980	lo que vamos a hacer
+3000980	3002140	es querer llegar
+3002140	3002620	a
+3002620	3015100	lo que vamos a armar
+3015100	3015680	es un modelo
+3015680	3016340	que va a ser
+3016340	3019580	delta y t
+3019580	3020600	igual a
+3020600	3031180	creo que igual
+3031180	3031600	esto va a ser
+3031600	3032320	más interesante
+3032320	3032940	en el ejercicio
+3032940	3033500	que sigue
+3033500	3035320	pero
+3035320	3036500	no
+3036500	3039380	delta
+3039380	3040960	x t
+3040960	3041960	por beta
+3041960	3042820	más
+3042820	3044180	delta
+3044180	3044640	u
+3044640	3045100	t
+3045100	3047160	y si se acuerdan
+3047160	3048200	este delta y t
+3048200	3048940	es básicamente
+3048940	3052060	lo podemos
+3052060	3053360	pensar como
+3053360	3054980	y
+3054980	3056100	y t
+3056100	3057360	menos
+3057360	3066040	más bien
+3066040	3068400	no quiero que se confunda
+3068400	3069140	la notación
+3069140	3071720	se acuerdan que
+3071720	3072540	esta era como
+3072540	3073640	el operador rezago
+3073640	3074360	entonces
+3074360	3075660	le resto
+3075660	3076900	la información
+3076900	3077400	que tenga
+3077400	3078880	en el periodo
+3078880	3079260	anterior
+3079260	3080140	por ejemplo
+3080140	3080960	si esto es
+3080960	3081640	y
+3081640	3081760	y
+3081760	3081800	y
+3081800	3081960	y
+3081960	3082100	y
+3082100	3083400	83
+3083400	3085100	menos
+3085100	3085700	y
+3085700	3086100	y
+3086100	3086740	82
+3086740	3091260	o sea
+3091260	3091760	lo que estamos
+3091760	3092160	haciendo
+3092160	3092940	si lo queremos ver
+3092940	3093440	como más
+3093440	3094420	detallado
+3094420	3094740	sería
+3094740	3096260	agarro el modelo
+3096260	3096800	original
+3096800	3105320	y agarro el modelo
+3105320	3106140	rezagado
+3106140	3118560	y el modelo
+3118560	3119280	rezagado
+3119280	3119740	es
+3119740	3120820	nada
+3120820	3121360	de vuelta
+3121360	3122440	irme al periodo
+3122440	3122820	anterior
+3122820	3124120	resto
+3124120	3126380	1 con 2
+3126380	3127340	y llego acá
+3127340	3132460	y que pasa
+3132460	3132980	cuando resto
+3132980	3133620	1 con 2
+3133620	3134060	me queda
+3134060	3135060	este
+3135060	3135900	menos este
+3135900	3136780	delta y t
+3136780	3138160	alfa
+3138160	3138680	menos alfa
+3138680	3139080	se va
+3139080	3141120	x y t
+3141120	3142180	beta
+3142180	3143600	menos
+3143600	3144500	x y t
+3144500	3146040	rezagado
+3146040	3146720	por beta
+3146720	3148240	eh
+3148240	3151000	mentira
+3151000	3152120	estaba queriendo
+3152120	3153380	señalar esto
+3154120	3155360	esto
+3155360	3156940	y el delta
+3156940	3157280	ult
+3157280	3160200	lógicamente
+3160200	3160980	si acá
+3160980	3162100	aparte le agregamos
+3162100	3162520	el muy
+3162520	3167500	la versión
+3167500	3168180	rezagada
+3168180	3168540	de muy
+3168540	3169120	como es
+3169120	3176020	el rezago
+3176020	3176420	de muy
+3176420	3176920	y si muy
+3176920	3177460	es confonder
+3177460	3177880	el tiempo
+3177880	3178300	es igual
+3178300	3178620	a muy
+3178620	3183380	entonces
+3183380	3183680	también
+3183680	3183980	se va
+3183980	3184160	a ir
+3184160	3184380	junto
+3184380	3184620	con
+3184620	3185300	la constante
+3185300	3189760	así que
+3189760	3190180	vuelvo
+3190180	3190420	a esta
+3190420	3204920	hay dos
+3204920	3205600	alternativas
+3205600	3206660	les dejo
+3206660	3207200	las dos
+3207200	3207760	para que
+3207760	3209160	gusten
+3209160	3211660	una opción
+3211660	3212080	es crear
+3212080	3212560	las variables
+3212560	3213080	a mano
+3213080	3214580	y después
+3214580	3215160	hacer
+3215160	3216100	regresión
+3216100	3216320	por
+3216320	3216820	voles
+3216820	3218160	crear
+3218160	3218580	las variables
+3218580	3219040	a mano
+3219040	3219560	es
+3219560	3221280	me genero
+3221280	3221820	d
+3221820	3222880	log
+3222880	3223860	de la
+3223860	3224120	tasa
+3224120	3225200	de crímenes
+3225200	3226980	que es
+3226980	3227600	tasa
+3227600	3228180	de crímenes
+3228180	3228860	log de la
+3228860	3229040	tasa
+3229040	3229600	de criminalidad
+3229600	3230000	menos
+3230000	3231500	el primer
+3231500	3232620	lag
+3232620	3233120	el primer
+3233120	3233720	rezago
+3233720	3234060	de
+3234060	3235940	la tasa
+3235940	3236560	de criminalidad
+3236560	3238980	y después
+3238980	3239540	lo repito
+3239540	3240060	para todas
+3240060	3240460	las variables
+3240460	3240980	que teníamos
+3240980	3241380	en la
+3241380	3241780	macro
+3241780	3242560	xlist
+3242560	3245640	y después
+3245640	3246040	hago la
+3246040	3246640	regresión
+3246640	3247940	sin
+3247940	3248360	constante
+3248360	3248980	porque de vuelta
+3248980	3249520	la constante
+3249520	3250460	voló cuando
+3250460	3251080	hicimos la
+3251080	3251960	transformación
+3251960	3257420	fíjense que
+3257420	3257900	acá nos dice
+3257900	3258220	que hay
+3258220	3259060	90 missing
+3259060	3259420	values
+3259420	3260060	generated
+3260060	3262540	en todas
+3262540	3263120	las variables
+3263120	3264520	¿alguien sabe
+3264520	3264780	por qué?
+3266560	3273100	estamos perdiendo
+3273100	3273520	la primera
+3273520	3274060	observación
+3274060	3274320	porque
+3274320	3274820	por ejemplo
+3274820	3275380	para el año
+3275380	3277760	para los 90
+3277760	3278400	counties
+3278400	3282040	para el año
+3282040	3282660	81
+3282660	3283640	yo no le puedo
+3283640	3284120	restar la
+3284120	3284540	información
+3284540	3284940	del año
+3284940	3285320	80
+3285320	3285640	entonces
+3285640	3286180	eso lo vamos
+3286180	3286520	a perder
+3286520	3286780	acá
+3286780	3291340	¿te hago una
+3291340	3291960	consulta?
+3292340	3292560	sí
+3292560	3294160	poniendo
+3294160	3295420	l1.la
+3295420	3295820	variable
+3295820	3296600	¿stata
+3296600	3297020	ya lo
+3297020	3297560	detecta
+3297560	3297860	o eso
+3297860	3298140	es una
+3298140	3298380	variable
+3298380	3299040	que generaste
+3299040	3299360	vos?
+3300160	3300360	no
+3300360	3300540	el
+3300540	3300680	total
+3300680	3300840	lo
+3300840	3301640	detecta
+3301640	3305260	de hecho
+3305260	3305620	según
+3305620	3306020	entiendo
+3306020	3306320	puedes
+3306320	3307840	poner
+3307840	3308920	l2
+3308920	3310340	y
+3310340	3311620	te generas
+3311620	3312000	como el
+3312000	3312340	segundo
+3312340	3312980	rezago
+3312980	3316360	voy a
+3316360	3316560	poner
+3316560	3317000	test
+3317000	3317260	así
+3317260	3317540	de grande
+3317540	3317800	para
+3317800	3318680	si justo
+3318680	3318980	tenía
+3318980	3319380	lo escrito
+3319380	3319680	así
+3319680	3319900	pero
+3319900	3321520	entonces
+3321520	3321820	fíjate que
+3321820	3322060	ahí tenemos
+3322060	3322680	180
+3322680	3322980	missing
+3322980	3323280	values
+3323280	3323520	porque
+3323520	3323740	nos
+3323740	3324100	perdemos
+3324100	3324340	la
+3324340	3324700	primera
+3324700	3324960	y la
+3324960	3325400	segunda
+3325400	3328560	perfecto
+3328560	3329140	gracias
+3329140	3330440	no de nada
+3330440	3337280	y la
+3337280	3337860	alternativa
+3337860	3338300	2
+3338300	3338780	sería
+3338780	3340340	usar
+3340340	3341060	este
+3341060	3346500	esta opción
+3346500	3347240	de punto
+3347240	3348060	que
+3348060	3349460	también te hace
+3349460	3350840	como que te calcula
+3350840	3351460	el rezago
+3351460	3352360	usando las variables
+3352360	3352960	que ya tenés
+3352960	3354700	sin
+3354700	3355240	decirle
+3355240	3356320	sin tener que
+3356320	3356900	crear variables
+3356900	3357260	nuevas
+3357260	3358060	si no querés
+3358060	3358520	tocar la base
+3358520	3358760	de datos
+3358760	3359220	si no querés
+3359220	3359860	crear variables
+3359860	3360160	nuevas
+3360160	3360520	solamente
+3360520	3361020	querés correr
+3361020	3361620	la regresión
+3361620	3361960	una vez
+3361960	3362500	y ver que te da
+3362500	3363400	esto también
+3363400	3363880	es una opción
+3363880	3365920	pones de punto
+3365920	3366380	la variable
+3366380	3367080	que querés poner
+3367080	3368180	rezagada
+3368180	3369400	de vuelta
+3369400	3370120	sin constante
+3370120	3371240	y ahí
+3371240	3371720	y ahí ya nos va
+3371720	3375400	pasó lo que tenía
+3375400	3385440	fíjense que nos
+3385440	3386080	tiene que dar lo mismo
+3386080	3386860	punto 32
+3386860	3387420	punto
+3387420	3387680	0
+3387680	3388200	29
+3388200	3390240	punto 32
+3390240	3390480	0
+3390480	3390880	29
+3390880	3392920	porque al final
+3392920	3393380	ya estamos
+3393380	3393940	haciendo lo mismo
+3393940	3400380	qué más
+3400380	3401260	bueno
+3401260	3401680	con eso
+3401680	3402720	terminamos
+3402720	3403620	el ejercicio 1
+3403620	3404480	si no me equivoco
+3404480	3407280	de vuelta
+3407280	3409440	en las soluciones
+3409440	3409980	a ver si tenemos
+3409980	3410900	algo más interesante
+3410900	3411180	ah
+3411180	3411960	me había olvidado
+3411960	3412860	acá está
+3412860	3413460	la cuenta
+3413460	3413840	que les dije
+3413840	3414340	hace un rato
+3414340	3415860	de cómo estimar
+3415860	3416640	consistentemente
+3416640	3417240	la varianza
+3417240	3417940	de los errores
+3417940	3419840	este es el
+3419840	3421820	el coeficiente
+3421820	3422380	que usamos
+3422380	3423400	en la transform
+3423400	3424360	más bien
+3424360	3426040	el ajuste
+3426040	3426420	que usamos
+3426420	3427400	en la transformación
+3427400	3427980	within
+3427980	3429560	donde no estamos
+3429560	3430220	teniendo en cuenta
+3430220	3431000	que perdemos
+3431000	3432180	estas n
+3432180	3435240	observaciones
+3435240	3438360	y bueno
+3438360	3438920	salvo que
+3438920	3439900	t sea lo suficientemente
+3439900	3440280	grande
+3440280	3441200	o n sea lo suficientemente
+3441200	3441500	grande
+3441500	3442480	deberíamos corregirlo
+3442480	3444980	usamos
+3444980	3446000	el comando
+3446000	3446600	xyreg
+3446600	3447400	para estimar
+3447400	3447740	el modelo
+3447740	3448360	usando efectos
+3448360	3449140	fijos
+3449140	3451280	estimar el modelo
+3451280	3452240	usando diferencias
+3452240	3452560	finitas
+3452560	3453420	de primer orden
+3453420	3454560	bueno
+3454560	3455040	como no hay
+3455040	3455940	un comando nativo
+3455940	3456760	del tipo
+3456760	3457700	first differences
+3457700	3458460	y a x
+3458460	3459160	construimos
+3459160	3459900	las variables
+3459900	3461720	¿cómo las construimos?
+3463000	3463260	o
+3463260	3464360	construir las variables
+3464360	3465460	con el
+3465460	3466400	operador lag
+3466400	3468460	el rezago
+3468460	3470980	o
+3470980	3471620	regresando
+3471620	3472340	de punto
+3472340	3472820	la variable
+3472820	3476260	acá están
+3476260	3477080	los resultados
+3477080	3478140	todos juntitos
+3478140	3478700	fíjense
+3478700	3481000	qué diferentes
+3481000	3481640	que son
+3481640	3483520	los coeficientes
+3483520	3483860	entre
+3483860	3484660	full dobles
+3484660	3485520	y cualquiera
+3485520	3486100	de las opciones
+3486100	3486920	fixed effects
+3486920	3487940	o first differences
+3487940	3490000	estamos
+3490000	3490360	estamos yendo
+3490360	3490900	de un punto
+3490900	3491420	72
+3491420	3491920	a un punto
+3491920	3492460	36
+3492460	3493500	negativo
+3493500	3495560	recordemos que nos decía
+3495560	3495940	esto
+3495940	3496560	nos decía que
+3496560	3497280	un aumento
+3497280	3498040	en la probabilidad
+3498040	3498520	de arresto
+3498520	3499380	de un 1%
+3499380	3501060	llevaría a una caída
+3501060	3503120	de punto 72%
+3503120	3504160	en la tasa
+3504160	3504900	de criminalidad
+3504900	3506700	con lo cual
+3506700	3508300	si bien el signo
+3508300	3509020	es el mismo
+3509020	3510240	en el caso
+3510240	3510940	de pool dobles
+3510940	3512620	está un poco
+3512620	3513580	sobreestimado
+3513580	3514240	en comparación
+3514240	3515180	con fixed effects
+3515180	3515980	y short differences
+3515980	3518420	y en cuanto
+3518420	3518880	a los errores
+3518880	3519440	de estándar
+3519440	3520860	en pool dobles
+3520860	3521220	tenemos
+3521220	3522220	0.11
+3522220	3523780	0.03
+3523780	3524420	0.03
+3524420	3525960	0.07
+3525960	3526800	0.02
+3526800	3527440	0.01
+3527440	3528820	0.10
+3528820	3529520	0.03
+3529520	3530080	0.02
+3530080	3530580	porque de vuelta
+3530580	3531320	no estamos teniendo
+3531320	3531600	en cuenta
+3531600	3532080	el ajuste
+3532080	3532760	que habíamos dicho
+3532760	3535200	por los grados
+3535200	3536240	de libertad
+3536240	3541260	nada eso
+3541260	3541980	eso era un poco
+3541980	3543100	de lo que vamos a ver
+3543100	3544340	con este ejercicio
+3544340	3545060	¿alguna pregunta
+3545060	3545780	con este?
+3552860	3553860	ya que estamos
+3553860	3554300	digamos
+3554300	3555880	en un interim
+3555880	3558620	bibliografía
+3558620	3559280	que podemos usar
+3559280	3559800	para seguir
+3559800	3560660	estas cosas
+3560660	3562740	de lo que encontré
+3562740	3564140	obviamente
+3564140	3565220	el
+3565220	3567160	viejo confiable
+3567160	3567760	Bullrich
+3567760	3569240	sección 10
+3569240	3570300	Basic Linear
+3570300	3571160	Unobserved Effects
+3571160	3572220	Panel Data Models
+3572220	3573360	que es lo que estamos
+3573360	3573740	viendo ahora
+3573740	3575080	modelos de lineales
+3575080	3575840	pero con efectos
+3575840	3576700	no observados
+3576700	3578340	y bueno
+3578340	3579200	acá si se fijan
+3579200	3579520	tenemos
+3579520	3581080	Random Effects
+3581080	3582460	First Effects
+3582460	3583160	Six Effects
+3583160	3584080	First Differencing
+3584080	3586040	y el test de Hausman
+3586040	3586580	que lo vamos a hacer
+3586580	3587240	ahora en un ratito
+3587240	3590920	y también está este
+3590920	3591840	que no sé si
+3591840	3592580	lo usan
+3592580	3593280	no lo conocen
+3593280	3594640	Cameron Trivedi
+3594640	3595460	Microconometrics
+3595460	3596120	es en Startup
+3596120	3597240	este está bueno
+3597240	3598500	porque es un
+3598500	3599460	muy buen resumen
+3599460	3600120	de lo que estamos
+3600120	3600860	haciendo ahora
+3600860	3604020	con la ventaja
+3604020	3604580	de que aparte
+3604580	3605140	te dice
+3605140	3605560	bueno
+3605560	3606420	y esto en Startup
+3606420	3606940	se hace así
+3606940	3609100	así que
+3609100	3610720	recomiendo
+3610720	3611000	que
+3611000	3611580	si quieren
+3611580	3613640	complementar
+3613640	3614440	las slides
+3614440	3614820	de clase
+3614820	3615120	que igual
+3615120	3616360	son súper claras
+3616360	3623680	sección 8.3
+3623680	3625480	panel data summary
+3625480	3628640	y tenés por ejemplo
+3628640	3630320	acá
+3630320	3631380	acá arranca
+3631380	3632480	within estimator
+3632480	3633500	between estimator
+3633500	3634160	que no lo vimos
+3634160	3635700	random effects
+3635700	3637320	y comparación
+3637320	3640020	House Montes
+3640020	3643040	first difference
+3643040	3644700	pero bueno
+3644700	3645400	sección 8
+3645400	3647200	de Cameron Trivedi
+3647200	3648160	Microconometrics
+3648160	3648860	de Instata
+3648860	3653360	dejo acá el nombre
+3653360	3653700	completo
+3653700	3656200	para que lo vean
+3656200	3661380	así que yo arrancaría
+3661380	3661900	por esos dos
+3661900	3663120	porque la verdad
+3663120	3663560	es que justo
+3663560	3664120	este contenido
+3664120	3664820	que estamos viendo
+3664820	3665480	en este TP
+3665480	3666100	por ahora
+3666100	3666700	estos dos ejercicios
+3666700	3667320	es bastante
+3667320	3669980	bastante
+3669980	3670600	por encima
+3670600	3671140	no estamos haciendo
+3671140	3672020	nada demasiado raro
+3672020	3675840	paso al ejercicio 2
+3675840	3676260	entonces
+3676260	3678220	vamos a ir
+3678220	3679140	a la base de datos
+3679140	3680620	Murder DTA
+3680620	3682640	tenemos que la base de datos
+3682640	3683120	nos muestra
+3683120	3683700	la longitudinal
+3683700	3684760	de Estados Unidos
+3684760	3686000	para los años 87
+3686000	3687240	90 y 93
+3687240	3689680	nos piden que
+3689680	3691140	estimemos por OLS
+3691140	3691780	el efecto
+3691780	3692820	de las ejecuciones
+3692820	3693920	que es la variable X
+3693920	3694740	sobre la tasa
+3694740	3695620	de homicidios
+3695620	3696040	M
+3696040	3697760	controlando por
+3697760	3698480	desempleo
+3698480	3699040	y año
+3699040	3701900	note que se omitió
+3701900	3702720	la domitemporal
+3702720	3703140	para el año
+3703140	3704060	1987
+3704060	3705920	interpreta los resultados
+3705920	3710520	y eso es hermoso
+3710520	3711400	los ejemplos
+3711400	3711960	de los ejercicios
+3711960	3712620	sí, sí
+3712620	3713420	serán trágicos
+3713420	3713760	nunca
+3713760	3714220	no sé
+3714220	3715380	cantidad de delfines
+3715380	3715920	nacidos
+3715920	3716940	en cautiverio
+3716940	3718800	no son palas
+3718800	3719360	nunca
+3719360	3723440	no, los análisis
+3723440	3724120	de supervivencia
+3724120	3725060	también son terribles
+3725060	3725680	porque es tipo
+3725680	3726540	no sé
+3726540	3727900	supervivencia
+3727900	3729120	en estudios
+3729120	3730280	aplicados
+3730280	3731320	a gente con leucemia
+3731320	3731800	y es como
+3731800	3737560	y porque aparte
+3737560	3738640	en esos experimentos
+3738640	3739260	lógicamente
+3739260	3739980	tenés un grupo
+3739980	3740500	de control
+3740500	3741320	tenés un grupo
+3741320	3742220	de tratamiento
+3742220	3742640	y el grupo
+3742640	3743040	de control
+3743040	3743800	está recibiendo
+3743800	3744420	esa medicación
+3744420	3745140	que supuestamente
+3745140	3746500	los va a dejar
+3746500	3747120	más sanos
+3747120	3747520	así que
+3747520	3748980	es súper polémica
+3748980	3749640	toda esa parte
+3749640	3755280	capaz era un placer
+3755280	3756420	si se me tuviera
+3756420	3756740	la verdad
+3756740	3757280	y si tuviera
+3757280	3758640	también
+3758640	3761560	no sé dónde
+3761560	3762160	publicarían
+3762160	3762820	esas preguntas
+3762820	3766180	ok
+3766180	3768740	oles
+3768740	3773400	acá vamos a ir directo
+3773400	3773900	al código
+3773900	3780580	borro todo esto
+3780580	3781080	ah bueno
+3781080	3781560	no les dije
+3781560	3782380	pero acá abajo
+3782380	3782860	tienen como
+3782860	3783360	el codito
+3783360	3783640	para
+3783640	3786820	mostrar todas
+3786820	3787440	las regresiones
+3787440	3787980	juntas
+3787980	3788240	porque
+3788240	3788580	¿qué pasa?
+3788580	3789720	como ya habíamos
+3789720	3790400	hecho
+3790400	3790980	el est
+3790980	3791660	store
+3791660	3792420	con el nombre
+3792420	3793100	de cada una
+3793100	3793840	de las regresiones
+3793840	3794600	ahora las podemos
+3794600	3795460	sacar todas
+3795460	3796080	juntas
+3796080	3796700	con esto
+3796700	3800680	corriendo de esto
+3800680	3801120	solo
+3801120	3802840	bueno
+3802840	3806100	y ahí nos tira
+3806100	3806340	como
+3806340	3807280	toda la
+3807280	3808080	la tablita
+3808080	3810760	el within
+3810760	3811520	queda acá abajo
+3811520	3812220	medio fedito
+3812220	3812840	porque bueno
+3812840	3813800	son otras
+3813800	3814280	las variables
+3814280	3815220	que estamos usando
+3815220	3816500	pero después
+3816500	3817140	pueden usarlo
+3817140	3817380	para
+3817380	3818760	comparar
+3818760	3819520	los resultados
+3819520	3819960	y bueno
+3819960	3820520	de vuelta
+3820520	3821880	fíjense las diferencias
+3821880	3823040	pero bueno
+3823040	3824360	me voy de este ejercicio
+3824360	3826760	paso al ejercicio 2
+3826760	3829080	cargo de base
+3829080	3829680	de datos nuevas
+3829680	3830360	describe
+3830360	3830820	summarize
+3830820	3831680	como siempre
+3831680	3832120	para ver
+3832120	3832540	de qué estamos
+3832540	3832940	hablando
+3832940	3835500	tenemos
+3835500	3836260	esta base
+3836260	3836580	de datos
+3836580	3837040	de
+3837040	3838540	asesinatos
+3838540	3840880	state identifier
+3840880	3842240	postal code
+3842240	3842700	que va a ser
+3842700	3842940	como
+3842940	3845780	análogo
+3845780	3847380	año
+3847380	3848000	tenemos datos
+3848000	3848780	para el 87
+3848780	3849200	el 90
+3849200	3849740	y el 93
+3849740	3852120	tasa
+3852120	3853480	de asesinatos
+3853480	3854380	cada 100.000
+3854380	3855000	habitantes
+3855000	3856740	total de
+3856740	3857340	executions
+3857340	3858240	executions son
+3858240	3858960	no sé si
+3858960	3859900	capaz que yo
+3859900	3860500	como que lo pasé
+3860500	3860800	por alto
+3860800	3861760	pero executions son
+3861760	3863580	condenas
+3863580	3864280	a
+3864280	3866860	pena de muerte
+3866860	3868300	de los últimos
+3868300	3869000	tres años
+3869000	3870780	claro
+3870780	3871260	lo que queremos
+3871260	3871800	ver en realidad
+3871800	3872220	es
+3872220	3873360	si
+3873360	3874640	una persona
+3874640	3875360	ve que
+3875360	3876060	hay un montón
+3876060	3876520	de gente
+3876520	3877140	que está siendo
+3877140	3877580	condenada
+3877580	3878280	a pena de muerte
+3878280	3879180	eso me disuade
+3879180	3879480	a mí
+3879480	3880180	de ir a cometer
+3880180	3880680	un accidente
+3880680	3881380	todo sí o no
+3881380	3884820	y qué sé yo
+3884820	3885460	capaz que querés
+3885460	3886460	terminarlo todo
+3886460	3886960	y bueno
+3886960	3888180	aprovecho que me
+3888180	3888920	ponen la pena
+3888920	3889380	de muerte
+3889380	3889900	ya que no hay
+3889900	3890480	eutanasia
+3890480	3893480	pero bueno
+3893480	3894900	esa es la
+3894900	3895780	motivación
+3895780	3896880	de este modelo
+3896880	3899480	un employment rate
+3899480	3900580	para controlar
+3900580	3901140	por
+3901140	3902580	nada
+3902580	3903640	podríamos pensarlo
+3903640	3903980	como
+3903980	3905340	cuál es la situación
+3905340	3906300	económica del país
+3906300	3907060	y si el país
+3907060	3908040	está en las malas
+3908040	3908760	qué pasa
+3908760	3910320	la gente
+3910320	3913420	sale a matar más
+3913420	3914280	o se queda en su casa
+3914280	3915080	no sé
+3915080	3916160	pregunto
+3916160	3917800	y después
+3917800	3919340	nada
+3919340	3920440	las dummies
+3920440	3924020	voy con el
+3924020	3924640	xp set
+3924640	3925140	para ver
+3925140	3926000	cómo es el panel
+3926000	3929060	y
+3929060	3931420	xp
+3931420	3935420	fíjense
+3935420	3937540	tenemos
+3937540	3939280	51
+3939280	3939980	estados
+3939980	3941040	3
+3941040	3941460	periodos
+3941460	3942280	temporales
+3942280	3943180	ID
+3943180	3943940	por año
+3943940	3944400	uniquely
+3944400	3944980	identify
+3944980	3945260	each
+3945260	3945900	observation
+3945900	3948980	el span
+3948980	3949940	es de
+3949940	3951480	7
+3951480	3952720	periodos
+3952720	3953980	desde
+3953980	3954440	bueno
+3954440	3955060	desde el 87
+3955060	3955800	hasta el 93
+3955800	3957180	pero
+3957180	3958540	aguanté
+3958540	3959480	tenemos 87
+3959480	3960260	cómo era esto
+3960260	3967940	87
+3967940	3968460	99
+3968460	3972700	tenemos
+3972700	3973780	qué más
+3973780	3978900	y acá
+3978900	3979300	creo que no
+3979300	3979700	quiero ver
+3979700	3979960	nada
+3979960	3980860	nada
+3980860	3983300	panel
+3983300	3984540	balanceado
+3984540	3985060	todas las
+3985060	3985640	observaciones
+3985640	3986240	siguen este
+3986240	3986600	pattern
+3986600	3987500	111
+3987500	3989800	cada columna
+3989800	3990240	representan
+3990240	3990440	otros
+3990440	3991000	periodos
+3991000	3992020	lo que ya sabemos
+3992020	3993780	como siempre
+3993780	3994480	arrancamos por
+3994480	3994980	full
+3994980	3995400	dobles
+3995400	4003780	y veamos
+4003780	4003940	y veamos
+4003940	4004660	qué nos da
+4004660	4007480	primero que nada
+4007480	4007980	vemos que esto
+4007980	4008820	no es significativo
+4008820	4009440	así que incluso
+4009440	4010260	si quisiéramos darle
+4010260	4011160	como una explicación
+4011160	4012460	no es significativo
+4012460	4014060	pero fíjense
+4014060	4014440	que ni siquiera
+4014440	4015060	el signo
+4015060	4015520	es
+4015520	4016380	el que
+4016380	4017060	esperaríamos
+4017060	4017640	que sea
+4017640	4019120	porque lo que
+4019120	4020200	nos está diciendo
+4020200	4020780	esto es
+4020780	4022240	suba
+4022240	4022560	en las
+4022560	4023180	executions
+4023180	4023620	que vimos
+4023620	4024100	durante los
+4024100	4024320	últimos
+4024320	4024980	tres años
+4024980	4025620	lleva una
+4025620	4025880	suba
+4025880	4026240	en la cantidad
+4026240	4028220	de asesinatos
+4028220	4028980	en la población
+4028980	4030700	o sea
+4030700	4032660	no sería
+4032660	4033120	como muy
+4033120	4033800	consistente
+4033800	4034340	con lo que
+4034340	4036300	estábamos pasando
+4036300	4037460	la del desempleo
+4037460	4038080	sí nos da
+4038080	4039320	significativa
+4039320	4041860	y a mayor
+4041860	4042620	desempleo
+4042620	4043600	mayor tasa
+4043600	4043980	de
+4043980	4046480	homicidios
+4046480	4048620	que va en línea
+4048620	4049360	con lo que
+4049360	4050140	estábamos charlando
+4050140	4054520	entonces
+4054520	4056080	acá lo que
+4056080	4056540	estamos haciendo
+4056540	4057120	es controlar
+4057120	4057940	únicamente
+4057940	4059320	por desempleo
+4059320	4060120	y por el
+4060120	4060900	periodo temporal
+4060900	4062460	o sea
+4062460	4063520	estamos queriendo
+4063520	4063880	explicar
+4063880	4064700	esta tasa
+4064700	4065500	de homicidios
+4065500	4066540	usando
+4066540	4067960	la cantidad
+4067960	4068540	de ejecuciones
+4068540	4069580	y como
+4069580	4070060	control es
+4070060	4070720	el desempleo
+4070720	4071180	y el año
+4071180	4072360	o sea
+4072360	4072840	estamos viendo
+4072840	4073440	como cosas
+4073440	4074080	que afecten
+4074080	4074440	a todos
+4074440	4075540	los condados
+4075540	4076860	a nivel
+4076860	4077280	temporal
+4077280	4078240	con los años
+4078240	4078800	y a nivel
+4078800	4079380	macro
+4079380	4081000	con un
+4081000	4081440	employment
+4081440	4082360	en cada año
+4082360	4082700	sí
+4082700	4085120	ahora
+4085120	4085920	podría estar
+4085920	4086460	pasando
+4086460	4087360	y acá viene
+4087360	4087780	como lo que
+4087780	4088120	había dicho
+4088120	4088860	más al principio
+4088860	4090320	que haya
+4090320	4091020	cosas en el
+4091020	4091480	residuo
+4091480	4092060	que estén
+4092060	4092820	afectando
+4092820	4093940	execution
+4093940	4094440	o sea
+4094440	4094720	que el
+4094720	4095140	residuo
+4095140	4095580	que tenemos
+4095580	4096520	con esta
+4096520	4097900	especificación
+4097900	4098520	del modelo
+4098520	4100140	todavía no
+4100140	4100460	esté lo
+4100460	4101080	suficientemente
+4101080	4101960	limpio
+4101960	4103720	para
+4103720	4104520	decir
+4104520	4105040	pool
+4105040	4105260	doble
+4105260	4105920	es válido
+4105920	4106400	o pool
+4106400	4106580	doble
+4106580	4107140	es me sirve
+4107140	4107900	para la estimación
+4107900	4108460	que estoy haciendo
+4108460	4109880	porque recuerden
+4109880	4110220	que pool
+4110220	4110460	doble
+4110460	4111040	requiere
+4111040	4111980	exogeneidad
+4111980	4112800	estricta
+4112800	4115280	podría ser
+4115280	4115640	que no esté
+4115640	4116000	pasando
+4116000	4116380	eso
+4116380	4119860	no me quiero
+4119860	4120500	adelantar
+4120500	4121260	a las
+4121260	4121660	preguntas
+4121660	4122380	que siguen
+4122380	4124200	que es esta
+4124200	4125140	¿por qué
+4125140	4125640	podría ser
+4125640	4126080	importante
+4126080	4126540	tener en
+4126540	4127200	consideración
+4127200	4127780	los efectos
+4127780	4128380	temporales
+4128380	4129040	agregados
+4129040	4129340	en el
+4129340	4129700	modelo?
+4131540	4132440	esto es lo que
+4132440	4132700	dijimos
+4132700	4133400	recién
+4133400	4139660	bueno
+4139660	4141180	creo que
+4141180	4141700	medio que ya lo
+4141700	4142060	charlamos
+4142060	4142580	pero básicamente
+4142580	4143140	podría ser
+4143140	4143560	importante
+4143560	4144040	si la tasa
+4144040	4144480	de homicidios
+4144480	4145140	es afectada
+4145140	4145620	por factores
+4145620	4146300	macroeconómicos
+4146300	4146700	externos
+4146700	4147200	que afectan
+4147200	4148180	a todos los
+4148180	4149120	Estados Unidos
+4149120	4149760	de la misma
+4149760	4150080	manera
+4150080	4151480	y por factores
+4151480	4152120	macroeconómicos
+4152120	4152480	externos
+4152480	4152700	me estoy
+4152700	4153020	referiendo
+4153020	4153460	a cosas
+4153460	4153980	que pasen
+4153980	4154300	en el
+4154300	4154600	país
+4154600	4155120	en cierto
+4155120	4155480	año
+4155480	4156000	porque podría
+4156000	4156240	ser
+4156240	4158840	el Super Bowl
+4158840	4159160	estuvo
+4159160	4159680	revuelo
+4159680	4159920	entonces
+4159920	4160280	ese año
+4160280	4160580	la gente
+4160580	4160780	quiere
+4160780	4160980	matar
+4160980	4161340	menos
+4161340	4163020	cosas
+4163020	4163440	que sean
+4163440	4164280	del año
+4164280	4164520	y de
+4164520	4165060	para todos
+4165060	4165200	los
+4165200	4165600	condados
+4165600	4167400	pero bueno
+4167400	4167820	acá
+4167820	4168760	la gran mayoría
+4168760	4168920	de los
+4168920	4169340	economistas
+4169340	4169980	le gusta decir
+4169980	4170360	que son los
+4170360	4170620	factores
+4170620	4171520	macroeconómicos
+4171520	4172200	los únicos
+4172200	4172820	que existen
+4172820	4174080	pero de repente
+4174080	4175240	una pandemia
+4175240	4176120	te podría
+4176120	4176780	afectar
+4176780	4177540	todos los
+4177540	4178260	condados
+4178260	4185860	no creo
+4185860	4188080	siento que
+4188080	4188700	ni se enterarían
+4188700	4189080	si ganan
+4189080	4189440	un mundial
+4189440	4192220	a menos que
+4192220	4192720	lo hagan ahí
+4192720	4192960	como
+4192960	4193800	Estados Unidos
+4193800	4194060	México
+4194060	4194500	Canadá
+4194500	4195180	creo que
+4195180	4195780	ni se enterarían
+4195780	4199720	pero creo
+4199720	4199900	que el
+4199900	4200500	superpasón
+4200500	4201120	podría ser
+4201120	4203340	aunque juegan
+4203340	4203520	ellos
+4203520	4204260	contra ellos
+4204260	4205580	ganen
+4205580	4205840	el equipo
+4205840	4206300	de la ciudad
+4206300	4209540	bueno
+4209540	4210180	pero ahí
+4210180	4211640	que gana
+4211640	4212020	el equipo
+4212020	4212700	de tu ciudad
+4212700	4213840	es un
+4213840	4214200	efecto
+4214200	4214560	fijo
+4214560	4215220	de tu ciudad
+4215220	4217780	no aplica
+4217780	4218280	a la
+4218280	4218800	dami del
+4218800	4219440	80
+4219440	4220960	del 97
+4220960	4221760	no me acuerdo
+4221760	4222360	87
+4222360	4223680	entonces eso
+4223680	4224120	es justamente
+4224120	4224760	porque
+4224760	4225400	la razón
+4225400	4225640	por la que
+4225640	4225980	trabajamos
+4225980	4226580	con paneles
+4226580	4226920	o decir
+4226920	4227180	bueno
+4227180	4228260	cómo aprovecho
+4228260	4228680	el hecho
+4228680	4229240	de que tengo
+4229240	4229740	información
+4229740	4230060	a través
+4230060	4230500	de los años
+4230500	4231400	para counties
+4231400	4232280	que capaz
+4232280	4232960	que mi county
+4232960	4233920	viene ganando
+4233920	4234880	hace 10 años
+4234880	4237160	el deporte
+4237160	4237720	que está de moda
+4237720	4238240	en mi county
+4238240	4243680	pero bueno
+4243680	4244020	para eso
+4244020	4244380	un poco
+4244380	4244660	también
+4244660	4244960	hacemos
+4244960	4245300	estas
+4245300	4245940	preguntitas
+4245940	4246160	de
+4246160	4247760	por qué
+4247760	4248200	agregarías
+4248200	4248900	efectos temporales
+4248900	4249120	bueno
+4249120	4249800	para controlar
+4249800	4250280	por cosas
+4250280	4250760	que sucedan
+4250760	4251120	en todos
+4251120	4251540	los estados
+4251540	4252060	de Estados Unidos
+4252060	4252480	de la misma
+4252480	4252760	manera
+4252760	4253400	en un mismo año
+4253400	4255920	claro
+4255920	4256780	es como
+4256780	4257520	el chiste
+4257520	4257860	de datos
+4257860	4258180	de panel
+4258180	4258940	claro
+4258940	4259700	y vos
+4259700	4260060	es como
+4260060	4260400	bueno
+4260400	4261280	que justo
+4261280	4261620	no agarra
+4261620	4261880	tener
+4261880	4262260	medio
+4262260	4262520	largo
+4262520	4263140	nada más
+4263140	4264120	claro
+4264120	4265180	y también
+4265180	4265640	controlar
+4265640	4266100	por
+4266100	4267180	digamos
+4267180	4268800	la diferencia
+4268800	4269140	entre un
+4269140	4269660	dato de panel
+4269660	4270600	y un
+4270600	4272180	cross section
+4272180	4272480	común
+4272480	4272840	claro
+4272840	4273300	es que
+4273300	4273720	en datos
+4273720	4274120	de panel
+4274120	4275260	sabés
+4275260	4275800	que el county
+4275800	4276320	es el mismo
+4276320	4276740	a lo largo
+4276740	4276960	de esto
+4276960	4277400	estás midiendo
+4277400	4278100	el mismo county
+4278100	4278560	o que estás midiendo
+4278560	4279260	la misma persona
+4279260	4279620	a lo largo
+4279620	4280040	de los años
+4280040	4280360	entonces
+4280360	4281260	debe haber
+4281260	4281560	algo
+4281560	4283500	en ese mismo county
+4283500	4284640	o en esa misma persona
+4284640	4285440	que persiste
+4285440	4286040	en los años
+4286040	4286940	por ejemplo
+4286940	4287680	si a mí me gusta
+4287680	4288540	un tipo de música
+4288540	4289480	me va a seguir gustando
+4289480	4290580	a lo largo de toda mi vida
+4290580	4291140	probablemente
+4291140	4291500	no es que
+4291500	4292560	el estilo de música
+4292560	4293060	que me gusta
+4293060	4293700	va a ser algo
+4293700	4294380	aleatorio
+4294380	4295180	todos los años
+4295180	4296920	independiente
+4296920	4297840	de lo que pasó ayer
+4297840	4303520	ok
+4303520	4304400	y nos dicen
+4304400	4305680	considere
+4305680	4306420	no sé si
+4306420	4306800	es Pablo
+4306800	4307180	alguien
+4307180	4309320	considere la siguiente
+4309320	4309840	modificación
+4309840	4310560	en el modelo
+4310560	4312500	todo lo mismo
+4312500	4313440	excepto
+4313440	4314440	que le agrego
+4314440	4315280	el efecto fijo
+4315280	4316200	que decíamos
+4316200	4317020	acá recién
+4317020	4317760	que pasó
+4317760	4319760	en el 87
+4319760	4321100	en California
+4321100	4322540	me da miedo
+4322540	4323180	googlear
+4323180	4324000	pero bueno
+4324000	4324700	podrían hacer
+4324700	4326000	no lo voy a hacer
+4326000	4326760	con la grabación
+4326760	4329260	podrían googlear
+4329260	4329600	qué pasó
+4329600	4330200	en el 87
+4330200	4330980	en California
+4330980	4331820	en el 87
+4331820	4332420	en Arizona
+4332420	4333080	y ver qué pasó
+4333080	4340380	y estima la ecuación
+4340380	4341340	usando efectos fijos
+4341340	4342540	así que vamos a hacer eso
+4342540	4350460	estoy pensando
+4350460	4356340	vamos a hacerlo
+4356340	4356980	de dos formas
+4356980	4358880	la primera que tenemos
+4358880	4359400	acá es
+4359400	4361020	list square dummy variables
+4361020	4361940	que es esto que les decía
+4361940	4362760	al principio
+4362760	4363100	de
+4363100	4364460	bueno
+4364460	4365600	tenés información
+4365600	4366040	o sea
+4366040	4366840	tenés un dataset
+4366840	4367820	que tiene información
+4367820	4369240	para condados
+4369240	4375760	acá están los condados
+4375760	4379040	esto ignórenlo
+4379040	4380040	piensen
+4380040	4381520	o miro
+4381520	4384080	tengo la información
+4384080	4384680	de los condados
+4384680	4384920	bueno
+4384920	4385440	los agrego
+4385440	4386040	como una dummy
+4386040	4387460	y me fijo
+4387460	4388840	si hay algo
+4388840	4389880	intrínseco
+4389880	4390800	al estado
+4390800	4391380	de
+4391380	4392360	Colorado
+4392360	4393140	que hace que
+4393140	4393840	en promedio
+4393840	4394460	en Colorado
+4394460	4395320	haya más
+4395320	4396320	o menos
+4396320	4397160	homicidios
+4397160	4398000	que en Arizona
+4398000	4398700	que en DC
+4398700	4401680	no sé
+4401680	4402420	si será Georgia
+4402420	4402860	ni idea
+4402860	4407080	¿puedo hacer eso?
+4407460	4408140	bastante simple
+4408140	4408640	o sea
+4408640	4409880	regreso
+4409880	4411840	la dependiente
+4411840	4413460	contra las ejecuciones
+4413460	4415180	contra el desempleo
+4415180	4416540	contra la temporal
+4416540	4416980	del año
+4416980	4417660	y ahora
+4417660	4418640	agrego el efecto
+4418640	4419480	fijo manual
+4419480	4420300	usando
+4420300	4422120	i.id
+4422120	4423200	o sea
+4423200	4423800	le digo a Stata
+4423800	4424960	agregame las id
+4424960	4425680	como una variable
+4425680	4426280	categórica
+4426280	4428580	y eso es lo que
+4428580	4429000	hacemos acá
+4429000	4433900	este coeficiente
+4433900	4434760	sigue siendo
+4434760	4435660	negativo
+4435660	4436780	no significativo
+4436780	4439120	el desempleo
+4439120	4440140	deja de ser
+4440140	4441300	significativo
+4441300	4444100	al haber agregado
+4444100	4446260	los
+4446260	4448540	las dummies
+4448540	4449280	de los
+4449280	4451140	de los condados
+4451140	4452360	si
+4452360	4452940	esto
+4452940	4453600	lo agrega todo
+4453600	4454120	con una
+4454120	4455080	exacto
+4455080	4455840	con una categórica
+4455840	4457880	si fuese
+4457880	4459260	nada
+4459260	4460360	una variable
+4460360	4460780	continua
+4460780	4461320	lo agregás
+4461320	4461820	normal
+4461820	4467020	también
+4467020	4468040	podría generar
+4468040	4468580	una dummy
+4468580	4470800	para cada
+4470800	4471620	variable
+4471620	4471820	¿no?
+4472380	4472580	para
+4472580	4473720	Arizona
+4473720	4474560	vale
+4474560	4475480	uno
+4475480	4476080	solo si
+4476080	4476560	estoy hablando
+4476560	4476960	de Arizona
+4476960	4477920	pero ahí tendrías
+4477920	4478720	90 variables
+4478720	4480680	capaz que en otras
+4480680	4481220	aplicaciones
+4481220	4482040	tiene sentido
+4482040	4482500	pero acá
+4482500	4483700	es más fácil
+4483700	4484140	agregarlo
+4484140	4484580	directo a la
+4484580	4484960	reducción
+4484960	4487440	¿y qué más
+4487440	4488040	tenemos?
+4490940	4491980	el piválido
+4491980	4492580	fíjense que
+4492580	4493180	en general
+4493180	4494000	en los condados
+4494000	4495660	no vendría
+4495660	4496720	siendo significativo
+4496720	4497380	solo en algunos
+4497380	4499000	casos muy específicos
+4499000	4500960	pero nada
+4500960	4501360	lo que estamos
+4501360	4501820	haciendo acá
+4501820	4502420	es controlar
+4502420	4503980	por desempleo
+4503980	4505180	por año
+4505180	4506560	y por pertenencia
+4506560	4507240	a un condado
+4507240	4507860	o sea estamos
+4507860	4509440	explicitando
+4509440	4510260	los efectos
+4510260	4511020	fijos
+4511020	4512220	de los condados
+4512220	4512920	en el tiempo
+4512920	4514480	por ejemplo
+4514480	4515560	Arizona
+4515560	4516380	siempre se siente
+4516380	4517480	mejor que Colorado
+4517480	4518400	entonces en Arizona
+4518400	4520960	hay más o menos
+4520960	4525800	homicidios
+4525800	4526460	en este caso
+4526460	4527860	esto nos da
+4527860	4528460	positivo
+4528460	4529040	entonces
+4529040	4530800	la pertenencia
+4530800	4532120	al county
+4532120	4532720	Arizona
+4532720	4533560	nos dice que
+4533560	4535380	hay un aumento
+4535380	4536500	en la
+4536500	4537800	tasa de homicidios
+4537800	4539500	con respecto
+4539500	4540280	al promedio
+4540280	4545280	esto entiendo
+4545280	4545520	que es
+4545520	4546000	Wyoming
+4546000	4546920	por ejemplo
+4546920	4547440	es menor
+4547440	4548280	al promedio
+4548280	4554040	eso es
+4554040	4554340	si queremos
+4554340	4554740	hacer
+4554740	4555540	list
+4555540	4555960	squares
+4555960	4556220	dummy
+4556220	4556780	variables
+4556780	4557140	si queremos
+4557140	4557360	hacer
+4557360	4557980	fix effects
+4557980	4558540	volvemos
+4558540	4558900	a list
+4558900	4559320	reg
+4559320	4560880	misma
+4560880	4561700	especificación
+4561700	4563420	como
+4563420	4563980	perdón
+4563980	4567300	no escuché
+4567300	4569660	ah
+4569660	4570060	si
+4570060	4570640	tremendo
+4570640	4572100	pensé que
+4572100	4572740	aparte la constante
+4572740	4573480	5.9
+4573480	4574820	Texas
+4574820	4575760	sumale 7
+4575760	4579160	no sé
+4579160	4579700	cuál será
+4579700	4580120	bueno
+4580120	4581240	LA 8
+4581240	4583300	era de esperar
+4583300	4585500	así que nada
+4585500	4585920	si se estaban
+4585920	4586240	pensando
+4586240	4586520	en mudar
+4586520	4587240	a Estados Unidos
+4587240	4587740	y quieren
+4587740	4589300	dice 55
+4589300	4590520	esto me parece
+4590520	4591900	esto es
+4591900	4592340	DC
+4592340	4593080	o
+4593080	4594800	Washington
+4594800	4595200	DC
+4595200	4601020	siento que puede ser
+4601020	4601180	¿no?
+4601560	4601880	si
+4601880	4602300	si
+4602300	4610840	claro
+4610840	4611200	miren
+4611200	4612140	la murder rate
+4612140	4612580	en DC
+4612580	4612820	era
+4612820	4614140	78%
+4614140	4615400	no
+4615400	4615560	una
+4615560	4616080	guasada
+4616080	4619780	para la clase
+4619780	4620100	que viene
+4620100	4620540	averiguamos
+4620540	4621020	qué pasó
+4621020	4621400	en DC
+4621400	4621720	en
+4621720	4626040	qué pasó
+4626040	4626800	en DC
+4626800	4629300	en el
+4629300	4629860	90
+4629860	4631160	del 87
+4631160	4631800	al 93
+4631800	4633980	porque nos
+4633980	4634300	estaban
+4634300	4634480	dando
+4634480	4636280	ese coeficiente
+4636280	4636500	ahí
+4636500	4636920	pero bueno
+4636920	4637920	de vuelta
+4637920	4640240	efectivamente
+4640240	4641940	vamos
+4641940	4642680	tachando
+4642680	4643080	los supuestos
+4643080	4643520	que teníamos
+4643520	4645340	cada estado
+4645340	4645840	debe tener
+4645840	4646900	sus particularidades
+4646900	4647520	y si vivís
+4647520	4647900	en el medio
+4647900	4648480	del campito
+4648480	4649080	probablemente
+4649080	4649900	no tengas ganas
+4649900	4650860	de ir a salir
+4650860	4651620	a matar gente
+4651620	4653120	y si vivís
+4653120	4653920	en LA
+4653920	4655100	en el boom
+4655100	4656220	de las drogas
+4656220	4657020	duras más pesadas
+4657020	4657600	que te puedas
+4657600	4658040	imaginar
+4658040	4658360	bueno
+4658360	4659560	probablemente
+4659560	4660520	la tasa de criminalidad
+4660520	4661340	sea un poco más alta
+4661340	4661940	la tasa de un cío
+4661940	4662240	también
+4662240	4667240	ok
+4667240	4669120	dicho esto
+4669120	4670720	ya me perdí
+4670720	4671400	hicimos
+4671400	4671980	fix effects
+4671980	4672960	y de acá
+4672960	4673660	nos vamos a guardar
+4673660	4674020	la matriz
+4674020	4674920	de covarianzas
+4674920	4675480	porque después
+4675480	4675960	tenemos que hacer
+4675960	4676700	el test de Hausman
+4676700	4677300	así que nada
+4677300	4678180	lo voy a correr ahora
+4678180	4678960	pero
+4678960	4679840	cuando veamos
+4679840	4680600	el test de Hausman
+4680600	4681680	va a tener más envío
+4681680	4684780	vuelvo
+4684780	4685840	acá
+4685840	4689980	repita la estimación
+4689980	4691480	usando diferencias finitas
+4691480	4692440	bueno ahora ya sabemos
+4692440	4693660	lo que es diferencias finitas
+4693660	4695520	se acuerdan que era
+4695520	4698060	D por MRDRT
+4698060	4699740	D por todas las variables
+4699740	4699960	¿no?
+4701780	4702440	ahí ya tengo
+4702440	4703520	el simbolito
+4703520	4704020	problema
+4704020	4706080	pero nos dice
+4706080	4707040	no observations
+4707040	4708580	así que vamos a tener
+4708580	4708880	que ver
+4708880	4710160	cómo modificamos esto
+4710160	4712160	básicamente
+4712160	4713300	lo que nos está diciendo
+4713300	4714020	ahí Stata
+4714020	4715900	es no te puedo calcular
+4715900	4716320	esto
+4716320	4718260	porque hay un periodo
+4718260	4718640	temporal
+4718640	4719140	para el cual
+4719140	4720020	no tengo ninguna
+4720020	4720680	observación
+4720680	4721260	para nada
+4721260	4722820	entonces
+4722820	4725020	vamos a tener que hacerlo
+4725020	4726000	medio como que a mano
+4726000	4737240	y esto sería
+4737240	4738140	first differences
+4738140	4738660	pero
+4738660	4742420	para el
+4742420	4744900	ejercicio 2
+4744900	4749060	esto era el inciso
+4749060	4749240	inciso
+4749240	4754440	inciso D
+4754440	4761900	recordemos cómo era el modelo
+4761900	4763320	que estamos queriendo estimar
+4763320	4764520	en este caso específico
+4764520	4765360	era
+4765360	4766980	delta
+4766980	4768920	tasa de murders
+4768920	4770060	y T
+4770060	4771220	igual a
+4771220	4772660	beta
+4772660	4774240	x por delta
+4774240	4775840	x y t
+4775840	4776800	que son las ejecuciones
+4776800	4777400	más
+4777400	4779440	beta u
+4779440	4780960	el u capaz que
+4780960	4781580	no es
+4781580	4785000	este es el desempleo
+4785000	4789040	beta 90
+4789040	4790640	por la dami
+4790640	4791520	de las 90
+4791520	4796200	beta 93
+4796200	4797460	por la dami
+4797460	4798020	del 93
+4798020	4810180	y estos son los errores
+4810180	4810600	ya
+4810600	4812380	renombré los errores
+4812380	4812640	a
+4812640	4815380	porque la u
+4815380	4815820	lo está usando
+4815820	4816280	para siempre
+4816280	4821760	acá me falta
+4821760	4833900	delta de la dami
+4833900	4836460	esto acá
+4836460	4841340	es delta
+4841340	4841980	de la dami
+4841980	4844720	porque de vuelta
+4844720	4845220	le apliqué
+4845220	4846280	primeras diferencias
+4846280	4847340	a todas las variables
+4847340	4849440	ok
+4849440	4851440	lo que quiero ver
+4851440	4852360	ahora un poco es
+4852360	4853760	porque
+4853760	4854280	qué sé yo
+4854280	4856620	esto es bastante
+4856620	4857640	straightforward
+4857640	4858220	es como
+4858220	4859460	el valor
+4859460	4860560	del condado
+4860560	4860920	y
+4860920	4861900	de la tasa
+4861900	4863980	de asesinatos
+4863980	4865200	en el año
+4865200	4870740	90
+4870740	4871940	menos
+4871940	4876220	y esto te da un número
+4876220	4877860	ahora
+4877860	4880400	cuando lo querramos hacer
+4880400	4884800	para esta
+4884800	4887420	y para construir esta
+4887420	4888880	va a ser un poquito distinto
+4888880	4890480	y se los voy a mostrar a mano
+4890480	4891020	para que
+4891020	4891900	me crean
+4891900	4892620	de por qué están
+4892620	4893040	distinto
+4893040	4896860	pensemos cómo se estructura
+4896860	4897860	delta
+4897860	4899380	de la dami
+4899380	4900600	del 90
+4900600	4902260	para el condado
+4902260	4902500	y
+4902500	4903720	en el periodo T
+4903720	4904920	o sea
+4904920	4905600	si se acuerdan
+4905600	4907000	nuestra base de datos
+4907000	4907300	era
+4907300	4911500	y
+4911500	4912540	T
+4912540	4914780	el logaritmo
+4914780	4917160	de
+4917160	4918320	bla bla bla
+4918320	4919160	y aparte
+4919160	4920000	me quiero crear una
+4920000	4920920	que sea delta
+4920920	4922140	de
+4922140	4923240	90
+4923240	4924480	y T
+4924480	4926400	pero qué pasó
+4926400	4927380	yo para armar esa
+4927380	4927800	tengo
+4927800	4929300	la dami del 90
+4929300	4931920	en realidad es
+4931920	4935460	la dami del 87
+4935460	4938000	que no la tenemos
+4938000	4938300	que ver
+4938300	4939020	explícita pero
+4939020	4940420	la dami del 90
+4940420	4941360	y la dami del 93
+4941360	4945140	esto igual
+4945140	4945820	lo escribo así
+4945820	4946500	ahora lo voy a borrar
+4946500	4946980	pero lo escribo
+4946980	4947540	para que lo tengan
+4947540	4948340	en la cabeza
+4948340	4951060	para el condado
+4951060	4951680	1
+4951680	4952580	vamos a ponerle
+4952580	4952900	no sé
+4952900	4953420	Arizona
+4953420	4955340	en el periodo
+4955340	4955760	1
+4955760	4956440	que en realidad
+4956440	4957700	no es el periodo 1
+4957700	4958960	sino que es el periodo
+4958960	4959660	87
+4959660	4962260	Arizona
+4962260	4963820	en el 90
+4963820	4964880	Arizona
+4964880	4965780	en el 93
+4965780	4968540	el crime rate
+4968540	4969300	va a tener un número
+4969300	4971960	y pensamos cómo son
+4971960	4973080	las damis
+4973080	4974700	en el 87
+4974700	4975780	la dami del 87
+4975780	4977140	sería así
+4977140	4977720	si estuviera
+4977720	4979220	la del 90
+4979220	4980540	sería así
+4980540	4981860	y la del 93
+4981860	4983040	sería así
+4983040	4985200	ahora
+4985200	4985980	cuando nosotros
+4985980	4986860	querramos armar
+4986860	4987740	una variable
+4987740	4988380	que se llama
+4988380	4989040	delta
+4989040	4990300	dami del 90
+4990300	4991360	la tenemos que
+4991360	4992080	especificar
+4992080	4992540	para
+4992540	4994260	cada condado
+4994260	4995440	para cada periodo
+4995440	4995900	en el tiempo
+4995900	4997160	entonces
+4997160	4998140	eso
+4998140	4998600	digamos
+4998600	4999720	tengan en la cabeza
+4999720	5000160	esto
+5000160	5000660	que ahora
+5000660	5001140	lo voy a correr
+5001140	5001500	un poquito
+5001500	5005240	esta tablita
+5005240	5007200	y de última
+5007200	5007600	igual después
+5007600	5008360	volvemos a la tablita
+5008360	5008920	si es más
+5008920	5012020	evidente ahí
+5012020	5012920	pero por ahora
+5012920	5015220	vuelvo acá un segundo
+5015220	5019040	entonces
+5019040	5020360	de vuelta
+5020360	5020900	lo que queríamos
+5020900	5021280	era
+5021280	5022640	cuánto vale esto
+5022640	5024000	para cada i
+5024000	5024820	en cada momento
+5024820	5025240	en el tiempo
+5025240	5025960	entonces voy a necesitar
+5025960	5028640	el valor que toma
+5028640	5029480	cuando t
+5029480	5030680	es igual a 87
+5030680	5032980	el valor que toma
+5032980	5033920	cuando t
+5033920	5035520	es igual a 90
+5035520	5036580	y el valor que toma
+5036580	5037160	cuando t
+5037160	5038100	es igual a 93
+5038100	5041300	para el 87
+5041300	5042000	esta es fácil
+5042000	5044240	si yo quiero
+5044240	5044940	armar
+5044940	5046920	una variable
+5046920	5047860	que es
+5047860	5048340	dami
+5048340	5049600	del 90
+5049600	5050780	de i
+5050780	5052380	en el periodo
+5052380	5053820	87
+5053820	5055500	menos
+5055500	5056460	dami
+5056460	5057500	del 90
+5057500	5059700	para el periodo
+5059700	5060140	y
+5060140	5061460	en el
+5061460	5064480	año pre 87
+5064480	5066040	que podría ser
+5066040	5066580	por ejemplo
+5066580	5067400	el 85
+5067400	5070340	esto lo tenemos
+5070340	5078180	como que no tenemos
+5078180	5079240	nada previo
+5079240	5080060	¿no?
+5080980	5081380	entonces
+5081380	5081920	esto acá
+5081920	5082520	no lo vamos a poder
+5082520	5082980	calcular
+5082980	5086500	no tendría que haberlo
+5086500	5086740	borrado
+5086740	5091720	para que quede
+5091720	5093560	bien evidente
+5093560	5094800	por qué
+5094800	5095560	no lo vamos a poder
+5095560	5095860	calcular
+5095860	5104860	digamos
+5104860	5105680	lo que estoy diciendo acá
+5105680	5106160	es esto
+5106160	5106820	se calcula
+5106820	5107040	así
+5107040	5108420	entonces
+5108420	5109600	acá vamos a tener
+5109600	5109980	un mismo
+5109980	5112600	después
+5112600	5113900	para el año 90
+5113900	5115520	¿qué es lo que quiero calcular?
+5117000	5117760	una dami
+5117760	5118420	que va a ser
+5118420	5119360	dami
+5119360	5120540	del 90
+5120540	5121320	para el condado
+5121320	5121620	ahí
+5121620	5123220	en el año 90
+5123220	5123940	menos
+5123940	5124640	dami
+5124640	5125780	90
+5125780	5126740	para el condado
+5126740	5127080	ahí
+5127080	5128280	en el 87
+5128280	5129160	que es lo anterior
+5129160	5131760	eso sí lo tenemos
+5131760	5132540	porque pensemos
+5132540	5133520	dami del 90
+5133520	5134100	en el 90
+5134100	5135880	dami del 90
+5135880	5136560	en el 87
+5136560	5137260	lo voy a buscar
+5137260	5137760	a la tabla
+5137760	5141840	esto
+5141840	5144180	dami del 90
+5144180	5145080	en el 90
+5145080	5145840	1
+5145840	5146980	dami del 90
+5146980	5147600	en el 87
+5147600	5147980	0
+5147980	5150860	entonces esto va a ser
+5150860	5152900	1
+5152900	5153580	menos 0
+5153580	5154340	1
+5154340	5156240	y para el 93
+5156240	5156680	lo mismo
+5156680	5159720	dami del 93
+5159720	5161520	no mentira
+5161520	5162360	estamos trabajando
+5162360	5163000	con la del 90
+5163000	5165700	para el condado
+5165700	5166860	hoy en el año 93
+5166860	5167980	menos dami
+5167980	5169520	del 90
+5169520	5170340	para el condado
+5170340	5171440	hoy en el año 90
+5171440	5173460	y vamos a buscarlo
+5173460	5173860	a la tabla
+5173860	5175260	¿cuánto valía
+5175260	5176660	la dami del 90
+5176660	5177700	en el
+5177700	5178560	año
+5178560	5180060	acá
+5180060	5182560	en el 93
+5182560	5188500	la dami del 90
+5188500	5189920	en el año 93
+5189920	5190840	valía 0
+5190840	5193340	y la dami del 90
+5193340	5195300	en el año 90
+5195300	5196400	valía 1
+5196400	5198660	entonces
+5198660	5201460	este de acá
+5201460	5202180	es 0
+5202180	5203280	te da más 1
+5203280	5204080	entonces me queda
+5204080	5204420	0
+5204420	5205060	menos 1
+5205060	5205580	menos
+5205580	5207260	entonces la estructura
+5207260	5207760	que va a seguir
+5207760	5208380	esta variable
+5208380	5209120	para cada i
+5209120	5209500	va a ser
+5209500	5210940	puntito
+5210940	5211660	1
+5211660	5212300	menos 1
+5212300	5215600	con esto
+5215600	5216240	después
+5216240	5216640	digamos
+5216640	5217760	mismo procedimiento
+5217760	5218820	armamos
+5218820	5219360	delta
+5219360	5220500	d93
+5220500	5221740	y t
+5221740	5224640	y vamos a tener
+5224640	5225080	bueno
+5225080	5225480	por suerte
+5225480	5226160	salió bárbaro
+5226160	5226680	el cachete
+5226680	5232080	mismo razonamiento
+5232080	5234060	t igual a 87
+5234060	5235240	t igual a 90
+5235240	5236860	t igual a 93
+5236860	5238740	en el 87
+5238740	5239620	me va a pasar
+5239620	5240620	que como no tengo
+5240620	5241660	un periodo atrás
+5241660	5242660	esto de acá arriba
+5242660	5244480	esto de vuelta
+5244480	5245240	va a ser un missing
+5245240	5249200	en el caso del 90
+5249200	5250300	lo que estamos queriendo hacer
+5250300	5250600	es
+5250600	5251880	¿cuánto valía
+5251880	5253040	la dami del 93
+5253040	5255160	para todos los condados
+5255160	5256120	en el 90?
+5256120	5257620	menos cuánto valía
+5257620	5258620	la dami del 93
+5258620	5259880	para todos los condados
+5259880	5260740	en el 87
+5260740	5263380	¿cómo es esto?
+5264900	5265500	sería
+5265500	5267780	voy con el
+5267780	5268540	no
+5268540	5269180	con el arbol
+5269180	5269720	nada
+5269720	5272720	dami del 93
+5272720	5273620	en el año 90
+5273620	5277220	dami del 93
+5277220	5279820	año 90
+5279820	5281340	0
+5281340	5283880	dami del 93
+5283880	5284800	en el 87
+5284800	5286600	dami del 93
+5286600	5288300	en el 87
+5288300	5289140	0
+5289140	5291020	entonces esto es
+5291020	5291840	0
+5291840	5292500	menos 0
+5292500	5292960	0
+5292960	5294340	y
+5294340	5295800	mismo razonamiento
+5295800	5296860	¿cuánto valía
+5296860	5297740	la dami del 93
+5297740	5298440	en el 93
+5298440	5300580	menos cuánto valía
+5300580	5301580	la dami del 93
+5301580	5304280	en el 90?
+5304280	5306280	ahora sí
+5306280	5306320	ahora sí
+5306320	5306340	ahora sí
+5306340	5307420	la dami del 93
+5307420	5312080	en el año 93
+5312080	5314160	vale 1
+5314160	5318820	¿cuánto valía la dami
+5318820	5320460	del 93
+5320460	5320960	en el 90?
+5321080	5321340	0
+5321340	5323700	entonces la estructura
+5323700	5324740	de este va a ser
+5324740	5326440	missing
+5326440	5327860	0
+5327860	5329040	1
+5329040	5333040	entonces
+5333040	5334740	90
+5334740	5335220	por ejemplo
+5335220	5335840	este que ya lo tengo
+5335840	5336620	acá en la columnita
+5336620	5337460	va a ser
+5337460	5342920	missing
+5342920	5344640	para el año 87
+5344640	5345980	para Arizona
+5345980	5347660	1
+5347660	5349240	para el año 90
+5349240	5350300	menos 1
+5350300	5353580	para el año 93
+5353580	5355120	sigo con el estado
+5355120	5355840	no sé
+5355840	5357740	con Texas
+5357740	5359920	87
+5359920	5360860	90
+5360860	5361660	93
+5361660	5364580	puntito en el 87
+5364580	5365840	1 en el 90
+5365840	5367040	menos 1 en el 93
+5367040	5368100	y de la misma forma
+5368100	5370000	vamos a querer armar esto
+5370000	5370400	¿sí?
+5371700	5372500	hasta acá estamos bien
+5372500	5374480	seguimos todos
+5374480	5375040	a bordo
+5375040	5376060	de este cálculo
+5376060	5376720	¿entendió?
+5380720	5382040	vuelvo a la estatua
+5382040	5385040	compartimos
+5385040	5389420	eso lo podés ver acá
+5389420	5390880	genero
+5390880	5391960	CD90
+5391960	5392900	missings
+5392900	5394740	y lo reemplazo
+5394740	5395520	por un 1
+5395520	5396460	si el año es el 90
+5396460	5397300	menos 1
+5397300	5398060	si es el 93
+5398060	5402180	después de haber hecho
+5402180	5402740	como las cuentitas
+5402740	5402960	a mano
+5402960	5403520	tiene sentido
+5403520	5403900	este código
+5403900	5404440	si no era como
+5404440	5407620	y lo mismo
+5407620	5408320	con la del 93
+5408320	5413120	y acá les dejo
+5413120	5413800	una alternativa
+5413800	5414520	que pueden usar
+5414520	5415120	que es un poco más
+5415120	5415760	sofisticada
+5415760	5416200	si querés
+5416200	5416460	porque
+5416460	5417380	lo corres todo
+5417380	5418040	una sola vez
+5418040	5418720	que es básicamente
+5418720	5422320	agarrás la dami
+5422320	5422840	del 90
+5422840	5424540	y le restás
+5424540	5425760	la dami del 90
+5425760	5426500	en el
+5426500	5428600	guión bajo
+5428600	5429320	n-1
+5429320	5430340	guión bajo n-1
+5430340	5431160	lo que le dice a Stata
+5431160	5431440	es
+5431440	5434480	si estás parado
+5434480	5435120	por ejemplo
+5435120	5435980	acá
+5435980	5437640	y estás mirando
+5437640	5438720	la dami del 90
+5438720	5445120	estás parado acá
+5445120	5446160	y estás mirando
+5446160	5447000	la dami del 90
+5447000	5447620	restale
+5447620	5448840	movete uno para arriba
+5448840	5449500	y restale este
+5449500	5450520	movete uno para arriba
+5450520	5451240	y restale este
+5451240	5451960	entonces
+5451960	5453260	te lo hace automático
+5453260	5454440	pero para correr eso
+5454440	5454800	es importante
+5454800	5455220	que esté
+5455220	5455940	la data seteada
+5455940	5456440	como un panel
+5456440	5457740	si no está bien seteada
+5457740	5458680	estos saltos
+5458680	5460600	capaz que no te representan
+5460600	5461760	lo mismo
+5461760	5462700	porque ponele
+5462700	5463340	si tenés
+5463340	5464240	esto
+5464240	5465140	sort by
+5465140	5467720	no sé
+5467720	5468180	año
+5468180	5469120	y tenés 87
+5469120	5470200	contra 87
+5470200	5470560	de
+5470560	5473500	Arkansas
+5473500	5474180	contra
+5474180	5475740	no sé
+5475740	5475880	que
+5475880	5479580	va a estar mal
+5479580	5480140	lo que estás haciendo
+5480140	5480500	entonces
+5480500	5481400	es importante
+5481400	5481860	que esté
+5481860	5482780	estructura
+5482780	5483260	panel
+5483260	5483780	long
+5483780	5485200	funciona
+5485200	5485920	si no
+5485920	5487660	hacen este
+5487660	5488420	que es más evidente
+5488420	5489340	más explícito
+5489340	5490020	lo que estamos haciendo
+5490020	5490640	y funciona
+5490640	5491480	bárbaro
+5491480	5492500	ok
+5492500	5495320	nos creamos
+5495320	5495840	entonces
+5495840	5497700	estas dummies
+5497700	5497960	de acá
+5497960	5498620	que son las que nos
+5498620	5499720	generaban el problemita
+5499720	5500000	este
+5500000	5500360	de
+5500360	5501380	que no había
+5501380	5501940	observaciones
+5501940	5503340	para el primer año
+5503340	5506560	y corremos la regresión
+5506560	5506980	de vuelta
+5506980	5508240	sin la consulta
+5508240	5514300	este
+5514300	5514320	este
+5514320	5514620	sería
+5514620	5515580	el modelito
+5515580	5518900	de
+5518900	5519540	first
+5519540	5520000	differences
+5520000	5524320	en el caso
+5524320	5524960	de que lo quieran
+5524960	5525560	hacer a mano
+5525560	5526240	a mano
+5526240	5526720	siendo
+5526720	5527860	me creo
+5527860	5528780	las variables
+5528780	5529800	y uso
+5529800	5530280	la matriz
+5530280	5530640	time
+5530640	5531180	demeaning
+5531180	5531680	se llama
+5531680	5533260	y después
+5533260	5533720	uso
+5533720	5534300	OLS
+5534300	5537340	acá tienen
+5537340	5538660	los
+5538660	5539660	los pasitos
+5539660	5541360	se los cuento
+5541360	5542040	más o menos
+5542040	5542640	por si lo quieren
+5542640	5543300	chusnear después
+5543300	5543880	pero básicamente
+5543880	5544340	lo que estamos
+5544340	5544860	haciendo es
+5544860	5547580	agarras
+5547580	5548540	y te generas
+5548540	5549600	una matriz
+5549600	5552660	a partir
+5552660	5553380	de la variable
+5553380	5554240	acá
+5554240	5556740	MR
+5556740	5557200	de
+5557200	5559000	MR
+5559000	5559240	de
+5559240	5559260	MR
+5559260	5559300	de
+5559300	5559420	MR
+5559420	5559500	de
+5559500	5559540	MR
+5559540	5559820	de
+5559820	5560020	MR
+5560020	5560520	de
+5560520	5560900	te generas
+5560900	5561400	una matriz
+5561400	5566220	haces otra
+5566220	5566700	matriz
+5566700	5567480	con las X
+5567480	5569540	que te va a
+5569540	5569940	incluir
+5569940	5571300	las variables
+5571300	5571880	independientes
+5571880	5572260	que querés
+5572260	5572640	incluir
+5572640	5574540	y después
+5574540	5575480	te generas
+5575480	5577120	este vector
+5577120	5578040	o más bien
+5578040	5578520	esta matriz
+5578520	5579260	time demeaning
+5579260	5580160	que fíjense
+5580160	5580600	lo que tienen
+5580600	5581220	los componentes
+5581220	5581460	tenemos
+5581460	5582340	menos uno
+5582340	5582920	uno
+5582920	5583720	cero
+5583720	5586000	cero
+5586000	5586640	menos uno
+5586640	5587240	uno
+5587240	5590220	esto lo pueden
+5590220	5590820	ver en las
+5590820	5591300	slides
+5591300	5592060	creo que
+5592060	5593280	en el
+5593280	5594480	las slides
+5594480	5595420	en estas de acá
+5595420	5608640	bueno no sé si lo voy a encontrar
+5608640	5608980	pero
+5608980	5611300	lo que estamos haciendo
+5611300	5611580	es como
+5611580	5612820	transformar a mano
+5612820	5613840	eso que decíamos
+5613840	5614280	de
+5614280	5616700	menos uno
+5616700	5617260	uno
+5617260	5617660	cero
+5617660	5618800	para las observaciones
+5618800	5620380	y con eso
+5620380	5620700	te armás
+5620700	5621200	la matriz
+5621200	5622080	de trascuesta
+5622080	5622480	por B
+5622480	5624640	tenés que hacer
+5624640	5625020	el producto
+5625020	5625420	croniker
+5625420	5625860	de eso
+5625860	5627680	y
+5627680	5628440	después
+5628440	5628840	haces la
+5628840	5629560	transformación
+5629560	5630560	a mano
+5630560	5631720	de toda
+5631720	5632300	la matriz
+5632300	5635960	y acá
+5635960	5635980	y acá
+5635980	5636560	nos devuelve
+5636560	5637120	los betas
+5637120	5638200	nada
+5638200	5638620	por si
+5638620	5638800	quieren
+5638800	5639320	practicar
+5639320	5639680	un poco
+5639680	5640080	el tema
+5640080	5640660	de
+5640660	5642340	trabajarlo
+5642340	5643040	en forma
+5643040	5643620	matricial
+5643620	5644340	ahí tienen
+5644340	5644980	los pasos
+5644980	5646460	y
+5646460	5647240	lo mismo
+5647240	5648120	con GLS
+5648120	5650200	que
+5650200	5651460	nada
+5651460	5652360	con GLS
+5652360	5652940	básicamente
+5652940	5655940	haces
+5655940	5656920	otra
+5656920	5657620	transformación
+5657620	5657940	en lugar
+5657940	5658280	de usar
+5658280	5659780	esta matriz
+5659780	5660700	usas
+5660700	5661540	esta matriz
+5661540	5663140	pero es
+5663140	5664700	es un toque
+5664700	5665240	de la diferencia
+5665240	5668980	estoy corriendo
+5668980	5669200	un poco
+5669200	5669680	porque nos queda
+5669680	5670280	poquito tiempo
+5670280	5672880	y quiero ver
+5672880	5673900	hay otro
+5673900	5674160	inciso
+5674160	5674720	que me interesa
+5674720	5675500	un poco más
+5675500	5677160	que es
+5677160	5679340	ok
+5679340	5680660	brinde un ejemplo
+5680660	5681260	bajo el cual
+5681260	5681980	la variable
+5681980	5683280	de ejecuciones
+5683280	5683720	no sería
+5683720	5684300	estrictamente
+5684300	5685020	exógena
+5685020	5686640	observación
+5686640	5687080	para obtener
+5687080	5687460	estimaciones
+5687460	5688020	consistentes
+5688020	5688340	el modelo
+5688340	5688780	de efectos
+5688780	5689240	fijos
+5689240	5689580	asume
+5689580	5689980	exogenidad
+5689980	5690360	estricta
+5690360	5690780	de las variables
+5690780	5691360	explicativas
+5691360	5691920	condicionadas
+5691920	5692260	en C
+5692260	5692660	que es lo que
+5692660	5693020	hablábamos
+5693020	5693480	hace un rato
+5693480	5695240	y bueno
+5695240	5696280	acá tienen
+5696280	5696620	como una
+5696620	5697240	explicación
+5697240	5697660	les dejo
+5697660	5698220	en las soluciones
+5698220	5698920	una explicación
+5698920	5699260	más
+5699260	5701120	específica
+5701120	5701660	pero no es
+5701660	5701960	mucho más
+5701960	5702220	distinto
+5702220	5702460	de lo que
+5702460	5702700	estábamos
+5702700	5703060	hablando
+5703060	5703320	digo
+5703320	5705480	lo que te propone
+5705480	5705940	este ejercicio
+5705940	5706660	es pensar
+5706660	5709860	cuando la variable
+5709860	5710320	X
+5710320	5711040	no es
+5711040	5711620	estrictamente
+5711620	5712200	exógena
+5712200	5712560	o sea
+5712560	5713380	cuando hay algo
+5713380	5714220	en los errores
+5714220	5714760	que está
+5714760	5715540	correlacionando
+5715540	5716180	con la variable
+5716180	5716740	de ejecuciones
+5716740	5717280	por ejemplo
+5717280	5718100	y acá
+5718100	5718420	el ejemplo
+5718420	5718860	que te dan
+5718860	5719080	es
+5719080	5719300	bueno
+5719300	5719680	mirá
+5719680	5720800	vos estás
+5720800	5721120	queriendo
+5721120	5721680	explicar
+5721680	5725000	la tasa
+5725000	5725940	de homicidios
+5725940	5726780	con la cantidad
+5726780	5727400	de ejecuciones
+5727400	5729080	pero podría ser
+5729080	5730020	que la cantidad
+5730020	5730760	de ejecuciones
+5730760	5731300	que hay
+5731300	5731840	que hubo
+5731840	5732300	en los últimos
+5732300	5732800	años
+5732800	5733800	tenga que ver
+5733800	5734340	con la cantidad
+5734340	5734940	de homicidios
+5734940	5735540	que se observan
+5735540	5736100	en la población
+5736100	5737260	entonces ahí
+5737260	5737540	tenías
+5737540	5738380	como un efecto
+5738380	5739220	de causalidad
+5739220	5742440	causalidad
+5742440	5743280	¿cómo se dice esto?
+5743280	5757440	simultánea
+5757440	5757980	causalidad
+5757980	5758640	simultánea
+5758640	5759420	porque estás
+5759420	5759820	teniendo
+5759820	5761240	una simultaneidad
+5761240	5762980	a mayores
+5762980	5763340	cantidades
+5763340	5763860	de ejecuciones
+5763860	5764540	los jueces
+5764540	5765220	se ponen
+5765220	5766360	más estrictos
+5766360	5767360	y emiten
+5767360	5768160	más órdenes
+5768160	5768580	de penas
+5768580	5769960	de muerte
+5769960	5772480	pero entonces
+5772480	5773260	vos estás
+5773260	5774140	digamos
+5774140	5774660	explicando
+5774660	5775080	la cantidad
+5775080	5776720	de asesinatos
+5776720	5777720	con la cantidad
+5777720	5779940	de penas
+5779940	5780400	de muerte
+5780400	5781160	pero la pena
+5781160	5781620	de muerte
+5781620	5782140	depende
+5782140	5782740	de la cantidad
+5782740	5783660	de ejecuciones
+5783660	5784140	que se vieron
+5784140	5785300	de asesinatos
+5785300	5785880	que los jueces
+5785880	5786080	vieron
+5786080	5786500	en los últimos
+5786500	5786820	años
+5786820	5787180	entonces dicen
+5787180	5787360	bueno
+5787360	5788540	en este condado
+5788540	5789080	vamos a ser
+5789080	5789280	un poco
+5789280	5789880	más estrictos
+5789880	5790360	porque vemos
+5790360	5790740	mayores
+5790740	5791180	cantidades
+5791180	5791700	de homicidios
+5791700	5793860	entonces
+5793860	5794560	eso es un poco
+5794560	5795180	lo que se explica
+5795180	5795440	acá
+5795440	5797300	y el F
+5797300	5799300	repita la estimación
+5799300	5800140	del inciso C
+5800140	5801200	usando el estimador
+5801200	5801880	de GLS
+5801880	5802440	para diferencias
+5802440	5803280	de primer orden
+5803280	5803760	comprobé
+5803760	5805040	como ya lo hicimos
+5805040	5808040	reestimar
+5808040	5808400	el modelo
+5808400	5808980	de inciso C
+5808980	5809960	usando efectos
+5809960	5810420	aleatorios
+5810420	5811080	e implementar
+5811080	5811300	el test
+5811300	5811780	de housing
+5811780	5814040	creo que ya
+5814040	5814780	lo habían corrido
+5814780	5815140	igual
+5815140	5820500	acá tenemos
+5820500	5821920	los comandos
+5821920	5822380	para hacer
+5822380	5823020	random effects
+5823020	5824220	que es
+5824220	5824780	xtreg
+5824780	5825680	contra re
+5825680	5827460	y yo sea
+5827460	5827860	de paso
+5827860	5829180	porque capaz
+5829180	5829680	que esto sale
+5829680	5829920	un poco
+5829920	5831160	como te acordás
+5831160	5832020	que xtreg
+5832020	5833220	como te acordás
+5833220	5833880	que random effects
+5833880	5834440	se hacía así
+5834440	5836060	en uno de los libros
+5836060	5836400	estos
+5836400	5837180	si no me equivoco
+5837180	5837700	en este
+5837700	5841420	en esta parte
+5841420	5842140	que les comentaba
+5842140	5842760	recién
+5842760	5847280	me acuerdo
+5847280	5847560	que había
+5847560	5848380	una tablita
+5848380	5848860	donde
+5848860	5849840	enseguida
+5849840	5850900	como que te hacía
+5850900	5851680	el resumencito
+5851680	5852580	de esto
+5852580	5855820	voy a buscar
+5855820	5863420	263
+5863420	5864420	263
+5864420	5865420	263
+5865420	5866420	263
+5866420	5867420	263
+5867420	5868420	263
+5868420	5877420	263
+5877420	5879420	263
+5879420	5880420	263
+5880420	5881420	263
+5881420	5881660	263
+5881660	5887900	esto
+5887900	5889680	estatal
+5889680	5889940	linear
+5889940	5890440	panel data
+5890440	5890960	commands
+5890960	5891420	pull
+5891420	5891900	wls
+5891900	5892180	pull
+5892180	5892820	fgls
+5892820	5893400	random effects
+5893400	5893980	6 effects
+5893980	5894540	random soft
+5894540	5895220	first differences
+5895220	5896260	esto que decíamos
+5896260	5897120	que tenemos que hacerlo
+5897120	5897560	a mano
+5897560	5899120	así que nada
+5899120	5899480	si lo quieren
+5899480	5900080	chamear después
+5900080	5901480	274
+5901480	5902180	de 732
+5902180	5902760	este file
+5902760	5905800	el último
+5905800	5906400	después se los paso
+5906400	5909720	bueno
+5909720	5913380	esto ya lo corrimos
+5913380	5914760	y ya teníamos
+5914760	5915340	las matrices
+5915340	5915960	armaditas
+5915960	5916620	y vamos a hacer
+5916620	5917220	el test de housing
+5917220	5923000	estimation
+5923000	5923920	of sound
+5923920	5930600	bueno voy a correr
+5930600	5931000	todo de vuelta
+5931000	5931460	por los dos
+5931460	5940660	hasta acá
+5940660	5940680	hasta acá
+5940680	5941280	llegamos al
+5941280	5941720	problema
+5941720	5941880	de
+5941880	5942140	search
+5942140	5942800	differences
+5942800	5945780	así que acá
+5945780	5946300	tengo la
+5946300	5947380	alternativa
+5947380	5949520	sigo por acá
+5949520	5954020	y el test de houseman
+5954020	5955580	mini repaso
+5955580	5956600	de lo que era
+5956600	5958300	el test de houseman
+5958300	5958760	lo que hacía
+5958760	5959140	era
+5959140	5960600	comparar
+5960600	5962900	dos modelos
+5962900	5963300	distintos
+5963300	5964140	por ejemplo
+5964140	5965340	uno de random effects
+5965340	5966640	contra uno de fixed effects
+5966640	5968840	acá les dejo la aclaración
+5968840	5969620	que primero hay que poner
+5969620	5970220	las estimaciones
+5970220	5970880	de fixed effects
+5970880	5971300	y después
+5971300	5972640	las de random effects
+5972640	5978560	y lo que hace
+5978560	5979100	es básicamente
+5979100	5980000	comparar
+5980000	5981180	cómo se comportan
+5981180	5981800	ambos
+5981800	5984900	o la performance
+5984900	5986020	de ambos modelos
+5986020	5987120	considerando que bueno
+5987120	5988180	fixed effects
+5988180	5989160	tiene sus limitaciones
+5989160	5989720	random effects
+5989720	5990620	tiene sus limitaciones
+5990620	5991000	digamos
+5991000	5991840	sus ventajas
+5991840	5992620	y sus costos
+5992620	5993380	como lo vieron
+5993380	5994120	en las teorías
+5994120	5997060	recordemos la diferencia
+5997060	5998260	principal entre fixed effects
+5998260	5998980	y random effects
+5998980	6000580	random effects
+6000580	6001560	dice que la variable
+6001560	6002500	que el efecto fijo
+6002500	6003120	es aleatorio
+6003120	6005220	o sea que no
+6005220	6005960	correlaciona
+6005960	6006600	contra las x
+6006600	6007920	fixed effects
+6007920	6008700	nos permite
+6008700	6010400	decir
+6010400	6011280	puede haber
+6011280	6012320	algún tipo de correlación
+6012320	6013540	entonces
+6013540	6014340	la hipótesis nula
+6014340	6015120	del test de houseman
+6015120	6015560	va a ser
+6015560	6017960	la covarianza
+6017960	6019040	entre
+6019040	6020020	el efecto
+6020020	6021040	fijo
+6021040	6021440	ci
+6021440	6022580	y las variables
+6022580	6023240	x y
+6023240	6025520	es igual a cero
+6025520	6026040	o sea que no hay
+6026040	6026620	correlación
+6026620	6027980	o sea estamos diciendo
+6027980	6029720	que en ese caso
+6029720	6030660	random effects
+6030660	6031500	es apropiado
+6031500	6034960	¿qué pasa si
+6034960	6036240	cuando comparamos
+6036240	6037020	estas dos cosas
+6037020	6037700	fixed effects
+6037700	6038600	contra random effects
+6038600	6039520	bueno queremos ver
+6039520	6040340	un poco
+6040340	6042120	si se soporta o no
+6042120	6043280	el supuesto de
+6043280	6044160	hay o no hay
+6044160	6044740	correlación
+6044740	6045580	en cada uno
+6045580	6046280	de los modelos
+6046280	6047660	entonces lo que hace
+6047660	6048940	houseman
+6048940	6049820	es
+6049820	6052100	bajo la hipótesis
+6052100	6052760	nula de que
+6052760	6053640	no hay
+6053640	6055100	correlación
+6055100	6055920	bajo la hipótesis
+6055920	6056760	nula de que
+6056760	6057860	sería válido
+6057860	6059340	random effects
+6059340	6061880	los estimadores
+6061880	6062880	deberían ser similares
+6062880	6063760	ahora
+6063760	6064780	si hay correlación
+6064780	6066260	los estimadores
+6066260	6067140	de random effects
+6067140	6067740	van a ser
+6067740	6068640	incesgados
+6068640	6069880	entonces ahí vamos a ver
+6069880	6070960	una diferencia más grande
+6070960	6071660	entonces
+6071660	6072340	esa es la
+6072340	6073280	lo que está detrás
+6073280	6073800	de houseman
+6073800	6075520	pero nos dice que
+6075520	6077940	fíjense que acá
+6077940	6078800	esto no nos está
+6078800	6079740	calculando esto
+6079740	6080520	para el año
+6080520	6081460	90 y 93
+6081460	6085440	y acá viene una parte
+6085440	6085920	que es un poco
+6085920	6086460	matemática
+6086460	6087500	es un poco pesada
+6087500	6088680	así que prefiero
+6088680	6089160	que lo veamos
+6089160	6089640	la próxima
+6089640	6090180	porque la verdad
+6090180	6090800	que no vamos a llegar
+6090800	6091560	en 5 minutos
+6091560	6094340	pero
+6094340	6095940	hagamos esto
+6095940	6096380	yo
+6096380	6097360	les mando
+6097360	6098300	una explicación
+6098300	6099220	manual
+6099220	6100900	en esta semana
+6100900	6101540	de esta
+6101540	6102020	última
+6102020	6103320	plasita que nos quedó
+6103320	6104060	y
+6104060	6105040	hay unas
+6105040	6105340	como
+6105340	6106400	discusiones
+6106400	6107260	bastante interesantes
+6107260	6107660	de esto
+6107660	6108580	en internet
+6108580	6109260	porque a mucha gente
+6109260	6109840	le pasa esto
+6109840	6110280	que les dice
+6110280	6111620	esta resta
+6111620	6112460	no es positiva
+6112460	6112940	definida
+6112940	6113560	y no te salen
+6113560	6114240	estos valorcitos
+6114240	6114540	acá
+6114540	6115500	pero
+6115500	6116340	nada
+6116340	6116920	se los mando
+6116920	6117280	escritos
+6117280	6117940	y de última
+6117940	6118560	lo discutimos
+6118560	6119240	en la próxima clase
+6119240	6121520	porque si no
+6121520	6121720	ahora
+6121720	6122580	no vamos a llegar
+6122580	6123420	y no tiene sentido
+6123420	6124480	correr con esto
+6124480	6125280	pero nada
+6125280	6126020	pausa acá
+6126020	6127940	llegamos a ver
+6127940	6129400	casi todo lo que queríamos
+6129400	6129740	que era
+6129740	6130640	ejercicio 1 y 2
+6130640	6132020	no sé si alguien
+6132020	6132900	tiene alguna pregunta
+6132900	6133980	antes de cortar
+6133980	6134600	no sé si alguien
+6134600	6135320	haria
+6135320	6142420	x

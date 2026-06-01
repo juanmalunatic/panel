@@ -1,0 +1,4491 @@
+Entonces arrancamos con la clase de hoy
+Es la última clase que tenemos
+Igualmente no iba a ser una clase muy larga
+Porque nos quedaban ver poquitos ejercicios
+Del último TP
+Pero voy a hacer como un mini repaso
+De lo que estuvimos hablando en la clase pasada
+Tenemos el Problem Set 5
+En este Problem Set el tópico más importante
+O el tópico
+Sí, el tópico más importante del TP
+Van a ser modelos donde la variable dependiente
+Es una variable discreta
+En particular estamos usando el caso de una variable binaria
+Que puede tomar los valores 1-0
+Y a lo largo del TP lo que estamos analizando
+Es este archivo WHPAN
+Que contiene datos de ONDES
+Que trabajaron desde el 1980 hasta el 1987
+Y lo que hicimos durante el ejercicio 1
+Era analizar el impacto de la escolaridad
+En la probabilidad de estar afiliado a un sindicato
+A modo de resumen
+De lo que estuvimos viendo
+Lo que habíamos mencionado
+Era primero
+En el primer ejercicio
+Hicimos un pool doles
+Para estimar este modelo
+Y nos preguntaban
+Si una imagen de escolaridad
+Según esta especificación
+Y dados los datos que tenemos
+Tiene impacto
+Sobre la probabilidad
+Para un hombre en particular
+De estar afiliado a un sindicato
+Entonces el chiste de este modelo
+Básicamente es explicar
+Cómo cambia
+La probabilidad
+De estar afiliado
+A un sindicato
+Que sería como
+Unión toma valor 1
+Que sería como el evento éxito
+En este tipo de modelos
+Cuando cambia en una unidad
+La educación
+Lo que habíamos comentado
+Sobre este modelo
+Es que tiene
+Como una especie
+De limitación
+Que es que
+No tenemos forma
+A priori
+De restringir
+Qué valores toma esto
+O sea
+Si estos valores
+Que termina tomando
+Lo que decimos
+Que es una probabilidad
+Está entre 0 y 1
+Entonces eso puede ser considerado
+Como algo
+Malo
+O algo
+Que no
+Como una desventaja
+Del modelo
+Pero
+Eso va a depender
+Bueno
+De los valores
+Que termina tomando
+Efectivamente el coeficiente
+Y
+De los valores
+Que estemos usando
+Para la educación
+Creo que es en Woodridge
+Que se habla bastante
+Se habla un poco de esto
+De
+Y lo que dicen en Woodridge
+Es
+Quizás no es uno
+De los problemas
+Como que no
+Puede no ser un problema
+Tan grave
+Si cuando pensamos
+En
+Qué valor le doy
+Al valor que toma
+La educación
+No es como un valor
+Outlier
+O sea
+Este modelo
+Va a tener problemas
+A la hora de estimar
+La probabilidad
+Para los outliers
+De la educación
+Porque podría ser
+Que te deje por fuera
+Del rango
+De 0 y 1
+A ver si lo tengo
+Resalutado
+Para que ya quede
+Pero bueno
+De última
+Después
+Lo buscamos
+Así ya
+Queda grabado
+La referencia
+Pero estoy casi ahora
+Que era en Woodridge
+Entonces
+Lo que hicimos fue
+Esto lo vimos en Stata
+Voy a venir a Stata
+Un minuto
+Como siempre
+Seteamos la parte inicial
+Del código
+Tenemos
+La base de datos
+La cargamos
+Y voy a correr
+Un summarize
+De la data
+Así como está
+InDescribe
+Para ver las variables
+Como habíamos hablado
+La variable
+Que identifica cada individuo
+Individualmente
+Valga la redundancia
+Es NR
+Tenemos la variable
+De años
+Que nos dicen
+Que años estamos parados
+Para este panel
+Y después teníamos
+Un montón de dummies
+Que
+En este caso
+En particular
+En este TP
+Lo que vamos a usar
+Es la educación
+Como
+Variable explicativa
+Para explicar
+La probabilidad
+De estar asociado
+En un sindicato
+Si quisiéramos
+Podríamos agregar
+Más variables
+Que es lo que vamos a hacer
+En uno de los ejercicios
+Más adelante
+Pero
+En definitiva
+Digamos
+Este tipo de datos
+Está bueno
+Como para jugar
+Y viendo qué pasa
+Si agrego
+Más o menos cosas
+En particular
+Uno de los que vamos a estar
+Resomando hoy
+Va a ser el de Black
+Por ejemplo
+El de Married
+Que son
+Variables binarias
+Que
+Como valor 1
+Si la persona está casada
+Valor 1
+Si la persona
+Es de rosa negra
+Y después tenemos
+Un montón de cosas
+Hay variables
+Que tienen que ver
+Con
+De qué se trata
+El trabajo
+De la persona
+Si está empleada
+Variables
+De educación
+Geográfica
+Años de educación
+Y acá tenemos
+El summarize
+A nivel pool
+A nivel
+Como si fuese
+Todo el panel
+Un gran cross section
+Es decir
+Sin establecer
+Ningún tipo
+De
+De
+Estructura
+De panel
+Sobre los datos
+Como en este caso
+Sabemos que tenemos
+Un panel
+Lo que vamos a hacer
+Es revuelta a correr
+El XTZ
+Y vamos a
+Summarize
+La educación
+Para entender
+Cómo
+Qué es lo que pasa
+Con la variable
+Que tenemos
+Del lado derecho
+De nuestra ecuación
+Para explicar
+La probabilidad
+De estar en un sindicato
+Si se acuerdan
+De una de las primeras
+Clases
+Cuando corríamos
+XTSUM
+Podíamos
+Hacer
+El XTSUM
+Completo
+Que nos da
+Como el XTSUM
+Para todas las variables
+Del panel
+Y nos devuelve
+La variabilidad
+Overall
+Between
+Y sin
+Yo en este caso
+La voy a correr
+Para algunas
+Variables en específico
+Vamos a ver
+XTSUM
+NR
+Near
+Y edu
+Entonces
+¿Se acuerdan?
+Lo que nos reportaba
+Este código
+Era
+La variabilidad
+Between
+Y within
+Me gusta correr
+Junto con
+NR
+Y junto con
+Year
+Para que se vea
+Bien en claro
+Qué pasa
+Cuando
+Alguna de las variables
+No tiene variabilidad
+En alguno de estos dos
+Espectros
+Por ejemplo
+NR
+No tiene variabilidad
+Within
+Porque
+El código
+Que identifica
+Cada individuo
+A través de los años
+No cambia
+Entonces la variabilidad
+Dentro de cada observación
+Dentro de cada individuo
+No va a cambiar
+Al contrario
+La variable de años
+Sí cambia
+Para cada individuo
+Porque cada individuo
+Va a tener
+80, 81, 82, 73
+Hasta el 87
+Pero
+Cuando yo comparo
+Individuo
+Contra individuo
+En un mismo año
+Ahí no va a haber variabilidad
+Porque vamos a estar todos
+Parabas en el año
+80, 81, 81
+¿Qué pasa?
+Cuando corremos educación
+Lo que vemos es que
+La variabilidad
+Within es cero
+Esto quiere decir
+Que funciona
+Parecido al NR
+Es decir que
+Para yo agarro
+A un mismo individuo
+Y lo miro a través
+De todos los años
+La educación
+No cambia
+Esto puede ser
+Que sea por cómo
+Está diseñada la encuesta
+Quizás la encuesta
+Se tomó
+No sé
+Por ejemplo
+En el año
+88
+Y en el 88
+Les preguntaron
+Bueno
+Decime
+¿Cuál fue
+Tu máximo nivel
+De educación
+Alcanzado?
+O
+Tu mínimo
+Nivel de educación
+Alcanzado en el 80
+Entonces
+Si vos dejás eso quieto
+No sé si
+Ahora acá
+Explicará
+Edu
+No creo
+Años de escolaridad
+No sé si incluye
+Solamente secundaria
+O
+Universitaria también
+Pero bueno
+Hago este comentario
+Porque nos va a servir
+Un poquitito más adelante
+Bueno
+Entonces
+Queríamos cerrar
+Punto OLS
+O sea
+Hacer como un OLS
+Para todo el panel
+Como si fuese
+Un cross-section
+Así que para hacer eso
+Lo que hacemos
+Es simplemente
+Correr
+REG
+Unión contra educación
+Y después vimos
+La opción también
+De
+Considerar
+Errores
+Que sean
+Robustos
+Que la estimación
+De los errores
+Sea robusta
+A
+Enteros
+Y autocorrelación
+Como vimos la vez pasada
+Fíjense que los
+Proficientes
+Entran una
+Obviamente no cambian
+Lo que va a cambiar
+Es la estimación
+De
+El error estándar
+Que en este caso
+Entonces
+Vamos a borrar
+La de los errores
+Robustos
+Y guardamos
+Esa estimación
+Dentro del
+Punto OLS
+Con este
+Don
+Lo que veíamos
+Era que
+El coeficiente
+Nos daba
+Menos
+0015
+Es decir
+Que
+Un cambio
+En una unidad
+En educación
+Nos llevaría
+A ver
+Disminuiría
+La probabilidad
+Para alguna
+Persona
+De estar
+Asociado
+A un sindicato
+En
+Un punto
+15 puntos
+Porcentuales
+Pero nada
+Como veíamos
+La vez pasada
+Esto no es
+Estadísticamente
+Significativo
+Así que no tenemos
+Evidencia
+Para recasar
+La hipótesis
+Nula
+De que ese
+Parámetro
+En realidad
+En este modelo
+Es cero
+Pero bueno
+Igual nos sirve
+Para hacer el ejercicio
+De cómo lo interpretaríamos
+Si fuese
+Significativo
+Básicamente
+Mayor educación
+Menor probabilidad
+De que ocurra
+El evento
+Éxito
+Que en este caso
+Es
+Estar
+Estar
+En un
+Sindicato
+Después
+Bueno
+Bueno
+Ese era
+El ejercicio
+1
+Después
+Damos
+El ejercicio
+B
+Que era
+Pull
+Probit
+Para estimar
+Este modelo
+Lo que vamos a hacer en este caso
+Es decir
+Es decir
+Modelar de una forma
+Distinta
+Esa probabilidad
+De que
+Un individuo
+Pertenezca
+A un sindicato
+Dado su nivel
+De educación
+Que es la variable
+Explicativa
+Cómo
+Cómo
+Cómo le vamos
+A modelar
+Bueno
+Siguiendo la distribución
+Normal
+Evaluada
+O dependiendo
+De estos
+Componentes
+Y lo que habíamos discutido
+La clase pasada
+Es que
+Cuando nosotros
+Corramos el
+Probit
+De hecho vamos a hacerlo
+Yo acá tengo
+Probit
+De vuelta
+Full
+Probit
+Porque lo estamos haciendo
+Como
+Sobre toda la
+Sobre toda la muestra
+Sin tener en cuenta
+La estructura
+De panel
+Y acá
+Incluyendo
+Reales estándar
+Robustos
+Esto nos da
+Un coeficiente
+De menos
+0.050
+Si lo comparamos
+Con el que teníamos
+Hace un rato
+Esto me da
+0.015
+Lo cual
+Es bastante
+Distinto
+Más allá
+Digamos
+Ignorando el hecho
+De que esto es
+0.81
+Además
+O sea que no es
+Estadísticamente significativo
+Igual que en el caso anterior
+El coeficiente
+Es distinto
+Porque estamos
+Estimando
+O porque estamos
+Mirando cosas
+Distintas
+Por así decirlo
+Cuando nosotros
+Miramos
+El modelo
+Lineal
+El pool
+Doblez
+Si yo miraba
+Cuál es
+La
+Cuál es
+El efecto
+Parcial
+De un cambio
+En la educación
+Siguiendo este modelo
+Lo que nos queda
+Es
+Que si yo tomo
+La derivada
+De esa probabilidad
+Contra la educación
+Esto va a ser igual
+A este beta 1
+Que está acá
+Entonces
+El coeficiente
+Que sale
+De la estimación
+De
+Digamos
+Correr
+Red
+Unión
+Edu
+El beta 1
+Estimado
+Que sale
+De ahí
+Ya nos está diciendo
+Esto que queríamos
+Saber nosotros
+Que era el efecto
+Parcial
+Ahora
+En el caso
+De
+El modelo
+Pool
+Probit
+Esto no es tan directo
+Porque fíjense
+Que si nosotros
+Tomamos
+De acá
+De vuelta
+La derivada
+O cómo cambia
+La probabilidad
+Cuando cambia
+La educación
+Va a ser
+Algo
+Un poquitito
+Más complejo
+Que va a venir
+Dado
+Por esta expresión
+De esta
+No va a ser
+Directamente
+El beta 1
+Que después
+Vamos a estimar
+Entonces
+¿Cómo hago
+Para pedirle
+Estata
+Que en lugar
+De reportarme
+Este beta 1
+Me dé
+Todo
+El efecto
+Parcial
+Eso lo hacíamos
+Con los comandos
+Merchings
+Y bueno
+Esto funciona
+Digamos
+Hacer
+Esta expresión
+O pensar
+En términos
+De derivadas
+Parciales
+Funciona
+Por qué
+Educación
+Es una variable
+Continua
+Dentro de un rato
+Vamos a ver
+Cómo
+Procedemos
+Si es una variable
+Entonces
+Nada
+Vimos eso
+Y de vuelta
+Queríamos hacer
+Pull Probit
+Para estimar
+Este modelo
+Y después calcular
+Este efecto marginal
+Para entender
+Bueno
+Cómo cambia
+La probabilidad
+De estar
+Asociado
+A un sindicato
+Dado
+Un cambio
+A la educación
+Bien
+Entonces corrimos
+El Pull Probit
+Listo
+Y corremos
+Margins
+Y como veíamos
+La vez pasada
+Si buscan
+Help
+Margins
+Van a ver
+Todas las opciones
+Que tienen
+Para correr
+Este comando
+Que básicamente
+En este caso
+Que estamos haciendo
+Ahora
+Lo que nos devuelva
+Es
+El efecto marginal
+De la variable
+Entre paréntesis
+Que en este caso
+Es la educación
+Sobre
+O digamos
+Pensando en el modelo
+Que acabas de correr
+En el troit
+Que acabas de correr
+Eso por un lado
+Y bueno
+Y abajo
+Tenían todas
+Las opciones
+En este caso
+Estamos evaluando
+Todo
+Ad means
+Porque algo
+Que también
+Comentábamos
+La vez pasada
+Es bueno
+Vos tenés
+Este efecto marginal
+Que antes
+Dependía solamente
+De beta 1
+Y ahora depende
+También
+Del nivel de educación
+En el que lo evaluás
+Básicamente
+Lo que te está diciendo
+Esto es que
+Cómo afecta
+La educación
+A la probabilidad
+De estar en un sindicato
+O no
+No depende solamente
+Del valor del parámetro
+O del signo
+Del parámetro
+Que estimaste
+Sino también
+De en qué nivel
+Educativo estás
+O sea
+Si estás en un nivel
+Educativo más bajo
+Dependiendo del signo
+Que tenga este beta 1
+Y la interacción
+Como dentro
+De todo el efecto marginal
+Puede afectarte
+Más o menos
+Que si estuvieras
+En un nivel
+Más alto de educación
+Es algo que en general
+Está bueno
+De estos modelos
+Porque
+Fíjense que
+Era también
+Como una limitación
+En este caso
+En este caso
+El beta 1
+Es como
+Constante
+Sea cual sea
+Tu nivel de educación
+El efecto marginal
+En este caso
+O no
+Entonces nada
+El tema es ver
+También
+En qué
+Qué usamos
+Para
+Qué enchufamos acá
+Y bueno
+Lo que hacemos
+En este caso
+Es evaluar
+En el promedio
+Y esto lo vamos a usar
+Bastante hoy
+Porque hay una versión
+De la vamos a ver
+Como bien
+Viene en el taller
+Así que
+Por eso lo menciono
+Y lo que veíamos
+Era entonces
+Que obteníamos
+Este efecto marginal
+Menos 0.16
+O sea
+0.16 puntos porcentuales
+Negativos
+Más bien
+Un aumento
+En la variable
+De educación
+Nos lleva a una
+Disminación
+En la probabilidad
+De estar
+O sea
+En el sindicato
+En
+0.16 puntos porcentuales
+Esto sí es un poco
+Más parecido
+A lo que teníamos
+Antes
+Creo que es también
+En Woodridge
+Que hay una
+Tablita
+Y si no es
+En Woodridge
+Capaz que es
+En Cameron
+Tribal
+Donde
+Te dice
+Cómo
+Cómo
+Comparar
+Esos
+Efectos
+Marginales
+Quizás
+Lo cerré
+Bueno
+Bien
+Me lo anoto
+Mentalmente
+Para que lo veamos
+Dentro de un rato
+Cuando hagamos
+Revisión
+Bibliografía
+Que te dice
+Bueno
+Multiplicá
+Este por 3
+Y con eso
+Puedes compararlo
+Con las otras
+Destinaciones
+De los otros
+Bueno
+Bueno
+¿Qué más?
+Nos queda ver
+Woodridge
+La idea de Woodridge
+Es muy parecida
+Volvemos a tener
+Un caso
+Donde
+La
+Probabilidad
+De pertenecer
+Al sindicato
+Dado por nivel
+De educación
+Viene modelada
+En este caso
+Para
+Por una
+Función logística
+Que va a tener
+Esta pinta
+Y acá ya tenemos
+Escrito
+Cómo es
+El efecto parcial
+De la escolaridad
+Sobre la probabilidad
+De estar asiliado
+Un sindicato
+Acá ya la expresión
+Es un poquitito
+Más compleja
+Si querés
+Pero si piensan
+En esto
+Fíjense que
+Lo que tenemos
+Acá
+Es la probabilidad
+De estar en el sindicato
+Dado por nivel
+De educación
+Y eso lo escribimos
+Como este
+Delta
+Beta
+Cero
+Bueno
+Delta
+Mayúscula
+Es un delta
+Delta
+Mayúscula
+Beta
+Cero
+Más
+Beta
+Uno
+Edu
+Que es toda
+Esta expresión
+Y cuando calculamos
+El efecto
+Parcial
+Lo que nos
+Queda es
+Que
+O sea
+Esto le decimos
+Que es una función
+G
+Que depende de
+Beta cero
+Y de beta uno
+Y al hacer
+La derivada
+Contra la educación
+Nos queda
+Beta uno
+Por
+Todo esto
+Por
+Uno
+Menos
+Todo eso
+Ya lo que dije
+Todo esto
+Todo esto
+Que es un poco decir
+Digo
+Digo
+Si esto es la probabilidad
+De
+Que estar
+La probabilidad
+De estar en el sindicato
+Dado de DUC
+Y esto es
+Uno menos
+La probabilidad
+De estar en el sindicato
+Dado de DUC
+Entonces esto
+Es también
+La probabilidad
+De no estar
+En el sindicato
+Si quieren
+Me pienso
+Como la probabilidad
+Por
+Uno menos
+La probabilidad
+Nada
+Eso
+Todo esto
+Igual
+De vuelta
+Va a depender
+De cómo
+En qué
+En qué nivel
+De educación
+Lo estemos
+Evaluando
+Y
+Vamos
+A ir a
+Estata
+Hacemos el código
+Eso ya lo guardí
+Pero creo que no lo guardé
+Entonces
+Me guardo
+Lo que me devuelve
+Este margin
+Centro
+Acá tengo
+De la versión
+Logit
+Básicamente
+De vuelta
+Como es
+Pull
+Hacemos
+El logic
+Normal
+Con errores
+Plasterados
+Por
+ID
+Calculamos
+Los errores
+El efecto
+Marginal
+O sea
+Margin
+De vuelta
+Y lo guardo
+Dentro
+De logic
+Y lo que hicimos
+La vez pasada
+Fue ver
+Cómo
+Podíamos
+Computar
+De forma
+Manual
+Este
+Error
+Estándar
+No sé
+Si esto
+Estaba
+Como
+Compute
+El error
+Estándar
+Para esta
+Estimación
+Y lo que
+Veíamos
+Era que
+Para computar
+El error
+Estándar
+De la
+Estimación
+Usábamos
+Método
+Delta
+Donde
+Este primer
+Término
+De acá
+Es la
+Derivada
+De G
+Que es
+Esta ecuación
+De esta
+Acá
+Con respecto
+A los dos
+Betas
+Betas
+0
+Y
+Betas
+1
+Por
+La matriz
+De varianzas
+Y covarianzas
+Que sale
+De la
+Estimación
+Del modelo
+Por
+Nada
+Lo mismo
+Que teníamos
+Acá
+Acá
+Tenemos
+Los resultados
+Una vez
+Que enchufamos
+Las probabilidades
+Estimadas
+Y el parámetro
+Que estimamos
+Se nos queda
+Solamente
+Evaluar
+En el promedio
+De la educación
+Ya sea
+Contra beta 0
+Y contra beta 1
+Una vez
+Que tenemos
+La derivada
+De G
+Contra beta 0
+Y contra beta 1
+Podemos enchufar
+Eso acá
+Salud
+Y
+Bueno
+Con esta definición
+Para
+Delta
+Prima
+Este
+Porque de vuelta
+Si derivo esto
+Contra beta 1
+Me queda
+Delta
+Por
+1
+Que esto
+En el código
+Es lo que se le llama
+P
+Así que
+Vamos a ir
+A ver
+En el código
+Y lo que vemos
+En el código
+Aprovechamos
+Y dijimos
+Bueno
+Como vamos a tener
+Que correr algo
+Un poquito
+Que es
+Un choclazo
+Bueno
+No un choclazo
+Porque después
+El código
+De la semana pasada
+Creo que
+No vamos a volver
+A ver un código
+Así de heavy
+Un choclito
+Otra verdura
+No sé
+Algo no tan
+Con el
+Con la expresión
+Do
+Podemos correr
+Un do file
+Que tengamos guardado
+En el mismo
+En el mismo
+Directorio
+Y en este caso
+Es este código
+Que está acá
+Lo que hacemos
+Con este código
+Es
+Corremos un logic
+Porque después
+Lo vamos a necesitar
+Para
+Generar esta matriz
+De varianza
+Tipo varianzas
+Que es básicamente
+Si corro el logic
+Corre el logic
+Normal
+Y después
+Si hacemos
+El
+E-return
+Me dice
+Cómo guarda
+Los resultados
+De esa regresión
+Incluso resultados
+De cosas
+Que quizás
+No vemos acá
+Explícitamente
+Como por ejemplo
+No sé
+El N
+De la regresión
+Bueno
+4360
+4360
+Y lo guarda
+Como un escalar
+Que se llama
+E paréntesis
+En
+Dentro de matrices
+Encontramos
+ED
+Que es una matriz
+De 2x2
+Que es la matriz
+De varianzas
+Y covalianzas
+Y es lo que vamos a usar
+Para generarnos
+Esta parte de acá
+Entonces acá
+Ya tenemos esto
+Armado
+Nos queda
+Armar
+La derivada
+De g contra beta
+Que ahora vamos a armar
+Siguiendo
+Esto
+Y esto
+¿Qué necesito
+Para armar esto
+Y esto?
+Bueno
+Este
+Delta
+Sombrero
+Que es como
+Que lo llamamos
+P en el código
+Que es la probabilidad
+¿Sí?
+Tendré a hacer esto
+Y
+Nada
+Volvemos al código
+Y para eso
+Lo vamos a tener que evaluar
+Como en el promedio
+De la educación
+¿No?
+Esa parte
+La vamos a hacer
+Con esta
+Con esta parte
+Con estas dos líneas
+Del código
+Primero
+Summarize
+Educación
+Y después guardamos
+Un global
+Que va a guardar
+Dentro
+De la expresión
+Eduqmin
+El numerito
+Que salga de acá
+Porque de vuelta
+Cuando yo corro
+El summarize
+Summarize me tira
+La cantidad de observaciones
+El promedio
+El desvío estándar
+El mínimo
+Del máximo
+Y si nuevamente
+Uso
+In return
+List
+Me dice
+Bueno
+Vos
+Corrimos esto recién
+Creo que es porque
+Ah porque es un R
+La diferencia entre
+Y return
+Y return
+Es que
+Y return
+Agarra la última regresión
+Y return
+Funciona también
+Para otro tipo
+De códigos
+Por ejemplo
+Entonces corrimos
+Summarize
+Corro return
+Para ver
+Cómo los guarda
+Y
+Lo que me interesa
+Sacar de acá
+Es el promedio
+Porque quiero el promedio
+De la educación
+Entonces en lugar de
+Armar un código
+Que calcule
+El promedio
+Le pido que me tire
+Summarize
+Y que me lo guarde
+Después dentro
+De
+Eduqmin
+Que es lo que vamos a ver ahora
+Tengo
+Eduqmin
+Guardado
+Me queda
+Computar
+Entonces
+Lo que llamamos
+P
+Fíjense que lo que estamos
+Haciendo es
+Nosotros hace un ratito
+Corrimos este logic
+Y dentro de este logic
+Teníamos
+La constante acá
+Y la educación acá
+Entonces lo que vamos a hacer
+Es pulgar
+El beta
+Constante
+Más el beta
+De la educación
+Estos dos coeficientes
+Multiplicado
+Por el promedio
+De la educación
+Divido
+Uno más
+Todo esto
+Que esto
+Lo que sigue
+Básicamente es
+Esta expresión
+Que está acá
+Aplicar exponencial
+A beta 0
+Más beta 1
+De la educación
+Sobre uno más
+Exponencial
+De beta 0
+Más beta 1
+De la educación
+En qué valor
+De la educación
+En el promedio
+Esto es más que nada
+Para agarrar notación
+Después cuando vamos
+De matriz
+Cuando armamos
+La matriz G
+Vamos a tener
+Dos componentes
+Por un lado
+Fíjense que acá
+Lo que tenemos
+Es P
+Por uno menos P
+Más
+P por uno menos P
+Más el beta
+De la educación
+Por
+Uno menos dos P
+Por este delta
+Apóstrofe
+Que es
+Como dice acá abajo
+P por uno plus P
+Por EDUC
+Pero EDUC
+Evalúa en la educación
+Y después
+El otro componente
+Digamos
+De la matriz
+Va a ser
+El beta de la educación
+Que es beta 1
+Uno menos dos P
+Uno menos dos P
+Y después
+Este
+Beta con el apóstrofe
+Que es P
+Por uno menos P
+Entonces
+Creo que ya corriamos
+Corrió el logo al P
+Guardo la matriz G
+Ya después lo único que me queda
+Es armar una matriz
+D
+Que es como la estimada
+Vamos a correr
+Todo junto desde acá
+Con el
+Do
+Y esto ya nos devuelve
+Directamente
+El valor del marginal
+Efect
+Yo acá le dije
+Do
+Este código
+Y empieza a correr
+Si lo quieren hacer
+Como más prolif
+Y qué sé yo
+Podríamos poner
+Un quietly
+Acá arriba
+Para que
+Nada
+Lo haga más silencioso
+Y solamente
+Me avise esto
+¿Cuál es este marginal effect?
+Que es básicamente
+El mismo
+Que teníamos
+Originalmente
+Acá
+Acá
+Acá
+No, no, no
+Corremos todo junto
+Just in case
+Sí, está bien
+Pero estamos en el proyecto
+Bueno
+Entonces
+Nada
+Vimos cómo calcular
+Esto siguiendo
+Metodo Delta
+Vamos a hacer este
+Para tener un resumencito
+De los efectos parciales
+Y acá
+Hago hincapié
+En que estamos mirando
+Los efectos parciales
+No
+Los coeficientes
+Solamente
+En el caso de
+Pulo de ledes
+Consigue con el coeficiente
+Pero
+En el caso de
+Babi y Tidashi
+Estamos mirando
+Todo el cálculo
+Del efecto parcial
+Y lo que vemos
+Un poco
+Es que la historia
+Que nos está contando
+Estos resultados
+Lo que vemos
+Es que
+Los coeficientes
+A través de los modelos
+En términos cualitativos
+Nos dicen una historia
+Asimilar
+En todos los modelos
+Sí
+Porque todos nos dicen
+Que un año más
+En la educación
+Si bien no son significativos
+Un año más
+En la educación
+Nos llevaría
+A
+Una caída
+En la probabilidad
+De estar
+En un sindicato
+De puntos 15
+A puntos porcentuales
+Pero bueno
+No podemos
+Rechazar la
+Conte címula
+De que eso sea
+Distinto de cero
+Así que
+No es tan informativo
+Este modelo
+En Borja
+Tengo anotado
+Acá que
+Podríamos encontrar
+Más info
+En el capítulo 18
+De Cameron
+Trivedi
+Pero después
+Lo trocíamos
+Con el PDF
+A manos
+Bueno
+Creo que la vez
+Pasada
+Habíamos quedado
+Hasta acá
+Y lo que seguían
+Vaya que lo vimos
+Un poco
+Mirá las alturas
+Así que
+Vamos a
+A continuar
+Con
+El PDF
+Sí, creo que
+Habíamos
+Llegado
+Acá nos dicen
+Que
+Estimemos
+Esta extensión
+Del modelo
+2
+Y acá
+Vuelve a aparecer
+Un videojuego
+Conocido
+Que básicamente
+Los efectos
+No observables
+Individuales
+Para
+A nivel
+Bueno
+De cada individuo
+Primero vamos a ver
+El modelo
+De efectos
+Aleatorios
+En este modelo
+Como ya sabemos
+Lo que se supone
+Es que
+Los efectos
+No observables
+Individuales
+Que están acá
+Son independientes
+De las variables
+Aleatorias
+Y aparte
+También
+Se hace
+Este assumption
+O sea
+Necesitamos hacer
+Este assumption
+En este tipo
+De modelos
+Que
+En las slides
+Aparece
+Acá
+Por eso
+En el caso
+De Random Effects
+Esto es la página
+33.29
+Tenemos como
+Tres condiciones
+Que vamos a ver
+Que se cumplen
+Primero
+Que la distribución
+De Y
+De esta forma
+De la probabilidad
+De Y
+Igual a 1
+O sea
+La probabilidad
+De éxito
+En nuestro caso
+La probabilidad
+De estar en el sindicato
+Sigue
+Este modelo
+Este modelo
+Que los
+Y
+Son independientes
+Condicionado
+En esto
+Y
+Esta
+Esta en particular
+Que es
+Una que vamos a utilizar
+Que nos dice
+Que
+El efecto
+No observable
+Dada la
+X
+Se distribuye
+Normal
+0 sigma
+cuadrado
+Eso
+Esto
+Si tengo
+Anotado
+Donde está
+Explicado
+4
+95
+Por si quieren
+Como
+Agregar un poco
+Más de contexto
+De sabor
+Ahora
+En TP
+Acá está
+La parte
+De esta condición
+Que estamos
+Agregando
+A nuestro modelo
+De efectos
+Aleatorios
+Y lo que nos dice
+Woodridge
+Es que
+Esta
+Assumption
+Es bastante
+Fuerte
+Porque
+No
+Nos alcanza
+Con asumir
+Con que
+C y
+Son
+No correlacionan
+Tampoco
+Nos alcanza
+Con decir
+Que la esperanza
+De C y
+A 2
+Si es igual
+A 0
+Sino
+Que tenemos
+Que asumir
+Esta distribución
+En particular
+Y ahora
+Vamos a ver
+Por qué
+Básicamente
+Lo que nos dice
+Woodridge
+Más acá abajo
+Es que
+Abajo
+Esas tres
+Assumptions
+Que vimos
+Recién
+Vamos a tener
+Como disponible
+Un approach
+Para estimar
+Este beta
+Que está acá
+Y el sigma
+Cuadrado
+De C
+Así que nada
+Si quieren
+Ver más detalles
+De eso
+Lo pueden ver
+Acá
+Esto de vuelta
+Es
+Woodridge
+Página
+Capítulo
+15
+Modelos
+De respuesta
+Bien
+Entonces
+Vamos al código
+Para estimar
+El modelo
+Y después
+Hablamos un poquito
+Para hacer
+Para hacer el
+Probit
+De efectos
+Aleatorios
+En este caso
+Sí
+Ahora vamos a
+Agarrar
+Xtprobit
+Que si vamos a hacer
+Help
+Xtprobit
+Siente
+Esto nos devuelve
+El random
+Effects
+En population
+Average
+Probit
+Models
+Acá
+Están
+Las opciones
+Que podemos
+Agregar
+Al modelo
+El default
+Es usar
+Random
+Effects
+Ahora
+Algo
+Más
+Que me interese
+Por acá
+Vamos a arrancar
+Por ahí
+Corremos el
+Probit
+Por random
+Effects
+Y vamos a calcular
+Marches
+De vuelta
+Para obtener
+El efecto
+Parcial
+Y esto lo voy a guardar
+Dentro de
+Probit
+Random Effects
+Hay un pequeño
+Tema
+Acá
+Que es el
+Siguiente
+Fijémonos
+El valor
+Que toma
+La expresión
+Del efecto
+Parcial
+De interés
+Tenemos
+Que la probabilidad
+De pertenecer
+Acá
+Al sindicato
+Dado
+En este caso
+Con esta nueva
+Especificación
+No solo el nivel
+De la educación
+Sino también
+El nivel
+Del
+Efecto
+Individual
+No observado
+Un cambio
+En esto
+Con respecto
+Al cambio
+En la educación
+Va a depender
+De beta
+1
+Que bueno
+Está bien
+Podemos estimarlo
+Porque una vez
+Corría el
+Probit
+Corría el
+Probit
+Y me pregunto
+Qué cosas
+Necesito
+Para calcular
+El efecto
+Parcial
+Qué cosas
+Tengo
+Y qué cosas
+Me faltan
+Este beta
+1
+Sombrerito
+Lo tengo
+Beta
+0
+Sombrerito
+Lo tengo
+Beta
+1
+Sombrerito
+Lo tengo
+El nivel
+De educación
+Como ya dijimos
+En general
+Vamos a
+Evaluarlo
+En el
+Promedio
+Y nos
+Queda esto
+Acá
+Que es un
+Poco
+Molesto
+Porque nosotros
+No sabemos
+Cuándo vale
+Porque es un
+Efecto
+No observable
+Entonces
+Cómo vamos a
+Calcular
+El efecto
+Parcial
+Si depende
+De algo
+Que no es
+Observable
+Y que tampoco
+Estimamos
+Porque estamos
+En el caso
+De efectos
+Aleatorios
+Algo que vamos
+A decir
+Es bueno
+Nosotros
+Esto
+Todo esto
+Lo veníamos
+Calculando
+Siguiendo
+Este assumption
+Que vimos
+Antes
+Que
+CJ
+Se distribuye
+Normal
+Media 0
+Sigma
+Variante
+Sigma
+Quadrado
+C
+Entonces
+Simplemente
+Lo que vamos
+A hacer
+Es evaluar
+En el
+Promedio
+Que es
+Igual a
+0
+Y
+Chao
+No nos vamos
+A complicar
+No nos llevo
+La video
+Entonces
+Lo que le vamos
+A decir
+Estata
+Es
+Calculame
+El margins
+Sobre
+C
+Igual a
+0
+¿Cómo
+Hacemos
+Eso
+Con
+Este
+Preto
+Pu
+0
+Es como
+Debería
+Estar
+Dentro
+De las
+Occiones
+Del código
+De la
+Help
+De
+Margins
+Of
+Debe
+Bueno, imagino que va a haber igual documentación diciendo
+¿De dónde sale este PUCERO?
+Pero es eso
+Digamos, eso es lo que cambia respecto del código anterior
+Creo que después el resto es todo más o menos lo mismo
+Porque, digamos, todas en cero
+Solo que uso la opción PUCERO
+Bueno, esto ya lo guardamos
+Y acá tendríamos la opción, si quisiéramos, de hacerlo manual
+Fíjense que nosotros acá habíamos llegado
+A una expresión para el efecto parcial de interés
+Que es beta 1
+Que es el beta 1 sombrerito
+Beta 1 que ya dijimos que lo conocemos
+Beta 0 que lo estimamos
+Beta 1 lo estimamos
+La educación la clavamos en el promedio
+Nos falta el 6
+Entonces si esto lo quisiéramos hacer de forma manual
+Vamos a Stata
+Y lo que hacemos es
+Primero me guardo el promedio de la educación
+Como hicimos hace un rato en el método Delta
+Y bueno, creo que lo habíamos escuchado antes
+Corro el PROBIT
+El PROBIT
+El XT PROBIT
+Con bajo efecto salitorio
+Y después le pido que me
+Muestre
+Display
+Beta 1
+Beta 1 por
+Normal DEN
+Que es la densidad de la normal
+Evaluada en que
+En beta CONS
+Que es el beta 0
+Más beta 1
+Por el promedio de la educación
+Y de vuelta
+Enchufando
+En lugar de ese i
+El promedio de ese i
+Podemos armarnos
+Todo el valor
+Del efecto parcial
+Entonces
+Vamos a correr eso
+Si, que nos va lo mismo que teníamos ahora
+Eso por un lado
+Después tenemos que
+Bueno, acá
+Ah bueno, estoy olvidando
+Todas las interpretaciones
+Porque bueno, siguen sin ser estadísticamente significativas
+Pero si lo fueran
+Básicamente de vuelta
+Un año más de educación
+Reduce la probabilidad de estar asiliado a un sindicato
+De un punto 76%
+Vemos que sigue siendo negativo
+Pero bueno
+No es significativamente
+Dijindo de 0
+Después nos piden estimar
+La siguiente extensión
+Del modelo 3
+Donde ahora
+En lugar de una normal
+Tenemos una función logística
+Estableciendo esta
+Probabilidad
+De
+De pertenecer a un sindicato
+A OEDUC
+Y a OSEI de vuelta
+Nuevamente
+Aparecen los errores
+No observables
+Individuales
+Dentro
+De
+De la logística
+Y ahora nos piden
+Que usemos
+El modelo
+Logic
+De efectos aleatorios
+Y nos preguntan
+Si surge el mismo problema
+Que en el inciso anterior
+Al momento de
+Estimar el efecto
+Parcial
+De interés
+Fíjense que
+Cuando
+Obtenemos una expresión
+Para el efecto
+Parcial
+Nos va a quedar
+De vuelta
+El beta 1
+Que lo podemos
+Estimar
+El beta 0
+Estimable
+El beta 1
+Estimable
+Educación en el promedio
+Si
+Ci
+Vamos a enchufar
+E
+De Ci
+Igual a 0
+Y acá lo mismo
+Beta 0
+Lo estimamos
+Beta 1
+Lo estimamos
+Ci
+Lo clavamos
+Nuevamente
+Entonces
+No podríamos
+Estimar la magnitud
+Del efecto
+Parcial
+A menos que
+Enchufemos
+Ci
+Calculamos
+El efecto
+Marginal
+En el promedio
+Que es
+6 igual a 0
+Va
+En la media
+Y nuevamente
+Encontramos
+Digamos
+Ahora lo vamos a correr
+Pero
+Este va a ser
+El resultado
+Negativo
+Pero no
+Estadísticamente
+Significativo
+¿Cómo se corre esto?
+Logit
+De efectos
+Aleatorios
+XtLogic
+Random Effects
+Margins
+Nuevamente
+Le pido
+Que me lo calcule
+En PU 0
+Y que me lo guarde
+En Random Effects
+Logit
+Acá estaría la opción
+Si lo quisieran
+Hacer a mano
+Nada
+Misma idea
+Que antes
+Después nos piden
+Computar
+Logit
+De efectos
+Fijos
+Y
+Digamos
+Pensemos
+De vuelta
+En cuál era
+La diferencia
+Entre efectos
+Fijos
+Y efectos
+Aleatorios
+En el caso
+De efectos
+Aleatorios
+Nosotros
+No impusimos
+Demasiado
+Más bien
+El supuesto
+Que hicimos
+Para efectos
+Aleatorios
+Era lo que estaba
+Resumido acá
+¿No?
+Asumimos
+Una distribución
+Para CJ
+El tema
+Es que en un mundo
+Ideal
+Nosotros no
+Conocemos
+Realmente
+Esos CJ
+Entonces
+Estaría bueno
+Decir
+Che
+¿Qué pasa
+Si levantamos
+Esos supuestos
+Y permitís
+Que los CJ
+No sean
+Independientes
+De las X
+Entonces
+En ese sentido
+Después
+Lo que habíamos visto
+En otras clases
+Era que
+Efectos
+Fijos
+Podía ser
+Un poco
+Más atractivo
+Porque
+Podíamos
+Por ejemplo
+O estimar
+Esos coeficientes
+Con
+List
+Squares
+Lamy
+Variables
+O
+Podíamos
+Hacer
+Transformaciones
+Al modelo
+Que nos permitan
+Estimar
+En este caso
+Lo que nos interesa
+Que es el efecto parcial
+Sacándonos
+De encima
+O sea
+Eliminando
+En esa transformación
+El
+El coeficiente
+Seguir
+De la
+De lo que
+Tendríamos
+Estimar
+Algo que
+Vamos a hacer
+Acá
+Que nos va a pasar
+Estoy pensando
+El orden
+Vamos a correr
+Efectos fijos
+Sin
+Pensarlo
+Demasiado
+De vuelta
+Estimador
+Logis
+De efectos fijos
+Para el modelo
+5
+El modelo
+5
+Es este
+Que está acá
+Para correr
+El modelo
+Logis
+De efectos fijos
+Lo que hacemos
+Es
+Correr
+El código
+Xtlogit
+Unión
+Edu
+Con
+Fixed
+Effects
+Nos da cero
+No sé si se les ocurre
+Por qué no nos está
+Identificando
+Exacto
+Cuando
+Efectos fijos
+Cuando
+Calculamos
+El logic
+De efectos fijos
+Si se acuerdan
+Lo que pasaba
+Cuando hacíamos
+Las transformaciones
+Within
+Y ese tipo
+De transformaciones
+Para justamente
+Hacer efectos fijos
+Lo que decíamos
+Era que
+No podíamos
+Incluir
+O más bien
+No íbamos a ver
+Incluidas
+En el modelo
+Variables
+Que no tuvieran
+Variabilidad
+Y sin
+Entonces acá
+Se omite
+Edu
+Porque no hay
+Y sin
+Y no varios
+Así que ahí tenemos
+Como un primer
+Problema
+De
+Estimar efectos fijos
+En este caso
+Nosotros creemos
+Que
+La forma de explicar
+Pertenecia
+A un sindicato
+Depende de estas cosas
+De la educación
+Y de un efecto
+No observable
+Así que
+A priori
+Como que no está
+Muy bueno
+Efectos fijos
+Porque en este método
+No se identifican
+Los coeficientes
+De los regresores
+Que no varían
+En el tiempo
+Como es el caso
+De la variable
+Educación
+Por otra parte
+Aún si el coeficiente
+Estuviera identificado
+Correríamos
+La misma suerte
+Que a los ejercicios previos
+De que deberíamos
+Insertar el valor
+De CI
+Pero ahora estamos
+Como en una situación
+Incluso peor
+Porque en efectos fijos
+No asumimos nada
+De CI
+Entonces no podés decir
+Ah bueno
+Le enchufo la media
+Porque no
+No hicimos ese
+No hicimos ese supuesto
+De la distribución
+Normal de CI
+Algo que
+Quería comentar
+Es que lo que se hacen
+Efectos fijos
+En Logit
+Y que está mejor
+Explicado acá
+En Baltagi
+Baltagi
+Esto lo hace
+Digamos
+Pensando en variables
+Un poco más
+En otro tipo de variables
+Justo en nuestro
+Educ
+Que no cambian el tiempo
+Básicamente lo que te dice
+Es que en efectos fijos
+Lo que podés usar
+Es que
+Tenemos este estadístico
+Que es minimal suficiente
+Para MUI
+Donde MUI
+Son los
+Efectos no observables
+Bajo la notación
+De este libro
+Entonces básicamente
+Lo que te dicen
+Es que
+La distribución
+De eso que estás
+Queriendo estimar
+Condicional
+En el estadístico
+Minimal suficiente
+No va a depender
+Del MUI
+Esto digamos
+Hicieron inferencias
+Estadísticas
+Probablemente les suene
+Un poco más
+Que para los que
+No lo hayan hecho
+No sé
+En la de
+La maestría de econometría
+En qué materia se ve
+O si se ve
+Estadísticos minimal
+Suficientes
+Pero acá tienen
+Esto en más detalle
+Y tienen como bien
+El ejemplo
+Armadito de
+Para el caso de
+T igual a 2
+Nada
+Está bueno
+Para entender
+Cómo
+Cómo opera
+Logit en este caso
+Y bueno
+Nada
+También para tener
+Un poco más de
+Info
+Aparte del código
+Que el código
+Es súper sencillo
+Pero si
+Si ven como
+Lo que está pasando
+Atrás del código
+La matemática
+Atrás del código
+Y la inferencia
+Atrás del código
+Creo que acá
+Se resumen bastante bien
+Como que
+Efectos fijos
+Hace inferencia
+Basado en la
+Intra
+Rather than
+Interpersonal
+Comparsence
+En este caso
+Habla de
+Satisfaction
+Porque el ejemplo
+Que usan en el libro
+Es como
+Tienen una encuesta
+Donde miden
+Satisfacción
+Creo que
+En tu vida en general
+Qué tan satisfecho
+Estás con tu vida
+Y están buscando
+El resultado
+Al que llegan
+Es que el trabajo
+Afecta negativamente
+A qué tan satisfecho
+Estás con tu vida
+Así que
+Para pensar
+Nada
+Me parece
+Estaba copado
+Y bueno
+Acá te muestran
+El resultado
+De que bueno
+Que la probabilidad
+De
+Y
+Y
+1
+Igual a 1
+Dado
+El resto
+De las variables
+Que tenés
+No depende
+De estos
+Muy
+Y esto creo
+Que era como
+La probabilidad
+De estar satisfecho
+Versus la probabilidad
+De no estar satisfecho
+En cualquier caso
+Esa probabilidad
+No depende
+Del C
+Y entonces
+Cuando calculas
+El efecto marginal
+Post haber condicionado
+En ese estadístico
+Minimal
+Suficiente
+No hace falta
+Que enchufes nada
+Y bueno
+Te evitas
+Este problema
+Nada
+Eso
+Comenta
+Entonces
+¿Qué pasa?
+Veíamos que
+Para efectos fijos
+Esto no era como
+Lo más feliz
+Porque
+Edu
+No se mueve
+En el tiempo
+Vamos a pasar
+A una extensión
+Del modelo
+Y otra cosa
+Que vimos
+Es que
+Si bien
+Daban todo
+Bastante parecido
+Acá
+No nos terminaba
+De convencer
+Este modelo
+Porque
+La verdad
+Es que no me está
+Explicando nada
+Al final del día
+No me está diciendo
+Nada sobre
+Que afecta
+La probabilidad
+De estar en
+Asociado
+A un sindicato
+Entonces
+La organización
+Bueno
+Considera esta extensión
+Del modelo
+Donde ahora
+Vamos a tomar
+La probabilidad
+De estar en
+Un sindicato
+Dado
+Además de tu nivel
+De educación
+Si perteneces
+A raza negra
+Y si estás casado
+Y los efectos
+No observables
+Después nos dicen
+Que asumamos
+Esta distribución
+Para los efectos
+No observables
+Fíjense que
+En este caso
+Ya no asumimos
+Que tiene normal
+Medía cero
+Sigma cuadrado
+De A
+Sino que es
+Como
+Tenemos un
+Si
+Más
+Z
+Por
+El promedio
+De
+El promedio
+De si estás casado
+A lo largo
+De todo ese tiempo
+De la muestra
+Lo que va a cambiar
+Más que nada
+Acá
+Con respecto
+A lo que veíamos
+Antes
+Era
+Cuando hacíamos
+Que cuando hacíamos
+Ese enchufar
+En lugar de
+Seguir
+El promedio
+Igual
+Y lo
+Lo tachábamos
+De la ecuación
+Y decíamos
+Que era igual a cero
+Vamos a tener
+Este término
+Acá
+Entonces
+Siguiendo esta versión
+De Moonlight
+Del supuesto
+De Chamberlain
+Lo que hacemos
+Es decir
+Que los efectos
+No observables
+Condicionales
+En las variables
+Explicativas
+Se distribuyen
+De forma normal
+Teniendo
+Una media
+Que es lineal
+En
+Estar casado
+O no
+Digamos
+En el promedio
+De tu estado
+O tu situación
+De estado civil
+Y bueno
+Sigma cuadrado
+De A
+Que es parecida
+Sigma cuadrado
+Que veíamos antes
+Sigma cuadrado
+C
+El modelo
+Dado
+Por 6
+Esto
+Y 7
+Es un caso
+De lo que en la literatura
+Se denomina
+Modelo
+Autorado
+De efectos
+Aleatores
+De Chamberlain
+Al asumir
+Solamente
+6 y 7
+Se tiene que
+La probabilidad
+De estar
+En el sindicato
+Fíjense
+Que lo que hacemos
+Es enchufar
+Como les dije antes
+Esto
+En lugar
+De 6
+Ahora
+Esto que está acá
+Es una normal
+01
+¿No?
+Entonces
+Lo que tenemos
+Que hacer es
+Como
+Para
+Reescalar
+Todo
+De forma
+Que esto
+Sea una normal
+01
+Como
+Esto
+Se distribuye
+Sigma cuadrado
+De A
+Tenemos que
+Aplicarle
+Como
+Multiplicar
+Por este término
+Que está acá
+Para poder estimar
+Porque lo que vamos a estar
+Estimando
+Consistentemente
+Este no es
+Beta 0
+Beta 1
+Sino este
+Beta 0
+A
+Beta 1
+A
+Que es como
+El beta 0
+Ajustado
+Por este
+Componente
+Que está acá
+Es como
+Que nos da
+Información
+Acerca
+De lo que
+Asumimos
+Acerca
+De los 6
+De la distribución
+De los 6
+Yo esto asumo
+Que igual
+Ya lo vieron
+Bastante
+En la teórica
+De los 6
+Esto era
+El modelo
+Chamberlain
+Acá
+15 de 49
+La versión
+De Mundag
+Del supuesto
+De Chamberlain
+Es esta
+Lo que dijimos
+Hicien
+De vuelta
+Mundag
+Asume
+Te dice
+Bueno
+Evalúa todo
+En los promedios
+Chamberlain
+Mundag
+Es un caso
+Particular
+De Chamberlain
+Entonces
+Lo que te dicen
+Es bueno
+Dado que asumiste
+Esto
+Sobre la C
+Enchufá
+Esto que dijiste
+Hace un ratito
+Escribí
+El modelo
+En forma
+De variable
+Latente
+Como esto
+Que tenés
+Acá
+Y después
+Estimá
+La probabilidad
+De respuesta
+Como
+Ese modelo
+De variable
+Latente
+Y tomando
+Y tomando
+Y tomando
+Las derivadas
+Llevamos
+A algo
+Parecido
+A lo que vimos
+En el TP
+Entonces
+Lo que vamos a estar
+Estimando
+Consistentemente
+Con esta
+Especificación
+No es
+De vuelta
+Los parámetros
+Originales
+Del modelo
+Sino el parámetro
+Reescalado
+Por
+Por este
+Termino
+Igual
+O sea
+Está bien
+Porque
+De vuelta
+Lo que veníamos
+Haciendo hasta ahora
+Era
+Digamos
+Buscar
+Formas
+De poder
+Armarnos
+El efecto
+Parcial
+No me interesa
+En si
+Cuánto vale
+Este beta 1
+Sino que yo
+Lo que quiero saber
+Es cómo cambia
+Toda la probabilidad
+Cuando cambia
+Edu
+Y eso
+En este tipo
+De modelos
+Como veíamos
+No depende
+Solamente
+Del beta 1
+Sino de muchas
+Más otras cosas
+Entonces
+No sería
+Demasiado
+Problemático
+Entonces
+Vamos a ir al código
+Esperen que
+Ya que estoy
+Voy a correr
+Esta parte
+Esto era el
+Logit
+Hace un rato
+Y acá tenemos
+La tablita
+Que nuevamente
+Lo mismo que antes
+En términos
+Cualitativos
+Medio que nos cuenta
+La misma historia
+Tanto el Logit
+Como el Probit
+Y ahora
+Lo que vamos a hacer
+Es agregar
+Más variables
+Siguiendo el enfoque
+Chamberlain
+Particularmente
+El de Moonlight
+Y
+Fijémonos
+Que necesitamos
+Para correr
+Todo esto
+El enfoque
+Lo que nos decía
+Es que vas a tener
+Que evaluar
+El Probit
+En
+Una constante
+En el nivel
+De educación
+En la variable
+Black
+En la variable
+Merit
+Y además
+En
+El promedio
+De Merit
+Entonces necesito
+Armarme ese promedio
+De
+Mean
+Merit
+Y aparte de eso
+También lo que nos vamos
+A tener que calcular
+Más adelante
+Porque
+Digamos
+De vuelta
+Nos
+Van a pedir
+Que
+Estimemos
+El efecto
+De la escolaridad
+Sobre la probabilidad
+De estar sindicalizado
+Para una persona
+Afroamericana
+Casada
+Es decir
+Para un
+NR
+O más bien
+Solamente
+Para los NR
+Donde
+Black
+Toma valor 1
+Y donde
+Merit
+Toma valor 1
+Entonces
+De vuelta
+¿Qué cosas necesito calcular
+Antes como de
+De pasar en sí
+Al código
+Este promedio
+De Merit
+Y después voy a necesitar
+El promedio
+De la educación
+Para
+Solamente
+Las personas
+Black
+Merit
+Lo comento acá
+Primero
+Porque siento que
+Es más
+Claro
+Que
+En el código
+Ok
+Entonces
+Me genero
+El promedio
+De Merit
+Que es básicamente
+Nada de eso
+Por ahí
+Y si lo vemos
+En la data
+Este
+Se ve que
+Nunca estuvo casado
+Este
+Nunca estuvo casado
+Este estuvo casado
+Siempre
+Este se ve que
+Se casó en algún momento
+Cuando tomamos la muestra
+A ver
+Acá
+Este se casó
+En el último año
+A ver
+Del 80 al 52
+Y el pibe
+Que le sigue
+Acá
+Se casó
+Uno, dos, tres, cuatro
+En el 84
+Punto cinco
+Sí
+Eso es lo que va a estar
+Miendo
+Como les decía
+Calculo
+El promedio
+De la educación
+Solamente
+Para las personas
+Que son afroamericanas
+Y están casadas
+Y lo guardo
+En este global
+Repito
+Para la variable
+Que armamos recién
+Esta de
+MinMarit
+Esto de vuelta
+Lo vamos a usar
+Más adelante
+Cuando
+Calculemos
+De forma manual
+El
+El efecto marginal
+Y ahora voy a correr
+El PROVIT
+Que de vuelta
+Es un PROVIT
+De estar en el sindicato
+Contra la educación
+Contra la raza
+Contra estar casado
+O no estar casado
+Y el promedio
+De estar casado
+O no
+Siguiendo
+El enfoque
+MUNDAC
+Y lo que obtenemos
+Es
+Nuevamente
+La educación
+Tiene un
+Constituyente
+Negativo
+Sigue sin ser
+Estadísticamente
+Significativo
+Vemos que
+Ser afroamericano
+Pertenecer a
+La raza negra
+Es estadísticamente
+Significativo
+Dentro de la
+Probabilidad
+De pertenecer
+A un sindicato
+Es decir
+Personas
+Que pertenecen
+A la raza negra
+Tienen un
+Punto
+47%
+47%
+Más de probabilidad
+De estar
+En el sindicato
+Lo cual es bastante interesante
+Estar casado
+También sería positivo
+Digamos
+Aceptaría de forma positiva
+La probabilidad
+De estar en el sindicato
+Pero no es
+Estadísticamente
+Significativo
+Mean
+Married
+Ahí nomás
+Pero bueno
+Positivo
+Y bueno
+La constante
+What else
+Bueno
+Esto era el
+Tragic
+Y acá tenemos
+El margins
+Para calcular
+El efecto
+Partial
+Ahora
+Cuando usamos
+El comando
+El comando margins
+Ya no vale usar
+El admins
+Porque lo que necesitamos
+Es evaluar
+En otros valores
+O sea
+No estamos
+Pensando en
+Todo el panel
+Y me estoy fijando
+Cómo vale
+Para un individuo
+Promedio
+Sino que específicamente
+Queremos ver
+Cómo es
+El efecto
+Marginal
+Para alguien
+Que pertenece
+A la raza negra
+Blanco igual a uno
+Está casado
+Married igual a uno
+Es decir
+Lo que le estamos
+Diciendo a Stata
+Es
+Ok
+Me estimaste
+Esto
+Basado
+En este modelo
+Probit
+Que se especifica así
+Decime
+Cómo es
+La probabilidad
+De pertenecer
+A un sindicato
+Para un individuo
+De estas características
+¿Qué características?
+Bueno
+En términos de
+Educación
+Y
+Mil Married
+Que esté en el promedio
+De toda la muestra
+Y todo mi universo
+De gente
+Que
+Que
+Que encuesté
+Pero
+Solamente
+Me quiero enfocar
+En las personas
+De raza negra
+Y que están casadas
+Entonces
+Para un individuo
+De estas características
+Que le digo
+Acá en el código
+Me fijo
+Cómo es
+Ese defecto
+Marginal
+De la educación
+¿Es eso?
+No
+Yo lo corto
+Y acá estaría
+La versión
+De vuelta
+Si lo quisieran hacer
+Manual
+Fíjense que
+Lo que está pasando
+Nuevamente
+Es
+Estamos
+Agarrando
+A ver si
+Pongo
+La
+Explicación
+Acá
+Pero básicamente
+Agarrar
+Esto
+Agregándole
+Black
+Igual a uno
+Married
+Igual a uno
+Y el promedio
+De
+Promedio
+De la educación
+Y el promedio
+De
+Min-Married
+Ok
+Bueno
+Y acá
+Resumen
+En
+Woodridge
+De
+El capítulo
+Min-se
+Que veíamos
+Sin
+¿Alguna
+Pregunta
+De esto?
+Me parece que no
+No es tan
+Complejo
+Ok
+Pasamos al
+Ejercicio 2
+Lo que vamos a hacer
+En este ejercicio
+Es
+Sobre todo
+Lo que veníamos
+Discutiendo
+Agregarle
+Como un componente
+Dinámico
+Al modelo
+Un poco
+Es lo que
+Hicimos con
+Nuestros
+Anteriores
+Primero
+Vimos
+Ok
+Tengo un modelo
+Lo estimo
+Por pool
+Loveless
+Le agrego
+Efectos
+No observables
+Estimamos por efectos
+Fijos
+Por random
+Efects
+Y ahora
+Le agregamos
+El componente
+Dinámico
+Para decir
+Bueno
+¿Qué pasa
+Si pensamos
+Que la probabilidad
+De pertenecer
+A un sindicato
+Hoy
+Depende de
+Si perteneciste
+O no
+A un sindicato
+Ayer
+Entonces
+Lo que vamos a hacer
+Es
+Bueno
+Correr
+Pool
+Probit
+Para estimar
+El modelo
+¿Sí?
+Donde decimos
+Que de vuelta
+La probabilidad
+De estar
+En un sindicato
+Depende
+De esta forma
+De si perteneciste
+O no
+A un sindicato
+Ayer
+Fijense
+Que no estamos
+Usando de book
+No estamos
+Usando
+Nuna de las
+Otras variables
+Y después
+Nos pide
+Que obtengamos
+Una estimación
+Para la
+Probabilidad
+De que
+Unión
+Sea igual
+A 1
+Y unión
+Sea igual
+A 1
+Dado que
+Perteneciste
+Al sindicato
+En el periodo
+Anterior
+Y para
+Esto que está
+Acá
+Que es
+P
+Unión
+Igual
+A 1
+Dado
+Unión
+Esto está
+En T
+T menos 1
+Igual
+A 0
+Acá
+Acá
+Habíamos
+Falta
+La parte
+Una vez
+Que obtuvimos
+Estas dos
+Cosas
+Que están
+Acá
+Lo que vamos
+A hacer
+Es comentar
+Sobre el
+Efecto
+Marginal
+De estar
+Afiliado
+A un sindicato
+En el año
+T menos 1
+En la probabilidad
+De estar afiliado
+A un sindicato
+En el año
+T
+O sea
+Lo que queremos
+Ver es
+Básicamente
+Cómo cambia
+La probabilidad
+Unión
+Igual a 1
+Ante un cambio
+En
+Unión
+En T
+Menos 1
+Si querés
+Como ves
+Un poco eso
+Que acá
+Está
+Como
+La diferencia
+Del caso
+Continuo
+Porque fíjense
+Que esto
+Que está acá
+Es una variable
+Que toma valor
+1
+O 0
+Ya no puedo
+Como
+Derivar
+Contra
+Union
+Sino que
+Tenemos que pensar
+En el cambio
+Distrito
+Pero nada
+Este es un detalle
+De este ejercicio
+La verdad
+Que no
+No hay mucha
+Más
+Ciencia
+De acá
+Y vamos a hacer
+El pull
+Pro
+Y de vuelta
+Lo voy a hacer
+Solamente con
+Los errores
+Rebustos
+Y fíjense
+Lo que nos da
+Nos da
+Que el coeficiente
+Que acompaña
+Al lag
+Del sindicato
+Es de 1.95
+Significativo
+Y con esta
+Vamos a
+Correrlo
+Lo que le estamos
+Diciendo a Stata
+Es
+En rojo
+Tirame
+La probabilidad
+De estar afiliado
+A un sindicato
+Dado que estaba
+Afiliado en el periodo
+Anterior
+Es
+Esto que está acá
+Esto que está acá
+Fíjense que
+Lo voy a anotar
+Ya que estamos
+Esto es normal
+Del B
+De la constante
+Más
+Beta 1
+Y el de abajo
+Es normal
+También
+Pero solamente
+Para Beta 0
+Lo anoto acá
+En Zoom
+Porque
+Quiero venir acá
+Y que miremos
+Un poco
+Qué forma
+Tiene
+Porque digamos
+El modelo en cuestión
+Vendría a ser
+Ahora
+No lo puedo escribir
+Si no lo escribo
+Todo
+El modelo en cuestión
+Es este que está
+Acá arriba
+Lo voy a escribir
+Acá
+Que creo que
+Tengo más
+Llegar
+Y
+Nos dice
+O bueno
+La probabilidad
+De que
+Unión
+Sea
+Igual
+En T
+Es igual
+A 1
+Dado
+Unión
+En T
+Menos 1
+Tome el valor
+Que tome esto
+Es algo
+De esta pinta
+Igual
+Igual
+A
+Y
+Un poco
+Feito
+Decíamos
+¿Qué pasa?
+Si
+Yo me enfoco
+Solamente
+En el caso
+Donde yo ayer
+No estaba
+En el sindicato
+Este
+Y
+Toma
+Valor
+Cero
+¿Qué pasa?
+Entonces
+Todo esto
+Me queda
+Y por otro lado
+Si estoy
+Mirando
+La probabilidad
+De pertenecer
+Al sindicato
+Dado que ayer
+Si estaba
+En el sindicato
+Todo esto
+Me queda
+Entonces
+Esto que está acá
+Es básicamente
+La constante
+Que estimamos
+Beta cero
+Y esto que está acá
+Es el beta uno
+Entonces
+Es por eso
+Cuando
+En el código
+Lo que le pedimos
+A Stata
+Es
+Agarrame la normal
+Evaluala
+En
+Ro
+Que es beta uno
+Que es el beta
+Que acompaña
+Al lag
+De la unión
+Y bueno
+En el caso
+De
+Dado
+Que estaba afiliado
+En el periodo anterior
+Sumo la constante
+A este union
+Y si no estabas
+Afiliado
+Estás en este caso
+De acá
+Que sería esto
+Bueno
+Queda un poco
+Enchastre
+Pero
+Creo que estaba
+Bueno verlo así
+Y llegamos
+A
+Esto que está acá
+Que es que
+La probabilidad
+De estar afiliado
+A
+Un sindicato
+Dado que estaba
+Afiliado
+En el periodo anterior
+Es 0.72%
+La probabilidad
+De que no
+De estar afiliado
+Dado que no
+Estaba afiliado
+En el periodo anterior
+Es 0.08%
+Y después
+Y después
+Cuando quiero
+Hacer el cambio
+Marginal
+Lo que decíamos
+Hace un ratito
+Como en este caso
+No estamos
+En el caso
+Donde nosotros
+Podemos hacer
+La derivada
+De la probabilidad
+Dado un cambio
+Continuo
+En unión
+Lo que vamos
+Tener que pensar
+Es
+Bueno
+La diferencia
+Entre esto
+Que está acá
+Que es la probabilidad
+De estar en
+La probabilidad
+De éxito
+En unión
+Igual a
+En el periodo T
+Dado que
+Unión
+En T-1
+Era igual
+A 1
+Menos
+Eso ya
+Acá abajo
+Que es la probabilidad
+De unión
+En T
+C igual a 1
+Dado que
+En T-1
+Era igual
+A 0
+Que sería
+Esta
+Resta
+Que está acá
+Porque básicamente
+Ahí lo que estamos
+Haciendo
+Es eso
+De decir
+Bueno
+Cambio
+Marginalmente
+La situación
+De sindicato
+Del periodo anterior
+O sea
+Estaba o no estaba
+En el sindicato
+Bueno
+Tomás esa diferencia
+Y ahí está
+El cambio
+Marginal
+Y esto
+No sé
+Que viene
+No sé si estaba
+En el juego
+Creo que esto
+Lo pegué
+En algún momento
+Ok
+El ejercicio B
+Nos pide
+Que agregamos
+Al modelo
+El conjunto
+Completo
+De variables
+Linarias
+Temporales
+Vuelve a estimar
+Las probabilidades
+Solicitadas
+Para cada año
+De la muestra
+Muy similar
+La idea
+Y tenemos
+Dos alternativas
+En este dataset
+Justo
+Ya tenemos
+Las dummies
+De años
+Creadas
+Acá
+Del 81
+Hasta del 87
+Recordemos que
+La muestra
+En realidad
+Va desde el 80
+Hasta el 87
+Entonces tenemos
+1, 2, 3, 4, 5, 6, 7, 8
+Años
+Y fíjense que
+La cantidad
+De que tenemos
+1, 2, 3, 4, 5, 6, 7
+Porque bueno
+La del 80
+Es como el benchmark
+Para que no haya
+Para que no te quede
+Una variable
+Que se pueda explicar
+Como combinación
+De los otros
+Entonces
+Nada
+Si no tenés
+Las variables
+Todavía
+Les podés pedir
+Que te las
+Que te arme
+El probit
+Usando
+I.year
+Como
+Como vimos
+En otros códigos
+Y si ya las tenemos
+Creadas
+Y las tenemos
+Ordenadas
+Podemos decirle
+Que nada
+Agregue
+Del D82
+Al D87
+Nota
+¿Por qué estamos
+Usando
+Del D82
+Al D87
+En lugar
+Del D81
+Al D87
+No sé si
+Se les ocurre
+Porque
+Mientras yo
+Voy escribiendo
+Las capas
+Que ayudan
+No
+No porque
+Tengo
+Inhibido
+Uno
+Desde el 80
+81
+82
+Hasta el 87
+Hasta el 87
+Esa es la del año
+Y después
+Bueno
+Ponele que tenemos
+Edu
+Mary
+Todas esas
+Y tenemos
+D81
+D82
+D82
+Hasta el D87
+Y
+Por ejemplo
+En el año 80
+Estas valen
+Todas cero
+En el año 81
+Esta vale uno
+El resto vale cero
+En el año 82
+Y después
+Y después
+En el 87
+Todos valen cero
+Hasta esto
+Entonces mi pregunta es
+Nos pedían que
+Incluyamos
+Las
+Dammys
+De
+De
+Tiempo
+¿No?
+Nosotros nuestros
+Periodos temporales
+Van desde el 80
+Hasta el 87
+Ya dijimos que
+Las variables
+Dammys
+Que tenemos
+Acá
+Van a tener
+Que excluir
+La del 80
+Por eso que decías
+Recién
+De
+La multicolinealidad
+Me queda saber
+Por qué acá
+Agarro solo
+El 82
+Al 87
+Claro
+Igual hay como
+Un spoiler acá
+Pero
+Nada
+Por eso mismo
+Como
+Vamos a tener
+Que calcular
+El lag
+De la unión
+Perdemos
+Una
+Por
+Por ese lag
+Un pequeño detalle
+Por si después
+Miran el código
+Y dicen
+Che
+Porque
+Esto debería ser
+Del 81
+Al 87
+De hecho
+Supongo que
+Si lo corres
+Te dirá
+Que
+A ver
+Corro a esto
+Y a ver
+¿Qué pasa si corres?
+¿Qué pasa?
+Te omite
+La del 87
+Bueno
+Después tenemos acá
+Un código
+Que lo que hace es
+Armarte
+En un loop
+La probabilidad
+De estar afiliado
+A un sindicato
+En el año
+1982
+Dado que
+No estaba
+Dado que
+Estabas afiliado
+Y dado que
+No estamos afiliados
+Y se armó la cuenta
+Como vimos recién
+Fíjense que
+Lo que va a cambiar
+Respecto del ejercicio
+Anterior
+Nada más
+Es que
+Que aparte
+De
+Tener el
+Si
+Si
+Y un ro
+Esto
+Y acá
+Le voy a tener
+Que agregar
+Cuál es el
+Efecto
+De estar parado
+En algún año
+En particular
+Pero nada
+La idea es
+Medio la misma
+Y acá
+Están los resultados
+También resumidos
+Si los quieren mirar
+Después
+En el ejercicio
+C
+Nos dice
+Estima el modelo
+De efectos
+No observables
+Dinámicos
+Use el modelo
+Probit
+De efectos
+Aleatorios
+Incluyendo
+Unión
+Como una
+Variable
+Explicativa
+Adicional
+Luego
+Ah
+Unión
+80
+Luego
+Promedia
+Las probabilidades
+Estimadas
+A lo largo
+De un
+Unión
+80
+Pero obtener
+La probabilidad
+Promedio
+De estar afiliado
+En el 87
+Dado que
+Estaba afiliado
+En el periodo
+Anterior
+Ok
+Estamos de vuelta
+En Probit
+De efectos
+Aleatorios
+Y bueno
+Reaparece
+El tema
+De que
+Cuando tenemos
+Esos efectos
+Dentro del modelo
+De variables
+No observables
+Tenemos esa inconsistencia
+Que después
+Se termina
+Como
+Steering
+Over
+El resto
+De la estimación
+De los parámetros
+Que también
+Son inconsistentes
+Entonces
+Lo que vamos a generar
+En este caso
+Es
+Más bien
+Lo que nos piden
+Computar
+Es esto
+Es esto
+Es esto
+Que es básicamente
+El modelo
+Que teníamos
+Promediado
+El valor
+Promedio
+Que toma
+La probabilidad
+De pertenecer
+El valor
+Siguiendo
+Siguiendo esta
+Especificación
+Que está acá
+Una especificación
+Que lo que
+Contempla
+Es
+El si
+Estimado
+Que veíamos
+Antes
+El ro
+Que esto
+Es como
+Beta
+Cero
+La constante
+Beta
+Uno
+Que es lo que
+Acompaña al lag
+Vamos a agregar
+Un parámetro
+Nuevo
+A estimar
+Que pueden
+Llamarlo
+Beta
+Dos
+Que es un parámetro
+Que va a acompañar
+A unión
+Y ochenta
+La forma
+Que toma
+Unión
+Y ochenta
+Es muy parecido
+A algo
+Que habíamos hecho
+En uno de los
+TPs anteriores
+Que era
+Si teníamos
+Acá
+El individuo
+Uno
+El individuo
+Dos
+No sé qué
+Y acá tengo
+Los años
+Ochenta
+Ochenta y uno
+El ochenta y siete
+Ochenta
+Hasta el ochenta y siete
+Me fijo
+Básicamente
+Cuánto valía
+Más bien
+Me fijo
+Si esa persona
+Estaba o no
+En el sindicato
+En el año ochenta
+Si estaba
+En el sindicato
+En el año ochenta
+Listo
+Ponele
+A ese individuo
+Hasta el ochenta y siete
+Uno
+En todas las
+Observaciones temporales
+Y si no
+Estaba en el sindicato
+En el año ochenta
+Por más que
+Haya estado
+En el sindicato
+En otro año
+Digamos
+Si esto
+Hacía esto
+Ponele cero
+A todo
+Esto creo
+Que lo habíamos
+Hecho
+Cuando veíamos
+Chamberlain
+Que
+Agregábamos
+Esos
+Esas variables
+Que eran tipo
+X
+Y
+En el noventa
+X y
+En el ochenta y siete
+Etc
+Muy parecido a eso
+Entonces nada
+Básicamente lo que estamos
+Pensando es
+Si pertenecías
+Pertenecer a un sindicato
+En el primer año
+De la muestra
+Cómo afecta
+A la pertenencia
+En el sindicato
+En todo el resto
+De los años
+Para cada individuo
+Entonces nada
+Va a aparecer este
+Parámetro nuevo
+A estimar
+Esto ya lo teníamos
+Y aparte
+Bueno
+Las ramas temporales
+Todo esto
+De vuelta
+Rescalado
+Por este
+Rescalado
+Por este
+Ay otra vez
+Se me fue la palabra
+Termino
+Así que
+Nada
+Vamos a hacer eso
+Que cae
+El pecho
+Entonces eso es
+Lo que vamos a estar
+Haciendo acá
+Fíjense que
+No
+Aparte suena muy
+Acá arriba
+Y esto
+Lo que hace
+Esta parte del código
+Es
+Si estamos
+Parados
+En el año
+1980
+Generate una variable
+Que se llama
+Union
+Que toma el valor
+Que toma
+Union80
+Que toma el valor
+Que toma
+Union
+Y si estás parado
+O sea
+Si estás mirando
+Una observación
+Que está en el año
+81
+Ponele
+Reemplaza
+Union80
+Con el valor
+Que tomó
+En n-1
+O sea
+En el 80
+Si estás parado
+En el 82
+Ponele a
+Unión80
+El valor
+Que tomó
+Union
+En
+N-2
+O sea
+En el 80
+Como que te vas
+Moviendo
+Menos 1
+Menos 1
+Menos 2
+Menos 3
+Hasta llegar al 80
+Depende de donde
+Estás parado
+Entonces si hacemos
+El browse
+Como siempre
+Fíjense que
+El individuo
+1
+En el primer
+Periodo
+No estaba
+En el sindicato
+Y después
+Se sumó
+Pero bueno
+Union80
+Va a tomar
+Valor 0
+Para todos los casos
+Después tengo
+El segundo
+Individuo
+Que nunca
+Estuvo en el sindicato
+En particular
+No estuvo en el sindicato
+En el 80
+Entonces no está
+En ningún momento
+Tenemos a este
+Individuo
+Que está acá
+Que voy a correr
+Para acá
+Es el
+Individuo
+45
+Que en el 80
+Vemos que
+80
+Unido
+45
+Están en el sindicato
+Entonces va a tomar
+1
+Todo el tiempo
+Y así sucesivamente
+Y ahora que ya tengo
+Esa variable generada
+Hacemos de vuelta
+El profit
+Con
+Union
+El lag de Union
+Union en el 80
+Y las damas temporales
+Todo esto por random effects
+Y fíjense
+Que
+Union 80
+Nos da significativa
+Entonces básicamente
+Lo que nos está diciendo
+Es como capaz que
+Ok
+De año a año
+Porque esto también
+Nos da significativa
+Entonces es como que
+De año a año
+Haber pertenecido
+En el periodo
+Inmediatamente
+Anterior
+Al sindicato
+Afecta
+De forma
+Positiva
+A pertenecer al sindicato
+En el periodo siguiente
+Y en particular
+Estar
+Al principio
+De los 80
+En el sindicato
+También aumenta
+La probabilidad
+De pertenecer
+A un sindicato
+En cualquiera
+De todos los demás años
+¿Qué más?
+Después las damas temporales
+Por lo que vemos
+Solamente
+Esta
+Sería
+Ahí casi
+Significativa
+Del 5%
+Bueno
+El 10%
+Sí
+La del 85
+Pero el resto
+No
+No
+No estaría siendo
+Significativo
+Y
+Bueno
+Lo que nos piden
+Computar
+Entonces de vuelta
+Es esto
+Nos dicen
+Promedia
+La probabilidad
+Estimada
+A lo largo
+De union
+Y 80
+Para obtener
+La probabilidad
+Promedio
+De estar
+Afiliado
+En el 87
+Dado que estaba
+Afiliado
+En el periodo anterior
+Entonces
+De vuelta
+Pensando
+Esto es un poco
+Más parecido
+Al caso
+De individuos
+Black
+Que era
+Como bueno
+Quiero ver
+La probabilidad
+Pero para
+Un tipo
+Específico
+De individuo
+Bueno
+Ahora quiero
+Ver la probabilidad
+Promedio
+En el año
+87
+Dado que
+Estaba afiliado
+En el periodo anterior
+Digamos
+Si queramos
+Podemos
+Nosotros
+Como
+Siento que
+Están jugando
+Tipo al bowling
+Acá arriba
+Capaz que es
+Un evento
+De networking
+La parte
+De
+Por ejemplo
+Promedia
+Promediar
+La probabilidad
+Estimada
+Sería como
+Esto que estamos
+Diciendo
+Acá
+A lo largo
+De que
+Union
+Y 80
+¿Qué es lo que
+O sea
+Lo que estoy
+Lo que estoy
+Sumando es otra vez
+Así que
+Para qué
+Para obtener
+La probabilidad
+Promedio
+De estar afiliado
+A un sindicato
+En el año
+87
+O sea
+Características
+De los individuos
+Que tengo en cuenta
+Bueno
+Individuos
+Del año 87
+Dado que
+Estaba afiliado
+En el periodo anterior
+¿Cómo represento
+Eso
+Metiendo
+Este parámetro
+En la cuenta
+Porque acuérdense
+Volviendo al caso
+Más simple
+De todos
+Que era
+La probabilidad
+De que U
+Se igual a 1
+Dado que U
+En T-1
+Era igual a 0
+Todo esto era como
+La normal
+Evaluada solamente
+En sí
+En la constante
+Y la probabilidad
+De U
+T igual a 1
+Dado U
+T-1
+Igual a 1
+Esto era
+La normal
+MC
+Más ROG
+Por eso acá
+Estoy enchufando este ROG
+Para indicar que
+Estaba afiliado
+En el periodo anterior
+Nada
+Un poco
+Traducir lo que
+Estamos haciendo acá
+Todo esto
+De vuelta
+Reescalado
+Por lo que
+Sabemos que tenemos
+Que rescalar
+Dado la
+La especificación
+De este modelo
+Y eso es lo que
+Hacemos
+En esta última
+Línea del código
+Normal de
+La constante
+Más ROG
+ROG
+Creo que era ROG
+O bueno
+El coeficiente
+De union
+El coeficiente
+De union 80
+Por union 80
+Y
+Más
+D
+D87
+Si el año
+Es 1987
+Entonces es como que
+Estamos generando
+Esa probabilidad
+Solamente para el año 87
+Para todos los individuos
+Y después la promediamas
+Agarrás esto y le
+Te dice el promedio
+Consum
+Y ahí tenemos
+El efecto
+Otro medio
+Creo que nada más
+Estoy gratamente sorprendida
+Con la puntualidad
+De la clase de hoy
+Quedan 5 minutos
+De chapá
+Así que nada
+Creo que
+Resumió gente
+En casa
+No sé si hay
+Alguna pregunta
+De esto
+Bueno
+Yo paro la grabación
+Igual
+Gracias
+Y

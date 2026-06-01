@@ -1,0 +1,4676 @@
+Bueno, hoy tenemos para arrancar el Problem Set 2.
+Les dejé ya todo cargado en el Dropbox, así que si quieren ir siguiendo los códigos, van a estar acá.
+Y en el campus también tienen más fácil el enunciado, y no voy a dejar las soluciones a mano
+porque hay algunas cosas que va a ser más fácil leerlas de ahí directo.
+Hay que decirlas solamente en vivo.
+Mi idea para hoy es llegar a cubrir los ejercicios 1 y 2 para no ir corriendo porque son 4 ejercicios.
+Y nada, la verdad que estamos bien de tiempo, así que no...
+Vamos a ir por ahí.
+Pequeño comentario, semana que viene, Semana Santa, así que sábado no nos vemos.
+Nos vemos el próximo sábado.
+Nada, buen momento para ponerse al día con todas las cosas que tengamos pendientes por ahí.
+Lo cual es una gran mentira porque después llega el fin de semana y no hacemos nada productivo.
+Y si no es imposible.
+Así que, bueno, nada, vamos a seguir arrancando.
+Bueno, en este problem set lo que vamos a hacer es, digamos, hasta ahora veníamos hablando más bien de modelos lineales.
+Y con este problem set vamos a trabajar con modelos lineales que tienen una particularidad más, que son los componentes no observados.
+Esto con Martín entiendo que ya lo vieron.
+Si no, creo que hace dos clases o tres ya habrán arrancado con este tema.
+Así que acá van a empezar a surgir cosas más orientadas a panel en sí, y no tanto repaso de econometría.
+Voy a ir compartiendo acá porque quiero hacer un mini repasito de un par de cosas, así después no lo tengo que decir de cero.
+Así que voy a compartir.
+Solamente para hacer un mini repaso de las cosas, más bien de las modelos teóricos que vamos a estar viendo hoy.
+Y para tener las ecuaciones en algún lado, en otra vez.
+Primero que nada, recordar que la motivación de estas últimas clases fue partir del modelo lineal que teníamos originalmente.
+Pero ahora lo que vamos a hacer es considerar un modelo...
+Un modelo que va a tener esta forma.
+C y más x y beta, más u y p.
+Donde lo que estamos haciendo es agregarle esta C y acá al modelo.
+C y vamos a decir que es un efecto no observado.
+Que no cambia en el tiempo para cada una de las unidades observacionales.
+Por ejemplo, personas, counties, la que sea.
+Y este efecto se le suele llamar efectividad, heterogeneidad individual, heterogeneidad no observada, etc.
+En base a esta, a decir, bueno, para mí la estructura de los datos sigue de esta forma,
+lo que se hace en esta materia, en datos de panel y en la econometría de datos de panel en general,
+es proponer dos visiones acerca de qué es lo que creemos del CI.
+Y lo que vieron en clase es que tenemos, por un lado, el modelo de random effects.
+Y por otro lado, el modelo...
+O sea, efectos fijos versus efectos aleatorios.
+Históricamente lo que se decía era como que...
+Random effects considera que el CI que tenemos acá
+es como una variable aleatoria.
+Mientras que fixed effects lo que decía, una forma de pensarlo era
+decir, lo trato como un parámetro a ser estimado.
+O sea, cuál es el efecto de pertenecer a, no sé, California en la variable que estamos viviendo.
+Otra forma de pensarlo, que para mí me parece un poco más intuitiva o más ajustada
+a lo que vamos a trabajar en FTP,
+es pensar en el modelo de random effects como un modelo donde...
+Como estamos tratando al CI como una variable aleatoria,
+lo que estamos diciendo es que hay ausencia
+de correlación
+entre el error y las variables explicativas.
+Y el modelo de fixed effects lo que va a hacer es plantear,
+o más bien permitir presencia...
+De correlación, sí.
+De vuelta, esto igual, entiendo que ya lo vieron con Martín...
+Basado en estos dos modelos, lo que vamos a decir es, bueno, queremos estimar, ¿no?
+¿Qué vamos a usar hoy para estimar, o sea, en el TP de hoy?
+Pool do del ES, ya estamos todos de acuerdo, aquí es la respuesta por X inversa, aquí es la respuesta por Y,
+nada raro.
+El problema con pool do del ES es que según qué modelo estemos teniendo en mente,
+bueno, vamos a ver, problema en los errores, porque si hay correlación en los errores,
+ya vimos la semana pasada que la estimación de la matriz de varianzas y covarianzas no va a ser la correcta,
+por lo tanto la diferencia que hagamos no va a ser la correcta.
+Y ya después, en el caso de random effects, lo que vamos a hacer es...
+Esto, de vuelta, es un punteo súper artesanal para ponernos un poco en contexto antes de ir al código, así.
+En random effects lo que vamos a hacer es básicamente incluir a este componente no observable en el término de error.
+Y es lo mismo que hacemos en pool do ELS, solo que en pool do ELS lo dejamos en el término de error y nos queda ahí.
+Acá vamos a hacer el supuesto de que los seis de vuelta son ortogonales.
+Esto va a ser como la parte más fuerte, la más fuerte de aplicar este modelo, porque se está pidiendo dos cosas.
+Una, exostenibilidad estricta, y dos, ortogonalidad entre CI y X y T.
+Que después en el TP igual vamos a ver casos donde por qué podría no cumplirse la ortogonalidad.
+Y aparte, como dijimos antes, que también aplica al caso de OLS,
+como lo que estamos haciendo es reescribir un poco el modelo...
+Nosotros partíamos de este modelo, ¿no?
+¿Puedo operar?
+¿Puedo operar?
+Partíamos de este modelo, ¿no?
+Lo que vamos a hacer en Random Effects, que es lo que se hace también en PIO, en pool do ELS,
+es este y este juntarlos en un mismo componente, que es el error compuesto.
+Esto es una B, y esto es una U.
+Y esto es una U.
+Donde este error compuesto, que va a ser CI más U y T,
+nos va a estar generando este problemita sobre los errores, como dijimos antes,
+entonces lo que vamos a hacer es usar GLS, como hicimos la semana pasada, para calcular la matriz correcta.
+Eso por el lado de Random Effects.
+Por el lado de Efectos Fijos...
+Lo que vamos a tener es, repito un poco el modelo, vamos a pensar, Y y T igual a X y T subeta, más CI más U y T.
+Pero como decíamos, lo que nos hace este modelo es permitir que la covarianza entre CI y X y T sea distinto de cero.
+Entonces, básicamente lo que estamos pensando es que algunas de estas variables que no podemos observar correlacionan con el error compuesto,
+entonces FGLS nos va a dar estimaciones sesgadas e inconsistentes, entonces vamos a tener que trabajar un poquito más para mejorar la estimación.
+Cada uno tiene sus ventajas y desventajas, Random Effects versus Fixed Effects.
+Asumo que ya hablaron un poco de esto en clase, pero básicamente, ¿qué pasa?
+En Random Effects lo que vamos a hacer es despegarnos de este CI,
+y en Fixed Effects lo que vamos a hacer es hacer transformaciones sobre este modelo,
+para estimar variables que son un poquito distintas, se interpretan de forma un poquito distinta,
+pero nos vamos a sacar de encima este CI.
+Y al sacarnos de encima este CI, nos estamos sacando de encima también, digamos,
+más bien, no incluimos
+factores
+constantes en el tiempo.
+Porque van a ver cuando hagamos las transformaciones que tenemos que hacer
+en Fixed Effects para borrar el CI, que todos esos valores van a desaparecer.
+Dentro de Fixed Effects lo que vamos a hacer hoy es ver algunas transformaciones,
+no todas, vamos a ver, Within,
+que también se le dice estimador de Fixed Effects.
+Vamos a ver la transformación del
+LSDD, o modelo de variables binarias.
+No incluimos factores constantes en el tiempo.
+O sea, no vamos a poder analizar eso.
+Bueno, la transformación within, no sé si se lo acuerdan,
+si no, igual lo vamos a ver, pero básicamente es promediar
+esta ecuación que tenemos acá.
+Y una vez que la promediamos, la restamos,
+o sea, estamos generando un nuevo modelo,
+que es la diferencia respecto del promedio para alguna de las observaciones.
+Cuando hacemos esa transformación,
+de vuelta el CI va a desaparecer,
+y ahí ya vamos a estimar por OLS.
+Pero vamos a ver que ese
+que ese approach tiene un pequeño problemita,
+que nada, no se los voy a explotar ahora.
+Pero está relacionado con los grados de libertad,
+capaz que esto le suena de la clase.
+Después, el modelo de LSDD,
+que es mínimos cuadrados con dummy variables,
+es básicamente agregar una dummy,
+o sea, si yo creo que hay un efecto
+por pertenecer a Arizona, California, etc.,
+agrego pertenencia a Arizona, California, etc.,
+como una dummy y ya está.
+Entonces capturamos eso.
+Y este modelo vamos a ver que sí produce el estimador correcto
+de la varianza de los errores.
+porque sí va a tener en cuenta
+esos grados de libertad que nos faltaban antes.
+¿Qué más?
+Y vamos a ver First Differences,
+o Primeras Diferencias,
+que es básicamente
+restar para cada observación
+la información que tengamos del periodo anterior.
+No siempre va a ser el año anterior,
+depende de cómo esté estructurada la base de datos,
+pero vamos a trabajar un poco con eso.
+Nada.
+Quería hacer esos comentarios
+como para ponernos un poco un contexto,
+y ahora sí vamos
+directo
+al código.
+Valter Pérez.
+Soy un poco feucho.
+Bueno, vamos.
+Entonces,
+el ejercicio 1 nos propone
+volver a la base de datos de Cornwell,
+que era la que tenía información del sistema penitenciario,
+y considerar
+este modelo de regresión
+que tenemos acá.
+Fíjense que tenemos
+el logaritmo
+de la tasa de criminalidad
+explicado por una constante,
+más beta 1
+por el logaritmo
+de la probabilidad de arresto,
+más beta 2
+por el logaritmo
+de la probabilidad
+del conviction,
+beta 3
+por el logaritmo
+de la probabilidad
+de ir a la prisión,
+beta 4
+por el logaritmo
+de la duración promedio
+de la sentencia,
+beta 5
+por la cantidad
+de policías
+per cápita,
+y estamos agregando
+beta T
+por esto de acá,
+que fíjense que lo que es,
+es simplemente
+sumar
+beta T
+por una indicadora
+para el año 82,
+beta 83
+por la indicadora
+para el año 83,
+beta 84
+por la indicadora
+para el año 84,
+y es precisamente,
+o sea,
+una dummy
+por periodo temporal.
+Vamos a tener
+un efecto
+mui,
+que esto va a ser
+como la gran diferencia
+respecto al del pasado
+y los errores.
+Fíjense que
+mui no cambia
+en el tiempo
+para ninguna
+de las observaciones,
+es constante
+para las observaciones.
+Acá nos piden,
+utilizamos el comando
+igen de stata,
+construir las medias
+individuales
+de las variables
+del modelo,
+aplicar la transformación
+within,
+como me lo decía recién,
+después estimar
+el modelo
+por pull double S,
+comentar la validez
+de los errores
+estándar,
+que ya los despoilé,
+que no van a ser
+los correctos,
+después usar
+el comando
+xtr
+para estimar
+nuevamente
+el modelo
+usando efectos fijos,
+y finalmente
+estimar el modelo
+usando diferencias
+finitas del primero red.
+O sea,
+vamos a hacer
+transformación
+within,
+transformación
+de efectos fijos
+con xtr,
+y después
+diferencias finitas
+del primero red.
+Voy al código.
+Va a haber cosas
+del código
+que las voy a pasar
+un poco más rápido
+porque
+creo que ya hicimos
+bastante de la gimnasia
+de
+de stata,
+y así nos queda tiempo
+para concentrarnos
+en cosas que son
+un poquito más nuevas.
+Bien,
+primero que nada,
+cargo la base de datos,
+declaro el panel,
+y lo describimos
+para ver,
+para recordar
+qué es lo que teníamos.
+Voy a chicar esto un poco.
+Ahí se ve bien, ¿no?
+Lo que pasa es que
+después cuando empezás
+a correr las direcciones
+y la tabla es un poquito
+más grande
+de lo que tenés al usar.
+Bien,
+vamos con
+con los primeros incisos.
+Antes de hacer cualquier cosa,
+antes de hacer
+las transformaciones
+y demás,
+vamos a correr
+pool dobles
+para ver
+desde que
+benchmarks se iba.
+Tengamos en cuenta
+que al
+considerar
+que hay un efecto
+fijo
+entre las counties,
+por pool dobles
+todo eso
+va a ir a parar
+a los errores.
+yendo a parar
+a los errores.
+Entonces voy a arrancar
+directamente con
+una regresión
+de
+el logaritmo
+de
+la tasa de criminalidad
+con todas las variables
+independientes
+que dijimos antes
+y vamos a agregar
+también
+una dummy
+para el año.
+Acá lo que le estoy diciendo
+a Stata
+es
+tomame el 81
+como base
+que es igual
+lo que va a terminar
+haciendo por default
+porque es como
+las tenemos ordenadas.
+La otra opción
+es
+escribirlo
+D82
+a D87
+Esto va a funcionar
+tipo
+hago el recordatorio
+por las dudas
+solamente
+porque
+digamos
+la sintaxe
+esa de
+D82
+D87
+funciona
+porque
+ya tengo
+las variables creadas
+uno
+y dos
+porque
+ya están
+ordenadas
+en la base
+de datos
+si estuviera
+por ejemplo
+esta columna
+metida por acá
+adentro
+tendría que
+reordenarla
+si en algún momento
+no les funciona
+puede ser por eso
+para ordenarlo
+lo hacen
+como
+order
+y pueden
+poner
+D82
+D87
+y ahora
+esto me las trajo
+adelante
+hay que darle
+hay que tener
+más confianza
+hay cosas
+mejores
+en la vida
+pero
+no
+yo digo
+en general
+salir a caminar
+ver la luz
+del sol
+D87
+hace cosas buenas
+yo
+al principio
+renegaba
+mucho
+de Stata
+porque
+como que
+arranqué
+más
+por el lado
+de R
+y R
+me resultaba
+más sencillo
+porque le decía
+a R
+hacen esto
+y lo hacía
+con Stata
+medio que
+tenés que
+aprender
+los comandos
+y todas
+las mañas
+que tiene
+con los
+local
+y los
+global
+tiene ese
+costo
+de entrada
+un poquito
+más alto
+pero
+una vez que
+le agarrás
+un poco
+la mano
+ya deja
+de ser
+tan
+terrible
+bueno
+entonces
+lo que
+estamos
+haciendo
+acá
+la regresión
+por
+pool
+dobles
+clusteríamos
+por
+Panti
+como vimos
+la vez
+pasada
+para
+decir
+la Stata
+que nos
+agrupe
+los
+errores
+a nivel
+county
+porque
+como
+vimos la vez
+pasada
+asumimos
+que tenemos
+correlación
+para una
+misma
+observación
+a través
+de los
+diferentes
+periodos
+en el
+tiempo
+y
+veamos
+qué
+nos
+da
+esto
+fíjense
+que acá
+tenemos
+los
+coeficientes
+del
+logaritmo
+de la
+probabilidad
+de arresto
+sobre
+el
+crime
+rate
+los
+errores
+estándar
+y el
+p-value
+esto
+esto
+nada
+más que
+nada
+para
+ver
+de dónde
+partimos
+o cuál
+sería
+la
+opción
+más
+simple
+de estimar
+sin tener
+en cuenta
+este
+efecto
+fijo
+que decíamos
+que ahora
+se nos
+está yendo
+todo al
+término
+de error
+porque no
+hicimos
+absolutamente
+nada
+para
+tratarlo
+básicamente
+lo que
+estamos
+diciendo
+acá
+que
+un
+aumento
+de un
+1%
+en la
+probabilidad
+de arresto
+tiene un
+efecto
+de una
+caída
+del
+0.71%
+en
+el
+crime
+rate
+acá
+tenemos
+las
+dummies
+temporales
+estoy
+olvidando
+de decirles
+algo
+creo que
+no
+bueno
+le acabamos
+a pasar
+sí
+al
+punto
+a
+que
+era
+volvemos
+un
+segundo
+utilizando
+el
+comando
+y
+en
+de
+stata
+construir
+las
+medias
+individuales
+de las
+variables
+del
+modelo
+para
+hacer
+eso
+lo que
+vamos
+a
+hacer
+es
+comando
+y
+voy
+a
+crear
+la
+media
+del
+crime
+rate
+que
+es
+min
+del
+crime
+rate
+pero
+no quiero
+que
+todas
+las
+observaciones
+tengan
+el mismo
+promedio
+o sea
+yo
+no quiero
+agarrar
+y para
+el county
+1
+ponerle
+el promedio
+de
+el promedio
+de todo
+esto
+sino
+lo que
+vamos a
+calcular
+es el
+promedio
+para
+el
+condado
+1
+a través
+de todos
+los
+años
+del
+81
+al
+87
+y
+eso
+después
+lo vamos
+a
+repetir
+para
+todos
+los
+condados
+entonces
+para
+el
+condado
+1
+le voy
+a
+decir
+a
+Stata
+calculame
+el
+promedio
+que
+tuvo
+desde
+el 81
+hasta
+el 87
+el
+prime
+rate
+probabilidad
+de arrest
+etc
+etc
+eso
+como
+lo hacemos
+by
+county
+generamos
+esa
+variable
+esto
+si lo
+quieren
+hacer
+para
+una
+sola
+y
+digamos
+que
+cuando
+nos
+genera
+la
+variable
+fíjense
+que
+se
+repite
+7
+veces
+que son
+los
+7
+años
+para
+el
+primer
+county
+7
+años
+para
+el
+segundo
+7
+años
+para
+el
+tercero
+para
+automáticos
+como son
+bastantes
+las variables
+que vamos
+a incluir
+y no
+tiene
+sentido
+hacer
+la
+mano
+porque
+Stata
+nos
+deja
+hacerlo
+de una
+sola
+vez
+vamos
+a
+hacerlo
+para
+eso
+nos
+generamos
+una
+macro
+que nos
+guarde
+en
+extra
+xlist
+la
+lista
+de
+variables
+y
+vamos
+a
+decir
+for
+any
+xlist
+by
+county
+generame
+el
+min
+de
+x
+que
+es
+el
+min
+de
+x
+y
+vuelvo
+acá
+fíjense
+que
+tenemos
+ya
+los
+promedios
+esto
+acá
+sería
+como
+el
+promedio
+temporal
+para
+el
+condado
+1
+promedio
+temporal
+para
+el
+condado
+2
+listo
+ese era
+el inciso
+a
+ruminado
+ese
+for any
+es igual
+que el
+for each
+verdad
+después
+tenemos
+aplicar la
+transformación
+al modelo
+y luego
+estimé
+el modelo
+transformado
+por
+full
+dobles
+lo voy a
+escribir
+un poquito
+acá
+ya que estamos
+creo que
+espero no
+tener que correr
+mucho
+al final
+bueno voy a
+seguir escribiendo
+en rojo
+para no
+confundirnos
+esto es
+ejercicio
+1
+y queremos
+aplicar la
+transformación
+un fin
+¿cómo se
+aplica la
+transformación
+un fin?
+bueno partiendo
+primero que nada
+del modelo
+original
+que tenía
+más o menos
+esta forma
+el alfa
+es la constante
+creo que antes
+no lo
+lo que hicimos
+recién
+fue calcular
+las medidas
+temporales
+y
+es igual
+a su promedio
+más
+¿dónde?
+la variable
+por ejemplo
+y y rayita
+es
+la sumatoria
+de
+y y t
+sobre
+todos los t
+en nuestro
+caso
+como vimos
+como ya habíamos
+visto la vez
+pasada
+este panel
+es balanceado
+entonces
+los ti
+van a ser
+igual a
+t
+igual a 7
+para todo i
+pero bueno
+en el caso
+de paneles
+no balanceados
+tendríamos que
+tener en cuenta
+esto
+y para hacer
+la transformación
+within
+lo que vamos a hacer
+es restar
+miembro a miembro
+1 con 2
+entonces
+esto nos va a quedar
+y y t
+menos y y rayita
+igual a
+alfa menos alfa
+se va
+y después
+la otra parte
+nos queda
+beta
+por
+x y t
+menos x y rayita
+muy contra muy
+se van
+entonces
+ahora que no
+tengo estos
+efectos
+déjame hacer
+un pasito más
+y rescribir esto
+como están las slides
+que creo que es
+con dos puntitos
+acá estoy escribiendo
+entonces esto es lo que
+vamos a estar estimando
+por OLS
+o sea que
+nosotros recién
+ya calculamos
+este de acá
+este bueno
+es el modelo
+así que nos queda
+generar esta diferencia
+y
+y bueno
+y esquimarlo por OLS
+así que
+vuelvo acá
+y vamos a hacer eso
+bien
+lo que vamos a hacer ahora
+aparte de generar
+la
+la media
+que es lo que ya hicimos
+como que es
+la ecuación 2
+de lo que escribí recién
+vamos a hacer
+efectivamente
+la transformación
+within
+que es
+generar una variable
+que es
+la variable original
+menos la media
+la vamos a generar
+una vez
+para
+la
+dependiente
+y después
+voy a hacer
+el truquito este
+de
+para cada
+x list
+lo genero
+como
+lo vuelto
+x menos
+la media de x
+bien
+acá ya nos dice
+que ya nos las generó
+todas
+lo único que nos queda
+hacer es la
+regresión
+¿cómo es la
+regresión?
+por pull doubles
+igual que siempre
+reg
+porque no estoy
+considerando nada
+de la estructura
+de panel
+within
+el logaritmo
+de la tasa
+de
+criminalidad
+within
+del logaritmo
+de la probabilidad
+de arresto
+así con todas
+las variables
+y
+fíjense
+que le estamos
+indicando a Stata
+que no nos ponga
+una constante
+porque como vimos
+recién
+cuando
+hacíamos la resta
+nos quedaba
+sin constante
+el modelo
+porque justamente
+el alfa
+cuando haces la transformación
+se va
+y lo voy a guardar
+con el nombre
+de wifi
+entonces acá
+ya tenemos
+los coeficientes
+y
+¿qué más podemos ver?
+notemos la cantidad
+de grados
+de libertad
+del modelo
+nosotros no le estamos
+poniendo constante
+acá al modelo
+pero en caso
+de que esté bien
+especificado
+esa constante
+te debería dar
+no significativa
+¿correcto?
+¿vos decís
+si saco esto
+y calculo?
+claro
+yo pensando un poco
+en la naturaleza
+del C
+porque si es que
+te da que
+es significativa
+entonces te puede
+dar pie a pensar
+que en efecto
+los C
+tenían correlación
+con alguna
+de las X
+sí
+eso
+totalmente
+el tema
+es que si vos
+le estás
+creyendo
+o sea
+tenés que ver
+cuál es tu prioridad
+si tu prioridad
+es estimar
+la constante
+del modelo
+entonces
+no deberías
+estar usando
+modelos
+que no te
+permitan
+calcular
+o
+el estimado
+o más bien
+estimar
+el estadístico
+o estimar
+el beta
+de cosas
+que sean
+constantes
+en el tiempo
+acá como
+no nos interesa
+esa constante
+decimos
+mira
+¿sabés qué?
+voy a transformar
+el modelo
+¿a costa de qué?
+a costa de no
+poder incluir
+variables
+que no cambian
+en el tiempo
+entonces
+yo creo que
+dependería ahí
+de cuál es
+el objetivo
+de la radiación
+ok
+perfecto
+gracias
+y también
+en este caso
+cuando haces
+la transformación
+no se
+no se
+te desaparece
+la constante
+será como
+el punto
+también
+claro
+claro
+por eso
+porque
+al final del día
+lo que decimos es
+mira
+tengo una base
+de datos
+quiero explicar
+cómo se mueve
+la tasa
+de criminalidad
+con estas variables
+pero
+tengo como
+evidencia
+o me suena
+que
+los datos
+podrían tener
+un efecto
+fijo
+por counting
+en este caso
+¿cómo hago para controlar
+para ese efecto
+fijo?
+bueno
+veo qué transformaciones
+puedo hacer
+una de las transformaciones
+que puedo hacer
+es restar la media temporal
+el tema es que
+claro
+cuando hacemos esa resta
+la constante
+se nos va
+desaparece
+entonces
+este no sería
+un buen modelo
+para estimar esa constante
+perfecto
+gracias
+no por favor
+está buena la pregunta
+digo
+al final del día
+lo que vemos acá
+son
+modelitos
+después cada uno
+según para qué
+quiera usar el modelo
+qué es lo que quiera medir
+tiene que
+justamente jugar
+con esto
+y ver
+qué modelo
+qué estimación
+qué
+qué procedimiento
+se ajusta mejor
+a lo que estás buscando
+porque por ejemplo
+pensalo
+si quisieras
+explicar
+el salario
+de una persona
+y qué sé yo
+cosas que son
+constantes
+en el tiempo
+haciendo estas transformaciones
+y te van a ir
+el género
+por ejemplo
+entonces hay que tener
+cuidado con eso
+ok
+¿qué más?
+ah bueno
+y acá
+voy a hacer una
+pequeña
+como
+pausa
+igual
+de vuelta
+esto seguro
+ya lo vieron
+en clase
+pero
+un pequeño comentario
+que vamos a hacer acá
+es que
+los errores
+estándar
+calculados
+con esta
+con este procedimiento
+no son válidos
+básicamente
+porque estamos
+considerando
+una cantidad
+incorrecta
+de grados
+de libertad
+paso un segundo
+escribirlo acá
+esto igual
+seguro que está
+en las slides
+seguro que está
+en
+en
+en
+en
+también
+tiene que estar
+pero
+básicamente
+lo que vamos
+a encontrar
+es que
+bajo la estimación
+de este modelo
+la varianza
+de los errores
+va a ser
+sigma
+al cuadrado
+vieron que
+teníamos que
+estimar esto
+de acá
+para exponerlo
+en la matriz
+bueno
+y habíamos visto
+en las primeras clases
+que era la suma
+de raciones al cuadrado
+sobre n
+¿quién es n?
+en realidad n
+como estamos
+haciendo punto
+ls
+nos está teniendo
+en cuenta
+n por t
+o sea
+county por year
+menos k
+que son
+las variables
+independientes
+desde
+el logaritmo
+de la probabilidad
+de arresto
+la cantidad de policías
+las datos
+de los años
+etc
+entonces
+en este caso
+si uno
+piensa
+bueno
+¿cómo son
+estos números?
+n por t
+a ver si tengo
+el valor
+n por t
+es 90 por 7
+630
+menos k
+que las k
+son
+las k
+variables
+que incluimos
+en el modelo
+que son
+estas 11
+variables
+las de
+las within
+¿sí?
+within
+de la probabilidad
+de arresto
+within
+de la probabilidad
+de conviction
+within
+de la cantidad
+de policías
+y las within
+de las damos
+o sea
+630
+menos 11
+ahora
+pensemos
+que
+hay un pequeño detalle
+acá
+que
+que se menciona
+en la bibliografía
+y en las clases
+ya lo vieron
+que esto en realidad
+no es tan así
+porque
+pensemos que
+en realidad
+del modelo original
+lo que nos está
+o lo que estábamos
+haciendo era
+controlar también
+por los muy
+que eran
+uno para cada
+condado
+uno para
+Arizona
+uno para
+California
+etcétera
+y nosotros
+teníamos 90
+condados
+incluidos
+creo que era
+a ver
+si mal no recuerdo
+entonces
+en realidad
+pensando
+en el modelo
+original
+este 619
+no
+no son
+realmente
+los grados
+de libertad
+sino que
+o sea
+esto
+no
+sí
+sería
+n
+por t
+menos k
+que son las variables
+menos las variables
+de las mu
+que era este 90
+que teníamos antes
+que esto
+después
+en las firminas
+creo que la notación
+que usan es
+n
+t
+menos uno
+menos k
+digamos
+acá estoy
+incorporando
+el hecho
+de que
+en el modelo
+original
+teníamos
+las mu
+y
+cuando hicimos
+la transformación
+un poco
+perdimos
+esas
+esas variables
+entonces
+para que el error
+que estamos
+teniendo en cuenta
+en la regresión
+sea
+válido
+vamos a tener que hacer
+este ajuste
+vuelvo
+al startup
+y
+hay
+diferentes
+formas
+de hacer
+el ajuste
+una opción
+sería como
+hacerlo a mano
+pero es como
+digamos
+matemáticamente
+simple
+multiplicar
+si dividís
+por lo que
+por el
+630
+menos 11
+menos 90
+y sobre
+el que
+te querés
+sacar
+de encima
+que es
+el n
+por t
+menos k
+o sea
+el que estaba mal
+pero
+con
+esta
+nada
+lo vamos a dar
+de una forma
+un poquito
+distinta
+para eso
+vamos a usar
+el comando
+xtreg
+fixed effects
+voy a correr
+lo que hace esto
+es
+xtreg
+y nos
+pulea
+la transformación
+de fixed effects
+pero ya calculada
+así
+el xtreg
+para ponerle
+este pena
+¿cómo?
+el xtreg
+¿para qué?
+el xtreg
+es
+es el
+rey
+pero el xtre
+lo que nos dice
+ok
+lo estás aplicando
+a una base de datos
+que tiene estructura
+de panel
+y como
+lo estás usando
+para un panel
+te voy a dar
+opciones
+para que
+estimes
+usando modelos
+para panel
+entonces fíjense
+que acá
+ya nos dice
+que los grados
+de libertad
+son 529
+que es básicamente
+630
+que era
+el n por t
+menos 11
+que son las variables
+menos 90
+que son los counties
+que no estábamos contando
+o sea que
+esto ya te saca
+como
+la estimación
+con
+los errores
+estándares
+corregidos
+por
+esa diferencia
+y fíjense
+cómo
+digamos
+cómo va a ser
+la
+la diferencia
+en la varianza
+estimada
+y en el coeficiente
+el coeficiente es
+0.35
+0.28
+para el caso
+de fixed effects
+para el modelo
+within a mano
+0.35
+0.28
+o sea
+son los mismos
+porque de vuelta
+el issue
+o el ajuste
+que hicimos
+es sobre
+los errores
+estándar
+y en la
+transformación
+within
+más pool
+dobles
+lo que nos sale
+es
+0.29
+0.19
+0.30
+0.32
+0.21
+0.32
+o sea
+estos son un poquito
+más altos
+que estos
+lo cual
+tiene sentido
+porque acuérdense
+que lo que estamos
+haciendo
+es ajustar
+por un factor
+que es básicamente
+multiplicar
+por 529
+y dir
+por 630
+630
+era lo que
+queríamos
+tachar
+del cálculo
+original
+y 529
+no mentira
+al revés
+porque lo tengo
+en el denominador
+nada
+detalle
+para tener
+en cuenta
+porque esto
+puede parecer
+un poco trivial
+pero
+digamos
+va a ser trivial
+en casos
+donde tengas
+un n
+lo suficientemente
+grande
+como para que
+no te cambie
+tanto
+porque si vos
+tenés un n
+muy grande
+por t
+ponele que t
+sea en 7
+períodos
+y le restás
+las 11 variables
+y las 90 counties
+no te va a dar
+algo tan distinto
+que hacer
+esa cantidad
+arbitrariamente alta
+de n
+por 7
+menos 11
+entonces ahí
+no va a cambiar
+tanto al final
+del día
+pero bueno
+igual
+hay que
+hay que hacer
+la corrección
+y hay que
+digamos
+estimarlo bien
+ahora que sabemos
+cómo estimarlo
+y tenerlos en cuenta
+aparte de hacer
+la transformación
+de fixed effects
+con
+xtr
+que
+ya que estamos
+help
+xtr
+fíjense que acá
+nos da todas
+las opciones
+disponibles
+y si clickean acá
+pueden ir a las opciones
+que tenemos
+para fixed effects
+una de las opciones
+que tenemos
+es agregar
+la parte del
+cluster
+que ya es un
+gran amigo
+de la casa
+para decirle
+esta tamirá
+clustereame
+los errores
+por contado
+creo que
+de este lado
+nada más
+yo ya lo corrí
+no creo
+y algo a comentar
+que
+viene súper
+relacionado
+con la pregunta
+que hicieron hace un rato
+desde casa
+fíjense que acá
+nos está apareciendo
+una constante
+pero nosotros
+acabamos de decir
+que
+en la transformación
+fixed effects
+la constante
+se iba
+no sé
+si de casualidad
+alguien sabe
+que
+es esa constante
+estuvimos 15 minutos
+hablando de
+por qué en estos modelos
+no incluimos la constante
+si lo tenemos que hacer a mano
+porque ahora
+esta
+me la tirai
+acá
+hay una explicación
+pero
+digamos
+la explicación
+resumida es
+nosotros
+cuando hacemos
+aplicamos
+el modelo
+de fixed effects
+como decíamos recién
+lo que queríamos hacer
+era sacarnos
+de encima
+este factor
+que es constante
+en el tiempo
+para todas las observaciones
+por observación
+para eso
+lo que hacemos
+es restarle
+la media temporal
+a todas las observaciones
+y medio que nos perdemos
+la constante
+en el medio
+ahora
+si vos querés
+hacer predicción
+o sea
+si vos querés
+calcular
+y
+y
+t
+sombrerito
+vos tenés que volver
+al modelo original
+y si en el modelo original
+tenías
+alfa
+más
+beta
+por
+x
+y
+t
+más
+muy
+más
+y
+t
+está bien
+vos podés usar
+¿qué va a ser
+la predicción
+de
+y y t
+la predicción
+de y y t
+va a ser
+el beta
+estimado
+por
+tu conjunto
+de variables
+que tomaste
+de tu medición
+de tu encuesta
+estos
+con los métodos
+que hicimos
+ahora
+no los pudimos
+estimar
+aún
+los vamos a
+meter en el error
+por así decirlo
+pero este alfa
+de acá
+Stata te lo tira
+y eso es lo que
+vemos ahí
+digamos
+la motivación
+de Stata
+de
+de tirar
+la constante
+ahí
+es para que vos
+te puedas armar
+esta estimación
+de la
+esta predicción
+de
+entonces
+¿cómo hace
+esa estimación?
+es medio
+apuntoso
+no sé si voy a
+llegar
+pero de última
+si nos sobra
+un ratito
+al final de la clase
+lo podemos ver
+pero básicamente
+la transformación
+que hace
+está acá
+como que
+agarra
+el modelo
+original
+le resta
+esta media
+temporal
+que habíamos visto
+que calculamos
+y le suma
+otro
+otro promedio
+que te indica
+acá
+cómo se calcula
+con eso
+recupera
+el a
+the left side
+variable
+es
+y
+y
+y
+y
+t
+menos
+el within
+group
+means
+que es lo que
+calculamos
+pero le agrego
+el grand
+mean
+que el grand
+mean es
+el promedio
+sobre toda la población
+lo que dijimos que no íbamos a hacer
+al principio
+porque no
+lo queríamos agrucar con nada
+bueno
+calcular el promedio para todo
+sobre
+y sobre t
+que es esto
+suma sobre n
+suma sobre t
+de y
+dividilo por la cantidad
+total de observaciones
+y eso te da
+rayita a rayita
+y lo mismo
+del otro lado
+es como la misma
+transformación
+a las x
+y con eso
+nos devuelve
+la
+esto
+nada
+se los puede enviar
+si quieren
+mírenlo
+pero
+si
+se los comento
+por si
+cuando están
+haciendo algún
+tp
+o
+o
+mismo
+digamos
+haciendo ese tp
+vemos que aparece la constante ahí
+donde sale la constante
+bueno
+sale de ese cálculo
+sale de esa estimación
+de agarrar
+de vuelta
+variable
+la variable tal como la tenemos
+le resto
+le hago la transformación
+within
+le resto esa media temporal
+le sumo el promedio
+el grand mean
+que es este promedio
+sobre n y sobre t
+de la variable
+y ahí recupero la
+recuperaste la
+joya
+a todo esto
+llámalo y
+moñito por ejemplo
+a todo esto
+llámalo x moñito
+y te queda
+algo
+de esta forma
+y moñito
+y
+t
+igual a
+alfa
+más
+x
+y
+t
+moñito
+beta
+más el noise
+era más fácil
+escribir la e
+pero bueno
+elegí
+convicarme la
+de acá
+nada
+o el es
+y te estiman esto
+pero básicamente
+es eso
+renombrar esto
+y
+moñito
+renombrar esto
+x moñito
+y
+estimar
+¿ok?
+nada
+se los
+dejo
+si quieren
+lo pueden ver
+más tranqui
+después
+pero sale
+de ahí
+esa constante
+y paso
+al
+próximo
+ejercicio
+nos dicen
+bueno
+eso ya lo hicimos
+estima el modelo
+usando diferencias
+finitas
+de primer orden
+para hacer diferencias
+finitas
+acuérdense que
+lo que vamos a estar
+haciendo es
+cambio de color de vuelta
+ya que estamos
+acá creo que voy a tener
+que hacer un poquito
+más de cuentos
+partiendo del modelo
+original que teníamos
+lo que vamos a hacer
+es querer llegar
+a
+lo que vamos a armar
+es un modelo
+que va a ser
+delta y t
+igual a
+creo que igual
+esto va a ser
+más interesante
+en el ejercicio
+que sigue
+pero
+no
+delta
+x t
+por beta
+más
+delta
+u
+t
+y si se acuerdan
+este delta y t
+es básicamente
+lo podemos
+pensar como
+y
+y t
+menos
+más bien
+no quiero que se confunda
+la notación
+se acuerdan que
+esta era como
+el operador rezago
+entonces
+le resto
+la información
+que tenga
+en el periodo
+anterior
+por ejemplo
+si esto es
+y
+y
+y
+y
+y
+83
+menos
+y
+y
+82
+o sea
+lo que estamos
+haciendo
+si lo queremos ver
+como más
+detallado
+sería
+agarro el modelo
+original
+y agarro el modelo
+rezagado
+y el modelo
+rezagado
+es
+nada
+de vuelta
+irme al periodo
+anterior
+resto
+1 con 2
+y llego acá
+y que pasa
+cuando resto
+1 con 2
+me queda
+este
+menos este
+delta y t
+alfa
+menos alfa
+se va
+x y t
+beta
+menos
+x y t
+rezagado
+por beta
+eh
+mentira
+estaba queriendo
+señalar esto
+esto
+y el delta
+ult
+lógicamente
+si acá
+aparte le agregamos
+el muy
+la versión
+rezagada
+de muy
+como es
+el rezago
+de muy
+y si muy
+es confonder
+el tiempo
+es igual
+a muy
+entonces
+también
+se va
+a ir
+junto
+con
+la constante
+así que
+vuelvo
+a esta
+hay dos
+alternativas
+les dejo
+las dos
+para que
+gusten
+una opción
+es crear
+las variables
+a mano
+y después
+hacer
+regresión
+por
+voles
+crear
+las variables
+a mano
+es
+me genero
+d
+log
+de la
+tasa
+de crímenes
+que es
+tasa
+de crímenes
+log de la
+tasa
+de criminalidad
+menos
+el primer
+lag
+el primer
+rezago
+de
+la tasa
+de criminalidad
+y después
+lo repito
+para todas
+las variables
+que teníamos
+en la
+macro
+xlist
+y después
+hago la
+regresión
+sin
+constante
+porque de vuelta
+la constante
+voló cuando
+hicimos la
+transformación
+fíjense que
+acá nos dice
+que hay
+90 missing
+values
+generated
+en todas
+las variables
+¿alguien sabe
+por qué?
+estamos perdiendo
+la primera
+observación
+porque
+por ejemplo
+para el año
+para los 90
+counties
+para el año
+81
+yo no le puedo
+restar la
+información
+del año
+80
+entonces
+eso lo vamos
+a perder
+acá
+¿te hago una
+consulta?
+sí
+poniendo
+l1.la
+variable
+¿stata
+ya lo
+detecta
+o eso
+es una
+variable
+que generaste
+vos?
+no
+el
+total
+lo
+detecta
+de hecho
+según
+entiendo
+puedes
+poner
+l2
+y
+te generas
+como el
+segundo
+rezago
+voy a
+poner
+test
+así
+de grande
+para
+si justo
+tenía
+lo escrito
+así
+pero
+entonces
+fíjate que
+ahí tenemos
+180
+missing
+values
+porque
+nos
+perdemos
+la
+primera
+y la
+segunda
+perfecto
+gracias
+no de nada
+y la
+alternativa
+2
+sería
+usar
+este
+esta opción
+de punto
+que
+también te hace
+como que te calcula
+el rezago
+usando las variables
+que ya tenés
+sin
+decirle
+sin tener que
+crear variables
+nuevas
+si no querés
+tocar la base
+de datos
+si no querés
+crear variables
+nuevas
+solamente
+querés correr
+la regresión
+una vez
+y ver que te da
+esto también
+es una opción
+pones de punto
+la variable
+que querés poner
+rezagada
+de vuelta
+sin constante
+y ahí
+y ahí ya nos va
+pasó lo que tenía
+fíjense que nos
+tiene que dar lo mismo
+punto 32
+punto
+0
+29
+punto 32
+0
+29
+porque al final
+ya estamos
+haciendo lo mismo
+qué más
+bueno
+con eso
+terminamos
+el ejercicio 1
+si no me equivoco
+de vuelta
+en las soluciones
+a ver si tenemos
+algo más interesante
+ah
+me había olvidado
+acá está
+la cuenta
+que les dije
+hace un rato
+de cómo estimar
+consistentemente
+la varianza
+de los errores
+este es el
+el coeficiente
+que usamos
+en la transform
+más bien
+el ajuste
+que usamos
+en la transformación
+within
+donde no estamos
+teniendo en cuenta
+que perdemos
+estas n
+observaciones
+y bueno
+salvo que
+t sea lo suficientemente
+grande
+o n sea lo suficientemente
+grande
+deberíamos corregirlo
+usamos
+el comando
+xyreg
+para estimar
+el modelo
+usando efectos
+fijos
+estimar el modelo
+usando diferencias
+finitas
+de primer orden
+bueno
+como no hay
+un comando nativo
+del tipo
+first differences
+y a x
+construimos
+las variables
+¿cómo las construimos?
+o
+construir las variables
+con el
+operador lag
+el rezago
+o
+regresando
+de punto
+la variable
+acá están
+los resultados
+todos juntitos
+fíjense
+qué diferentes
+que son
+los coeficientes
+entre
+full dobles
+y cualquiera
+de las opciones
+fixed effects
+o first differences
+estamos
+estamos yendo
+de un punto
+72
+a un punto
+36
+negativo
+recordemos que nos decía
+esto
+nos decía que
+un aumento
+en la probabilidad
+de arresto
+de un 1%
+llevaría a una caída
+de punto 72%
+en la tasa
+de criminalidad
+con lo cual
+si bien el signo
+es el mismo
+en el caso
+de pool dobles
+está un poco
+sobreestimado
+en comparación
+con fixed effects
+y short differences
+y en cuanto
+a los errores
+de estándar
+en pool dobles
+tenemos
+0.11
+0.03
+0.03
+0.07
+0.02
+0.01
+0.10
+0.03
+0.02
+porque de vuelta
+no estamos teniendo
+en cuenta
+el ajuste
+que habíamos dicho
+por los grados
+de libertad
+nada eso
+eso era un poco
+de lo que vamos a ver
+con este ejercicio
+¿alguna pregunta
+con este?
+ya que estamos
+digamos
+en un interim
+bibliografía
+que podemos usar
+para seguir
+estas cosas
+de lo que encontré
+obviamente
+el
+viejo confiable
+Bullrich
+sección 10
+Basic Linear
+Unobserved Effects
+Panel Data Models
+que es lo que estamos
+viendo ahora
+modelos de lineales
+pero con efectos
+no observados
+y bueno
+acá si se fijan
+tenemos
+Random Effects
+First Effects
+Six Effects
+First Differencing
+y el test de Hausman
+que lo vamos a hacer
+ahora en un ratito
+y también está este
+que no sé si
+lo usan
+no lo conocen
+Cameron Trivedi
+Microconometrics
+es en Startup
+este está bueno
+porque es un
+muy buen resumen
+de lo que estamos
+haciendo ahora
+con la ventaja
+de que aparte
+te dice
+bueno
+y esto en Startup
+se hace así
+así que
+recomiendo
+que
+si quieren
+complementar
+las slides
+de clase
+que igual
+son súper claras
+sección 8.3
+panel data summary
+y tenés por ejemplo
+acá
+acá arranca
+within estimator
+between estimator
+que no lo vimos
+random effects
+y comparación
+House Montes
+first difference
+pero bueno
+sección 8
+de Cameron Trivedi
+Microconometrics
+de Instata
+dejo acá el nombre
+completo
+para que lo vean
+así que yo arrancaría
+por esos dos
+porque la verdad
+es que justo
+este contenido
+que estamos viendo
+en este TP
+por ahora
+estos dos ejercicios
+es bastante
+bastante
+por encima
+no estamos haciendo
+nada demasiado raro
+paso al ejercicio 2
+entonces
+vamos a ir
+a la base de datos
+Murder DTA
+tenemos que la base de datos
+nos muestra
+la longitudinal
+de Estados Unidos
+para los años 87
+90 y 93
+nos piden que
+estimemos por OLS
+el efecto
+de las ejecuciones
+que es la variable X
+sobre la tasa
+de homicidios
+M
+controlando por
+desempleo
+y año
+note que se omitió
+la domitemporal
+para el año
+1987
+interpreta los resultados
+y eso es hermoso
+los ejemplos
+de los ejercicios
+sí, sí
+serán trágicos
+nunca
+no sé
+cantidad de delfines
+nacidos
+en cautiverio
+no son palas
+nunca
+no, los análisis
+de supervivencia
+también son terribles
+porque es tipo
+no sé
+supervivencia
+en estudios
+aplicados
+a gente con leucemia
+y es como
+y porque aparte
+en esos experimentos
+lógicamente
+tenés un grupo
+de control
+tenés un grupo
+de tratamiento
+y el grupo
+de control
+está recibiendo
+esa medicación
+que supuestamente
+los va a dejar
+más sanos
+así que
+es súper polémica
+toda esa parte
+capaz era un placer
+si se me tuviera
+la verdad
+y si tuviera
+también
+no sé dónde
+publicarían
+esas preguntas
+ok
+oles
+acá vamos a ir directo
+al código
+borro todo esto
+ah bueno
+no les dije
+pero acá abajo
+tienen como
+el codito
+para
+mostrar todas
+las regresiones
+juntas
+porque
+¿qué pasa?
+como ya habíamos
+hecho
+el est
+store
+con el nombre
+de cada una
+de las regresiones
+ahora las podemos
+sacar todas
+juntas
+con esto
+corriendo de esto
+solo
+bueno
+y ahí nos tira
+como
+toda la
+la tablita
+el within
+queda acá abajo
+medio fedito
+porque bueno
+son otras
+las variables
+que estamos usando
+pero después
+pueden usarlo
+para
+comparar
+los resultados
+y bueno
+de vuelta
+fíjense las diferencias
+pero bueno
+me voy de este ejercicio
+paso al ejercicio 2
+cargo de base
+de datos nuevas
+describe
+summarize
+como siempre
+para ver
+de qué estamos
+hablando
+tenemos
+esta base
+de datos
+de
+asesinatos
+state identifier
+postal code
+que va a ser
+como
+análogo
+año
+tenemos datos
+para el 87
+el 90
+y el 93
+tasa
+de asesinatos
+cada 100.000
+habitantes
+total de
+executions
+executions son
+no sé si
+capaz que yo
+como que lo pasé
+por alto
+pero executions son
+condenas
+a
+pena de muerte
+de los últimos
+tres años
+claro
+lo que queremos
+ver en realidad
+es
+si
+una persona
+ve que
+hay un montón
+de gente
+que está siendo
+condenada
+a pena de muerte
+eso me disuade
+a mí
+de ir a cometer
+un accidente
+todo sí o no
+y qué sé yo
+capaz que querés
+terminarlo todo
+y bueno
+aprovecho que me
+ponen la pena
+de muerte
+ya que no hay
+eutanasia
+pero bueno
+esa es la
+motivación
+de este modelo
+un employment rate
+para controlar
+por
+nada
+podríamos pensarlo
+como
+cuál es la situación
+económica del país
+y si el país
+está en las malas
+qué pasa
+la gente
+sale a matar más
+o se queda en su casa
+no sé
+pregunto
+y después
+nada
+las dummies
+voy con el
+xp set
+para ver
+cómo es el panel
+y
+xp
+fíjense
+tenemos
+51
+estados
+3
+periodos
+temporales
+ID
+por año
+uniquely
+identify
+each
+observation
+el span
+es de
+7
+periodos
+desde
+bueno
+desde el 87
+hasta el 93
+pero
+aguanté
+tenemos 87
+cómo era esto
+87
+99
+tenemos
+qué más
+y acá
+creo que no
+quiero ver
+nada
+nada
+panel
+balanceado
+todas las
+observaciones
+siguen este
+pattern
+111
+cada columna
+representan
+otros
+periodos
+lo que ya sabemos
+como siempre
+arrancamos por
+full
+dobles
+y veamos
+y veamos
+qué nos da
+primero que nada
+vemos que esto
+no es significativo
+así que incluso
+si quisiéramos darle
+como una explicación
+no es significativo
+pero fíjense
+que ni siquiera
+el signo
+es
+el que
+esperaríamos
+que sea
+porque lo que
+nos está diciendo
+esto es
+suba
+en las
+executions
+que vimos
+durante los
+últimos
+tres años
+lleva una
+suba
+en la cantidad
+de asesinatos
+en la población
+o sea
+no sería
+como muy
+consistente
+con lo que
+estábamos pasando
+la del desempleo
+sí nos da
+significativa
+y a mayor
+desempleo
+mayor tasa
+de
+homicidios
+que va en línea
+con lo que
+estábamos charlando
+entonces
+acá lo que
+estamos haciendo
+es controlar
+únicamente
+por desempleo
+y por el
+periodo temporal
+o sea
+estamos queriendo
+explicar
+esta tasa
+de homicidios
+usando
+la cantidad
+de ejecuciones
+y como
+control es
+el desempleo
+y el año
+o sea
+estamos viendo
+como cosas
+que afecten
+a todos
+los condados
+a nivel
+temporal
+con los años
+y a nivel
+macro
+con un
+employment
+en cada año
+sí
+ahora
+podría estar
+pasando
+y acá viene
+como lo que
+había dicho
+más al principio
+que haya
+cosas en el
+residuo
+que estén
+afectando
+execution
+o sea
+que el
+residuo
+que tenemos
+con esta
+especificación
+del modelo
+todavía no
+esté lo
+suficientemente
+limpio
+para
+decir
+pool
+doble
+es válido
+o pool
+doble
+es me sirve
+para la estimación
+que estoy haciendo
+porque recuerden
+que pool
+doble
+requiere
+exogeneidad
+estricta
+podría ser
+que no esté
+pasando
+eso
+no me quiero
+adelantar
+a las
+preguntas
+que siguen
+que es esta
+¿por qué
+podría ser
+importante
+tener en
+consideración
+los efectos
+temporales
+agregados
+en el
+modelo?
+esto es lo que
+dijimos
+recién
+bueno
+creo que
+medio que ya lo
+charlamos
+pero básicamente
+podría ser
+importante
+si la tasa
+de homicidios
+es afectada
+por factores
+macroeconómicos
+externos
+que afectan
+a todos los
+Estados Unidos
+de la misma
+manera
+y por factores
+macroeconómicos
+externos
+me estoy
+referiendo
+a cosas
+que pasen
+en el
+país
+en cierto
+año
+porque podría
+ser
+el Super Bowl
+estuvo
+revuelo
+entonces
+ese año
+la gente
+quiere
+matar
+menos
+cosas
+que sean
+del año
+y de
+para todos
+los
+condados
+pero bueno
+acá
+la gran mayoría
+de los
+economistas
+le gusta decir
+que son los
+factores
+macroeconómicos
+los únicos
+que existen
+pero de repente
+una pandemia
+te podría
+afectar
+todos los
+condados
+no creo
+siento que
+ni se enterarían
+si ganan
+un mundial
+a menos que
+lo hagan ahí
+como
+Estados Unidos
+México
+Canadá
+creo que
+ni se enterarían
+pero creo
+que el
+superpasón
+podría ser
+aunque juegan
+ellos
+contra ellos
+ganen
+el equipo
+de la ciudad
+bueno
+pero ahí
+que gana
+el equipo
+de tu ciudad
+es un
+efecto
+fijo
+de tu ciudad
+no aplica
+a la
+dami del
+80
+del 97
+no me acuerdo
+87
+entonces eso
+es justamente
+porque
+la razón
+por la que
+trabajamos
+con paneles
+o decir
+bueno
+cómo aprovecho
+el hecho
+de que tengo
+información
+a través
+de los años
+para counties
+que capaz
+que mi county
+viene ganando
+hace 10 años
+el deporte
+que está de moda
+en mi county
+pero bueno
+para eso
+un poco
+también
+hacemos
+estas
+preguntitas
+de
+por qué
+agregarías
+efectos temporales
+bueno
+para controlar
+por cosas
+que sucedan
+en todos
+los estados
+de Estados Unidos
+de la misma
+manera
+en un mismo año
+claro
+es como
+el chiste
+de datos
+de panel
+claro
+y vos
+es como
+bueno
+que justo
+no agarra
+tener
+medio
+largo
+nada más
+claro
+y también
+controlar
+por
+digamos
+la diferencia
+entre un
+dato de panel
+y un
+cross section
+común
+claro
+es que
+en datos
+de panel
+sabés
+que el county
+es el mismo
+a lo largo
+de esto
+estás midiendo
+el mismo county
+o que estás midiendo
+la misma persona
+a lo largo
+de los años
+entonces
+debe haber
+algo
+en ese mismo county
+o en esa misma persona
+que persiste
+en los años
+por ejemplo
+si a mí me gusta
+un tipo de música
+me va a seguir gustando
+a lo largo de toda mi vida
+probablemente
+no es que
+el estilo de música
+que me gusta
+va a ser algo
+aleatorio
+todos los años
+independiente
+de lo que pasó ayer
+ok
+y nos dicen
+considere
+no sé si
+es Pablo
+alguien
+considere la siguiente
+modificación
+en el modelo
+todo lo mismo
+excepto
+que le agrego
+el efecto fijo
+que decíamos
+acá recién
+que pasó
+en el 87
+en California
+me da miedo
+googlear
+pero bueno
+podrían hacer
+no lo voy a hacer
+con la grabación
+podrían googlear
+qué pasó
+en el 87
+en California
+en el 87
+en Arizona
+y ver qué pasó
+y estima la ecuación
+usando efectos fijos
+así que vamos a hacer eso
+estoy pensando
+vamos a hacerlo
+de dos formas
+la primera que tenemos
+acá es
+list square dummy variables
+que es esto que les decía
+al principio
+de
+bueno
+tenés información
+o sea
+tenés un dataset
+que tiene información
+para condados
+acá están los condados
+esto ignórenlo
+piensen
+o miro
+tengo la información
+de los condados
+bueno
+los agrego
+como una dummy
+y me fijo
+si hay algo
+intrínseco
+al estado
+de
+Colorado
+que hace que
+en promedio
+en Colorado
+haya más
+o menos
+homicidios
+que en Arizona
+que en DC
+no sé
+si será Georgia
+ni idea
+¿puedo hacer eso?
+bastante simple
+o sea
+regreso
+la dependiente
+contra las ejecuciones
+contra el desempleo
+contra la temporal
+del año
+y ahora
+agrego el efecto
+fijo manual
+usando
+i.id
+o sea
+le digo a Stata
+agregame las id
+como una variable
+categórica
+y eso es lo que
+hacemos acá
+este coeficiente
+sigue siendo
+negativo
+no significativo
+el desempleo
+deja de ser
+significativo
+al haber agregado
+los
+las dummies
+de los
+de los condados
+si
+esto
+lo agrega todo
+con una
+exacto
+con una categórica
+si fuese
+nada
+una variable
+continua
+lo agregás
+normal
+también
+podría generar
+una dummy
+para cada
+variable
+¿no?
+para
+Arizona
+vale
+uno
+solo si
+estoy hablando
+de Arizona
+pero ahí tendrías
+90 variables
+capaz que en otras
+aplicaciones
+tiene sentido
+pero acá
+es más fácil
+agregarlo
+directo a la
+reducción
+¿y qué más
+tenemos?
+el piválido
+fíjense que
+en general
+en los condados
+no vendría
+siendo significativo
+solo en algunos
+casos muy específicos
+pero nada
+lo que estamos
+haciendo acá
+es controlar
+por desempleo
+por año
+y por pertenencia
+a un condado
+o sea estamos
+explicitando
+los efectos
+fijos
+de los condados
+en el tiempo
+por ejemplo
+Arizona
+siempre se siente
+mejor que Colorado
+entonces en Arizona
+hay más o menos
+homicidios
+en este caso
+esto nos da
+positivo
+entonces
+la pertenencia
+al county
+Arizona
+nos dice que
+hay un aumento
+en la
+tasa de homicidios
+con respecto
+al promedio
+esto entiendo
+que es
+Wyoming
+por ejemplo
+es menor
+al promedio
+eso es
+si queremos
+hacer
+list
+squares
+dummy
+variables
+si queremos
+hacer
+fix effects
+volvemos
+a list
+reg
+misma
+especificación
+como
+perdón
+no escuché
+ah
+si
+tremendo
+pensé que
+aparte la constante
+5.9
+Texas
+sumale 7
+no sé
+cuál será
+bueno
+LA 8
+era de esperar
+así que nada
+si se estaban
+pensando
+en mudar
+a Estados Unidos
+y quieren
+dice 55
+esto me parece
+esto es
+DC
+o
+Washington
+DC
+siento que puede ser
+¿no?
+si
+si
+claro
+miren
+la murder rate
+en DC
+era
+78%
+no
+una
+guasada
+para la clase
+que viene
+averiguamos
+qué pasó
+en DC
+en
+qué pasó
+en DC
+en el
+90
+del 87
+al 93
+porque nos
+estaban
+dando
+ese coeficiente
+ahí
+pero bueno
+de vuelta
+efectivamente
+vamos
+tachando
+los supuestos
+que teníamos
+cada estado
+debe tener
+sus particularidades
+y si vivís
+en el medio
+del campito
+probablemente
+no tengas ganas
+de ir a salir
+a matar gente
+y si vivís
+en LA
+en el boom
+de las drogas
+duras más pesadas
+que te puedas
+imaginar
+bueno
+probablemente
+la tasa de criminalidad
+sea un poco más alta
+la tasa de un cío
+también
+ok
+dicho esto
+ya me perdí
+hicimos
+fix effects
+y de acá
+nos vamos a guardar
+la matriz
+de covarianzas
+porque después
+tenemos que hacer
+el test de Hausman
+así que nada
+lo voy a correr ahora
+pero
+cuando veamos
+el test de Hausman
+va a tener más envío
+vuelvo
+acá
+repita la estimación
+usando diferencias finitas
+bueno ahora ya sabemos
+lo que es diferencias finitas
+se acuerdan que era
+D por MRDRT
+D por todas las variables
+¿no?
+ahí ya tengo
+el simbolito
+problema
+pero nos dice
+no observations
+así que vamos a tener
+que ver
+cómo modificamos esto
+básicamente
+lo que nos está diciendo
+ahí Stata
+es no te puedo calcular
+esto
+porque hay un periodo
+temporal
+para el cual
+no tengo ninguna
+observación
+para nada
+entonces
+vamos a tener que hacerlo
+medio como que a mano
+y esto sería
+first differences
+pero
+para el
+ejercicio 2
+esto era el inciso
+inciso
+inciso D
+recordemos cómo era el modelo
+que estamos queriendo estimar
+en este caso específico
+era
+delta
+tasa de murders
+y T
+igual a
+beta
+x por delta
+x y t
+que son las ejecuciones
+más
+beta u
+el u capaz que
+no es
+este es el desempleo
+beta 90
+por la dami
+de las 90
+beta 93
+por la dami
+del 93
+y estos son los errores
+ya
+renombré los errores
+a
+porque la u
+lo está usando
+para siempre
+acá me falta
+delta de la dami
+esto acá
+es delta
+de la dami
+porque de vuelta
+le apliqué
+primeras diferencias
+a todas las variables
+ok
+lo que quiero ver
+ahora un poco es
+porque
+qué sé yo
+esto es bastante
+straightforward
+es como
+el valor
+del condado
+y
+de la tasa
+de asesinatos
+en el año
+90
+menos
+y esto te da un número
+ahora
+cuando lo querramos hacer
+para esta
+y para construir esta
+va a ser un poquito distinto
+y se los voy a mostrar a mano
+para que
+me crean
+de por qué están
+distinto
+pensemos cómo se estructura
+delta
+de la dami
+del 90
+para el condado
+y
+en el periodo T
+o sea
+si se acuerdan
+nuestra base de datos
+era
+y
+T
+el logaritmo
+de
+bla bla bla
+y aparte
+me quiero crear una
+que sea delta
+de
+90
+y T
+pero qué pasó
+yo para armar esa
+tengo
+la dami del 90
+en realidad es
+la dami del 87
+que no la tenemos
+que ver
+explícita pero
+la dami del 90
+y la dami del 93
+esto igual
+lo escribo así
+ahora lo voy a borrar
+pero lo escribo
+para que lo tengan
+en la cabeza
+para el condado
+1
+vamos a ponerle
+no sé
+Arizona
+en el periodo
+1
+que en realidad
+no es el periodo 1
+sino que es el periodo
+87
+Arizona
+en el 90
+Arizona
+en el 93
+el crime rate
+va a tener un número
+y pensamos cómo son
+las damis
+en el 87
+la dami del 87
+sería así
+si estuviera
+la del 90
+sería así
+y la del 93
+sería así
+ahora
+cuando nosotros
+querramos armar
+una variable
+que se llama
+delta
+dami del 90
+la tenemos que
+especificar
+para
+cada condado
+para cada periodo
+en el tiempo
+entonces
+eso
+digamos
+tengan en la cabeza
+esto
+que ahora
+lo voy a correr
+un poquito
+esta tablita
+y de última
+igual después
+volvemos a la tablita
+si es más
+evidente ahí
+pero por ahora
+vuelvo acá un segundo
+entonces
+de vuelta
+lo que queríamos
+era
+cuánto vale esto
+para cada i
+en cada momento
+en el tiempo
+entonces voy a necesitar
+el valor que toma
+cuando t
+es igual a 87
+el valor que toma
+cuando t
+es igual a 90
+y el valor que toma
+cuando t
+es igual a 93
+para el 87
+esta es fácil
+si yo quiero
+armar
+una variable
+que es
+dami
+del 90
+de i
+en el periodo
+87
+menos
+dami
+del 90
+para el periodo
+y
+en el
+año pre 87
+que podría ser
+por ejemplo
+el 85
+esto lo tenemos
+como que no tenemos
+nada previo
+¿no?
+entonces
+esto acá
+no lo vamos a poder
+calcular
+no tendría que haberlo
+borrado
+para que quede
+bien evidente
+por qué
+no lo vamos a poder
+calcular
+digamos
+lo que estoy diciendo acá
+es esto
+se calcula
+así
+entonces
+acá vamos a tener
+un mismo
+después
+para el año 90
+¿qué es lo que quiero calcular?
+una dami
+que va a ser
+dami
+del 90
+para el condado
+ahí
+en el año 90
+menos
+dami
+90
+para el condado
+ahí
+en el 87
+que es lo anterior
+eso sí lo tenemos
+porque pensemos
+dami del 90
+en el 90
+dami del 90
+en el 87
+lo voy a buscar
+a la tabla
+esto
+dami del 90
+en el 90
+1
+dami del 90
+en el 87
+0
+entonces esto va a ser
+1
+menos 0
+1
+y para el 93
+lo mismo
+dami del 93
+no mentira
+estamos trabajando
+con la del 90
+para el condado
+hoy en el año 93
+menos dami
+del 90
+para el condado
+hoy en el año 90
+y vamos a buscarlo
+a la tabla
+¿cuánto valía
+la dami del 90
+en el
+año
+acá
+en el 93
+la dami del 90
+en el año 93
+valía 0
+y la dami del 90
+en el año 90
+valía 1
+entonces
+este de acá
+es 0
+te da más 1
+entonces me queda
+0
+menos 1
+menos
+entonces la estructura
+que va a seguir
+esta variable
+para cada i
+va a ser
+puntito
+1
+menos 1
+con esto
+después
+digamos
+mismo procedimiento
+armamos
+delta
+d93
+y t
+y vamos a tener
+bueno
+por suerte
+salió bárbaro
+el cachete
+mismo razonamiento
+t igual a 87
+t igual a 90
+t igual a 93
+en el 87
+me va a pasar
+que como no tengo
+un periodo atrás
+esto de acá arriba
+esto de vuelta
+va a ser un missing
+en el caso del 90
+lo que estamos queriendo hacer
+es
+¿cuánto valía
+la dami del 93
+para todos los condados
+en el 90?
+menos cuánto valía
+la dami del 93
+para todos los condados
+en el 87
+¿cómo es esto?
+sería
+voy con el
+no
+con el arbol
+nada
+dami del 93
+en el año 90
+dami del 93
+año 90
+0
+dami del 93
+en el 87
+dami del 93
+en el 87
+0
+entonces esto es
+0
+menos 0
+0
+y
+mismo razonamiento
+¿cuánto valía
+la dami del 93
+en el 93
+menos cuánto valía
+la dami del 93
+en el 90?
+ahora sí
+ahora sí
+ahora sí
+la dami del 93
+en el año 93
+vale 1
+¿cuánto valía la dami
+del 93
+en el 90?
+0
+entonces la estructura
+de este va a ser
+missing
+0
+1
+entonces
+90
+por ejemplo
+este que ya lo tengo
+acá en la columnita
+va a ser
+missing
+para el año 87
+para Arizona
+1
+para el año 90
+menos 1
+para el año 93
+sigo con el estado
+no sé
+con Texas
+87
+90
+93
+puntito en el 87
+1 en el 90
+menos 1 en el 93
+y de la misma forma
+vamos a querer armar esto
+¿sí?
+hasta acá estamos bien
+seguimos todos
+a bordo
+de este cálculo
+¿entendió?
+vuelvo a la estatua
+compartimos
+eso lo podés ver acá
+genero
+CD90
+missings
+y lo reemplazo
+por un 1
+si el año es el 90
+menos 1
+si es el 93
+después de haber hecho
+como las cuentitas
+a mano
+tiene sentido
+este código
+si no era como
+y lo mismo
+con la del 93
+y acá les dejo
+una alternativa
+que pueden usar
+que es un poco más
+sofisticada
+si querés
+porque
+lo corres todo
+una sola vez
+que es básicamente
+agarrás la dami
+del 90
+y le restás
+la dami del 90
+en el
+guión bajo
+n-1
+guión bajo n-1
+lo que le dice a Stata
+es
+si estás parado
+por ejemplo
+acá
+y estás mirando
+la dami del 90
+estás parado acá
+y estás mirando
+la dami del 90
+restale
+movete uno para arriba
+y restale este
+movete uno para arriba
+y restale este
+entonces
+te lo hace automático
+pero para correr eso
+es importante
+que esté
+la data seteada
+como un panel
+si no está bien seteada
+estos saltos
+capaz que no te representan
+lo mismo
+porque ponele
+si tenés
+esto
+sort by
+no sé
+año
+y tenés 87
+contra 87
+de
+Arkansas
+contra
+no sé
+que
+va a estar mal
+lo que estás haciendo
+entonces
+es importante
+que esté
+estructura
+panel
+long
+funciona
+si no
+hacen este
+que es más evidente
+más explícito
+lo que estamos haciendo
+y funciona
+bárbaro
+ok
+nos creamos
+entonces
+estas dummies
+de acá
+que son las que nos
+generaban el problemita
+este
+de
+que no había
+observaciones
+para el primer año
+y corremos la regresión
+de vuelta
+sin la consulta
+este
+este
+sería
+el modelito
+de
+first
+differences
+en el caso
+de que lo quieran
+hacer a mano
+a mano
+siendo
+me creo
+las variables
+y uso
+la matriz
+time
+demeaning
+se llama
+y después
+uso
+OLS
+acá tienen
+los
+los pasitos
+se los cuento
+más o menos
+por si lo quieren
+chusnear después
+pero básicamente
+lo que estamos
+haciendo es
+agarras
+y te generas
+una matriz
+a partir
+de la variable
+acá
+MR
+de
+MR
+de
+MR
+de
+MR
+de
+MR
+de
+MR
+de
+te generas
+una matriz
+haces otra
+matriz
+con las X
+que te va a
+incluir
+las variables
+independientes
+que querés
+incluir
+y después
+te generas
+este vector
+o más bien
+esta matriz
+time demeaning
+que fíjense
+lo que tienen
+los componentes
+tenemos
+menos uno
+uno
+cero
+cero
+menos uno
+uno
+esto lo pueden
+ver en las
+slides
+creo que
+en el
+las slides
+en estas de acá
+bueno no sé si lo voy a encontrar
+pero
+lo que estamos haciendo
+es como
+transformar a mano
+eso que decíamos
+de
+menos uno
+uno
+cero
+para las observaciones
+y con eso
+te armás
+la matriz
+de trascuesta
+por B
+tenés que hacer
+el producto
+croniker
+de eso
+y
+después
+haces la
+transformación
+a mano
+de toda
+la matriz
+y acá
+y acá
+nos devuelve
+los betas
+nada
+por si
+quieren
+practicar
+un poco
+el tema
+de
+trabajarlo
+en forma
+matricial
+ahí tienen
+los pasos
+y
+lo mismo
+con GLS
+que
+nada
+con GLS
+básicamente
+haces
+otra
+transformación
+en lugar
+de usar
+esta matriz
+usas
+esta matriz
+pero es
+es un toque
+de la diferencia
+estoy corriendo
+un poco
+porque nos queda
+poquito tiempo
+y quiero ver
+hay otro
+inciso
+que me interesa
+un poco más
+que es
+ok
+brinde un ejemplo
+bajo el cual
+la variable
+de ejecuciones
+no sería
+estrictamente
+exógena
+observación
+para obtener
+estimaciones
+consistentes
+el modelo
+de efectos
+fijos
+asume
+exogenidad
+estricta
+de las variables
+explicativas
+condicionadas
+en C
+que es lo que
+hablábamos
+hace un rato
+y bueno
+acá tienen
+como una
+explicación
+les dejo
+en las soluciones
+una explicación
+más
+específica
+pero no es
+mucho más
+distinto
+de lo que
+estábamos
+hablando
+digo
+lo que te propone
+este ejercicio
+es pensar
+cuando la variable
+X
+no es
+estrictamente
+exógena
+o sea
+cuando hay algo
+en los errores
+que está
+correlacionando
+con la variable
+de ejecuciones
+por ejemplo
+y acá
+el ejemplo
+que te dan
+es
+bueno
+mirá
+vos estás
+queriendo
+explicar
+la tasa
+de homicidios
+con la cantidad
+de ejecuciones
+pero podría ser
+que la cantidad
+de ejecuciones
+que hay
+que hubo
+en los últimos
+años
+tenga que ver
+con la cantidad
+de homicidios
+que se observan
+en la población
+entonces ahí
+tenías
+como un efecto
+de causalidad
+causalidad
+¿cómo se dice esto?
+simultánea
+causalidad
+simultánea
+porque estás
+teniendo
+una simultaneidad
+a mayores
+cantidades
+de ejecuciones
+los jueces
+se ponen
+más estrictos
+y emiten
+más órdenes
+de penas
+de muerte
+pero entonces
+vos estás
+digamos
+explicando
+la cantidad
+de asesinatos
+con la cantidad
+de penas
+de muerte
+pero la pena
+de muerte
+depende
+de la cantidad
+de ejecuciones
+que se vieron
+de asesinatos
+que los jueces
+vieron
+en los últimos
+años
+entonces dicen
+bueno
+en este condado
+vamos a ser
+un poco
+más estrictos
+porque vemos
+mayores
+cantidades
+de homicidios
+entonces
+eso es un poco
+lo que se explica
+acá
+y el F
+repita la estimación
+del inciso C
+usando el estimador
+de GLS
+para diferencias
+de primer orden
+comprobé
+como ya lo hicimos
+reestimar
+el modelo
+de inciso C
+usando efectos
+aleatorios
+e implementar
+el test
+de housing
+creo que ya
+lo habían corrido
+igual
+acá tenemos
+los comandos
+para hacer
+random effects
+que es
+xtreg
+contra re
+y yo sea
+de paso
+porque capaz
+que esto sale
+un poco
+como te acordás
+que xtreg
+como te acordás
+que random effects
+se hacía así
+en uno de los libros
+estos
+si no me equivoco
+en este
+en esta parte
+que les comentaba
+recién
+me acuerdo
+que había
+una tablita
+donde
+enseguida
+como que te hacía
+el resumencito
+de esto
+voy a buscar
+263
+263
+263
+263
+263
+263
+263
+263
+263
+263
+263
+esto
+estatal
+linear
+panel data
+commands
+pull
+wls
+pull
+fgls
+random effects
+6 effects
+random soft
+first differences
+esto que decíamos
+que tenemos que hacerlo
+a mano
+así que nada
+si lo quieren
+chamear después
+274
+de 732
+este file
+el último
+después se los paso
+bueno
+esto ya lo corrimos
+y ya teníamos
+las matrices
+armaditas
+y vamos a hacer
+el test de housing
+estimation
+of sound
+bueno voy a correr
+todo de vuelta
+por los dos
+hasta acá
+hasta acá
+llegamos al
+problema
+de
+search
+differences
+así que acá
+tengo la
+alternativa
+sigo por acá
+y el test de houseman
+mini repaso
+de lo que era
+el test de houseman
+lo que hacía
+era
+comparar
+dos modelos
+distintos
+por ejemplo
+uno de random effects
+contra uno de fixed effects
+acá les dejo la aclaración
+que primero hay que poner
+las estimaciones
+de fixed effects
+y después
+las de random effects
+y lo que hace
+es básicamente
+comparar
+cómo se comportan
+ambos
+o la performance
+de ambos modelos
+considerando que bueno
+fixed effects
+tiene sus limitaciones
+random effects
+tiene sus limitaciones
+digamos
+sus ventajas
+y sus costos
+como lo vieron
+en las teorías
+recordemos la diferencia
+principal entre fixed effects
+y random effects
+random effects
+dice que la variable
+que el efecto fijo
+es aleatorio
+o sea que no
+correlaciona
+contra las x
+fixed effects
+nos permite
+decir
+puede haber
+algún tipo de correlación
+entonces
+la hipótesis nula
+del test de houseman
+va a ser
+la covarianza
+entre
+el efecto
+fijo
+ci
+y las variables
+x y
+es igual a cero
+o sea que no hay
+correlación
+o sea estamos diciendo
+que en ese caso
+random effects
+es apropiado
+¿qué pasa si
+cuando comparamos
+estas dos cosas
+fixed effects
+contra random effects
+bueno queremos ver
+un poco
+si se soporta o no
+el supuesto de
+hay o no hay
+correlación
+en cada uno
+de los modelos
+entonces lo que hace
+houseman
+es
+bajo la hipótesis
+nula de que
+no hay
+correlación
+bajo la hipótesis
+nula de que
+sería válido
+random effects
+los estimadores
+deberían ser similares
+ahora
+si hay correlación
+los estimadores
+de random effects
+van a ser
+incesgados
+entonces ahí vamos a ver
+una diferencia más grande
+entonces
+esa es la
+lo que está detrás
+de houseman
+pero nos dice que
+fíjense que acá
+esto no nos está
+calculando esto
+para el año
+90 y 93
+y acá viene una parte
+que es un poco
+matemática
+es un poco pesada
+así que prefiero
+que lo veamos
+la próxima
+porque la verdad
+que no vamos a llegar
+en 5 minutos
+pero
+hagamos esto
+yo
+les mando
+una explicación
+manual
+en esta semana
+de esta
+última
+plasita que nos quedó
+y
+hay unas
+como
+discusiones
+bastante interesantes
+de esto
+en internet
+porque a mucha gente
+le pasa esto
+que les dice
+esta resta
+no es positiva
+definida
+y no te salen
+estos valorcitos
+acá
+pero
+nada
+se los mando
+escritos
+y de última
+lo discutimos
+en la próxima clase
+porque si no
+ahora
+no vamos a llegar
+y no tiene sentido
+correr con esto
+pero nada
+pausa acá
+llegamos a ver
+casi todo lo que queríamos
+que era
+ejercicio 1 y 2
+no sé si alguien
+tiene alguna pregunta
+antes de cortar
+no sé si alguien
+haria
+x

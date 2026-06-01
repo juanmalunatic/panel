@@ -1,0 +1,3518 @@
+Bien, lo que decía es que hoy vamos a seguir con el problem set número 2
+para ya terminarlo, nos quedan por ver el ejercicio 3 y el ejercicio 4
+Las últimas clases lo que estuvimos haciendo fue básicamente
+revisar cuáles son los métodos disponibles para estimar modelos
+de datos de panel cuando hay heterogeneidades de este estilo
+que en las técnicas probablemente lo vean con el nombre C.I.
+Pero bueno, va a ir cambiando la nutrición según el ejercicio
+Para el día de hoy tenemos 8 ejercicios, uno que es de simulaciones
+que está bajando bola, y el 4 está basado en un dataset
+y un ejercicio Woodbridge que vamos a comparar los resultados
+de .WS, random effects, fixes, fixes, fixes, fixes
+Yo creo que la parte difícil de este DP ya la hicimos la vez pasada
+con este ejercicio, o bueno, quizás no difícil, pero sí la parte de entender
+realmente qué es lo que hace cada uno de los métodos que tenemos
+Pero bueno, a modo de repaso, recuerden que lo que vimos la vez pasada fue
+Uno si quiere puede estimar con .WS, o sea, hacer .WS sobre toda la muestra
+El tema es que .WS descansa sobre supuestos que son muy restrictivos
+para el tipo de datasets que manejamos
+Particularmente el supuesto de ausencia, autocorrelación de los errores
+Ya hablamos un montón acerca de por qué podría no cumplirse en datos de panel
+Básicamente tenemos una estructura de datos que hace que
+Periodo a periodo, los errores a nivel individuo puedan estar correlacionados entre sí
+Entonces, cada vez que computamos .WS teníamos que tener eso en cuenta
+pero para tener que usarlo como benchmark para comparar contra los otros métodos que vamos a usar
+Dentro de los métodos que vimos de estimación de datos de panel
+En caso donde tenemos heterogeneidades de este estilo, vimos dos grandes opciones
+Random effects o fixed effects
+Y la gran diferencia entre esos dos era que uno asume que puede llegar a haber correlación
+Entre este efecto y los errores, perdón, este efecto y las variables explicativas
+Y el otro no
+Entonces, fixed effects asume que podría haber algún tipo de correlación
+Random effects no
+Y lo que estuvimos hablando también la vez pasada, más al final de la clase
+Es que el estimador de random effects va a ser consistente
+Sí, solo si es únicamente en los casos donde es apropiado hablar de un estimador de random effects
+Pero en caso de que no, si estuviéramos que pensar en la situación de fixed effects
+Es que señala más correcto, por decirlo
+Ese estimador de random effects deja de ser consistente
+Y ahí es donde entra en juego el test de Hausmann a comparar
+Primero comparas la consistencia de los dos y después la eficiencia
+Y en base a eso el test define cuál de los dos estimadores sería mejor
+A ver si me estoy olvidando de algo
+Pero no creo que era eso básicamente
+Como vamos a trabajar con punto Ls, random effects o fixed effects
+Punto Ls
+Heterogeneidad no observada la incluimos en el error
+Y asumiendo que puede haber correlación entre la heterogeneidad no observada
+Y las variables explicativas
+Esto nos va a generar los problemas que ya vimos
+Entonces después dijimos, bueno, ¿cómo hacemos para cerrar nuestra heterogeneidad encima?
+¿Vamos a arrar los efectos?
+¿Así se hace?
+¿A arrar los efectos?
+¿Qué entendemos?
+¿A arrar los efectos?
+¿A arrar los efectos?
+¿Diste que ahí tenia que avergonar?
+¿No?
+Al revés
+Si lo dije, lo dije al revés
+¿Pero arrar los efectos?
+¿A arrar los efectos?
+¿Así se hace?
+Por eso es la palabra arrahman también
+de hecho en Fixed Effects
+lo que hacíamos en Fixed Effects
+era agarrar transformaciones
+en tipo
+LSVD
+o hacemos otras transformaciones
+para sacarnos encima la transferida
+y no incluirla en el modelo
+entonces cuando te la sacas encima es porque
+como estás asumiendo la posibilidad
+de que haya
+esta correlación
+o sea restringir menos
+tus supuestos acerca
+de esa estructura
+de errores
+por eso hacen las transformaciones sobre el modelo
+eso también te genera limitaciones
+que son básicamente no poder estimar
+estimadores
+no poder estimar los coeficientes de variables
+que sean constantes en el tiempo
+porque todo lo que está constante en el tiempo
+por más que no sea
+un efecto fijo
+heterogéneo no observable
+no lo vas a poder medir con métodos de Fixed Effects
+por ejemplo
+el género
+la raza
+la etnia
+etc.
+bueno
+habiendo dicho esto
+creo que
+no me falta nada
+vamos a ir
+directamente a los ejercicios
+en el ejercicio número 3
+nos piden que consideremos
+este modelo
+tenemos una variable
+dependiente y
+que se conforma por
+una variable x
+por beta
+más mu
+que es específico
+para cada
+individuo
+digamos que las usan
+individuos
+para facilitar
+más un error
+nu
+voy a tratar de modular
+lo más posible
+para que se entienda
+cuándo estoy diciendo mu
+y cuándo estoy diciendo nu
+si en algún momento
+se confunde
+me dice
+porque si no le digo
+b
+y ya
+y mejor b
+mejor b
+bueno
+integramos toda la notación
+a que este nudo acá
+es una b
+entonces
+¿cómo se va a conformar
+el modelo?
+tengo la variable x
+que se distribuye
+normal 0,1
+la variable mu
+que en realidad
+no es una variable en sí
+sino es más bien
+este efecto fijo
+que cambia
+para cada individuo
+más bien
+es distinto entre individuos
+pero es constante
+a lo largo del tiempo
+por eso no está
+en el cd
+y el nu
+que está acá
+esto creo que es un error
+de notación
+debería ser el mu
+el mu se distribuye
+normal 0,0
+sigma cuadrado mu
+y la b
+el error
+del modelo
+se distribuye normal
+0,0
+sigma cuadrado mu
+de b
+y ya nos están diciendo
+en el ejercicio
+que
+son ortogonales
+los errores
+con el mu
+para todo y te
+nos dicen
+suponga que
+beta es igual a
+sigma cuadrado de u
+igual a sigma cuadrado
+de b
+igual a 1
+y que t es igual a 10
+para simplificar más cuentas
+y bueno
+la idea es
+realizar experimentos
+de Monte Carlo
+para evaluar la eficiencia
+de distintos estimadores
+de beta
+así que lo que vamos a hacer
+es ir creando
+data sets
+con loops
+para ver
+cómo
+cuál es la performance
+de los diferentes tipos
+de estimadores
+vamos a arrancar con el caso
+de n igual a 5
+y después la idea es repetirlo
+con n igual a 10
+30
+50
+100
+y 500
+y bueno
+comentar los resultados
+en el principio
+creo que no hay nada
+demasiado raro
+en este ejercicio
+pero hay algunas cosas
+que sí está bueno
+que veamos
+para empezar
+tenemos que
+armar el data set
+una opción
+que
+a mí me gusta hacer
+es como
+pensarlo primero
+en papel
+o
+pensarlo mentalmente
+cuál es la forma
+que quiero que tenga
+tanto el data set
+como los resultados
+que después voy a ir
+guardando en esta
+porque después
+sobre la marcha
+es un poco más difícil
+ir
+bueno
+a menos que tengan
+una capacidad
+de concentración muy alta
+puede
+puede ser un poco
+confuso
+empezar a agregar
+y sacar
+matrices y cosas
+para abordar
+los resultados
+así que
+déjenme que
+les muestre
+cómo va a estar
+estructurada
+la forma de
+el datos
+que queremos hacer
+ya tengo que hacer
+host.com
+host.com
+host
+Bueno, sigo compartiendo hasta que se destine esto.
+Primero que nada voy a seleccionar los parámetros acá, en lugar de guardarlos como un local acá los guardé como un global para poder correrlos de a unos y presionar esta opción, y no tener que correr todo el código de una sola vez, entonces global lo que hace es guardar t igual a 10, n igual a 5, y nt igual a n por 10.
+Noten que cuando usamos los comandos global para guardar cosas, para llamarlos de vuelta, es decir, yo acá ya tenía guardados t, ya tenía guardado n, para llamarlos de vuelta uso este símbolo de pesos n por pesos t.
+Después voy a guardarme el beta, que es el beta que acompaña a las x, el sigma mu, que es igual a 1, y el sigma mu, que es igual a 1.
+No sinónimo de p.
+Entonces pensemos cómo se estructura el ejercicio.
+La idea es, primero, si quieren lo pensamos para una sola vez.
+Ahí funciona.
+Aprovecho.
+Esto.
+Cierto.
+Cierto.
+Esto parece ser...
+¿Meles?
+Si mis 그렇죠.
+Se olvidaron de borrar las.
+Meивается un poco la día, creo.
+Esto es uno que se quiere agregar.
+Ah, la versión del trabajo finalizada
+Bueno, voy a dibujar abajo de las notas
+O no me está dejando tomado
+No, bueno
+Pero hay que ver si tengo alguna postura
+Ah, ya sé, creo que podría usar el post zoom
+A ver, pétanos
+Tengo miedo a abrir la galetía de fotos
+No hay nada
+Ok, la cárcel de la pantalla
+No, no, no
+Bueno, la mano de esto es que
+Bueno, la mano de esto es que
+No es que no voy a poder moverme mucho
+Pero no es mucho lo que tengo que escribir hoy
+Todo esto era para decir que
+La forma en la que vamos a querer es armar el panel
+Que es la siguiente
+Vamos a tener
+ID
+Vamos a tener el tiempo
+Vamos a tener las variables
+Las variables
+Y las variables
+Y las variables
+Vamos a hacer
+Ya que estamos
+Ya que estamos
+Bien
+Dijimos
+Teníamos las variables
+De LID
+Període temporal
+X y T
+No y
+No o B
+Como más les gusta
+Y con todo esto
+Nos vamos a tomar
+LIDA y T
+Entonces
+Vamos a hacer esto
+Y pensemos
+Cómo van a tener
+Qué forma van a tener
+Estos variables
+A un par de variables
+Pero
+Supongamos que
+En lugar de
+N igual a 5
+Usamos
+N igual
+A 3
+E igual a 2
+Entonces
+Voy a tener
+Dentro de los ID
+El ID
+El individuo 1
+Repetido
+Dos veces
+El individuo 2
+Repetido
+Dos veces
+El individuo 3
+Repetido
+Dos veces
+Para el periodo
+Temporal
+De tener
+1
+2
+1
+2
+1
+2
+Esta parte de acá
+Se acuerda que lo
+Creamos con los
+C
+Y después
+Llegamos
+Bloqueando
+Según cuántas
+Posiciones
+Queríamos
+Quedar en cada lugar
+Y vamos a tener
+Las X y T
+Las X y T
+Van a ser
+Realizaciones
+De una normal
+¿Anda para atrás?
+Sí
+Salí Felipe
+Salí
+Ah
+Podemos
+Si yo
+Los puedo
+Voy a llamar
+Por las dudas
+Para
+Alguien
+Gracias
+Es todo un tema
+Normal
+Entonces X y T
+Eran realizaciones
+De una normal
+01
+Y eran todos
+Independientes
+En precisi
+Normal
+Normal
+Normal
+Normal
+Y esto se puede
+Hacer directamente
+Y siempre
+Generar
+Una variable
+Que sea
+Una normal
+01
+El movie
+Lo voy a saltar
+Por ahora
+Vamos con el
+Nu
+O B
+El B
+También es
+Una
+Digamos
+Es agarrar valores
+De una normal
+Cero
+Sigma
+Cuadrado
+De
+Nu
+Cero
+Sigma
+Cuadrado
+De
+Nu
+Etcé
+Todos
+Estos son
+IID
+Entonces
+No va a ser
+Más problema
+Que esta parte
+De acá
+Acá es donde va a entrar
+El hecho
+De que nosotros
+Le pusimos
+Guardamos un global
+Si se acuerdan
+Con
+Sigma
+Cuadrado
+Nu
+Ahora
+Te invito a bastar
+Va a haber una particularidad
+Cuando tenemos
+Los
+Nu
+De acá
+Básicamente porque
+Piensen que el
+Nu
+Es un efecto
+Que es fijo
+Para cada
+Individuo
+A lo largo del tiempo
+Entonces necesitamos
+Que se repita
+Dos veces
+Para cada
+Individuo
+En este caso
+Entonces acabo de tener
+Mu
+Asignado
+Al individuo
+Uno
+Y una vez que genere
+Este
+Este de acá
+Lo voy a querer
+Que se repita
+Una vez más
+Pero no lo vamos a repetir
+En términos de
+Digamos
+Cuantas veces
+Lo quiero repetir
+Sino para
+Que observaciones
+Lo quiero repetir
+Lo quiero repetir
+Para las filas
+Que corresponden
+A la IDI
+Uno
+Y de la misma forma
+Para el
+Individuo
+Dos
+Por ejemplo
+Voy a generar
+Otro valor
+De una normal
+Cero
+Sigma
+Cuadrado
+De Mu
+Y de vuelta
+Le voy a asignar
+Voy a agarrar
+Ese número
+Me lo voy a guardar
+Y se lo voy a asignar
+A todas las observaciones
+Donde yo vea
+Que la IDI
+Es el número dos
+Y bueno
+Lo mismo con la tres
+Esta parte
+Se entiende
+Claro
+Y esto lo voy a asignar
+Una vez que tengo todo
+Yo solamente me queda
+Armar
+La variable
+Y
+Que es
+Más
+Más
+Más
+De uno
+Que es
+El beta
+Uno
+Por X
+De la persona
+Uno
+Más
+B
+Uno
+Uno
+Y lo mismo
+Con todos
+Entonces nada
+Quería dejar esto
+Una sola vez
+Para
+Poder ver más fácil
+Que hablar
+En el aire
+Con
+Bueno
+Entonces lo que les decía
+El beta
+El sigma nu
+Y el sigma nu
+Están creados
+Y
+Algo que no mencioné
+Es que
+Dentro de cada simulación
+En este ejercicio
+En específico
+Lo que vamos a guardar
+Son
+Los beta
+Por un lado
+Por ejemplo
+Todo lo que vamos a necesitar
+Para armar
+Lo que nos piden
+Que es
+Media
+Del beta
+Desde el estándar
+Del beta
+Y el error
+La root
+Means
+For error
+De la estimación
+De beta
+Donde
+No lo dije
+Si me podría decirlo
+Ya lo dejo
+Anitado
+En el mirado
+Es básicamente
+Que
+El root
+Means
+For error
+Se puede escribir
+Como
+Por ejemplo
+La raíz
+Del error
+Cuadrático
+Medio
+Y eso
+Probablemente
+Lesiones
+De estas materias
+Es básicamente
+La esperanza
+De
+Al cuadrado
+Y
+Digamos
+Esto
+La versión
+El análogo
+Mostral
+Sería
+Calcular
+La sumatoria
+Del beta
+Estimado
+Menos
+El beta
+Ya sabemos
+Cuanto vale
+Todo es
+Cuanto al cuadrado
+Lo sumamos
+Para ese
+Que es la cantidad
+De simulaciones
+Y este
+Lo que vamos a hacer es
+Agarro la iteración
+Uno
+De
+Eso me genera
+Una serie
+De X
+Me genera una serie
+De U
+Me genera una serie
+De B
+Con todo esto
+Armo Y
+Una vez
+Terminía
+Regreso
+Con los tres métodos
+Que vimos
+Y
+Contra X
+Y bueno
+Con todas las
+Estimaciones
+Que tengamos
+Que agregar
+Esto lo voy a tener
+Tres veces
+Una vez
+Para OLS
+Una vez
+Para Fixed Effects
+Una vez
+Para Random
+Effects
+De acá
+Vamos a sacar
+Un beta
+OLS
+Estimado
+De acá
+Un beta
+Fixed Effects
+Estimado
+Y acá
+Un beta
+Random
+Estimado
+Entonces
+Con este
+Numerito beta
+Esto es lo que vamos a guardar
+En las matrices
+Que son de la forma
+J
+Mil
+Uno
+Juntito
+O sea
+Son matrices vacías
+¿Dónde?
+En el
+La posición uno
+Voy a guardar
+El resultado
+De la simulación uno
+Posición dos
+Al resultado
+De la simulación dos
+Así sucesivamente
+Está la iteración
+Y
+¿Vale?
+Y una vez
+Que tengo
+Este vector
+Esta matriz
+Que me da
+Los resultados
+De estos betas
+Vamos a agarrar
+Y operar
+Sobre esta matriz
+Porque si ya sé
+Que
+Digamos
+Lo que sería
+La media
+Es calcular
+Es calcular
+El promedio
+De esto
+El desvío
+Estándar
+Es el desvío
+Estándar
+De esto
+Y el error
+De algo
+Medio
+Sería
+Agarrar
+Cada una
+De estas
+Posiciones
+Restarle
+El beta
+Que ya sabemos
+Que es igual a uno
+Y después
+Promediarlo
+Eso
+Para decir
+Que
+Lo único
+Que tenemos
+Que guardar
+En este caso
+De la regresión
+Es
+Una
+Digamos
+Solo necesito
+Para guardar las cosas
+Una matriz
+De
+Mil
+Filas
+Una sola
+Cualuna
+Que es el beta
+Entonces
+Voy a arrancar
+Corriendo esto
+Por ahora
+Seteamos
+Una
+Para replicar
+Los resultados
+Y acá
+Tenemos
+El loop
+Lo voy a agrandar
+Porque
+Abajo de esto
+Solamente
+Me queda
+Random
+Sext
+Sext
+Pero bueno
+Vamos a arrancar
+Primero
+Le voy a decir
+Cuantas veces
+Quiero repetir
+El loop
+Voy a ir
+Desde la
+Interación
+Una
+Interiteración
+Mil
+Esta parte
+Del código
+Lo que va a hacer
+Es ir
+Diciéndonos
+En que parte
+Del loop
+Estaba corriendo
+El código
+O sea
+Si estoy
+En la vuelta
+R
+De 100
+Y esto
+Me da
+Un número
+Entero
+Decime
+Que estás
+Trabajando
+En ese número
+Entero
+De 1000
+O sea
+Un número
+Entero
+Cuando lo digo
+Con 100
+Entonces va
+Ir de 100
+En 100
+No sé
+Si fue claro
+Eso
+Pero
+Se va a entender
+Cuando lo voy
+Después generamos
+El panel
+Para generar
+El panel
+Lo primero
+Que le tengo
+Que decir
+A esta
+Es cuántas
+Observaciones
+Va a tener
+Mi data
+Cep
+Entonces
+Seteo
+El número
+De observaciones
+Como n
+Por t
+Recuerden
+Sé que
+Vamos a tener
+Un total
+Para cada individuo
+Vamos a tener
+T filas
+Entonces
+Necesito
+N
+Por t
+Y después
+Vamos a generar
+Las variables
+De id
+Y de tiempo
+Y sellar
+El panel
+Acá un pequeño
+Comentario
+Esto lo podríamos
+Dejar afuera
+Del loop
+Si quisiéramos
+Porque
+Porque no cambia
+Yo genero
+Los id
+Genero el tiempo
+Y después
+La parte relevante
+Del loop
+Lo voy a hacer
+Con las variables
+O sea
+Lo que quiero
+Looperar
+Lo que quiero iterar
+Es el valor
+Que toman las variables
+No voy a
+Modificar esto
+Pero
+Se los dejo acá
+Por si les sirve
+El syntax
+Que tenemos
+Para otros
+Trabajos prácticos
+Donde vamos a tener
+Que descartar
+Algunas de las
+Observaciones
+Usándonos
+En el id
+Y en el time
+O en el time
+Ponerle
+No sé
+Se dicen
+Para todos
+Los individuos
+Olvídate
+O sacate de encima
+O grupía
+Las primeras
+Cinco
+Observaciones
+Temporales
+Y chiquete
+La idea
+Bueno
+Eso lo podemos
+Hacer
+Únicamente
+Si generamos
+El id
+Y el time
+Adentro del código
+Adentro del loop
+Para después
+Regenerarlos
+Con la segunda iteración
+Pero bueno
+Eso es para otro día
+Solamente explicar
+Por qué está acá adentro
+Podría sacar más fuera
+Si no es
+Si no van a modificar
+Estas variables
+En el sitio
+Y vamos
+Con las variables
+Que tenemos
+Que generar
+Tenemos
+Por un lado
+Esto me lo voy a saltear
+Un toquecito
+Veamos esto acá
+Ya dijimos
+Que nu
+Y x
+Eran normales
+Cero
+En el caso
+De nu
+Sigma nu
+Y en el caso
+De x
+Una normal
+Cero uno
+Entonces
+Como ya sentí
+La cantidad
+De observaciones
+Esto simplemente
+Va a decir
+Bueno
+Para esas observaciones
+Que me dijiste
+Le asigno
+Randomizo una normal
+Y le doy el valor
+A cada una de ellas
+De forma
+Completamente independiente
+Y acá está el truquito
+Con el mu
+Para mu
+Lo que vamos a hacer es
+Agarrar y generar
+Si quieren
+Ignoren la parte del for
+Y lo hacemos
+Para una sola
+Para una sola iteración
+Agarrar
+Una normal
+Cero
+Sigma mu
+Y saca un valor
+Eso guardalo
+Como un escalar
+Al que le vas a llamar
+Mu auxiliar
+Y después
+Agarrar
+Y este
+Mu que te generaste
+Vacío
+Reemplazalo
+Si el id
+Es igual a
+I
+O sea
+A uno
+Por ejemplo
+Entonces lo que estoy haciendo es
+Genero
+Una normal
+Cero sigma mu
+Le pongo
+De nombre
+Mu auxiliar
+Y después
+Reemplazo el primer valor
+Por ejemplo
+El id uno
+Todas las observaciones
+Que tengan el valor
+A id uno
+Y así
+Y después lo repito
+Con el individuo dos
+Para el individuo dos
+Genero un sigma mu
+Nuevo
+Y ese sigma mu
+Que me lo
+Voy a reemplazar
+Si el id es igual a dos
+Si el id es igual a tres
+Entonces
+Lo que está lukeando acá
+En este
+Lupa dentro del loop
+Es el id
+¿Por qué?
+Porque yo lo que quiero hacer
+Es generar
+Este valor
+Desde la normal
+Y reemplazarlo
+Para todos
+Una vez que hicimos esto
+Que era para
+Lo que decíamos recién
+Que digamos
+El muy
+Y se tiene que repetir
+Para todas las
+Para todos los individuos
+Podemos armar
+Y que es la suma
+De estos dos
+Más beta por x
+Como les decía
+Una vez que tenemos
+Y
+Simplemente
+Pasamos a las
+Regresiones
+Un doble es
+Es regresar
+Y contra x
+Acá ha sido
+Importante
+Es entender
+Después de una
+Regresión
+Cómo guarda
+Estata
+La información
+Cómo guarda
+Estata
+La información
+De la regresión
+Bueno
+Estata lo guarda
+En estos
+Ítems
+Que se llaman
+Y en bajo
+B
+Y en bajo
+R
+Depende del tipo
+De programa
+Que estás corriendo
+En particular
+Acá lo que estamos
+Haciendo es
+Agarrar la matriz
+OLS
+Que generamos antes
+Esta de acá
+Que antes
+Estaba vacía
+Y en la posición
+R1
+Que R
+Acuérdense
+Que es
+Como va corriendo
+Este loop
+Guarda
+El valor
+Que toma el beta
+Asociado
+A la variante
+X
+Porque el beta
+Se guarda
+Con
+Y en bajo
+B
+De la variante
+Repetimos
+Lo mismo
+Con random
+X
+X
+Y
+Y
+Contra x
+Especificación
+De random
+C
+Y guardamos
+El beta
+En la matriz
+De random
+C
+Y el mismo
+Con fix
+C
+Una vez
+Que corrí
+Todo esto
+Voy a tener
+Que dropear
+Las variables
+Que
+Que ya creamos
+Porque puede ser
+Que está acá
+Una vez que
+Corriste
+Generate
+Esta de acá
+Si volvés
+A correr
+Generate
+Con la misma
+Variable
+Te va a decir
+Esa variable
+Ya existe
+Entonces
+Lo que podés hacer
+Son dos opciones
+Usar un replace
+O usar
+Tipo
+Dropearlas
+Olvidarlas
+Y volver a
+Generarlas
+Así
+Voy a ir corriendo
+Esto
+Voy a verlo
+Arranjado
+Por grandes
+Pero
+No sé si alguien
+Tiene alguna
+Tenta
+Bueno esto es lo que les decía
+Que
+Nos va a ir diciendo
+En qué iteración está
+¿Ya no me lo tendría que decir?
+No porque
+Lo que está haciendo
+Pirating
+En realidad es
+Ah
+No mostrar todas
+Toda la parte
+De acá adentro
+Pero acá le estoy pidiendo
+Que noisily
+Display
+Tal cosa
+Ah
+Noisily
+Le ganan
+El pirating
+Excelente
+Ok
+En el tp
+Ya hubiera aparecido
+Esto
+Y no lo puedo hacer
+Con el
+Tuve que hacer
+Con el
+Por value
+Tuve que hacer
+Un frame
+Ah
+Puede ser
+Si eso es lo que
+Les voy a proponer
+Ahora
+Una vez para
+Que estén
+Los sentados
+Para guardarlo
+Podemos empezar
+A hablar de eso
+Correcto
+Si tienen
+Estata
+De 16 o superior
+Si lograron
+Instalarlo
+Algo que se puede hacer
+Es
+Usar el frames
+Porque
+No sé si me ha pasado
+Cuando usaban
+Estata
+A mi
+Me pasó
+Antes de saber
+Que existía
+Saints
+Si es un
+Main change
+Pero
+Lo que pasa
+Lo que pasa con
+Estata
+Mientras
+Corre
+Esto
+Es que
+Por ejemplo
+Cuando vos
+Corres el browse
+Que te abre
+La ventana
+De visualización
+De datos
+Ponele que vos
+Tenías tu data
+Pase el de ID
+Tiempo
+X
+Mut
+T
+Y
+¿No?
+Y
+ID
+Si
+Bueno
+Pones 1
+Por cada periodo temporal
+Ponele
+De vuelta
+Que
+N
+Es igual a
+Que
+N
+Es igual a
+3
+Y que
+T
+Es igual a
+2
+Entonces
+T
+1
+2
+2
+2
+3
+3
+1
+2
+1
+2
+Las 6
+Y nada
+Van a ser numeritos
+Numeritos
+Numeritos
+Numeritos
+Lo mismo con todo
+Aquí
+Fíjense que
+El data
+Z acá
+Tiene el tamaño
+1
+2
+3
+6
+Por
+1
+2
+3
+4
+5
+6
+6
+6
+7
+Cuando vos corres
+Todas las simulaciones
+Y
+Te empezás a guardar las cosas
+En estas matrices
+Por ejemplo
+La matriz
+OLS
+Igual
+AJ
+Oadmirifías
+Una columna
+Vacía
+Y después la rellenás
+Esta matriz va a ser una cosa
+Gigante
+De
+No sé
+Las estimaciones
+De las betas
+Entonces ponele que tenés
+En la primera
+En la primera iteración
+El beta
+De OLS
+Te dio
+1,002
+El segundo
+Te dio
+0,991
+El tercero
+1,003
+Y así sucesivamente
+¿No?
+0,981
+Todo esto
+Mil veces
+Después
+Para hacer operaciones
+Sobre este
+Vector
+Sobre esta matriz
+Vamos a tener que
+Convertir a matrices
+Con svmap
+Perdón
+Convertir a variables
+O sea
+Svmap
+Nos convierte
+La matriz
+A variables
+Porque
+Es como que
+Stata
+Hace las operaciones
+De calcular el promedio
+El desvío standard
+Etcétera
+Que es lo que queremos sacar
+De todo esto
+Solo sobre variables
+Entonces
+Si no usas
+Frames
+Lo que va a hacer
+Svmap
+Es por ejemplo
+Esta matriz
+Se llama OLS
+Y tiene una columna
+Lo que va a hacer
+Esta para decirte
+Bueno
+Me dijiste
+Svmap
+Entonces yo voy a agarrar
+La matriz
+Esta que está acá
+La voy a convertir
+En una variable
+Y para eso
+Tengo que agregarla
+A tu dato
+Svmap
+Y a esa
+Le voy a poner
+OLS
+Que es el nombre
+De la matriz
+Con un 1
+Que es el número
+De la columna
+Si tuviera
+Una segunda columna
+Porque guardé
+Algo más
+De las regresiones
+Aparecería
+Al ladito
+Como OLS
+2
+Entonces la cámara
+Aparece
+1
+0
+0
+2
+0
+9
+9
+1
+Así
+Hasta el
+0
+9
+8
+7
+En la posición
+1000
+O sea
+Vamos a pasar
+De tener
+Un dataset
+De 6x6
+A un dataset
+De
+1000
+Entonces eso
+Como que te deja
+Toda una situación
+Media extraña
+Porque si vos
+Después esto
+Lo querés
+No sé
+Exportar a Excel
+O lo que sea
+Va a quedar
+Un poco raro
+El dataset
+Prev
+Lo que te permite
+Hacer es
+Agarrar
+Este
+Digamos
+Agarrar
+Este dataset
+Ponerle un nombre
+Agarrar
+Este dataset
+Y ponerle
+Otro nombre
+Entonces
+Eso es lo que vamos a hacer hoy
+Vamos a guardar
+Todo esto
+Y
+Todos los resultados
+De las regresiones
+Más bien
+Vamos a pasar
+Todas estas matrices
+A variables
+Pero dentro
+De un dataset
+Distrito
+Para que no nos
+Rompa
+Las dimensiones
+De
+Este dataset
+Que no lo estamos
+Guardando
+Este dataset
+En realidad
+Pero
+Si quisieran
+Guardarlo
+Podrían guardarlo
+También en un
+P
+Entonces
+Yo se pongo
+Esto ya
+Tengo que correr
+Vuelvo
+Notar acá
+Lo que les comentaba
+Fíjense que no tenemos
+Nada guardado
+En el dataset
+Porque
+Como que
+En ningún momento
+Le dijimos al Luke
+Viste estas variables
+Que te estás generando
+O guárdatelas
+Se lo podrían hacer
+Los asesinos
+A mi como que
+Me gusta ver
+Todo el dataset
+Para ver que esté
+Todo bien generado
+Obviamente
+Es mucho más pesado
+Pero si tienen
+El tiempo
+Y la capacidad
+En la compu
+Bienvenido sea
+Entonces
+Veamos como quedó
+Por ejemplo
+La matriz
+De OLS
+Para ver la matriz
+Hacen
+Matlist
+OLS
+O sea
+Matlist
+Y el nombre
+De la matriz
+Y esta es la matriz
+Esta creativa
+En las observaciones
+Y ahora
+Lo que vamos a hacer
+Es usar frames
+Para
+Para guardar
+Esas matrices
+Como variables
+Algo que es
+También importante
+Tener en cuenta
+Con el tema
+De frames
+Es que las matrices
+No van a cambiar
+Porque cambiamos
+El frame
+O sea
+Las matrices
+Van a estar
+Como en otro
+Plano
+De startup
+Entonces
+No hace falta
+Que las vuelva
+A recrear
+Bajo este frame
+Entonces
+Acá tenemos
+Los pasitos
+Primero
+Creo un frame
+Nuevo
+Que se llama
+Resultados simulaciones
+Y si vamos
+A buscar
+Los directorios
+Tenemos el default
+Y entre resultados
+Simulaciones
+Que son 0x0
+Porque todavía
+No les puse nada
+Voy a cambiar
+Y si yo pongo
+Frames
+Me van a decir
+Que el current frame
+Es resultados
+Simulaciones
+Y lo que les decía
+Antes era
+Que si yo vuelvo
+A correr
+Matlist
+Six effects
+Igual es
+Esto me va a devolver
+Como
+Las matrices
+Que salieron
+De cada
+Interacción
+De cada
+Para cada
+Model
+Entonces
+Tenemos las tres
+Matrices
+Acá
+No se falta
+Lo
+Lo
+Ahora sí
+Se había cortado
+Justo
+Ah ok
+¿Hace mucho
+O recién
+No, no, no
+Recién
+Recién
+Sí, me lo escuché
+Lo digo
+Acá
+Creo que
+Lo
+No
+Pero parece que
+No dije nada
+La cámara
+Se fue
+Ah
+Se van a acertar
+Ver
+A ver
+No, sigue igual
+Pero bueno
+Por lo menos se escucha
+¿Se escucha?
+Bueno
+Sí, sí
+Tengo que bajar
+Me puedo poner acá
+Pero ahí
+No sé
+Ah no
+Pero que vamos a hacer
+Un momento
+Un momento
+Bueno
+Vamos a continuar
+Nada más que
+Vuelvo a patear
+El pozo
+Y se
+Se arregla
+Bueno
+Si en algún momento
+Igual sienten
+Que me dejan
+De escuchar
+Lo que parece
+Que dejé hablar
+Porque no me escuchan
+Me avisen y digo
+No
+Entonces
+Una vez que
+Convertimos
+De las matrices
+Que teníamos
+A variables
+Ya vamos a poder
+Hacer
+Los estadísticos
+Digamos
+Calcular lo que necesitamos
+Es la media
+El desvío estándar
+Con la media
+Y el desvío estándar
+Va
+Más bien con la media
+Ya calcular
+El error cuadrático
+Medio
+Y otra cosa
+Que podrían hacer
+También si quisieran
+Es generar
+Tres matrices
+Que acumulen
+Los resultados
+Para
+Todas las situaciones
+Que van a ir haciendo
+En el sentido de
+Esto ahora
+Lo hicimos
+Para n igual a 5
+Pero esto
+Después lo podemos repetir
+Lo tenemos que repetir
+Con 10, 30, 50, 100
+Y 500
+Entonces
+Lo corres una vez
+Con n igual a 5
+Terminaste de correrlo
+Guardaste todo
+Listo
+Guarda eso
+En una matrix
+Que se llama
+Tabla final
+OVS
+Que va a tener
+Dimensión 6
+Donde 6 es
+1, 2, 3, 4, 5, 6
+O sea
+Cada uno de los
+Resultados
+Que querés reportar
+Y 3
+Vendrían a ser
+OVS
+Randoms Effects
+Y Fixed Effects
+Que acabéis ya
+No mentira
+El 3 es porque
+Estamos fundando
+Al beta
+El standard deviation
+En DCM
+Entonces voy a tener
+Una tablita para OVS
+Una tablita para Randoms Effects
+Y una tablita para Fixed Effects
+Eso también lo podrían hacer
+¿Y por qué te dirás
+La sintaxis?
+Que lo estás creando
+Con valores vacíos
+Si ponés un 1
+Te hacen una sola
+Accedente
+Después
+Ok
+Nada
+Ya tenemos las variables armadas
+De hecho podríamos hacer un browse
+Para efectivamente ver que
+Lo que hizo esto fue
+Guardarme coles
+Columna 1
+Como una variable
+Randoms Effects
+Columna 1
+Como una variable
+Pero fíjense que queda
+Mucho más ordenado
+Que si tuviera acá
+Otro choclazo
+Con las x
+Los move
+Y
+El resto de las variables
+Ok
+Computamos
+Todo lo que nos pedían
+Que era
+Con summarize
+Acá vemos
+La media
+El de g estándar
+Mínimo y máximo
+Estata cuando ocurre
+Este tipo de comandos
+Summarize
+Regres
+Etcétera
+Es como que
+Va guardando en la memoria
+De la copu
+Estos valorcitos
+Y los guarda
+En el caso
+De summarize
+Dentro de esta estructura
+Que se llama
+R paréntesis
+Y en particular
+Dentro de R paréntesis
+Hay un ítem
+Que se llama
+Min
+Que es esta
+Min que está acá
+Entonces así funciona esto
+Entonces lo que digo
+Bueno
+Correme el summarize
+Para esta variable
+Y agarra
+Del resultado
+De correr el summarize
+Este Rmin
+Que lo guardaste
+Y ponele
+Nombre
+Minbeta
+OLS
+Entonces
+Vamos a hacer eso
+Y con este
+Display
+In red
+Le decimos
+A esta
+Que nos muestra
+En rojo
+La media
+De la estimación
+Oltd
+Es
+Todo este texto
+Y después
+Y después
+Inmediatamente
+El escalar
+Entonces
+Ahí nos tira
+El promedio
+Acá tengo
+El standard deviation
+Y nos queda
+Computar
+El ECM
+Que es básicamente
+Como veíamos antes
+OLS1
+Es toda la variable
+Toda esa
+Columna
+De la variable
+OLS1
+A esa
+Le resten
+Signos pesos
+Beta
+Que acuérdense
+Que ya lo habíamos
+Enseñado acá
+Global
+Global
+Beta
+1
+Si lo corre
+En local
+Todo esto
+Lo tienen que correr
+De una sola vez
+Todos juntos
+Y en lugar
+De este
+Signo pesos
+Tendrían que usar
+Las comillitas
+Que se van
+Con
+Entonces
+Este
+Menos
+Este
+Al cuadrado
+La genero
+Como una variable
+Nueva
+Entonces
+Agarré
+El
+Valor de
+OLS
+Le resto
+De resto
+1
+Le elevo
+Al cuadrado
+OLS
+Menos
+Menos
+1 al cuadrado
+OLS
+Menos
+1 al cuadrado
+Una vez que tenés
+Eso
+Agarrás y calculás
+El error
+Que decíamos
+Antes
+El root
+Mean
+Square
+Que es tomarle
+La raíz
+A qué cosa
+Al promedio
+De ese sesgo
+Que habías generado
+Antes
+Entonces
+Lo mismo
+La misma idea
+Lo guardaste
+Como una variable
+Correl
+Summarize
+De ahí
+Sacate
+El promedio
+Y aplicarle
+La raíz
+Y guardarlo
+Como un escalar
+Entonces ahora sí
+La raíz cuadrada
+Del error cuadrático
+Medio
+De la estimación
+Es 0.2011
+Una vez que hicimos
+Esto
+Y tenemos
+Las tres cosas
+Que queríamos
+Guardarnos
+Que eran
+El
+Min
+Beta
+OLS
+El
+Standard
+Delation
+Y la raíz
+Para el error cuadrático
+Medio
+Lo guardamos
+Todo
+En la
+Mátric
+Final
+Entonces
+En esta
+Tabla
+Final
+OLS
+Que
+No sé si
+La corrí
+La corrí
+El
+Componente
+1.1
+Va a ser
+Min
+Beta
+OLS
+El
+Componente
+1.2
+Va a ser
+El Standard
+Deviation
+El
+Componente
+3
+La raíz
+Del error cuadrático
+Medio
+Y acá
+Fíjense
+Que estoy
+En la
+Posición
+1.3
+Sería
+Como
+La fila
+1
+No sé
+No sé
+No sé
+No sé
+No sé
+No sé
+No sé
+No sé
+No sé
+No sé
+No sé
+No sé
+No sé
+No sé
+No sé
+Entonces
+Cuando
+N
+Es igual
+A 5
+Obtuvimos
+Estos resultados
+Donde
+Este de acá
+Es el
+Promedio del
+Beta
+Standard
+Delation
+La raíz
+De los
+Por 4
+De los
+Medios
+Y después
+Lo van a ir
+Rellenando
+Cada vez
+Que vayan
+Corriendo
+El código
+De vuelta
+Lo que sí
+Van a tener
+Que tener
+El cuidado
+De ir
+Moviendo
+Esta posición
+En lugar
+De 1
+Y cuando
+Lo repitamos
+Con N
+Igual a 10
+Esto va a
+Pasar a ser
+La segunda
+Fila
+Porque si no
+Les va
+A reescribir
+Esto
+Pero
+Nos movemos
+Acá
+Y decimos
+Bueno
+Con N
+Igual a 10
+Esto vale
+Algo
+Esto vale
+Algo
+Esto vale
+Otra cosa
+Y finalmente
+Todo esto lo hacemos
+Porque después
+A partir de la
+Matrix
+Esta que está acá
+Lo podemos
+Pulsar
+Stab
+Y ya nos
+Se devuelve
+Como con una
+Tablita
+Con forma
+Como algo
+Que puedo
+Comer
+Y crear
+Un Excel
+Y bueno
+Hay un montón
+De formas
+De exportar
+Esta data
+Pero
+Acá les tiro
+Un ejemplito
+Bueno
+Y después
+Voy a hacer lo mismo
+Con Rano
+Effects
+Y Fixed
+Effects
+Que es básicamente
+Agarrar la variable
+RatoxEffects
+Sacarle
+Sacarle
+El promedio
+Sacarle
+El estándar
+Calcular
+El ECM
+Sacarle
+La raíz
+Y listo
+Entonces
+Básicamente
+Eso
+Obviamente
+No voy a correr
+Esto
+Para
+N
+Igual a
+5
+10
+30
+Etcétera
+Porque
+No llegaríamos
+Con el tiempo
+Pero podemos
+Ver los resultados
+Acá
+No
+Entonces
+Acá están
+Los resultados
+Que obtuvieron
+Si les da
+Distinto
+Puede ser
+Que sea
+Una sí
+Distintal
+Y acá
+Hablemos
+Un poquito
+De los resultados
+Que vemos
+En cuanto
+A las estimaciones
+De Google
+Es
+RatoxEffects
+Y Fixed
+Effects
+Están siempre
+Muy cerquita
+Del uno
+Y esto
+Tiene sentido
+Porque
+Todos los supuestos
+Que tenemos
+Sobre el modelo
+Los tres
+Van a ser
+Consistentes
+Entonces
+No deberíamos
+Ver cosas
+Demasiado raras
+En cuanto
+Al valor
+Que toma
+El estimador
+En sí
+O sea
+Siempre van a estar
+Cerca del valor
+De verdadero
+Que es el
+Incluso
+Desde tamaños
+De muestra
+Relativamente
+Chicos
+Como puede ser
+Un
+N
+Igual
+Así
+Ahora
+Para todo
+Lo que tenga
+Que ver
+Con
+Standard
+Deviation
+Miremos
+Lo voy a mostrar
+Como con este
+Colorcito
+Así
+Standard
+Deviation
+Si comparamos
+OLS
+Contra
+Random
+Defects
+Contra
+Fixed
+Defects
+No sé si
+Está coloreando
+Lo que se me
+Tendrá
+La
+Con
+Paciencia
+Si está
+Haciendo
+El ruido
+De
+Poluvina
+No le gustó
+Nada
+La simulación
+De horas
+En términos
+De
+Vía
+Estándar
+Vemos
+Que
+Como
+Consistentemente
+OLS
+Tiene un desvío
+Más grande
+Que el resto
+Que Ramos
+FX
+Y que
+Fixed
+FX
+Y que
+Entre Ramos
+FX
+Y Fixed
+FX
+No hay
+Mucha
+Diferencia
+Pero
+Si vamos
+A empezar
+A ver
+A partir
+De
+Hoy estamos
+Con
+Miremos
+Qué pasa
+Comparemos
+Con el error
+La raíz
+Del error
+Cuadrático
+1565
+1527
+1090
+1078
+617
+619
+Acá como que
+Cambia
+Si
+Este de acá
+Vas a ser
+Más chico
+Que este de acá
+Este es más chico
+Este es más chico
+Este es más chico
+Es poquita la diferencia
+Pero
+Si es cierto
+Que es más chico
+Entonces
+Lo que
+Parece que nos está diciendo
+Este ejercicio
+Es que
+En muestras pequeñas
+De 5
+Y 10
+Por muy poquito
+Gana
+Fixed
+FX
+En términos
+De
+Error
+Raíz
+Del error
+Cuadrático
+Medio
+Y a partir
+De ahí
+Para muestras
+Más grandes
+Empieza a ganar
+A partir
+De 30
+En adelante
+Empieza a ganar
+Random
+FX
+Con un error
+Cuadrático
+Medio
+Raíz
+Del error
+Cuadrático
+Medio
+Más chico
+Esto tiene
+Que ver
+Con la eficiencia
+Que gana
+Random
+FX
+Por sobre
+Fixed
+FX
+Porque de vuelta
+Recuerden que
+Fixed FX
+Tenía esta limitación
+En no poder
+Ver cosas
+Que no varían
+En el tiempo
+Para un individuo
+Entonces
+Nada
+Eso
+Bueno
+Se retindo acá
+Mientras tanto
+Alguna
+Pregunta
+Del código
+De los
+Vamos
+Pero bueno
+En definitiva
+Para muestras
+Más grandes
+Va ganando
+Fixed FX
+Y borrón
+Un texto
+Voy a dejar
+De compartir
+Un segundo
+A ver
+Si
+Ahora
+Se desplie
+Ahí va
+Bueno
+Eso por un lado
+Algunos nos preguntaban
+Después nos preguntan
+Bueno eso es un poco
+Lo que hablamos
+Eso fue el ejercicio 3
+Entonces
+Voy a pasar al ejercicio 4
+Si no hay ninguna pregunta
+En el ejercicio 4
+Vamos a usar
+La base de datos
+Wage
+Pan
+Para responder
+Las preguntas
+A continuación
+Primero vamos a utilizar
+LWage
+Como logaritmo del salario
+Como variable dependiente
+Y estimar un modelo
+Que contenga
+Un intercepto
+O sea la constante
+Y las variables dummy
+Del año 81 al 87
+Nada más que eso
+O sea va a ser
+Logaritmo del salario
+Igual a
+Una constante
+Y las dummy
+Y nos piden
+Que estimemos el modelo
+Por .ols
+Llevamos
+Fixed FX
+Y First Differences
+Que pueden concluir
+Acerca de los coeficientes
+De las variables dummy
+Entonces
+Bueno
+Eso por un lado
+Después vamos a agregar
+Al modelo variables
+Que son constantes
+En el tiempo
+Y ver que cambia
+Vamos a comparar
+Los errores estándar
+Y los valores
+Que toman las estimaciones
+De los coeficientes
+Y hablar un poco
+De
+En que casos son iguales
+En que casos no
+Y que errores estándar
+Robusto se prefiere
+Entre
+Q2L
+Y Rumble
+Y Fex
+De vuelta
+Esto
+Ya a esta altura
+Creo que
+Probablemente suele
+Repaso
+De lo que
+Estuvimos haciendo
+En estas últimas clases
+Pero creo que para cerrar
+Está bien
+Ok
+Primero
+Como siempre
+Cargamos la base de datos
+Cliríamos todo lo que tenga
+Adelante
+Y vamos a describirla
+Para ver que variables
+Tenemos
+NR
+Que es el
+Person Identifier
+Year
+Que es el año
+Del 80 al 87
+Entonces las
+Nummies
+Que ya están construidas
+Van del 81 al 87
+Porque el 80
+Es como
+El benchmark
+Tenemos después
+Dummies
+Que valen
+Por ejemplo
+Valor 1
+Si estás en agricultura
+1
+Si raza negra
+1
+Si
+Tienes
+Un tipo de servicios
+Tenemos variables
+De dotación
+Variables
+De
+Estado civil
+Fíjense que son
+Todas
+Dummies
+Es un poco
+El chiste
+De la
+Trabajar
+Con estas
+Dummies
+Y esta
+También
+Es
+Experiencia
+4
+Lo que no es
+Dami
+Es el logaritmo
+En salario
+Que es lo que estamos
+Viendo
+Los años
+De educación
+Horas
+Trabajadas
+Expert
+Que es
+Labor Market
+Experience
+Y el resto
+Son datos
+Entonces vamos
+A declarar
+El panel
+Como ya vimos
+La variable
+Que me determina
+El panel
+Es
+El ID
+El personal identifier
+Junto con el año
+Y nos pedían
+Entonces
+Estimar
+El modelo
+Que incluya
+El logaritmo
+Del salario
+Contra las
+Davies
+De años
+Por
+Para hacerlo
+Ya sabemos
+Que
+Es el comando
+Regress
+Es el comando
+X
+T
+Red
+Para
+Relacionar
+La parte
+De datos
+De
+Díganos
+Del panel
+Y le agrego
+La indicación
+De ram
+116
+Y después
+Para
+First
+Differences
+Si se acuerdan
+Como no hay
+Una explicitación
+En el list
+Y reg
+Que
+Que nos dé
+First
+Differences
+Lo que hacemos
+Es generar
+Es generar
+A nosotros
+Junto con
+El
+D
+Punto
+Que es
+Este
+Este
+Operador
+En esta
+Que nos permite
+Diferenciar
+La data
+Entonces
+Corro
+Todo
+Pundo
+O
+Bueno
+Vamos
+Con
+Pundo
+Fíjense
+Lo que tenemos
+Si bien
+Los coeficientes
+Cambian
+Los errores
+Estándar
+Son los mismos
+Para todas
+Las damas
+De año
+No sé
+Si a alguien
+Se le ocurre
+Por qué
+Podría hacer esto
+No se sientan
+Presionados
+A hablar
+Y
+Pero
+Si a alguien
+Se le ocurre
+O sea
+Que se yo
+Capaz
+Que alguien
+Lo había dicho
+Esto debe ser
+Por tal cosa
+Yo si veo
+Esta salida
+Digo
+Che que raro
+Seguro hice algo mal
+Y no
+Tiene su sentido
+Básicamente
+Tiene que ver
+Con que
+Yo les voy a escolar
+Porque
+No sé si vamos a llegar
+Con el tiempo
+Así que
+Fíjense
+Que lo que mide
+Esto
+Es la desviación
+Para la variable
+Dame 81
+¿No?
+Y
+¿Se acuerdan
+Cuando hacíamos
+El
+X
+Para escribir
+El panel?
+No
+Mentira
+X
+Que acá nos decía
+Bueno
+Cómo cambia
+Tal variable
+¿Cómo cambia
+Between
+Y cómo cambia
+Bufin
+Tiene que ver
+Con eso
+Como las variables
+Del tiempo
+Son las mismas
+La variabilidad
+La variabilidad
+Que encontramos
+Para cada individuo
+De estas variables
+Es la misma
+Para todos
+Porque todos
+Se mueven
+De 81
+A 82
+De 82
+A 83
+Y se mueven
+Y se mueven
+Todos igual
+Porque el panel
+Es balanceado
+Así que nada
+Eso
+O sea
+Obviamente
+En general
+No nos va a interesar
+Correr esta regresión
+En sí
+Porque
+Lo que estás diciendo
+Acá un poco
+Es
+Si quisieras interpretarlo
+Es cómo cambia
+El logaritmo
+Del salario
+Cuando
+Vivimos en el 81
+Respecto al 82
+Y es como
+Con semejante data
+Se formata información
+De
+No sé
+Raza
+Estado civil
+Años de experiencia
+Limitarte a esto
+Es un poco
+Extraño
+Termino
+Práctico
+Pero bueno
+Este ejercicio
+Es para
+Básicamente
+Ver qué pasa
+Y comparar
+Punto o L
+Con
+Random effects
+Y fixed effects
+Entonces vamos a hacer eso
+Por random effects
+Miremos en los coeficientes
+Acá tengo
+Punto 11
+Punto 17
+Punto 22
+Punto 11
+Punto 17
+Son exactamente
+Los mismos
+Lo que va a cambiar
+Es el error estándar
+Que sigue siendo
+Igual para todos
+Pero va a costar
+Para todas las NAMIs
+Es más
+Es más chico
+Que en el caso
+El puto o el ex
+Un poco es lo que
+Estaríamos esperando
+Porque acuérdense
+Que
+Lo que hacemos
+Cuando estamos
+Haciendo
+Arrornos
+Ex
+Es
+Considerar una estructura
+De los errores
+Que puede ser más cercana
+A lo que realmente
+Está pasando
+En el
+En el
+La casa
+Que básicamente
+Hacer
+Mínimos cuadrados
+Generalizados
+Con esa estructura
+De errores
+Diferentes
+Con menos
+Restrictiva
+Que el punto
+O el ex
+La misma
+Con fixed effects
+Fíjense que los coeficientes
+Son los mismos
+El error estándar
+De hecho
+Es el mismo
+También
+¿Me corréis?
+Vale
+Después tenemos
+First differences
+Que
+Nada
+Punto 11.17
+Punto 12
+Acá
+Si van a cambiar
+Los errores
+Estándar
+Entre
+De las diferentes
+Nummies
+Porque
+Estamos usando
+Variables diferenciadas
+No estamos usando
+Las variables
+Amónicas
+Niveles
+Pero bueno
+Acá vamos a tener
+Todos los resultados
+En un solo lugarcito
+Entonces
+Lo que decíamos
+Da lo mismo
+En todas
+¿Por qué sucede esto?
+Básicamente
+Porque
+No sé si
+Pero bueno
+Como ayuda a memoria
+Piensen que
+Full of ls
+Es hacer
+Mínimos cuadrados
+Clásicos
+De siempre
+Después tenemos
+Randoms
+Effects
+Que es básicamente
+Hacer mínimos cuadrados
+Generalizados
+Pero
+Nada
+Es mínimos cuadrados
+Generalizados
+Con la estructura
+Que propongamos
+Fixed effects
+Consiste en transformar
+En transformar el modelo
+Y una vez que lo transformaste
+Para sacarte de encima
+Todas las variables
+Que son
+Constantes en el tiempo
+Y esa heterogeneidad
+Que es constante en el tiempo
+A nivel individuo
+Lo que terminás
+Lo que terminás haciendo
+Lo que terminás haciendo
+Después de eso
+Es
+Transformar el modelo
+Volvés a correr
+Mínimos cuadrados
+Mínimos cuadrados
+Clásicos
+¿No?
+Entonces
+Si yo tengo un modelo
+Que es tan simple
+Tan simple
+Que no tiene cosas
+Que sean constantes
+En el tiempo
+Como es este caso
+De
+El salario
+Contra dummies
+Porque todas las dummies
+Cambian
+En el tiempo
+Esencialmente
+Estás estimando
+Lo mismo
+Acá y acá
+Por puto
+Goalers
+Por fix effects
+Porque la transformación
+En el modelo
+Te deja
+Vos con el mismo modelo
+Que tenías antes
+Y después
+Diferencias finitas
+Es
+También
+Vos transformar
+El modelo
+Poder ver
+MC6
+El modelo
+Que modelo
+Transformado
+El modelo diferenciado
+Pero de vuelta
+Como que estás explicando
+Siempre lo mismo
+Estás haciendo siempre
+Las mismas variables
+Explicativas
+Para explicar algo
+Que no cambia
+Cuando transformás
+El modelo
+Entonces
+Da igual
+Y
+El hecho de que
+Put dobles
+Y vamos a hacer
+Se dan iguales
+Tienen que ver
+Si bien estás estimando
+Con mínimos paróqueles
+Y con mínimos paróqueles
+Generalizados
+Hay un resultado
+Que dice que
+Si las variables
+Son las mismas
+El beta es el mismo
+Obviamente
+Como vemos
+Cambia el error
+Estándar
+Pero
+Eso es lo que cambiaría
+Pero nada
+Eso era un poco
+El resultado
+Por si lo comparan
+Acá con las
+Soluciones
+Bueno nada
+Se puede apreciar
+Que las estimaciones
+De los coeficientes
+Son numéricamente
+Después nos piden
+Que agreguemos
+Las variables
+Concentes en el tiempo
+Que son
+Edu, Black
+Eist
+Al modelo
+Estimemos por punto
+Valés
+Y ver cómo se comparan
+Los coeficientes
+Que ocurra
+Si estimamos
+La estimación
+Por 16
+Entonces
+Lo que vamos a hacer
+Directamente
+Lo que vamos a hacer
+Es regresar
+El logístico del salario
+Contra las
+Amis
+Contra
+Edu, Black
+Eist
+Lo guardamos
+Por punto
+Again
+El tema de la variabilidad
+Para las Amis
+Se mantiene
+Solo que ahora
+Agregamos
+Edu, Black
+Eist
+Borremos lo mismo
+Para
+Red, Red, Six,
+Six,
+Six,
+Six,
+Six,
+Podemos mirar
+Los coeficientes
+De las Amis
+Los coeficientes
+De Black
+Eist
+Because
+Tenemos
+Menos
+Punto
+Doce
+Cero
+Dos
+Punto
+Cuatro
+Nueve
+Menos
+Doce
+Cero
+Dos
+Punto
+Cuatro
+Nueve
+Son los mismos
+Cambia
+El error
+Estándar
+Y bajamos
+Un poquito
+Más
+Y
+En el caso
+De Fixed
+Effects
+Tenemos
+Los coeficientes
+De las Amis
+Y fíjense que
+Edu, Black
+Eist
+Están omitidos
+Básicamente
+Porque
+El chiste
+De Fixed
+Effects
+Es
+Eliminar
+O sacarte
+De encima
+Las variables
+Que se han
+Pasado
+En el tiempo
+Te sacas
+La heterogeneidad
+No se va
+De encima
+Sí
+Pero también
+Te está sacando
+De encima
+La posibilidad
+De estimar
+Cómo afecta
+En tu modelo
+Agregar este componente
+Un nivel más
+De educación
+O bueno
+Un nivel más alto
+De educación
+O ser
+Pertenecer o no
+A la rosa negra
+O pertenecer o no
+Al sector
+Supongo
+Más hispánico
+De la sociedad
+Entonces
+Esas van a ser
+Como las grandes
+Diferencias
+Y bueno
+Con esta
+Podemos
+Dejar todo
+En una sola tablita
+Como vimos antes
+Fíjense que acá
+Lo que estoy haciendo
+Es
+Renombrar
+A la variable
+D.D81
+Como D81
+Para menos
+¿Qué tal?
+Ah
+Digamos
+Grosero
+El nombre acá
+Y
+Y
+¿Qué tal?
+¿Qué tal?
+Me pido que antes
+De las maneras
+Que se sonrías
+Sí
+Básicamente
+Fixed Effects
+Lo que hace es
+Plantear transformaciones
+Que hagan
+Que vos
+Por ejemplo
+Una de las
+Transformaciones
+De Fixed Effects
+Que hacíamos
+Era
+Lo que estás haciendo
+Con Fixed Effects
+Es decir
+Mira
+En tu modelo
+Tiene esta forma
+Y
+Igual
+A
+X
+Por beta
+Más
+Un mu
+Que depende de y
+El x
+Depende de y t
+Y
+Y
+Depende de y t
+Y
+Después tengo el error
+Que en este caso
+O sea
+No sé si en este caso
+En el físico
+En el físico
+En el físico
+Entonces
+Lo que hacíamos
+Era buscar formas
+De decir
+Bueno
+Que se yo
+Si agarrás a esto
+Y le restás
+Como la variable
+La guiada
+El l.y
+Y
+Le agarro
+L.x
+Eso va a tener
+Su beta asociado
+¿Qué pasa?
+El lag del mood
+De acá
+Como mood es constante
+En el tiempo
+Va a ser
+Más
+Sónico
+Y el lag del error
+O sea
+Tomo la
+Tomo el modelo
+Un venido para atrás
+Resto este con este
+Entonces este con este
+Me va a quedar
+Y
+Con
+Creo que eran los dos puntitos
+Resto este con este
+Y me queda el x
+No sé si era con los dos puntitos
+O que era
+Que lo anotamos
+Que hacíamos la anotación
+Y el muy
+Se fue ¿no?
+Ahora ponelo que
+Aparte de muy
+En lugar de muy
+Tenés
+Voy a poner
+En lugar de muy
+Una variable
+Como por ejemplo
+Black
+Y quiero estimar
+El beta de black
+Black
+Black se va a repetir
+Acá y va a tomar
+El mismo valor
+Porque se black
+Toda tu vida
+Según esta
+Entonces
+Cuando haces
+Esta transformación
+De restar
+Este con este
+Este se va a ir
+Entonces
+En ese sentido
+Se omita
+Creo que algo
+Que está bueno
+Para ver
+De esto
+Como de
+Adicional
+Es
+A ver si
+Lo que está
+Si
+Acá
+Este libro
+Te explica
+Bastante bien
+Microtronometrics
+Y si me está
+Claro
+Que es dedicándolo
+A la nitride
+Y si vas a la parte
+De
+Hay un capítulo
+Que es de
+Panel
+A la nitride
+De
+Tire
+Primero está bueno porque te da como el resumencito de todos los comandos, y te dice también
+Tengo un poco de background en cómo hace Stata para calcular cada una de las cosas en sus paneles
+Si vamos a bajarse un poco más, vamos a tener la parte de...
+Bueno, tenés .wls, y acá, aplicación de xtrreg six effects.
+Básicamente, acá tenemos un ejemplo parecido.
+El coeficiente para educación no se puede identificar, esto es porque la data en educación no cambia con el tiempo.
+De hecho, sabíamos que el xtsum, que es lo que usamos nosotros hace un rato para ver cómo se veía el dataset,
+que educación tiene cero within standard deviation.
+Para cada individuo, la educación no cambia en el tiempo porque probablemente cuando tomaron la encuesta,
+o cuando midieron los datos a lo largo de los años, dijeron
+Bueno, decime cuál es tu nivel más alto de educación, y eso no cambió.
+Pero, bueno, lo que dicen esto, esto es un poco desafortunado porque nos interesa, o podría interesarnos saber cómo dependen los salarios en la educación.
+De hecho, es una pregunta de las más comunes, y después le preguntas a cualquier persona de qué te parece que depende de tu salario y de mi nivel educativo.
+Entonces, digamos, fixed effects no sería útil, como decíamos, para medir el efecto de variables que no cambian en el tiempo sobre la variable repetida.
+Lo que tiene es que fíjate que sí, ya te da un valor para la correlación entre las u y las x acá.
+Pero acá está bueno porque te lo explica todo de una forma bastante ameno, va directo al grano.
+Así que es la página 292 de 732 de este archivo, si no lo tienes después de los pocos.
+Eso en cuanto a las comparaciones, ah, bueno, no terminamos de comparar el mismo.
+En cuanto a las domies, bueno, siguen siendo las mismas para los tres modelos.
+Fíjense que acá no cambia.
+Solo lo que sigue a cambiar es que, en el caso de fixed effects, las de edu, black e isp, no las vamos a poder...
+No van a estar bien definidas, no van a estar consideradas en el modelo por lo que hablamos recién.
+Ahora, ¿por qué no sigue dando igual?
+Por una idea muy similar a lo que veníamos diciendo antes.
+.wls es hacer mínimos pagados clásicos sobre todo del panel.
+Y randoms effects.
+Estás haciendo una cuenta bastante similar porque, digamos, las variables que incluís en los dos modelos son las mismas.
+La Dami del 81 al 87, y las variables de dos, black e isp.
+Una vez que controlaste...
+Por cosas que...
+Si, no, es todo lo mismo que antes.
+Es...
+Como estamos usando las mismas variables en los dos modelos, existe el resultado que les decía de que...
+Usar mínimos pagados clásicos, usar mínimos pagados generalizados, te termina llevando a un sistema de ecuaciones que es idéntico.
+O...
+Creo que eso está relacionado con los modelos SURE.
+Sí...
+O related...
+Tiene que ver con eso.
+Después...
+A ver si hay algo más que...
+Bueno, lo que decíamos.
+Entre .wls y randoms effects, las estimaciones son numéricamente idénticas.
+Eh...
+Resultado general que decíamos recién.
+Por otra parte...
+Cuando se utiliza fixed effects, no se pueden estimar los coeficientes usados a las variables constantes en el tiempo.
+Eh...
+Ah, bueno.
+Un mini comentario más.
+Ojo que...
+En el caso de fixed effects, te calcula una constante acá.
+No sé si se acuerdan qué era.
+Lo vimos...
+Un poco en...
+Creo que en la plaza anterior, pero bueno.
+Siendo que pasaron...
+Pasó el fin de largo y...
+Lo que hacía la constante en el modelo de fixed effects...
+O más bien...
+Sale de una...
+Sale de STATA dándote la constante para que vos puedas hacer predicción.
+Porque antes lo que pasaba era que...
+Eh...
+Eso.
+Como que se construye una constante para realizar predicción, pero no tiene la misma interpretación que estas dos constantes.
+Por eso va a distinto.
+Eh...
+¿Qué mide exactamente?
+Si quiero después le paso la documentación.
+Pero...
+Seguramente también está explicado acá.
+Eh...
+Después...
+C...
+¿Son iguales los errores estándares de Boot, OLS y Verdance effects?
+¿Cuáles son probablemente más fiables?
+Bueno, ya dijimos que no eran los mismos.
+Eh...
+Como veíamos acá.
+¿Sí?
+Fíjense que en Boot, OLS son más grandes.
+Eh...
+Y como ya sabemos a esta altura, los errores estándares de Boot, OLS van a suponer que no hay correlación serial en el error, entonces eso va a ser como la parte más grave.
+O sea, Pood, OLS no tiene en cuenta que tenés una posible heterogeneidad no observada.
+Y los errores estándares de Random effects sí te permiten en su estructura la presencia de esa correlación.
+Que si bien es igual para todos los pares de periodo, lo cual puede seguir como resultando un poco restrictivo,
+No es tan restrictivo como en Pood, OLS donde te dice...
+No, che, mira, la...
+La...
+La estructura de los errores es sigma cuadrado, o ahí.
+Yo considero eso y hago mis cálculos consiguiendo eso.
+Entonces te permite ser un poco más libre en ese sentido.
+Eh...
+Ok, ya nos queda casi lo último.
+Así que...
+Creo que venimos relativamente bien con el tiempo.
+Nos piden obtener errores estándares robustos para Pood, OLS, y nos preguntan si perseguimos estos o los habituales de Random effects, y lo mismo acá, pero para Random effects.
+Entonces...
+Nos piden obtener errores estándares robustos para Pood, OLS, y nos pregunta si perseguimos estos o los habituales de Random effects, y lo mismo acá, pero para Random effects.
+Entonces...
+Donde vamos para ver cómo es eso.
+Eh...
+Qué muy...
+Uh, por favor.
+Gracias.
+Gracias.
+Gracias.
+Gracias.
+Gracias.
+Y eso, por un lado, por el lado de .11.17.22, estamos de acuerdo que los resultados son los mismos, lo que van a cambiar son los errores.
+Y después nos piden hacer lo mismo
+Pero sobre random effects
+Y compararlo
+Esta primera columna es
+.ls
+Y esta segunda columna es
+Random effects
+Y si comparamos tenemos
+Por un lado, como ya sabíamos que iba a pasar
+Los valores de los estimadores
+Las estimaciones son las mismas
+Los beta sombreritos
+Que sabíamos que esto iba a ser así
+Porque como decíamos más arriba
+Un doble es
+Es hacer
+Mínios cuadrados generalizados
+Sobre una ecuación que es idéntica
+O sea que
+En términos del beta
+Vamos a ver lo mismo
+Pero fíjense de hecho
+¿Qué pasa con los valores de los?
+¿Son iguales?
+O sea es como si hubiéramos corrido
+Básicamente
+Entonces como decíamos
+La ventaja del error estándar de Ubuntu
+Aplicado
+O sea a .wls
+O a random effects
+Es que te permiten cualquier tipo
+De correlación serial
+Y de heterosexión
+Sobre los disturbios que varían en el tiempo
+Nos preguntan
+¿Preferís estos?
+Los de
+O sea los estándar robustos de Ubuntu
+O los habituales de random effects
+Acuérdense que lo que hacía random effects
+Era imponer
+Un tipo especial de correlación serial
+Y asumir homosegasticidad
+O sea
+La diferencia entre el error estándar robusto
+Sobre Ubuntu
+Versus
+Ups
+Bueno acá se sigue
+Se ve que es muy pesado
+Cuando empiezas a dibujar y eso
+Dibujar
+Pero bueno
+Lo que decíamos era eso
+Que la ventaja del error estándar robusto
+Es que te permite cualquier tipo
+De correlación serial
+Y de heterosexión
+Cualquier tipo entre comillas
+Porque
+Nosotros igual estamos
+Clustereando sobre los aides
+Entonces algún tipo de restricción
+Que estamos poniendo
+Porque
+No podemos
+No ponerle ningún tipo de restricción
+Porque si no le ponemos ningún tipo de restricción
+El modelo simplemente no va a andar
+Porque vas a tener
+Más cosas para estimar
+Que variables que tenés en tu modelo
+O sea algún tipo de restricción
+Tenés para
+Para reducir esa cantidad de restricción
+Que estás estimando
+Cuando armás
+La matriz
+Lo gusta
+En cambio
+Los de random effects
+Tienen una estructura
+Un poco más
+Armada
+Por así decirlo
+Que ya te dice
+¿Cómo es la correlación serial?
+¿Cómo es la correlación serial?
+Y
+¿Cómo es la correlación serial?
+Bueno
+Esto
+No sé
+Pero bueno
+Ya terminamos igual
+Ya habíamos calculado
+Los errores estándar
+De estos de random 16
+Los comparamos
+Vimos que eran idénticos
+Y esto es porque
+Existe un solo estimador
+Por lo tanto
+Una sola varianza robusta
+Así que
+Nada
+Con eso
+Terminamos
+Por hoy
+Por suerte
+Esta parte
+Era más cortita
+Así que
+No nos siga ya
+No sé si
+Te va alguna pregunta
+De los códigos
+Por mi parte
+No
+Todo claro
+Me 급ó diamond
+Sí
+No
+Lo
+5
+1
+2
+4
+5
+5
+2
+5
+6
+6
+3
+5
+5
+6
+7
+7
+8
+1
+3
+4

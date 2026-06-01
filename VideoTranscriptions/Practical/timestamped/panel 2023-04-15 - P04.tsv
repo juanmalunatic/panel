@@ -1,0 +1,3519 @@
+start	end	text
+0	7540	Bien, lo que decía es que hoy vamos a seguir con el problem set número 2
+7540	11460	para ya terminarlo, nos quedan por ver el ejercicio 3 y el ejercicio 4
+11460	14880	Las últimas clases lo que estuvimos haciendo fue básicamente
+14880	19320	revisar cuáles son los métodos disponibles para estimar modelos
+19320	23580	de datos de panel cuando hay heterogeneidades de este estilo
+23580	28180	que en las técnicas probablemente lo vean con el nombre C.I.
+28180	32820	Pero bueno, va a ir cambiando la nutrición según el ejercicio
+32820	37340	Para el día de hoy tenemos 8 ejercicios, uno que es de simulaciones
+37340	43160	que está bajando bola, y el 4 está basado en un dataset
+43160	47480	y un ejercicio Woodbridge que vamos a comparar los resultados
+47480	50420	de .WS, random effects, fixes, fixes, fixes, fixes
+50420	54600	Yo creo que la parte difícil de este DP ya la hicimos la vez pasada
+54600	60440	con este ejercicio, o bueno, quizás no difícil, pero sí la parte de entender
+60440	66480	realmente qué es lo que hace cada uno de los métodos que tenemos
+66480	70740	Pero bueno, a modo de repaso, recuerden que lo que vimos la vez pasada fue
+70740	76240	Uno si quiere puede estimar con .WS, o sea, hacer .WS sobre toda la muestra
+76240	80840	El tema es que .WS descansa sobre supuestos que son muy restrictivos
+80840	82680	para el tipo de datasets que manejamos
+82680	88860	Particularmente el supuesto de ausencia, autocorrelación de los errores
+88860	94460	Ya hablamos un montón acerca de por qué podría no cumplirse en datos de panel
+94460	97400	Básicamente tenemos una estructura de datos que hace que
+97400	104380	Periodo a periodo, los errores a nivel individuo puedan estar correlacionados entre sí
+104380	110380	Entonces, cada vez que computamos .WS teníamos que tener eso en cuenta
+110380	115680	pero para tener que usarlo como benchmark para comparar contra los otros métodos que vamos a usar
+115680	122120	Dentro de los métodos que vimos de estimación de datos de panel
+122120	129100	En caso donde tenemos heterogeneidades de este estilo, vimos dos grandes opciones
+129100	131100	Random effects o fixed effects
+131100	137100	Y la gran diferencia entre esos dos era que uno asume que puede llegar a haber correlación
+137100	143100	Entre este efecto y los errores, perdón, este efecto y las variables explicativas
+143100	145100	Y el otro no
+145100	149100	Entonces, fixed effects asume que podría haber algún tipo de correlación
+149100	151100	Random effects no
+151100	156080	Y lo que estuvimos hablando también la vez pasada, más al final de la clase
+156080	160080	Es que el estimador de random effects va a ser consistente
+160080	168080	Sí, solo si es únicamente en los casos donde es apropiado hablar de un estimador de random effects
+168080	174080	Pero en caso de que no, si estuviéramos que pensar en la situación de fixed effects
+174080	176080	Es que señala más correcto, por decirlo
+176080	179060	Ese estimador de random effects deja de ser consistente
+179060	182040	Y ahí es donde entra en juego el test de Hausmann a comparar
+182040	187040	Primero comparas la consistencia de los dos y después la eficiencia
+187040	192020	Y en base a eso el test define cuál de los dos estimadores sería mejor
+192020	199000	A ver si me estoy olvidando de algo
+199000	201980	Pero no creo que era eso básicamente
+201980	204980	Como vamos a trabajar con punto Ls, random effects o fixed effects
+204980	205980	Punto Ls
+205980	208980	Heterogeneidad no observada la incluimos en el error
+208980	214960	Y asumiendo que puede haber correlación entre la heterogeneidad no observada
+214960	216960	Y las variables explicativas
+216960	218960	Esto nos va a generar los problemas que ya vimos
+218960	222960	Entonces después dijimos, bueno, ¿cómo hacemos para cerrar nuestra heterogeneidad encima?
+222960	224960	¿Vamos a arrar los efectos?
+224960	225960	¿Así se hace?
+225960	226960	¿A arrar los efectos?
+226960	227960	¿Qué entendemos?
+227960	228960	¿A arrar los efectos?
+228960	229960	¿A arrar los efectos?
+229960	230960	¿Diste que ahí tenia que avergonar?
+230960	232960	¿No?
+232960	233960	Al revés
+233960	234960	Si lo dije, lo dije al revés
+234960	238960	¿Pero arrar los efectos?
+238960	239960	¿A arrar los efectos?
+239960	240960	¿Así se hace?
+240960	242960	Por eso es la palabra arrahman también
+242960	257780	de hecho en Fixed Effects
+257780	260220	lo que hacíamos en Fixed Effects
+260220	261660	era agarrar transformaciones
+261660	262100	en tipo
+262100	264720	LSVD
+264720	266700	o hacemos otras transformaciones
+266700	268780	para sacarnos encima la transferida
+268780	270260	y no incluirla en el modelo
+270260	272460	entonces cuando te la sacas encima es porque
+272460	274780	como estás asumiendo la posibilidad
+274780	275460	de que haya
+275460	277960	esta correlación
+277960	280860	o sea restringir menos
+280860	282500	tus supuestos acerca
+282500	284860	de esa estructura
+284860	285540	de errores
+285540	288420	por eso hacen las transformaciones sobre el modelo
+288420	290360	eso también te genera limitaciones
+290360	292780	que son básicamente no poder estimar
+292780	294180	estimadores
+294180	296840	no poder estimar los coeficientes de variables
+296840	298260	que sean constantes en el tiempo
+298260	300220	porque todo lo que está constante en el tiempo
+300220	300960	por más que no sea
+300960	302540	un efecto fijo
+302540	305900	heterogéneo no observable
+305900	308660	no lo vas a poder medir con métodos de Fixed Effects
+308660	309360	por ejemplo
+309360	311420	el género
+311420	312680	la raza
+312680	314720	la etnia
+314720	315120	etc.
+315120	319560	bueno
+319560	320700	habiendo dicho esto
+320700	322200	creo que
+322200	325340	no me falta nada
+325340	325940	vamos a ir
+325940	327620	directamente a los ejercicios
+327620	330700	en el ejercicio número 3
+330700	331980	nos piden que consideremos
+331980	332760	este modelo
+332760	334460	tenemos una variable
+334460	335660	dependiente y
+335660	338400	que se conforma por
+338400	340000	una variable x
+340000	340580	por beta
+340580	341320	más mu
+341320	343240	que es específico
+343240	344020	para cada
+344020	345600	individuo
+345600	346540	digamos que las usan
+346540	347080	individuos
+347080	347940	para facilitar
+347940	349280	más un error
+349280	349700	nu
+349700	351460	voy a tratar de modular
+351460	352160	lo más posible
+352160	352780	para que se entienda
+352780	353820	cuándo estoy diciendo mu
+353820	354920	y cuándo estoy diciendo nu
+354920	355640	si en algún momento
+355640	356180	se confunde
+356180	356520	me dice
+356520	359260	porque si no le digo
+359260	359580	b
+359580	360120	y ya
+360120	362780	y mejor b
+362780	363580	mejor b
+363580	364060	bueno
+364060	368980	integramos toda la notación
+368980	370040	a que este nudo acá
+370040	370520	es una b
+370520	373240	entonces
+373240	376380	¿cómo se va a conformar
+376380	376800	el modelo?
+377160	378300	tengo la variable x
+378300	379060	que se distribuye
+379060	379920	normal 0,1
+379920	381740	la variable mu
+381740	382580	que en realidad
+382580	384280	no es una variable en sí
+384280	384800	sino es más bien
+384800	386480	este efecto fijo
+386480	387800	que cambia
+387800	388860	para cada individuo
+388860	389440	más bien
+389440	390680	es distinto entre individuos
+390680	391320	pero es constante
+391320	392080	a lo largo del tiempo
+392080	392640	por eso no está
+392640	393120	en el cd
+393120	398580	y el nu
+398580	399300	que está acá
+399300	401160	esto creo que es un error
+401160	401700	de notación
+401700	402560	debería ser el mu
+402560	404980	el mu se distribuye
+404980	406220	normal 0,0
+406220	406920	sigma cuadrado mu
+406920	408320	y la b
+408320	409020	el error
+409020	410120	del modelo
+410120	411480	se distribuye normal
+411480	412820	0,0
+412820	413700	sigma cuadrado mu
+413700	413940	de b
+413940	416300	y ya nos están diciendo
+416300	417220	en el ejercicio
+417220	418160	que
+418160	420540	son ortogonales
+420540	421520	los errores
+421520	422960	con el mu
+422960	424260	para todo y te
+424260	426400	nos dicen
+426400	427240	suponga que
+427240	428160	beta es igual a
+428160	429240	sigma cuadrado de u
+429240	430900	igual a sigma cuadrado
+430900	431540	de b
+431540	432660	igual a 1
+432660	434120	y que t es igual a 10
+434120	436000	para simplificar más cuentas
+436000	437540	y bueno
+437540	437960	la idea es
+437960	439120	realizar experimentos
+439120	439620	de Monte Carlo
+439620	440780	para evaluar la eficiencia
+440780	441740	de distintos estimadores
+441740	442160	de beta
+442160	443060	así que lo que vamos a hacer
+443060	443800	es ir creando
+443800	444240	data sets
+444240	444760	con loops
+444760	446940	para ver
+446940	447360	cómo
+447360	449000	cuál es la performance
+449000	450980	de los diferentes tipos
+450980	452180	de estimadores
+452180	454980	vamos a arrancar con el caso
+454980	456020	de n igual a 5
+456020	457260	y después la idea es repetirlo
+457260	458220	con n igual a 10
+458220	458660	30
+458660	459180	50
+459180	459480	100
+459480	460060	y 500
+460060	460760	y bueno
+460760	461700	comentar los resultados
+461700	462300	en el principio
+462300	466780	creo que no hay nada
+466780	467900	demasiado raro
+467900	469580	en este ejercicio
+469580	472920	pero hay algunas cosas
+472920	473820	que sí está bueno
+473820	474520	que veamos
+474520	479660	para empezar
+479660	481300	tenemos que
+481300	482500	armar el data set
+482500	484840	una opción
+484840	485140	que
+485140	486800	a mí me gusta hacer
+486800	487140	es como
+487140	488000	pensarlo primero
+488000	489220	en papel
+489220	489680	o
+489680	491420	pensarlo mentalmente
+491420	492240	cuál es la forma
+492240	493000	que quiero que tenga
+493000	493980	tanto el data set
+493980	495340	como los resultados
+495340	496020	que después voy a ir
+496020	496680	guardando en esta
+496680	497840	porque después
+497840	498500	sobre la marcha
+498500	499280	es un poco más difícil
+499280	499520	ir
+499520	500440	bueno
+500440	501060	a menos que tengan
+501060	501520	una capacidad
+501520	502480	de concentración muy alta
+502480	504240	puede
+504240	505160	puede ser un poco
+505160	505600	confuso
+505600	506340	empezar a agregar
+506340	506820	y sacar
+506820	509040	matrices y cosas
+509040	509620	para abordar
+509620	510280	los resultados
+510280	513260	así que
+513260	515000	déjenme que
+515000	515880	les muestre
+515880	517300	cómo va a estar
+517300	518020	estructurada
+518020	518820	la forma de
+518820	519360	el datos
+519360	520320	que queremos hacer
+520320	524360	ya tengo que hacer
+524360	525620	host.com
+525620	531420	host.com
+531420	535320	host
+535320	561000	Bueno, sigo compartiendo hasta que se destine esto.
+561000	584760	Primero que nada voy a seleccionar los parámetros acá, en lugar de guardarlos como un local acá los guardé como un global para poder correrlos de a unos y presionar esta opción, y no tener que correr todo el código de una sola vez, entonces global lo que hace es guardar t igual a 10, n igual a 5, y nt igual a n por 10.
+584760	602080	Noten que cuando usamos los comandos global para guardar cosas, para llamarlos de vuelta, es decir, yo acá ya tenía guardados t, ya tenía guardado n, para llamarlos de vuelta uso este símbolo de pesos n por pesos t.
+602080	613700	Después voy a guardarme el beta, que es el beta que acompaña a las x, el sigma mu, que es igual a 1, y el sigma mu, que es igual a 1.
+613700	617320	No sinónimo de p.
+621500	623840	Entonces pensemos cómo se estructura el ejercicio.
+624000	628780	La idea es, primero, si quieren lo pensamos para una sola vez.
+629520	630140	Ahí funciona.
+631600	632040	Aprovecho.
+636380	636860	Esto.
+641260	641820	Cierto.
+642820	643300	Cierto.
+643700	673680	Esto parece ser...
+673680	673800	¿Meles?
+675180	676160	Si mis 그렇죠.
+678420	680380	Se olvidaron de borrar las.
+688960	691320	Meивается un poco la día, creo.
+698160	699900	Esto es uno que se quiere agregar.
+699900	710400	Ah, la versión del trabajo finalizada
+710400	714100	Bueno, voy a dibujar abajo de las notas
+714100	719080	O no me está dejando tomado
+719080	726120	No, bueno
+726120	728120	Pero hay que ver si tengo alguna postura
+728120	737480	Ah, ya sé, creo que podría usar el post zoom
+737480	754980	A ver, pétanos
+754980	758620	Tengo miedo a abrir la galetía de fotos
+758620	761980	No hay nada
+761980	763560	Ok, la cárcel de la pantalla
+763560	776560	No, no, no
+776560	790200	Bueno, la mano de esto es que
+790200	806840	Bueno, la mano de esto es que
+806840	810480	No es que no voy a poder moverme mucho
+810480	812200	Pero no es mucho lo que tengo que escribir hoy
+812200	827060	Todo esto era para decir que
+827060	830380	La forma en la que vamos a querer es armar el panel
+830380	831220	Que es la siguiente
+831220	831860	Vamos a tener
+831860	833000	ID
+833000	835760	Vamos a tener el tiempo
+835760	837200	Vamos a tener las variables
+837200	841720	Las variables
+841720	845280	Y las variables
+845280	845300	Y las variables
+845300	847980	Vamos a hacer
+847980	848640	Ya que estamos
+848640	848660	Ya que estamos
+848660	849620	Bien
+849620	855620	Dijimos
+855620	862340	Teníamos las variables
+862340	863880	De LID
+863880	866180	Període temporal
+866180	867420	X y T
+867420	868960	No y
+868960	872800	No o B
+872800	874100	Como más les gusta
+874100	875000	Y con todo esto
+875000	875640	Nos vamos a tomar
+875640	876380	LIDA y T
+876380	878440	Entonces
+878440	880200	Vamos a hacer esto
+880200	885200	Y pensemos
+885200	886120	Cómo van a tener
+886120	887240	Qué forma van a tener
+887240	887840	Estos variables
+887840	891120	A un par de variables
+891120	896160	Pero
+896160	897220	Supongamos que
+897220	898140	En lugar de
+898140	900380	N igual a 5
+900380	902060	Usamos
+902060	903760	N igual
+903760	905260	A 3
+905260	906560	E igual a 2
+906560	907740	Entonces
+907740	908420	Voy a tener
+908420	909440	Dentro de los ID
+909440	910780	El ID
+910780	911980	El individuo 1
+911980	912640	Repetido
+912640	913800	Dos veces
+913800	915800	El individuo 2
+915800	917240	Repetido
+917240	917960	Dos veces
+917960	918920	El individuo 3
+918920	920460	Repetido
+920460	920960	Dos veces
+920960	922900	Para el periodo
+922900	923280	Temporal
+923280	923660	De tener
+923660	924040	1
+924040	924700	2
+924700	925180	1
+925180	925780	2
+925780	926200	1
+926200	926640	2
+926640	928520	Esta parte de acá
+928520	929360	Se acuerda que lo
+929360	930280	Creamos con los
+930280	931080	C
+931080	932620	Y después
+932620	932940	Llegamos
+932940	933560	Bloqueando
+933560	934340	Según cuántas
+934340	934820	Posiciones
+934820	935320	Queríamos
+935320	936380	Quedar en cada lugar
+936380	938440	Y vamos a tener
+938440	939180	Las X y T
+939180	940200	Las X y T
+940200	940640	Van a ser
+940640	943280	Realizaciones
+943280	943920	De una normal
+943920	945320	¿Anda para atrás?
+946060	946340	Sí
+946340	950920	Salí Felipe
+950920	952060	Salí
+952060	952720	Ah
+952720	954760	Podemos
+954760	955860	Si yo
+955860	956180	Los puedo
+956180	956760	Voy a llamar
+956760	959820	Por las dudas
+959820	960500	Para
+960500	961120	Alguien
+961120	967540	Gracias
+967540	973280	Es todo un tema
+973280	974000	Normal
+974000	976820	Entonces X y T
+976820	977760	Eran realizaciones
+977760	978360	De una normal
+978360	978900	01
+978900	979620	Y eran todos
+979620	980180	Independientes
+980180	981060	En precisi
+981060	983000	Normal
+983000	983880	Normal
+983880	984300	Normal
+984300	984800	Normal
+984800	986260	Y esto se puede
+986260	987060	Hacer directamente
+987060	987460	Y siempre
+987460	988500	Generar
+988500	989560	Una variable
+989560	990220	Que sea
+990220	991480	Una normal
+991480	991940	01
+991940	994560	El movie
+994560	995180	Lo voy a saltar
+995180	995700	Por ahora
+995700	997180	Vamos con el
+997180	998280	Nu
+998280	998760	O B
+998760	1000300	El B
+1000300	1001040	También es
+1001040	1001880	Una
+1001880	1002740	Digamos
+1002740	1003780	Es agarrar valores
+1003780	1004580	De una normal
+1004580	1005480	Cero
+1005480	1006040	Sigma
+1006040	1006680	Cuadrado
+1006680	1007000	De
+1007000	1007500	Nu
+1007500	1009020	Cero
+1009020	1009820	Sigma
+1009820	1010380	Cuadrado
+1010380	1010560	De
+1010560	1010800	Nu
+1010800	1011400	Etcé
+1011400	1011920	Todos
+1011920	1012300	Estos son
+1012300	1012680	IID
+1012680	1013120	Entonces
+1013120	1013880	No va a ser
+1013880	1014920	Más problema
+1014920	1016080	Que esta parte
+1016080	1016420	De acá
+1016420	1019240	Acá es donde va a entrar
+1019240	1019740	El hecho
+1019740	1020320	De que nosotros
+1020320	1020960	Le pusimos
+1020960	1022700	Guardamos un global
+1022700	1023460	Si se acuerdan
+1023460	1025160	Con
+1025160	1026060	Sigma
+1026060	1027340	Cuadrado
+1027340	1027660	Nu
+1027660	1029180	Ahora
+1029180	1030560	Te invito a bastar
+1030560	1033520	Va a haber una particularidad
+1033520	1034320	Cuando tenemos
+1034320	1034920	Los
+1034920	1035260	Nu
+1035260	1036100	De acá
+1036100	1039100	Básicamente porque
+1039100	1041360	Piensen que el
+1041360	1041580	Nu
+1041580	1042340	Es un efecto
+1042340	1043120	Que es fijo
+1043120	1044320	Para cada
+1044320	1044760	Individuo
+1044760	1045540	A lo largo del tiempo
+1045540	1046140	Entonces necesitamos
+1046140	1046660	Que se repita
+1046660	1047360	Dos veces
+1047360	1047800	Para cada
+1047800	1048120	Individuo
+1048120	1048580	En este caso
+1048580	1050040	Entonces acabo de tener
+1050040	1050780	Mu
+1050780	1051660	Asignado
+1051660	1052200	Al individuo
+1052200	1052540	Uno
+1052540	1054000	Y una vez que genere
+1054000	1054340	Este
+1054340	1055440	Este de acá
+1055440	1056920	Lo voy a querer
+1056920	1057700	Que se repita
+1057700	1058740	Una vez más
+1058740	1061540	Pero no lo vamos a repetir
+1061540	1062280	En términos de
+1062280	1063020	Digamos
+1063020	1064960	Cuantas veces
+1064960	1065880	Lo quiero repetir
+1065880	1066500	Sino para
+1066500	1067540	Que observaciones
+1067540	1068540	Lo quiero repetir
+1068540	1069640	Lo quiero repetir
+1069640	1070660	Para las filas
+1070660	1071680	Que corresponden
+1071680	1072180	A la IDI
+1072180	1072620	Uno
+1072620	1075780	Y de la misma forma
+1075780	1076760	Para el
+1076760	1077860	Individuo
+1077860	1078280	Dos
+1078280	1078980	Por ejemplo
+1078980	1081380	Voy a generar
+1081380	1082240	Otro valor
+1082240	1083040	De una normal
+1083040	1085440	Cero
+1085440	1085920	Sigma
+1085920	1086520	Cuadrado
+1086520	1086980	De Mu
+1086980	1091740	Y de vuelta
+1091740	1092460	Le voy a asignar
+1092460	1093100	Voy a agarrar
+1093100	1093560	Ese número
+1093560	1094580	Me lo voy a guardar
+1094580	1095640	Y se lo voy a asignar
+1095640	1098140	A todas las observaciones
+1098140	1099140	Donde yo vea
+1099140	1099740	Que la IDI
+1099740	1100600	Es el número dos
+1100600	1101540	Y bueno
+1101540	1102380	Lo mismo con la tres
+1102380	1107520	Esta parte
+1107520	1108380	Se entiende
+1108380	1110240	Claro
+1110240	1114320	Y esto lo voy a asignar
+1114320	1118000	Una vez que tengo todo
+1118000	1119280	Yo solamente me queda
+1119280	1120400	Armar
+1120400	1122780	La variable
+1122780	1123140	Y
+1123140	1123960	Que es
+1123960	1124100	Más
+1124100	1124240	Más
+1124240	1124660	Más
+1124660	1125240	De uno
+1125240	1125620	Que es
+1125620	1126080	El beta
+1126080	1126520	Uno
+1126520	1127660	Por X
+1127660	1130320	De la persona
+1130320	1130660	Uno
+1130660	1131280	Más
+1131280	1132000	B
+1132000	1132840	Uno
+1132840	1133440	Uno
+1133440	1136080	Y lo mismo
+1136080	1136640	Con todos
+1136640	1139960	Entonces nada
+1139960	1140680	Quería dejar esto
+1140680	1142300	Una sola vez
+1142300	1142580	Para
+1142580	1144160	Poder ver más fácil
+1144160	1146000	Que hablar
+1146000	1146480	En el aire
+1146480	1146840	Con
+1146840	1148940	Bueno
+1148940	1153720	Entonces lo que les decía
+1153720	1154160	El beta
+1154160	1155040	El sigma nu
+1155040	1156020	Y el sigma nu
+1156020	1157940	Están creados
+1157940	1159440	Y
+1159440	1161240	Algo que no mencioné
+1161240	1161740	Es que
+1161740	1164740	Dentro de cada simulación
+1164740	1165640	En este ejercicio
+1165640	1166640	En específico
+1166640	1168100	Lo que vamos a guardar
+1168100	1168340	Son
+1168340	1169020	Los beta
+1169020	1169660	Por un lado
+1169660	1171740	Por ejemplo
+1171740	1172900	Todo lo que vamos a necesitar
+1172900	1173700	Para armar
+1173700	1174580	Lo que nos piden
+1174580	1175340	Que es
+1175340	1178620	Media
+1178620	1180880	Del beta
+1180880	1182380	Desde el estándar
+1182380	1182840	Del beta
+1182840	1184240	Y el error
+1184240	1185660	La root
+1185660	1186060	Means
+1186060	1187060	For error
+1187060	1187740	De la estimación
+1187740	1188120	De beta
+1188120	1190320	Donde
+1190320	1191500	No lo dije
+1191500	1193060	Si me podría decirlo
+1193060	1195600	Ya lo dejo
+1195600	1196100	Anitado
+1196100	1196740	En el mirado
+1196740	1204440	Es básicamente
+1204440	1205440	Que
+1205440	1208740	El root
+1208740	1209020	Means
+1209020	1209720	For error
+1209720	1210740	Se puede escribir
+1210740	1211560	Como
+1211560	1212820	Por ejemplo
+1212820	1213800	La raíz
+1213800	1214400	Del error
+1214400	1214840	Cuadrático
+1214840	1215360	Medio
+1215360	1215780	Y eso
+1215780	1217160	Probablemente
+1217160	1217580	Lesiones
+1217580	1218560	De estas materias
+1218560	1219640	Es básicamente
+1219640	1220420	La esperanza
+1220420	1220720	De
+1220720	1229420	Al cuadrado
+1229420	1230200	Y
+1230200	1232120	Digamos
+1232120	1232480	Esto
+1232480	1234820	La versión
+1234820	1235320	El análogo
+1235320	1235800	Mostral
+1235800	1236240	Sería
+1236240	1237060	Calcular
+1237060	1240560	La sumatoria
+1240560	1241360	Del beta
+1241360	1242460	Estimado
+1242460	1242820	Menos
+1242820	1243160	El beta
+1243160	1243700	Ya sabemos
+1243700	1244380	Cuanto vale
+1244380	1244760	Todo es
+1244760	1245560	Cuanto al cuadrado
+1245560	1246760	Lo sumamos
+1246760	1247700	Para ese
+1247700	1248500	Que es la cantidad
+1248500	1249460	De simulaciones
+1249460	1261220	Y este
+1261220	1265060	Lo que vamos a hacer es
+1265060	1270780	Agarro la iteración
+1270780	1274720	Uno
+1274720	1275260	De
+1275260	1279100	Eso me genera
+1279100	1280820	Una serie
+1280820	1281320	De X
+1281320	1282360	Me genera una serie
+1282360	1283300	De U
+1283300	1284320	Me genera una serie
+1284320	1285940	De B
+1285940	1286800	Con todo esto
+1286800	1287320	Armo Y
+1287320	1288400	Una vez
+1288400	1289060	Terminía
+1289060	1290680	Regreso
+1290680	1293400	Con los tres métodos
+1293400	1293900	Que vimos
+1293900	1295200	Y
+1295200	1296300	Contra X
+1296300	1296700	Y bueno
+1296700	1297400	Con todas las
+1297400	1297960	Estimaciones
+1297960	1298420	Que tengamos
+1298420	1298920	Que agregar
+1298920	1301380	Esto lo voy a tener
+1301380	1301960	Tres veces
+1301960	1302740	Una vez
+1302740	1303440	Para OLS
+1303440	1305280	Una vez
+1305280	1306680	Para Fixed Effects
+1306680	1307380	Una vez
+1307380	1307840	Para Random
+1307840	1308300	Effects
+1308300	1309440	De acá
+1309440	1310040	Vamos a sacar
+1310040	1310800	Un beta
+1310800	1311740	OLS
+1311740	1312720	Estimado
+1312720	1314000	De acá
+1314000	1314720	Un beta
+1314720	1316380	Fixed Effects
+1316380	1317220	Estimado
+1317220	1318420	Y acá
+1318420	1318940	Un beta
+1318940	1319860	Random
+1319860	1321140	Estimado
+1321140	1322420	Entonces
+1322420	1322980	Con este
+1322980	1323740	Numerito beta
+1323740	1325040	Esto es lo que vamos a guardar
+1325040	1325740	En las matrices
+1325740	1326900	Que son de la forma
+1326900	1327360	J
+1327360	1329460	Mil
+1329460	1330900	Uno
+1330900	1331740	Juntito
+1331740	1331980	O sea
+1331980	1333180	Son matrices vacías
+1333180	1334180	¿Dónde?
+1334420	1335020	En el
+1335020	1337380	La posición uno
+1337380	1338020	Voy a guardar
+1338020	1338500	El resultado
+1338500	1339560	De la simulación uno
+1339560	1340780	Posición dos
+1340780	1341400	Al resultado
+1341400	1342740	De la simulación dos
+1342740	1343540	Así sucesivamente
+1343540	1344600	Está la iteración
+1344600	1344780	Y
+1344780	1346560	¿Vale?
+1347220	1348260	Y una vez
+1348260	1348880	Que tengo
+1348880	1349940	Este vector
+1349940	1351060	Esta matriz
+1351060	1351660	Que me da
+1351660	1352480	Los resultados
+1352480	1353440	De estos betas
+1353440	1355520	Vamos a agarrar
+1355520	1356000	Y operar
+1356000	1356700	Sobre esta matriz
+1356700	1357380	Porque si ya sé
+1357380	1357620	Que
+1357620	1358800	Digamos
+1358800	1360400	Lo que sería
+1360400	1361740	La media
+1361740	1362340	Es calcular
+1362340	1362360	Es calcular
+1362360	1362820	El promedio
+1362820	1363120	De esto
+1363120	1363660	El desvío
+1363660	1364020	Estándar
+1364020	1364440	Es el desvío
+1364440	1364800	Estándar
+1364800	1365160	De esto
+1365160	1366380	Y el error
+1366380	1366920	De algo
+1366920	1367740	Medio
+1367740	1368300	Sería
+1368300	1369540	Agarrar
+1369540	1370200	Cada una
+1370200	1370520	De estas
+1370520	1371140	Posiciones
+1371140	1372320	Restarle
+1372320	1373300	El beta
+1373300	1373960	Que ya sabemos
+1373960	1375000	Que es igual a uno
+1375000	1376200	Y después
+1376200	1377460	Promediarlo
+1377460	1383260	Eso
+1383260	1384220	Para decir
+1384220	1384460	Que
+1384460	1384980	Lo único
+1384980	1385320	Que tenemos
+1385320	1385900	Que guardar
+1385900	1386700	En este caso
+1386700	1387760	De la regresión
+1387760	1388880	Es
+1388880	1393940	Una
+1393940	1394700	Digamos
+1394700	1395200	Solo necesito
+1395200	1395940	Para guardar las cosas
+1395940	1396560	Una matriz
+1396560	1396760	De
+1396760	1397980	Mil
+1397980	1398980	Filas
+1398980	1399600	Una sola
+1399600	1400000	Cualuna
+1400000	1400660	Que es el beta
+1400660	1402020	Entonces
+1402020	1402660	Voy a arrancar
+1402660	1403220	Corriendo esto
+1403220	1403700	Por ahora
+1403700	1409020	Seteamos
+1409020	1409240	Una
+1409240	1410900	Para replicar
+1410900	1411560	Los resultados
+1411560	1412620	Y acá
+1412620	1412880	Tenemos
+1412880	1413620	El loop
+1413620	1416620	Lo voy a agrandar
+1416620	1416940	Porque
+1416940	1418180	Abajo de esto
+1418180	1418620	Solamente
+1418620	1419120	Me queda
+1419120	1419640	Random
+1419640	1420120	Sext
+1420120	1420760	Sext
+1420760	1423560	Pero bueno
+1423560	1424580	Vamos a arrancar
+1424580	1425300	Primero
+1425300	1426140	Le voy a decir
+1426140	1426680	Cuantas veces
+1426680	1427360	Quiero repetir
+1427360	1427760	El loop
+1427760	1429260	Voy a ir
+1429260	1429660	Desde la
+1429660	1430180	Interación
+1430180	1430400	Una
+1430400	1430960	Interiteración
+1430960	1431240	Mil
+1431240	1433080	Esta parte
+1433080	1433460	Del código
+1433460	1434380	Lo que va a hacer
+1434380	1434720	Es ir
+1434720	1435300	Diciéndonos
+1435300	1435880	En que parte
+1435880	1436500	Del loop
+1436500	1437400	Estaba corriendo
+1437400	1437900	El código
+1437900	1438960	O sea
+1438960	1440720	Si estoy
+1440720	1441440	En la vuelta
+1441440	1442380	R
+1442380	1443220	De 100
+1443220	1443960	Y esto
+1443960	1444460	Me da
+1444460	1445780	Un número
+1445780	1446400	Entero
+1446400	1446960	Decime
+1446960	1447840	Que estás
+1447840	1448500	Trabajando
+1448500	1449580	En ese número
+1449580	1450000	Entero
+1450000	1451100	De 1000
+1451100	1451940	O sea
+1451940	1452220	Un número
+1452220	1452460	Entero
+1452460	1452820	Cuando lo digo
+1452820	1453180	Con 100
+1453180	1453920	Entonces va
+1453920	1454740	Ir de 100
+1454740	1455140	En 100
+1455140	1455800	No sé
+1455800	1456280	Si fue claro
+1456280	1456460	Eso
+1456460	1456640	Pero
+1456640	1457140	Se va a entender
+1457140	1457740	Cuando lo voy
+1457740	1460700	Después generamos
+1460700	1461100	El panel
+1461100	1462620	Para generar
+1462620	1462920	El panel
+1462920	1463400	Lo primero
+1463400	1463720	Que le tengo
+1463720	1463980	Que decir
+1463980	1464180	A esta
+1464180	1464760	Es cuántas
+1464760	1465280	Observaciones
+1465280	1465600	Va a tener
+1465600	1465940	Mi data
+1465940	1466240	Cep
+1466240	1467180	Entonces
+1467180	1467540	Seteo
+1467540	1467760	El número
+1467760	1468260	De observaciones
+1468260	1468840	Como n
+1468840	1469260	Por t
+1469260	1470840	Recuerden
+1470840	1471200	Sé que
+1471200	1471860	Vamos a tener
+1471860	1472460	Un total
+1472460	1474620	Para cada individuo
+1474620	1475140	Vamos a tener
+1475140	1475980	T filas
+1475980	1477040	Entonces
+1477040	1478100	Necesito
+1478100	1478380	N
+1478380	1478800	Por t
+1478800	1481120	Y después
+1481120	1481740	Vamos a generar
+1481740	1482380	Las variables
+1482380	1482940	De id
+1482940	1483800	Y de tiempo
+1483800	1485120	Y sellar
+1485120	1485680	El panel
+1485680	1488760	Acá un pequeño
+1488760	1489380	Comentario
+1489380	1490660	Esto lo podríamos
+1490660	1491380	Dejar afuera
+1491380	1491820	Del loop
+1491820	1492580	Si quisiéramos
+1492580	1493020	Porque
+1493020	1495260	Porque no cambia
+1495260	1497140	Yo genero
+1497140	1497500	Los id
+1497500	1498580	Genero el tiempo
+1498580	1499800	Y después
+1499800	1501140	La parte relevante
+1501140	1501560	Del loop
+1501560	1502100	Lo voy a hacer
+1502100	1503260	Con las variables
+1503260	1504120	O sea
+1504120	1504500	Lo que quiero
+1504500	1505360	Looperar
+1505360	1506220	Lo que quiero iterar
+1506220	1506680	Es el valor
+1506680	1507500	Que toman las variables
+1507500	1508240	No voy a
+1508240	1509200	Modificar esto
+1509200	1510420	Pero
+1510420	1511360	Se los dejo acá
+1511360	1512360	Por si les sirve
+1512360	1513700	El syntax
+1513700	1514280	Que tenemos
+1514280	1515460	Para otros
+1515460	1516420	Trabajos prácticos
+1516420	1517220	Donde vamos a tener
+1517220	1519260	Que descartar
+1519260	1520020	Algunas de las
+1520020	1520620	Observaciones
+1520620	1521220	Usándonos
+1521220	1521820	En el id
+1521820	1522820	Y en el time
+1522820	1523760	O en el time
+1523760	1524300	Ponerle
+1524300	1524660	No sé
+1524660	1525420	Se dicen
+1525420	1527400	Para todos
+1527400	1528560	Los individuos
+1528560	1530600	Olvídate
+1530600	1531860	O sacate de encima
+1531860	1532460	O grupía
+1532460	1533120	Las primeras
+1533120	1533620	Cinco
+1533620	1534400	Observaciones
+1534400	1535100	Temporales
+1535100	1535540	Y chiquete
+1535540	1535840	La idea
+1535840	1536860	Bueno
+1536860	1537480	Eso lo podemos
+1537480	1537860	Hacer
+1537860	1538580	Únicamente
+1538580	1539860	Si generamos
+1539860	1540240	El id
+1540240	1540620	Y el time
+1540620	1541660	Adentro del código
+1541660	1542480	Adentro del loop
+1542480	1544220	Para después
+1544220	1544980	Regenerarlos
+1544980	1545880	Con la segunda iteración
+1545880	1548060	Pero bueno
+1548060	1549040	Eso es para otro día
+1549040	1550020	Solamente explicar
+1550020	1550920	Por qué está acá adentro
+1550920	1552120	Podría sacar más fuera
+1552120	1553000	Si no es
+1553000	1554860	Si no van a modificar
+1554860	1555360	Estas variables
+1555360	1555880	En el sitio
+1555880	1559660	Y vamos
+1559660	1560300	Con las variables
+1560300	1560880	Que tenemos
+1560880	1562840	Que generar
+1562840	1563820	Tenemos
+1563820	1564440	Por un lado
+1564440	1565400	Esto me lo voy a saltear
+1565400	1565900	Un toquecito
+1565900	1567220	Veamos esto acá
+1567220	1568780	Ya dijimos
+1568780	1569240	Que nu
+1569240	1569900	Y x
+1569900	1571040	Eran normales
+1571040	1571580	Cero
+1571580	1572280	En el caso
+1572280	1573740	De nu
+1573740	1574660	Sigma nu
+1574660	1575640	Y en el caso
+1575640	1576580	De x
+1576580	1577160	Una normal
+1577160	1577680	Cero uno
+1577680	1578700	Entonces
+1578700	1580220	Como ya sentí
+1580220	1580600	La cantidad
+1580600	1581440	De observaciones
+1581440	1582240	Esto simplemente
+1582240	1583480	Va a decir
+1583480	1584360	Bueno
+1584360	1585300	Para esas observaciones
+1585300	1586040	Que me dijiste
+1586040	1587680	Le asigno
+1587680	1592000	Randomizo una normal
+1592000	1592660	Y le doy el valor
+1592660	1593260	A cada una de ellas
+1593260	1593620	De forma
+1593620	1594840	Completamente independiente
+1594840	1596760	Y acá está el truquito
+1596760	1597640	Con el mu
+1597640	1599400	Para mu
+1599400	1600300	Lo que vamos a hacer es
+1600300	1602640	Agarrar y generar
+1602640	1604320	Si quieren
+1604320	1605560	Ignoren la parte del for
+1605560	1606140	Y lo hacemos
+1606140	1606800	Para una sola
+1606800	1609920	Para una sola iteración
+1609920	1612040	Agarrar
+1612040	1613040	Una normal
+1613040	1614500	Cero
+1614500	1615180	Sigma mu
+1615180	1616140	Y saca un valor
+1616140	1618340	Eso guardalo
+1618340	1619120	Como un escalar
+1619120	1620380	Al que le vas a llamar
+1620380	1621460	Mu auxiliar
+1621460	1623980	Y después
+1623980	1625140	Agarrar
+1625140	1625600	Y este
+1625600	1627100	Mu que te generaste
+1627100	1627720	Vacío
+1627720	1629140	Reemplazalo
+1629140	1630540	Si el id
+1630540	1631500	Es igual a
+1631500	1632100	I
+1632100	1632760	O sea
+1632760	1633320	A uno
+1633320	1633840	Por ejemplo
+1633840	1635620	Entonces lo que estoy haciendo es
+1635620	1637440	Genero
+1637440	1639140	Una normal
+1639140	1640080	Cero sigma mu
+1640080	1642020	Le pongo
+1642020	1642360	De nombre
+1642360	1643120	Mu auxiliar
+1643120	1644720	Y después
+1644720	1646260	Reemplazo el primer valor
+1646260	1646800	Por ejemplo
+1646800	1647580	El id uno
+1647580	1649460	Todas las observaciones
+1649460	1650320	Que tengan el valor
+1650320	1651020	A id uno
+1651020	1651540	Y así
+1651540	1654500	Y después lo repito
+1654500	1655500	Con el individuo dos
+1655500	1658040	Para el individuo dos
+1658040	1659160	Genero un sigma mu
+1659160	1660740	Nuevo
+1660740	1662160	Y ese sigma mu
+1662160	1662900	Que me lo
+1662900	1664160	Voy a reemplazar
+1664160	1665800	Si el id es igual a dos
+1665800	1667700	Si el id es igual a tres
+1667700	1668180	Entonces
+1668180	1669460	Lo que está lukeando acá
+1669460	1669860	En este
+1669860	1671720	Lupa dentro del loop
+1671720	1673340	Es el id
+1673340	1677240	¿Por qué?
+1677340	1678240	Porque yo lo que quiero hacer
+1678240	1678980	Es generar
+1678980	1679600	Este valor
+1679600	1680500	Desde la normal
+1680500	1681340	Y reemplazarlo
+1681340	1681800	Para todos
+1681800	1686400	Una vez que hicimos esto
+1686400	1687000	Que era para
+1687000	1688040	Lo que decíamos recién
+1688040	1688580	Que digamos
+1688580	1689040	El muy
+1689040	1690100	Y se tiene que repetir
+1690100	1691120	Para todas las
+1691120	1694440	Para todos los individuos
+1694440	1695580	Podemos armar
+1695580	1696880	Y que es la suma
+1696880	1698240	De estos dos
+1698240	1699280	Más beta por x
+1699280	1702140	Como les decía
+1702140	1702880	Una vez que tenemos
+1702880	1703120	Y
+1703120	1704020	Simplemente
+1704020	1705100	Pasamos a las
+1705100	1705720	Regresiones
+1705720	1706960	Un doble es
+1706960	1707660	Es regresar
+1707660	1708580	Y contra x
+1708580	1711220	Acá ha sido
+1711220	1712260	Importante
+1712260	1713620	Es entender
+1713620	1714460	Después de una
+1714460	1715120	Regresión
+1715120	1715940	Cómo guarda
+1715940	1716420	Estata
+1716420	1717480	La información
+1717480	1718140	Cómo guarda
+1718140	1718340	Estata
+1718340	1718840	La información
+1718840	1719700	De la regresión
+1719700	1720560	Bueno
+1720560	1722220	Estata lo guarda
+1722220	1722700	En estos
+1722700	1724520	Ítems
+1724520	1725040	Que se llaman
+1725040	1725840	Y en bajo
+1725840	1726280	B
+1726280	1727040	Y en bajo
+1727040	1727860	R
+1727860	1728660	Depende del tipo
+1728660	1728980	De programa
+1728980	1729680	Que estás corriendo
+1729680	1737040	En particular
+1737040	1737800	Acá lo que estamos
+1737800	1738580	Haciendo es
+1738580	1740980	Agarrar la matriz
+1740980	1741720	OLS
+1741720	1742960	Que generamos antes
+1742960	1744080	Esta de acá
+1744080	1747080	Que antes
+1747080	1748000	Estaba vacía
+1748000	1749800	Y en la posición
+1749800	1750880	R1
+1750880	1751640	Que R
+1751640	1752120	Acuérdense
+1752120	1752540	Que es
+1752540	1754180	Como va corriendo
+1754180	1754600	Este loop
+1754600	1756740	Guarda
+1756740	1757200	El valor
+1757200	1758040	Que toma el beta
+1758040	1758780	Asociado
+1758780	1759300	A la variante
+1759300	1759600	X
+1759600	1762200	Porque el beta
+1762200	1762680	Se guarda
+1762680	1762920	Con
+1762920	1763440	Y en bajo
+1763440	1763720	B
+1763720	1765000	De la variante
+1765000	1767580	Repetimos
+1767580	1767940	Lo mismo
+1767940	1768300	Con random
+1768300	1768560	X
+1768560	1769560	X
+1769560	1770380	Y
+1770380	1770440	Y
+1770440	1771320	Contra x
+1771320	1772680	Especificación
+1772680	1773060	De random
+1773060	1773280	C
+1773280	1776000	Y guardamos
+1776000	1776600	El beta
+1776600	1778180	En la matriz
+1778180	1778560	De random
+1778560	1778820	C
+1778820	1780140	Y el mismo
+1780140	1780480	Con fix
+1780480	1780760	C
+1780760	1782380	Una vez
+1782380	1782780	Que corrí
+1782780	1783360	Todo esto
+1783360	1784040	Voy a tener
+1784040	1784800	Que dropear
+1784800	1785520	Las variables
+1785520	1786060	Que
+1786060	1787900	Que ya creamos
+1787900	1788480	Porque puede ser
+1788480	1789140	Que está acá
+1789140	1790340	Una vez que
+1790340	1790640	Corriste
+1790640	1791780	Generate
+1791780	1792360	Esta de acá
+1792360	1793460	Si volvés
+1793460	1793780	A correr
+1793780	1794420	Generate
+1794420	1795100	Con la misma
+1795100	1795620	Variable
+1795620	1796160	Te va a decir
+1796160	1796740	Esa variable
+1796740	1797260	Ya existe
+1797260	1798140	Entonces
+1798140	1799380	Lo que podés hacer
+1799380	1799980	Son dos opciones
+1799980	1800980	Usar un replace
+1800980	1801760	O usar
+1801760	1802820	Tipo
+1802820	1803780	Dropearlas
+1803780	1804620	Olvidarlas
+1804620	1805200	Y volver a
+1805200	1805700	Generarlas
+1805700	1805900	Así
+1805900	1808360	Voy a ir corriendo
+1808360	1808720	Esto
+1808720	1809460	Voy a verlo
+1809460	1809860	Arranjado
+1809860	1810360	Por grandes
+1810360	1810740	Pero
+1810740	1812480	No sé si alguien
+1812480	1812900	Tiene alguna
+1812900	1813320	Tenta
+1813320	1831700	Bueno esto es lo que les decía
+1831700	1831940	Que
+1831940	1833320	Nos va a ir diciendo
+1833320	1834500	En qué iteración está
+1834500	1847420	¿Ya no me lo tendría que decir?
+1847420	1849480	No porque
+1849480	1850120	Lo que está haciendo
+1850120	1850740	Pirating
+1850740	1851840	En realidad es
+1851840	1852680	Ah
+1852680	1853460	No mostrar todas
+1853460	1855820	Toda la parte
+1855820	1856200	De acá adentro
+1856200	1857060	Pero acá le estoy pidiendo
+1857060	1857860	Que noisily
+1857860	1858460	Display
+1858460	1859060	Tal cosa
+1859060	1859700	Ah
+1859700	1860380	Noisily
+1860380	1861620	Le ganan
+1861620	1862380	El pirating
+1862380	1864340	Excelente
+1864340	1866720	Ok
+1866720	1868420	En el tp
+1868420	1870040	Ya hubiera aparecido
+1870040	1870440	Esto
+1870440	1872320	Y no lo puedo hacer
+1872320	1872900	Con el
+1872900	1873580	Tuve que hacer
+1873580	1874860	Con el
+1874860	1875360	Por value
+1875360	1875840	Tuve que hacer
+1875840	1877240	Un frame
+1877420	1877920	Ah
+1877920	1878720	Puede ser
+1878720	1882940	Si eso es lo que
+1882940	1884000	Les voy a proponer
+1884000	1884280	Ahora
+1884280	1885200	Una vez para
+1885200	1886080	Que estén
+1886080	1886540	Los sentados
+1886540	1887380	Para guardarlo
+1887380	1888180	Podemos empezar
+1888180	1888820	A hablar de eso
+1888820	1889880	Correcto
+1889880	1891520	Si tienen
+1891520	1891880	Estata
+1891880	1892900	De 16 o superior
+1892900	1894360	Si lograron
+1894360	1895200	Instalarlo
+1895200	1897380	Algo que se puede hacer
+1897380	1897940	Es
+1897940	1899340	Usar el frames
+1899340	1900840	Porque
+1900840	1902240	No sé si me ha pasado
+1902240	1903560	Cuando usaban
+1903560	1903920	Estata
+1903920	1904340	A mi
+1904340	1905340	Me pasó
+1905340	1907440	Antes de saber
+1907440	1907860	Que existía
+1907860	1908340	Saints
+1908340	1911380	Si es un
+1911380	1912040	Main change
+1912040	1913400	Pero
+1913400	1918660	Lo que pasa
+1918660	1918860	Lo que pasa con
+1918860	1919180	Estata
+1919180	1919700	Mientras
+1919700	1920080	Corre
+1920080	1920420	Esto
+1920420	1920860	Es que
+1920860	1921420	Por ejemplo
+1921420	1922620	Cuando vos
+1922620	1923420	Corres el browse
+1923420	1924120	Que te abre
+1924120	1925920	La ventana
+1925920	1926620	De visualización
+1926620	1927200	De datos
+1927200	1928380	Ponele que vos
+1928380	1928980	Tenías tu data
+1928980	1929780	Pase el de ID
+1929780	1931160	Tiempo
+1931160	1932000	X
+1932000	1932940	Mut
+1932940	1933660	T
+1933660	1934160	Y
+1934160	1934540	¿No?
+1935300	1935960	Y
+1935960	1937740	ID
+1937740	1938100	Si
+1938100	1938380	Bueno
+1938380	1939200	Pones 1
+1939200	1940420	Por cada periodo temporal
+1940420	1940760	Ponele
+1940760	1941300	De vuelta
+1941300	1941580	Que
+1941580	1943140	N
+1943140	1944760	Es igual a
+1944760	1952640	Que
+1952640	1953180	N
+1953180	1954360	Es igual a
+1954360	1954860	3
+1954860	1955220	Y que
+1955220	1955500	T
+1955500	1956160	Es igual a
+1956160	1956480	2
+1956480	1957480	Entonces
+1957480	1958900	T
+1958900	1959260	1
+1959260	1959720	2
+1959720	1960380	2
+1960380	1960720	2
+1960720	1961260	3
+1961260	1962020	3
+1962020	1964260	1
+1964260	1964840	2
+1964840	1965300	1
+1965300	1965840	2
+1965840	1968260	Las 6
+1968260	1968600	Y nada
+1968600	1969700	Van a ser numeritos
+1969700	1970380	Numeritos
+1970380	1971040	Numeritos
+1971040	1971640	Numeritos
+1971640	1974200	Lo mismo con todo
+1974200	1974440	Aquí
+1974440	1979660	Fíjense que
+1979660	1980120	El data
+1980120	1980560	Z acá
+1980560	1981620	Tiene el tamaño
+1981620	1982040	1
+1982040	1982240	2
+1982240	1982380	3
+1982380	1983180	6
+1983180	1983840	Por
+1983840	1984540	1
+1984540	1984900	2
+1984900	1985280	3
+1985280	1985820	4
+1985820	1986620	5
+1986620	1987100	6
+1987100	1987760	6
+1987760	1987880	6
+1987880	1988820	7
+1988900	1991360	Cuando vos corres
+1991360	1993300	Todas las simulaciones
+1993300	1993960	Y
+1993960	1996700	Te empezás a guardar las cosas
+1996700	1997580	En estas matrices
+1997580	1998360	Por ejemplo
+1998360	1999000	La matriz
+1999000	2001480	OLS
+2001480	2002060	Igual
+2002060	2002540	AJ
+2002540	2005140	Oadmirifías
+2005140	2006240	Una columna
+2006240	2006960	Vacía
+2006960	2008400	Y después la rellenás
+2008400	2009820	Esta matriz va a ser una cosa
+2009820	2011360	Gigante
+2011360	2011680	De
+2011680	2012220	No sé
+2012220	2013680	Las estimaciones
+2013680	2014280	De las betas
+2014280	2015380	Entonces ponele que tenés
+2015380	2016600	En la primera
+2016600	2018120	En la primera iteración
+2018120	2018680	El beta
+2018680	2019240	De OLS
+2019240	2019620	Te dio
+2019620	2021080	1,002
+2021080	2022040	El segundo
+2022040	2022460	Te dio
+2022460	2024260	0,991
+2024260	2025400	El tercero
+2025400	2027400	1,003
+2027400	2028560	Y así sucesivamente
+2028560	2028820	¿No?
+2029200	2030740	0,981
+2030740	2032420	Todo esto
+2032420	2032900	Mil veces
+2032900	2034620	Después
+2034620	2035560	Para hacer operaciones
+2035560	2036240	Sobre este
+2036240	2036820	Vector
+2036820	2037680	Sobre esta matriz
+2037680	2038380	Vamos a tener que
+2038380	2039360	Convertir a matrices
+2039360	2040800	Con svmap
+2040800	2045580	Perdón
+2045580	2046520	Convertir a variables
+2046520	2046900	O sea
+2046900	2048400	Svmap
+2048400	2049320	Nos convierte
+2049320	2049900	La matriz
+2049900	2050420	A variables
+2050420	2052340	Porque
+2052340	2052960	Es como que
+2052960	2053320	Stata
+2053320	2054760	Hace las operaciones
+2054760	2056240	De calcular el promedio
+2056240	2056980	El desvío standard
+2056980	2057380	Etcétera
+2057380	2058380	Que es lo que queremos sacar
+2058380	2059140	De todo esto
+2059140	2061200	Solo sobre variables
+2061200	2062760	Entonces
+2062760	2064140	Si no usas
+2064140	2064620	Frames
+2064620	2065520	Lo que va a hacer
+2065520	2066120	Svmap
+2066120	2066980	Es por ejemplo
+2066980	2067500	Esta matriz
+2067500	2068420	Se llama OLS
+2068420	2070480	Y tiene una columna
+2070480	2072080	Lo que va a hacer
+2072080	2072720	Esta para decirte
+2072720	2072960	Bueno
+2072960	2074400	Me dijiste
+2074400	2075180	Svmap
+2075180	2079500	Entonces yo voy a agarrar
+2079500	2080260	La matriz
+2080260	2081800	Esta que está acá
+2081800	2084920	La voy a convertir
+2084920	2085620	En una variable
+2085620	2086160	Y para eso
+2086160	2087500	Tengo que agregarla
+2087500	2087880	A tu dato
+2087880	2088360	Svmap
+2088360	2090060	Y a esa
+2090060	2090640	Le voy a poner
+2090640	2091860	OLS
+2091860	2092580	Que es el nombre
+2092580	2093120	De la matriz
+2093120	2093800	Con un 1
+2093800	2095300	Que es el número
+2095300	2095900	De la columna
+2095900	2096340	Si tuviera
+2096340	2097540	Una segunda columna
+2097540	2098180	Porque guardé
+2098180	2098500	Algo más
+2098500	2099360	De las regresiones
+2099360	2100540	Aparecería
+2100540	2101060	Al ladito
+2101060	2101740	Como OLS
+2101740	2102280	2
+2102280	2104740	Entonces la cámara
+2104740	2105160	Aparece
+2105160	2105800	1
+2105800	2106260	0
+2106260	2106620	0
+2106620	2107080	2
+2107080	2108040	0
+2108040	2108740	9
+2108740	2109240	9
+2109240	2109920	1
+2109920	2111080	Así
+2111080	2112220	Hasta el
+2112220	2114320	0
+2114320	2114880	9
+2114880	2115300	8
+2115300	2115740	7
+2115740	2116460	En la posición
+2116460	2116880	1000
+2116880	2117260	O sea
+2117260	2118720	Vamos a pasar
+2118720	2119140	De tener
+2119140	2120060	Un dataset
+2120060	2121000	De 6x6
+2121000	2121600	A un dataset
+2121600	2121960	De
+2121960	2123440	1000
+2123440	2126880	Entonces eso
+2126880	2127640	Como que te deja
+2127640	2128400	Toda una situación
+2128400	2129000	Media extraña
+2129000	2129860	Porque si vos
+2129860	2130840	Después esto
+2130840	2131380	Lo querés
+2131380	2131900	No sé
+2131900	2133060	Exportar a Excel
+2133060	2133780	O lo que sea
+2133780	2135000	Va a quedar
+2135000	2135480	Un poco raro
+2135480	2135880	El dataset
+2135880	2137060	Prev
+2137060	2137700	Lo que te permite
+2137700	2138300	Hacer es
+2138300	2139400	Agarrar
+2139400	2140960	Este
+2140960	2141700	Digamos
+2141700	2142900	Agarrar
+2142900	2143580	Este dataset
+2143580	2145000	Ponerle un nombre
+2145000	2149000	Agarrar
+2149000	2149800	Este dataset
+2149800	2150460	Y ponerle
+2150460	2151080	Otro nombre
+2151080	2154800	Entonces
+2154800	2156500	Eso es lo que vamos a hacer hoy
+2156500	2157660	Vamos a guardar
+2157660	2158440	Todo esto
+2158440	2158740	Y
+2158740	2159880	Todos los resultados
+2159880	2160940	De las regresiones
+2160940	2162520	Más bien
+2162520	2163340	Vamos a pasar
+2163340	2164740	Todas estas matrices
+2164740	2166100	A variables
+2166100	2167300	Pero dentro
+2167300	2167740	De un dataset
+2167740	2168160	Distrito
+2168160	2168800	Para que no nos
+2168800	2169260	Rompa
+2169260	2170820	Las dimensiones
+2170820	2171060	De
+2171060	2172760	Este dataset
+2172760	2173440	Que no lo estamos
+2173440	2173820	Guardando
+2173820	2174180	Este dataset
+2174180	2174760	En realidad
+2174760	2175520	Pero
+2175520	2176240	Si quisieran
+2176240	2176620	Guardarlo
+2176620	2177360	Podrían guardarlo
+2177360	2177860	También en un
+2177860	2178000	P
+2178000	2180320	Entonces
+2180320	2181300	Yo se pongo
+2181300	2181680	Esto ya
+2181680	2182400	Tengo que correr
+2182400	2184240	Vuelvo
+2184240	2188640	Notar acá
+2188640	2191600	Lo que les comentaba
+2191600	2192960	Fíjense que no tenemos
+2192960	2193740	Nada guardado
+2193740	2194680	En el dataset
+2194680	2196420	Porque
+2196420	2198660	Como que
+2198660	2199420	En ningún momento
+2199420	2200260	Le dijimos al Luke
+2200260	2201520	Viste estas variables
+2201520	2202560	Que te estás generando
+2202560	2203420	O guárdatelas
+2203420	2204380	Se lo podrían hacer
+2204380	2204920	Los asesinos
+2204920	2206960	A mi como que
+2206960	2207640	Me gusta ver
+2207640	2208340	Todo el dataset
+2208340	2209080	Para ver que esté
+2209080	2210060	Todo bien generado
+2210060	2210600	Obviamente
+2210600	2211440	Es mucho más pesado
+2211440	2212080	Pero si tienen
+2212080	2212600	El tiempo
+2212600	2213400	Y la capacidad
+2213400	2214820	En la compu
+2214820	2215900	Bienvenido sea
+2215900	2217600	Entonces
+2217600	2218580	Veamos como quedó
+2218580	2219180	Por ejemplo
+2219180	2220420	La matriz
+2220420	2221000	De OLS
+2221000	2223400	Para ver la matriz
+2223400	2223740	Hacen
+2223740	2224220	Matlist
+2224220	2224740	OLS
+2224740	2225900	O sea
+2225900	2226380	Matlist
+2226380	2226800	Y el nombre
+2226800	2227360	De la matriz
+2227360	2228220	Y esta es la matriz
+2228220	2228880	Esta creativa
+2228880	2230880	En las observaciones
+2230880	2233100	Y ahora
+2233100	2233760	Lo que vamos a hacer
+2233760	2234640	Es usar frames
+2234640	2235180	Para
+2235180	2238640	Para guardar
+2238640	2240600	Esas matrices
+2240600	2242600	Como variables
+2242600	2244320	Algo que es
+2244320	2244920	También importante
+2244920	2245440	Tener en cuenta
+2245440	2245800	Con el tema
+2245800	2246220	De frames
+2246220	2247140	Es que las matrices
+2247140	2248880	No van a cambiar
+2248880	2249740	Porque cambiamos
+2249740	2250240	El frame
+2250240	2251080	O sea
+2251080	2251580	Las matrices
+2251580	2252080	Van a estar
+2252080	2252880	Como en otro
+2252880	2254120	Plano
+2254120	2254680	De startup
+2254680	2256300	Entonces
+2256300	2256880	No hace falta
+2256880	2257700	Que las vuelva
+2257700	2258320	A recrear
+2258320	2259100	Bajo este frame
+2259100	2260780	Entonces
+2260780	2262160	Acá tenemos
+2262160	2262860	Los pasitos
+2262860	2263320	Primero
+2263320	2264220	Creo un frame
+2264220	2264700	Nuevo
+2264700	2265600	Que se llama
+2265600	2266740	Resultados simulaciones
+2266740	2269080	Y si vamos
+2269080	2269600	A buscar
+2269600	2270860	Los directorios
+2270860	2272160	Tenemos el default
+2272160	2272780	Y entre resultados
+2272780	2273260	Simulaciones
+2273260	2274300	Que son 0x0
+2274300	2274740	Porque todavía
+2274740	2275520	No les puse nada
+2275520	2277940	Voy a cambiar
+2277940	2280940	Y si yo pongo
+2280940	2281500	Frames
+2281500	2282140	Me van a decir
+2282140	2283100	Que el current frame
+2283100	2283900	Es resultados
+2283900	2285180	Simulaciones
+2285180	2288500	Y lo que les decía
+2288500	2288900	Antes era
+2288900	2289680	Que si yo vuelvo
+2289680	2290060	A correr
+2290060	2291100	Matlist
+2291100	2296440	Six effects
+2296440	2297740	Igual es
+2297740	2298520	Esto me va a devolver
+2298520	2298820	Como
+2298820	2300880	Las matrices
+2300880	2301980	Que salieron
+2301980	2302560	De cada
+2302560	2303800	Interacción
+2303800	2305460	De cada
+2305460	2306520	Para cada
+2306520	2306820	Model
+2306820	2308720	Entonces
+2308720	2309640	Tenemos las tres
+2309640	2310280	Matrices
+2310280	2310940	Acá
+2310940	2313120	No se falta
+2313120	2315620	Lo
+2315620	2316160	Lo
+2321100	2331960	Ahora sí
+2331960	2332700	Se había cortado
+2332700	2333960	Justo
+2333960	2334440	Ah ok
+2334440	2335200	¿Hace mucho
+2335200	2335800	O recién
+2335800	2336900	No, no, no
+2336900	2337200	Recién
+2337200	2338200	Recién
+2338200	2339120	Sí, me lo escuché
+2339120	2339840	Lo digo
+2339840	2340100	Acá
+2340100	2340620	Creo que
+2340620	2340700	Lo
+2340700	2341520	No
+2341520	2343660	Pero parece que
+2343660	2344160	No dije nada
+2344160	2346220	La cámara
+2346220	2346700	Se fue
+2346700	2348200	Ah
+2348200	2349660	Se van a acertar
+2349660	2350040	Ver
+2350040	2351760	A ver
+2351760	2366140	No, sigue igual
+2366140	2366660	Pero bueno
+2366660	2367960	Por lo menos se escucha
+2367960	2368480	¿Se escucha?
+2368780	2368980	Bueno
+2368980	2369900	Sí, sí
+2369900	2370780	Tengo que bajar
+2370780	2372160	Me puedo poner acá
+2372160	2375940	Pero ahí
+2375940	2376260	No sé
+2376260	2392280	Ah no
+2392280	2393000	Pero que vamos a hacer
+2393000	2393440	Un momento
+2393440	2394120	Un momento
+2394120	2395240	Bueno
+2395240	2395820	Vamos a continuar
+2395820	2401660	Nada más que
+2401660	2403440	Vuelvo a patear
+2403440	2403900	El pozo
+2403900	2404300	Y se
+2404300	2405140	Se arregla
+2405140	2407040	Bueno
+2407040	2413040	Si en algún momento
+2413040	2413640	Igual sienten
+2413640	2414060	Que me dejan
+2414060	2414540	De escuchar
+2414540	2414940	Lo que parece
+2414940	2415620	Que dejé hablar
+2415620	2417380	Porque no me escuchan
+2417380	2418640	Me avisen y digo
+2418640	2418840	No
+2418840	2419320	Entonces
+2419320	2425300	Una vez que
+2425300	2425840	Convertimos
+2425840	2426520	De las matrices
+2426520	2427040	Que teníamos
+2427040	2427720	A variables
+2427720	2429060	Ya vamos a poder
+2429060	2431740	Hacer
+2431740	2433100	Los estadísticos
+2433100	2433480	Digamos
+2433480	2434460	Calcular lo que necesitamos
+2434460	2435240	Es la media
+2435240	2436540	El desvío estándar
+2436540	2437300	Con la media
+2437300	2438260	Y el desvío estándar
+2438260	2438760	Va
+2438760	2439580	Más bien con la media
+2439580	2440780	Ya calcular
+2440780	2441860	El error cuadrático
+2441860	2442200	Medio
+2442200	2444260	Y otra cosa
+2444260	2444880	Que podrían hacer
+2444880	2445540	También si quisieran
+2445540	2446900	Es generar
+2446900	2448480	Tres matrices
+2448480	2449140	Que acumulen
+2449140	2449920	Los resultados
+2449920	2450560	Para
+2450560	2452000	Todas las situaciones
+2452000	2452780	Que van a ir haciendo
+2452780	2454100	En el sentido de
+2454100	2455980	Esto ahora
+2455980	2456340	Lo hicimos
+2456340	2457520	Para n igual a 5
+2457520	2458580	Pero esto
+2458580	2459540	Después lo podemos repetir
+2459540	2460480	Lo tenemos que repetir
+2460480	2461880	Con 10, 30, 50, 100
+2461880	2462340	Y 500
+2462340	2463680	Entonces
+2463680	2465300	Lo corres una vez
+2465300	2467040	Con n igual a 5
+2467040	2468720	Terminaste de correrlo
+2468720	2469440	Guardaste todo
+2469440	2469960	Listo
+2469960	2471400	Guarda eso
+2471400	2472540	En una matrix
+2472540	2473180	Que se llama
+2473180	2473960	Tabla final
+2473960	2474640	OVS
+2474640	2475720	Que va a tener
+2475720	2477000	Dimensión 6
+2477000	2479460	Donde 6 es
+2479460	2492960	1, 2, 3, 4, 5, 6
+2492960	2493320	O sea
+2493320	2494680	Cada uno de los
+2494680	2496020	Resultados
+2496020	2497040	Que querés reportar
+2497040	2498980	Y 3
+2498980	2500500	Vendrían a ser
+2500500	2501600	OVS
+2501600	2502500	Randoms Effects
+2502500	2503720	Y Fixed Effects
+2503720	2504500	Que acabéis ya
+2504500	2508760	No mentira
+2508760	2509440	El 3 es porque
+2509440	2510000	Estamos fundando
+2510000	2510340	Al beta
+2510340	2511240	El standard deviation
+2511240	2511880	En DCM
+2511880	2513860	Entonces voy a tener
+2513860	2515000	Una tablita para OVS
+2515000	2516220	Una tablita para Randoms Effects
+2516220	2517500	Y una tablita para Fixed Effects
+2517500	2518560	Eso también lo podrían hacer
+2518560	2520600	¿Y por qué te dirás
+2520600	2521160	La sintaxis?
+2521920	2522860	Que lo estás creando
+2522860	2523920	Con valores vacíos
+2523920	2524600	Si ponés un 1
+2524600	2525320	Te hacen una sola
+2525320	2526920	Accedente
+2526920	2530100	Después
+2530100	2530940	Ok
+2530940	2531980	Nada
+2531980	2533340	Ya tenemos las variables armadas
+2533340	2534560	De hecho podríamos hacer un browse
+2534560	2536060	Para efectivamente ver que
+2536060	2537520	Lo que hizo esto fue
+2537520	2538840	Guardarme coles
+2538840	2540500	Columna 1
+2540500	2541640	Como una variable
+2541640	2542440	Randoms Effects
+2542440	2543100	Columna 1
+2543100	2543800	Como una variable
+2543800	2544880	Pero fíjense que queda
+2544880	2545720	Mucho más ordenado
+2545720	2546580	Que si tuviera acá
+2546580	2547660	Otro choclazo
+2547660	2548920	Con las x
+2548920	2549700	Los move
+2549700	2549920	Y
+2549920	2552560	El resto de las variables
+2552560	2554060	Ok
+2554060	2556120	Computamos
+2556120	2557120	Todo lo que nos pedían
+2557120	2557580	Que era
+2557580	2562540	Con summarize
+2562540	2564800	Acá vemos
+2564800	2565520	La media
+2565520	2566460	El de g estándar
+2566460	2567260	Mínimo y máximo
+2567260	2570500	Estata cuando ocurre
+2570500	2571360	Este tipo de comandos
+2571360	2571980	Summarize
+2571980	2572420	Regres
+2572420	2572860	Etcétera
+2572860	2573360	Es como que
+2573360	2575100	Va guardando en la memoria
+2575100	2575740	De la copu
+2575740	2576920	Estos valorcitos
+2576920	2578460	Y los guarda
+2578460	2579600	En el caso
+2579600	2580680	De summarize
+2580680	2582660	Dentro de esta estructura
+2582660	2583000	Que se llama
+2583000	2584080	R paréntesis
+2584080	2585640	Y en particular
+2585640	2587000	Dentro de R paréntesis
+2587000	2588160	Hay un ítem
+2588160	2588680	Que se llama
+2588680	2589360	Min
+2589360	2590580	Que es esta
+2590580	2591260	Min que está acá
+2591260	2593840	Entonces así funciona esto
+2593840	2594940	Entonces lo que digo
+2594940	2595280	Bueno
+2595280	2597260	Correme el summarize
+2597260	2598940	Para esta variable
+2598940	2600680	Y agarra
+2600680	2601760	Del resultado
+2601760	2602860	De correr el summarize
+2602860	2604820	Este Rmin
+2604820	2605640	Que lo guardaste
+2605640	2606840	Y ponele
+2606840	2607240	Nombre
+2607240	2607940	Minbeta
+2607940	2608480	OLS
+2608480	2612520	Entonces
+2612520	2614320	Vamos a hacer eso
+2614320	2617080	Y con este
+2617080	2617600	Display
+2617600	2618260	In red
+2618260	2618980	Le decimos
+2618980	2619200	A esta
+2619200	2620180	Que nos muestra
+2620180	2620880	En rojo
+2620880	2621380	La media
+2621380	2621860	De la estimación
+2621860	2622640	Oltd
+2622640	2623200	Es
+2623200	2624380	Todo este texto
+2624380	2625480	Y después
+2625480	2625500	Y después
+2625500	2626200	Inmediatamente
+2626200	2626820	El escalar
+2626820	2628640	Entonces
+2628640	2629720	Ahí nos tira
+2629720	2630400	El promedio
+2630400	2632900	Acá tengo
+2632900	2633920	El standard deviation
+2633920	2638280	Y nos queda
+2638280	2638940	Computar
+2638940	2639920	El ECM
+2639920	2641960	Que es básicamente
+2641960	2643540	Como veíamos antes
+2643540	2645480	OLS1
+2645480	2647660	Es toda la variable
+2647660	2648540	Toda esa
+2648540	2649340	Columna
+2649340	2649940	De la variable
+2649940	2650600	OLS1
+2650600	2651620	A esa
+2651620	2652140	Le resten
+2652140	2653520	Signos pesos
+2653520	2653860	Beta
+2653860	2654460	Que acuérdense
+2654460	2655140	Que ya lo habíamos
+2655140	2655760	Enseñado acá
+2655760	2656100	Global
+2656100	2656640	Global
+2656640	2656960	Beta
+2656960	2657220	1
+2657220	2659420	Si lo corre
+2659420	2659860	En local
+2659860	2660240	Todo esto
+2660240	2660900	Lo tienen que correr
+2660900	2661640	De una sola vez
+2661640	2662120	Todos juntos
+2662120	2669380	Y en lugar
+2669380	2669720	De este
+2669720	2670200	Signo pesos
+2670200	2670780	Tendrían que usar
+2670780	2671600	Las comillitas
+2671600	2672040	Que se van
+2672040	2672300	Con
+2672300	2684600	Entonces
+2684600	2685200	Este
+2685200	2685540	Menos
+2685540	2685780	Este
+2685780	2686720	Al cuadrado
+2686720	2689840	La genero
+2689840	2690440	Como una variable
+2690440	2690880	Nueva
+2690880	2695980	Entonces
+2695980	2697500	Agarré
+2697500	2698100	El
+2698100	2699020	Valor de
+2699020	2699520	OLS
+2699520	2700580	Le resto
+2700580	2706860	De resto
+2706860	2707280	1
+2707280	2708480	Le elevo
+2708480	2709040	Al cuadrado
+2709040	2715200	OLS
+2715200	2715780	Menos
+2715780	2715800	Menos
+2715800	2716580	1 al cuadrado
+2716580	2717160	OLS
+2717160	2717480	Menos
+2717480	2718320	1 al cuadrado
+2718320	2720420	Una vez que tenés
+2720420	2720720	Eso
+2720720	2722620	Agarrás y calculás
+2722620	2723780	El error
+2723780	2725080	Que decíamos
+2725080	2725500	Antes
+2725500	2726560	El root
+2726560	2726780	Mean
+2726780	2727120	Square
+2727120	2728840	Que es tomarle
+2728840	2729420	La raíz
+2729420	2731000	A qué cosa
+2731000	2733380	Al promedio
+2733380	2734420	De ese sesgo
+2734420	2735240	Que habías generado
+2735240	2735740	Antes
+2735740	2737680	Entonces
+2737680	2738200	Lo mismo
+2738200	2739160	La misma idea
+2739160	2740440	Lo guardaste
+2740440	2741260	Como una variable
+2741260	2741840	Correl
+2741840	2742560	Summarize
+2742560	2743080	De ahí
+2743080	2743760	Sacate
+2743760	2745280	El promedio
+2745280	2746140	Y aplicarle
+2746140	2746660	La raíz
+2746660	2749540	Y guardarlo
+2749540	2750180	Como un escalar
+2750180	2751660	Entonces ahora sí
+2751660	2752620	La raíz cuadrada
+2752620	2753480	Del error cuadrático
+2753480	2753760	Medio
+2753760	2754540	De la estimación
+2754540	2758760	Es 0.2011
+2758760	2762000	Una vez que hicimos
+2762000	2762280	Esto
+2762280	2762680	Y tenemos
+2762680	2763740	Las tres cosas
+2763740	2764160	Que queríamos
+2764160	2764700	Guardarnos
+2764700	2765180	Que eran
+2765180	2766600	El
+2766600	2767040	Min
+2767040	2767420	Beta
+2767420	2768080	OLS
+2768080	2769540	El
+2769540	2769860	Standard
+2769860	2770460	Delation
+2770460	2771960	Y la raíz
+2771960	2773260	Para el error cuadrático
+2773260	2773800	Medio
+2773800	2774580	Lo guardamos
+2774580	2774940	Todo
+2774940	2775320	En la
+2775320	2775700	Mátric
+2775700	2776000	Final
+2776000	2777540	Entonces
+2777540	2778660	En esta
+2778660	2779100	Tabla
+2779100	2779520	Final
+2779520	2780200	OLS
+2780200	2780480	Que
+2780480	2781080	No sé si
+2781080	2781520	La corrí
+2781520	2782200	La corrí
+2782200	2791480	El
+2791480	2792040	Componente
+2792040	2792860	1.1
+2792860	2794180	Va a ser
+2794180	2794560	Min
+2794560	2794920	Beta
+2794920	2795660	OLS
+2795660	2797440	El
+2797440	2797820	Componente
+2797820	2798340	1.2
+2798340	2798740	Va a ser
+2798740	2799120	El Standard
+2799120	2799820	Deviation
+2799820	2800420	El
+2800420	2800880	Componente
+2800880	2801320	3
+2801320	2803620	La raíz
+2803620	2804420	Del error cuadrático
+2804420	2804940	Medio
+2804940	2805340	Y acá
+2805340	2805600	Fíjense
+2805600	2805860	Que estoy
+2805860	2806020	En la
+2806020	2806340	Posición
+2806340	2807320	1.3
+2807320	2807940	Sería
+2807940	2808140	Como
+2808140	2809000	La fila
+2809000	2809380	1
+2809380	2811920	No sé
+2811920	2813920	No sé
+2813920	2814920	No sé
+2814920	2815920	No sé
+2815920	2816920	No sé
+2816920	2817920	No sé
+2817920	2818920	No sé
+2818920	2819920	No sé
+2819920	2820920	No sé
+2820920	2821920	No sé
+2821920	2822920	No sé
+2822920	2823920	No sé
+2823920	2824920	No sé
+2824920	2825920	No sé
+2825920	2826920	No sé
+2826920	2826960	Entonces
+2826960	2827560	Cuando
+2827560	2828140	N
+2828140	2829240	Es igual
+2829240	2829900	A 5
+2829900	2830580	Obtuvimos
+2830580	2831400	Estos resultados
+2831400	2831780	Donde
+2831780	2832560	Este de acá
+2832560	2834000	Es el
+2834000	2834620	Promedio del
+2834620	2834920	Beta
+2834920	2836080	Standard
+2836080	2836660	Delation
+2836660	2837680	La raíz
+2837680	2837920	De los
+2837920	2838240	Por 4
+2838240	2838500	De los
+2838500	2838960	Medios
+2838960	2840980	Y después
+2840980	2841400	Lo van a ir
+2841400	2841840	Rellenando
+2841840	2842180	Cada vez
+2842180	2842500	Que vayan
+2842500	2842820	Corriendo
+2842820	2843160	El código
+2843160	2843620	De vuelta
+2843620	2846200	Lo que sí
+2846200	2846720	Van a tener
+2846720	2847120	Que tener
+2847120	2847640	El cuidado
+2847640	2848640	De ir
+2848640	2849100	Moviendo
+2849100	2849980	Esta posición
+2849980	2850400	En lugar
+2850400	2850820	De 1
+2850820	2851620	Y cuando
+2851620	2852740	Lo repitamos
+2852740	2853260	Con N
+2853260	2854000	Igual a 10
+2854000	2854940	Esto va a
+2854940	2855520	Pasar a ser
+2855520	2857320	La segunda
+2857320	2857700	Fila
+2857700	2858820	Porque si no
+2858820	2859200	Les va
+2859200	2860360	A reescribir
+2860360	2860600	Esto
+2860600	2862360	Pero
+2862360	2862980	Nos movemos
+2862980	2863180	Acá
+2863180	2863440	Y decimos
+2863440	2863660	Bueno
+2863660	2863980	Con N
+2863980	2864760	Igual a 10
+2864760	2865940	Esto vale
+2865940	2866780	Algo
+2866780	2867240	Esto vale
+2867240	2867520	Algo
+2867520	2867840	Esto vale
+2867840	2868240	Otra cosa
+2868240	2873920	Y finalmente
+2873920	2874680	Todo esto lo hacemos
+2874680	2875780	Porque después
+2875780	2876780	A partir de la
+2876780	2877100	Matrix
+2877100	2877800	Esta que está acá
+2877800	2878160	Lo podemos
+2878160	2878520	Pulsar
+2878520	2879020	Stab
+2879020	2879500	Y ya nos
+2879500	2879920	Se devuelve
+2879920	2880480	Como con una
+2880480	2880820	Tablita
+2880820	2881420	Con forma
+2881420	2883100	Como algo
+2883100	2883420	Que puedo
+2883420	2883660	Comer
+2883660	2883960	Y crear
+2883960	2884380	Un Excel
+2884380	2885760	Y bueno
+2885760	2886180	Hay un montón
+2886180	2886600	De formas
+2886600	2887340	De exportar
+2887340	2887800	Esta data
+2887800	2888080	Pero
+2888080	2889080	Acá les tiro
+2889080	2889820	Un ejemplito
+2889820	2891720	Bueno
+2891720	2892020	Y después
+2892020	2892440	Voy a hacer lo mismo
+2892440	2892800	Con Rano
+2892800	2893500	Effects
+2893500	2893920	Y Fixed
+2893920	2894280	Effects
+2894280	2894960	Que es básicamente
+2894960	2896200	Agarrar la variable
+2896200	2897180	RatoxEffects
+2897180	2897600	Sacarle
+2897600	2897620	Sacarle
+2897620	2899280	El promedio
+2899280	2899640	Sacarle
+2899640	2900540	El estándar
+2900540	2901360	Calcular
+2901360	2903380	El ECM
+2903380	2904540	Sacarle
+2904540	2906020	La raíz
+2906020	2906640	Y listo
+2906640	2910000	Entonces
+2910000	2911400	Básicamente
+2911400	2912020	Eso
+2912020	2913240	Obviamente
+2913240	2913960	No voy a correr
+2913960	2914280	Esto
+2914280	2914700	Para
+2914700	2915840	N
+2915840	2916380	Igual a
+2916380	2916880	5
+2916880	2917340	10
+2917340	2917860	30
+2917860	2918360	Etcétera
+2918360	2919000	Porque
+2919000	2919860	No llegaríamos
+2919860	2920640	Con el tiempo
+2920640	2922420	Pero podemos
+2922420	2923160	Ver los resultados
+2923160	2923940	Acá
+2923940	2942780	No
+2942780	2947680	Entonces
+2947680	2948400	Acá están
+2948400	2948880	Los resultados
+2948880	2949840	Que obtuvieron
+2949840	2951420	Si les da
+2951420	2951740	Distinto
+2951740	2952100	Puede ser
+2952100	2952320	Que sea
+2952320	2952660	Una sí
+2952660	2953200	Distintal
+2953200	2955380	Y acá
+2955380	2956140	Hablemos
+2956140	2956500	Un poquito
+2956500	2957720	De los resultados
+2957720	2958160	Que vemos
+2958160	2959560	En cuanto
+2959560	2960360	A las estimaciones
+2960360	2960820	De Google
+2960820	2961120	Es
+2961120	2962840	RatoxEffects
+2962840	2963280	Y Fixed
+2963280	2963660	Effects
+2963660	2964860	Están siempre
+2964860	2965540	Muy cerquita
+2965540	2966000	Del uno
+2966000	2969720	Y esto
+2969720	2970500	Tiene sentido
+2970500	2970940	Porque
+2970940	2971940	Todos los supuestos
+2971940	2972320	Que tenemos
+2972320	2973160	Sobre el modelo
+2973160	2974320	Los tres
+2974320	2974700	Van a ser
+2974700	2975420	Consistentes
+2975420	2975780	Entonces
+2975780	2977100	No deberíamos
+2977100	2977540	Ver cosas
+2977540	2978540	Demasiado raras
+2978540	2979740	En cuanto
+2979740	2980200	Al valor
+2980200	2981360	Que toma
+2981360	2981900	El estimador
+2981900	2982280	En sí
+2982280	2983540	O sea
+2983540	2984100	Siempre van a estar
+2984100	2984700	Cerca del valor
+2984700	2985140	De verdadero
+2985140	2985480	Que es el
+2985480	2988600	Incluso
+2988600	2989240	Desde tamaños
+2989240	2989660	De muestra
+2989660	2990320	Relativamente
+2990320	2990760	Chicos
+2990760	2991300	Como puede ser
+2991300	2991460	Un
+2991460	2991700	N
+2991700	2991940	Igual
+2991940	2992220	Así
+2992220	2999700	Ahora
+2999700	3000500	Para todo
+3000500	3001000	Lo que tenga
+3001000	3001420	Que ver
+3001420	3002000	Con
+3002000	3004000	Standard
+3004000	3004720	Deviation
+3004720	3005680	Miremos
+3005680	3006960	Lo voy a mostrar
+3006960	3007800	Como con este
+3007800	3008460	Colorcito
+3008460	3010400	Así
+3010400	3012380	Standard
+3012380	3012980	Deviation
+3012980	3013580	Si comparamos
+3013580	3014160	OLS
+3014160	3015420	Contra
+3015420	3015820	Random
+3015820	3016440	Defects
+3016440	3016840	Contra
+3016840	3017200	Fixed
+3017200	3018340	Defects
+3018340	3020220	No sé si
+3020220	3020980	Está coloreando
+3020980	3027160	Lo que se me
+3027160	3027400	Tendrá
+3027400	3027560	La
+3027560	3027780	Con
+3027780	3028460	Paciencia
+3028460	3044440	Si está
+3044440	3044660	Haciendo
+3044660	3045120	El ruido
+3045120	3045320	De
+3045320	3045900	Poluvina
+3045900	3050020	No le gustó
+3050020	3050280	Nada
+3050280	3052020	La simulación
+3052020	3052380	De horas
+3052380	3054600	En términos
+3054600	3054800	De
+3054800	3055160	Vía
+3055160	3055640	Estándar
+3055640	3056260	Vemos
+3056260	3056640	Que
+3056640	3057420	Como
+3057420	3059140	Consistentemente
+3059140	3059700	OLS
+3059700	3060460	Tiene un desvío
+3060460	3061080	Más grande
+3061080	3061940	Que el resto
+3061940	3062640	Que Ramos
+3062640	3062940	FX
+3062940	3063200	Y que
+3063200	3063540	Fixed
+3063540	3063840	FX
+3063840	3064540	Y que
+3064540	3065080	Entre Ramos
+3065080	3065400	FX
+3065400	3065700	Y Fixed
+3065700	3066000	FX
+3066000	3066440	No hay
+3066440	3066740	Mucha
+3066740	3067620	Diferencia
+3067620	3069120	Pero
+3069120	3069860	Si vamos
+3069860	3070320	A empezar
+3070320	3070820	A ver
+3070820	3072280	A partir
+3072280	3072580	De
+3072580	3080220	Hoy estamos
+3080220	3080560	Con
+3080560	3085600	Miremos
+3085600	3086200	Qué pasa
+3086200	3086920	Comparemos
+3086920	3087740	Con el error
+3087740	3088540	La raíz
+3088540	3088860	Del error
+3088860	3089240	Cuadrático
+3089240	3091740	1565
+3091740	3093240	1527
+3093240	3095520	1090
+3095520	3097420	1078
+3097420	3099520	617
+3099520	3101180	619
+3101180	3101920	Acá como que
+3101920	3102380	Cambia
+3102380	3102640	Si
+3102640	3103340	Este de acá
+3103340	3103760	Vas a ser
+3103760	3104200	Más chico
+3104200	3104920	Que este de acá
+3104920	3106860	Este es más chico
+3106860	3109280	Este es más chico
+3109280	3112020	Este es más chico
+3112020	3113780	Es poquita la diferencia
+3113780	3114180	Pero
+3114180	3115060	Si es cierto
+3115060	3115780	Que es más chico
+3115780	3116780	Entonces
+3116780	3117140	Lo que
+3117140	3118560	Parece que nos está diciendo
+3118560	3119520	Este ejercicio
+3119520	3120140	Es que
+3120140	3121920	En muestras pequeñas
+3121920	3122680	De 5
+3122680	3124440	Y 10
+3124440	3126020	Por muy poquito
+3126020	3126680	Gana
+3126680	3127060	Fixed
+3127060	3127440	FX
+3127440	3131760	En términos
+3131760	3132060	De
+3132060	3133040	Error
+3133040	3133580	Raíz
+3133580	3133920	Del error
+3133920	3134420	Cuadrático
+3134420	3134840	Medio
+3134840	3136740	Y a partir
+3136740	3137040	De ahí
+3137040	3137560	Para muestras
+3137560	3138080	Más grandes
+3138080	3139320	Empieza a ganar
+3139320	3140560	A partir
+3140560	3141060	De 30
+3141060	3141560	En adelante
+3141560	3142860	Empieza a ganar
+3142860	3143540	Random
+3143540	3143980	FX
+3143980	3145280	Con un error
+3145280	3145800	Cuadrático
+3145800	3146160	Medio
+3146160	3146560	Raíz
+3146560	3146900	Del error
+3146900	3147320	Cuadrático
+3147320	3147560	Medio
+3147560	3147960	Más chico
+3147960	3150980	Esto tiene
+3150980	3151360	Que ver
+3151360	3152220	Con la eficiencia
+3152220	3152860	Que gana
+3152860	3153600	Random
+3153600	3154080	FX
+3154080	3154640	Por sobre
+3154640	3155020	Fixed
+3155020	3155420	FX
+3155420	3156440	Porque de vuelta
+3156440	3157320	Recuerden que
+3157320	3158620	Fixed FX
+3158620	3160160	Tenía esta limitación
+3160160	3161180	En no poder
+3161180	3162320	Ver cosas
+3162320	3163020	Que no varían
+3163020	3163520	En el tiempo
+3163520	3164580	Para un individuo
+3164580	3169480	Entonces
+3169480	3170020	Nada
+3170020	3170300	Eso
+3170300	3180040	Bueno
+3180040	3180880	Se retindo acá
+3180880	3185160	Mientras tanto
+3185160	3185600	Alguna
+3185600	3186320	Pregunta
+3186320	3187140	Del código
+3187140	3187760	De los
+3187760	3188240	Vamos
+3188240	3199660	Pero bueno
+3199660	3200460	En definitiva
+3200460	3201560	Para muestras
+3201560	3201980	Más grandes
+3201980	3202560	Va ganando
+3202560	3203300	Fixed FX
+3203300	3205720	Y borrón
+3205720	3206160	Un texto
+3206160	3209340	Voy a dejar
+3209340	3209760	De compartir
+3209760	3210320	Un segundo
+3210320	3210820	A ver
+3210820	3211040	Si
+3211040	3214220	Ahora
+3214220	3215360	Se desplie
+3215360	3226300	Ahí va
+3226300	3236000	Bueno
+3236000	3238100	Eso por un lado
+3238100	3240100	Algunos nos preguntaban
+3240100	3251080	Después nos preguntan
+3251080	3251700	Bueno eso es un poco
+3251700	3252320	Lo que hablamos
+3252320	3261620	Eso fue el ejercicio 3
+3261620	3261920	Entonces
+3261920	3263460	Voy a pasar al ejercicio 4
+3263460	3264700	Si no hay ninguna pregunta
+3264700	3271040	En el ejercicio 4
+3271040	3271660	Vamos a usar
+3271660	3272560	La base de datos
+3272560	3272960	Wage
+3272960	3273280	Pan
+3273280	3276380	Para responder
+3276380	3277000	Las preguntas
+3277000	3277660	A continuación
+3277660	3279720	Primero vamos a utilizar
+3279720	3280540	LWage
+3280540	3282240	Como logaritmo del salario
+3282240	3283400	Como variable dependiente
+3283400	3284360	Y estimar un modelo
+3284360	3285020	Que contenga
+3285020	3285920	Un intercepto
+3285920	3286760	O sea la constante
+3286760	3287880	Y las variables dummy
+3287880	3289580	Del año 81 al 87
+3289580	3290760	Nada más que eso
+3290760	3292040	O sea va a ser
+3292040	3294220	Logaritmo del salario
+3294220	3295340	Igual a
+3295340	3296640	Una constante
+3296640	3297220	Y las dummy
+3297220	3298700	Y nos piden
+3298700	3299580	Que estimemos el modelo
+3299580	3300860	Por .ols
+3300860	3301560	Llevamos
+3301560	3302640	Fixed FX
+3302640	3303580	Y First Differences
+3303580	3304560	Que pueden concluir
+3304560	3305460	Acerca de los coeficientes
+3305460	3306400	De las variables dummy
+3306400	3310180	Entonces
+3310180	3311620	Bueno
+3311620	3312300	Eso por un lado
+3312300	3314940	Después vamos a agregar
+3314940	3315860	Al modelo variables
+3315860	3316980	Que son constantes
+3316980	3317600	En el tiempo
+3317600	3319540	Y ver que cambia
+3319540	3321980	Vamos a comparar
+3321980	3323120	Los errores estándar
+3323120	3324520	Y los valores
+3324520	3325580	Que toman las estimaciones
+3325580	3326560	De los coeficientes
+3326560	3327400	Y hablar un poco
+3327400	3327780	De
+3327780	3329440	En que casos son iguales
+3329440	3330120	En que casos no
+3330120	3331800	Y que errores estándar
+3331800	3332820	Robusto se prefiere
+3332820	3333280	Entre
+3333280	3334180	Q2L
+3334180	3334620	Y Rumble
+3334620	3335120	Y Fex
+3335120	3338760	De vuelta
+3338760	3339020	Esto
+3339020	3340020	Ya a esta altura
+3340020	3340700	Creo que
+3340700	3341620	Probablemente suele
+3341620	3342680	Repaso
+3342680	3343140	De lo que
+3343140	3344000	Estuvimos haciendo
+3344000	3344800	En estas últimas clases
+3344800	3345980	Pero creo que para cerrar
+3345980	3347720	Está bien
+3347720	3350120	Ok
+3350120	3350940	Primero
+3350940	3351600	Como siempre
+3351600	3353060	Cargamos la base de datos
+3353060	3354660	Cliríamos todo lo que tenga
+3354660	3355220	Adelante
+3355220	3356780	Y vamos a describirla
+3356780	3359300	Para ver que variables
+3359300	3359720	Tenemos
+3359720	3361380	NR
+3361380	3361860	Que es el
+3361860	3362980	Person Identifier
+3362980	3364620	Year
+3364620	3365300	Que es el año
+3365300	3366460	Del 80 al 87
+3366460	3367060	Entonces las
+3367060	3367560	Nummies
+3367560	3368800	Que ya están construidas
+3368800	3371060	Van del 81 al 87
+3371060	3372240	Porque el 80
+3372240	3372600	Es como
+3372600	3373460	El benchmark
+3373460	3376440	Tenemos después
+3376440	3377920	Dummies
+3377920	3379820	Que valen
+3379820	3380380	Por ejemplo
+3380380	3381140	Valor 1
+3381140	3382140	Si estás en agricultura
+3382140	3382660	1
+3382660	3384000	Si raza negra
+3384000	3384400	1
+3384400	3384880	Si
+3384880	3385720	Tienes
+3385720	3386800	Un tipo de servicios
+3386800	3388960	Tenemos variables
+3388960	3389860	De dotación
+3389860	3390880	Variables
+3390880	3391420	De
+3391420	3393280	Estado civil
+3393280	3394960	Fíjense que son
+3394960	3395200	Todas
+3395200	3395680	Dummies
+3395680	3396300	Es un poco
+3396300	3396760	El chiste
+3396760	3397560	De la
+3397560	3398640	Trabajar
+3398640	3399000	Con estas
+3399000	3399380	Dummies
+3399380	3399880	Y esta
+3399880	3400100	También
+3400100	3400240	Es
+3400240	3400580	Experiencia
+3400580	3400920	4
+3400920	3405340	Lo que no es
+3405340	3405540	Dami
+3405540	3406280	Es el logaritmo
+3406280	3406780	En salario
+3406780	3407640	Que es lo que estamos
+3407640	3408020	Viendo
+3408020	3409560	Los años
+3409560	3410240	De educación
+3410240	3413720	Horas
+3413720	3414620	Trabajadas
+3414620	3417400	Expert
+3417400	3417700	Que es
+3417700	3418400	Labor Market
+3418400	3419180	Experience
+3419180	3420280	Y el resto
+3420280	3420700	Son datos
+3420700	3423340	Entonces vamos
+3423340	3423880	A declarar
+3423880	3424260	El panel
+3424260	3424920	Como ya vimos
+3424920	3425980	La variable
+3425980	3426820	Que me determina
+3426820	3427400	El panel
+3427400	3428140	Es
+3428140	3428720	El ID
+3428720	3429780	El personal identifier
+3429780	3430740	Junto con el año
+3430740	3436160	Y nos pedían
+3436160	3436500	Entonces
+3436500	3437140	Estimar
+3437140	3438720	El modelo
+3438720	3439620	Que incluya
+3439620	3440120	El logaritmo
+3440120	3440620	Del salario
+3440620	3441160	Contra las
+3441160	3441480	Davies
+3441480	3442040	De años
+3442040	3442480	Por
+3442480	3446980	Para hacerlo
+3446980	3447520	Ya sabemos
+3447520	3447780	Que
+3447780	3449220	Es el comando
+3449220	3449660	Regress
+3449660	3454180	Es el comando
+3454180	3454500	X
+3454500	3454760	T
+3454760	3455120	Red
+3455120	3455920	Para
+3455920	3457720	Relacionar
+3457720	3458040	La parte
+3458040	3458380	De datos
+3458380	3458580	De
+3458580	3459000	Díganos
+3459000	3459680	Del panel
+3459680	3461120	Y le agrego
+3461120	3461880	La indicación
+3461880	3462280	De ram
+3462280	3462900	116
+3462900	3465420	Y después
+3465420	3465660	Para
+3465660	3466000	First
+3466000	3466420	Differences
+3466420	3467180	Si se acuerdan
+3467180	3468180	Como no hay
+3468180	3469060	Una explicitación
+3469060	3469520	En el list
+3469520	3469940	Y reg
+3469940	3470400	Que
+3470400	3471720	Que nos dé
+3471720	3472100	First
+3472100	3472640	Differences
+3472640	3473660	Lo que hacemos
+3473660	3474500	Es generar
+3474500	3475660	Es generar
+3475660	3476280	A nosotros
+3476280	3477420	Junto con
+3477420	3478340	El
+3478340	3478640	D
+3478640	3479340	Punto
+3479340	3480640	Que es
+3480640	3481240	Este
+3481240	3481280	Este
+3481280	3484060	Operador
+3484060	3484400	En esta
+3484400	3485060	Que nos permite
+3485060	3485720	Diferenciar
+3485720	3486080	La data
+3486080	3489080	Entonces
+3489080	3489960	Corro
+3489960	3490180	Todo
+3490180	3490640	Pundo
+3490640	3491100	O
+3491100	3491260	Bueno
+3491260	3491620	Vamos
+3491620	3491820	Con
+3491820	3492060	Pundo
+3492060	3497740	Fíjense
+3497740	3499080	Lo que tenemos
+3499080	3499720	Si bien
+3499720	3500320	Los coeficientes
+3500320	3500900	Cambian
+3500900	3502800	Los errores
+3502800	3503360	Estándar
+3503360	3504360	Son los mismos
+3504360	3505100	Para todas
+3505100	3505600	Las damas
+3505600	3506080	De año
+3506080	3507340	No sé
+3507340	3507640	Si a alguien
+3507640	3508180	Se le ocurre
+3508180	3508480	Por qué
+3508480	3509340	Podría hacer esto
+3509340	3512800	No se sientan
+3512800	3513320	Presionados
+3513320	3514440	A hablar
+3514440	3514560	Y
+3514560	3514880	Pero
+3514880	3515900	Si a alguien
+3515900	3516420	Se le ocurre
+3516420	3517320	O sea
+3517320	3518200	Que se yo
+3518200	3518440	Capaz
+3518440	3518720	Que alguien
+3518720	3519060	Lo había dicho
+3519060	3520500	Esto debe ser
+3520500	3521200	Por tal cosa
+3521200	3524960	Yo si veo
+3524960	3525560	Esta salida
+3525560	3525820	Digo
+3525820	3526660	Che que raro
+3526660	3527740	Seguro hice algo mal
+3527740	3528200	Y no
+3528200	3528920	Tiene su sentido
+3528920	3541600	Básicamente
+3541600	3542320	Tiene que ver
+3542320	3542860	Con que
+3542860	3544100	Yo les voy a escolar
+3544100	3544380	Porque
+3544380	3545500	No sé si vamos a llegar
+3545500	3546000	Con el tiempo
+3546000	3546240	Así que
+3546240	3548400	Fíjense
+3548400	3548940	Que lo que mide
+3548940	3549340	Esto
+3549340	3550740	Es la desviación
+3550740	3551520	Para la variable
+3551520	3552700	Dame 81
+3552700	3554060	¿No?
+3555280	3555920	Y
+3555920	3557100	¿Se acuerdan
+3557100	3557800	Cuando hacíamos
+3557800	3558280	El
+3558280	3559740	X
+3559740	3561740	Para escribir
+3561740	3562260	El panel?
+3564340	3564580	No
+3564580	3565040	Mentira
+3565040	3565540	X
+3565540	3571140	Que acá nos decía
+3571140	3571440	Bueno
+3571440	3572340	Cómo cambia
+3572340	3573300	Tal variable
+3573300	3583480	¿Cómo cambia
+3583480	3583880	Between
+3583880	3584540	Y cómo cambia
+3584540	3585020	Bufin
+3585020	3586580	Tiene que ver
+3586580	3587020	Con eso
+3587020	3589820	Como las variables
+3589820	3590780	Del tiempo
+3590780	3591620	Son las mismas
+3591620	3596560	La variabilidad
+3596560	3596580	La variabilidad
+3596580	3597140	Que encontramos
+3597140	3598380	Para cada individuo
+3598380	3600380	De estas variables
+3600380	3600840	Es la misma
+3600840	3601300	Para todos
+3601300	3601800	Porque todos
+3601800	3602180	Se mueven
+3602180	3602700	De 81
+3602700	3603160	A 82
+3603160	3603700	De 82
+3603700	3604260	A 83
+3604260	3606460	Y se mueven
+3606460	3606480	Y se mueven
+3606480	3606880	Todos igual
+3606880	3607380	Porque el panel
+3607380	3608180	Es balanceado
+3608180	3609100	Así que nada
+3609100	3609620	Eso
+3609620	3610780	O sea
+3610780	3611260	Obviamente
+3611260	3611740	En general
+3611740	3612880	No nos va a interesar
+3612880	3614020	Correr esta regresión
+3614020	3614440	En sí
+3614440	3614900	Porque
+3614900	3616280	Lo que estás diciendo
+3616280	3616760	Acá un poco
+3616760	3617040	Es
+3617040	3619080	Si quisieras interpretarlo
+3619080	3619960	Es cómo cambia
+3619960	3620600	El logaritmo
+3620600	3621280	Del salario
+3621280	3622400	Cuando
+3622400	3624180	Vivimos en el 81
+3624180	3625320	Respecto al 82
+3625320	3626620	Y es como
+3626620	3627560	Con semejante data
+3627560	3628480	Se formata información
+3628480	3628880	De
+3628880	3629980	No sé
+3629980	3630960	Raza
+3630960	3632220	Estado civil
+3632220	3633760	Años de experiencia
+3633760	3635080	Limitarte a esto
+3635080	3635580	Es un poco
+3635580	3636520	Extraño
+3636520	3637200	Termino
+3637200	3639100	Práctico
+3639100	3640120	Pero bueno
+3640120	3640720	Este ejercicio
+3640720	3641060	Es para
+3641060	3641680	Básicamente
+3641680	3642540	Ver qué pasa
+3642540	3643880	Y comparar
+3643880	3644460	Punto o L
+3644460	3644980	Con
+3644980	3645760	Random effects
+3645760	3647000	Y fixed effects
+3647000	3648860	Entonces vamos a hacer eso
+3648860	3650120	Por random effects
+3650120	3655440	Miremos en los coeficientes
+3655440	3659620	Acá tengo
+3659620	3660360	Punto 11
+3660360	3661200	Punto 17
+3661200	3662300	Punto 22
+3662300	3664280	Punto 11
+3664280	3664700	Punto 17
+3664700	3665480	Son exactamente
+3665480	3665940	Los mismos
+3665940	3667960	Lo que va a cambiar
+3667960	3668940	Es el error estándar
+3668940	3669680	Que sigue siendo
+3669680	3670720	Igual para todos
+3670720	3671960	Pero va a costar
+3671960	3673040	Para todas las NAMIs
+3673040	3675220	Es más
+3675220	3676740	Es más chico
+3676740	3677960	Que en el caso
+3677960	3678700	El puto o el ex
+3678700	3680040	Un poco es lo que
+3680040	3680940	Estaríamos esperando
+3680940	3682760	Porque acuérdense
+3682760	3683100	Que
+3683100	3684820	Lo que hacemos
+3684820	3685500	Cuando estamos
+3685500	3685820	Haciendo
+3685820	3686220	Arrornos
+3686220	3686460	Ex
+3686460	3687960	Es
+3687960	3692700	Considerar una estructura
+3692700	3693280	De los errores
+3693280	3694340	Que puede ser más cercana
+3694340	3694980	A lo que realmente
+3694980	3695640	Está pasando
+3695640	3696460	En el
+3696460	3698340	En el
+3698340	3698680	La casa
+3698680	3700020	Que básicamente
+3700020	3700540	Hacer
+3700540	3701640	Mínimos cuadrados
+3701640	3702660	Generalizados
+3702660	3705140	Con esa estructura
+3705140	3706060	De errores
+3706060	3707040	Diferentes
+3707040	3708720	Con menos
+3708720	3709280	Restrictiva
+3709280	3709780	Que el punto
+3709780	3710140	O el ex
+3710140	3712160	La misma
+3712160	3712940	Con fixed effects
+3712940	3714920	Fíjense que los coeficientes
+3714920	3715500	Son los mismos
+3715500	3717420	El error estándar
+3717420	3719020	De hecho
+3719020	3719760	Es el mismo
+3719760	3720020	También
+3720020	3721580	¿Me corréis?
+3721760	3721960	Vale
+3721960	3728480	Después tenemos
+3728480	3729160	First differences
+3729160	3732900	Que
+3732900	3734240	Nada
+3734240	3736400	Punto 11.17
+3736400	3736900	Punto 12
+3736900	3738640	Acá
+3738640	3739680	Si van a cambiar
+3739680	3740920	Los errores
+3740920	3741500	Estándar
+3741500	3742200	Entre
+3742200	3743460	De las diferentes
+3743460	3744080	Nummies
+3744080	3744900	Porque
+3744900	3747700	Estamos usando
+3747700	3749080	Variables diferenciadas
+3749080	3749900	No estamos usando
+3749900	3750940	Las variables
+3750940	3751900	Amónicas
+3751900	3752320	Niveles
+3752320	3752780	Pero bueno
+3752780	3754880	Acá vamos a tener
+3754880	3755840	Todos los resultados
+3755840	3757240	En un solo lugarcito
+3757240	3760040	Entonces
+3760040	3760940	Lo que decíamos
+3760940	3762560	Da lo mismo
+3762560	3763460	En todas
+3763460	3766620	¿Por qué sucede esto?
+3766880	3767280	Básicamente
+3767280	3767760	Porque
+3767760	3770740	No sé si
+3770740	3774180	Pero bueno
+3774180	3775260	Como ayuda a memoria
+3775260	3776460	Piensen que
+3776460	3777640	Full of ls
+3777640	3779160	Es hacer
+3779160	3779920	Mínimos cuadrados
+3779920	3780340	Clásicos
+3780340	3780900	De siempre
+3780900	3783840	Después tenemos
+3783840	3784280	Randoms
+3784280	3784660	Effects
+3784660	3785700	Que es básicamente
+3785700	3786740	Hacer mínimos cuadrados
+3786740	3787880	Generalizados
+3787880	3789460	Pero
+3789460	3791180	Nada
+3791180	3792120	Es mínimos cuadrados
+3792120	3792680	Generalizados
+3792680	3793240	Con la estructura
+3793240	3794020	Que propongamos
+3794020	3797020	Fixed effects
+3797020	3798680	Consiste en transformar
+3798680	3799220	En transformar el modelo
+3799220	3801540	Y una vez que lo transformaste
+3801540	3802940	Para sacarte de encima
+3802940	3803620	Todas las variables
+3803620	3803980	Que son
+3803980	3805300	Constantes en el tiempo
+3805300	3806340	Y esa heterogeneidad
+3806340	3807460	Que es constante en el tiempo
+3807460	3808440	A nivel individuo
+3808440	3810180	Lo que terminás
+3810180	3810440	Lo que terminás haciendo
+3810440	3810460	Lo que terminás haciendo
+3810460	3810920	Después de eso
+3810920	3811180	Es
+3811180	3813640	Transformar el modelo
+3813640	3816180	Volvés a correr
+3816180	3820120	Mínimos cuadrados
+3820120	3820160	Mínimos cuadrados
+3820160	3820560	Clásicos
+3820560	3820740	¿No?
+3821940	3822380	Entonces
+3822380	3823340	Si yo tengo un modelo
+3823340	3824720	Que es tan simple
+3824720	3825500	Tan simple
+3825500	3826820	Que no tiene cosas
+3826820	3827660	Que sean constantes
+3827660	3828200	En el tiempo
+3828200	3829640	Como es este caso
+3829640	3829900	De
+3829900	3831080	El salario
+3831080	3831860	Contra dummies
+3831860	3832920	Porque todas las dummies
+3832920	3833440	Cambian
+3833440	3834360	En el tiempo
+3834360	3838520	Esencialmente
+3838520	3839140	Estás estimando
+3839140	3839480	Lo mismo
+3839480	3840120	Acá y acá
+3840120	3841520	Por puto
+3841520	3841860	Goalers
+3841860	3842900	Por fix effects
+3842900	3844880	Porque la transformación
+3844880	3845300	En el modelo
+3845300	3845900	Te deja
+3845900	3847080	Vos con el mismo modelo
+3847080	3847860	Que tenías antes
+3847860	3849940	Y después
+3849940	3851100	Diferencias finitas
+3851100	3852040	Es
+3852040	3853340	También
+3853340	3854160	Vos transformar
+3854160	3854620	El modelo
+3854620	3855120	Poder ver
+3855120	3855840	MC6
+3855840	3857340	El modelo
+3857340	3857900	Que modelo
+3857900	3858460	Transformado
+3858460	3859560	El modelo diferenciado
+3859560	3861600	Pero de vuelta
+3861600	3863100	Como que estás explicando
+3863100	3863900	Siempre lo mismo
+3863900	3864520	Estás haciendo siempre
+3864520	3865100	Las mismas variables
+3865100	3865820	Explicativas
+3865820	3867240	Para explicar algo
+3867240	3868080	Que no cambia
+3868080	3869000	Cuando transformás
+3869000	3869540	El modelo
+3869540	3871420	Entonces
+3871420	3872040	Da igual
+3872040	3873880	Y
+3873880	3875880	El hecho de que
+3875880	3876480	Put dobles
+3876480	3877120	Y vamos a hacer
+3877120	3877920	Se dan iguales
+3877920	3878740	Tienen que ver
+3878740	3879560	Si bien estás estimando
+3879560	3880460	Con mínimos paróqueles
+3880460	3881440	Y con mínimos paróqueles
+3881440	3882320	Generalizados
+3882320	3884160	Hay un resultado
+3884160	3884620	Que dice que
+3884620	3885240	Si las variables
+3885240	3885960	Son las mismas
+3885960	3886740	El beta es el mismo
+3886740	3888240	Obviamente
+3888240	3888700	Como vemos
+3888700	3889380	Cambia el error
+3889380	3889800	Estándar
+3889800	3890020	Pero
+3890020	3892320	Eso es lo que cambiaría
+3892320	3900280	Pero nada
+3900280	3900980	Eso era un poco
+3900980	3901700	El resultado
+3901700	3907120	Por si lo comparan
+3907120	3907700	Acá con las
+3907700	3908840	Soluciones
+3908840	3911000	Bueno nada
+3911000	3911580	Se puede apreciar
+3911580	3912260	Que las estimaciones
+3912260	3912860	De los coeficientes
+3912860	3913520	Son numéricamente
+3913520	3915820	Después nos piden
+3915820	3916560	Que agreguemos
+3916560	3917040	Las variables
+3917040	3918000	Concentes en el tiempo
+3918000	3918340	Que son
+3918340	3919160	Edu, Black
+3919160	3919740	Eist
+3919740	3920380	Al modelo
+3920380	3923200	Estimemos por punto
+3923200	3923660	Valés
+3923660	3925620	Y ver cómo se comparan
+3925620	3926220	Los coeficientes
+3926220	3926840	Que ocurra
+3926840	3927320	Si estimamos
+3927320	3927920	La estimación
+3927920	3928740	Por 16
+3928740	3934700	Entonces
+3934700	3939080	Lo que vamos a hacer
+3939080	3939800	Directamente
+3939800	3940620	Lo que vamos a hacer
+3940620	3941600	Es regresar
+3941600	3942780	El logístico del salario
+3942780	3943580	Contra las
+3943580	3944040	Amis
+3944040	3945300	Contra
+3945300	3946120	Edu, Black
+3946120	3946580	Eist
+3946580	3948920	Lo guardamos
+3948920	3949460	Por punto
+3949460	3953960	Again
+3953960	3954960	El tema de la variabilidad
+3954960	3955660	Para las Amis
+3955660	3956220	Se mantiene
+3956220	3957740	Solo que ahora
+3957740	3958160	Agregamos
+3958160	3958820	Edu, Black
+3958820	3959140	Eist
+3959140	3963520	Borremos lo mismo
+3963520	3963700	Para
+3963700	3964320	Red, Red, Six,
+3964320	3964980	Six,
+3964980	3965000	Six,
+3965000	3965040	Six,
+3965040	3965540	Six,
+3965540	3969120	Podemos mirar
+3969120	3969800	Los coeficientes
+3969800	3970980	De las Amis
+3970980	3976380	Los coeficientes
+3976380	3976840	De Black
+3976840	3977140	Eist
+3977140	3977520	Because
+3977520	3977760	Tenemos
+3977760	3978180	Menos
+3978180	3978900	Punto
+3978900	3979340	Doce
+3979340	3979900	Cero
+3979900	3980480	Dos
+3980480	3981680	Punto
+3981680	3981920	Cuatro
+3981920	3982360	Nueve
+3982360	3983920	Menos
+3983920	3984200	Doce
+3984200	3984480	Cero
+3984480	3984860	Dos
+3984860	3985100	Punto
+3985100	3985300	Cuatro
+3985300	3985580	Nueve
+3985580	3986120	Son los mismos
+3986120	3987460	Cambia
+3987460	3988120	El error
+3988120	3988620	Estándar
+3988620	3993260	Y bajamos
+3993260	3993680	Un poquito
+3993680	3994140	Más
+3994140	3996400	Y
+3996400	3997440	En el caso
+3997440	3998400	De Fixed
+3998400	3998940	Effects
+3998940	4000260	Tenemos
+4000260	4001160	Los coeficientes
+4001160	4001980	De las Amis
+4001980	4007580	Y fíjense que
+4007580	4008300	Edu, Black
+4008300	4008720	Eist
+4008720	4009700	Están omitidos
+4009700	4012280	Básicamente
+4012280	4012620	Porque
+4012620	4013560	El chiste
+4013560	4014140	De Fixed
+4014140	4014520	Effects
+4014520	4014880	Es
+4014880	4019400	Eliminar
+4019400	4019820	O sacarte
+4019820	4020180	De encima
+4020180	4020680	Las variables
+4020680	4021020	Que se han
+4021020	4021320	Pasado
+4021320	4021920	En el tiempo
+4021920	4023400	Te sacas
+4023400	4024200	La heterogeneidad
+4024200	4024740	No se va
+4024740	4025120	De encima
+4025120	4026120	Sí
+4026120	4027000	Pero también
+4027000	4027620	Te está sacando
+4027620	4028020	De encima
+4028020	4028680	La posibilidad
+4028680	4029600	De estimar
+4029600	4030600	Cómo afecta
+4030600	4032980	En tu modelo
+4032980	4034780	Agregar este componente
+4034780	4035540	Un nivel más
+4035540	4036000	De educación
+4036000	4036940	O bueno
+4036940	4037740	Un nivel más alto
+4037740	4038120	De educación
+4038120	4039600	O ser
+4039600	4040620	Pertenecer o no
+4040620	4041420	A la rosa negra
+4041420	4042860	O pertenecer o no
+4042860	4044180	Al sector
+4044180	4044820	Supongo
+4044820	4045460	Más hispánico
+4045460	4046240	De la sociedad
+4046240	4049200	Entonces
+4049200	4050000	Esas van a ser
+4050000	4050700	Como las grandes
+4050700	4051520	Diferencias
+4051520	4052400	Y bueno
+4052400	4053020	Con esta
+4053020	4053780	Podemos
+4053780	4056400	Dejar todo
+4056400	4057300	En una sola tablita
+4057300	4058300	Como vimos antes
+4058300	4059020	Fíjense que acá
+4059020	4059700	Lo que estoy haciendo
+4059700	4060000	Es
+4060000	4063300	Renombrar
+4063300	4064000	A la variable
+4064000	4065700	D.D81
+4065700	4066860	Como D81
+4066860	4067340	Para menos
+4067340	4067740	¿Qué tal?
+4069440	4069680	Ah
+4069680	4070380	Digamos
+4070380	4071280	Grosero
+4071280	4071980	El nombre acá
+4071980	4072440	Y
+4072440	4074680	Y
+4074680	4075680	¿Qué tal?
+4075680	4076580	¿Qué tal?
+4076580	4077680	Me pido que antes
+4077680	4079640	De las maneras
+4079640	4080320	Que se sonrías
+4080320	4081060	Sí
+4081060	4082260	Básicamente
+4082260	4083060	Fixed Effects
+4083060	4084080	Lo que hace es
+4084080	4085940	Plantear transformaciones
+4085940	4087400	Que hagan
+4087400	4088040	Que vos
+4088040	4089820	Por ejemplo
+4089820	4090260	Una de las
+4090260	4090800	Transformaciones
+4090800	4091560	De Fixed Effects
+4091560	4092100	Que hacíamos
+4092100	4093060	Era
+4093060	4118860	Lo que estás haciendo
+4118860	4119820	Con Fixed Effects
+4119820	4120600	Es decir
+4120600	4120880	Mira
+4120880	4122140	En tu modelo
+4122140	4122920	Tiene esta forma
+4122920	4125600	Y
+4125600	4127100	Igual
+4127100	4128280	A
+4128280	4131140	X
+4131140	4132040	Por beta
+4132040	4135360	Más
+4135360	4137540	Un mu
+4137540	4139820	Que depende de y
+4139820	4140440	El x
+4140440	4141180	Depende de y t
+4141180	4144080	Y
+4144080	4144280	Y
+4144280	4145040	Depende de y t
+4145040	4149200	Y
+4149200	4149960	Después tengo el error
+4149960	4151400	Que en este caso
+4151400	4152100	O sea
+4152100	4152720	No sé si en este caso
+4152720	4153100	En el físico
+4153100	4157760	En el físico
+4157760	4157780	En el físico
+4157780	4158240	Entonces
+4158240	4160520	Lo que hacíamos
+4160520	4161420	Era buscar formas
+4161420	4161980	De decir
+4161980	4162200	Bueno
+4162200	4162700	Que se yo
+4162700	4164680	Si agarrás a esto
+4164680	4165940	Y le restás
+4165940	4169500	Como la variable
+4169500	4170140	La guiada
+4170140	4172020	El l.y
+4172020	4174940	Y
+4174940	4176180	Le agarro
+4176180	4177200	L.x
+4177200	4178560	Eso va a tener
+4178560	4179620	Su beta asociado
+4179620	4181940	¿Qué pasa?
+4182040	4183020	El lag del mood
+4183020	4183680	De acá
+4183680	4184800	Como mood es constante
+4184800	4185380	En el tiempo
+4185380	4185900	Va a ser
+4185900	4192100	Más
+4192100	4193040	Sónico
+4193040	4197040	Y el lag del error
+4197040	4197280	O sea
+4197280	4197920	Tomo la
+4197920	4200900	Tomo el modelo
+4200900	4201840	Un venido para atrás
+4201840	4204060	Resto este con este
+4204060	4206020	Entonces este con este
+4206020	4206520	Me va a quedar
+4206520	4206780	Y
+4206780	4207340	Con
+4207340	4208580	Creo que eran los dos puntitos
+4208580	4211680	Resto este con este
+4211680	4212760	Y me queda el x
+4212760	4214400	No sé si era con los dos puntitos
+4214400	4214960	O que era
+4214960	4216020	Que lo anotamos
+4216020	4217240	Que hacíamos la anotación
+4217240	4218980	Y el muy
+4218980	4220360	Se fue ¿no?
+4222640	4223480	Ahora ponelo que
+4223480	4224180	Aparte de muy
+4224180	4225720	En lugar de muy
+4225720	4226400	Tenés
+4226400	4234620	Voy a poner
+4234620	4235680	En lugar de muy
+4235680	4236600	Una variable
+4236600	4237960	Como por ejemplo
+4237960	4242040	Black
+4242040	4249300	Y quiero estimar
+4249300	4250200	El beta de black
+4250200	4252440	Black
+4252440	4253220	Black se va a repetir
+4253220	4253760	Acá y va a tomar
+4253760	4254380	El mismo valor
+4254380	4255000	Porque se black
+4255000	4255560	Toda tu vida
+4255560	4256240	Según esta
+4256240	4260340	Entonces
+4260340	4261240	Cuando haces
+4261240	4262240	Esta transformación
+4262240	4263340	De restar
+4263340	4264840	Este con este
+4264840	4266560	Este se va a ir
+4266560	4268320	Entonces
+4268320	4268960	En ese sentido
+4268960	4269420	Se omita
+4269420	4277000	Creo que algo
+4277000	4277420	Que está bueno
+4277420	4278080	Para ver
+4278080	4279360	De esto
+4279360	4280460	Como de
+4280460	4281400	Adicional
+4281400	4284580	Es
+4284580	4285600	A ver si
+4285600	4285940	Lo que está
+4285940	4289680	Si
+4289680	4290180	Acá
+4290180	4292580	Este libro
+4292580	4293020	Te explica
+4293020	4293960	Bastante bien
+4293960	4296100	Microtronometrics
+4296100	4296660	Y si me está
+4296660	4296940	Claro
+4296940	4305960	Que es dedicándolo
+4305960	4306380	A la nitride
+4306380	4310660	Y si vas a la parte
+4310660	4311260	De
+4311260	4312580	Hay un capítulo
+4312580	4313200	Que es de
+4313200	4313820	Panel
+4313820	4314440	A la nitride
+4314440	4328400	De
+4328400	4329300	Tire
+4329300	4352340	Primero está bueno porque te da como el resumencito de todos los comandos, y te dice también
+4352340	4360340	Tengo un poco de background en cómo hace Stata para calcular cada una de las cosas en sus paneles
+4360340	4366340	Si vamos a bajarse un poco más, vamos a tener la parte de...
+4366340	4376340	Bueno, tenés .wls, y acá, aplicación de xtrreg six effects.
+4376340	4380340	Básicamente, acá tenemos un ejemplo parecido.
+4380340	4388340	El coeficiente para educación no se puede identificar, esto es porque la data en educación no cambia con el tiempo.
+4388340	4394340	De hecho, sabíamos que el xtsum, que es lo que usamos nosotros hace un rato para ver cómo se veía el dataset,
+4394340	4399340	que educación tiene cero within standard deviation.
+4399340	4405340	Para cada individuo, la educación no cambia en el tiempo porque probablemente cuando tomaron la encuesta,
+4405340	4407340	o cuando midieron los datos a lo largo de los años, dijeron
+4407340	4415340	Bueno, decime cuál es tu nivel más alto de educación, y eso no cambió.
+4415340	4425340	Pero, bueno, lo que dicen esto, esto es un poco desafortunado porque nos interesa, o podría interesarnos saber cómo dependen los salarios en la educación.
+4425340	4431340	De hecho, es una pregunta de las más comunes, y después le preguntas a cualquier persona de qué te parece que depende de tu salario y de mi nivel educativo.
+4431340	4448340	Entonces, digamos, fixed effects no sería útil, como decíamos, para medir el efecto de variables que no cambian en el tiempo sobre la variable repetida.
+4448340	4461340	Lo que tiene es que fíjate que sí, ya te da un valor para la correlación entre las u y las x acá.
+4461340	4469340	Pero acá está bueno porque te lo explica todo de una forma bastante ameno, va directo al grano.
+4469340	4477340	Así que es la página 292 de 732 de este archivo, si no lo tienes después de los pocos.
+4477340	4487340	Eso en cuanto a las comparaciones, ah, bueno, no terminamos de comparar el mismo.
+4487340	4492340	En cuanto a las domies, bueno, siguen siendo las mismas para los tres modelos.
+4492340	4497340	Fíjense que acá no cambia.
+4497340	4504340	Solo lo que sigue a cambiar es que, en el caso de fixed effects, las de edu, black e isp, no las vamos a poder...
+4504340	4511340	No van a estar bien definidas, no van a estar consideradas en el modelo por lo que hablamos recién.
+4511340	4514340	Ahora, ¿por qué no sigue dando igual?
+4514340	4519340	Por una idea muy similar a lo que veníamos diciendo antes.
+4519340	4523340	.wls es hacer mínimos pagados clásicos sobre todo del panel.
+4523340	4525340	Y randoms effects.
+4525340	4532340	Estás haciendo una cuenta bastante similar porque, digamos, las variables que incluís en los dos modelos son las mismas.
+4532340	4538340	La Dami del 81 al 87, y las variables de dos, black e isp.
+4538340	4541340	Una vez que controlaste...
+4541340	4547340	Por cosas que...
+4547340	4549340	Si, no, es todo lo mismo que antes.
+4549340	4550340	Es...
+4550340	4554340	Como estamos usando las mismas variables en los dos modelos, existe el resultado que les decía de que...
+4554340	4561340	Usar mínimos pagados clásicos, usar mínimos pagados generalizados, te termina llevando a un sistema de ecuaciones que es idéntico.
+4561340	4562340	O...
+4562340	4566340	Creo que eso está relacionado con los modelos SURE.
+4566340	4567340	Sí...
+4567340	4572340	O related...
+4572340	4578340	Tiene que ver con eso.
+4578340	4581340	Después...
+4581340	4584340	A ver si hay algo más que...
+4584340	4597340	Bueno, lo que decíamos.
+4597340	4604340	Entre .wls y randoms effects, las estimaciones son numéricamente idénticas.
+4604340	4605340	Eh...
+4605340	4608340	Resultado general que decíamos recién.
+4608340	4613340	Por otra parte...
+4613340	4620340	Cuando se utiliza fixed effects, no se pueden estimar los coeficientes usados a las variables constantes en el tiempo.
+4620340	4623340	Eh...
+4623340	4624340	Ah, bueno.
+4624340	4626340	Un mini comentario más.
+4626340	4628340	Ojo que...
+4628340	4632340	En el caso de fixed effects, te calcula una constante acá.
+4632340	4634340	No sé si se acuerdan qué era.
+4634340	4635340	Lo vimos...
+4635340	4636340	Un poco en...
+4636340	4637340	Creo que en la plaza anterior, pero bueno.
+4637340	4638340	Siendo que pasaron...
+4638340	4641340	Pasó el fin de largo y...
+4641340	4650340	Lo que hacía la constante en el modelo de fixed effects...
+4650340	4651340	O más bien...
+4651340	4653340	Sale de una...
+4653340	4658340	Sale de STATA dándote la constante para que vos puedas hacer predicción.
+4658340	4660340	Porque antes lo que pasaba era que...
+4660340	4661340	Eh...
+4661340	4662340	Eso.
+4662340	4669340	Como que se construye una constante para realizar predicción, pero no tiene la misma interpretación que estas dos constantes.
+4669340	4670340	Por eso va a distinto.
+4670340	4671340	Eh...
+4671340	4672340	¿Qué mide exactamente?
+4672340	4673340	Si quiero después le paso la documentación.
+4673340	4674340	Pero...
+4674340	4675340	Seguramente también está explicado acá.
+4675340	4676340	Eh...
+4676340	4677340	Después...
+4677340	4678340	C...
+4678340	4692340	¿Son iguales los errores estándares de Boot, OLS y Verdance effects?
+4692340	4694340	¿Cuáles son probablemente más fiables?
+4694340	4695340	Bueno, ya dijimos que no eran los mismos.
+4695340	4696340	Eh...
+4696340	4697340	Como veíamos acá.
+4697340	4698340	¿Sí?
+4698340	4705340	Fíjense que en Boot, OLS son más grandes.
+4705340	4706340	Eh...
+4706340	4731340	Y como ya sabemos a esta altura, los errores estándares de Boot, OLS van a suponer que no hay correlación serial en el error, entonces eso va a ser como la parte más grave.
+4731340	4738340	O sea, Pood, OLS no tiene en cuenta que tenés una posible heterogeneidad no observada.
+4738340	4745340	Y los errores estándares de Random effects sí te permiten en su estructura la presencia de esa correlación.
+4745340	4752340	Que si bien es igual para todos los pares de periodo, lo cual puede seguir como resultando un poco restrictivo,
+4752340	4755340	No es tan restrictivo como en Pood, OLS donde te dice...
+4755340	4757340	No, che, mira, la...
+4757340	4758340	La...
+4758340	4761340	La estructura de los errores es sigma cuadrado, o ahí.
+4762340	4765340	Yo considero eso y hago mis cálculos consiguiendo eso.
+4767340	4771340	Entonces te permite ser un poco más libre en ese sentido.
+4771340	4772340	Eh...
+4772340	4773340	Ok, ya nos queda casi lo último.
+4773340	4774340	Así que...
+4774340	4778340	Creo que venimos relativamente bien con el tiempo.
+4778340	4793340	Nos piden obtener errores estándares robustos para Pood, OLS, y nos preguntan si perseguimos estos o los habituales de Random effects, y lo mismo acá, pero para Random effects.
+4793340	4794340	Entonces...
+4794340	4805340	Nos piden obtener errores estándares robustos para Pood, OLS, y nos pregunta si perseguimos estos o los habituales de Random effects, y lo mismo acá, pero para Random effects.
+4806340	4807340	Entonces...
+4808340	4809340	Donde vamos para ver cómo es eso.
+4812340	4814340	Eh...
+4815340	4816340	Qué muy...
+4816340	4817340	Uh, por favor.
+4817340	4818340	Gracias.
+4847340	4848340	Gracias.
+4877340	4878340	Gracias.
+4878340	4879340	Gracias.
+4879340	4881340	Gracias.
+4881340	4902180	Y eso, por un lado, por el lado de .11.17.22, estamos de acuerdo que los resultados son los mismos, lo que van a cambiar son los errores.
+4902180	4905740	Y después nos piden hacer lo mismo
+4905740	4907420	Pero sobre random effects
+4907420	4909640	Y compararlo
+4909640	4912980	Esta primera columna es
+4912980	4914260	.ls
+4914260	4916960	Y esta segunda columna es
+4916960	4919020	Random effects
+4919020	4921020	Y si comparamos tenemos
+4921020	4923480	Por un lado, como ya sabíamos que iba a pasar
+4923480	4925540	Los valores de los estimadores
+4925540	4927400	Las estimaciones son las mismas
+4927400	4929320	Los beta sombreritos
+4929320	4932220	Que sabíamos que esto iba a ser así
+4932220	4933920	Porque como decíamos más arriba
+4933920	4935600	Un doble es
+4935600	4938760	Es hacer
+4938760	4940520	Mínios cuadrados generalizados
+4940520	4943040	Sobre una ecuación que es idéntica
+4943040	4944140	O sea que
+4944140	4946620	En términos del beta
+4946620	4948060	Vamos a ver lo mismo
+4948060	4949720	Pero fíjense de hecho
+4949720	4952620	¿Qué pasa con los valores de los?
+4954140	4955260	¿Son iguales?
+4955260	4960200	O sea es como si hubiéramos corrido
+4960200	4960540	Básicamente
+4960540	4967000	Entonces como decíamos
+4967000	4971540	La ventaja del error estándar de Ubuntu
+4971540	4972300	Aplicado
+4972300	4973320	O sea a .wls
+4973320	4974680	O a random effects
+4974680	4976220	Es que te permiten cualquier tipo
+4976220	4977080	De correlación serial
+4977080	4978320	Y de heterosexión
+4978320	4985220	Sobre los disturbios que varían en el tiempo
+4985220	4993480	Nos preguntan
+4993480	4994480	¿Preferís estos?
+4994920	4995220	Los de
+4995220	4996940	O sea los estándar robustos de Ubuntu
+4996940	4999700	O los habituales de random effects
+4999700	5002920	Acuérdense que lo que hacía random effects
+5002920	5004180	Era imponer
+5004180	5007360	Un tipo especial de correlación serial
+5007360	5009620	Y asumir homosegasticidad
+5009620	5010600	O sea
+5010600	5017860	La diferencia entre el error estándar robusto
+5017860	5018780	Sobre Ubuntu
+5018780	5020500	Versus
+5020500	5022500	Ups
+5022500	5024040	Bueno acá se sigue
+5024040	5030940	Se ve que es muy pesado
+5030940	5032640	Cuando empiezas a dibujar y eso
+5032640	5038080	Dibujar
+5038080	5048920	Pero bueno
+5048920	5049820	Lo que decíamos era eso
+5049820	5052620	Que la ventaja del error estándar robusto
+5052620	5053760	Es que te permite cualquier tipo
+5053760	5054540	De correlación serial
+5054540	5055180	Y de heterosexión
+5055180	5057640	Cualquier tipo entre comillas
+5057640	5057980	Porque
+5057980	5059320	Nosotros igual estamos
+5059320	5060960	Clustereando sobre los aides
+5060960	5062260	Entonces algún tipo de restricción
+5062260	5063060	Que estamos poniendo
+5063060	5063500	Porque
+5063500	5064600	No podemos
+5064600	5067100	No ponerle ningún tipo de restricción
+5067100	5070140	Porque si no le ponemos ningún tipo de restricción
+5070140	5072580	El modelo simplemente no va a andar
+5072580	5073880	Porque vas a tener
+5073880	5076120	Más cosas para estimar
+5076120	5077740	Que variables que tenés en tu modelo
+5077740	5079420	O sea algún tipo de restricción
+5079420	5079700	Tenés para
+5079700	5082240	Para reducir esa cantidad de restricción
+5082240	5083080	Que estás estimando
+5083080	5084140	Cuando armás
+5084140	5085820	La matriz
+5085820	5086240	Lo gusta
+5086240	5090060	En cambio
+5090060	5091100	Los de random effects
+5091100	5092380	Tienen una estructura
+5092380	5092940	Un poco más
+5092940	5093540	Armada
+5093540	5094480	Por así decirlo
+5094480	5095280	Que ya te dice
+5095280	5098080	¿Cómo es la correlación serial?
+5098080	5098120	¿Cómo es la correlación serial?
+5098320	5098500	Y
+5098500	5100080	¿Cómo es la correlación serial?
+5101080	5101600	Bueno
+5101600	5102020	Esto
+5102020	5102640	No sé
+5102640	5105560	Pero bueno
+5105560	5106600	Ya terminamos igual
+5106600	5109080	Ya habíamos calculado
+5109080	5109960	Los errores estándar
+5109960	5111000	De estos de random 16
+5111000	5112280	Los comparamos
+5112280	5113080	Vimos que eran idénticos
+5113700	5114720	Y esto es porque
+5114720	5116580	Existe un solo estimador
+5116580	5117160	Por lo tanto
+5117160	5119080	Una sola varianza robusta
+5119080	5123440	Así que
+5123440	5123840	Nada
+5123840	5125340	Con eso
+5125340	5126040	Terminamos
+5126040	5126540	Por hoy
+5126540	5128420	Por suerte
+5128420	5128780	Esta parte
+5128780	5129600	Era más cortita
+5129600	5131300	Así que
+5131300	5132720	No nos siga ya
+5132720	5135520	No sé si
+5135520	5136720	Te va alguna pregunta
+5136720	5138260	De los códigos
+5138260	5144300	Por mi parte
+5144300	5144500	No
+5144500	5145140	Todo claro
+5145140	5151340	Me 급ó diamond
+5151340	5152060	Sí
+5152060	5152740	No
+5152740	5153460	Lo
+5153460	5154280	5
+5154280	5154900	1
+5154900	5155020	2
+5155020	5155100	4
+5155100	5157240	5
+5157240	5157600	5
+5157600	5160400	2
+5160400	5161140	5
+5161140	5164080	6
+5164280	5165900	6
+5165900	5166220	3
+5166220	5170220	5
+5170240	5171460	5
+5171460	5171980	6
+5171980	5172240	7
+5172240	5172980	7
+5172980	5173380	8
+5173380	5173960	1
+5173960	5174300	3
+5174300	5175100	4

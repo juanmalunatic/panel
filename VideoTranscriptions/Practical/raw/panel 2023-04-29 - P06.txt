@@ -1,0 +1,3811 @@
+Bien, bueno, lo que tenemos para ver hoy entonces es los últimos, los otros tres ejercicios del Problem Set 3
+Voy a hacer un repaso rápido de lo que vimos en la clase pasada para que estemos un poco en contexto
+Primero trabajamos con la base modificada de Arellano Bond 1991, que es un panel de empresas británicas que la siguen entre el 76 y el 84
+En este caso vamos a usar un panel modificado, balanceado
+Bueno, porque en realidad ustedes han estado compartiendo eso
+Entonces lo que hicimos en este TP fue introducir esta noción de, bueno, ¿qué pasa si tenemos...
+Variables rezagadas en el modelo? Es decir, si nuestro modelo es dinámico
+Y la motivación para hacer esto es porque creemos que hay muchas variables que dependen del valor que tomaron en el periodo anterior
+Por ejemplo, el nivel de empleo probablemente sea algún tipo de desviación o esté afectado por el empleo, el valor del empleo del año pasado
+Bueno, estos son completamente independientes
+Entonces lo que vimos fue, cómo estimar el modelo por los métodos que ya habíamos visto las veces pasadas para paneles estáticos
+Usamos OLS, el primer tema que vimos con OLS fue cómo quedaba el sesgo de paneles dinámicos
+Que esto está en SIAO, acá dice página 85, pero yo lo vi en la...
+Creo que era 85
+De última después, les paso bien
+Bueno, esto creo que estaba resaltado y ya no estamos resaltados
+Así que de última después les paso bien la referencia
+Pero ahí está bien hecha como la recursión sobre cómo se llega a ese sesgo
+Y lo que encuentra SIAO, o lo que se dice en SIAO, es que el parámetro de OLS termina sobreestimando el valor real del parámetro de la parte autoregresiva del modelo
+Después lo que hicimos fue estimar el modelo usando efectos fijos
+Y nos preguntan si la transformación within permitía eliminar el sesgo de paneles dinámicos
+Y vimos que no
+Básicamente porque incluso ahora que transformamos el modelo para eliminar la heterogeneidad no observada
+Que nos estaba molestando
+Seguimos teniendo un problema de endogeneidad
+Porque nos queda del lado derecho de la ecuación
+Una variable que es el logaritmo del empleo de ayer
+Que correlaciona con el error de ese periodo
+Básicamente porque en el cálculo de esa transformación within estamos usando
+Acá, como se ve acá
+La 1 sobre t-1 con un menos adelante por bi
+Que es lo que correlaciona negativo a mi
+Esto es lo que se llama el sesgo de níquel
+Y en níquel se muestra que el sesgo es siempre negativo si ρ es mayor que 0
+Entonces con fixed effects y con OLS dijimos bueno
+Tenemos un método que sobreestima el parámetro
+Otro método que lo subestima
+Podemos decir que si el modelo está bien especificado
+Vamos a tener una suerte de rango
+Donde esperaríamos que caigan el resto de los demás parámetros
+Que de los otros modelos que usemos
+Y eso también nos va a dar una idea de bueno
+Los otros modelos que usás caen dentro de ese rango
+Si caen dentro de ese rango, buenísimo
+Son más o menos confiables en el contexto del modelo que elegiste
+Pero si caen fuera de ese rango, muy fuera de ese rango
+Es para pensar bueno, que es lo que está fallando en el modelo
+Después hicimos una transformación de diferencia finita
+Seguimos algo parecido
+Que incluso digamos rezagando la variable una vez más
+Si bien conseguimos eliminar el efecto fijo CI
+Como el cálculo
+Por construcción
+La variable del lado derecho, la X
+Que sería la rezagada
+La diferencia del rezago
+Va a estar correlacionada con el error en ese mismo periodo
+Ya que las transformaciones hasta ahora
+No nos venían solucionando el tema de la endogeneidad
+Tenemos endogeneidad
+Entonces, ¿qué hicimos?
+Dijimos, bueno
+Está Anderson Seago
+Que dijeron
+Si tenés endogeneidad
+Instrumentalo
+¿Qué instrumentos vamos a utilizar?
+Bueno, Anderson Seago lo que proponen es usar
+Como instrumentos
+El rezago más cercano posible
+Pero que sea un buen instrumento
+Y para que sea un buen instrumento
+Tiene que ser exógeno en el modelo
+Pero tiene que co-variar
+Tiene que estar relacionado
+Con la variable que estás instrumentando
+Hicimos las cuentas
+En ese punto creo que tenía un typo
+Creo que fue Santiago que me lo mostró
+Así que gracias
+Y nada, eso
+Vimos cómo era la performance de Anderson Seago
+De dónde salía
+A ver si hay algo más que esté bueno
+Pero lo que tiene Anderson Seago
+Es que estás usando un solo instrumento
+Y si bien es más eficiente
+Que lo que veníamos haciendo
+Y es, de hecho
+Consistente para lo que estábamos usando
+Es la primera estimación consistente
+Dentro de todos los modelos que venimos usando
+Aparecen Arellano Bond
+Que dicen
+Mirá, ese rezago que usaste
+Como instrumento
+No es el único instrumento disponible
+Tenés un montón de otros instrumentos
+Que son todos los rezagos anteriores
+Que, digamos
+Si el rezago en T-2
+Ya es un buen instrumento
+Los anteriores también van a ser
+Entonces Arellano Bond
+Va a usar un estimador
+De método generalizado de momentos
+Que si se acuerdan
+Lo que hace este estimador
+Partiendo de una convicción
+De exogeneidad
+Que suponemos que vale
+Nuestro modelo
+Derivamos la expresión
+Para
+Derivamos la expresión
+Para el estimador
+De
+GMM
+De Arellano Bond
+Para eso
+Digamos
+Cuando llegamos al estimador GMM
+La gracia
+O
+Lo más importante
+Era entender
+Cómo se elige
+En Arellano Bond
+La matriz de pesos
+Para
+Para aplicar
+El estimador GMM
+Entonces
+En definitiva
+El estimador
+Arellano Bond
+Es lo que se llama
+El estimador en diferencias
+GMM
+Para diferenciarlo
+De
+Lo que es
+Bland del Bond
+Que es
+La estimación GMM
+Que usa
+Como instrumentos posibles
+Los niveles
+En primeras diferencias
+Los niveles y las diferencias
+Entonces es lo que se llama
+El estimador sistema
+System GMM
+Después
+¿Qué vimos?
+Esto no sé si
+Llegamos a hablar
+Mucho
+Pero básicamente
+Incluíamos
+Los efectos
+Fijos
+De tiempo
+Y vimos que
+Si no lo vimos
+Se los debía
+Que
+Que no daba
+Que el test de Sargan
+No
+Se rechazaba
+La hipótesis
+No la
+O sea que
+El modelo que estábamos viendo
+Probablemente
+No sea el correcto
+Lo cual tiene sentido
+Porque digamos
+De hecho
+Después
+En
+Tanto
+En el paper este
+Del DXT
+A Bond
+Dos
+Que está muy bueno
+Para entender todo esto
+Como
+En Arellano Bond
+Literalmente hay una parte
+Que dicen
+Igual
+Ojo que
+No sé si tiene mucho sentido
+Pensar en
+Bueno no sé si
+En el paper
+Les estoy mintiendo
+Bueno esto me parece
+Porque
+Lo que dice en el paper
+Voy a hacerle una estrellita
+Y lo voy a comentar más tarde
+Pero básicamente
+Como que este modelo
+Es demasiado simple
+Para explicar
+El nivel de empleo
+De hoy
+Probablemente haya otras cosas
+Que estén afectando esto
+Y por eso
+La performance
+No es la mejor
+Así que
+Vamos a arrancar
+Con los ejercicios
+Dos, tres y cuatro
+En el ejercicio dos
+Lo que vamos a ver
+Es
+Estaba mirando
+En este ejercicio
+Lo que se va
+Se ilustrará el hecho
+De que los estimadores
+De Arellano Bond
+Y Blondel Bond
+Pueden extenderse
+En forma directa
+A modelos que incluyan
+Regresores estrictamente exógenos
+Y regresores secuencialmente exógenos
+O sea
+Básicamente
+Decir
+Bueno
+Viste que tenías un modelo
+Que era un autoregresivo
+De orden uno
+Con una
+Con un efecto fijo
+Y Arellano Bond
+Te permite
+Calcular eso
+Y Blondel Bond
+También
+Bueno
+A ese modelo
+También le podemos
+Incluir
+Regresores estrictamente exógenos
+Y regresores
+Regresores secuencialmente exógenos
+Y hoy vamos a ver
+Cuáles serían
+Entonces
+Lo que se va a hacer
+Es incluir
+Nivel salarial actual
+Y rezagado
+Stock de capital actual
+Rezagado
+Una y dos veces
+Producción agregada actual
+Rezagada
+Una y dos veces
+En el sector de la empresa
+Todas las variables
+Se expresan en logaritmos
+Y también se incluye
+El conjunto de variables
+Dami del tiempo
+Lo que vamos a hacer es
+Primero les cuento
+Lo que hacemos
+Y después paso a Basta
+Primero estimar el modelo
+Por OLS
+Computar los errores
+Estándar
+Robustos
+Heteros y
+Si hay correlación serial
+Después estimarlo
+Por Fixed Effects
+Lo mismo
+Y acá
+Lo que tenemos que acordarnos
+Es que bueno
+OLS sobreestima
+Fixed Effects
+Subestima
+Para tener un benchmark
+De a dónde
+Esperaríamos quedarnos
+Después
+Implementar
+Anderson
+Después estimar la ecuación
+De empleo
+Usando
+Arellano
+Y asumiendo
+Que la única
+Endogeneidad presente
+Es el rezago
+De la variable
+Dependiente
+O sea
+Lo que nos está diciendo
+Esto es que
+El resto
+De las variables
+Las de capital
+Las de producto
+Y eso
+Esas son
+Estrictamente exógenas
+¿Qué es lo?
+Hacer ese assumption
+Puede ser un poco
+Pedirle demasiado
+Al modelo
+Y ahora vamos a ver
+Que eso lo podemos modificar
+Y decir
+Bueno
+Sabés que no
+Me parece que
+Podrían ser endógenas
+Así que las voy a instrumentar
+Y ahí ya depende mucho
+De la persona
+Que está haciendo
+La investigación
+De decir
+Bueno
+Que considero endógeno
+Que considero exógeno
+Y
+Y es un poco
+La
+La gracia
+De este tipo
+De análisis
+Punto E
+Bueno
+Lo que decíamos
+Asuma que los salarios
+Y el stock de capital
+No deben tomarse
+Como estrictamente exógenos
+Sino que
+Los vamos a tomar
+Como estrictamente exógenos
+Y después
+Nos dicen
+Blonde y Ligón
+Eliminan de su modelo
+Los rezabos más largos
+De dos periodos
+Del empleo
+Del empleo
+Del capital
+O sea
+Dicen bueno
+Viste que
+Hasta ahora
+Veníamos diciendo
+Que
+Anderson
+Enseado
+Usa un solo
+Rezago
+Y Arellano
+Bonde y Blonde
+Bonde y Blonde
+Usan a partir
+Del segundo
+Rezago
+Hacia atrás
+Todo lo que
+Teníamos disponible
+En niveles
+Y en diferencia
+Se hace un par
+De las dos opciones
+Lo que hacen
+Lo que hacen en Blonde
+Es decir
+Bueno
+No usemos
+Todos los instrumentos
+Instrumentemos con un par
+De esos rezagos
+No te vayas hasta
+Diez años más atrás
+Para usar eso
+Como instrumento
+¿Por qué?
+Básicamente porque
+Vamos a ver que
+Primero
+Algunos de los tests
+Que vamos a usar
+Son muy sensibles
+Y muy débiles
+Ante una cantidad
+Demasiado grande
+De instrumentos
+Y dos
+Porque una cantidad
+Mayor de instrumentos
+Nos va a causar
+Un overfitting
+Del modelo
+De vuelta
+Vamos a ver
+Ah bueno
+Es lo que hizo
+Sobre estimación
+De la variable endógena
+Mala estimación
+De la matriz
+De pesos W
+Y esto nos va a ayudar
+A introducir
+El ejercicio número 3
+Donde vamos a probar
+Diferentes especificaciones
+De variables instrumentales
+Recomentando el número
+Rezago en la matriz
+De instrumentos
+O colapsando
+Los instrumentos
+La ventaja
+Es que digamos
+Esta parte de colapsar
+Que puede ser un poco extraña
+Trabajando con la matriz
+En sí
+En Stata es escribir
+Collapse
+Adelante del código
+Así que no vamos a tener
+Que detenernos mucho ahí
+Pero si quieren verlo
+En más detalle
+Lo vemos la próxima
+Y bueno
+Ejercicio 4
+Ya saliendo
+De todo lo que era
+Como que volvemos
+Un poquito más para atrás
+Y si se acuerdan
+Teníamos
+El estimador
+De list squared
+Dummy variables
+Que era
+Un estimador
+Un posible estimador
+De efectos fijos
+Y como decíamos
+Al principio
+Lo que tenía
+El estimador
+De efectos fijos
+Vamos adelante
+Más arriba
+Sabíamos que este panel
+Que este método
+Generaba un sesgo
+En la estimación
+El sesgo de Nikker
+Entonces agarra
+Entonces agarra
+En 1995
+35 si no me equivoco
+Kibiet
+Y dice
+Y dice
+Y dice bueno
+Tenés una estimación
+Que te genera
+Un estimador
+Que está sesgado
+Calcula ese sesgo
+Intentemos estimar
+Ese sesgo
+Y ajusta
+Lo que te dé
+La regresión
+Y bueno
+Kibiet
+Lo que hace
+Lo que hace es
+Encontrar
+Qué expresión
+Tiene ese término
+Más un errorcito
+Porque obviamente
+Son aproximaciones
+Y no es que
+Puedes calcular
+Exactamente el sesgo
+Si no
+No estaríamos
+Viendo todas
+Estas opciones
+Distintas
+Para ver
+Cómo podemos
+Estimar
+El efecto
+Del
+Coeficiente
+Este del autorregreso
+Así que nada
+Todo esto para dar contexto
+Hoy vamos a pasar
+Un poco más de tiempo
+En Stata
+¿Tengo una consulta?
+Sí, obvio
+A ver si
+Estoy interpretando bien
+Acá en el punto 2
+Igual que en el punto 1
+Pide una estimación
+Por Fixed Effects
+Bueno
+A ver
+¿Está bien?
+¿Es correcto?
+Si yo digo
+Que nunca puede dar bien
+El Fixed Effects
+Porque inicialmente
+En el planteo
+Si la correlación
+Es cero
+Entre la heterogeneidad
+No observable
+Y el error
+Es un Random Effect
+Es decir
+El Fixed Effects
+Nunca puede dar bien
+¿No es cierto?
+En el planteo
+Ya decimos
+Que no hay correlación
+Entre el error
+Y la heterogeneidad
+No observable
+Al inicio
+De todo
+Ahí
+Ahí
+Ya sabemos
+Que es un Random
+¿No es cierto?
+Sí, pero
+Como la
+Digamos
+El objetivo
+Del ejercicio
+Es
+Decir
+Bueno
+Tenés un montón
+De métodos
+Que viste
+Que funcionaban
+En paneles dinámicos
+Para eliminar
+El efecto
+La endogeneidad
+Que surge
+A partir del efecto
+No observable
+Y los vimos
+Hace dos clases
+Vimos que teníamos
+Fixed Effects
+Random Effects
+Que todos esos
+Como decís
+Descansan
+Sobre ciertos
+Supuestos
+Sobre esto
+Que en realidad
+No es que uno
+Va a estar
+Mal
+Estrictamente hablando
+Sino que
+Uno va a tener
+Mejor performance
+Que el otro
+Y eso es lo que
+Hacemos con el test
+De Hansen
+Decidir si
+Hay uno
+Que tenga una performance
+Significativamente
+Mejor que el otro
+Porque al final
+Del día
+Por más que uno
+Haga
+Digamos
+Esto es lo que
+Suponemos
+¿No?
+Pero la realidad
+Es que
+Cuando agarraste
+La muestra
+De los datos
+Estas
+No tenés
+Forma de decir
+Si este CI
+Correlaciona o no
+Con este DI
+Entonces
+Ok
+Acá lo asumimos
+Para algunas cuentas
+Pero
+Me parece
+Que
+La respuesta
+Sí a tu pregunta
+Es
+El objetivo
+En el DP
+Este
+Es ver que
+Efectos fijos
+Si bien lo usamos
+En el pasado
+Para sacar
+La endogeneidad
+Del
+Del CI
+Ahora
+Si bien funciona
+Para eliminar
+Esa exogeneidad
+De vuelta
+No te está
+Atacando
+La nueva exogeneidad
+Que surge
+A partir de
+Tener un rezago
+En el modelo
+Que te crea
+Una nueva fuente
+De endogeneidad
+Ok
+Ok
+De hecho
+Podríamos tener
+Un ejercicio
+Acá extra
+Diciendo
+Ok
+Ahora
+Será random
+De facts
+Creo
+Pero
+Pero
+Lo voy a pensar
+Un poco más
+Igual
+Y
+Y
+Te
+Updateo
+La próxima
+Ok
+Gracias
+No
+No
+No
+No lo voy a anotar
+Porque
+Si bien yo prometo cosas
+Y después
+No las miro
+Digamos
+Yo asumo
+Que es esa
+La motivación
+Del
+Del ejercicio
+Quizás
+A ver
+Estoy pensando
+Lo voy a pensar
+Y después
+Te digo
+Pero a priori
+Diría eso
+Como que
+Bueno
+Entonces
+Ok
+Vamos con el ejercicio
+Dos
+Si no me equivoco
+Ya tienen cargados
+Los códigos
+En el dropbox
+Para que lo puedan ver
+Ahí
+PS2
+Ejercicio 2
+No
+No
+PS2
+Acá tenemos
+Lo del ejercicio
+Uno
+Que vimos
+La vez
+Pasada
+Y el ejercicio
+Dos
+Entonces
+Déjenme
+Volver
+Acá un poquito
+Lo que queríamos
+Hacer
+Era
+Incluir
+Un modelo
+Un poquitito
+Distinto
+Que quizás
+Cual era
+Lo que uno
+Escribirlo
+Una vez
+Como más
+A mano
+Para entender
+Que es lo que
+Estamos agregando
+Y que podamos
+Hacer como
+La
+La
+Como relacionarlo
+Con los
+Memos
+Después
+Cuando hagamos
+El código
+Que capaz
+Que se ve
+Un poco
+Nada
+En forma
+De código
+Y
+Entonces
+La idea
+Acá
+Es
+Básicamente
+Agregar
+Variables
+Independientes
+Que sean
+Estrictamente
+Exógenas
+O
+Secuencialmente
+Exógenas
+Y en particular
+Lo que vamos
+A estar
+Agregando
+A este
+Modelo
+Van a ser
+Voy a usar
+De vuelta
+La notación
+Esta
+De
+Que el
+Logaritmo
+De
+N
+Y
+T
+En realidad
+Es
+N
+Al revés
+Como que voy a definir
+Este
+N
+Y
+T
+Como el
+Logaritmo
+Piensenlo
+Ya
+Directo
+En logaritmos
+Y
+Y
+El
+Model
+Entonces
+Sería
+N
+Y
+T
+Igual
+A
+Teníamos
+Primero
+El rezago
+Del trabajo
+Dos veces
+O sea
+Dos rezagos
+Entonces
+Este le podríamos
+Poner
+Uno
+Y este
+Le podríamos
+Poner
+Dos
+N
+Y
+T
+Menos
+Dos
+Después
+Tenemos
+Todo lo que
+Tiene que ver
+Con el salario
+Así que a ese
+Le voy a poner
+Otra
+Otra expresión
+Vamos a ponerle
+Beta
+Cero
+Del salario
+Del momento
+Corriente
+Digamos
+Del momento
+T
+O sea
+Lag
+Cero
+Beta
+Uno
+Que va a ser
+El del
+Lag
+Uno
+Beta
+Dos
+Que es el del
+Lag
+Dos
+Después
+Tengo que armar
+Otro
+Similar
+Pero para
+La parte
+Del capital
+Y al del capital
+Acá le voy a poner
+Tita
+Pero nada
+Pueden ponerle cualquier cosa
+Yo más que nada
+Para
+Como vamos a tener
+Un montón de
+Estimadores
+A partir de esto
+Entonces necesito
+El valor
+Corriente
+El valor
+En D
+El rezago
+O sea
+El rezago
+Cero
+El rezago
+Uno
+Y el rezago
+Dos
+Después lo mismo
+Pero para
+El nivel
+El nivel
+De auto
+Que le podemos poner
+Gamma
+Y
+S
+Y
+T
+Más
+Gamma
+Uno
+Con el rezago
+Uno
+Y
+S
+Y
+T
+Menos
+Uno
+Dos
+Gamma
+Gamma
+Dos
+Del rezago
+Dos
+Y acá
+La dislexia
+Chicos
+Y
+Las gamis
+De tiempo
+Para ahorrar
+Natación
+Sería
+Básicamente
+Tener
+El
+Delta
+De
+Ese año
+Desde
+El año
+Creo que arrancaba
+En el 76
+Esto
+Hasta el 84
+Entonces voy a hacer
+Como
+El delta
+De la dummy
+Del año
+Por
+La dummy
+Que me dice
+Si estoy
+En ese año
+O no
+Eso
+Y bueno
+Nada
+Ya sabemos
+Que tenemos
+Más
+El 6
+Más
+20
+Entonces
+Esa sería
+Toda la ecuación
+Que
+Vamos
+A tener
+Si quieren
+Esquilenlo
+This is the moment
+Porque voy a volver
+A
+Va
+Podría
+Esquilenlo
+Y dejarlo
+Mal
+Entonces
+Necesitamos
+Estimar
+Por
+OLS
+Que
+Nada
+Raro
+Y por
+Fixed
+Effects
+Esto ya
+Lo tenemos
+Así
+Arrancamos
+Como siempre
+Cargando
+La data
+Declarando
+El panel
+Y vamos
+A tener
+Primero
+Pool
+Doble
+Es
+Con errores
+Están más
+Robustos
+Se ve bien
+Desde ahí
+Para hacer
+Pool
+Doble
+Es
+Hacemos
+La regresión
+De
+N
+Que es
+Nuestra
+Variable
+Dependiente
+Ya después
+Vamos a
+Incluir
+Las variables
+Independientes
+Acá
+Y tenemos
+El primer
+Rezago
+El segundo
+Rezago
+De hecho
+Primer
+Rezago
+Segundo
+Rezago
+Salario
+De hoy
+Rezago
+Uno
+En salario
+Y
+Estaría
+Faltando
+El rezago
+Dos
+¿No?
+O capaz
+Que el rezago
+Dos
+No lo
+Entré
+Let me
+Check
+Ah, era un solo rezago
+Listo
+Esto de acá
+Ahí va
+Capital
+Capital
+Rezago
+Un periodo
+Dos periodos
+YS
+Que es la del output
+Corriente
+Rezago
+Un periodo
+Rezago
+Dos periodos
+Y con esto
+Incluimos
+Las dummies
+Del demo
+Para
+Usar
+La matriz
+De
+La matriz
+Estimada
+De errores
+Estándar
+Versión
+Robusta
+Sabemos que
+Tenemos que
+Clusterear
+Por ID
+Como vimos
+Si no fue
+La primera
+O la segunda
+Clase
+Porque asumimos
+Porque asumimos
+Que esa
+Esa es la estructura
+La potencial
+Estructura
+No homosegástica
+De los errores
+Y nada
+Eso
+Lo corremos
+Bien
+Ya tenemos
+Ya tenemos
+Un 1.084
+Que
+Como sabemos
+Este valor
+Sobreestima
+El valor
+Verdadero
+Asumiendo
+Que la especificación
+Del modelo
+Es la correcta
+Así que
+No nos preocupa
+Tanto
+Que estoy dando
+Por encima
+De uno
+Porque piensen
+Que si va
+Por encima
+De uno
+Se rompe
+Esa condición
+De estabilidad
+Que le pedíamos
+Al modelo
+Pero bueno
+Vamos a dejarla pasar
+Y asumir
+Que
+Bueno
+Si esto
+Lo sobreestima
+Es porque
+El verdadero
+Está un poquito
+Por abajo
+Recuerden
+Que esto salía
+Del
+Sesgo
+De paneles
+Dinámicos
+Que aparece
+Enseado
+Que es siempre
+Positivo
+Y que
+Nada
+Eso
+Sobreestima
+La situación
+A ver
+Si me estoy
+Acordando
+De algo más
+Pero
+Si
+Si quieren
+Saber más
+De esto
+Realmente
+Les recomiendo
+El deseado
+Que lo lean
+Con cariño
+Porque
+No me acuerdo
+Así que
+De algún lado
+Estoy buscando
+La página
+Donde lo vi
+Esto
+Que
+Suponía
+Que estaba
+Toda
+Resaltada
+Se borró
+Todo
+Del
+El país
+Acá
+Acá
+Acá
+Con
+De
+Acá está
+Estaba resaltado
+Sección 4.3
+Página 91 del PDF
+Que tiene 384 páginas
+O bueno, 73 del libro
+Acá hace toda la derivación
+Del sesgo
+Y bueno, el estimador de
+List Squares
+Le da esto que es
+Esto más esto
+Y acá abajo está la derivación
+Del numerador
+Que es esta parte que está acá
+Como el
+El límite probabilístico
+Y el límite probabilístico
+Del denominador
+No sé si dije numerador antes
+Pero bueno
+Numerador
+Denominador
+Calcula el límite probabilístico
+Esto abajo te explica
+Que según
+Si asumís
+Que el valor inicial
+Vale ser
+Correlación o no
+Con el efecto fijo
+Que esté nuestro CI
+Esto puede ser
+Esto puede ser
+Cero o positivo
+Y después
+Tenés todo un choclo
+Que es positivo
+Y que depende
+Acá
+Como dicen acá
+De
+Que es más grande
+Cuanto más grande
+Es la varianza
+De los efectos
+Individuales
+Entonces
+Nada
+Eso
+Si lo quieren
+Chusnear
+Está bastante
+Está bastante bueno
+Eso con OLS
+Para hacer
+Fixed Effects
+Código
+Casi idéntico
+Solo que vamos a tener
+Que usar
+Xtreg
+Para usar
+Los comandos de paneles
+Y aclarar
+Fixed Effects
+Atrás
+Como ya veníamos
+Hablando
+Todo lo que es
+Fixed Effects
+Va a subestimar
+Y
+El sesgo
+Que aparece
+Aparece por el hecho
+De que
+Cuando hacemos
+La transformación
+Within
+Que es restarle
+El promedio
+Temporal
+Para cada individuo
+En el cálculo
+De ese promedio
+Vamos a tener
+Involucrados
+Los errores
+De los periodos
+Y viceversa
+Entonces
+Si quieren
+Después
+Les paso
+Notitas
+Con las cuentas
+Hechas
+Estoy corriendo
+Un toque
+Para que
+Lleguemos
+A verlo todo
+Bueno
+Vemos que
+Efectivamente
+Da más bajo
+Entonces
+A priori
+Ya tendríamos
+Como este rango
+Que
+Nos gustaría
+Ver
+Que
+Estos estimados
+Que vamos a hacer
+Después
+Cumplan
+Ese mismo rango
+Anders
+Anciago
+Para hacer
+Anders
+Anciago
+Lo que hacíamos
+Es
+IP
+Regress
+Para aplicar
+Variables
+Instrumentales
+Con qué
+Método
+Con
+Two
+Squares
+This
+Squares
+Sobre
+Las diferencias
+Del empleo
+Del nivel de empleo
+Hoy
+Y acá
+Se acuerdan que
+Aclarábamos
+Qué
+Variable
+Era nuestra
+Variable
+Independiente
+Que es
+La diferencia
+Del rezago
+Uno
+Y al lado
+Con un igual
+Le pongo
+Qué voy a usar
+Para instrumentarla
+Y
+Anders
+Anciago
+Nos propone
+El rezago
+Dos
+En niveles
+Entonces
+Eso es lo que
+Vemos acá
+Y aparte
+Vamos a agregar
+Todo el set
+De variables
+Que asumimos
+Estrictamente
+Exógenos
+El rezago
+Dos
+Del trabajo
+El salario
+Salario
+Rezagado
+Capital
+Capital
+Rezagado
+Dos veces
+Output
+Actual
+Rezagado
+Dos veces
+Y las dos
+Mis de año
+Esa es un poco
+La syntax
+Vamos a correrlo
+Fíjense que nos da
+5.84
+Lo cual
+Está completamente
+Fuera de
+Nuestro
+Nuestro
+Rango
+Entonces esto ya
+Nos hace un poco
+De ruido
+Así que nada
+De hecho
+Fíjense
+El error
+Estándar
+También es
+Bastante alto
+Así que
+Vamos a ver
+Si con las otras
+Opciones más eficientes
+Arellano Bond
+Le va un poquito
+Mejor
+De
+Estime
+La ecuación
+De empleo
+Usando el estimador
+De Arellano Bond
+Asuma que
+La única
+Endogeneidad
+Presente
+En el rezago
+Es de la
+Variable
+Dependiente
+El rezago
+De la variable
+Dependiente
+Así que
+Vamos con esa
+Parte
+Para Arellano Bond
+Usamos
+XTA Bond
+Acuérdense
+Que siempre
+Podemos hacer
+Gel
+XTA Bond
+Para tener
+Como
+Lo que necesitamos
+Escribir
+La syntax
+Es
+XTA Bond
+2
+La variable
+Dependiente
+Que va a ser
+N
+En nuestro caso
+La lista
+De variables
+Y después
+Van a aparecer
+Todas las opciones
+Adicionales
+Que tenemos
+Tenemos
+GMM Style
+Y ID Style
+Según
+Como querramos
+Armar
+La parte
+De la matriz
+De pesos
+Para calcular
+GMM
+Entonces
+Volviendo
+Al código
+Acá lo que
+Tenemos
+Es
+El empleo
+Las variables
+Independientes
+Y después
+GMM
+Va a ir
+Aplicado
+Sobre
+Acá le estoy
+Diciendo
+Que uso
+Como
+Qué variable
+Es la que
+Voy a instrumentar
+O sea
+Sobre qué variable
+Que es el
+Rezago
+Del empleo
+Y después
+Esta parte
+De acá
+Esperen que
+La abrimos
+Un poquito más
+Fíjense
+Que
+Quiero ver
+Si en la documentación
+Lo dice bien
+Comparemos
+Ahí
+Así
+Después
+Cuando lo miran
+Pueden compararlo
+Tenemos
+De vuelta
+XTABON
+La variable
+Dependiente
+La lista
+De variables
+Y después
+Agregamos
+En GMM
+Y el ID
+Que entran acá
+DMM
+Bueno
+Acá van a encontrar
+Más info
+Sobre
+Cómo funciona
+Esto
+Creo que nada más
+Acá
+ID
+Style
+Es este ID
+Que tenemos acá
+Y acá
+Ven que dice
+Especifica
+El set de variables
+Que son los instrumentos
+Con una columna
+Por variable
+Y después
+Seguramente está
+GMM
+Acá
+GMM
+Te especifica
+El set de variables
+Que se usan
+Como base
+Para el GMM
+Style
+Instrument set
+Así que
+Nada
+Vuelvo acá
+Y este
+Bueno y aparte de eso
+Vamos a hacer
+No level
+Para explicar
+Que estamos
+En Araciano
+Bond
+Y robust
+Para
+Para hacer
+El cálculo
+Robusto
+O lo que decíamos
+One step
+La vez pasada
+Ah bueno
+Acá está la aclaración
+Aplicar
+Robust
+Es como aplicar
+VCE
+Cluster ID
+En la estimación
+One step
+Antes
+O sea
+La alternativa
+Si no pones
+Robust
+Creo que es
+Tenés que poner
+No sé si tenés que poner
+El H1
+O esto lo podés
+Como obviar
+Y te lo toman
+Como default
+Pero el H1
+Si se acuerdan
+Era
+Decir que los
+Asumir que los errores
+Son homosegásticos
+Entonces en lugar
+De asumir eso
+Hacemos la estimación
+One step
+Con errores robustos
+Y bueno
+Veamos que nos va
+Punto 53
+Sigue estando
+Afuera del rango
+Que nos gustaría
+Así que
+Pareciera que
+Nada
+Sigue sin
+Hay algo en el modelo
+Que no nos termina
+De cerrar
+Lo puedo hacer de vuelta
+Con two step
+Que es básicamente
+Cambiar el robots
+Por el two step
+Pero el resto
+Todo lo mismo
+Acuérdense que
+La de dos pasos
+Lo que hace es
+Agarrar
+Los residuos
+De la primera regresión
+Para calcular
+La matriz de varianzas
+Y covarianzas
+De la segunda
+Ahí sube un poquito más
+Bajo un poquito
+El error estándar
+0, 6, 8
+¿Dios?
+Sí
+Ah bueno
+Bueno podemos
+Pero le estás haciendo
+Le estás haciendo
+Con la two step
+Sí
+Creo que por
+Disponio
+Usa
+El resto
+El resto
+Venía dando bien
+El resto
+Ah bueno
+Muy bien
+Con python
+Excelente
+Capaz que para la próxima
+Iteración de esta materia
+Se puede como
+Extender el
+Los problemas
+De esa python
+Después
+Ok
+Ya vimos
+Argenobond
+Con one step
+Con two step
+Y ahora vamos a ver
+Inciso
+E
+Ahora considere
+Que los salarios
+Y el stock de capital
+No deben tomarse
+Como estrictamente exógenos
+O sea
+Lo vamos a mover
+De la parte
+De variables
+Instrumentales
+Porque acuérdense
+Que como son
+Estrictamente exógenos
+Se pueden instrumentar
+A sí mismas
+A la parte
+De
+Gbm
+Esto era
+El inciso
+E
+Que es esto
+Que está acá
+Entonces fíjense
+Cómo cambiamos
+De este código
+Bueno más bien
+De este código
+Que está acá
+A
+El de acá abajo
+Lo que es
+Ah
+Algo que no mencioné
+Es
+¿Qué significa esto
+Que está acá?
+Así que
+Voy a mirarlo
+Dos segunditos
+Básicamente la forma
+En la que
+En la que podemos escribir esto
+Es
+Tenemos el nivel de empleo
+El lag del empleo
+El lag dos del empleo
+Salario
+Lag del salario
+Y acá
+Lo que puedo exponer
+Es como
+El lag
+Desde el cero hasta el dos
+De las variables
+K
+Y
+S
+Esa sería la anotación
+Entonces esto es una forma
+Resumida
+Ponele de escribir
+Todo esto
+Que está acá
+Pero nada
+Es otra forma de escribir
+De forma similar
+En el inciso B
+Que es el que estamos viendo ahora
+Tenemos el empleo
+El lag
+Desde el uno
+Hasta el dos
+Del empleo
+Como explicativas
+El lag
+Desde el cero
+Hasta el uno
+Del salario
+El lag
+Desde el cero
+Hasta el dos
+De capital y producto
+Las damis
+Y después
+Lo que vamos a hacer
+Es decir
+Bueno
+Ojo
+Que como dice
+En plan de Nibond
+El salario
+Y el capital
+No los vamos a tomar
+Como estrictamente exógenos
+Así que
+Los vamos a sacar
+De nuestra parte
+De nuestra matriz
+De instrumentos
+Que aparecen
+Acá
+L
+N
+W
+K
+O sea
+El W
+Y el K
+Es el que aparecen acá
+El W
+Y el primer
+El primer rezago
+Del K
+Entonces lo voy a volver
+A poner acá
+Ahí
+Con la misma idea
+O sea
+Como que pones
+L punto
+Y las variables
+Terzas
+Y después
+Dentro de las variables
+Instrumentales
+El lag
+Desde el cero
+Hasta el dos
+Del producto
+Y de las
+Y de las damis
+De año
+Así que
+Corremos este
+Fíjense que
+Ahora sí
+Ya estamos
+Dentro
+De
+Nuestro
+Rango
+Propuesto
+Dios
+Yo sigo
+Los acontecimientos
+Desde acá
+Tremendo
+Capaz que es algo
+De cómo se calcula
+El segundo paso
+Ver qué
+Consideran
+Pero seguramente
+En el de
+En el paper
+De Rootman
+Aparezca
+Algo más detallado
+De eso
+Cuando dice
+Que lo sigue
+Calculando
+Las caras
+Los caras
+Los caras
+Los caras
+Los caras
+Los caras
+Los caras
+Los caras
+Los caras
+Sí
+Esa corrección
+La explican
+En Rootman
+En Rootman
+Sí
+Sí
+Sí
+Cierra
+¿Qué es eso?
+¿Qué es eso?
+Una transformación
+Que hace
+Alguna cosa
+Para los caras
+Claro
+Winn-Masher
+Hace una corrección
+Que
+Si no me equivoco
+Tiene que ver
+Con los grados
+De libertad
+Que aplicás
+Cuando
+Haces la
+Me parece que iba por ahí
+No me acuerdo
+Bien de memoria
+Pero creo que iba por ahí
+Si nos queda un rato
+La cosa
+Después lo chusnamos
+A ver si
+Logramos
+Logramos
+Ok
+Y vamos a hacer lo mismo
+Pero bueno
+La versión
+Two-step
+Y comparemos
+Qué nos da
+Nuevamente
+Seguimos
+Dentro
+Del rango
+Que
+Esperábamos
+Y fíjense
+Que caen
+También
+Los errores
+Estándar
+Y a partir de ahora
+Empiezan a ser
+Significativas
+Los estimadores
+O sea
+Lo que nos está diciendo
+Lo que nos estaría diciendo
+Esto es que
+Ok
+Tiene un poco más de sentido
+Pensar que
+Los rezagos
+Del salario
+Y del capital
+No sean estrictamente
+Exógenos
+En tu modelo
+Y por último
+Nos queda
+Ver que
+Bueno
+Blandal y Bond
+Eliminan de su modelo
+Los rezagos más largos
+Del empleo
+Y del capital
+Y prescinden
+Del nivel de producto
+Agregado sectorial
+Así que
+Ahí vamos a ver
+Blandal Bond
+Acuérdense que
+Para hacer
+Blandal Bond
+Lo que tenemos que hacer
+Es remover
+El no level
+Para que nos arme
+El sistema
+Y bueno
+Cambiaría
+En
+De vuelta
+Lo que hacen ellos
+Es
+Eliminar
+Los rezagos
+De dos periodos
+Del empleo
+Y del capital
+Y eliminar
+El nivel
+De producto
+Agregado
+Entonces
+Lo que nos queda
+Es
+El empleo
+El primer lag
+Del empleo
+Lag desde el 0
+Hasta el 1
+De salario
+Y capital
+El 2
+Lo sacaron
+Eliminan
+Esta variable
+De producto
+Dejan las dummies
+Y después
+La idea es la misma
+Seguimos asumiendo
+Que estos
+No son estrictamente
+Exógenos
+Y para instrumentarnos
+Que dan las dummies
+Y bueno
+Equation level
+Que es la opción
+Que se usa
+En Blandal Bond
+Indicamos con la sub-opción
+Equation level
+Que las damis
+De años
+Solo deben considerarse
+Instrumentos
+En la ecuación
+De niveles
+Y bueno
+Vamos
+También
+Nos da
+0.89
+Dentro del
+Rango que esperamos
+Nos da
+Significativo
+Al 1%
+Cayó
+El error
+Estándar
+Así que
+No
+Pareciera
+Que
+Estas tres cosas
+Son un poco más
+Robustas
+No robustas
+En el sentido
+De los errores
+Sino robustas
+Como
+Las estimaciones
+Parecen tener
+Más sentido
+Así que nada
+Eso era el ejercicio
+2
+Si hay alguna pregunta
+Te hago una pregunta
+Capaz porque
+Me distraje un segundo
+Pero
+¿Cómo haces
+Para elegir
+Qué variable
+Está
+Metés
+En
+GMM
+Y
+En
+IB
+Eso va a depender
+De lo que asumas
+Sobre la variable
+Que
+Incluís
+Básicamente
+Dentro de
+IB
+Vas a elegir
+Las que son
+Buenos instrumentos
+O las que
+Considerás que son
+Buenos instrumentos
+Y
+Para que sea un buen
+Instrumento
+Necesitamos que sea
+Exógena
+En el modelo
+Y que sea
+Que covaríe
+Con lo que
+Estás
+Instrumentando
+Entonces
+Si
+Por ejemplo
+En esta primera
+Parte
+Asumimos que
+El rezago
+Del salario
+Y el capital
+Y el producto
+Podían ser
+Buenos instrumentos
+Para eso
+Tenés que creerte
+Eso que decíamos
+Que
+Son
+Son exógenos
+En el modelo
+Pero agarran
+En blanda
+Libón
+Y dicen
+Che
+Mirá
+La verdad
+Que decir
+Que los salarios
+Y el estoque
+De capital
+Son exógenos
+Para determinar
+En la ecuación
+Original
+Que teníamos
+Nos hace un poco
+De ruido
+Nos vamos a
+Sacar
+Como instrumentos
+Eso
+Ya depende
+De
+De las variables
+Que estás usando
+Y de los supuestos
+Que pones al modelo
+Bueno
+O sea
+La respuesta corta
+Es no
+No hay una forma
+Específica
+De
+Porque no hay
+Una receta mágica
+Que te dice
+Bueno
+Este
+Este
+Este
+Este
+Lo que sí
+Puedes hacer
+Es correr
+Como varias veces
+Diferentes modelos
+Con diferentes
+Instrumentos
+Y diferentes
+Hasta diferentes
+Rosarios
+Que es un poco
+Lo que vamos a hacer
+Ahora
+Y ver
+Cuál de los modelos
+Termina siendo
+O sea
+Cuántas estimaciones
+Te dan cosas parecidas
+Como para decir
+Ok
+Le creo a este
+Conjunto de supuestos
+Ok
+Y eso
+Como que es una buena intro
+Para el ejercicio 3
+Que el ejercicio 3
+Que nos dicen
+Bueno
+Cuando hay muchos instrumentos
+Surgen dos problemas
+Principales
+Sobre la estimación
+De la variable endógena
+Y mala estimación
+De la matriz de pesos
+En esos casos
+Se proponen dos soluciones
+Probar diferentes
+Especificaciones
+De variables instrumentales
+O colapsar instrumentos
+Entonces
+El objetivo
+De este ejercicio
+Es un poco hablar
+De
+Cuál sería el problema
+De utilizar
+Muchos instrumentos
+O bueno
+Concientizar
+Sobre la importancia
+De
+Entender
+Qué estás usando
+Como instrumentos
+Y cuándo
+Se estás usando
+Porque
+En este tipo
+De análisis
+Los métodos
+Que usamos
+Y los test
+Que usamos
+Para validar
+Qué tan bien
+Identificado
+Está el modelo
+Son muy sensibles
+En esa cantidad
+De instrumentos
+Entonces
+Si empezamos
+A agregar
+Instrumentos
+A rolete
+Ojo
+Porque te va
+Te va a estar
+Afectando
+Cosas
+Que son
+Relevantes
+Para las
+Conclusiones
+Que saques
+Del modelo
+Y esto
+Creo que está
+Bueno
+Pensarlo
+No solo
+Para el TP
+Y la materia
+Y qué sé yo
+Porque si no
+Después
+Capaz que uno
+Lea un paper
+Y te dicen
+Bueno
+Usamos
+564 instrumentos
+En una base
+De
+No sé
+Mil observaciones
+Y bueno
+Eso ya nos tiene
+Que hacer un poco
+De ruido
+Si consideramos
+Que esa cantidad
+De instrumentos
+Es muy grande
+Básicamente
+Hay dos cosas
+Que van a estar
+Pasando
+Cuando empezamos
+A agregar
+Muchos instrumentos
+La primera
+Es que puede
+Overfit
+Las variables
+Indógenas
+Del modelo
+Y en ese sentido
+Lo que vamos
+A estar estimando
+Sobre
+Imagínense
+Que tenemos
+Un panel
+Y tenemos
+Algunas variables
+Específicas
+Que como se acomodan
+Mejor al modelo
+Cuando agregamos
+Muchos instrumentos
+Esas variables
+Van a tener
+Más relevancia
+O más peso
+En la estimación
+Final
+Por así decirlo
+Entonces
+Lo que va a pasar
+Es que
+Vos construís
+Un modelo
+Y las observaciones
+Que mejor se
+Subjustan
+A ese modelo
+Como que te vas
+A estar dando
+La razón
+De una forma
+Un poco
+Recursiva
+Por así decirlo
+Entonces eso
+Por un lado
+Va a haber
+Overfitting
+De la variable
+Indógena
+No vas a estar
+Mirando
+Bien
+El efecto
+De la variable
+Indógena
+Y por otra
+Parte
+Como a partir
+De esa estimación
+Lo que hacemos
+Es sacar
+Los residuos
+Para estimar
+La matriz
+De pesos
+Doble D
+Esa matriz
+De pesos
+También va a estar
+Afectada
+Por el overfitting
+De la primera
+Realización
+¿Qué más me afecta?
+Bueno
+Como les decía
+El poder
+Del test
+De Hansen
+También se ha afectado
+Por la variable
+De instrumentos
+Y si falla
+Digamos
+Si se te rompe
+El test
+De Hansen
+O no le crees
+Tanto al test
+De Hansen
+El test
+De Hansen
+Es lo que usas
+Para validar
+Esos instrumentos
+Entonces al final
+Me digo que
+Estás haciendo un test
+Que sabes que no funciona
+Para validar
+La cantidad
+De instrumentos
+Sabiendo que
+La cantidad
+De instrumentos
+Es demasiado grande
+Eso
+En
+Rudman
+De hecho
+Acá lo tengo anotado
+Hay una parte
+Donde explica
+Un poco esto
+Y nos cuenta
+Que
+Lo que pasa
+Con
+¿Qué más me afecta?
+Ok, mirá
+Acá está la parte
+De la corrección
+De Wilma
+En la página
+11
+De
+11
+De Rudman
+Acá
+Y en la página
+14
+Habla
+De esto
+De
+¿Qué pasa
+Cuando tenemos
+Muchos instrumentos?
+Primero
+Que una colección
+De instrumentos
+Alta
+Puede
+Overfit
+Las variables
+Indógenas
+Que es lo que
+Decimos recién
+Y acá te da
+Como una intuición
+Que es
+Pensá que
+En
+Two
+Squares
+List
+Squares
+Si el número
+De instrumentos
+Es igual
+Al número
+De observaciones
+Entonces
+El r
+Cuadrado
+De la regresión
+De la primera
+Etapa
+Va a ser
+Uno
+Y en
+La segunda
+Etapa
+Los resultados
+Van a terminar
+Siendo los
+De mínimos
+Cuadrados
+O sea
+Hiciste los dos
+Pasos
+Para nada
+Porque
+Llegaste a
+Mínimos
+Cuadrados
+Y nosotros
+En este contexto
+Ya sabemos
+Que mínimos
+Cuadrados
+Está sesgando
+Hacia arriba
+O sea
+No nos
+No nos
+Estaría
+Subiendo
+Demasiado
+Y lo que
+Comenta
+También
+Es que
+No hay
+Como
+Un criterio
+Fijo
+Lo que decíamos
+Hace un rato
+Con la pregunta
+De cuántos
+Instrumentos
+Son demasiados
+Instrumentos
+O qué
+Instrumentos
+Deberíamos
+Induir
+En los
+Modelos
+Primero
+Porque dicen
+Que
+El sesgo
+Como que
+Hay un sesgo
+Incluso
+Aunque los
+Instrumentos
+Sean
+Poquitos
+Entonces
+Lo que
+Se puede
+Plantear
+Es decir
+Bueno
+Agarrá
+Mete
+Muchos
+Instrumentos
+Y
+Empezá
+A disminuir
+Esa cantidad
+De instrumentos
+Y fíjate
+Cómo
+Mejora
+La estimación
+Y
+Acá
+Acá
+Te cuenta
+De unos
+Experimentos
+Creo que
+Eran
+De Monte
+Carlo
+Donde
+Básicamente
+Testeaban
+Eso
+Como que
+Simulaban
+Los
+Datasets
+Los
+Estimaban
+Que es lo que
+Hacemos nosotros
+En los
+TPs
+Y dicen
+Bueno
+Mira
+Si aumentas
+Los instrumentos
+De 5 a 10
+En un sistema
+En un
+System
+GMM
+De un
+Panel
+De 5%
+Eso
+Te
+Agranda
+O te
+El
+Estimate
+El
+Estimador
+Del parámetro
+Cuyo
+Valor
+De 080
+De 080
+A 086
+O sea
+Y ahí solamente
+Agregamos
+5 instrumentos
+De 5 a 10
+Pensemos
+Cuántos instrumentos
+Tenemos
+Cuando usamos
+Arellano Bond
+Si tenemos
+Un panel
+De
+No sé
+10 periodos
+Temporales
+Vas a tener
+El primer
+Rezago
+El segundo
+Rezago
+O sea
+El segundo
+Rezago
+Y todos
+Los anteriores
+Y con
+Blanda
+Vamos a tener
+El segundo
+Rezago
+Todos los
+Anteriores
+Y las
+Diferencias
+De los
+Rezagos
+A partir
+Del segundo
+Entonces
+A medida
+Que incluso
+Tenés
+Un panel
+Con más
+Cantidad
+De datos
+Temporales
+Vas a tener
+Incluso
+Más
+Instrumentos
+Y de hecho
+Por ejemplo
+Número
+De instrumentos
+47
+Número
+De instrumentos
+33
+33
+20
+Ahí vamos
+Viendo
+Cómo cambian
+Los números
+De instrumentos
+Entonces
+Nada
+La motivación
+Del ejercicio
+Un poco
+Esa
+Déjenme ver
+Si hay algo
+Más
+Que
+Les quería
+Mostrar
+Tengo anotado
+Ver página
+23
+Vamos
+Que dice
+La página
+23
+Ah bueno
+Acá les explica
+Cómo es que
+Hace
+Lo del
+Colapsar
+La matriz
+Por si
+Lo quieren
+Mirar
+Y
+O bueno
+Te propone
+Usar
+Menos
+Menos
+Rezagos
+Como instrumentos
+Así que
+Ok
+Este sería
+El ejercicio
+3
+De vuelta
+Con todo
+Bueno
+Yo lo tengo
+Cargado
+El panel
+Así que no lo voy a cargar
+De vuelta
+No estoy segura
+Acá
+Acá tenemos
+El
+One step
+GMM
+Común
+Acá tenemos
+GMM
+Con lags
+Solamente
+Desde el 2
+Hasta el 3
+Acá les estoy
+Indicando
+Lag 1
+2
+Básicamente
+Porque
+Es como que
+Ya voy a estar
+Aplicando el lag
+Del lag
+Eso es un poco
+La idea
+Por eso es el lag
+2 al 3
+Este sería el 2
+Y este es el 3
+Lags 2 al 4
+Misma idea
+En lugar de
+1
+2
+1
+3
+Y
+La parte
+La opción
+Colapsada
+Colapse
+Aparece acá
+Dentro de GMM
+De vuelta
+Esto
+Debería estar
+Acá
+Y si no
+Podría buscar el
+Collapse
+Especifica
+Que debería
+Crear
+Un instrumento
+Para cada
+Variable
+En lag
+Distance
+Rather than
+One for each
+Time period
+Variable
+En lag
+Distance
+Entonces esto ya
+Como que te colapsa
+De una situación
+De un instrumento
+Para cada
+Periodo
+Variable
+Y distancia
+En lags
+A uno
+Por variable
+Y lag
+Distance
+In small samples
+It can avoid
+The bias
+That arises
+As a number
+Que es lo que decíamos
+Reciente
+En muestras chicas
+Podría ayudarnos
+A evitar
+El sesgo
+Que aparece
+Cuando
+Se agranda
+La cantidad
+De instrumentos
+Relacionado
+Al número
+De observaciones
+Cuando los instrumentos
+Son demasiados
+Pueden overfeed
+Las variables
+Instrumentadas
+Sesgar los resultados
+Hacia los de OLS
+Y el S
+Que ya sabemos
+Que OLS no nos gusta
+Porque sesgado
+Porque bla bla bla
+Bueno
+Vamos a correrlos
+Y ver que pasa
+Fíjense que nos da
+Punto 83
+Este era
+El primero
+Que era
+El simple
+One step TML
+Con robustos
+El segundo
+Punto 94
+Punto 84
+Un punto 10
+El último
+Es este
+El de los instrumentos
+Colapsados
+Y fíjense
+Que acá
+El punto 84
+El punto 94
+El punto 83
+Todos estos
+Están adentro
+Del rango
+Que habíamos propuesto
+Al principio
+Los errores
+Estándar
+Están en línea
+Con lo que habíamos
+Hecho las veces
+Anteriores
+Entonces
+Fíjense que
+Haber
+Ilimitado
+Los lags
+Te deja
+En una situación
+Media similar
+Habla un poco
+De que los resultados
+Son robustos
+A estos
+Camisitos
+No hay mucho más
+Que decir que eso
+Honestamente
+Creo que ya vimos
+La parte dura
+De las cuentas
+Entonces
+Esto era más que nada
+Correr el código
+Y ver cómo
+Era el syntax
+Después lo mismo
+Pero en lugar
+De usando
+La matriz
+Robusta
+Acá
+Usando
+El método
+De dos pasos
+Acá
+Simplemente
+Cambiamos
+El two step
+Voy a correr
+Todo junto
+Pero la idea
+Es la misma
+Digo
+Acá tengo
+GMM
+Normal
+Usando
+Todos los rezagos
+Acá
+Limito los rezagos
+Al uno
+Y al dos
+Que en realidad
+El uno
+Y al dos
+Son
+El dos
+Y al tres
+Como les diríamos
+Nosotros
+Porque ya estamos
+Haciendo el rezago
+Dos al cuatro
+Uno tres
+Y
+Porque ya está
+El rezago acá
+Y
+Qué más
+Bueno
+Colapsados
+Vamos con esto
+Y de vuelta
+Fíjense que ahora
+Sí estamos
+Como en líneas
+Bastante similares
+Con la versión
+De dos pasos
+Y fíjense
+Cómo cayó
+Acá
+Punto cero nueve
+Contra
+Punto doce
+Punto dieciocho
+Punto quince
+Punto doce
+Cero nueve
+Punto treinta
+Y ocho
+Punto treinta
+Y ocho
+Entonces
+Nada
+Eso era
+La idea
+Del ejercicio
+Creo que
+No estoy viendo nada
+Y bueno
+Nos queda un ratito
+Para ver el último ejercicio
+El último ejercicio
+Lo que decíamos
+Era bueno
+Volvamos un poco más
+Para atrás
+Pensemos en el estimador
+De list square
+Dummy variables
+Y
+En particular
+Lo que vamos a hacer
+Es agarrar la corrección
+De keyget
+A partir de
+Que en esta base
+Usa con este comando
+El procedimiento
+Explicado en clase
+Está
+Acá
+La idea
+De este procedimiento
+Es la siguiente
+Tenemos este modelo
+De componentes
+No observados
+Sí
+Donde tenemos
+Nuestra variable
+El empleo
+El empleo
+Rezagado
+Un conjunto
+De variables
+X
+Que ahora vamos a ver
+Qué propiedades tienen
+Una
+El efecto
+Heterogéneo
+No observado
+Y el error
+Idiosincrata
+El efecto
+Heterogéneo
+No observado
+Se distribuye
+Normal
+Cero
+Sigma cuadrado
+De C
+Con sigma cuadrado
+De C
+Mayor de cero
+El error
+De
+El error
+Biosincrático
+Normal
+Cero
+Sigma cuadrado
+De U
+Con sigma cuadrado
+De U
+Y después
+Nada
+A ver
+Por ejemplo
+La U
+De este periodo
+Contra la U
+De los próximos periodos
+No correlacionan
+O sea
+Los errores
+De diferentes periodos
+No están relacionados
+Lo mismo
+CI
+Contra CJ
+O sea
+El efecto
+Fijo
+De los individuos
+Es independiente
+Entre individuos
+Obviamente
+Es el mismo
+A lo largo
+Del tiempo
+Para cada individuo
+El CI
+No
+No está relacionado
+Con los errores
+Otro que os valga
+La pena
+Mencionar
+Ah ok
+Y el que sí
+Estaría bueno
+Mencionar
+Es esto
+Que
+No mentira
+Que nada
+Las variables
+X
+Con el efecto
+Fijo
+Si un proceso
+Desconocido
+Entonces
+Lo que les contaba
+Era
+Que lo que hace
+KeyBiet
+Es decir
+Bueno
+Si sabemos que
+El estimador
+De Fixed Effects
+Está sesgado
+¿Por qué no intentamos
+Estimar ese sesgo?
+Y se lo restamos
+Y listo
+Deberíamos andar
+Y aparentemente
+Tuvo muy buenos resultados
+Entonces dijo
+Bueno
+Lo publico
+Hice un paper
+Y hoy lo estamos estudiando
+La forma del sesgo
+Es esta cosa
+Que está acá
+Si quieren
+Que la disputamos
+No va a poder ser ahora
+Porque nos quedan 15 minutos
+Pero son todas cosas
+Que
+O casi todas cosas
+Que conocemos
+La de
+Es la W
+Por Q
+Por W
+Más el sigma cuadrado
+De U
+Que digamos
+Son todas cosas
+Que uno
+Medio que supone
+Cuando después
+Hace el ejercicio
+En sí
+Pero la que sí
+No conocemos
+Ahora mismo
+Es esta C
+Es una
+Una matriz
+Que tiene los unos acá
+Y después
+Te va enchufando
+Los gamas
+Entonces
+Ese es el único parámetro
+Desconocido
+En
+Toda esta expresión
+Que tenemos acá
+Obviamente
+Obviamente
+No tan obvio
+Porque hace unos años
+Esto entiendo
+Que no existía
+Como que
+Yo hace 20 años
+Entiendo que tenías
+Que hacer esto a mano
+Pero
+Hoy por hoy
+Existe un comando
+Que te calcula
+Todo esto
+Automáticamente divino
+Que es el que vamos a ver hoy
+Y lo único
+Que le tenemos que decir
+A ese comando
+Es
+Ok
+¿Quién es este gama
+Inicial
+Sobre el que vamos
+A
+Arrancar la corrección
+Hay varias opciones
+En el código
+Kibiet sugiere
+Reemplazarlo
+Con la estimación
+De Anderson
+Siado
+Pero ahora
+Después vamos a ver
+En la syntax
+Que tenemos
+Podemos poner
+Blan del bond
+El channel bond
+Y
+¿Qué más?
+Una vez que le decimos
+Eso al modelo
+Nada
+Te hace
+Te hace la corrección
+Con esto que vimos acá
+Y ya te calcula
+El
+Delta
+Corregido
+Entonces
+Básicamente
+El estimador
+Sigue estos pasos
+Primero se estima
+El modelo
+Por list squares
+Ami variables
+Six effects
+Que sabemos
+Que es no consistente
+Y después calculamos
+La estimación consistente
+Como
+Delta
+Six effects
+Menos el
+Sejo
+La verdad que
+Me parece súper
+No sé
+Amigable
+En el sentido
+De que
+Bueno
+Anderson
+Xiao
+Y Arellano
+Bon
+Dijeron
+Ah
+Y aplicá
+Métodos
+Generalizados
+Un momento
+Si este vino
+Y dijo
+Agarré esa
+Calculale el sesgo
+¿Qué te cuesta
+Calcularle el sesgo?
+Y fue y lo calculó
+Lo calculó
+Sí
+Eso
+Nada
+Esto es lo que llegó
+A calcular
+Más un error
+De esta
+De esta
+De esta magnitud
+De vuelta
+Una aproximación
+De ese sesgo
+Me parece tremendo
+Un día
+Llegar a ese tipo
+De
+De derivación
+Entonces
+Bien
+Vamos al ejercicio
+Cuatro
+Este es el
+Comando
+Y
+Ah
+Ya lo tengo abierto
+Esto es lo que les decía
+Que dentro de la sintaxe
+Vamos a tener
+La variable dependiente
+La lista de variables
+Initial
+Estimator
+Que es el valor
+Ese inicial
+Que le damos a la gama
+Para que después
+Arme la corrección
+En este caso
+Propone
+Anderson
+Ceau
+Creo que
+No les quiero decir
+Nada más justo
+A ver
+Bueno
+Calcular el sesgo
+El
+Los estimadores
+Del
+Ese
+Por
+Dummy
+Variables
+Corregidos
+Por el sesgo
+Para un panel
+Autorregresivo
+Usando
+Las aproximaciones
+Que están
+En el turno
+2005
+Ah
+Otro tema
+En el campus
+Está cargado
+Acá
+Este PDF
+Que vendría a ser
+Como el de
+Rootman
+Pero para este
+Rootman
+Para
+XT1-2
+Bueno
+Está este
+Para
+XTLS
+DBC
+Y te explica
+Un poco
+De la historia
+Cuáles eran
+Las alternativas
+Cómo se llega
+A eso
+Acá está
+El modelo
+Que
+Consideran
+Y
+Bueno
+Cómo se extiende
+También a paneles
+No balanceados
+Que bueno
+Son estas matrices
+Que veíamos
+Acá te habla
+Un poco
+Del syntax
+Y te explica
+Qué significa
+Bueno
+El initial estimator
+Te explica
+También acá
+La parte
+De BCOV
+Que la vamos a usar
+Dentro de un rato
+Dentro de un rato
+Cómo se guardan
+Los resultados
+En caso de que
+Corran esto
+Y qué es lo que
+Vamos a necesitar
+Y
+Eso
+Voy al código
+A ver si
+Podemos
+Terminar esto
+A horario
+Ok
+Entonces
+Despejo
+Cargo todo
+De vuelta
+Y acá
+Tenemos
+Kibiet
+El
+Código
+La variable
+Que es el empleo
+Entonces acá ya nos tira
+El coeficiente
+De .98
+Está bastante en línea
+De lo que veníamos
+Hablando
+Y acá solamente
+Hicimos un modelo
+Con un lag
+Fíjense que no nos
+Computa
+Los errores estándar
+Esto es porque
+Para que nos tire
+Los errores estándar
+Se los tenemos que
+Nos tenemos que
+Calcular media mano
+O pedir que nos lo calcule
+Con un bootstrap
+Entonces ahí tenemos
+Dos opciones
+Y ahora las vamos a ver
+Podemos correrlo
+De vuelta
+Incluyendo
+Damis de tiempo
+Fíjense como
+Cambia ahí
+Así que
+Nada
+A tener cuidado
+Con eso
+Después tenemos
+La parte de
+Estimación de la matriz
+De varianzas
+Y covarianzas
+Y
+De vuelta
+Esto lo vamos a tener
+Que hacer un poco
+A mano
+Así que vamos a ver
+Cómo sale
+Para hacer la matriz
+De varianzas
+Y covarianzas
+Primero
+Voy a volver a correr
+Este
+O sea me voy a quedar
+Con el original
+No el que tiene
+Las damis de tiempo
+Y
+La parte de la estimación
+De la matriz
+De varianzas
+Y covarianzas
+Digamos
+El
+El procedimiento
+Está acá
+Básicamente
+Lo que vamos a hacer
+Es decir
+Bueno
+Agarrar el modelo
+Ya transformado
+Con la transformación
+De Fixed Effects
+¿Sí?
+Calcula los errores
+Estimales
+Y después
+Armate
+Sigma cuadrado
+De U
+Para enchufarlo
+En la matriz
+De varianzas
+Y covarianzas
+De esta manera
+U
+Transpuesta
+Por U
+Que es el U
+Transpuesta
+Que estimaste
+Acá arriba
+De la versión
+Fixed Effects
+Con el
+Delta corregido
+Y eso
+Ajustarlo
+Por los grados
+De libertad
+N por T
+Menos N
+Menos T
+Menos K
+Menos U
+Esto después
+Lo enchufás acá abajo
+Y ahí te armás
+La matriz de varianzas
+Y covarianzas
+Estimadas
+Entonces eso es lo que vamos a hacer
+Ahora en esta
+Bueno primero
+Me calculé
+Este
+Que es
+Este que voy a necesitar
+Acá
+Voy a crear
+Un escalar
+Con la estimación
+Del coeficiente
+Si quieren
+Algo que podemos
+Correr también
+Acá
+Es
+Para ver
+Cómo guarda
+Las cosas
+Entonces en particular
+De acá
+De esta estimación
+Lo que nos vamos
+Nos queremos llevar
+Es
+El coeficiente
+Es de
+El punto 98
+De la regresión
+Lo voy a guardar
+Como una matriz
+Y después
+Lo voy a transformar
+En un escalar
+Después voy a crear
+Escalares
+Para
+El número
+De observaciones
+Totales
+Paneles
+Periodos
+Y número de variables
+Que son el
+NT
+El T
+El N
+Y el K
+O sea
+Nos vamos armando
+Esto
+Y vamos a
+Armar
+El modelo
+Transformado
+O sea
+Las puntitas
+De acá
+Este ya lo tenemos
+Es el punto 98
+Nos queda armar
+El modelo
+Transformado
+Para después
+Sacar el error
+Entonces
+Para eso
+Necesito
+Primero
+El promedio
+A nivel
+Individuo
+Y después
+Se lo resto
+Para hacer
+La transformación
+Within
+Entonces
+A los escalares
+Pero tengo
+El corrí
+Ahí tengo
+El promedio
+Del
+Empleo
+Por ID
+El promedio
+Del empleo
+Rezagado
+Por ID
+Y armo
+La transformación
+Within
+Que es
+Within
+Empleo
+Es
+El valor
+Que toma el empleo
+Menos
+Barra
+NI
+Que es
+El promedio
+NI
+Genero la variable
+Within
+Para el rezago
+Y ahora sí
+Genero U
+Porque digamos
+Ya me armé
+Este
+Que es
+El empleo
+Within
+Este
+Que es el empleo
+Rezagado
+Within
+Porque de vuelta
+Incluye
+Y
+T-1
+Y X
+Pero bueno
+Acá no incluimos
+Otras X
+Podrían ser
+Las dummies
+Temporales
+Pero no las
+Unrimos
+Y ahora
+Me armó
+El error
+Que es
+Within
+N
+N
+Y
+Y
+Menos
+El estimador
+Que lo había guardado
+Con este nombre
+Del escalar
+Que era el punto 98
+De acá
+Por
+Me perdí
+No estoy
+La transformación
+Within
+Del rezago
+Ahora
+Que tengo
+Los errores
+Generamos
+Esta partecita
+Que está acá
+Para después
+Armar esto
+Entonces necesito
+U
+Traspuesta
+Por U
+Dividido
+Por todo esto
+Y después
+Vamos a hacer
+Z
+Traspuesta
+Por Z
+Multiplicado
+Por lo que nos
+De esto
+Entonces
+Vamos con eso
+U
+Traspuesta
+Por U
+Sigma
+Cuadrado
+De U
+Que es
+U
+Traspuesta
+Por U
+Sobre
+NT
+Menos
+N
+Menos
+T
+Menos
+K
+Más
+Una
+Y ahí
+Podemos ver
+El sigma
+Cuadrado
+De U
+Estimado
+Después armamos
+Z
+Traspuesta
+Por Z
+Que era
+Este de acá
+Recuerden que Z
+Incluye las variables
+Del lado derecho
+De la ecuación
+En este caso
+Sería solamente
+Hacer
+El
+Accumulate
+Que habíamos visto
+En las primeras clases
+Sobre
+El rezago
+Después de eso
+Calculamos
+La varianza
+Que vendría a ser
+El sigma
+Cuadrado
+De U
+Que sacamos
+Acá
+Por la inversa
+De Z
+Traspuesta
+Por Z
+Vemos
+Que nos da
+Y
+Armamos
+Un escalar
+Con la raíz
+De eso
+Y bueno
+Ya con eso
+Podemos armar
+El estadístico
+T
+Nos da
+Que el p-valor
+Es
+1.17
+A la menos
+102
+O sea
+Super servita
+De cero
+Prácticamente cero
+Así que
+No podemos
+Rechazar la hipótesis
+Nula
+De que
+El delta
+Es igual a cero
+Y nada
+Pero nada
+Esto era para mostrarles
+Cómo se calcularía
+La matriz
+De varianzas
+Y covarianzas
+Después
+No sé
+No lo estoy viendo
+No lo tengo acá
+Pero lo que se puede hacer
+En lugar de hacer
+Esto manual
+Que es lo que proponen
+En esta parte
+B-Cob
+Se puede agregar
+Esta opción
+Para que te calcule
+El bootstrap
+Variance
+Covariance
+Matrix
+Usando
+X cantidad
+De repeticiones
+Entonces
+Vamos a hacer eso
+Rapidito
+A ver si sale
+Porque
+Puede llevar
+Un poquito de tiempo
+De última
+Lo vemos en la próxima
+Acá lo voy a hacer
+Con dos bootstrap
+Dos
+Acuérdense que el bootstrap
+Es digamos
+Agarrar la muestra
+Sacar una sub muestra
+Calcular lo que hicimos recién
+Volver a
+Randomizar
+Sacar otra muestra
+Eso dos veces
+Y bueno
+Y ahora sí
+Nos tira
+Los vendedores
+¿Sí?
+Bueno
+Tenemos exactamente
+Un minuto
+Antes de que
+Tenga pato
+Así que
+Nada
+No sé si alguna pregunta
+Con algo de lo que hayamos visto
+Ok
+Bueno
+Dejo de grabar entonces
+Más
+Unita opción
+No levan
+No levan
+No levan
+Dejo de grabar
+No levan
+Las
+No levan

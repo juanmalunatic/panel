@@ -1,0 +1,4627 @@
+Bueno, esto lo voy a fijar
+Así después
+Chusmeo si alguno de todos esos programas
+Que nos ponen ahí están buenos
+Y si encuentro algo copado
+Les paso
+Bueno, el tp de hoy
+Es sobre paneles desbalanceados
+Vamos a salir un poco
+De
+Esto de los paneles dinámicos
+Que veníamos viendo la última vez
+Y vamos a enfocarnos
+En otro tipo de
+Complejidad que pueden venir con
+Los
+Datasets en panel, con los modelos
+En paneles
+Que es el tema de
+Que pasa cuando tenemos paneles
+Desbalanceados
+Que es un escenario bastante común en general
+Cuando el diseño de
+Por ejemplo la encuesta que usamos
+Para
+Para pulir la información
+O
+Cuando el seguimiento que hacemos
+A las firmas que estamos mirando
+No es
+No es como de laboratorio
+O sea, no es el ideal
+Esto en las teóricas
+Creo que está
+En
+En el center slides número 3
+Hoy lo que vamos a estar mirando
+Es un poco
+De cómo
+Cómo trabajar en
+Estata
+La parte de
+Los contrastes
+Por sesgo de selección
+La corrección
+De selección muestral
+Vamos a usar
+El procedimiento
+De Woodridge
+Siguiendo dos
+Enfoques distintos
+Moonluck
+Y Chamberlain
+Y
+Esta clase vamos a ver
+También un poco
+De
+La parte de inferencia
+Sí
+Cómo
+Cómo salvar el hecho
+De que
+Los errores
+Que salgan
+Directamente
+De una estimación
+Pulldow
+Después de todas
+Las transformaciones
+Que hagamos
+No va a ser
+Exactamente
+Correcto
+Y vamos a tener que
+Como vimos ya
+En otras
+Ocasiones
+Aplicar
+O
+Un método
+De Woodstrap
+Para
+Encontrar
+Un estimador
+De la varianza
+Y después
+Hay otra
+Hay otra
+Forma
+Digamos
+De hacer esa corrección
+Más bien analítica
+Que es
+La corrección
+De semiquina
+Que eso es
+Como
+Un poco más
+El código
+Es bastante más áspero
+Así que eso es lo que
+Vamos a dejar
+Para la semana que viene
+Porque hoy
+No vamos a llegar a ser
+En cuanto a lo teórico
+Bueno
+Vieron con Martín
+Que
+El sesgo
+De selección
+Mostral
+Va a ser
+Problemático
+En los modelos
+Que estamos viendo
+Ahora
+De fixed effects
+Solamente
+Cuando
+El mecanismo
+De selección
+Que hace
+Que veamos
+Algunas variables
+Y otras no
+Está relacionado
+Con los errores
+Idiosincráticos
+Del modelo
+O sea
+Es como
+Hay una endogeneidad
+Ahí
+Que no
+Que nos estamos
+Ignorando
+A priori
+Entonces
+Vamos a arrancar
+Ya con el TP
+En el TP
+Lo que nos dicen es
+Tenemos una base
+De datos
+Que contiene
+Historial de empleo
+Y escolaridad
+De una muestra
+De hombres
+Para los años
+81-87
+Y nos piden
+Que consideremos
+Esta ecuación
+De salarios
+Donde
+El logaritmo
+De wage
+Es el logaritmo
+De salario
+Por hora
+Expert
+Son los años
+De experiencia
+En el mercado
+Laboral
+Edu
+Son los años
+De escolaridad
+Y nos piden
+Que respondamos
+Las siguientes
+Preguntas
+Estimar
+Usando efectos
+Fijos
+Cuál es el sesgo
+Potencial
+En este contexto
+Implementar
+El contraste
+De sesgo
+De selección
+De Woolrich
+Bajo
+Mundag
+Hay algunas cosas
+En esto
+Que es un poquitito
+Cuentoso
+Pero una vez
+Que lees
+Un par de veces
+Las cuentas
+Creo que
+Es más fácil
+Entender
+Por qué
+Hacemos
+El procedimiento
+Y qué hacemos
+O sea
+De dónde sale
+El procedimiento
+Y tiene todo
+Un poco más de sentido
+Y se hace más amigable
+Las cuentas
+Y el código
+Y después
+El ejercicio 2
+Es bueno
+Ya hiciste el contraste
+De sesgo
+De selección
+Spoiler
+Nos va a dar
+Que hay evidencia
+Que en este
+Dataset
+Tenemos sesgo
+De selección
+Entonces vamos a ver
+Cómo corregirlo
+Y vamos a hacer
+De vuelta
+La estimación
+Del modelo
+Bajo Chamberlain
+Y Mundag
+Después bueno
+Vamos a comentar
+Sobre los errores
+Estándar
+De las estimaciones
+Anteriores
+Vamos a ver
+Que el hecho
+De que estemos usando
+Correcciones
+Como de dos pasos
+Por así decirlo
+De agarrar los errores
+De una
+Y enchufarlos
+En otra ecuación
+Nos va a generar
+Que tengamos
+A hacer un ajuste
+En los errores
+Y después bueno
+Te dicen
+Bueno ok
+Estimá los errores
+Vía bootstrapping
+Y vía errores
+Estándar analíticos
+Que es la
+Variación
+Asintótica
+Esto
+Romy
+Disculpa
+Sí
+Me parece
+Que no está
+Subido
+El Problem Set 4
+Ni al Campus
+Ni al Dropbox
+Al Campus
+Sé que lo subí ayer
+Al Dropbox
+Sé que no lo subí
+Así que
+A ver
+Me fijo de vuelta
+En el Campus
+Dale
+Mientras yo
+Sí
+En el Campus
+Está
+Yo lo descargué recién
+Ah
+Ok
+Problem Set 4
+Así que
+Nada
+Esto es lo que nos va a quedar
+Para hacer la próxima
+Hoy queda
+Sorry
+Ahí me pareció
+Ah
+En el Campus
+Sí
+Sí
+Igual ahí lo
+Esto cargó
+Debería estar cargándose
+Al Dropbox
+Así que
+Nada
+Vamos a ir arrancando
+Entonces
+Estoy pensando
+Si
+Ok
+Vamos a ir un poquito
+A Stata primero
+Para chusmear
+Un poco
+La base
+De datos
+Y ver con qué
+Estamos trabajando
+Entonces
+Nada
+Los dos files
+Ya los tenemos cargados
+Ejercicio 1
+2
+De
+De hoy
+Y el inciso E
+Como les comentaba
+Es un poco más
+Todo esto es solamente
+El inciso E
+Así que
+Esto
+Lo vamos a ver
+La próxima
+Hoy nos vamos a enfocar
+En el 1
+Y el 2
+Lo primero que voy a hacer
+Como siempre
+Abrir la base
+De datos
+Y veamos
+Qué variables
+Tenemos
+Tenemos el ID
+Que son personas
+Año
+Del 81
+Al 87
+Y lo que vamos a tener
+Y lo que vamos a tener
+Es
+Una variable
+Que nos dice
+Si esa persona
+Elige
+Estar
+Estudiando
+Quedarse en casa
+Trabajo
+White collar
+Trabajo
+Blue collar
+Y trabajo
+En el área
+De servicios
+Es decir
+Si trabaja
+Es alguno
+De estos tres
+Si pertenece
+Si se queda en casa
+O si va a la escuela
+O se educa
+A diferencia
+De
+Los datos
+Anteriores
+Vamos a ver
+Que
+La
+El nivel
+De educación
+Para una misma persona
+Puede ir cambiando
+A medida
+Que lo estamos
+Observando
+Hola
+¿No estabas en el Zoom?
+Bueno
+Más que no sé
+Que
+Conecto acá
+El
+Sí, sí, sí
+Estábamos
+Tipo full virtual
+No, tranquilo
+Oye
+Igual
+Estaba perdonado
+Ahí está
+Ahí está
+Ahí está
+Gracias
+Gracias
+Gracias.
+¿Los de casa me escuchan?
+Sí, perfecto.
+Excelente, listo.
+Problema solucionado.
+Fue como, ok, esto estaba funcionando bien.
+Ok, estamos diciendo que
+lo que vamos a ver en este dataset ahora
+es que para la persona
+para cada persona vamos a poder ver
+que cambian algunas variables
+como la educación, que en los datos
+no cambiaban.
+Eso por un lado.
+También va a poder ir cambiando
+lo que es el nivel de experiencia,
+el salario, que es la variable que queremos medir.
+Y acá está como el
+lo jugoso de lo que vamos a ver hoy
+que es que
+para algunas de las personas,
+para alguno de los periodos temporales,
+no vamos a estar viendo los salarios.
+Y no es que si no veo el salario
+de una persona no lo veo nunca,
+sino que, por ejemplo,
+acá tenemos la persona número 2
+que
+en el
+periodo 81
+su elección es número 2,
+que si volvemos acá,
+número 2
+era significaba
+quedarse en casa.
+No vemos el salario.
+Ya el año siguiente
+la elección es 4.
+4 es
+Blue Collar.
+tiene este salario.
+Blue Collar tiene este salario.
+5 horas servicios tiene nuestro salario.
+Por algún motivo en este periodo
+no vemos el salario,
+incluso aunque su elección haya sido
+servicios.
+y después lo volvemos a ver.
+Entonces este problema
+de
+que tenemos variables
+que están censuradas
+en algunos periodos
+para algunos individuos
+puede llegar a traer problemas
+de sesgo de selección,
+como decíamos,
+en una interpretación
+de efectos fijos,
+de un modelo de efectos fijos,
+si
+la razón
+por la que falta
+esta visualización,
+este poder observar
+el salario,
+tiene que ver
+con algo
+que a su vez
+afecte al nivel
+del salario.
+Entonces,
+para pensar estos modelos
+lo que vamos a hacer
+en general
+es
+pensar que
+tenemos,
+por un lado,
+la ecuación de interés
+que es la ecuación
+que explica el salario,
+que es la que conocemos siempre,
+y la que aplicaríamos
+en un cross-section normal,
+pero ahora vamos a tener
+también
+que decir,
+bueno,
+esa decisión
+de
+ese salario
+yo solo lo observo
+bajo ciertas condiciones.
+¿Qué condiciones?
+¿Qué condiciones?
+Por ejemplo,
+que la persona
+de repente
+elija alguna
+de estas tres opciones,
+más
+otras cuestiones,
+por ejemplo,
+no sé,
+que podrían estar
+afectando también
+al salario.
+Entonces,
+eso es lo que vamos
+a estar trabajando hoy,
+ver primero
+si tenemos
+evidencia
+la de ese
+o de selección
+y después
+ver cómo
+lo arreglamos
+o cómo
+lo podemos
+intentar arreglar.
+Entonces,
+fijémonos
+qué tan grave
+es el problema
+de variables
+censuradas
+que tenemos acá.
+Voy a poner
+tab
+obswage,
+obswage
+esta variable
+que está acá,
+que básicamente
+toma valor
+uno
+si vemos
+el salario,
+cero si no.
+De 12.000
+observaciones
+vemos
+5.800
+salarios
+y 6.000
+no los vemos.
+Entonces,
+es casi
+la mitad
+de la muestra
+y no podemos
+felizmente
+decir,
+bueno,
+me saco
+estos de encima
+y trabajo
+solamente
+con esta parte
+del dataset
+porque como
+estamos en un panel,
+esto que te estaría
+sacando de encima
+probablemente
+tenga algo que ver
+con también
+tanto,
+uno con la decisión
+de trabajar,
+dos con lo que hace
+que veas el salario
+para estas personas
+y tres con el nivel
+de salario.
+Entonces vas a tener ahí,
+no va a ser lo más,
+no vas a estar
+aprovechando toda la
+información que tenés
+en el noto.
+E incluso
+tab
+of wage
+con
+choice
+fíjense,
+de la gente
+de la que
+observamos
+el salario
+todos
+pertenecen
+al menos
+a
+white collar,
+blue collar
+o services
+y de los
+que no
+la observamos
+tenemos un poco
+de todo.
+Pero por lo menos
+acá
+ya podemos decir
+ok,
+de las personas
+de las que observo
+ninguna está
+como en esta decisión
+de quedarse en casa
+o
+seguir estudiando.
+Entonces
+nada,
+con más razón
+no podemos
+estimar así
+no más,
+porque
+¿qué pasa?
+Supongamos
+que
+nosotros
+pudiéramos
+ver también
+el salario
+de estas
+personas,
+que por algún
+motivo
+no lo estamos
+viendo.
+Y ponele
+que acá
+cuando
+con esos
+salarios
+medidos
+supongamos
+que tu
+distribución
+de datos
+es así,
+una cosa
+así,
+muy
+evidentemente
+hecho
+para que
+la estimación
+de esto.
+Si en lugar
+de ver esto
+por algún
+motivo,
+por ejemplo
+acá tenemos
+las que vemos
+en realidad
+son estas
+acá
+y me quedo
+solamente
+con esta
+parte
+de los datos
+o sea
+con estos
+datos
+que están acá
+la estimación
+va a dar
+sesgada.
+vas a estar
+estimando
+este
+consiciente
+naranja
+en lugar
+del
+violeta
+que es
+el que
+nos
+interesa.
+¿Por qué
+es este
+el que
+nos
+interesa?
+Y
+porque
+estamos
+hablando
+de
+porque
+justo
+en este
+ejercicio
+nos
+interesa
+mirar
+toda
+la
+población
+de
+hombres
+de los
+que
+se
+extrajo
+esta
+información
+la
+muestra.
+Hay
+un tema
+que está
+como de
+fondo
+igual
+que
+lo estamos
+pasando
+por
+alto
+que
+es
+si a vos
+lo que
+te
+interesaba
+inicialmente
+igualmente
+era
+analizar
+el salario
+explicado
+por estas
+variables
+solamente
+para esta
+parte
+de la
+gente
+o sea
+para la
+gente
+que
+eventualmente
+termina
+eligiendo
+trabajar
+y la
+gente
+que
+eventualmente
+el salario
+terminaba
+siendo
+observado
+entonces
+nada
+no pasa
+nada
+pero bueno
+como lo que
+queremos hacer
+es estimar
+un coeficiente
+que sea
+aplicable
+o que
+represente
+o que
+nos
+explique
+qué está
+pasando
+con toda
+la
+población
+no solamente
+con la
+persona
+del que
+estoy
+viendo
+el salario
+ahí vas
+a tener
+el problema
+también
+entonces
+dos cosas
+uno
+definir cuál
+es tu
+población
+de interés
+para saber
+si es
+problemática
+o no
+la censura
+que estás
+viendo
+y dos
+hacer los
+test
+que vamos
+a hacer
+ahora
+para
+para
+decidir
+esto
+de
+si
+tenemos
+evidencia
+de
+sesgo
+o no
+habiendo
+dicho
+esto
+vamos
+entonces
+a
+hacer
+la estimación
+de efectos
+fijos
+que es
+lo primero
+que nos
+piden
+el
+tp
+no
+acuerdo
+si ya
+declaré
+el
+panel
+o no
+voy a
+aclarar
+el
+panel
+vemos
+que
+para
+6300
+individuos
+no estamos
+observando
+el
+salario
+y bueno
+acá
+tenemos
+la estimación
+de efectos
+fijos
+entonces
+vemos
+que
+la
+experiencia
+y la
+educación
+afectan
+positivamente
+al
+log
+del
+salario
+fíjense
+queda
+todo
+estadísticamente
+significativo
+pero bueno
+vamos a ver
+si
+vale la pena
+creerle
+a este
+estimador
+porque
+como decíamos
+y como
+vimos ya
+en
+paneles
+dinámicos
+como vimos
+en
+si en
+paneles
+dinámicos
+más que nada
+si tenemos
+otra fuente
+de endogeneidad
+que en este
+caso va a ser
+el tema
+de la selección
+como observamos
+esa variable
+cuando la
+observamos
+fixed
+effects
+no va a
+estar
+como
+accounting
+for
+esa
+endogeneidad
+nueva
+solamente
+te va
+a estar
+salvando
+del
+efecto
+fijo
+porque
+es la
+corrección
+que hace
+el
+fixed
+effects
+y bueno
+vamos a
+decidir
+si le creemos
+o no
+a fixed
+effects
+y si
+cambia
+mucho
+la
+estimación
+ok
+antes de
+arrancar
+con
+Stata
+me parece
+que lo
+que voy
+a hacer
+es
+hablar
+un
+poquito
+aunque
+sea
+sobre
+no sé
+si
+sobre
+las
+slides
+o a
+mano
+de
+de la
+parte
+de los
+tests
+y de las
+correcciones
+me da
+cosa que si
+arranco a
+escribir
+ya veo
+que
+mejor
+no
+llegamos
+pero
+bueno
+vamos
+a ver
+ok
+lo revisamos
+un poco
+acá
+y de última
+escribo
+los pasitos
+en la
+tablet
+y cual
+cosa
+se los mando
+como
+por mail
+bien
+escrito
+ok
+lo que
+vieron
+en las
+teóricas
+es que
+vamos a
+encontrar
+una
+forma
+de
+primero
+hacer
+el test
+y después
+corregir
+que lo
+que hace
+es combinar
+el test
+de Heckman
+que
+probablemente
+vieron
+en materias
+anteriores
+con
+una
+transformación
+para ver
+la parte
+de
+nada
+la parte
+de
+cómo
+extender
+eso
+a
+panel
+la extensión
+se hace
+en
+Woolrich
+1995
+y
+en líneas
+generales
+es como
+que
+tenemos
+tres
+pasos
+la
+primera
+es
+agarrar
+la
+ecuación
+de
+selección
+que
+tenés
+acá
+y
+estimar
+esto
+según
+siguiendo
+un
+probito
+a partir
+de esto
+vas a
+tener
+como
+una
+medida
+de
+la
+probabilidad
+que
+tenemos
+de
+observar
+el
+salario
+de
+una
+persona
+sería
+nuestra
+SS
+Long
+Squish
+dadas
+estas
+variables
+que
+pongo
+acá
+esto
+bien
+general
+una
+vez
+que
+tenemos
+esa
+probabilidad
+estimada
+podemos
+estimar
+el
+coeficiente
+de
+Mills
+sacar
+la
+inversa
+del
+coeficiente
+de
+Mills
+y
+después
+lo que
+se
+va a
+hacer
+es
+agregar
+esta
+medida
+de
+qué
+tan
+probable
+es
+que
+yo
+vea
+el
+salario
+a
+un
+modelo
+corregido
+transformado
+u
+sin
+entonces
+acá
+tengo
+la
+transformación
+del
+modelo
+que
+lo que
+va a
+hacer
+es
+ayudarme
+con
+la
+parte
+de
+estás
+trabajando
+con
+un
+panel
+probablemente
+tengas
+que
+hacer
+un
+trabajito
+para
+sacarte
+de
+encima
+la
+endogeneidad
+del
+efecto
+fijo
+CI
+que
+ya
+conocemos
+bastante
+y
+aparte
+lo que
+vamos
+a
+agregar
+es
+este
+rho
+por
+lambda
+y
+t
+donde
+este
+lambda
+y t
+de
+vuelta
+sale
+de
+estimar
+esta
+inversa
+del
+coeficiente
+de
+mills
+y
+transformarlo
+within
+entonces
+vamos a tener
+esta nueva
+ecuación
+y lo que
+vamos a
+preguntarnos
+es
+¿es este
+error
+significativamente
+diferente
+de 0?
+entonces
+la hipótesis
+nula
+es que
+es igual
+a 0
+o sea
+que
+esta
+selección
+observo
+o no
+observo
+el error
+no es
+estadísticamente
+significativo
+para explicar
+el nivel
+de salario
+en logs
+y
+si
+rechazamos
+esa hipótesis
+nula
+lo que
+vamos a
+decir
+es
+ok
+la
+selección
+tiene
+que ver
+también
+no solo
+con
+que
+observas
+o que
+no
+observas
+sino
+también
+con
+el
+nivel
+es
+como
+decir
+ponele
+si
+para
+salarios
+muy
+bajos
+no
+observas
+capaz
+que
+es
+porque
+la
+gente
+tiene
+como
+por más
+que sea
+poco
+habilidosa
+decide
+no ir
+a trabajar
+para salarios
+muy bajos
+entonces
+ser poco
+habilidoso
+igual
+si estuvieras
+en el mercado
+y asuntas
+un trabajo
+te daría
+un salario
+más bajo
+a la vez
+entonces
+tenés
+dos cosas
+explicando
+un salario
+bajo
+aunque no
+veas
+ese salario
+bajo
+entonces
+es la parte
+del
+contraste
+después
+la parte
+de la
+estimación
+es básicamente
+lo mismo
+volver
+a esta
+ecuación
+de selección
+volver
+a estimar
+la inversa
+del coeficiente
+de Mills
+volver
+a agarrar
+la transformación
+within
+y ya
+después
+ir estimando
+esos
+vetas
+que aparecen
+ahí
+y bueno
+acá está
+la parte
+de la
+corrección
+esto ya
+lo hicimos
+y ahora
+nos piden
+implementar
+el contraste
+propuesto
+por
+Woodridge
+bajo
+el enfoque
+de
+Moonlag
+la diferencia
+se los digo
+ya
+entre
+el enfoque
+de
+Moonlag
+y el enfoque
+de
+Chamberlain
+es
+qué
+variables
+eligen
+dentro
+de la
+ecuación
+de
+selección
+pero
+fuera
+de
+eso
+la idea
+es muy
+similar
+entonces
+voy a escribirles
+acá
+porque siento
+que esto
+se entiende
+más
+cuando
+cuando lo
+vemos
+escrito
+a ver
+cómo era
+esto
+todas
+las notas
+si quiero
+crear
+una
+de esto
+voy a aprender
+a usar
+la tablet
+no
+no
+no
+no
+no
+me parece
+no
+no
+no
+porque
+no
+no
+no
+Ok, entonces vamos a escribir primero los pasitos
+Así estamos más o menos
+Ordenados
+Entonces lo que vamos a hacer ahora es
+El enfoque de Moonlag de estos pasitos que comentábamos recién
+Entonces como decíamos
+Partiendo de la especificación
+Creo que podríamos agarrar eso primero
+De que tenemos
+La ecuación de interés
+Que es algo así como
+Ok, lo voy a escribir en términos de una y
+Arbitraria, pero si lo pensamos sería
+Esto sería el log del salario
+Y estas serían las variables explicativas que vamos a poner
+Ponerle educ y expert en este caso
+Más este efecto fijo
+Más u y t
+Y vamos a tener también una ecuación de selección
+Que nos dice cuándo observo o no el salario
+Entonces la ecuación de selección va a ser más del estilo
+S, I, T
+Donde esto sería
+OBS
+Wage
+Igual a
+Una indicadora
+Que va a estar estructurada de alguna forma
+Ok
+En el caso de Moonlag lo que se usa son
+Un promedio temporal de las X
+Por eta
+Más
+El valor de las X
+Delta
+Más un error
+Entonces si todo esto es mayor que cero
+Esto toma valor uno
+Y yo observo el salario
+Moonlag lo que hace es esto
+Digamos, en lo que hace diferencia de Chamberlain
+Es que agrega esta
+La media temporal
+Chamberlain agrega un par de cositas más que ahora
+Entonces
+Partimos de esto, de que tenemos
+La ecuación de interés
+Tenemos la ecuación de selección
+Creo que estoy escribiendo muy grande
+A ver si hago esto
+Entonces
+Lo que hacemos es
+Paso uno
+Disculpa, tengo una consultita
+Sí
+Que es más de curioso que de otra cosa
+En la ecuación de selección
+Poner que sea mayor que cero
+Es simplemente por notación
+Puede ser
+Mayor de cero, negativo
+O sea, la gracia es correr una regresión de
+Unos y ceros
+Que si yo observo
+Wage o no
+Contra esas variables
+No es que te cambie
+Si es que sea
+O sea
+El sentido de la desigualdad
+¿No?
+A ver
+Estoy pensando
+Claro
+Es como
+En realidad lo que va a pasar
+Es que
+Cuando
+Al final del día
+Esto
+Lo que voy a marcar en rojo
+Son datos
+¿No?
+Y estos son errores
+Y esto lo vas a estimar
+Entonces
+Que vos pongas cero acá o no
+Quizás te va a cambiar como
+Esto
+Va a ser como
+Acá
+Esto es una constante
+No sé si
+Entonces
+Si en lugar de un cero
+Yo acá pongo
+Ocho
+La constante
+Que antes
+Espera
+Me voy a ordenar un poco más
+Claro
+Se te va a rescalar la constante
+En función de lo que pongo ahí
+Claro
+Es como que
+Si yo el salario lo observo
+Para
+Poner que tenemos tres personas
+Tenemos la persona
+Uno
+La persona dos
+Y la persona tres
+Y yo lo observo
+Para la
+Uno
+Y para la dos
+O sea
+Esto vale
+Uno
+Uno
+El loss wage
+Y para la tres
+Vale cero
+Me pregunto
+Ok
+¿Cómo el resto
+De las variables
+Que hay acá
+En el dataset
+Afectan
+Esto
+Versus esto
+Todo eso
+Va a venir como
+Por este lado
+Por este lado
+Y bueno
+El error lo que no llegue a explicar
+Ahora
+Si todas estas variables
+En conjunto
+Me dicen
+Bueno mirá
+Dado lo que vemos acá
+Lo que decimos es
+Que
+Los que tienen
+Por ejemplo
+Raza
+White
+Más
+Educación
+Mayor
+A 15
+Más
+Experiencia
+Mayor
+A
+Dos
+Para todos
+Para todos
+Esos
+S
+Igual a
+Uno
+Y para el resto
+S
+Igual a cero
+Entonces
+Todo esto es como que te da una cuentita
+Si vos en lugar de eso
+Pones esto
+Lo que vas a decir es
+Esto
+Este estimador
+Este
+Cuando estimes esta constante
+Te va a dar
+Te va a dar
+8
+Y te vas a volver a parar
+Como sobre ese nivel
+Perfecto
+Gracias
+Digamos
+No
+No
+O sea es como que vas a
+Reescalar
+No reescalar
+Sino
+Mover el eje
+De las X
+Hacia arriba
+O hacia abajo
+Una pregunta
+¿Qué es lo que está multiplicando
+Afuera del
+El corchete?
+Esta cosa que
+Voy a escribir
+Más linda ahora
+Exacto
+Perdón
+Un
+La indicadora
+La
+Como un
+El uno este raro
+Que ponemos antes
+De una indicadora
+Perfecto
+Bueno ahí me quedó el 8
+Ok
+Entonces
+Bueno
+Partiendo de esta especificación
+El paso 1
+Va a ser
+Estimar un PROBIT
+Sobre
+A este le voy a poner
+1
+O bueno
+1
+2
+A partir de ese PROBIT
+Que va a ser
+En el caso de
+Mundlack
+De vuelta
+En STATA
+Va a ser algo así como
+PROBIT
+OBS
+Wage
+Que es como
+La griega
+Contra
+La experiencia
+La educación
+Lo voy a escribir hacia abajo
+El promedio
+De la experiencia
+El promedio
+De la educación
+O sea
+Voy a estimar esto
+Usando el enfoque
+De Bundlack
+Que nos dice
+Usa
+Las variables
+Independientes
+Y un promedio
+De esas variables
+Para explicar
+Si observas
+O no observas
+El salario
+Perdón
+Te hago
+Otra
+Concuesta
+Cortita
+Nada más
+Para
+No seguir
+Morizando
+Solo para entender
+Nosotros acá en el paso 1
+Estamos estimando un PROBIT
+Por el simple hecho
+De que nosotros
+Después queremos
+Usar la inversa
+Del ratio
+De MIS
+Y eso se distribuye
+Como normal
+¿Verdad?
+Pero
+Fuera de eso
+Podría ser cualquier
+O sea
+Podría ser un LOGIC
+Tranquilamente
+¿No?
+Sí
+De hecho
+Creo que
+Otras de las opciones
+Son un TOBIT
+Que también
+Es otra de las opciones
+Sí
+Perfecto
+Gracias
+No, por nada
+Ok
+Entonces
+De
+Acá generamos
+El PROBIT
+¿No?
+Y nos generamos
+Esta medida
+De cuán probable
+Es observar
+O no
+El salario
+De alguien
+Dadas
+Estas variables
+Que incluimos acá
+Entonces el paso 2
+Va a ser
+Como decíamos recién
+Generar la inversa
+Del coeficiente
+De MIS
+Que en STATA
+Va a ser algo así
+Como poner
+PREDICT
+Acuérdense que
+La salida de PROBIT
+Es un poco distinta
+Que la de
+XTR o REG
+Porque
+El PROBIT
+Si no le especificamos
+Este XB
+Lo que nos va a publicar
+Es la probabilidad
+Y en realidad
+Lo que quiero predecir
+Es el
+Los beta
+Y después de eso
+Me genero
+Ese
+Lambda
+Y T
+Y T
+Que vamos a ver
+En el código
+Que va a ser algo
+Que es
+La normal
+La densidad
+De la normal
+Evaluada
+En XB
+O sea
+En los beta
+Sobre
+Normal
+X beta
+Entonces este
+Lambda
+Y T
+Es la inversa
+Del coeficiente
+De Nils
+De Nils
+Una vez que tenemos esto
+Lo que vamos a hacer es
+Regresar
+La variable
+De interés
+Contra
+La variable
+Independiente
+Y los
+Lambda
+Y T
+Que nos va a quedar
+Algo del estilo
+Y
+Y T
+Transformado
+X
+Y T
+Transformado
+Beta
+Más
+Rho
+Por
+Lambda
+Y T
+Transformado
+Más
+Algún tipo
+De
+El error
+Que tengamos
+Transformado
+X
+Entonces agarramos
+La transformación
+De fixed effects
+Pero le enchufamos
+Por así decirlo
+Esto que habíamos
+Generado antes
+Y
+Testear
+La hipótesis
+Nula
+Rho
+Igual a
+0
+Versus
+La alternativa
+Rho
+Distinto
+De 0
+Entonces
+Nada
+Veamos
+Si estamos
+En este caso
+O en este caso
+Y
+Seguimos
+Vuelvo
+A la
+Estata
+Entonces
+Fíjense
+Lo primero
+Que voy a hacer
+Es
+Generar
+El promedio
+De la experiencia
+Y de la educación
+Por ID
+Para después
+Ya tenerlos
+Tanto para
+El put
+Proid
+Como para
+La transformación
+Within
+Que tenemos
+Que hacer
+Más adelante
+Entonces
+Tengo el
+Pull
+Proid
+Entonces
+Esto es
+Básicamente
+Cómo
+Cada una
+De estas
+Variables
+Afecta
+La probabilidad
+De observar
+El salario
+Después
+La estimación
+De la inversa
+Del cociente
+De mills
+Como ven
+Estoy pasando
+Por esto
+Rápido
+Porque
+Ya conocemos
+Todos estos
+Códigos
+O sea
+Lo más
+Raro
+Capaz
+Que era
+O pensar
+Por qué
+Corremos
+Por qué
+Los pasos
+Que hacemos
+Pero después
+Lo que es
+El código
+De esta parte
+Es bastante
+Amigable
+Y después
+Bueno
+Hacemos la
+Regresión
+Del salario
+Contra la
+Experiencia
+Contra la
+Educación
+Y contra
+El lambda
+IT
+Por fixed
+Effects
+Bajo errores
+Robustos
+Y digamos
+Que nos da
+Entonces
+Este es el salario
+Explicado por la
+Experiencia
+La educación
+Y la probabilidad
+De ver el salario
+El coeficiente
+La experiencia
+Nos da positivo
+La educación
+Nos da negativo
+Y la del lambda
+IT
+Nos da
+Significativo
+Y de hecho
+Si testeamos
+P-value
+Cero
+Tendríamos
+Evidencia
+En favor
+De rechazar
+La H0
+Y luego
+Tenemos evidencia
+De sesgo
+De selección
+Como que hay presencia
+De sesgo
+De selección
+Y eso es todo
+El enfoque
+De un black
+O sea
+Bastante
+Es tranquilo
+No es nada
+Anunciado
+Ahora vamos a ver
+Chamberlain
+Que
+Agrega un par
+De cositas
+Así que
+Vuelvo
+A la anotación
+Disculpa
+¿Cómo era lo que dijiste
+Recién?
+¿Generar sesgos
+De selección
+Y qué más?
+No, eso
+Que
+Cuando corrimos
+Fixed Effect
+O sea
+Lo que hicimos
+Fue
+Seguir
+La propuesta
+De
+A ver
+Woolrich
+Agarra
+El trabajo
+De Heckman
+Heckman
+Decía
+Mirá
+Usá
+El coeficiente
+De Mills
+O sea
+Usá
+Algo
+Que te diga
+Cuál es
+La probabilidad
+De ver
+El salario
+De una persona
+Basado
+En ciertas
+Variables
+Y eso
+Usá
+Para decir
+Bueno
+Y eso
+Afecta
+También
+El nivel
+Del salario
+De las personas
+Que sí
+Observás
+Entonces
+Woolrich
+Lo que hace
+Es decir
+Bueno
+Mirá
+Agarremos eso
+Pero para ponerlo
+En contexto
+De datos
+De panel
+Lo que podemos
+Hacer
+Es decir
+Bueno
+Apliquémoslo
+Transformado
+En un modelo
+De Fixed Effects
+Entonces estás mezclando
+Esas dos cosas
+Acá
+Entonces lo que
+Hicimos fue
+Probit
+Observo
+O no observo
+El salario
+Genero
+El coeficiente
+De Mills
+Para
+Para todas
+Las observaciones
+Para ver eso
+Que tan probable
+Es en cada IT
+Que observe
+O no observe
+Y basado en eso
+Regresamos
+El salario
+Contra las
+Explicativas
+Más este
+Lambda IT
+Por Fixed Effects
+Con errores
+Robustos
+Y cuando
+Hacemos esta regresión
+Vemos que
+El coeficiente
+Que acompaña
+El Lambda IT
+Es estadísticamente
+Significativo
+Bajo esta especificación
+Para explicar
+El salario
+Ergo
+Según
+El
+Contraste
+Propuesto
+Por
+Woolrich
+Basado en
+Heckman
+Siguiendo el
+Enfoque
+De
+Moonlag
+Que
+El enfoque
+De
+Moonlag
+Es usar
+Esto
+Dentro del
+Probit
+Que
+Estimamos
+Tenemos
+Evidencia
+En favor
+De rechazar
+La
+H0
+Que es
+La hipótesis
+O sea
+Nos orienta
+Nos
+Eh
+Si
+Tenemos
+Evidencia
+En favor
+De rechazar
+H0
+Con
+Comparándola
+Con una hipótesis
+Nula
+De presencia
+De sesgo
+De selección
+O sea
+Si
+Hay sesgo
+De selección
+Por lo que
+Vemos
+No sé
+Si
+Era eso
+Lo que
+Perfecto
+Ok
+Vuelvo
+Acá
+Un toque
+Esa
+Era
+Moonlag
+Ahora
+Vamos a
+Hacer
+El
+Enfoque
+De
+Chamberlain
+Que
+La idea
+General
+Es muy
+Similar
+Lo que
+Va a
+Cambiar
+Es que
+Incluimos
+En el
+Probit
+Entonces
+Chamberlain
+Lo que
+Propone
+Es
+Usar
+Una
+Ecuación
+De selección
+De la
+Siguiente
+Manera
+De vuelta
+A la
+Indicadora
+Lo que
+Voy a
+Tener
+Ahora
+Va a
+Ser
+Una
+Constante
+Como
+En el
+Anterior
+X
+Y T
+Delta
+Como
+En el
+Anterior
+O sea
+Decir
+Bueno
+La probabilidad
+De observar
+Depende
+De las
+Variables
+Siguiendo
+Siguiendo
+Esta
+Esta
+Forma
+Lineal
+Y además
+Lo que
+Agrega
+Es
+Lo voy a poner
+Otro color
+Así se entiende bien
+Que esa es la
+Diferencia
+Son unas variables
+Que
+Las van a ver
+Escritas así
+X y
+Por ejemplo
+T
+Pero
+Pero como
+Es como
+Es como una
+T
+Distinta
+Por
+Eta
+T
+Así
+Hasta
+X y
+T
+Grande
+Por
+Eta
+T
+Grande
+En este ejercicio
+De hoy
+No vamos a usar
+Todos los test
+Vamos a usar
+Solamente tres
+Pero si quieren
+Lo pueden extender
+Pueden sacar
+Pueden agregar
+Lo que ustedes quieran
+Para el ejercicio
+De hoy
+Lo que vamos a agregar
+Es
+X y
+81
+Por
+Eta
+81
+Más
+X y
+82
+Por
+Eta
+82
+Más
+X y
+83
+Por
+Eta
+83
+Todo esto
+Más
+Los errores
+Mayor que 0
+O sea
+Esta sería
+Como la indicadora
+Esperen que
+Achico
+Todo esto
+Si me entra
+En un solo
+Veamos si podemos
+Se sigue viendo igual
+Ahí
+Entonces esta va a ser
+La diferencia
+Moonlight
+Lo que te decía
+En realidad
+Era
+Lo que ahí
+Vemos en rosita
+Para Moonlight
+En realidad
+Son los promedios
+Temporales
+Que están acá
+Entonces en lugar
+De usar promedios
+Temporales
+Que es como algo
+Más
+Tranquil
+Lo que
+Chamberlain
+Que dice es
+Esto
+Puede parecer
+Un poco confuso
+O como que
+No sé
+Si se lee
+Bien
+Lo que
+Propone
+Esto
+Pero es
+Básicamente
+Ahora les muestro
+Un ejemplo
+De como quedaría
+Yo creo que
+Con esto
+Se ve bien
+Claro
+Supongamos que
+Tengo
+A la persona
+Creo que esto
+Lo agarré
+De una persona
+Específico
+Así que si tienen
+El dataset ahí
+Y lo quieren mirar
+Pueden mirarlo
+Busquen el
+ID 55
+Y tenemos
+El año
+Desde el 81
+Hasta el 87
+Y tenemos
+La variable
+De educación
+Para
+Este pibet
+Que toma
+Valor
+11
+En el 81
+12
+En el 82
+13
+A partir
+Del 83
+Ponele
+Que capaz
+Que tenía
+No sé
+16
+Seis
+Años
+Estaban
+En la secundaria
+Y completa
+1
+2
+3
+A los 3
+A los 3 años
+En el 83
+Completa la secundaria
+No sé si ahí son
+13 años de educación
+Y a partir
+Y a partir de ahí
+Y a partir de ahí
+Ya sigue
+Como que
+Quedó con
+Universidad
+Secundaria
+Completa
+Hasta el 87
+Estas que están acá
+Estas que están acá
+En nuestro
+En nuestro
+Modelo
+Las vamos a tener
+Que armar
+De la
+Siguiente forma
+Voy a tener
+La X
+En nuestro caso
+Son
+Acuérdense
+Edu
+Educ
+Y experiencia
+Entonces voy a tener
+Educ 81
+Experiencia 81
+Educ 82
+Que es esta de acá
+Exp 82
+Educ 83
+Exp 83
+Que sería esto
+Acá
+Esto es esto
+Esto es esto
+¿Cómo se computa esto?
+Básicamente
+Voy a hacer
+Un solo ejemplo
+Con
+Educ 81
+Va
+Con las de
+Educ
+Educ 81
+Lo muestro acá
+A mano
+Porque creo que
+Después hacía el código
+Que da más
+Interesante
+Lo que es
+Educ 81
+Es decir
+Bueno
+Vamos a ver
+Cuánto valía
+La variable
+Educación
+En el año
+81
+Ok
+Busco el año
+81
+Veo que la variable
+Educación
+Es 11
+Entonces
+11
+11
+11
+11
+Así
+O sea
+Me dice
+¿Cuánto valía
+La variable
+Educación
+En el año
+81
+Para la persona
+55
+Y eso
+Se lo aplicas
+A todos
+Los periodos
+Temprales
+Después
+Hace lo mismo
+Con
+82
+Te fijás
+Cuánto valía
+En el 82
+La educación
+12
+12
+12
+12
+12
+12
+12
+12
+12
+12
+12
+¿No?
+Eso por estar
+Pensando
+En el paso
+Y lo mismo
+Para
+El 83
+Me fijo
+¿Cuánto valía
+Educación
+En el 83?
+Valía
+13
+¿Cómo le digo
+A Stata
+Que me arme
+Esto?
+Bueno
+Eso es lo que vamos
+A ver ahora
+En un toque
+Pero en definitiva
+Entonces
+Chamberlain
+Te propone
+Aparte de las variables
+Explicativas
+Agregar todas
+Estas
+Si quisieran
+En lugar de
+Poner
+81
+82
+33
+Poner
+84
+85
+87
+Pueden hacerlo
+Si quieren
+Poner
+81
+85
+87
+Pueden hacerlo
+O sea
+Con eso
+Pueden jugar
+Y modificarlo
+Como quieran
+De hecho
+Lo que se dice
+En Google
+Rich
+En una parte
+Es que
+No hace
+Falta
+Que esto
+Este
+Realmente
+Bien
+Bien
+Especificado
+No hace
+Falta
+Que encuentres
+Exactamente
+El modelo
+Que te define
+Si observas
+O no
+Observas
+Porque
+Incluso
+A pesar
+De eso
+Vas a
+Conseguir
+Algo
+Que te va
+A servir
+Para
+Correr
+El contraste
+Después
+Pero bueno
+Pueden jugar
+Con eso
+Y ver
+Qué pasa
+Entonces
+Primero
+Eso
+Agarrar
+Esto
+Armar
+El
+Probit
+Sobre eso
+Y los pasos
+Dos
+Y tres
+Son los mismos
+Que antes
+Dos
+La inversa
+Del coeficiente
+De mil
+Y tres
+Estimar
+Lo que
+Sería
+Lo que sería
+L
+Wage
+Transformado
+Within
+Y T
+Igual
+A
+Educ
+Transformado
+Within
+Ponle
+Beta
+Edu
+Beta
+Experiencia
+Por la
+Experiencia
+Transformado
+Within
+Y T
+Más
+Los errores
+Y T
+Y creo que ahí no me falta
+Nada
+Ah bueno
+Y obvio
+El Lambda
+También
+Transformado
+Within
+Que sería
+Volver a estimar
+Esta parte
+De acá
+Y de vuelta
+Fijarte
+Cómo te da
+Este error
+Testear
+Si es
+Estadísticamente
+Igual
+O
+Esto a cero
+Y bueno
+Nada
+Entonces
+Vamos con eso
+Comparto
+Entonces lo que voy a hacer es
+Primero
+Summarize
+Sobre los IDs
+Para poder
+Llevarme
+De forma como
+Automática
+Con este
+Global
+El máximo
+Que es la cantidad
+Máxima de IDs
+Esto lo voy a usar
+Después en un loop
+Para armar la tablita
+Que vimos hace un rato
+Entonces
+Global
+Y ahí me guardo
+Este max
+De acá
+Una vez que me guardé
+Este max
+De acá
+Que si quieren
+Lo pueden
+Guardar a mano
+Básicamente
+Yendo a mirar esto
+Van hasta la última
+Observación
+Y dicen
+Ah ok
+El último ID
+Es el 1738
+Entonces todo lo que
+El loop que yo corra
+Va a ser hasta el 1738
+Entonces lo que vamos a hacer es
+Primero
+Necesito generarme
+Tres variables
+Experiencia
+81, 82 y 83
+Las tres columnitas
+Que vamos a agregar
+Al dataset
+Que va a ser esto acá
+Y vamos a arrancar
+Por el año 81
+Vamos con eso en la cabeza
+Entonces genero
+Experiencia 81
+Como una variable vacía
+Educación 81
+Variable vacía
+¿Cómo va a estar
+Generada esa variable
+Experiencia
+Y educación 81?
+Fíjense
+Primero
+Summarize
+La experiencia
+Para la persona
+Esto es un loop
+Que va desde el 1
+Hasta el 1738
+Entonces
+Me paro
+En el periodo 81
+Me paro
+En la persona
+Ahí
+Y agarro
+Y digo
+Bueno
+Summarize
+Resumime la experiencia
+Para el ID 1
+Para el año 81
+Fíjense
+Que pasa
+Si lo hacemos
+Como
+Con una persona
+En específico
+En summarize
+Acuérdense
+Que nos devuelve esto
+If ID es igual a
+Por ejemplo
+El 55
+Que veíamos antes
+En year 81
+ID 55
+Year 81
+Entonces
+Para la variable
+ID 55
+Año 81
+La experiencia
+Vale
+Cero
+Si la voy a buscar
+55
+En el año 81
+El wage
+Yo no lo veo
+La experiencia
+Que debería ser
+Alguna de estas
+Es cero
+Ok
+En el 81
+Entonces
+El promedio
+Es cero
+El mínimo
+Es cero
+El máximo
+Es cero
+Reemplaza
+La experiencia
+T
+O sea
+Expert 81
+Con el promedio
+De ese ID
+Solamente
+Para ese ID
+Y hace lo mismo
+Que en educación
+Agarra la educación
+Corre el summarize
+Así de ahí
+Podemos
+Pulear el promedio
+Y una vez que
+Puleas el promedio
+Guardalo
+Solamente
+Para ese ID
+Después volvé
+A la persona 2
+Agarrá la persona 2
+Y preguntá
+Esto
+¿Cómo es la experiencia?
+Para la persona 2
+En el año 81
+Porque todavía no me moví de año
+Es cero también
+Ok
+Ahora lo mismo
+Pero para la persona 2
+Con la educación
+Vale 12
+Entonces lo que va a hacer esto es
+Para la persona 2
+Armar
+En la variable
+Expert 81
+Cero cero cero
+Todos ceros
+Y en educ 81
+Reemplazar por este promedio
+Que es 12
+Eso lo va a hacer
+Para todas las personas
+En el año 81
+Después
+Vuelve arriba de todo
+Agarra el año 82
+Genera expert 82
+Educ 82
+Para todas las personas
+En el año 82
+Corre esto que decíamos recién
+Y después para el 83
+Lo mismo
+Entonces vamos a correrlo
+Esto capaz que tarda un toquecito
+Así que
+Mientras
+Tienen alguna pregunta
+Una cosita
+Nada que
+O sea
+Pero podrías
+Volver al enfoque
+Un segundito
+A lo que escribiste
+En la tablet
+Porque creo que copié algo mal
+Ya veo
+Perdón
+No, tranquilo
+¿Qué parte?
+Soy, soy, soy, soy
+En el ejercicio anterior
+El de Moonlack
+Cuando hiciste la integradora
+Así que le copié cualquier cosa
+Ah, me faltaba un más
+Con razón
+Tiene sentido
+Disculpa
+¿Listo?
+Sí, sí, sí
+Eso
+Gracias
+Disculpa
+No, no
+Bien
+Entonces tenemos acá
+Y vamos a ver esto
+De hecho
+Antes de ir a verlo
+Puedo
+Hacer
+Que me ponga primero
+Por ejemplo
+ID
+Here
+Edu
+Edu
+Edu
+81
+Edu
+Edu
+Edu
+Edu
+Edu
+Edu
+Edu
+83
+Expert
+Expert
+Era esto
+Sí, expert
+Expert
+81
+Expert
+82
+Expert
+Ah, sí
+¿Cómo nos quedó esto?
+Persona 1
+Año 81
+La educación vale 10
+Listo
+Vale 10
+82
+Educación vale 10
+Vale 10
+83
+10 en 2
+Vamos a buscar otro
+Un poquito
+Ah, eso
+El 55
+Y ya lo comparamos
+Con lo que habíamos
+Escrituando
+En el año 83
+El
+En el año 81
+Sorry
+Nos enfocamos acá
+En el año 81
+En el año 81
+La persona tenía
+Educación 11
+11 para todos los periodos
+En el año 82
+La persona tenía
+Educación 12
+12 para todos los periodos
+En el año 83
+Tenía educación 13
+13 para todos los periodos
+¿Ok?
+No, lo que teníamos armado
+En la tablita
+Listo
+Listas las variables
+Enfoque de Chamberlain
+Hacer el PROIP
+Con OBSWAGE
+Experiencia
+Educación
+Y estas variables
+Que decíamos recién
+81
+Para
+Experi-EDUC
+Experi-EDUC
+Experi-EDUC
+Generar la estimación
+De la inversa
+Del cociente de Mills
+Y por último
+Corre un
+Fixed Effects
+Del salario
+Con la experiencia
+De la educación
+Lambda IT
+Que calculaste recién
+Por Fixed Effects
+Con errores
+Robustos
+Y testeamos
+Lambda
+Igual a 0
+P-Valio 0
+Rechazamos la hipótesis nula
+De ausencia
+De sesgo de selección
+A favor de la alternativa
+Tenemos evidencia
+Para sesgo de selección
+Con los dos
+Enfapes
+Ok
+Habiendo encontrado
+Que entonces tenemos
+Evidencia de sesgo de selección
+Vamos a ver
+Cómo podemos
+Subsanar
+Un poco esto
+Y acá ya pasaríamos
+A la parte
+De estimación
+Con truncamiento incidental
+Acá van a tener
+Bueno
+Todos los supuestos
+Que se deberían cumplir
+Y de dónde sale
+El procedimiento
+Pero la
+El procedimiento es
+Estimar la ecuación
+4
+Por Pult-Probit
+A través de I y T
+La ecuación 4 es
+La de la selección
+Cuando estaba mirando la clase
+Y pensaba
+La ecuación de la selección
+Ya estaba como
+18 de diciembre
+De 20
+Con eso
+Tenemos entonces
+La inversa del cociente de Niels
+Lo que hicimos recién
+Definís un vector
+Con los promedios
+Con las variables
+Y con el cociente de Niels
+Y obtener
+Correr pull dobles
+Sobre esto
+O sea
+Esta doble B y T
+Con el sombrerito
+Es esto que está acá arriba
+Que es
+Usar el cociente de Niels
+Como regresor
+Aparte de
+Los promedios temporales
+Y aparte de
+La variable
+Que observas
+Acá tienen
+La expresión
+Que la expresión
+Si la miran
+Con un poco de cariño
+Siempre tengan en la cabeza
+El X
+Transpuesta por X
+Inversa
+X
+Transpuesta por Y
+Lo que tenemos es
+Eso mismo
+Pero bueno
+Con un S acá
+Que te está diciendo
+Si a esa observación
+La ves o no la ves
+Entonces esto
+Va a estar calculado
+Solamente para
+Las personas
+De las que sí
+Vemos el salario
+O sea que cumplen
+Con el
+Con la ecuación
+De selección
+Bueno
+Y en cuanto a la inferencia
+Acá tienen
+Las cuentas en sí
+Pero después vamos a ver
+El caso de Bootstrap
+Pero nada
+Si quieren verlo
+Con más detalle
+Lo pueden ver después
+Ahora vamos al código
+Porque si no
+Vamos a llevar
+Y en el código
+Lo que tenemos es
+Ejercicio 2
+Esta parte de acá
+Es toda la misma
+Pero la voy a correr
+De vuelta
+Inciso A
+Vamos a hacerlo
+Según Chamberlain
+Así que de vuelta
+Vamos a armar
+Estas variables
+Xperia y Euc
+Del 81 al 83
+Y bueno
+Mientras esta corre
+Les cuento
+Qué es lo que hay acá
+Tenemos el pool
+Probit
+Bajo Chamberlain
+Para obtener
+La inversa
+Del coeficiente de
+Mills
+Corro el
+Probit
+Predigo
+Predigo
+SIT
+Que es la selección
+La ecuación de selección
+Y en base a la ecuación de selección
+Generamos el lambda IT
+Para todas las observaciones
+IT
+Después hacemos
+Pool WL
+Sobre la ecuación de interés
+Más las X
+Que agrega Chamberlain
+Más la inversa
+Del coeficiente de 1000
+Fíjense
+Que en las slides
+Lo que veíamos
+No era la X
+De Chamberlain
+Sino
+El X
+Raya
+Ahí estamos pensando
+En
+Acá
+Este vector
+Que está acá
+Este tiene los promedios
+Temporales
+Porque está pensando
+El enfoque de
+Moonlack
+El enfoque de Chamberlain
+En lugar de tener esto
+Va a tener
+Las que hablábamos recién
+Entonces
+Lo que decíamos
+Corremos la parte
+Para estimar
+El coeficiente de Mills
+Y después hacemos
+Pool Doubles
+De la ecuación de interés
+Sobre
+Expert 81
+Educ 83
+Estaba pensando
+Si esto me iba a funcionar
+Ahora que habíamos
+Reordenado las cosas
+Pero me acordé
+Que lo hicimos de vuelta
+Así que no pasa nada
+Con la interacción
+De los años
+Con el lambda IT
+La interacción
+Fíjense
+Que es como una multiplicación
+Donde le estoy diciendo
+Mira
+Tengo una variable
+De categorías
+Que me dice el año
+Y otra variable continua
+Que es el lambda IT
+Y nada
+Después
+Es básicamente
+Calcular
+Eso
+Hacer la estimación
+Incluyendo todo esto
+Y acá ya podemos comparar
+El enfoque de
+Woodridge
+Chamberlain
+Y veamos
+En cuanto a la experiencia
+Nos da
+0.09
+Nos da 0.09
+Con FixFX
+Y ahora nos da
+0.05
+En todos los casos
+Integativos
+Un poco más bajo
+Y en cuanto a la educación
+Los retornos
+De la educación
+Sobre el salario
+Sería un poco
+Sería
+En FixFX
+Nos daba
+.17
+Y ahora es .10
+Si esto está bien
+O está mal
+Dependerá
+O sea
+Yo iría a buscar
+Como literatura
+Que hable
+Cuál es el retorno
+De la educación
+En el salario
+Cuál es el retorno
+De la experiencia
+En los salarios
+Para este tipo
+De poblaciones
+Y comparar
+Si te da
+Más o menos
+Consistente
+Porque es
+Es una diferencia
+En términos
+Porcentuales
+Es una diferencia
+Bastante grande
+Así que nada
+Eso sería
+La parte
+De la estimación
+Que como ven
+Una vez que hicimos
+El trabajo
+Difícil de entender
+Qué es lo que estamos
+Haciendo
+Cuando corremos
+El contraste
+La estimación
+Es seguir
+Los mismos pasos
+Y después regresar
+Incluyendo
+Estas variables
+Entonces
+Voy a dropear
+La del
+SIT
+Y la del
+Lambda IT
+Para poder hacer
+El enfoque
+De Moonlag
+La idea
+Es muy similar
+Pero bueno
+Moonlag
+De vuelta
+Usa los promedios
+De la experiencia
+Y de la educación
+Para correr
+El Probit
+Una vez que
+Tenemos
+El Probit
+Predecimos
+Si vamos a ver
+O no
+El salario
+Para todas las personas
+En todos los momentos
+Temporales
+Generamos
+Generamos
+El coeficiente
+De Mills
+Una vez que
+Generamos
+El coeficiente
+De Mills
+Hacemos
+Pull
+Doble
+De la ecuación
+De interés
+Más
+Las X
+Que propone
+Incluir
+Moonlag
+Que son
+Que sería
+Logaritmo del salario
+Como independiente
+Experiencia
+Educación
+Como
+Independientes
+Y bueno
+Las de Moonlag
+Con
+La interacción
+Con el Lambda IT
+Con los años
+Y acá tenemos
+La estimación
+De vuelta
+Fíjense
+Que
+Nos dan
+Un poquito
+Parecidas
+Entre estas
+Pero alejadas
+De las de FixFX
+Entonces
+Pareciera
+Como que FixFX
+Está un poco
+Sobreestimando
+El efecto
+Que tiene
+Un año más
+De educación
+En el salario
+Que estos de acá
+Que están teniendo
+En cuenta
+Che
+Mirá que
+La educación
+Podría estar afectando
+No solo
+El nivel del salario
+Sino
+Para qué parte
+De la población
+Estás viendo
+El salario
+Así que nada
+Eso en cuanto
+A estimación
+¿Alguna pregunta
+Con esta parte?
+Bueno
+Ahora nos queda
+Hacer la parte
+De Woodstrap
+Que
+La motivación
+En
+Muy muy pocas palabras
+Es
+Acá estás
+Incluyendo
+En esta
+Regresión
+Este
+Lambda
+Y T
+Que en realidad
+Lo generaste
+De
+Otra predicción
+Entonces
+Ahí hay que
+Tener cuidado
+Con
+Los errores
+Estándar
+Que sacamos
+De esta
+Regresión
+Porque podría
+Ser que
+Tengas
+Errores
+Que no sean
+Los correctos
+Los que salen
+Acá
+Vamos a ver
+La parte
+Del
+Woodstrapping
+Que es
+Un poco
+Larguito
+El código
+Pero
+Nada
+Creo que voy a
+Hacer un poco
+Ok
+Les voy a contar
+Como una historia
+Ponele
+Por
+Escrita
+Así
+Se ve un poco
+Más claro
+Y
+Después pasamos
+Al código
+Así que
+Vamos a hacer eso
+Esta sería
+La parte
+De
+Si quieren
+Más info
+De esta parte
+O como
+Sustendo
+Teórico
+Secciones
+11.2
+De
+Woolridge
+El de
+Creo que es
+Cross section
+En panel data
+Análisis
+13
+7
+2
+O
+13
+3
+1
+De Cameron
+Trivedi
+Que es el de
+Micro
+Conometrics
+Using
+SAT
+Algo así
+Ahora
+Ahora después
+Igual les muestro
+Lo que vamos a hacer
+Con Bootstrap
+Es parecido
+A lo que
+Uno hace
+Cuando corre
+Monte Carlo
+Pero la diferencia
+Entre Bootstrap
+Y Monte Carlo
+Es que en Monte Carlo
+Uno tiene que
+Generar muestras
+De forma
+Que siguen
+Algún proceso
+Que le decimos
+Y en el caso
+De Bootstrap
+Lo que hacemos
+Es
+Para una muestra
+Que ya tenemos
+Que la sacamos
+De la población
+Remuestrear
+Usando esa muestra
+Entonces lo que vamos a hacer
+Es
+Dados
+Los
+Datos
+Le voy a decir acá
+W
+Que son como
+Los salarios
+Originales
+Que
+Que sacamos
+De la población
+Desde la persona
+Uno
+Hasta la persona
+N
+Lo que hacemos
+Es
+Saco
+Una muestra
+Bueno
+Con
+Reposición
+O sea
+Si tenías
+Por ejemplo
+Ahí
+Persona
+Uno
+Dos
+Tres
+Cuatro
+Ponele que estamos
+Hablando del año
+Uno
+Y
+El salario
+Que veo
+Es
+Cinco
+Seis
+Siete
+Ocho
+Agarro
+Y digo
+Bueno
+Saco una muestra
+Con reposición
+Tamaño
+N
+Saco
+Muestra
+Tamaño
+Tamaño
+Tota que esta N
+Es la misma
+Entonces acá tenía cuatro personas
+Ok
+Agarro de forma aleatoria
+Cuatro personas de ahí
+Agarro por ejemplo
+Este cinco
+Cinco
+Agarro aleatoriamente de vuelta
+Me toca el ocho
+Ocho
+Busca aleatoriamente de vuelta
+Me vuelve a tocar el cinco
+Aleatoriamente de vuelta
+Me toca por ejemplo
+El siete
+Sí
+Entonces eso me refiero
+Tamaño N con reposición
+Sería
+Agarras una
+La anotás
+La volvés a meter a la bolsa
+Sacás otra
+La anotás
+La metés a la bolsa de vuelta
+En base a eso
+Calculo el estadístico
+Que nos interesa
+A esta muestra
+Le voy a decir
+W estrellita
+Entonces de acá
+Por ejemplo
+Me calculo
+Beta
+De bootstrap
+De la tirada
+Uno
+Y después repetís
+Uno
+Y dos
+Alguna cantidad
+De veces
+Por ejemplo
+De grande
+Con una colita
+Acá atrás
+Veces
+Entonces
+De cada bootstrap
+O sea
+En la primera tirada
+Ponele que me salió
+Cinco
+Ocho
+Ocho
+Ocho
+Ocho
+Ocho
+Ocho
+Ocho
+Ocho
+Ocho
+Ocho
+Ocho
+Ocho
+Ocho
+Ocho
+Ocho
+Ocho
+Ocho
+Ocho
+Ocho
+Ocho
+Ocho
+Ocho
+Ocho
+Ocho
+Ocho
+Y acá me va a salir
+Otro beta
+Número dos
+Así sucesivamente
+Cuando vos repetís
+Esto
+Ove veces
+Lo que te queda
+Es como
+Ok
+En la primera
+Tanda de bootstrap
+Nos salió este
+En la segunda
+Tanda de bootstrap
+Nos salió este
+En la tercera
+Tanda de bootstrap
+Nos salió este
+Cuántas veces
+Se repite
+O sea
+Cuántos de estos
+Betas
+Voy a tener
+Bueno
+Depende
+Cuántas veces
+Quieras
+Correr bootstrap
+Y de acá
+Lo que vos
+Calculás
+Es
+Tomás la varianza
+Todo esto
+Le tomo esto
+La raíz
+Y esto
+Lo que me devuelve
+Es el
+Desvío estándar
+Estimado
+De este
+Beta
+Eso es como
+A nivel general
+Ahora una pequeña
+Nota
+Es que
+No sé si esto
+Les hizo ruido
+Esto de
+Agarrar tan
+Felizmente
+Cosas aleatorias
+De acá
+Pero bootstrap
+Es medio que
+Funciona
+O tiene sentido
+O sirve
+O lo que quieran
+Si los datos
+Sobre los que estoy
+Bootstrap
+Son ideas
+Porque si no
+Medio que estás
+Agarrando cosas
+Acá
+Que capaz
+Que poblacionalmente
+No se distribuyen
+Están
+I y D
+Entonces
+Para esos casos
+Donde
+Caso contrario
+Como que hay
+Alternativas
+Más sofisticadas
+Como lo que vamos
+A hacer hoy
+Y ahora les voy a dar
+Un resumen
+De lo que vamos a hacer
+Por el tiempo
+Que tenemos
+Así que
+Espero que sea suficiente
+Para ilustrar
+El código
+Lo que vamos a hacer
+En esta
+En este
+Caso
+Más sofisticado
+Va a ser decir
+Lo voy a cambiar
+De color
+Así
+Lo vamos
+Que hay
+Que es
+Como otro
+Procedimiento
+Pasos
+Bootstrap
+Similar al código
+Supongamos
+Supongamos que
+En lugar
+De estimar
+Con las
+Correcciones
+De
+Woolridge
+Siguiendo a
+Chamberlain
+O Woolridge
+Siguiendo a
+Moondag
+Lo que estamos
+Pensando
+Es un
+Modelito
+Simple
+De
+OLS
+Entonces
+Lo que vamos a hacer
+Primero
+Es correr
+OLS
+De ahí
+Obtener
+Los
+Betas
+Estimados
+Y los
+Residuos
+De la
+Regresión
+Una vez
+Que tengo
+Ese
+OLS
+Saco
+Una muestra
+De
+Bootstrap
+Para qué
+O sea
+Vos corriste
+OLS
+Sobre toda
+La población
+Que tenías
+Originalmente
+Encontraste
+Encontraste
+Los betas
+Encontraste
+Los residuos
+Ahora
+Agarra
+Y quedate
+Solamente
+Con algunas
+De las
+Observaciones
+De todo
+Tu dataset
+O sea
+Teníamos
+ID
+Año
+Wage
+Wage
+Educo
+Entonces
+Entonces
+Puedo
+1
+1
+1
+1
+2
+2
+2
+1
+2
+Y
+A
+Wage
+Y ID
+Le pongo
+10
+10
+15
+17
+Y
+Educación
+Le pongo
+10
+10
+Educación
+Y este acá
+Aumentó
+Dos años
+De educación
+Pasó
+De 10
+Educación
+A 12
+Entonces
+Sacamos
+Una muestra
+De bootstrap
+Elegite
+De forma
+Aleatoria
+Eso que hacíamos
+Antes
+Agarra
+Uno
+Devolvelo
+A la bolsa
+Agarra
+Otro
+Devolvelo
+A la bolsa
+Agarra
+Otro
+Devolvelo
+A la bolsa
+Agarra
+Otro
+Que puede ser
+Este de vuelta
+Devolvelo
+A la bolsa
+Corres el bootstrap
+De vuelta
+Sobre
+Toda la parte
+Con eso
+Te fabricás
+Como
+Como si fuese
+Un dataset
+Nuevo
+Que no va a ser
+Un dataset
+Nuevo
+Sino va a ser
+Como
+Una Y
+Estrellita
+Que va a ser
+Un salario
+Nuevo
+Que es
+X
+Que son
+Las X
+Que vemos
+Acá
+Bueno
+No el
+Wage
+El Wage
+Es
+El X
+Que van a ser
+Edu
+Y
+Expert
+Por
+Beta
+Que el beta
+Es este beta
+Que habíamos calculado
+Antes
+Más
+Los errores
+Originales
+Que son
+Estos
+O sea
+Los errores
+Que habías
+Calculado
+Antes
+Parte 3
+Una vez
+Que tengo
+Esta
+Esta expresión
+Armada
+Estimamos
+El modelo
+Este
+Ficticio
+Que nos
+Armamos
+Por
+Bootstrap
+Este le podemos
+Poner
+Y
+Bootstrap
+Si queremos
+Y
+Estrellita
+De
+Bootstrap
+Que es
+Igual a
+X
+Beta
+El X
+Es
+Es
+La estrellita
+De Bootstrap
+También
+Y volvés
+A agarrar
+Como
+Esto sería
+Como
+El beta
+Bootstrap
+Por así
+De ser
+Esto sería
+Como
+La primera
+Tanda
+De Bootstraps
+Esto es
+Como
+Un beta
+Nuevo
+Por así
+Decirlo
+Que volvés
+A estimar
+Este beta
+Nuevo
+Lo agarrás
+Lo agarrás
+Y lo guardás
+Como
+Beta
+Sombrerito
+Bootstrap
+Uno
+Volvés
+Al paso
+Uno
+Y te calculás
+Beta
+Sombrerito
+Bootstrap
+Dos
+Con otra
+Digamos
+Otra serie
+De
+De X
+Incluidas acá
+Las que salen
+De volver
+A muestrear
+Te agarrás
+Así
+La cantidad
+De veces
+Que quieras
+Correr
+Bootstrap
+Quieres correr
+Bootstrap
+500 veces
+Bueno
+Lo haces
+500 veces
+Y después
+Lo mismo
+Calculás
+La varianza
+Le tomás
+La raíz
+Y ahí
+Lo tenemos
+Ahora
+Eso que les dije
+De hacer
+OLS
+En lugar
+De OLS
+No lo vamos a hacer
+Por OLS
+Lo vamos a hacer
+Con
+La
+Fixed Effects
+Con las correcciones
+De Chamberlain
+Y no sé
+Y no sé si
+De Mundag
+También
+Pero bueno
+Era más largo
+De explicar
+Así que
+Te expliqué
+Con noveles
+Y espero
+Que de vuelta
+Haya sido
+Enough
+Para
+No sé si
+Podría
+Finchotear esto
+Si me queda
+La mano
+Y
+Ok
+Comparto
+Si
+Pantalla
+Y acá
+Bueno
+Últimos
+Cinco minutos
+De la clase
+Vamos a
+Ver esto
+Voy a empezar
+A correrlo
+En realidad
+Porque esto
+Puede llevar
+Un ratito
+Mientras
+Corre
+No corrió
+Entonces
+Lo que va a hacer
+Esto es
+Primero
+Computo
+Coeficientes
+Con la muestra
+Original
+Del
+Probit
+Porque de vuelta
+Eso que yo les dije
+OLS
+En realidad
+No es OLS
+Es hacer
+Todo el procedimiento
+De corrección
+De Chamberlain
+O de Mundag
+Acá
+Creo que lo vamos a hacer
+Con Mundag
+Así que
+Tengan eso en la cabeza
+Sí
+Mundag
+Porque es
+Y promedio
+Guardo los coeficientes
+De la ecuación
+De selección
+Que se llaman
+B selección
+1
+B selección
+2
+B selección
+3
+Este 1
+Que está acá
+Se refiere a
+Por ejemplo
+Bueno no
+Me sigue tirando
+Para abajo
+B selección
+1
+Es el coeficiente
+De compañía
+Acá
+En esta ecuación
+Expert
+El 2
+Es edu
+Etcétera
+Genero la serie
+De residuos
+De la ecuación
+De selección
+Armo
+La ecuación
+De
+El
+Cociente
+La inversa
+El cociente
+El cociente
+De miles
+Armo
+La regresión
+Y esto
+Y esto
+Esto de acá
+Tómenlo como
+El OLS
+Que les dije
+En el cuadrito
+O sea
+Esto que
+Habíamos visto
+Acá
+Que dijimos
+Corremos OLS
+Y obtenemos
+Los betas
+Y los residuos
+Es este cacho
+De acá
+Para llegar
+Hasta acá
+Tuvimos que hacer
+Toda la corrección
+De antes
+De
+De Mundag
+Una vez que llegué
+Ahí
+Quiero quedarme
+Con los betas
+Y con los residuos
+Hago eso
+Armo las betas
+Armo una matriz
+Que se llama
+Beta
+Que es
+Lo que extraemos
+Con el comando
+Con el programita
+EV
+Después de correr
+Una regresión
+Lo guardo
+Como escalar
+Todos esos betas
+Individuales
+Lo guardo
+En una matriz
+Y bueno
+Acá
+En algún momento
+Se ve que
+Te las muestro
+Entonces
+Corriste esta regresión
+Nos guardamos
+Estos coeficientes
+Acá
+El 1
+2
+3
+4
+Y el 12
+Que es la constante
+Entonces acá tenemos
+Los betas
+De la ecuación
+De interés
+Los betas
+De la ecuación
+De selección
+Me los guardo
+Todos
+Bárbaro
+Una vez que me los guardé
+Genero la serie
+De residuos
+Para la ecuación
+De interés
+Ya los habíamos
+Hecho para la ecuación
+De selección
+Ahora para la ecuación
+De interés
+Ahora que tengo
+Los residuos
+De ambas ecuaciones
+O sea
+Esta parte ya está
+Tenemos que pasar
+Al bootstrap
+Lo que hace
+El bootstrap
+Es primero
+Este dataset
+Que tenemos
+Preservalo
+Para que podamos
+Volver a él
+Después
+¿Lo preservaste?
+Bueno
+Agarrate
+Una
+B-sample
+Que hace esto
+Del bootstrap
+Agarra
+Otra muestra
+De tamaño
+N
+Con reposición
+De lo que ya tenemos
+Con esa muestra
+Nueva
+Arma una matriz
+Que sea
+Evcel
+Que lo habíamos
+Definido
+Acá arriba
+Evcel
+¿Dónde está?
+Si no me equivoco
+Eran los errores
+De la ecuación
+De selección
+¿Dónde lo estoy encontrando?
+Y lo mismo
+Con los residuos
+De la ecuación
+De interés
+Guardándolo
+Como una matriz
+¿Por qué le pedimos
+Que me la guarde
+Como una matriz?
+Porque
+Cuando nosotros
+Hagamos el restore
+Se van a restorear
+Las variables
+No las matrices
+Las matrices
+Siguen como
+En la memoria
+De status
+Entonces estas matrices
+Van a sobrevivir
+Al restore
+Que nos devuelve
+Hasta antes
+De que hiciéramos
+El bootstrap
+Y una vez
+Que volvimos
+Al dataset original
+Guardamos estas matrices
+Como
+Variables
+Svmat
+Agarra la matriz
+Evcel
+Y la convierte
+En una variable
+Que se llama
+Evcel1
+Y lo mismo con esto
+Ahora lo que hago
+Es pasar
+A
+El siguiente paso
+Ya sacamos
+Ya sacamos la muestra
+De bootstrap
+Listo
+Nos generamos
+Esta como
+Muestra alternativa
+O este dato
+Sita alternativo
+Por así decirlo
+Pero ya no tengo
+Como que una sola
+Y
+XB
+Más U
+Porque tengo
+La ecuación
+De selección
+Y la ecuación
+De interés
+Entonces lo vamos a hacer
+Para las dos
+Para la ecuación
+De selección
+Tengo esta
+Que es
+Bootstrap
+Offswage
+Con todas las variables
+Que fíjense
+Que lo que agarra
+Es
+El beta original
+Que habíamos estimado
+Antes
+Lo multiplica
+Por la experiencia
+Por la educación
+El min de la experiencia
+Y el min de la educación
+Y ahí te corre
+Con esto
+Es como que
+Armas la indicadora
+Si todo esto
+Tiene valor
+Mayor que
+Uno
+Ponele valor uno
+Menor que cero
+Ponele cero
+Y si no
+Redondeás
+Y después lo mismo
+Con la
+La estimás
+La de selección
+Estimo
+PS
+Office
+Wage
+Que es como
+Estimar
+Si ves o no
+Según el
+Bootstrap
+Guardás
+Los betas
+Que te salen
+De ahí
+Armamos
+La inversa
+De la ecuación
+De de miles
+Armamos
+De vuelta
+La ecuación
+De interés
+Estimamos
+La ecuación
+De interés
+De vuelta
+Que acá
+Ya estamos
+Como en este
+Stage
+Del
+Paso 3
+Y guárdate
+El escalar
+Del beta
+Del beta
+Estimado
+Este primer
+Beta
+Bootstrap
+Entonces
+Fíjense que
+Este beta
+Bootstrap
+Uno
+No va a ser
+Uno solo
+Van a ser
+Los de la
+Ecuación
+De selección
+Y los de la interés
+Olvidate
+De todo eso
+Que calculaste
+Para volver
+A correr
+El bootstrap
+De vuelta
+Entonces
+Acá está
+Como el
+Programita
+Armado
+Acá
+Corrió
+El bootstrap
+50 veces
+Si quieren
+Ponerlo
+Más veces
+Va a llevar
+Más tiempo
+Pero pueden
+Hacerlo
+Lógicamente
+Y fíjense
+Que nos
+Termina
+Dando
+Los
+Que eficientes
+Son los
+Mismos
+Porque
+Nada
+El procedimiento
+Que usamos
+Fue
+Moondlack
+En ambos
+Casos
+Y
+Lo que
+Estamos
+Haciendo
+Acá
+Es
+Bootstrapear
+La parte
+De la
+Varianza
+Fíjense
+Que nos
+Da distinto
+Nada
+El código
+Es como
+Está bueno
+No sé
+Creo que
+En el TP
+Que sigue
+Para entregar
+Tienen que
+Hacer algo
+De esto
+Así que
+Está bueno
+Para mirarlo
+Pero
+Yo creo
+Que lo
+Importante
+Es entender
+Eso
+Primero
+¿Por qué
+Tenés que
+Generar
+La primera
+Parte
+Que es
+Como
+Esto
+Fuera del
+Bootstrap
+Para obtener
+Las vetas
+Originales
+De toda
+La muestra
+Y después
+Cuando
+Bootstrap
+Reordenás
+Todo
+Y eso
+Lo haces
+500 veces
+50 veces
+Las cantidades
+Bootstrap
+Que quieras
+Para armar
+Algo
+Más
+Robusto
+Esa sería
+La forma
+De sacar
+Las varianzas
+El estimador
+De las varianzas
+Usando
+Bootstrap
+La semana que viene
+Vamos a ver
+La opción
+Con
+Una corrección
+Más
+Analítica
+Y bueno
+El TP
+Voy a cortar
+La grabación
+Acá
+Porque
+Probablemente
+Esté
+Llevando
+Pato
+Supongo
+Para la otra
+Clase
+Pero
+Nada
+No sé
+Si tienen
+Alguna
+Otra
+Pregunta
+Pregunta
+Pregunta
+Pregunta
+Pregunta
+Pregunta

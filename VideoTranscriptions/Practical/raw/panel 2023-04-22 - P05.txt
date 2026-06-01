@@ -1,0 +1,4313 @@
+Bueno
+La clase de hoy nos toca
+Arranar con el Problem Set 3
+Pero antes de arrancar en sí
+Con el Problem Set 3
+Un poco, ¿qué vamos a hacer hoy?
+El Problem Set 3 tiene
+Cuatro ejercicios
+Bueno, acá abrí el archivo de las soluciones, pero
+Tiene cuatro ejercicios
+Yo creo que hoy vamos a llegar a ser el primero
+Porque
+Y quizás veamos un poquito del segundo
+Pero me interesa más ver el primero con detalle
+Porque
+El primero es como la base de los ejercicios
+Que vienen después, entonces está bueno como
+Ver cuáles son las cuentas
+Que hay atrás de cada uno de los ejercicios
+Digamos, en las soluciones tienen
+Un parrafito, creo que está bueno
+Ver
+Cómo está en el TP
+Ver de dónde sale
+Y dónde podrían encontrar más información
+Si necesitan
+Entonces voy a estar escribiendo a HomeDev
+Eso por un lado
+Pero antes de arrancar
+Quería contextualizar un poco
+Qué es lo que vamos a estar viendo
+En el TP
+Hasta ahora nuestros modelos
+Nosotros veníamos asumiendo
+Trabajamos ya con modelos lineales
+Y con modelos que incluyen un efecto
+No observado
+Que se corresponde con cada individuo
+Con cada county
+Con cada firma
+Y que se mantiene constante a lo largo del tiempo
+Y en esos modelos
+Para que nuestras estimaciones
+Sean consistentes
+Lo que teníamos que asumir
+Era el cumplimiento
+De supuestos de exogeneidad estricta
+De las variables independientes
+Y en el caso de que haya
+Alguna variable
+El CI
+El efecto fijo
+El supuesto de exogeneidad estricta
+Era condicional de ese efecto fijo
+Si se acuerdan
+Y voy a como
+Voy a estar haciendo bastante hincapié sobre esto
+Sobre esto me refiero a qué supuestos
+Estamos usando en cada modelo
+La parte de exogeneidad estricta
+Nos decía que los errores de hoy
+No pueden correlacionar
+Con las variables independientes
+Ni de ayer
+Ni de hoy
+Ni del futuro
+Condicional al efecto no observable
+En el caso de fixed effects
+La parte de efectos constantes
+En el tiempo
+Ya vimos un montón
+Cómo afecta la estimación
+Y cómo
+Ya lo vimos a lo largo de los TPS 1 y 2
+Ahora bien
+Lo que vamos a introducir en este TPS
+Son los paneles dinámicos
+Que esto entiendo que ya lo vieron
+Si no hace una o dos clases con Martín
+Pero creo que esta semana no hubo clases
+Así que
+Nada
+Si la pasada no hubo clases
+Ok
+Mejor así
+Hacemos un cacho
+Entonces vamos a
+Incluir paneles dinámicos
+En la parte práctica
+Y cuál es el sentido
+O sea
+Por qué queremos incluir
+Modelos
+Modelos dinámicos
+Básicamente porque lo que vamos a asumir
+Es que
+Estamos mirando
+O más bien
+Es útil
+La aplicación
+De modelos dinámicos
+Y el análisis
+De modelos dinámicos
+Para
+Paneles donde
+Estamos pensando
+Que alguna de las variables
+Independientes
+O más bien
+El modelo en sí
+Depende de su propio valor
+En el pasado
+Básicamente porque estamos
+Siguiendo la misma firma
+A lo largo de
+O el mismo
+Individuo
+O el mismo
+O el mismo país
+Durante diferentes periodos
+Entonces
+En general
+Este tipo de aplicaciones
+Las que estamos haciendo series de tiempo
+Les va a sonar mucho más
+Mucho de las
+Notaciones
+Y
+De los nombres
+Y los parámetros
+Que usamos
+Pero bueno
+En definitiva
+Lo que queremos agregar
+Al análisis
+Son modelos donde
+La variable
+Dependiente
+Depende de sí misma
+En el pasado
+Y aparte
+Como ya sabemos
+Manejar paneles
+Y estamos muy cancheros
+En eso
+Y sabemos que puede haber
+Este efecto fijo
+Es heterogeneidad
+No observable
+La vamos a agregar
+También al modelo
+Y ver
+Cómo podemos
+Proceder
+Entonces
+Además de permitir
+¿Cuál es la dificultad?
+O cuál es la complejidad
+Que estamos agregando al modelo?
+Que además de permitir
+La existencia
+De este
+Este parámetro
+De esta variable
+Que es constante
+En el tiempo
+Para cada individuo
+Vamos a permitir
+Una nueva presencia
+De
+Una nueva fuente
+De inconsistencia
+Que es
+Esta
+Variable
+Rezagada
+Un periodo
+Y lo que vamos a ver
+Es que en estos métodos
+Va a ser muy restrictivo
+Hablar de exogeneidad
+Escripta
+Básicamente porque
+Pensemos
+De vuelta
+Exogeneidad
+Escripta
+Nos dice que las variables
+No correlacionan
+Ni consigo
+Con los errores
+Hoy
+En el futuro
+Y en el pasado
+Entonces
+El supuesto
+Que sí vamos a garantizar
+Con estos modelos
+Es el supuesto
+De exogeneidad secuencial
+De vuelta
+Condicionado
+En el objeto
+En el efecto
+No observable
+Y exogeneidad secuencial
+Lo que nos va a decir
+Es
+Exogeneidad secuencial
+Lo que nos va a decir
+Es
+Una forma
+Distinta
+De exogeneidad
+Que va a tener
+Como esta limitación
+En cuenta
+Bueno
+En particular
+En este PP
+Vamos a
+Trabajar
+Con una base
+De datos
+Que se llama
+Mod AB Data
+Utilizada por
+Arellano y Bond
+En su famoso paper
+De 1921
+Se trata
+De un panel
+De 140
+Empresas británicas
+Encuestadas anualmente
+Entre 1976
+Y 1984
+El panel original
+No es balanceado
+Pero la versión
+Parte de ejercicio
+Es balanceada
+Y
+Vamos a tomar datos
+Del 77
+Al 82
+La variable
+Que identifica
+La empresa
+Es ID
+La variable
+Que identifica
+El tiempo
+Es
+Year
+La variable
+N
+Es el empleo
+De la empresa
+Y nos van a poder
+Que consideramos
+Un modelo
+Muy simplificado
+Del siguiente día
+Entonces vamos a decir
+Que el logaritmo
+Del nivel de empleo
+Se explica por
+Rho
+Por el logaritmo
+Del nivel de empleo
+En el periodo anterior
+Más un error compuesto
+Y ese error compuesto
+Es
+El error
+La heterogeneidad
+Fija
+Por individuo
+Constante en el tiempo
+O sea por firma
+Más este NU
+Que era
+El error estructural
+Nos dicen
+Que SI
+No correlaciona
+Con
+NU
+IT
+Y
+No
+Eso
+En el que nos van a pedir
+Que estivemos
+El modelo
+Por OLS
+Porque si no
+Les voy a olvidar
+Todas las soluciones
+Y
+Vamos a estimar el modelo por OLS
+Y preguntarnos qué sesgo esperaríamos encontrar y por qué
+Después estimar usando efectos fijos
+Con la transformación within
+Después una transformación de diferencias mínicas
+O sea, básicamente las transformaciones que ya vimos en los chates anteriores
+Ver si esas transformaciones ahora funcionan o no funcionan
+Para eliminar esa nueva fuente de inconsistencia que tenemos
+Y después, si vamos a pasar a estimadores un poco más
+Interesantes
+Que van a tratar de
+Spoiler alert
+No vamos a poder manejar el tema de la inconsistencia nueva
+Entonces necesitamos otro tipo de estimadores
+Y eso es lo que vamos a hacer con el estimador de Ander Sonseau
+GMM con primeras diferencias
+En niveles
+Esto es Arellano Bond
+GMM en primeras diferencias
+Y
+Tanto en niveles como, digamos, en sistemas se dice
+Que esto sería el Dandel Bond
+Y después te pliegue incluso en las herramientas fijas de tiempo
+Entonces eso es el ejercicio 1
+Después del ejercicio 2
+Agarra la misma base de datos
+Y
+Lo que va a hacer es modelar de vuelta el nivel de empleo de las empresas
+Pero van a agregar otras variables como
+Nivel salarial actual y rezagado
+Stock de capital actual
+Rezagado una y dos veces
+Producción agregada actual
+Rezagado una y dos veces
+Y también las damis de tiempo
+O sea, es un modelo un poco más
+Grande
+Con más variables
+Por eso digo que, digamos
+No me interesa correr con el ejercicio 1
+Porque el ejercicio 2
+Si el ejercicio 1 sale bien
+El ejercicio 2 es un poco más de lo mismo
+Pero bueno, viendo qué pasa cuando agregamos más variables exógenas
+Y nada, el ejercicio 3 y 4
+Ya no creo que lleguemos a verlo
+Pero bueno, vamos a ir arrancando
+Y nada, cualquier cosa me dice
+No sé si esto ya lo dije
+Pero el de pedo iba a tener muchas cuentas
+Así que déjenme buscar un
+Un buen adaptador en la tablet
+No te explico
+No te explico
+No te explico
+Bueno, voy a empezar a compartir desde acá
+Bueno, veo que tiene un poco de delay
+Así que voy a tratar de
+Compensar un poco el
+El pace
+Pero veremos
+Cómo sale
+Esperen que
+Me gustaría modificar
+Bueno, entonces el primer ejercicio nos pedía que estimemos
+Por Poldo Vélez
+Déjenme que
+Voy a reescribir cómo era nuestro modelo
+Era logaritmo natural
+Del nivel de empleo en IT
+Igual a Rho
+Por el logaritmo natural
+Del nivel de empleo en IT
+Epsilon de M-1
+Es decir, que es el primer ejercicio N-1
+Donde ese Epsilon IT
+Es igual a CY más NU IT
+Es igual a CY más NU IT
+Y lo que sabíamos es que la esperanza de CY
+Es igual a la esperanza de NU IT
+que es igual a la esperanza
+de 6 por
+nu y test
+y todo esto es igual a 0
+a ver si
+estoy pensando
+esto claramente no me va a alcanzar
+el tamaño de la letra
+todo esto igual a 0
+entonces el ejercicio A
+de vuelta nos pide que estimemos por
+OLS
+voy a arrancar con las cuentas y después vamos a las
+intrusiones
+pensemos que es
+lo que queremos estimar
+lo que queremos estimar en el modelo es
+este parámetro que está acá
+lo que antes llamábamos beta
+ahora le decimos rho porque
+tiene forma autoregresiva
+y bueno es la convención
+entonces básicamente lo que tenemos es
+que la estimación
+de rho
+por OLS
+va a ser igual a
+la sumatoria
+doble
+sobre n y t menos 1
+por n y t
+todo esto
+pensé que me iba a hacer una línea
+todo esto sobre
+la sumatoria doble
+n y t menos 1
+al cuadrado
+o sea
+x la j por x
+inversa x la j por y
+y acá lo importante
+yo creo que en este tp
+o lo que puede ser un poco
+ah
+algo que no dije
+voy a escribir
+n y t
+porque
+como
+sinónimo
+o lo voy a definir como
+el logaritmo del empleo
+porque si no
+tengo que escribir el logaritmo
+20 millones de veces
+y es mi honestidad
+y no se lo entiende nada
+así que
+esto es nuestra variable
+ms
+recuerden que lo que estamos
+haciendo
+lo que estamos considerando
+es que esta es la variable
+independiente
+y esta es la variable
+sorry
+esta es la variable independiente
+y esta es la variable dependiente
+en el modelo
+va a ser importante
+tener eso en cuenta
+porque
+cuando empecemos a hablar
+de covarianzas
+entre variables
+independientes
+y los errores
+puede resultar un poco confuso
+porque va a ser básicamente
+la misma variable
+la viada
+ok
+entonces
+primero vamos a ver
+de dónde surge
+o más bien
+dónde está
+esa fuente nueva
+de
+de endogeneidad
+que decíamos
+que es lo que nos va a generar
+inconsistencia
+cuando querramos calcular
+o cuando querramos usar
+los métodos que ya usamos
+la semana pasada
+entonces lo que voy a hacer acá
+es básicamente
+reemplazar el n y t
+entonces esto es n y t menos uno
+por
+en lugar de n y t
+vamos a poner
+lo que es
+que n y t es
+esto que está acá
+que es ro por n y t menos uno
+más c i
+más d y t
+no y t perdón
+y bueno
+lo de abajo se queda igual
+y acá lo que voy a hacer
+es hacer la distributiva
+de este valor destacado
+con este
+con este
+entonces
+vamos a hacer eso
+fíjense que
+bueno
+tengo la sumatoria doble
+n y t menos uno
+sobre la sumatoria doble
+de n y t menos uno
+al cuadrado
+por
+ro
+por n y t menos uno
+este ro lo puedo sacar afuera
+y me queda
+n y t por n y t menos uno
+o sea
+es el
+y t menos uno al cuadrado
+entonces
+8 y
+digamos
+así
+o sea que en definitiva
+todo esto
+en realidad esto
+que es este ro que está acá
+más
+la sumatoria doble
+de n
+t menos uno
+y ahí
+hacemos la distributiva
+con c i
+sobre la sumatoria doble
+¿cómo?
+sí
+lo que hice fue
+reemplazar acá
+espera que esto
+no tiene muchos
+comentarios
+reemplace
+este n y t
+bueno
+es que no sé
+quién usa eso
+y pone un resaltador
+como
+con 100%
+de
+no es el
+objetivo de un resaltador
+n y t
+es esto
+y por definición
+del modelo
+voy a escribir
+por acá
+porque si no después
+capaz que
+revisando esto
+no queda muy claro
+pero
+entonces si quieren
+hagamos
+n es el nivel
+n con dos
+montañitas
+es el nivel
+de empleo
+de niveles
+n con una sola
+es el logaritmo
+y nada
+seguimos con eso
+ok
+eso bueno
+aplicamos la segunda
+distributiva acá
+y después
+la última
+distributiva acá
+abajo
+sigue siendo la misma
+entonces fíjense
+que debería pasar
+para que este
+robo
+sea igual a este robo
+o sea
+al robo
+poblacional
+y la estimación
+sea
+incesgada
+deberíamos pedir
+que esto
+y esto
+sea igual a cero
+esto que está acá
+fíjense
+que lo que está
+lo que estamos mirando
+es
+una suerte de
+o variante
+o correlación
+o sea estamos mirando
+cómo se mueven
+de forma conjunta
+n y t
+menos uno
+con p y t
+que en el modelo
+aparecen
+acá
+n y t
+menos uno
+y el 20
+que está acá
+que creo que va a ser
+un poco más claro
+si
+esto que está acá
+lo reescribimos
+como
+el
+n y t
+lo quiero explicar
+con
+robo
+por n y t
+menos uno
+más
+c y
+más
+b y t
+o sea que de vuelta
+lo que estamos mirando
+en
+en este
+de acá
+n y t
+menos uno
+con b y t
+n y t
+menos uno
+con b y t
+o sea es la variable
+independiente
+con el error
+estructural
+del modelo
+y estos dos
+vamos a asumir
+que son
+que son
+incorrelacionados
+justamente
+por cómo definimos
+el modelo
+entonces
+esto de acá
+va a ser igual a cero
+el problema
+va a venir por acá
+pensemos que son
+n y t
+menos uno
+y c
+de vuelta
+esto es como una suerte
+de
+si quieren
+como una correlación
+una correlación
+entre n y t
+menos uno
+y c y
+¿no?
+n y t
+menos uno
+de vuelta
+en el modelo
+aparece de este lado
+y el c y
+es un efecto
+que es fijo
+y que es constante
+a lo largo del tiempo
+para todas las observaciones
+o sea
+si lo pensamos
+como algo
+como no sé
+en
+algo que afecta
+en todos los periodos
+del tiempo
+solamente a la firma
+no a todas
+en general
+es como
+si fuese
+el intercepto
+de la firma
+no sé
+tener un buen
+management
+que pone
+de entrada
+mucho más arriba
+que el resto
+entonces estas dos cosas
+van a
+variar
+entonces esto va a ser
+distinto de cero
+y ahí ya tenemos
+como
+lo que se conoce
+como
+el sesgo
+de paneles dinámicos
+que ya nos va a dar
+como
+una idea
+de
+como
+no va a funcionar
+o el es
+en este caso
+entonces
+básicamente
+lo que decimos
+es
+vuelvo acá
+que esta parte
+de acá arriba
+de
+n i t
+menos uno
+es distinto
+de cero
+y a esto
+le vamos a decir
+como
+el sesgo
+de
+voy a
+voy a
+voy a hacer un esfuerzo
+activo
+por mejorar
+la letra
+este sesgo
+de paneles
+dinámicos
+está muy bien
+desarrollado en
+en uno de los
+libros
+que está
+ahora se los
+muestro en la
+compu
+así
+creo que está
+en la página
+92
+de
+384
+que es el
+pdf
+o la página
+75
+y
+que más
+iba a decir
+ah bueno
+lo que dice
+si hago
+o lo que
+lo que llega
+a
+aprobar
+es que
+el sesgo
+en
+o el es
+sobre
+estima
+el
+valor
+de la
+estimación
+de
+error
+sí
+y otra cosa
+que
+menciona
+es que
+esto
+no mejora
+con el
+tendiendo
+a infinito
+les voy a
+compartir
+acá un toque
+no sé
+si les muestro
+dónde
+es lo deseado
+entonces
+página 92
+de 384
+el libro
+es
+análisis
+span
+data
+y
+hoy
+no le gusta
+nada
+dejo
+dibujar
+no
+no
+que es como
+la única
+posibilidad
+que tendríamos
+en principio
+modelos de panel
+donde
+conté
+teniendo
+infinito
+entiendo que
+mejoraría
+pero justamente
+el chiste de panel
+es que
+tenés
+delimitado
+mientras esperamos
+a que se desfile
+alguna pregunta
+de las cuentas
+o
+ahora esperen
+que dejo
+de compartir
+abrir un pdf
+ojo
+pero son 384
+páginas
+sí
+aparte
+tengo
+otros pdf
+de 385
+páginas
+abiertas
+pero
+qué sé yo
+ya
+me están
+pidiendo
+bueno
+esto me parece
+que no va
+a seguir
+así que
+más tarde
+cuando vos
+hacemos
+como un recap
+les muestro
+todos los
+files
+mentira
+sí quería
+pasar
+igual
+a esta
+para
+para
+correr
+oveles
+a ver
+vamos
+a intentar
+lo
+pero
+antes
+de compartir
+voy a sacar
+no quiero salir
+del zoom
+porque
+hola
+hola
+a ver
+bueno esto
+revivió
+pero
+no
+no
+no quiero
+cerrar
+el
+porque
+tengo
+el
+teniendo
+que
+veamos
+si funciona
+esta
+capaz que
+tengo
+más suerte
+y bueno
+hecho
+paso
+entonces
+ahora sí
+a la estimación
+de
+goles
+no
+no
+ahí vamos
+los
+cuadios
+creo que
+ya se los
+cargué
+en el
+en el campus
+y en el
+dropbox
+así que
+si quieren
+seguirlo
+ahí no tengo
+los juegos
+no son tan
+complicados
+esta primera
+parte
+porque es lo que
+ya vimos
+o sea
+no es nada
+demasiado
+complejo
+se van a
+poner un poco
+más interesantes
+en esta segunda
+parte
+así que
+nada
+arranco
+primero que
+nada cargo
+la base
+de datos
+declaro
+el panel
+y vamos
+a correr
+la primera
+regresión
+que es
+oveles
+y recuerden
+que lo que
+estamos viendo
+es el log
+del empleo
+contra su
+propio
+rezago
+y en oveles
+obviamente
+el efecto
+fijo
+no lo vamos
+a considerar
+todo va a parar
+el error
+y bueno
+vamos a ver
+cómo
+vamos con eso
+entonces ya tenemos
+como un primer
+resultado
+nos da un valor
+de .997
+para
+el robo
+que estimamos
+y no sé
+si lo recuerdan
+de
+de la clase
+teórica
+pero esto
+podría
+llegar a ser
+un problema
+porque
+cuando
+robo
+tiende a
+tiende a
+uno
+o
+tenemos
+evidencia
+para pensar
+que tiende
+a uno
+esto puede
+hacer que
+después
+los procedimientos
+que hagamos
+de valores
+instrumentales
+no sean tan
+confiables
+entonces
+ya
+vamos
+como
+operando
+con ello
+en mente
+y por otro
+lado
+bueno
+recordar
+que
+por el sesgo
+de paneles
+dinámicos
+este valor
+va a estar
+sobreestimando
+el valor
+verdadero
+de error
+ya
+esperaríamos
+que el valor
+verdadero
+de error
+esté un poco
+por abajo
+de este valor
+fuera eso
+de significativo
+nada
+la constata
+está cerca
+de cero
+no hay mucho
+más que
+comentar
+me parece
+básicamente
+nada
+como era
+de esperar
+OLS
+no está
+haciendo nada
+para
+contemplar
+ni el efecto
+fijo
+ni el efecto
+de
+de la variable
+de rezagado
+así que
+definitivamente
+no nos va a estar
+ayudando
+para solucionar
+esa inconsistencia
+a ver
+si
+lo resucito
+bueno
+como decía
+el libro
+este
+es
+análisis
+panel data
+deseado
+y
+de vuelta
+92 de
+3.84
+en este archivo
+van a encontrar
+una sección
+que se llama
+sesgo
+en el estimador
+de goles
+entonces
+lo que va a decir
+es que la correlación
+entre
+la variable
+dependiente
+rezagada
+y
+los individuos
+de los specific effects
+va a afectar
+seriamente
+a este
+estimador
+acá tienen el modelo
+y lo que nosotros
+les decimos
+acá le dice
+la mano
+acá tenemos
+la forma
+específica
+del sesgo
+y acá
+hace como
+el análisis
+de a qué
+tiende
+el límite
+probabilístico
+esta cosa
+y básicamente
+se encuentra
+que
+lo que decíamos
+recién
+que
+el método
+de niños
+cuadrados
+va a
+sobreestimar
+el verdadero
+coeficiente
+rho
+en este caso
+tanto cuando
+n
+como cuando
+t
+o ambos
+tiendan
+infinita
+o sea
+no le podemos
+arreglar
+de ninguna
+manera
+básicamente
+y además
+dicen que
+si agregamos
+variables
+exógenas
+a este
+proceso
+autoregresivo
+de primer orden
+esto no va a
+alterar
+la dirección
+del sesgo
+pero podría
+reducir un poco
+la magnitud
+entonces
+nada
+vamos a seguir
+en una situación
+sesgada
+entonces
+eso era
+el ejercicio
+el ejercicio
+1
+el B
+nos pide
+que estimemos
+el modelo
+usando efectos
+fijos
+y nos preguntan
+si esa
+transformación
+within
+elimina
+el sesgo
+de paneles
+dinámicos
+o no
+entonces
+vamos a hacer
+las cuentas
+de eso
+y ver
+que
+a que conclusión
+llegamos
+no
+creo que ahora
+está más tentado
+pero hoy a la mañana
+se ha calo
+pero no
+atrás
+se agarró
+una neumonía
+todo
+bien
+vuelvo
+acá
+esa era
+la conclusión
+de OLS
+vamos a pasar
+ahora
+a
+fixed effects
+con la transformación
+within
+recordemos
+en qué consistía
+la transformación
+within
+creo que podría
+aprovechar
+en realidad
+llevar a una página
+y que me quede
+lo que queremos hacer
+básicamente
+es agarrar
+el modelo original
+que
+si se acuerdan
+era
+n y t
+igual a
+rho
+por n y t
+menos uno
+más c i
+más nu y t
+y le voy a restar
+el promedio
+temporal
+para cada uno
+de los individuos
+o sea le voy a restar
+lo vamos a decir
+n y rayita
+rho
+por n
+rayita
+y t
+t
+menos uno
+c i
+en promedio
+a lo largo del tiempo
+va a ser lo mismo
+y esto va a ser
+b y t
+rayita
+donde
+x rayita
+es
+la sumatoria
+de x y t
+desde t
+igual a uno
+hasta t
+todo esto
+dividido
+por t
+menos uno
+y x y t
+menos uno
+o sea n
+y t
+menos uno
+rayita
+que se hace acá
+va a ser
+la sumatoria
+de
+básicamente lo mismo
+pero x t
+menos uno
+bueno
+no sé si se lee bien
+hacemos la resta
+n y t
+menos
+n rayita
+esto va a ser
+igual a
+rho
+por
+n y t
+menos uno
+menos
+n y t
+menos uno
+rayita
+el c
+cuando el c
+se van
+y me queda
+de este lado
+b y t
+menos
+b y t
+rayita
+y a esto
+si mal
+no recuerdo
+le decíamos
+las variables
+con dos
+puntitos
+o sea
+las variables
+de la transformación
+vamos a decir
+n y t
+rho
+por
+n y t
+menos uno
+dos puntitos
+menos d
+dos puntitos
+y t
+y lo que vamos a estar buscando hacer
+es aplicar
+pool doble
+sobre esta ecuación
+que la vamos a seguir
+fixed effects
+el tema es que para aplicar
+pool doble sobre fixed effects
+lo que tengo que asegurar
+necesito asegurar
+exogenidad
+¿no?
+¿Qué exogenidad
+entre esto y esto?
+¿Entre el error
+y la variable
+de independencia?
+Entonces
+vamos a ver
+si podemos
+cumplir
+con eso
+al menos
+entonces
+para
+ver
+exogenidad
+vamos a tomar
+y calcular
+la esperanza
+de esas variables
+como
+aplicadas
+con la transformación
+UTIN
+la independiente
+del modelo
+por
+el error
+del modelo
+y dijemos
+¿no?
+cómo nos queda
+esto
+voy a reemplazar
+a esto
+por lo que es
+que es básicamente
+n
+y t
+menos uno
+menos
+el promedio
+de este
+ni
+y acá me va a quedar
+d
+y t
+menos
+el promedio
+temporal
+creo que arriba
+le puse
+los
+test
+y no debería
+de
+acá
+en el promedio
+no lleva
+test
+o más bien
+van a ser iguales
+entonces no tienen
+mucho
+gracias
+agregarlos
+esto dijimos
+que era
+sí
+voy a grabar
+lo mismo
+en el final
+hay que recitar
+y
+y esto
+también se lo voy a grabar
+para no confundir
+de ahí
+entonces
+ok
+queremos ver
+si esto es igual
+a cero o no
+y pensemos
+qué es lo que estamos
+si algo de lo que está acá
+más bien
+cuando hacemos
+la distributiva
+de estas cosas
+nos va a quedar
+la esperanza
+de
+por un lado
+n y t
+menos uno
+este
+con este
+b y t
+más
+la esperanza
+de
+voy a agarrar
+n y t
+menos uno
+de vuelta
+con el otro
+que es el promedio
+menos
+este de acá
+con este de acá
+que sería
+la esperanza
+de
+n rayita
+i
+por
+b y t
+menos el último
+que sería
+este con este
+en
+n
+n
+n
+s
+d
+Gracias.
+Ahora, con lo que tenemos acá, fíjense dónde vamos a tener el problema, por así decirlo.
+Este valor que está acá, con este valor que está acá, van a correlacionar.
+Y correlacionan por cómo construimos el modelo.
+Básicamente, porque el promedio este que estamos mirando acá,
+no, mentira, estoy hablando de esto.
+Porque este promedio que estoy mirando acá,
+contiene B y T menos 1 en la calculación.
+Cuando calculamos este promedio a través de diferentes periodos en el tiempo,
+en algún momento va a aparecer este de acá,
+porque básicamente B y rayitas es la sumatoria desde T igual a 2 a T,
+de B y T sobre T menos 1.
+Entonces, en alguna parte de esta sumatoria va a aparecer este T menos 1 específico
+al que estoy hablando, o sea, el que está antes del último T.
+¿Y por qué nos importa que este promedio contenga este B y T menos 1?
+Básicamente porque nuestro modelo original, el de arriba de todo,
+voy a traer de vuelta.
+Aquí va.
+Bueno, no pego, no importa, lo escribimos en el.
+El modelo original,
+acuérdense que era
+N y T igual a Rho por N y T menos 1 más B y T.
+Y si esto lo evalúo en el periodo anterior,
+me queda N y T menos 1 igual a Rho por el N y T menos 2 más,
+me faltó el 6.
+Entonces, ¿cómo correlaciona?
+Esto que voy a marcar ahora en Rho.
+Con este de acá.
+¿Cómo correlaciona este con este?
+Bueno, de vuelta.
+Este promedio
+contiene este valor
+y a su vez,
+este valor
+afecta directamente a N y T menos 1
+porque es parte de cómo construimos el modelo.
+Entonces, ya la presencia de esta correlación
+me va a dar que esto es distinto de cero.
+Entonces todo esto no se va a cumplir.
+O sea que básicamente
+lo único que mejoramos acá con respecto a
+OLS
+es el hecho de que este estimador
+elimina
+una
+de las fuentes
+de inconsistencia
+que es el efecto de 6.
+Pero sigue estando presente
+el sesgo que viene
+del hecho de que pusimos una variable
+rezagada en el modelo
+y que está interactuando
+con el error
+dentro del promedio.
+lo que vamos a ver
+esto es lo que se llama
+el sesgo de níquel
+que ahora después
+les muestro
+donde pueden ver más info de esto
+en la combo
+y
+lo que sí
+lo que
+lo que se llega
+es que
+el sesgo de níquel
+va a tener
+esta forma
+voy a cambiar la letra
+porque
+se va a conseguir
+más
+la más
+este sesgo
+que es básicamente
+la diferencia
+en el límite
+probabilístico
+de la estimación
+de fixed effects
+contra el parámetro
+verdadero
+es siempre
+menor que cero
+siempre negativo
+esto hace que
+el raw
+de fixed effects
+estimado
+sea sesgado
+subestima
+al raw
+verdadero
+y también es cierto
+que la consistencia
+depende
+o mejoraría
+de
+si
+te detiene infinito
+que como ya dijimos
+no va a pasar
+en los casos
+de panel
+así que
+habiendo dicho esto
+y sabiendo
+que esperamos
+encontrar
+vuelvo a la
+combo
+la parte
+del sesgo
+de níquel
+sé que está
+por acá
+acá
+acá tienen
+como la expresión
+analítica
+y bueno
+si quieren
+pueden ir
+obvio
+al paper
+original
+voy
+entonces
+a
+y vamos
+inciso B
+queremos
+hacer fixed effects
+tenemos dos opciones
+hacer fixed effects
+con xtreg
+y poner la opción
+de fixed effects
+al final
+o correr
+la regresión
+del empleo
+contra el rezago
+que es el modelo
+y después
+se acuerdan
+que la otra opción
+era hacer list square
+dummy variables
+que era agregar
+una damage
+por cada uno
+de las IDs
+entonces teníamos
+varias opciones
+podemos correr
+esta de ella
+y veamos
+cómo cambiaron
+los resultados
+veníamos
+de un punto
+0.997
+y bajamos
+un 0.87
+este era
+el de OLS
+acuérdense
+que ese
+sobreestima
+raw
+asumiendo
+que la
+especificación
+del modelo
+es la correcta
+y este
+de acá
+subestima
+raw
+entonces
+si tengo
+un estimador
+que sé
+que lo sobreestima
+y otro
+que lo subestima
+podemos decir
+que ya podemos
+como empezar
+a adivinar
+en qué
+valor
+debería
+entre qué valores
+está el raw
+o sea ya tenemos
+como un rango
+que podemos ver
+vamos a ver
+que cuando
+hagamos otros métodos
+si las estimaciones
+nos dan cosas
+por fuera
+de este rango
+nos va a dar
+como una idea
+de
+che mira
+se supone
+que
+el de OLS
+si el modelo
+está bien especificado
+sobreestima
+al
+parámetro
+y el de
+fixed effects
+lo subestima
+y
+corriste otra cosa
+a otro modelo
+que se supone
+que es mejor
+o más eficiente
+lo que sea
+y te da
+algo que está
+muy por fuera
+de ese rango
+bueno
+evidentemente
+esto no
+no está siendo
+como
+muy confiable
+así que nada
+eso era
+el ejercicio
+B
+entonces
+permite la transformación
+vecina
+eliminar
+el cejo de paneles
+dinámicos
+ya dijimos que no
+porque
+va a aparecer
+este
+el valor
+de
+menos
+no estoy segura
+de que esta rociva
+está bien puesta
+pero bueno
+lo que decíamos
+hace un rato
+n y t menos 1
+va a estar
+correlacionando
+con el promedio
+de los errores
+porque el promedio
+de los errores
+incluye el error
+que aparece
+en la expresión
+para
+n y t menos 1
+bueno
+al ser dinámico
+del panel
+estamos poniendo
+los n y t
+en varios lados
+distintos
+eso es lo que genera
+el cejo
+bien
+seguimos con el C
+nos piden
+consideramos
+una transformación
+de diferencias
+finicas
+de primer orden
+del modelo
+y nos preguntan
+si continúa
+siendo la variable
+dependiente
+rezagada
+potencialmente
+en 2
+entonces
+vamos con las cuentas
+este es el ejercicio
+6
+le voy a convertir
+ahora
+entonces de vuelta
+el ejercicio
+C
+el ejercicio
+pero C
+de vuelta
+nos pedían
+una transformación
+de
+primeras diferencias
+y nos preguntan
+si sigue siendo
+potencialmente
+endógeno
+es una pregunta
+sobre el nivel
+de estación
+si
+cuando la variable
+tenía
+la rayita arriba
+era como
+un promedio
+de todos los 3
+no sé si
+si
+ok
+acá la solución
+está como
+con
+y menos 1
+si
+me hace un poco
+de ruido
+eso
+porque
+ya ves
+ponerle tenés
+a la persona
+1
+1
+1
+entonces
+cuando calculas
+lo que estás haciendo
+es
+el X rayita
+y va a ser
+el promedio
+de esto
+que sería
+2
+más 3
+más 6
+sobre 3
+y este acá
+es
+5
+más 20
+5
+sobre 3
+y esto se repite
+3 veces
+y esto se repite
+3 veces
+si
+no sé
+por mí
+está
+sí
+bueno
+entonces
+vamos con la transformación
+de primeras diferencias
+en este caso
+lo que vamos a tener
+de vuelta
+es el modelo
+n y t
+igual a
+rho
+por
+n y t
+menos 1
+más
+i
+más
+nu y t
+a esto le quiero
+restar
+el modelo
+rezagado
+n y t
+ahora vamos a tener
+menos 2
+más
+6 i
+que es conciente
+en el tiempo
+20
+menos 1
+y
+ahora sí
+me gustaría
+que esto
+tenga como una
+un arreglito
+pero
+no sé
+que no
+si esto se ve
+mejor
+capaz que se ve
+más
+hacemos la resta
+entre estas dos cosas
+nos queda
+delta
+n y t
+igual a
+rho
+por delta
+n y
+t
+menos 1
+el 6 i
+con el 6 i
+se van
+más delta
+20
+entonces
+acá tenemos
+como
+la expresión
+para
+first
+differences
+y queremos
+ver
+si
+hay
+endogeneidad
+misma idea
+que antes
+vamos a
+analizar
+si encontramos
+algún término
+que covaríen
+cuando
+relacionamos
+la variable
+independiente
+que es esta
+con los
+errores
+nos gustaría
+ver que esto
+sea igual a 0
+vamos a
+reexpresar
+esto un poquito
+misma idea
+que antes
+que es
+n y t
+menos 1
+es n y t
+menos n y
+t menos 1
+que es
+y cuando
+hacemos la
+distributiva
+nos va a quedar
+n y t
+contra
+v y t
+más
+n y t
+contra
+v y t
+menos 1
+menos
+hacemos
+con este
+con otro color
+o no
+n y t
+menos 1
+v y t
+y el último
+que me queda
+es este
+con este
+que es
+n y t
+menos 1
+que es
+una extensión
+n y t
+menos 1
+contra
+v y t
+menos 1
+y acá
+vuelve a aparecer
+este término
+que me relaciona
+algo que
+afecta
+se ve claro
+cuando
+escribimos
+el modelo
+completo
+digamos
+este
+que está acá
+está afectando
+a este
+o sea
+si este
+sube
+este sube
+entonces
+esto que está acá
+ya va a ser
+distinto de cero
+pero bueno
+no nos podemos
+sacar de encima
+esa
+esa nueva fuente
+de endogenidad
+si quieren
+algo que está
+bueno es pensar
+qué pasa
+con los otros términos
+digamos
+estos dos
+que están acá
+estos dos
+que están acá
+estos dos
+que están acá
+estoy pensando
+que
+de piscina
+luego me parece
+si soy
+estoy diciendo
+que
+esto acá
+no es así
+pero no cambia
+mucho
+lo que pasa
+porque el delta
+n y t
+menos uno
+en realidad
+es
+n y t
+menos uno
+menos n y t
+menos dos
+entonces
+n y t
+n y t
+menos uno
+contra n y t
+menos dos
+contra n y t
+menos dos
+contra n y t
+menos uno
+y de estos
+el que nos va a causar
+problemas
+va a ser este
+acá
+pero igualdad
+y media
+grande
+parece que
+esto
+parece que
+me va a ser
+mejor
+de algo
+más
+creo
+bueno
+entonces
+básicamente
+search differences
+sigue siendo
+potencialmente endógena
+si sigue siendo
+potencialmente endógena
+no hay
+información
+decir al respecto
+paso
+si me hay preguntas
+el file
+y ahora sigamos
+como algo más
+interesante
+ya arrancamos
+con
+otro tipo
+de estimadores
+nuevos
+en particular
+vamos a ver
+hoy
+Anderson
+Siago
+Arellano
+Bond
+y
+Landel Bond
+pero antes
+de bueno
+de pasar
+a esta
+de que se yo
+vamos a
+hacer las
+cuentas
+voy a tratar
+de achicar
+la letra
+un poco
+porque
+parece que
+no me está
+no me estoy
+anegando
+con el espacio
+de la tablet
+pero
+este es el inciso
+D
+si no me equivoco
+en este ejercicio
+queremos aplicar
+el estimador
+de Anderson
+Siago
+pero antes
+de ir directamente
+a la especificación
+un poco
+de contexto
+acerca de
+de dónde sale
+o cuál es
+la motivación
+detrás
+de este estimador
+vamos a partir
+de la
+especificación
+del modelo
+que vimos recién
+la de primeras
+diferencias
+que básicamente
+lo que decíamos
+era
+lo que nos decía
+esto
+era que
+delta
+NIT
+es igual a
+rho
+por delta
+NIT
+menos 1
+más
+delta
+DIT
+y como ya vimos
+esto nos sacó
+de encima
+la parte del CI
+así que eso está bueno
+lo que no está bueno
+es que sabemos
+que hay endogeneidad
+que es lo que no está
+que es lo que vimos
+hace un ratito
+básicamente
+porque cuando calculamos
+la esperanza
+del delta
+NIT
+menos 1
+por delta
+DIT
+que son
+la variable independiente
+del modelo
+con los errores
+esto nos da
+distinto
+de 0
+entonces
+¿qué solíamos hacer
+cuando teníamos
+una situación
+de endogeneidad?
+bueno
+una opción
+es usar variables
+instrumentales
+y
+los ejercicios
+que vienen ahora
+después de este
+tienen que ver con
+bueno
+¿qué elementos elegís
+para instrumentar
+estas variables
+que te están causando
+endogeneidad?
+que de vuelta
+lo que vamos a estar
+instrumentando
+es este
+delta
+NIT
+menos 1
+que es el que
+genera endogeneidad
+entonces
+ahí aparecen
+Anderson
+Siao
+y lo que proponen
+ellos
+es instrumentar
+con
+el rezago
+número 2
+entonces
+¿para que esto
+valga?
+para que
+el rezago
+número 2
+sea
+instrumento
+válido
+no sé si se acuerdan
+pero le teníamos
+que pedir dos cosas
+uno
+exogeneidad
+y
+en el modelo
+o sea
+que
+NIT
+menos 2
+no covaríe
+con los errores
+y por otro lado
+relevancia
+es decir
+que si covaríe
+con
+la variable
+que estoy
+instrumentando
+que es el
+delta
+NIT
+menos 1
+entonces
+vamos a hacer
+un poquito
+de cuentas
+para
+chequear
+eso
+entonces
+la parte
+de exogeneidad
+lo mismo
+que veníamos
+haciendo
+hasta recién
+toma una
+medida
+de la
+esperanza
+de
+NIT
+menos 2
+que es
+el instrumento
+por
+delta
+BIT
+que son los errores
+de este modelo
+notamos que esto
+lo podemos
+reescribir
+como
+en lugar de
+tomar
+delta
+BIT
+lo escribo
+como lo que es
+me va a quedar
+BIT
+menos
+BIT
+menos 1
+y esto va a ser
+igual a
+NIT
+menos 2
+lo distribuyo
+acá con el
+BIT
+y después
+lo mismo
+con el
+otro
+término
+y acá
+vamos a ver
+que ya
+nos sacamos
+de encima
+ay
+sorry
+espera
+si
+como que
+en un momento
+volvió
+como que
+se volvió
+acá
+pero
+hasta recién
+estaban viendo
+ok
+bueno
+yo sigo compartiendo
+en el zoom
+igual
+creo que
+lo que me olvidé
+acá
+fue poner el zoom
+en la compuesta
+si
+si
+acá
+se ve
+bien
+bárbaro
+gracias
+ahí se llega
+a ver
+opciones
+de vista
+bueno
+no sé
+si esto
+se va a ir
+acomodando
+solo
+ojalá
+que
+bueno
+vamos a ver
+a ver
+ok
+entonces
+fíjense
+que lo que
+estamos
+relacionando
+acá
+son los
+errores
+BIT
+contra
+NIT
+menos 2
+y NIT
+menos 2
+contra
+BIT
+menos 1
+entonces
+esto ya
+no va
+a correlacionar
+por todo esto
+que veníamos
+diciendo
+de la exogeneidad
+secuencial
+hacia atrás
+así que
+la parte
+de exogeneidad
+del instrumento
+va a estar bien
+y en cuanto a relevancia
+lo que queremos ver
+es
+que
+si hay
+como una
+covarianza
+entre
+NIT
+menos 2
+que es el instrumento
+con la variable
+del instrumento
+que es
+NIT
+menos 1
+esto de vuelta
+si
+reescribimos
+por lo que es
+NIT
+menos 1
+por
+NIT
+menos 2
+sale enseguida
+que
+lo que quiero ver
+es que esto sea
+distinto
+distribuimos
+distribuimos
+NIT
+menos 2
+por
+NIT
+menos 1
+entonces esto
+lo podemos pensar
+como una especie
+de
+alianza
+entre
+NIT
+menos 2
+NIT
+menos 1
+y esto que está acá
+como una especie
+de
+alianza
+de
+NIT
+menos 2
+pero ya notemos
+fácilmente
+que
+¿cómo se relaciona
+NIT
+menos 1
+NIT
+menos 2
+y bueno
+venimos hablando
+de que nuestro modelo
+justamente
+tiene esta forma
+tiene un componente
+autoregresivo
+o sea
+entonces
+incluso
+lo que estamos
+haciendo acá
+es definir
+cómo es esta
+cosa acá
+qué forma tiene
+este rober
+que está acá
+entonces esto
+definitivamente
+va a ser
+distinto de cero
+así que es
+relevante
+¿Qué más?
+En
+Stata
+esto se va a aplicar
+con los
+comandos
+ID
+Regress
+que
+creo que
+ya estamos acá
+se los dejó
+anotados
+ID
+Regress
+y lo que vamos a hacer
+es
+indicar
+2S
+L
+S
+2Square
+que es el método
+que vamos a usar
+para ID
+después vamos a agregar
+D por M
+que es nuestra
+variable
+Y
+y después
+tenemos que agregar
+si hubiera
+X exógenas
+las ponemos acá
+y después
+vamos a poner
+las X
+endógenas
+igual
+al instrumento
+que utilicemos
+que en este caso
+va a ser
+D
+por
+NL1
+esto es como
+está definido
+en el código
+ahora lo vamos a ver bien
+pero
+quería dejarlo anotado acá
+y aparte
+es
+muy chido
+qué más
+es el modelo
+sin
+con
+Y también
+se puede usar
+Xtabon
+que es el comando
+que vamos a ver
+en el inicio
+Paso a
+y hacemos esto
+que es esta parte
+de acá
+del inicio
+D
+Acá tenemos
+el resultado
+de
+de
+correo
+este
+IP request
+fíjense que
+ya nos da
+un RO
+una estimación
+para el RO
+bastante distinta
+casi el doble
+y bueno
+acá es lo que
+les decía
+de la
+syntax
+de este código
+igual siempre
+pueden usar
+help
+entonces de vuelta
+van a tener
+el estimator
+la variable
+que
+pueden elegir
+two squares
+the squares
+método generalizado
+de momentos
+o
+maximum likelihood
+la variable
+dependiente
+que en nuestro caso
+es el nivel
+de empleo
+hoy
+la lista
+bar list
+uno
+que en realidad
+bar list
+uno
+es la lista
+de variables
+exógenas
+en este modelo
+no tenemos
+ninguna
+bar list
+dos
+que es la lista
+de variables
+endógenas
+en este caso
+el empleo
+rezagado
+con
+las variables
+instrumentales
+que de vuelta
+siguiendo
+la metodología
+de andar
+sonciado
+es usar
+el segundo
+rezago
+porque como ya
+vimos
+es exógeno
+no correlaciona
+con los errores
+y es relevante
+si correlaciona
+o ayuda a explicar
+esa variable
+que nos causa
+en los unidades
+eso en cuanto
+a
+Anderson
+se ha
+repaso
+vimos OLS
+vimos FixFX
+vimos Within
+ninguna
+funciona
+para sacarnos
+de encima
+el sesgo
+que veíamos
+como
+estábamos
+con
+un problema
+de endogeneidad
+fuimos a
+variables
+instrumentales
+para tratar
+de salvar
+eso
+el primer
+modelo
+que probamos
+o el primer
+método
+que probamos
+es el de Anderson
+Siao
+que dice
+bueno
+instrumentá
+con
+el segundo
+rezago
+porque ya
+el segundo
+rezago
+no te va a correlacionar
+con los errores
+del modelo
+en esta transformación
+de diferencias
+finitas
+ahora bien
+para los
+estimadores
+que siguen
+lo que vamos a usar
+es el método
+generalizado
+de momentos
+así que vamos a seguir
+haciendo cuentas
+lamentablemente
+sé que esta clase
+no es la más divertida
+pero bueno
+es preferible
+que nos saquemos
+todo encima ahora
+y
+ya la próxima
+no creo que tenga
+que hacer tantas
+preguntas
+¿Qué pasa si no estoy
+olvidando de decir
+nada
+ok
+bueno
+entonces Anderson
+Siao
+proponen
+este
+método
+de instrumentar
+con el
+segundo
+rezago
+el tema es que
+estamos usando
+un solo
+instrumento
+y
+van a venir
+después de Ander
+Siao
+a Lejano
+Bond
+y a Lejano
+Bond
+a decir
+mirá
+estamos usando
+un solo
+instrumento
+podrías armarte
+algo más
+eficiente
+incorporando
+más
+instrumentos
+a la
+estimación
+porque
+porque no es
+que solamente
+Yt-2
+ya deja
+de covarear
+con los errores
+entonces dejas
+de tener
+el problema
+digamos
+no es que solamente
+Yt-2
+ese segundo
+rezago
+es un buen
+instrumento
+sino que
+todos los que
+vienen antes
+también van a ser
+buenos instrumentos
+entonces
+aprovechalos
+ya que los tenés
+usalos
+y obtenete
+algo más
+eficiente
+entonces
+eso es lo que
+vamos a ver
+ahora
+pero antes
+de ir
+directamente
+al
+estimador
+en sí
+vamos a hacer
+como un
+mini
+repaso
+de
+qué es
+GMM
+o método
+generalizado
+de momentos
+básicamente
+porque
+cuando
+lleguemos
+al estimador
+del método
+generalizado
+de momentos
+va a quedar
+en claro
+dónde
+viene
+la contribución
+de
+Arellano Bon
+y de
+Blondo
+o sea
+qué es lo que
+cambia
+entre ambos
+aprochos
+entonces
+vamos a arrancar
+con
+qué pasa
+si quisiéramos
+estimar
+OLS
+usando
+el método
+generalizado
+de momentos
+no sé si
+acuerdan
+esto
+pero
+básicamente
+el método
+generalizado
+de momentos
+lo que hace
+es
+usa condiciones
+que aplicamos
+sobre los
+momentos
+de
+nuestro
+modelo
+de los
+variables
+de nuestro
+modelo
+y en base
+a eso
+dice
+bueno
+dado que
+tenés
+esta condición
+podés
+llegar
+a esta
+estimación
+para
+beta
+entonces
+partiendo
+de la
+condición
+de
+exogeneidad
+que requerimos
+en OLS
+sabemos
+que
+la esperanza
+de
+X
+transpuesta
+por U
+donde usan
+las variables
+del modelito
+estoy pensando
+en el modelito
+típico
+ahora
+o sea
+me estoy
+abstrayendo
+un poco
+del problema
+de hoy
+pensando
+en este
+modelito
+sabemos
+que esto
+vale
+o al menos
+es un supuesto
+que queremos
+que valga
+para poder
+aplicar
+OLS
+de forma
+consistente
+etc
+y sabemos
+que esa U
+la podemos
+de acá
+despejar
+entonces voy a
+usar esto
+en esa ecuación
+me va a quedar
+que la esperanza
+de X
+transpuesta
+por
+Y
+menos X
+beta
+tiene que ser
+igual a C
+distribuyo
+esto
+y fíjense
+que esto
+queda
+la esperanza
+de X
+transpuesta
+por Y
+igual a
+la esperanza
+de X
+transpuesta
+por X
+por beta
+y esto
+ya nos suena
+bastante conocido
+porque ya sabemos
+que acá
+llegamos a
+esperanza de X
+transpuesta
+por X
+inversa
+esperanza de X
+transpuesta
+por Y
+que esto
+después
+al estimar
+o al usar
+digamos
+análogos
+mostrales
+sabemos
+que nos queda
+el
+ya
+mega
+ultra
+archi
+conocido
+X
+transpuesta
+por X
+inversa
+X
+transpuesta
+por Y
+entonces
+este estimador
+no sale
+de la minimización
+de residuos
+a cuadrado
+etc
+etc
+sino
+de esta condición
+que impusimos acá
+a través del método
+generalizado
+de momentos
+agarramos esta condición
+sobre este momento
+específico
+de las variables
+y llegamos a
+esta estimación
+lo que vamos a hacer
+ahora
+es que
+o sea
+por qué
+volvemos a esto
+básicamente
+por qué
+para el caso
+de variables
+instrumentales
+que vimos recién
+el chiste
+es medio parecido
+o sea
+nosotros sabemos
+que
+que si bien
+la variable
+independiente
+es endógena
+el instrumento
+va a ser exógeno
+al instrumento
+le voy a decir
+Z
+entonces
+veamos
+cómo
+cómo vale esto
+sabemos
+que el instrumento
+es exógeno
+por lo tanto
+vale que
+la esperanza
+de Z
+trascuesta
+por U
+es igual a cero
+nuevamente
+hago la
+jodica esta
+de cambiar
+U
+por lo que sabemos
+que vendría a ser
+en el modelo
+que se está acá
+distributiva
+distributiva
+y ya después
+de esto
+nuevamente
+llevamos
+una expresión
+para beta
+de ID
+que es
+obviamente
+asumiendo
+que esta inversa
+existe
+y bueno
+obviamente
+la versión
+como
+estimada
+ya con el sombrerito
+Z
+trascuesta
+por X
+menos 1
+Z
+trascuesta
+por X
+ahora
+acá hay un tema
+que es
+bueno
+muy lindo
+todo
+pero
+esta Z
+como decíamos
+recién
+en el caso
+de Anderson
+Sia
+está bien
+tenés
+un solo
+usás
+solamente
+el segundo
+rezago
+como
+como
+instrumento
+pero van a aparecer
+Arellano Bond
+y
+Lander Bond
+a decir
+mirá
+hay más instrumentos
+que podés utilizar
+entonces
+¿cómo va a funcionar
+esto?
+con más
+instrumentos
+que
+variables
+endógenas
+en ese caso
+se va a aplicar
+mínimos cuadrados
+en dos etapas
+porque el chiste va a ser
+lo que pasa con
+GMM
+es que lo que queremos es
+trabajar de vuelta
+con esta situación
+que está acá
+o sea
+basados en esta condición
+de exogeneidad
+decimos
+ok
+la variable
+el instrumento
+Z1
+es exógeno
+y es relevante
+entonces es un potencial
+instrumento
+pero podría haber
+Z2
+Z3
+puede haber un montón
+de instrumentos
+que podríamos usar
+por ejemplo
+no sé
+si me ocurre
+no quiero meter la pata acá
+pero si pensamos
+en la altura
+de una persona
+me pregunto
+bueno
+¿qué variables
+podrían
+ser
+instrumentos
+para algo
+que es endógeno
+que es
+la altura
+de la persona
+en el periodo anterior
+y bueno
+podrías fijarte
+la alimentación
+porque
+afecta
+la altura
+de ayer
+pero podrías
+no correlacionar
+con los errores
+podrías ver
+no sé
+la actividad física
+no sé
+un montón de variables
+que vos consideres
+que cumplen
+con que es relevante
+y exógeno
+no es que
+hay una única variable
+ahora
+¿cuál elegís
+o cómo las ponderás
+después
+para
+para incluirlas
+en el modelo
+y incluirlas
+lo que haces
+lo que querés hacer
+es
+de vuelta
+vos estás buscando
+que esto se cumpla
+para todas
+en un mundo ideal
+o sea
+que el instrumento
+uno
+se da igual a cero
+que para el instrumento
+dos
+se da igual a cero
+etc. etc.
+para todos los instrumentos
+el tema
+es que no podemos
+forzar
+a que esto
+en forma como
+de sistema
+se cumpla
+porque fíjense que
+u
+es una sola variable
+z
+y z2
+son dos variables más
+y tenemos dos ecuaciones
+y si empezamos a agregar
+ecuaciones
+va a ser peor
+o sea
+vamos a tener un modelo
+sobre identificado
+entonces no podemos
+exigir
+o no podemos
+ir a buscar
+cómo formular
+esta
+las variables
+instrumentales
+en el modelo
+de esta forma
+o sea
+no podemos exigir
+esto
+porque de vuelta
+tenemos más ecuaciones
+que variables
+en el caso de
+un solo instrumento
+que estemos considerando
+es muy sencillo
+porque simplemente
+pedir que se cumpla esto
+para ese instrumento
+que estás utilizando
+pero cuando tenés más
+de un instrumento
+de vuelta
+como no podemos
+exigir eso
+lo que vamos a hacer
+con mínimos cuadrados
+en dos etapas
+es básicamente decir
+bueno
+acerquémosnos
+lo más posible
+a esta idea
+de
+que
+el instrumento
+uno
+la esperanza
+del instrumento
+uno por uno
+se igual a cero
+la esperanza
+del instrumento
+dos por uno
+se igual a cero
+así para todos
+los instrumentos
+que
+en su
+análogo
+muestral
+sería
+este promedio
+que está acá
+y escrito
+en sistema
+sería que
+uno sobre
+n
+por
+z
+traspuesta
+de u
+nos gustaría
+eso
+¿no?
+nos gustaría esto
+pero
+como de vuelta
+esto no podemos
+hacerlo
+lo que vamos a decir
+es bueno
+tomale la distancia
+entonces
+trata de
+minimizar
+esta distancia
+como
+ponderando
+los z
+con una matriz
+A
+todo esto está
+muy bien explicado
+paréntesis
+en el artículo
+que aparece
+creo que
+debería estar
+cargado
+en el campo
+junto con
+el resto
+de las cosas
+creo
+how to do
+XTA
+bond
+2
+si van siguiendo
+eso está
+bastante bueno
+porque es un
+ejemplo
+que no es
+muy distinto
+al que
+estamos viendo
+acá
+y
+y ayuda
+como a
+digerir
+todo esto
+entonces
+lo que
+siguiendo
+siguiendo
+esta
+esta idea
+lo que estamos
+haciendo acá
+es si
+reescribimos
+esta
+como este
+esta distancia
+esta medida
+de distancia
+esto nos va
+a quedar
+no sé si
+hacer toda la
+cuenta
+o no
+que
+no
+sea tanto
+tiempo
+pero
+ok
+no es tanto
+creo que
+llegó
+esta distancia
+se puede escribir
+como sigue
+si quieren
+créanme
+salto
+salto de confianza
+pero de vuelta
+están todas las cuentas
+acá
+1
+sobre
+N
+por
+Z
+por
+Z
+por
+Z
+esto va a ser
+igual a
+este
+se va con
+este
+me queda
+Z
+transposta
+por
+U
+por
+A
+por
+me queda
+un 1
+sobre N
+acá
+que es esto
+que está acá
+Z
+transposta
+por
+U
+entonces
+está la expresión
+si quieren
+para la distancia
+que queremos
+minimizar
+porque de vuelta
+queremos tratar
+de acercarnos
+a esto
+no podemos
+porque el sistema
+no se puede resolver
+porque está
+sobre identificado
+entonces
+decimos
+bueno
+acerquémosnos
+lo más que podemos
+hasta cero
+veamos cómo
+podemos hacer
+para ponderar
+de forma tal
+que estas dos condiciones
+se cumplan
+lo más posible
+entonces
+queremos minimizar
+esa medida
+de distancia
+bueno
+bueno
+de ahí va a salir
+una CPO
+que es básicamente
+derivar
+todo ese
+hecho
+plazo
+con respecto
+a la que estás
+utilizando
+igual a la cero
+creo que hay
+la mayoría
+de economistas
+seguramente acá
+así que ya
+todos tenemos
+un poco
+de idea
+de qué hacer
+con esto
+pero
+si hacemos
+un salto
+de confianza
+y me creen
+esto nos va a llevar
+a un beta
+estimado
+de
+X
+transpuesta
+Z
+A
+Z
+X
+transpuesta
+X
+todo esto
+a la menos
+1
+X
+transpuesta
+Z
+A
+Z
+X
+no
+en realidad
+es bastante parecido
+a lo que ya venimos
+haciendo
+o sea
+si le ponemos
+un poco
+de cariño
+acá tengo
+el X
+transpuesta
+por X
+X
+transpuesta
+por Y
+solo que ahora
+estoy agregando
+esta ponderación
+de
+por un lado
+las variables
+instrumentales
+pero no agrego
+como que los instrumentos
+de cualquier forma
+bueno
+ahí va un traje
+tanto
+las variables
+instrumentales
+y como no es
+una única variable
+instrumental
+la que estoy usando
+sino que son varias
+tengo que elegir
+a cuál le doy
+más importancia
+¿cómo elijo eso?
+con esta matriz A
+para aclarar
+lo que
+podemos decir
+hasta ahora
+de este beta
+de GMM
+un par de cosas
+¿es consistente?
+pero ese es
+GAA
+básicamente
+porque en muestras
+finitas
+los instrumentos
+van a correlacionar
+con los componentes
+endógenos
+de las variables
+independientes
+y esto
+de vuelta
+se puede ver
+realmente
+si les interesa
+ver un poco más
+de esto
+chequeen
+este file
+ahora después
+igual
+lo miramos
+juntos
+para que
+no se vea
+entonces
+el chiste
+ahora es
+¿cómo elegir
+esta A?
+como
+lo que queremos
+ver
+porque por ejemplo
+supongamos que decimos
+bueno
+agarrate una A constante
+el problema con
+que A sea constante
+es que si
+tus instrumentos
+son dos instrumentos
+con la misma media
+y tenés uno
+que tiene más
+varianza que el otro
+y el A es constante
+el que tiene más
+varianza
+va a terminar
+como que
+moviéndote más
+o va a tener
+va a terminar
+teniendo más
+peso
+proporcional
+en la estimación
+y eso
+no queremos
+que suceda
+entonces
+se los
+spoileo
+básicamente
+A constante
+no es
+muy
+eficiente
+ahora podemos
+si nos queda tiempo
+podemos hablar
+de otro
+pero básicamente
+no va a ser
+muy eficiente
+porque va a haber
+un montón de información
+de la variable
+que no se mueve
+tanto
+que
+que va a ser
+como
+tapada
+por la variable
+que si se mueve
+más
+que tiene más
+varianza
+entonces tenemos
+dos opciones
+o más bien
+lo que vamos a hacer
+la estrategia
+para elegir
+A
+de forma
+eficiente
+va a ser
+decir
+bueno
+¿sabes qué?
+si te molesta
+que dentro
+de
+una
+constante
+las variables
+o los
+instrumentos
+con mayor
+varianza
+estén como
+llevándose
+haciendo mucho
+ruido
+y no dejándote
+ver la información
+de los otros
+ponderás justamente
+por la inversa
+de esa varianza
+esto igual
+nos suena un poco
+porque es lo que
+hacemos cuando
+aplicamos por ejemplo
+FGLS
+que dividimos por la
+varianza
+justamente para eso
+para
+para que no nos
+para que ese ruido
+no nos moleste
+en la estimación
+entonces
+moraleja
+la estrategia
+para elegir
+a deficiente
+va a ser
+ponderar
+por
+la inversa
+de la varianza
+¿cómo se ve eso
+más
+analíticamente?
+les tiro
+el resultado
+si quieren
+lo podemos
+charlar
+en otro momento
+pero no quiero
+terminar la clase
+sin
+buscar esto
+va a tener
+esta forma
+y esto
+sale de
+agarrar
+A
+como
+la varianza
+de
+Z
+traspuesta
+por U
+condicional
+en las X
+y en los Z
+todo esto
+a la menos 1
+esto es igual
+a la varianza
+de
+como
+estoy condicionando
+acá en Z
+este Z
+se puede ir
+para afuera
+y sale al cuadrado
+porque es una varianza
+entonces
+y adentro
+me queda la varianza
+de U
+condicional en X
+y Z
+todo esto
+a la menos 1
+ahora
+¿quién es la varianza
+de U?
+y bueno
+va a depender
+de lo que hayamos
+dicho en el modelo
+pero
+en principio
+podemos escribirlo
+como siempre
+como Z
+traspuesta
+por este
+omega
+por Z
+a la menos 1
+habiendo dicho
+esto
+si volvemos
+al beta
+estimado
+de este
+MM
+¿se acuerdan
+que era
+todo este
+choclazo
+de
+X
+traspuesta
+Z
+a Z
+X
+a la menos 1
+por
+X
+traspuesta
+Z
+a
+Z
+Y
+ahora que ya sabemos
+qué forma tiene A
+es esto
+lo podemos reemplazar
+y nos va a quedar
+X
+traspuesta
+Z
+a
+que
+vamos a
+tener
+que
+dijimos que
+A
+era
+Z
+traspuesta
+omega
+Z
+por
+Z
+traspuesta
+por X
+todo esto
+la menos 1
+X
+traspuesta
+Z
+en lugar de A
+Z
+traspuesta
+omega
+Z
+Z
+traspuesta
+por Y
+todo esto
+está en
+menos 1
+sorry
+y
+¿qué más?
+de acá
+lo que nos queda
+ver
+bueno
+es
+quién es
+este
+omega
+porque de vuelta
+bueno
+así que omega
+es lo de los resultados
+de los errores
+acá hay tres opciones
+una opción es
+asumir errores esféricos
+en cuyo caso
+omega va a tener
+la forma
+esta
+si se acuerdan
+ya
+si les son
+las conocidas
+el tema con este
+es que este
+supuesto es bastante
+restrictivo
+porque es como que
+ya estás diciendo
+que los errores
+son esféricos
+tienen una
+elasticidad
+no tienen autocorrelación
+serial
+y bueno
+puede ser un poco
+restrictivo en panel
+donde sabemos que puede haber
+correlación serial
+y
+pero se
+elasticidad
+si pensamos
+como que cada
+firma
+tiene su
+su componente
+de error
+con su propio
+con su propia
+forma
+de
+de varianza
+entonces
+tenemos que preguntarnos
+bueno
+le damos
+formas
+como podemos estimar
+omega
+y acá vienen
+ahora sí
+todo esto era para
+llegar a esta parte
+de acá
+opción uno
+es
+usar
+one
+step
+gmm
+que es básicamente
+decirle una forma
+a la omega
+y asumir
+o trabajar con eso
+y la otra es
+su
+step
+gmm
+que es
+en el step
+uno
+computar
+los residuos
+estimar los residuos
+y en el step
+dos
+con esos residuos
+que tenías
+estimar
+omega
+sombrerito
+como esto
+y una vez
+que tenés
+estas dos cosas
+sí
+ya podés decir
+que
+a va a tener
+la forma
+z
+traspuesta
+u sombrerito
+traspuesta
+u sombrerito
+z
+a la menos uno
+y ya después
+empezás a reemplazar
+hacia arriba
+en
+por ejemplo
+va
+entonces
+mini recap
+de lo que vimos
+hasta ahora
+en Anderson
+Siao
+los instrumentos
+son el segundo
+rezago
+entonces yo me anoto
+por ejemplo
+si yo quiero
+escribir los instrumentos
+como
+en el periodo
+tres
+en el periodo
+cuatro
+acuérdense que
+perdemos dos periodos
+por la diferenciación
+y
+por la diferencia
+el instrumento
+que uso
+para instrumentar
+la variable
+endógena
+digamos
+en T igual a tres
+¿quién es la variable
+endógena?
+delta
+y
+y
+dos
+en T igual a cuatro
+es delta
+y
+cuatro
+no
+tres
+perdón
+porque
+acuérdense que
+esto sale
+decidir
+entonces es como
+el del periodo
+anterior
+el que quiero
+es este
+acal
+que estoy
+instrumentando
+¿con qué
+instrumento?
+delta
+y
+dos
+con
+el
+el
+rezago
+el segundo
+rezago
+que vendría
+ser
+como el
+primero
+disponible
+¿con qué
+instrumento
+la ecuación
+para T
+igual a cuatro
+con
+Y
+y
+y dos
+¿sí?
+donde
+el endógena
+es esta
+entonces
+eso es un poco
+la idea
+es como que
+estoy usando
+una sola
+variable
+para acá
+que es ese
+segundo
+rezago
+Arellano Bond
+lo que va a decir
+es
+usar una
+matriz
+que va a
+considerar
+para
+la del
+periodo
+tres
+bueno
+sería
+esta
+pero en el
+periodo
+cuatro
+vos podés
+instrumentar
+con esta
+y con esta
+entonces
+usas las
+dos
+entonces
+eso es lo que
+propone
+Arellano Bond
+entonces
+esto en lugar
+de tener esta
+forma como
+de vector
+va a ser
+más una
+forma de
+Y
+y
+uno
+cero
+cero
+cero
+Y
+y
+uno
+y
+dos
+o
+y
+y
+y
+y
+y
+a la
+variable
+a la
+endogeneidad
+del
+periodo
+cuatro
+la vas a
+estar
+atacando
+o la vas a
+estar
+instrumentando
+no solo
+con el
+rezago
+de Y
+y
+2
+sino con
+el de
+y
+y
+y
+y
+y
+y
+y
+y
+y
+y cuando te
+moves al
+de cinco
+vas a
+instrumentar
+con
+YI1 y 2 y 3
+O sea, vamos a ir así sumando
+Todos los instrumentos que están disponibles
+Bueno, ya no nos queda más tiempo
+Probablemente Pago está llegando
+Eso en cuanto a Arellano Bond
+Y después vamos a tener a Blondel Bond
+Sí, la estimación de Omega va a salir de computar esto
+Eso era como un paréntesis
+De dónde sale el Omega
+Ahora, recap de lo que
+De qué instrumentos vamos a usar
+Para armar este Z acá
+Para después armar esta
+Anderson Seau
+Dicen, bueno, usa el segundo lag
+Nada más
+Arellano Bond
+5
+Arellano Bond te dice
+No usé solamente el segundo lag
+Usá todos los lags que tenés
+Antes del segundo lag
+Y Blondel Bond te dice
+Ok, agarramos lo de Arellano Bond
+Y a eso agregarle las diferencias
+De los lags
+Ok, bueno
+No estamos tan mal
+Les muestro en dos segundos
+Cómo se ve el código
+Acá está Arellano Bond
+One Step Difference
+Y el Two Step Difference
+Pero bueno, el One Step Difference
+Era asumir algo sobre el Omega
+Y el Two Step Difference
+Era estimar el Omega
+Cómo le decimos al código
+Que me lo haga
+Bueno, con Two Step
+Two Step
+Y con
+Digamos, sin el Two Step
+El default vendría a ser
+One Step Difference
+Asumiendo los errores esféricos
+Después
+System GMM
+Es esto que les digo
+De Blondel Bond
+Y dice System
+Para diferenciarse
+De Arellano Bond
+Porque ahora en tu sistema
+Digamos, no vas a considerar
+Solamente las variables
+En niveles
+Que es esta variable
+Se va a dos periodos
+Sino también vas a instrumentar
+Con las diferencias
+Entonces, niveles más diferencias
+Igual sistema
+Blondel Bond
+Y bueno, eso sería como
+La parte del código
+De vuelta
+Recomiendo
+Fuertemente
+Chusmen
+A ver
+Este file
+Porque
+Parece un poco
+Intimidante al principio
+Pero ya en la cuarta página
+Empieza a hablar de
+Cómo funciona
+El estimador de GMM
+Esta parte que hicimos
+De las matrices
+Con las cuentas bien hechas
+Así que si me comí algo
+Podría
+Ahí va a estar bien
+Y
+Y nada
+Habla de
+Cómo trabajar
+En el
+Digamos, de dónde sale
+El tema de
+Ok, ¿por qué Arellano Bond?
+Agarra
+Anderson Siao
+Y dice
+Usemos más instrumentos
+Básicamente porque
+Los instrumentos están disponibles
+Y eso hace
+De tu estimación
+Algo más eficiente
+Así que
+Nada, eso
+Con eso creo que
+Estamos
+No llegamos a terminar
+Terminar el ejercicio 1
+Pero
+Vimos
+La parte de las cuentas
+Que me interesaba
+Ver en vivo
+Cualquier cosa
+Si quieren la semana que viene
+Igual vamos a seguir
+Hablando de esto
+Y
+Nos queda terminar el TV
+No sé si hay alguna pregunta
+¿Quién va a comentario?
+No, perfecto
+Del TV
+Del TV
+Si querés la vemos después
+Porque si
+Está pato
+Va por entrar
+Pero
+La podemos
+Echar para la cosa
+Ok
+Bueno
+Sin hay dudas
+Bueno, luego
+Me escriben igual por mail
+Y si no
+Buen fin de
+Buen fin de
+Chao
+Gracias
+Gracias
+Chao
+Chao
+Chao
+Chao
+Chao
+Chao

@@ -1,0 +1,4349 @@
+Bueno, ahí en teoría estamos grabando
+Y vamos a arrancar con la clase de hoy
+Lo que nos quedaba para ver para hoy
+Era una parte del TPE anterior
+La última, literalmente el último inciso
+El segundo ejercicio creo que era
+Que era relacionado con
+Vamos a verlo bien en detalle
+Para ponernos también un poco en contexto
+Hasta antes de la clase pasada
+Lo que asumíamos nosotros era que teníamos
+Paneles balanceados
+Es decir que podíamos conseguirnos una muestra
+Aleatoria de la población que nos interesaba analizar
+Entonces no íbamos a tener problemas
+Que después introducimos como problemas de sesgo de selección
+Ahora, cuando hay paneles que no son balanceados
+Por algún motivo
+Por alguno de los motivos que tenemos en clase
+Ya sea por ejemplo
+Por atrillo
+O por truncamiento incidental
+Hay dos opciones
+Que ese atrillo
+O que ese sesgo de selección
+Sea relevante para el análisis
+O sea
+Tenga algo que ver con la variable
+Que estamos queriendo explicar
+Le hace
+No ves
+El salario de una persona
+Porque la decisión
+Digamos
+Ver o no ver el salario
+Depende de la decisión de la persona
+De trabajar
+Y esa decisión probablemente
+Esté motivada por características
+De la persona
+Que también afecten al salario
+De la persona
+Y eso nos genera
+Una especie de sesgo de selección
+Genera un sesgo de selección
+No, una especie
+Un tipo de sesgo de selección
+Si quieren leer más de esto
+Les recomiendo fuertemente
+El libro de Woolrich
+El capítulo 17
+Por el libro de Woolrich
+Estoy refiriendo a
+Econometric analysis
+Of cross-section
+En panel data
+Capítulo 17
+O página 559
+De este PDF
+Que está bastante bien
+En calidad
+Y
+Porque acá te muestra
+Cómo sería la situación
+Cuando
+No tenés el problema
+De sesgo de selección
+Que vendría a ser
+Me lo resalté
+Para
+Este es como
+El supuesto
+Fuerte
+Que va a hacer
+Que aparezca
+El sesgo de selección
+Cuando
+Cuando derivás
+La estimación
+Por OLS
+Y acá te lo muestra
+Como diciendo
+Mirá
+Si vos estimás
+Esta ecuación
+Por OLS
+Esta ecuación
+Que está acá
+Lo que te va a pasar
+Es que vos
+Por OLS
+Estás estimando
+Esta partecita sola
+Y toda esta partecita
+De acá
+No la estás estimando
+No estás
+Taking it into account
+Y nada
+Acá explica bien
+Por qué se usa
+La inversa
+Del coeficiente de MIR
+Así que
+No me acuerdo
+Si el TP que sigue
+Tiene algo que ver
+Con esto
+Probablemente sí
+Pero de tener
+Algo que ver con esto
+Yo les diría
+Que antes de ponerse
+Con el TP
+Lean
+Aunque sea esta parte
+Para estar un poco
+En contexto
+Y entender
+Por qué hace
+Lo que hace
+El código
+Así
+¿Qué más vimos
+La vez pasada?
+Bueno
+La vez pasada
+Vimos también
+Un poco
+De qué tipo
+De test
+Se pueden realizar
+Para ver
+Si tenemos
+Evidencia
+En nuestros datos
+Que nos digan
+Che
+Pareciera que tenés
+Un problema
+De sesgo de selección
+Y el test
+Consiste básicamente
+En decir
+Bueno
+Si este parámetro
+Que está acá
+Es estadísticamente
+Distinto de cero
+Entonces probablemente
+Tengas un
+Problema
+De sesgo de selección
+Entonces
+Dado que teníamos
+Ese contraste
+Que vimos dos métodos
+O más bien
+Un método
+El método
+De Woodridge
+Siguiendo el enfoque
+De Moonlight
+Y de Chamberlain
+Lo único que cambiaba
+Entre Moonlight
+Y Chamberlain
+Era qué tipo
+De variables
+Incluíamos
+A la hora
+De hacer
+Tanto el contraste
+Como la corrección
+Que Moonlight
+Usaba
+Solo en las medias
+Temporales
+Y después
+Chamberlain
+Usa también
+En lugar
+De las medias
+Temporales
+Interacciones
+Temporales
+De las variables
+Con
+Dentro
+De la ecuación
+De selección
+Y en lo que nos
+Habíamos quedado
+La vez
+Pasada
+Problem Z
+Abierto
+Acá
+¿Qué hicimos
+La semana pasada
+Dijimos
+Bueno
+Con el ejercicio
+Uno
+Analizamos un poco
+Cómo funciona
+Ese contraste
+De sesgo
+De selección
+Bajo el enfoque
+De Moonlight
+Bajo el enfoque
+De Chamberlain
+Y después
+Estimamos el modelo
+Con las correcciones
+De ambas opciones
+Y hablamos un poco
+Acerca de los errores
+Estándar
+De esas estimaciones
+Y lo que dijimos
+Fue
+¿Qué pasa?
+Como estás usando
+Una estimación
+De una estimación
+Para
+Cuando enchufamos
+El coeficiente de Mills
+No es que
+Enchufamos el coeficiente
+De Mills
+Porque sí
+De vuelta
+Eso está bastante
+Bien explicado acá
+Lo que te dice
+Woodridge
+Es mirá
+En esta ecuación
+Que es lo más cercano
+Que podés llegar
+A esta ecuación
+Que es la que te gustaría
+Explicar
+Este
+Esta parte de acá
+Este lambda
+X delta 2
+No lo
+No lo podés poner
+Tan alegremente
+Porque básicamente
+No sabemos
+Quién es delta 2
+Delta 2
+Para que sepan
+Sale de acá
+De esta ecuación
+De esta expresión
+De la ecuación de selección
+Como no sabes
+Quién es
+Lambda
+X
+Delta 2
+Lo que te dice
+Woodridge
+Bueno
+Búscate
+Un estimador
+Consistente
+De todo eso
+Quién es
+El estimador
+De lambda
+El coeficiente
+De
+De la inversión
+De la inversión
+Al ratio
+Y bueno
+Acá lo explico
+En más detalle
+Por si no
+Queda claro
+De dónde sale
+Pero para mí
+Esto fue súper
+Muy simple
+De entender
+Y de aclarar
+Y bueno
+Lo que veíamos
+Era que
+Como estábamos
+Enchufando
+Un estimador
+Adentro de
+Un estimador
+Adentro de
+De esta parte
+De acá
+Lo que decíamos
+Era que los errores
+No iban a ser
+Los correctos
+Entonces vimos
+Dos opciones
+La primera opción
+Que es la que vimos
+En la clase pasada
+Es computar los errores
+Estándares
+Vía bootstrapping
+Y lo que vamos a ver
+Hoy es esta parte
+Que es estimar
+Los errores
+Estándares
+Analíticos
+Para eso
+Les dejé cargado
+En el Dropbox
+Porque el campo
+De la mañana
+No estaba funcionando
+Así que
+Les dejé cargados
+En el Dropbox
+Los códigos
+Bueno el del PC4
+Yo lo tenía en el Dropbox
+Pero el del PC5
+No sé si es en el Campus
+Y este es el código
+Que vamos a usar
+El código
+Como verán
+Es bastante
+Bastante largo
+Yo apunto igual
+A
+Digamos
+No vamos a ver
+Línea por línea
+Y como que
+Edité el que está cargado
+Le puse un par
+Más de comentarios
+Por si no llegamos
+A verlo todo hoy
+Pero
+Digamos
+Más que ver el código
+En sí
+Obvio es lo importante
+Quiero que
+Discutamos un poco
+Qué es lo que
+Estamos haciendo
+En el código
+Cosa que si ustedes
+Tienen que después
+Verlo por su cuenta
+Modificarlo
+No necesariamente
+Para esta materia
+Sino capaz que
+Para algo de la vida
+Les sirve
+Saben qué es lo que
+Necesita ser cambiado
+¿Sí?
+Ok
+Este código
+Lo escribe
+Anastasia Semiquina
+En relación
+A este paper
+Que está acá
+Entonces acá
+Ya tenemos
+Una primera referencia
+Que vale la pena
+Ir a buscar
+Yo lo busqué
+Por la página
+De la biblioteca
+De Itela
+Y aparece
+Por si no lo encuentran
+Por otros medios
+Menos tradicionales
+Que es este paper
+Que está acá
+Está bueno mirarlo
+Porque
+Nada
+No es muy largo
+Y te da como
+Bien bien
+La idea
+De qué es lo que
+Está haciendo
+En el código
+De hecho
+Justamente en el código
+Lo que te dice es
+Va
+No recuerdo
+Si lo decía en el código
+Sí en una parte dice
+Tipo
+Y acá estoy usando
+El procedimiento
+4.1.2
+Que ve este paper
+Ven que acá
+Les explica
+Tipo
+Procedure
+Tal
+En particular
+La que nos interesa
+A nosotros
+Es esta procedure
+Que está acá
+Y la 4.1.2
+Que está un poquito más
+Traduciendo esto
+A lo que veníamos hablando
+Fíjense que lo que dice es
+Podemos conseguirnos
+Un estimador consistente
+De Tita
+Que ahora vamos a ver
+Que es Tita
+Siguiendo este procedure
+Para acá
+T
+Buscate un estimador
+PIT
+Sombrerito
+Y computar P
+De T
+Sombrerito
+Después
+Para las variables
+Que observás
+Estima la ecuación
+Dieciocho
+Que es
+La ecuación de interés
+By pool
+By pool
+To squares
+With squares
+Y después te dice
+Estima la varianza sintótica
+Como se describe en el appendix
+Entonces
+Eso es lo que vamos a hacer ahora
+La parte de la varianza sintótica
+Que si bajamos hasta el appendix
+Ahí te dice
+Más o menos
+Qué es lo que está haciendo
+De todas formas
+De vuelta
+En el código
+Lo único que se modifica
+Es
+Esta partecita de acá
+Y bueno
+Más abajo
+Si quieren modificarla
+Y personalizarla
+Más se puede hacer también
+Pero
+Con cuidado
+Ok
+Creo que antes de arrancar
+Voy a hacer la parte
+Como más
+Analítica
+Que tenía ganas de hacer
+Algo que les recomiendo
+Si lo tienen a mano
+Tenganse a mano
+Estas slides
+Teóricas
+El panel 03
+Van a ir a la parte
+De
+Esto por acá
+Porque voy a estar
+Como hablando de esta parte
+Y quizás
+Pueden tener un poquito
+Más de contexto
+O decir
+Bueno
+Esto era
+Esta parte
+Mágina 27
+De 525
+Porque en definitiva
+Fíjense
+Que acá nos dice
+Estime la varianza sintótica
+De tita
+Sombrero
+Como sigue
+Y acá nos da
+Todos los pasitos
+Yo no voy a seguir
+Los pasos como
+En orden cronológico
+Sino que los voy a seguir
+Partiendo de que
+Queremos llegar a esto
+Ok
+Queremos llegar a esta
+Expresión de la varianza
+Pero que es
+Cada una de estas cosas
+Bueno
+El A va a ser algo
+El B va a ser algo
+El B en particular
+Es esto
+Pero su vez dentro del B
+Tengo este P
+Este P es esto
+Que depende de Q
+De D y de R
+Este Q
+Es esta cosa
+Que está acá
+Entonces voy a tratar
+De ser lo más prolija
+Posible
+Para
+Pero como tengo que ir
+A contramano
+Capaz que
+Se complica un poco
+Y es más fácil
+Que si se pierden
+Lo miren
+De las slides
+Directo
+Ok
+Entonces
+Esperen
+Yo me voy a ver
+Con su tiempo
+No
+Gracias.
+Gracias.
+Gracias.
+Gracias.
+Gracias.
+Aparece como algo que tiene la forma A sombrerito a la menos 1, B sombrerito, A hat a la menos 1, todo esto dividido.
+La parte de A, vamos a ir por partes, sale relativamente fácil porque A te la definen muy directamente
+como la sumatoria desde I igual a 1 hasta N y la sumatoria sobre los momentos de tiempo de S y T por W y T por W y T.
+¿Dónde? Solo para que tengamos a mano también. W y T no es más que otra forma de decirle a las variables
+del lado derecho de la ecuación. O sea, W y T va a ser un vector que va a incluir unos, las medias temporales,
+porque vamos a trabajar con el enfoque de Mundak, las variables en sí, y después voy a tener como una línea de ceros,
+va a aparecer el lambda, que va a aparecer el lambda y T, sombrerito, coma, y después ceros de vuelta.
+¿Qué dimensión tiene esto? Bueno, esto es 1, estas son las K medias temporales de las variables,
+estas son las K variables, y todo eso es T. O sea, que todo esto tiene dimensión 1 por 1 más 2K más T.
+Entonces, como les decía, la parte de A es básicamente agarrar esto y enchufar eso acá y acá,
+que es el valor que toman las variables. Si quieren, piensenlo como cuando hacíamos X tras costa por X,
+y después le clavamos la inversa y qué sé yo, bueno, va por ahí. Y todo eso lo sumamos sobre el tiempo
+y sobre las observaciones, de vuelta, idea de X tras costa por X, pero no para todas las variables,
+porque en definitiva no observo todos los salarios, solo me interesa hacerlo para aquello donde S y T,
+que era la ecuación de selección, es igual a 1. Porque fíjense que cuando S y T vale 0,
+todo esto se me muere, entonces...
+Eso importa, la parte de A. Entonces ya con eso tenemos esta parte A.
+Y ahora nos falta la parte B.
+Y acá sí es un poco más...
+Nada, tenemos que recorrer un caminito un poco más largo.
+Para la parte de B, recordemos que B sale, o más bien se define como,
+N a la menos 1 por la sumatoria sobre N de PI, PI, sumo de T.
+¿De dónde sale esto? ¿Qué es lo que necesito para calcular esta expresión?
+Bueno, primero que nada, el N ya lo tengo, el tema es el P, sombrerito.
+El PI, sombrerito, es una expresión que se define como,
+QI menos DI, no, DI, no, DI, no, DI, no, DI, RI, sombrerito, sombrerito.
+Entonces esperen que...
+Este es el B.
+Después dije, bueno, ok, pero el B depende de algo que se llama PI.
+Y a su vez, ese PI depende de...
+Algo que se llama QI,
+depende de algo que se llama...
+D, y depende de algo que se llama...
+RRI, y no tiene sin colores.
+¿De dónde?
+Si se fijan en las slides, arranco por RRI, que tengo de colograma.
+RRI, sombrerito, se define como...
+Menos...
+O sea, menos signo.
+La inversa de la matriz...
+Que se llama...
+Promedio...
+Que sale de estimar el modelo...
+RRI, multiplicado por...
+La derivada del log...
+De la función de la simplicitud...
+Si no se acuerdan qué es esto, no se preocupen.
+Yo se los escribo más que nada para...
+Cuando les muestro el código, saber decirles...
+Che, ¿te acordás que...
+Que teníamos que meter un R en esta parte?
+Bueno, es este R que sale de acá.
+Y esto en las slides...
+En la panel 03...
+Está en la slide...
+37...
+De 125.
+Ok, eso en cuanto a RRI.
+Después tenemos la parte de...
+¿Qué quiero definir aquí?
+Los cuidos.
+Vamos con los cuidos.
+No, agarré el color del D.
+El D sombrerito se define...
+Como algo que se los voy a mostrar en la slide...
+36...
+De 125...
+Cuando vuelve a la compu...
+Porque es medio...
+No feo la expresión.
+Esperen que nada más se lo digo.
+Pero sale de decir...
+D se define como...
+N a la menos 1 de...
+La sumatoria...
+Sobre N desde J igual a 1...
+La sumatoria sobre T desde T igual a 1...
+Y algo que es...
+S, J, T...
+Por...
+W, sombrerito, J, T...
+Los TITAS estimados...
+Que los TITAS son básicamente...
+Dentro...
+De vuelta...
+Los parámetros de nuestro modelo...
+Por G, J, T...
+Con ST igual a 1...
+Y después en los slides les dice...
+Como que...
+Estos son los variables...
+Estos son los parámetros...
+Y te dice...
+G, J, T...
+Es a su vez...
+Como una matriz de bloques...
+Que tenés 0, 0, 0, 0...
+Puntitos, puntitos, 0, 0...
+Esto es Z, J, T...
+0, 0, 0, 0...
+Y en las slides de vuelta...
+Página 36, 125...
+Te explica que...
+Este Z que está acá...
+Es por ejemplo...
+Una matriz...
+Es una matriz...
+Dentro de la matriz...
+Que tiene forma...
+Vectores de ceros...
+Menos...
+X, J...
+Con...
+Pues ceros...
+Y te explica también bien...
+Qué dimensión tienen...
+Estos ceros que están acá...
+Y estos ceros que están acá...
+Pero bueno...
+Esto no me parece tan relevante...
+Para lo del código...
+Así que lo voy a obviar...
+Solamente eso...
+Decirles que si quieren ver...
+Cómo se calcula...
+El D que vamos a calcular después...
+Sale de acá...
+Y nos queda entonces...
+La R...
+No, el R ahí ya está...
+El QI...
+Como un verdecito...
+El QI...
+Tiene algo un poco más...
+Sencillo de ver...
+Por así decirlo...
+No doy cuenta que no te estoy mostrando...
+Lo que se tiene...
+Igual nada...
+Vos tenés las slides...
+Una de calio y una de arena...
+Es eso que sale de acá...
+Que es básicamente...
+La sumatoria sobre T...
+De...
+S y T...
+Que recuerden que es la variable de selección...
+Doble B y T...
+Donde estos son los residuos...
+De lo que vamos a llamar...
+La segunda etapa...
+Estas son las variables...
+Ah...
+Estudié a todos...
+Y esta de vuelta...
+La ecuación de selección...
+O sea básicamente es un término...
+Que nos mide la interacción...
+Entre los residuos...
+Y las variables...
+Que tiene sentido meter esto...
+En la estimación de una varianza...
+Porque cuando estimamos la varianza...
+Acuérdense que...
+Que lo que queremos ver es cuánto...
+¿Se acuerdan que aparecían?
+La...
+R, C, S...
+Sobre N, M, K...
+Bueno...
+Vamos un poco para ahí...
+Solo que ahora tenemos algo un poco más complicado...
+Entonces...
+Ahora que sabemos quién es Q...
+Quién es D...
+Quién es R, I...
+Y que sabemos por lo tanto quién es P, I...
+Y que sabemos por lo tanto...
+Cómo hacer B...
+Déjenme...
+Agarrar de vuelta esta expresión que está acá...
+No, no, no, no, no...
+Lo que pasó eso...
+Volvemos a esta expresión...
+y déjenme reescribir esto
+un poquito más
+en lugar de PI voy a agarrar y reemplazar
+por lo que sé que es PI
+que de vuelta PI es esto
+entonces tengo ahí
+PI sombrerito
+por PI sombrerito
+y ahora voy a operar un poquito con esto
+porque me va a dar expresiones que van a ser más fáciles
+de encontrar después en el código
+si hacemos la distributiva
+nos va a quedar
+este de acá con este de acá
+me queda
+voy a distribuir también la sumatoria
+la sumatoria de I igual a 1 está ND
+tengo el PI sombrerito
+por el otro PI sombrerito
+traspuesto
+eso sería como esto
+después vamos a hacer
+este con este
+entonces nos va a quedar menos por menos más
+D por la sumatoria
+porque D no depende de I
+de RI sombrerito
+RI sombrerito
+traspuesto
+y después nos va a quedar otro término
+que va a venir
+como por la multiplicación
+de
+este que está acá
+con este que está acá
+y el de este que está acá
+con este que está acá
+que es medio que lo mismo
+nos va a quedar
+menos
+D sombrerito
+por la sumatoria
+de RI sombrerito
+Ui sombrerito
+menos
+D sombrerito
+por la sumatoria
+de RI
+UI
+todo esto traspuesto
+entonces lo que voy a hacer
+después en el código
+es
+esperen que estoy
+le voy a chicar un poco
+si me queda toda una sola línea
+en el código
+después cuando lo miramos
+yo lo que les voy a decir es
+a todo esto
+le voy a decir
+término
+1
+a todo esto
+le vamos a decir
+término
+4
+y esto que está acá
+es el término
+2
+3
+y el otro
+es el término
+2
+3
+puesto
+esto yo sé
+que parece
+que está todo
+muy en el aire
+y que probablemente
+no se entienda
+demasiado
+pero si quieren
+se los dejo así
+si quieren
+deshotearlo
+para tenerlo a mano
+de referencia
+lo voy a hacer
+acá en la bomba
+para tenerlo a mano
+presenta
+entonces nada
+esto es lo que vamos a estar haciendo
+veremos
+que tanto podemos
+no recurrir
+a las notitas
+para
+seguir
+pero nada
+vamos con eso
+comparto acá de vuelta
+y vamos al código en sí
+entonces el código
+adelante de todo
+te va a decir
+como
+mirá
+este es el contexto
+del modelo
+el programa
+el programa debería aplicarse
+en un panel
+balanceado
+donde el
+selection
+indicator
+is served
+bla bla bla
+asuma
+que no tenés
+variables
+en tu
+adbasset
+con nombres
+que sean
+t, t chiquita
+min, g y lam
+o variables
+cons
+y hat
+sample
+num
+básicamente
+porque
+todo esto
+lo va a definir
+en el modelo
+entonces te dice
+mirá
+si tenés variables
+que se llaman así
+renombrálas
+antes de arrancar
+o cambiar el programa
+como corresponde
+de vuelta
+esto es bastante
+bastante largo
+así que yo
+les voy a dar
+como
+un paseo
+por el código
+después
+obviamente
+si ustedes lo quieren
+ver en más detalle
+lo pueden hacer
+y lo charlamos
+como ven
+acá nos dice
+una leyenda
+if the conditions
+si las condiciones
+que están acá arriba
+se cumplen
+no tenemos que cambiar
+nada abajo
+o sea
+lo corre a su punto
+lo cual es
+bastante útil
+acá te dice
+bueno
+decime quién es el id
+quién es el año
+guardalo como un global
+lo mismo con
+y1 y 2
+¿por qué hace esto?
+porque después
+a lo largo del programa
+va a ir llamando
+estas variables
+entonces si en tu dataset
+la variable id
+se llama
+conti
+por ejemplo
+ya de entrada
+le decís
+no, no
+no se llama más conti
+ahora me la voy a guardar
+como un global
+dentro de la etiqueta
+id
+entonces
+es un poco por eso
+con la etiqueta year
+lo llamo al año
+con la etiqueta y1
+en nuestro caso
+lo vamos a llamar
+el salario
+con y2
+office wage
+te acuérdense
+que esto vendría a ser
+la cuestión de interés
+estimar el salario
+sabiendo que
+vamos a observar
+el salario
+siempre que veamos
+siempre que
+digamos
+efectivamente
+veamos el salario
+según este indicador
+después tenemos
+las x
+que son experiencia
+y educación
+que son las variables
+explicativas
+de la primary equation
+y h
+que son las
+explanatory variables
+en la selección equation
+en caso de que quieran
+decir
+mira
+para mí
+si observo
+o no observo
+el salario
+no depende solamente
+de la experiencia
+de la educación
+sino también
+de
+idea
+el género
+de la persona
+porque la encuesta
+estaba diseñada
+de tal forma
+que
+si seleccionabas
+que sos mujer
+no te dejaba
+poner tu salario
+entonces al final
+nunca me dice
+el salario
+para las mujeres
+algo así
+entonces sería
+un poco eso
+y acá
+bueno
+va a arrancar
+sí
+a definir
+cosas
+primero que nada
+para cada unidad
+del panel
+vamos a contar
+cuántas unidades
+tienen ingresos
+distintos de cero
+eso es lo que hace
+esta línea
+del código
+después agarra
+el número total
+de periodos
+y le dice
+tmax
+acá está
+como que
+seteando cosas
+para después
+incluir en los loops
+no es que esto sea
+de vital
+es de vital importancia
+para el código
+pero es como más
+auxiliar
+después se genera
+las dummies temporales
+en base a lo que
+le dijimos
+le dijimos que
+tenemos
+tmax periodos
+entonces
+anda iterando
+sobre esos periodos
+y
+generate
+time dummies
+y acá
+ya viene una parte
+un poquitito más jugosa
+que es
+generate
+dado que me dijiste
+que tenías
+estas variables
+temporales
+que nos decimos
+las variables temporales
+hacete
+unos regresores
+que
+para los regresores
+calcula
+la media temporal
+media temporal
+sinónimo de
+moonlack
+en caso de que quisieran
+aplicar esto
+siguiendo el enfoque
+de chamberlain
+esto lo tendríamos
+que modificar
+porque bueno
+de vuelta
+moonlack
+es el que usa
+la media temporal
+chamberlain
+lo expande
+o más bien
+moonlack
+es una forma
+particular
+del enfoque
+de chamberlain
+entonces eso
+es lo que hace
+esta partecita
+del código
+de acá
+te genera
+para cada variable
+dentro de la
+var list
+h
+que h
+recuerden
+que estaba más arriba
+definida como
+experiencia y educación
+o sea que básicamente
+para experiencia
+y para educación
+generate una variable
+que se llame
+min
+de la variable
+mineduc
+y minexpert
+y eso
+que va a ser
+bueno justamente
+el promedio
+de duc
+el promedio
+de expert
+como
+no el promedio
+de toda la muestra
+o sea el promedio
+de todo el panel
+sino el promedio
+por ahí
+como clustereado
+si querés
+y guarde
+este local j
+que se va a ir
+actualizando
+en toda iteración
+que te va a decir
+el número de variables
+de medias temporales
+¿por qué nos interesa
+este numerito?
+porque acuérdense
+que muchas de las dimensiones
+de los vectores
+que vamos a usar después
+para construir manualmente
+la varianza sintótica
+dependen
+de
+de la cantidad
+de cas
+letras cas
+que acá le dicen j
+entonces
+ok
+te guardaste ese j
+como un local
+después guardalo
+como un escalar
+para no perderlo
+escalar L2
+te da
+el número
+de variables
+explicativas
+en la ecuación
+de selección
+que es 2 por L2
+más 1
+¿por qué 2 por L2
+más 1?
+porque bajo el approach
+de Moonlack
+vamos a tener
+las variables
+y las medias temporales
+más 1
+la constante
+esta partecita
+es muy parecida
+a lo que teníamos
+en el
+cuando
+cuando escribimos recién
+acá ya empezamos
+a armar
+esta parte
+de acá
+1
+2K
+3
+1
+por K
+que nosotros
+son L2
+y después
+vamos a hablar
+de uno
+que tenemos
+aquí
+bien
+y después lo mismo
+para las X
+que las X
+es la parte
+de
+básicamente contar
+cuántas variables
+tenés
+una forma
+más
+completa
+¿qué más?
+seguimos
+con
+la parte
+de
+la estimación
+del coeficiente
+de miles
+que la vamos a usar
+más adelante
+porque recuerden
+que
+dentro
+de las cosas
+que teníamos
+que estimar
+para hacer
+la varianza
+sindótica
+teníamos
+teníamos
+por ejemplo
+el
+que estaba
+acá
+que
+si vamos
+a la
+ven que
+dependía
+de los
+residuos
+de la
+segunda
+capa
+por suerte
+se ve muy bien
+y estos
+residuos
+van a salir
+de la
+estimación
+la estimación
+bueno
+tenemos que
+estimar
+entonces vamos
+a ir
+por ese
+lado
+generamos
+una variable
+lambda
+que está
+vacía
+corremos
+el
+predict
+predecimos
+xbxb
+esto es lo
+mismo que
+hicimos
+la clase
+pasada
+y reemplazamos
+lambda
+que es esta
+variable
+vacía
+con
+la inversa
+del coeficiente
+de miles
+para los casos
+donde observamos
+esa
+la
+después
+generamos
+los términos
+interacción
+para
+lambda
+que es
+como la
+interacción
+de lambda
+con el t
+que es
+de vuelta
+lo que usamos
+en la
+estimación
+de la
+segunda
+etapa
+y acá
+está la parte
+de la
+correction
+que de vuelta
+es lo que
+hicimos
+la clase
+pasada
+todavía
+no
+llegamos
+a nada
+de la
+varianza
+sintética
+de hoy
+acá
+está la
+regresión
+de
+tu
+variable
+wage
+no
+wage
+el logaritmo
+del salario
+que es
+la variable
+de
+ecuación
+de interés
+contra
+las
+variables
+explicativas
+eduq y
+expert
+tengo
+lam
+estrellita
+y min
+estrellita
+¿por qué
+la estrellita?
+para ir
+recorriendo
+todas las
+variables
+que arranquen
+con lam
+básicamente
+y con min
+lo mismo
+todas las variables
+que arranquen
+con min
+las incluís
+en este caso
+tenemos
+min eduq
+y min
+expert
+y en el caso
+de los
+lambdas
+tenemos
+fíjense
+habíamos
+definido
+lam
+i
+es la
+interacción
+de la
+variable
+de la
+dami temporal
+t
+en el momento
+i
+con lambda
+son
+dami temporales
+no sé si
+quedamos
+claro
+pero
+es como
+decir
+t
+por lambda
+que es la
+estimación
+del coeficiente
+de mil
+pero
+para que
+bueno
+para el t1
+para el t2
+para t3
+y todo esto
+lo incluimos
+acá
+¿por qué?
+porque esta
+se llama
+lam
+1
+esta se llama
+lam
+2
+esta se llama
+lam 3
+etc
+etc
+bien
+hacemos la
+regresión
+de la
+ecuación
+de interés
+y
+llamamos
+a la
+variable
+sample
+sample
+que es
+básicamente
+chequear
+que
+estemos
+mirando
+la parte
+y2
+de acá
+nos llevamos
+los coeficientes
+de la
+regresión
+gamma 1
+que de vuelta
+si vamos
+al paper
+el gamma 1
+vendría a ser
+y de acá
+que lo encuentre
+gamma 1
+o creo que sale
+más rápido
+en Google
+pero
+gamma 1
+gamma 1
+nos guardamos
+esa estimación
+guardamos
+la interacción
+del coeficiente
+de Mills
+con las variables
+del tiempo
+o sea
+muy parecido
+a lo que dijimos
+acá arriba
+sería en realidad
+del estimador
+o del parámetro
+que acompaña
+al coeficiente
+porque fíjense
+que lo que tenemos
+acá es
+el coeficiente
+o sea
+guión bajo
+b
+me tiro
+el coeficiente
+este
+que te habías
+tirado
+pero
+de la otra
+regresión
+o sea
+como el coeficiente
+asociado
+al lambda
+como que a la interacción
+lambda
+momento 1
+lambda
+momento 2
+más
+gamma 1
+y gamma 1
+es lo que
+acompaña
+a la variable
+lambda
+y lambda
+es a su vez
+coeficiente de Mills
+y después
+agarra
+y hace
+matricialmente
+como que
+dice bueno
+ya tenías
+como
+ya habías
+estimado
+la ecuación
+de selección
+la de interés
+con las correcciones
+y ahora
+estima la ecuación
+la regresión
+en sí
+de y a 1
+contra x
+contra
+las interacciones
+temporales
+con lambda
+y las medias
+temporales
+y lo replica
+usando matrices
+entonces
+W es una matriz
+con los
+second stage
+regressors
+con los regresores
+de la segunda etapa
+¿cuántas variables
+tenemos en W
+las que decíamos
+hoy
+más temprano?
+T
+1
+la constante
+K más L2
+que nuestro dibujito
+era
+dos veces K
+¿cómo es la expresión?
+ah esto creo que
+no lo vimos
+pero básicamente
+dice
+generate una matriz
+que sea
+W
+transpuesta
+por W
+¿cómo lo hacemos?
+con el comando
+macacum
+que es uno de los
+que vimos en las primeras
+clases
+que
+te hace
+justamente
+te agarra todo esto
+como un vector
+y te hace
+como la multiplicación
+acumulativa
+que representa
+este
+W
+transpuesta
+por W
+después el
+vecacum
+que es lo mismo
+con Y
+transpuesto
+por W
+si no se acuerdan
+que es esto
+va a llamar
+creo que era
+la segunda
+primera clase
+y bueno
+de ahí sacamos
+el beta
+W
+transpuesta
+por W
+inverso
+diría
+transpuesto
+por W
+y acá te dice
+mirá
+estoy mostrando
+esto
+para que hagas
+el check
+nada más
+pero deberían ser
+los mismos
+suficientes
+que tuvimos antes
+y después
+te da
+como los pasitos
+para replicar
+la varianza
+pero esta es la que nos da
+Stata
+como
+la que ya estábamos
+calculando
+la que ya veíamos antes
+cuando corríamos
+el código solo
+es la que no sería
+válida
+pero bueno
+la vamos a replicar igual
+te da los pasitos
+para hacerlo
+y te da la comparación
+entre hacerlo manual
+y sacarlo directo
+de la extinción
+y ahora sí
+vamos a la parte
+relevante
+que estaba
+muy adecuadamente
+indicada
+que es
+obtener los errores
+estándares
+corregidos
+por la estimación
+del primer paso
+hasta ahora
+nada nuevo
+ahora lo que queremos
+hacer es ir a
+computar
+eso que dijimos
+hoy al principio
+a a la menos 1
+por b
+por a a la menos 1
+sobre n
+o sea la expresión
+para la varianza
+sintótica
+de las slides
+31 a 121
+para el 0 3
+como verán
+metí como un spanglish
+para distinguir
+lo que era
+el código original
+versus nuestras
+anotaciones
+así que si hay errores
+en las partes
+en español
+probablemente
+no
+son 100%
+un mismo
+la matriz
+la
+la habíamos visto
+hoy más temprano
+que era
+como que
+relativamente sencilla
+que era
+esta parte
+esta parte de acá
+la sumatoria
+sobre n
+sumatoria
+sobre t
+de
+s y t
+w y t
+w y t
+que acá en el código
+ya la habíamos construido
+como w t
+respuesta por w
+y ahora
+vamos a ir con
+los componentes
+de la matriz
+¿se acuerdan
+que les dije
+que yo iba
+a definir
+todo
+en términos
+de
+un término 1
+un término 2
+un término
+no
+un término 1
+un término 2
+un término 4
+también estoy en el lado
+ah no la escucho
+ah porque está
+como muy abajo
+pero bueno
+de esta
+de esta
+de esta cuenta
+que habíamos hecho acá
+esto le decíamos
+1
+4
+2
+y 2
+empezamos con el
+term 1
+que era
+la sumatoria
+de los
+cuisombreritos
+y a su vez
+el cu
+habíamos visto
+que
+era
+la sumatoria
+de
+s
+y
+de
+esta parte
+como que la escribo
+porque
+después lo que vamos a hacer
+con el resto
+va a ser bastante similar
+entonces
+pero con este
+es un poco más sencillo
+verlo
+entonces
+para cada individuo
+estamos calculando
+esta especie
+de interacción
+a través de
+todos los momentos
+del tiempo
+entre
+las variables
+que usamos
+del lado derecho
+de la ecuación
+de interés
+y los
+residuos
+por eso
+acá
+justamente
+lo que me guardo
+es esto
+agarro
+global
+barley
+1
+esto
+que es lo que va
+dentro de
+la parte de
+doble
+y
+entonces para
+cada individuo
+quiero sumar
+a través del tiempo
+SIT
+WIT
+EIT
+WIT
+es la interacción
+entre variables
+del lado derecho
+de la ecuación
+de interés
+junto con los residuos
+los residuos
+vendrían a ser
+estilos
+entonces
+las residuos
+son los que vamos
+a guardar
+como
+o creo que ya lo guardamos
+como
+IHAP
+en un momento
+lo pusimos
+el predict
+IHAP
+y listo
+y ahora
+lo que vamos a hacer
+es justamente
+generar
+el valor de agar
+esto se hace a través
+de un loop
+y el loop
+lo que hace es
+para cada W
+adentro de
+esta bar list
+que está acá
+generate
+W
+E
+HAP
+W
+fíjense
+que valores
+va a ir tomando W
+todo lo que hayas metido
+dentro de las X
+que eran Xperia, Duke
+Lambda 1
+Lambda 2
+Lambda 3
+tipo las Lambdas temporales
+la interacción de Lambda
+con los momentos en el tiempo
+los promedios
+MINEDUC
+y MINEXPER
+y la constante
+entonces vas a tener
+una variable
+WEH
+MINEDUC
+WEH
+MINEXPER
+WEH
+LAMP1
+LAMP2
+etc.
+¿Qué va a ser esa variable?
+Bueno, la interacción
+entre esa misma W
+lo que decíamos acá
+con los residuos
+ya
+literalmente
+esta es la situación
+y después
+lo sumas
+y lo sumas
+por ID
+que vendría a ser
+este cacho de acá
+eso lo acumulo
+como que lo vas acumulando
+en este global
+y bueno
+ya después
+contás
+cuántas veces
+estás haciendo esto
+cuántas veces
+vas corriendo el loop
+lo contás
+a través de esta foto
+bueno
+espero que tengo que borrar
+todo esto
+una vez que hicimos
+que hicimos
+todo esto
+nada
+más
+cuentitas
+para justamente
+armar lo que queríamos armar
+después siguieron
+mirando
+y
+este
+WEW
+que es lo que
+nos llamamos acá
+el
+MAT
+ACUM
+BARLY
+2
+es
+eso que llamamos
+el término 1
+en esta expresión
+en esta
+acá abajo
+de todo
+que era justamente
+la interacción
+entre esto
+y esto
+el PUI
+con el PUI
+esa es la partida
+del término 1
+para un segundo
+no sé si alguien
+se me perdió
+demasiado
+yo sé que
+nadie está siguiendo esto
+como al pie de la letra
+pero
+si alguien tiene alguna
+pregunta que dan
+irremediable
+y que no les permita
+seguir
+párenme
+y no
+yo sigo
+después para los
+otros términos
+el término
+4
+y el 2
+necesitamos
+computar
+la matriz D
+y el RI
+porque el PUI
+ya lo tenemos
+de vuelta
+el D
+salía de
+y esto
+no lo mostré
+acá
+porque
+como estoy
+me estaba
+compartiendo
+con Zoom
+la parte
+D
+salía de
+este es el D
+del que vamos
+a estar hablando
+pero bueno
+como decíamos
+antes
+para armar
+D
+necesito
+lo L
+de J
+ya sabemos
+dónde está
+este ya lo estimamos
+nos falta
+esta G
+y esta G
+tenemos que armarnos
+como esta matriz
+con estas características
+donde Z
+J a su vez
+es todo
+es todo esto
+que está acá
+donde estos
+ceros
+también tienen
+sus propias
+características
+es un poco
+delicado
+por eso
+lo paso por encima
+porque
+si quisiéramos
+verlo bien en detalle
+igual no llegaría
+más con el tiempo
+pero bueno
+para que sepan
+en qué parte
+de la
+de la
+de la estimación
+de la varianza sintética
+estamos
+entonces acá tenemos
+la parte
+del gesiano
+que el gesiano
+acuérdense que
+es la
+que sale
+de
+vamos
+de dónde
+sale el gesiano
+pero es el
+RI
+esperan que volvemos
+todos
+acá
+esta parte
+que está acá
+por acá
+y RI
+es el vector
+igual a menos
+la inversa
+del gesiano
+a propósito
+con el solito
+hacemos esa
+y bueno
+vamos a tener
+acá un loop
+que es un poco
+más larguito
+porque de vuelta
+tenemos que armar
+toda
+esta expresión
+B
+que estaba acá
+que de vuelta
+cuando la
+desglosamos
+un poco
+llegamos
+a esto
+es un poco
+más delicado
+yo acá les puse
+los pasitos
+que es lo que
+está haciendo
+como en cada
+partecita del loop
+primero que nada
+corremos el
+trobit
+de la ecuación
+de selección
+¿para qué?
+para generar
+la matriz
+gesiana
+que era
+el
+después
+nos guardamos
+un local
+bueno
+esa es la parte
+1
+generamos la matriz
+gesiana
+que nos ayuda
+a computar
+la matriz
+R
+después
+lo que hace
+acá
+es generar
+una variable
+temporal
+temp
+bar
+que computa
+la matriz
+del score
+el score
+es lo que
+entra
+dentro
+más del
+acá
+ver slide
+94
+de 121
+en este caso
+notadito
+por acá
+esto es lo que
+estamos mirando
+acá
+porque
+acuérdense que
+para hacer
+RI
+lo que necesito
+es
+multiplicar
+la matriz
+gesiana
+promedio
+por la derivada
+del logaritmo
+de la función
+de verosimilitud
+del tobit
+bueno
+la
+derivada
+del logaritmo
+de la función
+de verosimilitud
+es esto
+es esto
+lo que vamos a estar
+calculando
+de vuelta
+súper contoso
+pero
+ya están hechas
+las cuentas
+así que ustedes
+no van a sufrir
+con eso
+solamente
+el tema
+es como decir
+ah bueno
+está bien
+esto sale de acá
+entonces
+eso es lo que
+está sucediendo
+acá
+se calcula
+esa suerte
+ese score
+y después
+en la parte 3
+que se está
+acá abajo
+agarra
+la interacción
+entre el coeficiente
+de las damis
+de tiempo
+que era esto
+que llamábamos
+los lambdas
+coeficiente de la inversa
+de mil
+y con eso
+se arma
+la parte G
+entonces
+la parte G
+acá la vamos a llamar
+de vuelta
+son variables
+que necesito
+para computar
+la matriz D
+que es esa matriz D
+que veíamos antes
+y ese C
+que sale de acá
+o sea
+todas las variables
+que arrancan
+con ese C
+son variables
+que necesito
+para computar
+la matriz
+score
+acá un pequeño
+detalle
+que es que
+lo que va a hacer
+es
+sacar de la base
+de datos
+a las variables
+o que
+digamos
+si no observo
+tu salario
+las variables
+en esa lista
+las imputo
+con un 0
+esto te va a cambiar
+la base de datos
+así que si quieren
+no perder
+la base de datos
+original
+pongan
+un preserve
+restore
+o usen frames
+o nada
+dupliquen la base
+pero es un pequeño comentario
+y ya después
+si pasamos
+a computar
+la matriz D
+donde la matriz D
+vuelvo
+acá
+nos afecta
+para calcular
+el D
+que entra en la variante
+sintética
+porque entra acá
+y en las slides
+creo que es la decimomquinta
+vez que voy a esta página
+pero
+acá
+36
+es esta matriz
+que necesito
+para computar
+la matriz D
+entonces
+el G
+las variables
+y bueno
+le hice
+y acá
+lo vuelve a hacer
+como para hacer
+un check
+nada más
+pero tenés
+como dos formas
+de computar
+esa matriz
+después computamos
+D
+por RI
+por RI
+por RI
+transpuesta
+por D
+transpuesta
+que es lo que
+llamamos
+el término
+4
+por eso
+el término 4
+es esto
+y después
+el término 2
+que sale de
+a ver
+dónde está
+este
+WES
+WES
+es
+tem
+o sea
+agarrar
+esa matriz
+que habías
+armado
+acá
+como que
+todo depende
+de cosas
+que ya habías
+armado
+antes
+entonces
+de vuelta
+si les interesa
+mírenlo
+como
+tranqui
+en sus casos
+pero bueno
+todo esto
+para decir
+que tenemos
+calculados
+el término 1
+el término 4
+el término 2
+que es D
+término 1
+menos término 2
+menos término 2
+transpuesta
+más el término 4
+bien
+tenemos la matriz A
+tenemos la matriz B
+ya podemos ir
+a la varianza sintética
+ya estamos casi
+casi ahí nomás
+¿cómo era esto?
+la inversa de A
+por B
+por la inversa de A
+y después te dice
+mirá
+fíjate que
+te dé lo mismo
+va
+te da la opción
+de hacer las comparaciones
+la matriz
+que te tira
+Stata
+la matriz
+que te computa
+el programa
+y una partecita
+de la matriz
+robusta
+de la
+First Step Estimation
+después vuelve
+a llamar a los beta
+y
+te los muestra
+así que
+nada
+todo esto fue
+full hablar del código
+todavía no corría
+o sea
+lo que me ha
+no tarda tanto
+igual
+así que
+vamos a borrarlo
+mientras tanto
+déjenme subir
+un poquito más
+entonces
+resumiendo
+lo que hicimos
+creamos las variables
+promedio
+que necesitamos
+para meter
+en la
+ecuación de selección
+en la variable
+inter
+en la ecuación de interés
+después hicimos
+la parte del
+PROBI
+para estimar
+por primera vez
+el coeficiente
+de Mills
+acá arranca
+ya con la
+corrección
+porque lo que
+hace es regresar
+el logro del
+salario
+contra tus
+variables
+contra las
+interacciones
+de
+el coeficiente
+de Mills
+con
+la
+del tiempo
+que es el
+lambda
+tiempo
+contra los
+promedios temporales
+o sea que es la
+corrección de
+MUNLAP
+solamente
+si
+o sea
+hace esta
+regresión
+pero
+solamente
+si observas
+el salario
+si diría
+eso es igual
+a uno
+si no
+no lo consideras
+fíjense que
+lo que nos da
+es
+que la
+experiencia
+sería
+significativa
+para explicar
+el nivel
+de salario
+lo cual
+tiene sentido
+que la
+educación
+también
+lo es
+ambas
+afectan
+positivamente
+y bueno
+después tenemos
+el promedio
+de la experiencia
+de la educación
+y todo lo que
+habíamos incluido
+para la
+corrección
+y tenemos
+también los
+valores
+del error
+estándar
+que es lo que
+vamos a llamar
+más tarde
+cuando hagamos
+la comparación
+después de eso
+bueno
+esta parte
+es toda
+la que
+arma
+de vuelta
+el beta
+pero
+de forma
+con las
+matrices
+esto es lo que
+corrimos hace un
+ratito
+lo mismo
+pero en lugar
+de decir
+if y2
+es igual
+a uno
+te lo pone
+como if
+sample
+es igual
+a uno
+porque acá
+te definió
+como
+si pertenece
+a la sample
+a lo que
+consideras tu
+muestra
+me la incluí
+si no
+no
+acá
+me predice
+los recibos
+predict y hat
+que son los
+recibos
+de este
+modelo
+y
+te arma
+la matriz
+beta
+que beta
+ya la había
+definido
+antes
+de forma
+matricial
+para que lo
+compare
+te da lo
+mismo
+que corriendo
+la regresión
+armándolo
+matricialmente
+si nos da
+lo mismo
+listo
+seguimos
+vamos
+viendo
+y después
+te da
+también
+lo mismo
+para
+nada
+los pasitos
+para replicar
+la varianza
+son los
+matrices
+esta sería
+como la
+versión
+calculada
+por
+stata
+y esta
+sería
+que es
+lo que
+llama
+bce
+y después
+bce1
+es como
+la versión
+matricial
+que de vuelta
+es un check
+para ver
+que dan lo mismo
+y acá
+bueno
+parte relevante
+estrellitas
+buscamos
+la
+la versión
+corregida
+de la varianza
+sintética
+queremos
+computar esto
+para computar
+esto
+tenemos la matriz
+A
+que ya la tenemos
+medio definida
+y no más
+y después
+tenemos que
+para armar
+B
+necesito
+el término
+1
+el 4
+y el 2
+término
+1
+computamos
+los
+QIS
+corre
+este loop
+para sumar
+a través
+del tiempo
+para todos
+los individuos
+la interacción
+entre las
+variables
+del lado
+derecho
+de la ecuación
+de interés
+con los
+recibos
+del módulo
+que habíamos
+estimado
+antes
+listo
+guardatelos
+como
+barly
+2
+te los guardaste
+de joya
+vamos con los
+otros términos
+más bien
+todo eso
+lo guardas
+para armarte
+esta matriz
+w
+w
+w
+w
+w
+w
+fíjense
+que las
+variables
+se llaman
+qexpert
+qeduc
+son como
+experiencia
+en el
+contexto
+de
+este
+qi
+que llamamos
+en el
+modelo
+y acá
+te hace un
+check
+como
+diciendo
+mira
+si hacías
+esta
+otra
+opción
+te quedaba
+la
+opción
+y bueno
+en término
+1
+nos
+queda
+w
+e
+w
+e
+w
+que es
+esa
+interacción
+variable
+del lado
+derecho
+de la
+ecuación
+de interés
+con los
+residuos
+pasamos
+a los
+otros
+términos
+queremos
+computar
+d
+y
+r
+y
+ya a esta
+altura
+ya sabemos
+dónde encontrar
+d
+de memoria
+dónde encontrar
+r
+y de memoria
+sabemos
+que r
+necesita
+la estimación
+de este
+gessiano
+pero esto
+después lo vuelve
+a hacer
+acá está
+el gessiano
+acá
+la parte
+del gessiano
+y acá
+tienen los
+pasitos
+corremos
+el
+probit
+generamos
+el gessiano
+una variable
+temporal
+para calcular
+el score
+que está
+en la página
+91
+de las slides
+y con eso
+de vuelta
+nos armamos
+una lista
+de variables
+3
+una lista
+de variables
+4
+y computamos
+las matrices
+que nos faltan
+para armar
+d
+y
+ri
+creo que
+ya lo habíamos
+formado
+y con eso
+ya nos podemos
+formar
+el término
+4
+como tenemos
+el término
+ah bueno
+y el término
+2
+es
+esta
+partecita
+de acá
+como tenemos
+el término
+2
+el término
+1
+y el término
+4
+listo
+para más
+B
+como ya tenemos
+B y tenemos
+A
+podemos
+calcular
+la
+la varianza
+así
+la expresión
+para la varianza
+es que
+que decíamos
+del principio
+y acá
+tenemos
+las comparaciones
+justamente
+como para
+ver
+qué
+qué
+da
+sí
+fíjense
+que
+llamamos
+B2
+a la inversa
+de A
+por B
+por la inversa
+de A
+y llamamos
+BCE2
+a extraer
+los primeros
+5
+5 filas
+5 columnas
+de esta matriz
+que está acá
+o sea
+esta es la que
+todo este trabajo
+que hicimos
+fue para calcular
+esto
+y lo resumimos
+en esta
+BCE2
+5
+5
+esta sería
+la corregida
+y esta
+la que te calcula
+Stata
+automáticamente
+esta es la que
+calcula
+el programita
+este
+a mano
+entonces vemos
+hacemos un check
+que bueno
+está bien
+la parte de Stata
+y la parte a mano
+nos da lo mismo
+y acá tenemos
+la corrección
+y lo que vemos
+es que con la corrección
+acá
+el error estándar
+es un poquito
+más alto
+0 0 0 0 7
+0 0 0 0 5
+triple 0 14
+triple 0 27
+triple 0 4
+triple 0 7
+0 0 20
+0 0 0 0 8
+acá es como un poco
+más notorio
+la diferencia
+pero bueno
+esta sería la versión
+corregida
+siguiendo
+los pasos
+que dijimos antes
+y acá te devuelve
+los coeficientes
+de ambas versiones
+como para compararlo
+más lindo
+o más a mano
+o que lógicamente
+los coeficientes
+van a ser los mismos
+lo que estamos haciendo acá
+es apostar la varianza
+lo que estimamos
+como la matriz
+de varianzas
+y covarianzas
+de estos estimadores
+por eso
+si hay cambios
+van a ser
+en los paréntesis
+y en los niveles
+de significatividad
+entonces por ejemplo
+acá vemos que
+si bien la experiencia
+sigue siendo significativa
+una vez que ajustamos
+la matriz de varianzas
+y covarianzas
+por la primera estimación
+la educación
+deja de ser significativa
+¿sí?
+entonces
+nada
+eso
+fue un código largo
+sé que es como
+difícil de seguir
+pero espero que
+aunque sea con esto
+les quede como de guía
+para ver cómo leerlo
+por si tienen que
+identificarlo
+en el futuro
+¿alguna pregunta
+con esto?
+bueno
+nos quedan
+media hora
+así que
+no estamos tan mal
+porque nos queda
+digamos
+esta es la
+anteúltima clase
+el sábado que viene
+vamos a tener clase
+también
+para recuperar
+creo que fue un seriado
+nos queda ver
+el problema set 5
+así que
+vamos
+a cerrar un par de cosas
+y
+a ver
+a ponernos un poco
+en contexto
+el problema set 5
+tenemos el ejercicio 1
+que va a ser agarrar
+el ejercicio 5
+es mucho más amigable
+que lo que hicimos recién
+así que ya nos podemos
+relajar un poco
+tenemos un archivo
+con datos
+de información
+de 545 hombres
+que trabajaron
+del 80 al 87
+es el ejercicio 1
+y vamos a ver
+un par de cositas
+y después tenemos
+el ejercicio 2
+que va a complejizar
+un poco
+el ejercicio 1
+pero agregándole
+como una cosita
+así que
+yo creo que hoy
+podríamos llegar
+a ver el ejercicio 1
+más o menos
+completo y rápido
+y la semana que viene
+ya nos quedaría
+para ver solamente
+el 2
+y estamos
+pero digamos
+no corro con esta parte
+porque
+no
+tenemos tiempo
+ok
+entonces
+nada
+salimos
+por completo
+de
+de esto
+resultados
+cerramos esto
+y
+bueno
+arrancamos por acá
+entonces
+tenemos este archivo
+que tiene
+como decíamos
+información
+para hombres
+que trabajaron
+desde el 80
+al 87
+nos piden
+que usemos los datos
+para analizar
+el impacto
+de la escolaridad
+en la probabilidad
+de estar afiliado
+a un sindicato
+las variables
+se describen
+en el conjunto
+de datos
+observa que la educación
+no cambia en el tiempo
+eso va a ser importante
+en uno de los incisos
+que van a ver
+lo que vamos a hacer
+a lo largo
+de estos ejercicios
+básicamente
+es
+ver cómo
+tenemos
+nuestra variable
+de interés
+ahora en el modelo
+es
+la probabilidad
+de estar afiliado
+a un sindicato
+o sea que es como
+estamos metidos
+solamente en la ecuación
+de selección
+si querés
+que veíamos antes
+entonces es como que
+volvemos a esa primera etapa
+y vamos a ver
+diferentes formas
+de hacerlo
+con pull-levels
+pull-probit
+pull-logic
+acá
+provit
+de efectos aleatorios
+y
+¿qué más?
+y logic
+de efectos aleatorios
+logic
+de efectos fijos
+¿y qué más?
+y una extensión
+donde agregamos
+más variables
+al modelo
+así eso
+eso es como
+vamos a ir construyendo
+el ejercicio 1
+pero en definitiva
+lo que nos interesa ver es
+cómo afecta
+si afecta
+la educación
+a
+la probabilidad
+de estar afiliado
+a un sindicato
+una vez que controlamos
+por esa educación
+bueno
+la primera parte
+la primera parte
+es bastante
+straightforward
+es como
+te dicen
+mirá
+tenemos este modelito
+donde
+decimos
+bueno
+la probabilidad
+de estar afiliado
+a un sindicato
+o sea que
+Union C igual a 1
+dado tu nivel de educación
+va a depender
+linealmente
+con una constante
+del nivel de educación
+o sea beta 0
+más beta 1
+me define la probabilidad
+acá ya vemos
+como una primera cosa
+que nos debería hacer
+un poco de ruido
+que es
+que una probabilidad
+debería estar
+entre 0 y 1
+y a priori
+acá no tengo
+ninguna restricción
+que me diga
+esto va a estar
+entre 0 y 1
+efectivamente
+pero bueno
+es el modelo más sencillo
+que podemos hacer
+para estimar
+el efecto marginal
+de la educación
+en la probabilidad
+de estar
+en un sindicato
+voy a ir a estar
+acá tengo el código
+tenemos la base de datos
+vamos a arrancar
+viendo un poco
+de que se trata la base
+si se fijan
+tenemos
+el identificador
+de la persona
+como NR
+el año
+del 80 al 87
+tenemos
+damis
+según si trabaja
+en el sector
+de la agricultura
+si la persona
+es negra o no
+más de sectores
+experiencia
+en el mercado
+laboral
+sectores
+más de
+indicadores
+como de etnia
+de raza cultural
+si querés
+la situación
+de salud
+horas anuales
+trabajadas
+si está casado
+o no
+ubicación geográfica
+más indicadores
+como de tipo
+de trabajo
+al que se dedican
+si viven
+en un área
+rural
+o no
+el logaritmo
+del salario
+y las damis
+temporales
+y la experiencia
+al cuadrado
+o sea
+se puede jugar
+un montón
+con esta base
+es como que acá
+acá dijimos
+solamente
+estamos eligiendo
+creo que
+la educación
+para ver
+si afecta
+el union
+que está acá
+pero podrían
+repetir este ejercicio
+con lo que les llame
+la atención
+a ustedes
+y
+¿qué más?
+y así
+vamos
+a mostrar
+ok
+nada
+eso por un lado
+por otro lado
+notemos
+que
+vamos a definir
+el panel
+balanceado
+o sea
+de vuelta
+como que nos olvidamos
+del problema
+que teníamos
+hace un ratito
+digamos
+como un caso
+más sencillo
+y vamos a tener
+el año
+del 80 al 87
+todas las
+observaciones
+veamos
+lo que pasa
+cuando
+hacemos un
+summarize
+de la educación
+sobre el panel
+en el mundo
+del panel
+fíjense
+que la
+la variación
+within
+adentro
+de cada persona
+es cero
+ergo
+yo agarro
+una persona
+la persona
+número 13
+me fijo
+su educación
+¿dónde está?
+edu
+vale 14
+a lo largo
+de todo el tiempo
+13
+12
+es como que
+la variable
+educación
+se mide igual
+a lo largo
+de todo el tiempo
+por algún motivo
+entonces
+eso vamos a tener
+cuidado
+en uno de los
+incisos más adelante
+por eso lo menciono
+paso a la estimación
+nos pedía
+que estimemos
+un modelo
+de probabilidad
+lineal
+entonces
+simplemente
+se hace con
+reg
+unión
+contra educación
+y que nos da
+a priori
+nos daría
+que
+el coeficiente
+que acompaña
+la educación
+no es estadísticamente
+distinto
+de cero
+o sea
+no es estadísticamente
+significativo
+o sea
+que no tendríamos
+evidencia
+para rechazar
+la hipótesis nula
+de que
+este coeficiente
+que acompaña
+la educación
+es igual a cero
+pero si lo fuera
+esto lo que nos está
+imaginemos
+que si lo es
+que si es significativo
+lo que nos estaría
+diciendo esto
+es que
+un año más
+en la educación
+hace caer
+la probabilidad
+de
+pertenecer
+a un sindicato
+en
+punto 15
+puntos
+porcentuales
+acá tenemos
+la versión
+lo estereando
+los errores
+si no queremos
+asumir
+que los errores
+son
+homosedásticos
+vamos
+y que no hay
+correlación
+si no queremos
+asumir
+que los errores
+son homosedásticos
+y no queremos
+asumir
+que no hay
+ausencia
+de correlación
+serial
+y hay un montón
+de negaciones
+ahí en el medio
+echamos esto
+fíjense que
+el error
+estándar
+casi que se duplica
+entre
+para
+la educación
+obviamente sigue
+sin ser significativo
+así que
+no
+podemos
+decir mucho
+al respecto
+igual
+tiene sentido
+porque
+la pertenencia
+a un sindicato
+que dependa
+solamente
+de la ecuación
+es un poco
+simplista
+después
+pasamos
+bueno eso es lo que decíamos
+si no hay coeficientes
+negativos
+no es estadísticamente
+significativo
+no hay evidencia suficiente
+para rechazar
+la hipótesis nula
+y bueno
+la metodología
+el modelo de probabilidad
+lineal
+no nos gusta mucho
+si la variable dependiente
+es lineal
+va a tener
+mismos problemas
+que en el caso
+de la muestra
+transversal
+nada garantiza
+que el valor
+de la dicha
+tendrá 0 y 1
+ergo
+y además
+bueno el modelo
+tiene
+hipersedasticidad
+por construcción
+después nos tira
+bueno
+usemos pullprobit
+para justamente
+atacar un poco
+este problema
+pullprobit
+lo que me
+lo que me va a tirar
+básicamente
+es
+que la probabilidad
+de pertenecer
+a una union
+sería
+evaluar
+en una normal
+esta expresión
+basic
+¿por qué lo hacen
+de esta forma?
+porque bueno
+con este
+assumption
+sobre el modelo
+con esta modelización
+podemos obtener
+el efecto marginal
+de la escolaridad
+esto que está acá
+el efecto parcial
+de la escolaridad
+sobre la probabilidad
+de estar afiliado
+a un sindicato
+con esta expresión
+¿sí?
+esto probablemente
+ya lo vieron
+unas 30 millones
+de veces
+a esta altura
+de la vida
+así que
+no me voy a detener
+demasiado
+pero
+ya no es
+el coeficiente
+que acompaña
+a la educación
+lo que me dice
+el efecto marginal
+de la educación
+en esta probabilidad
+sino que tengo
+que tomarle
+la derivada
+a todo
+el choclazo
+para entender
+cómo afecta
+la educación
+a la probabilidad
+porque
+¿qué pasa?
+antes
+cuando teníamos
+esta expresión
+para
+definir
+la probabilidad
+de pertenecer
+un sindicato
+si yo derivo
+contra la educación
+simplemente
+me da beta 1
+y ese es
+el efecto marginal
+ahora
+que el efecto marginal
+ya no es lineal
+más bien
+ahora que el modelo
+no es lineal
+cuando derivo
+esto
+contra la educación
+me queda
+esta expresión
+antes de pasar
+al código
+veamos
+qué nos dice
+o cómo
+interpretar
+el resultado
+que nos dé
+esto que tenemos
+acá
+es el efecto marginal
+de un cambio
+en la educación
+que asumimos
+como una variable
+continua
+ojo si es una variable
+categórica
+pero bueno
+en este caso
+son variables
+continuas
+de años de educación
+¿qué pasa
+cuando cambia
+la educación
+sobre un cambio
+en la probabilidad
+de pertenecer
+al sindicato?
+bueno
+dado el modelo
+que dijiste acá
+ese efecto marginal
+se mide como
+beta 1
+que va a ser
+el coeficiente
+que acompaña
+la educación
+por esta cosa
+que está acá
+esta cosa
+que está acá
+es siempre mayor
+que cero
+porque es evaluar
+en la normal
+entonces esto
+va a ser positivo
+entonces
+la información
+que voy a extraer
+de este coeficiente
+que acompaña
+Edu
+cuando estime
+del PROBIT
+me va a decir
+si el efecto marginal
+de un año más
+en la educación
+afecta positivamente
+o negativamente
+a la probabilidad
+de pertenecer
+al sindicato
+¿sí?
+solo eso
+por ahora
+obviamente va a haber
+como un impacto
+por acá también
+de este beta 1
+en la dimensión
+de ese efecto
+pero
+ya sabemos
+que el signo
+va a estar
+completamente determinado
+por ese beta 1
+por el signo
+que tome el beta 1
+vamos al código
+para ver
+qué nos da
+volvo al código
+hacemos el pull PROBIT
+para hacer un pull PROBIT
+se tiene aclaración
+pull significa que no es
+como en el caso
+de pull WLS
+pull significa
+que no estamos
+teniendo en cuenta
+la parte de
+como el hecho
+de que sabemos
+que el dataset
+es un panel
+entonces estás haciendo
+como tratando
+todo tu dataset
+como un gran corte
+transversal
+por eso simplemente
+usamos PROBIT
+si no usamos
+no tenemos que usar
+otro conmigo
+corremos el PROBIT
+que de vuelta
+pueden usar
+con errores
+clustered
+acá tienen la opción
+y qué pasa
+la regresión
+del PROBIT
+lo que nos devuelve
+es justamente
+el coeficiente
+este que decíamos antes
+que otra vez
+nos vio cerquita
+de cero
+no significativo
+en ambos casos
+corregido
+y no corregido
+pero más allá de eso
+acuérdense
+que este beta 1
+que está acá
+no es el efecto marginal
+sobre la probabilidad
+de pertenecer a un indicato
+yo lo que necesito
+es toda esta expresión
+que está acá
+y esta derivada
+no solamente el beta 1
+necesito todo
+¿cómo le digo a Stata
+que me dé eso?
+con el comando margins
+entonces
+ya corrí el PROBIT
+una vez que corriste el PROBIT
+corres margins
+para que te devuelva
+ese efecto marginal
+la derivada de y contra x
+donde x es la educación
+otro detalle
+que es este
+admins
+que se los vamos
+lo podemos ver ahora
+fíjense que
+para determinar
+este efecto marginal
+decíamos que
+bueno
+este sale de la regresión
+y el signo
+te va a afectar
+al signo de toda esta cosa
+pero la magnitud
+de este efecto
+va a depender
+digamos
+de este efecto marginal
+va a depender también
+de beta 0
+más beta 1
+por
+la educación
+ahora
+¿qué valor de la educación
+tomás?
+bueno
+y acá lo que te propone
+es agarrar
+porque digamos
+vos
+esto lo querés medir
+para toda la población
+no para un individuo
+en particular
+sino que lo tenés que
+lo tenés que evaluar
+en algún valor de educación
+y tú usas
+el valor de educación
+de la persona menos educada
+que muestra
+de la más educada
+un promedio
+eso lo podés elegir
+y en Stata
+si lo querés evaluar
+en el promedio
+que es lo que se suele usar
+típicamente
+lo que tenés que explicitar
+es
+admin
+y esto lo vamos a guardar
+con los resultados
+del modelo
+de producto
+no sé si guardé
+el
+el
+el
+parece que no
+corro toda vuelta por favor
+y bueno
+acá tienen una alternativa
+al comando margins
+por si la quieren explorar
+de todas formas
+nada
+siempre pueden hacer
+health margins
+y ahí te va a explicar
+bueno
+la opción
+di de x
+lo que te devuelve
+es
+el efecto marginal
+de estas variables
+que metés acá adentro
+sobre tu variable
+independiente
+lo mismo con
+la especificación
+admins
+que te dice
+el margin
+que lo mido
+en el promedio
+de los covariates
+de las covariables
+y si van un poco más abajo
+está también la explicación
+del post
+que lo que haces
+es guardar
+¿qué pasa?
+cuando nosotros
+corremos este store
+si no ponemos post
+va a agarrar
+estos coeficientes
+en lugar de este coeficiente
+y quiero que me guarde
+este coeficiente
+entonces
+eso es lo que hago
+con post
+bien
+esto ya es lo último
+que vamos a ver hoy
+así
+no terminamos
+con sobre la hora
+nos piden
+que usemos
+pool logic
+para estimar
+este modelo
+comento sobre el impacto
+de un año más
+de educación
+en la probabilidad
+de estar afiliado
+a un sindicato
+y nos piden
+que computemos
+el error estándar
+para esta estimación
+entonces
+bajo logic
+lo que vamos a asumir
+es que
+el modelo
+ahora viene definido
+por esta función
+de probabilidad
+acumulada
+por la logística
+que tiene
+esta forma
+exponencial
+todo esto
+uno más
+exponencial
+de todo esto
+entonces tenemos que
+estimar este modelo
+y nuevamente comentar
+y particularmente
+nos piden que computemos
+el error estándar
+de esta estimación
+Stata con margins
+lo hace automáticamente
+pero
+acá les vamos a mostrar
+una opción
+para hacer la mano
+para que veamos
+de dónde sale
+y nada
+eso
+entonces
+nuevamente
+recordemos
+que ahora
+el beta 1
+que salga
+cuando corramos
+logic
+el pool logic
+de toda la vida
+ese beta 1
+no va a representar
+el efecto marginal
+porque ahora
+el efecto marginal
+sería todo esto
+derivado con respecto
+a la educación
+todo esto
+derivado con respecto
+a la educación
+a esto lo llamamos
+como una función G
+que depende de beta 0
+y beta 1
+y la expresión
+va a ser
+beta 1
+por
+beta 1
+por
+beta 1
+por esto
+por 1
+menos esto
+entonces
+esto
+la parte verde
+es esto
+que está acá arriba
+que es básicamente
+justamente
+la expresión
+de
+de la logística
+como es básicamente
+evaluar algo
+adentro de
+una función
+de probabilidad
+esto
+va a estar
+entre 0 y 1
+y 1
+menos algo
+que está
+entre 0 y 1
+también va a estar
+entre 0 y 1
+entonces nuevamente
+nos encontramos
+con que
+el signo
+de beta 1
+me va a determinar
+el signo
+del efecto marginal
+de la
+de un cambio
+en la educación
+sobre
+la probabilidad
+de estar
+en un sindicato
+porque todo esto
+de vuelta
+es mayor que 0
+porque esto es positivo
+porque esto es positivo
+nuevamente
+lo que vamos a tener
+que hacer
+es decidir
+en qué nivel
+de educación
+vamos a evaluar
+todo esto
+y después
+bueno
+de vuelta
+el beta 0
+y el beta 1
+salen de la estimación
+y ya con eso
+digamos
+enchufas todo
+adentro
+de la función logística
+y
+haces la cuenta
+y te da eso
+para computar
+el error estándar
+esto lo voy a pasar
+un poco
+medio rápido
+porque no tenemos
+mucho tiempo
+pero
+lo podemos
+retomar
+la semana que viene
+para computar
+el error estándar
+de la estimación
+lo que usamos
+es el método
+delta
+de vuelta
+para ver esto
+en más detalle
+tendríamos que repasar
+ya ni recuerdo
+cuál fue la primer
+materia
+donde vimos
+probability logic
+pero básicamente
+lo que es
+es
+la derivada
+de g
+que es esta función
+que
+habíamos definido
+acá
+la derivada
+del efecto
+parcial
+contra
+cada uno
+de los
+de los
+betas
+contra el
+beta de la
+constante
+o sea la constante
+y el beta 1
+por
+la varianza
+estimada
+de los betas
+nuevamente
+por
+esa g
+derivada
+con respecto
+a los
+coeficientes
+transporte
+la estimación
+puntual
+v de beta
+sombrerito
+la recuperamos
+de los resultados
+de la estimación
+del modelo
+usando logic
+y después
+nos queda
+como calcular
+las derivadas
+parciales
+de la función g
+con respecto
+a los parámetros
+beta
+y acá
+tienen las dos
+expresiones
+tenemos
+g
+beta 0
+beta 1
+contra beta 1
+acá me parece que faltaría
+como
+la derivada
+y lo mismo
+contra beta 0
+que sería
+de vuelta
+agarrar
+esto
+que está acá
+derivado
+contra beta 1
+y después
+derivado
+contra beta 0
+y se llegan
+a estas expresiones
+donde
+este
+output delta
+que está acá
+con este delta grande
+vendría a ser
+todo esto
+que está acá
+todo esto
+evaluado
+en
+beta 0
+más beta 1
+edu
+y
+bueno
+el beta 1
+de vuelta
+es el que sale
+de la estimación
+y la educación
+nuevamente
+tenemos que elegir
+donde
+evaluarla
+usando como
+algo bien
+bien general
+sería el promedio
+lo mismo
+para beta 0
+acá tenemos
+las expresiones
+para las dos derivadas
+con estas dos derivadas
+de vuelta
+me armo esto
+y esto
+y esto es lo que sale
+de la estimación
+del logic
+habiendo dicho eso
+volvemos al código
+en toque
+y acá
+como que
+algo nuevo
+que vamos a encontrar
+que creo que no lo vimos
+hasta ahora
+es que si ustedes
+tienen un
+do file
+pueden llamar a otro
+do file
+dentro del do file
+usando el comando
+do
+en la carpetita
+van a encontrar
+en la carpetita
+de códigos
+van a encontrar
+este otro
+do file
+donde se hace
+este cálculo
+que vimos recién
+esto sirve
+si están
+corriendo
+como que
+códigos
+complejos
+y
+quieren como
+mantenerse parado
+decir bueno
+acá vamos a hacer
+el método
+delta
+para
+hacer
+para calcular
+la matriz
+para calcular
+los errores
+estándar
+lo voy a hacer
+como separado
+cosa que se
+tiene que modificar
+algo acá
+no me mareo
+tanto
+está bueno
+por eso
+cuestión
+acá estaría
+bien como
+explicado
+que es lo que
+hacemos
+como decíamos
+corremos el logic
+del logic
+nos sacamos
+la matriz
+de
+summarize
+la educación
+para que
+para que me aparezca
+este min
+en la pantalla
+de Stata
+en la memoria
+de Stata
+y yo me lo pueda
+guardar
+como la educación
+el promedio
+de la educación
+porque de vuelta
+acuérdense que
+lo que quiero
+yo quiero llegar
+a esto
+yo quiero llegar
+a esto
+para llegar
+a esto
+ya sacamos
+esta expresión
+que es como
+uno de los
+componentes
+de esto
+esta expresión
+que es el otro
+componente
+y en esta
+necesito evaluar
+en el promedio
+de la educación
+entonces eso
+es lo que
+está sucediendo
+acá
+llamamos
+P
+a
+hacer el
+este P
+sería
+E elevado
+a la beta
+cero
+beta cero
+más beta
+uno
+y
+por
+el promedio
+de la educación
+sobre
+uno
+más
+uno
+más
+sobre
+uno
+más
+el beta
+cero
+que es el
+beta
+que acompaña
+la constante
+más beta
+uno
+que es el
+beta
+que acompaña
+la educación
+después
+está
+más
+la matriz
+G
+que
+lo que va a hacer
+es
+eso que llamamos
+P
+es esta que está acá
+por
+P
+por uno
+menos P
+más beta
+uno
+por uno
+menos P
+por P
+traspuesto
+por la educación
+ese es como el primer componente
+de la matriz G
+y el segundo componente
+de la matriz G
+primer componente
+T
+por uno
+menos P
+más D
+por el beta
+de la educación
+P
+por uno
+menos P
+más el beta
+de la educación
+por uno
+menos dos P
+uno
+menos dos P
+por P
+traspuesto
+por uno
+menos P
+y después me queda
+todo multiplicado
+por el promedio
+de la educación
+y el segundo componente
+es este que está acá abajo
+que es
+el beta
+de la educación
+uno menos dos P
+por P
+el beta
+de la educación
+uno menos dos P
+por
+P
+esto me hace un poquito
+de ruido
+pero después lo reviso
+de última
+computamos la matriz
+completa
+que es G
+por B
+por C'
+y que al final
+te diga
+bueno
+el error estándar
+del efecto marginal
+es este
+entonces eso es lo que vamos a hacer
+con esta parte
+del código
+eso es por si
+lo quieren ver
+cómo hacerlo manual
+si no
+de vuelta
+fíjense que
+delta method
+standard error
+006
+2987
+cuando corremos
+nuestro código
+del do file
+006
+2986
+esto
+de acá
+lo que es
+es calcular manualmente
+esto acá
+así que nada
+eso
+la semana que viene
+seguimos acá
+con el inciso
+D
+y terminamos
+el problema
+set 5
+y nada
+cualquier otra
+duda que puedan tener
+me avisan
+dejo de grabar
+se encuentro
+donde está
+de grabar
+entonces
