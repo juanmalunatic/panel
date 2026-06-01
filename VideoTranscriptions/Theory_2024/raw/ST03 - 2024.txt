@@ -1,0 +1,5948 @@
+Muy bien, buenas tardes. Vamos a terminar con el modelo de efectos aleatorios y vamos a comenzar con el segundo modelo específico de datos de panel, que es el modelo de efectos fijos.
+Solo para recordar lo que hicimos hasta ahora, el modelo de efectos aleatorios asume que la covarianza entre la heterogeneidad no observada y las variables implicativas observadas es igual a cero, y entonces uno puede dejar esa heterogeneidad no observada dentro del término de error.
+Como la heterogeneidad no observada es constante en el tiempo, los errores tienen correlación serial, como tienen correlación serial, el método de estimación, que en la práctica se conoce como efectos aleatorios, es el método de estimación de mínimos cuadrados generalizados estimados.
+Ese método de estimación tiene una estructura específica para la matriz de varianzas y covarianzas, dada por los supuestos de lo que se conoce como el modelo de efectos aleatorios,
+y como vimos al comienzo del curso, método de estimado de mínimos cuadrados generalizados, los estimadores son cerrados, son consistentes, tienen distribución normal asintótica, etcétera, etcétera.
+Lo último que nos queda por desarrollar es un par de contrastes de hipótesis que chequean por la presencia de la heterogeneidad no observada.
+Nosotros comenzamos el curso con un modelo de regresión lineal múltiple de datos de panel sin ningún tipo de heterogeneidad no observada,
+y saltamos a este modelo específico con heterogeneidad no observada,
+y lo que uno tiene en la práctica es, o lo que uno desearía tener en la práctica es un modelo poblacional que me diga que tengo heterogeneidad no observada,
+y esa heterogeneidad no observada no está relacionada con las variables explicativas observadas.
+En muchos de los casos aplicados, el modelo no está especificado completamente,
+y entonces, por lo menos, desde la parte estadística y econométrica,
+la literatura ha desarrollado algunos contrastes de hipótesis para ver si efectivamente existe o no esta heterogeneidad no observada.
+Obviamente, si no existe la heterogeneidad no observada, tengo un modelo de regresión lineal múltiple,
+y todo funciona como mencionamos antes de la introducción del modelo de efectos aleatorios.
+Si hay heterogeneidad no observada, entonces uno lo que hace es utilizar la estimación que vimos en la clase pasada.
+Hay dos contrastes de hipótesis, el primero, los dos contrastes de hipótesis chequean lo mismo,
+chequean que la varianza de la heterogeneidad no observada es cero.
+Pero si la varianza es cero, es que no existe heterogeneidad no observada,
+y entonces la hipótesis nula del T sugiere que el modelo no tendría esa extensión
+al modelo de regresión lineal múltiple que desarrollamos al comienzo del curso.
+Los dos contrastes de hipótesis utilizan la estimación de la varianza de C que vimos en la clase pasada.
+Si ustedes recuerdan nuestro cálculo de omega, la matriz de varianzas y covarianzas en el caso de efectos aleatorios,
+la matriz de varianzas y covarianzas tenía varianzas constantes,
+la diagonal principal era la varianza del error idiosincrático U más la varianza de C,
+y fuera del diagonal principal las covarianzas de los errores compuestos eran cero por C.
+Entonces lo que uno hacía cuando quería estimar omega era estimar esas dos varianzas,
+la varianza del error idiosincrático U y la varianza de la heterogeneidad no observada C,
+en principio utilizando la estimación de la varianza del error compuesto
+y las covarianzas del error compuesto.
+Las covarianzas de entre B sub i T y B sub i J son signos cuadrados de C.
+Teníamos la estimación de todas las covarianzas que estaban por encima del diagonal principal,
+dividíamos por dos, porque están repetidas por debajo del diagonal principal,
+y la ecuación 35, si ustedes se olvidan, del N a la menos un medio,
+es como nosotros estimábamos la varianza, usando las covarianzas para estimar la varianza de C.
+Ahí, en la ecuación 35, la estimación de la varianza de C dividía por los grados de libertad del modelo,
+que tenía en cuenta cuántas covarianzas podía calcular, la dividía por dos,
+la restaba el número de parámetros, etcétera, etcétera.
+Aquí simplemente está reescalada por N a la menos un medio para utilizar algún teorema central del límite
+y hacerlo con la jerarquía.
+La idea es que la ecuación 35, dividida por el debido estándar,
+tiene la distribución normal 0.
+De nuevo, el estadístico 36 que tienen allí es Z, la ecuación 36,
+va a adoptar un valor pequeño si el numerador es chiquito,
+el numerador es la estimación de la varianza de C,
+o sea que cuando la apótesis nula es cierta,
+es decir que la varianza de C es efectivamente 0,
+uno esperaría que el numerador de ese estadístico sea un número parecido a 0,
+valores pequeños de Z están asociados con el cumplimiento de la hipótesis nula,
+valores grandes de Z están asociados con el cumplimiento de la hipótesis alternativa,
+grande pequeño, simplemente ubicamos Z dentro de la normal 0,1,
+calculamos el valor de probabilidad que nos deja el estadístico de contraste,
+comparamos el estadístico de contraste con el nivel de significación elegido para contratar
+y si el valor de probabilidad del estadístico de contraste es más chiquito
+que el nivel de significación yo rechazo a la hipótesis nula,
+es decir que C subí está presente en el...
+El segundo contraste que aparece en la literatura,
+y es un contraste que les diría aparece más utilizado empíricamente,
+porque la mayoría de los programas que estiman por efectos aleatorios lo publican,
+o uno lo puede pedir para que lo calcule,
+es un test del multiplicador de Lagrange, de Breusch y Pagan,
+de 1980, que también se basa en la estimación de la varianza de C,
+tiene una expresión un poquito diferente y está elevada al cuadrado,
+como nosotros hemos visto, los estadísticos del multiplicador de Lagrange
+utilizan la forma cuadrática, tiene la inclusión de C cuadrado,
+pero la idea es la misma,
+aquí tienen, si uno quiere interpretarlo en términos,
+en términos intuitivos o coloquiales,
+en el numerador, digamos,
+si yo lo expresara en términos de la estimación de una varianza,
+tengo la variable elevada al cuadrado menos,
+o sea, si yo hago el saco de nominado común,
+es como si tuviera la esperanza de la variable al cuadrado
+menos la esperanza de la variable de todo al cuadrado,
+esa sería la estimación de la varianza de C,
+dividido la varianza en el denominador,
+de nuevo, el numerador debería ser un número pequeñito,
+si la hipótesis nula es verdadera,
+y entonces el estimador, el estadístico LM,
+debería ser un número cercano a cero,
+si la hipótesis nula es verdadera,
+o sea, que valores pequeños del estadístico LM
+están asociados con el cumplimiento de la hipótesis nula,
+valores grandes con el cumplimiento de la hipótesis alternativa,
+de nuevo, calculo el estadístico LM,
+lo ubico en la distribución chi cuadrado con un grado de libertad,
+calculo el valor de probabilidad del estadístico LM,
+si el valor de probabilidad es menor al nivel de significación,
+rechazo la hipótesis nula,
+si el valor de probabilidad es mayor al nivel de significación,
+acepto la hipótesis nula.
+Este test de principal aparece en la mayoría de los programas
+que hacen la estimación de efectos aleatorios,
+aparece porque en realidad,
+históricamente es anterior al test que mencioné
+en la transparencia anterior,
+pero tiene un supuesto adicional
+que es que los errores deben tener distribución normal
+para que este estadístico tenga distribución chi cuadrada.
+Entonces, si bien hay dos cosas,
+uno, históricamente apareció primero
+y como apareció primero,
+la mayoría de los paquetes estadísticos que estiman
+los incluyen,
+como tiene este supuesto error normal
+para obtener la distribución del estadístico,
+con el paso del tiempo,
+se fueron mejorando, entre comillas,
+los contrastes,
+y apareció este otro contraste que yo mencioné antes,
+que no está,
+no está en alguno de los programas que utilizan
+para estimar,
+y hay que calcularlo a mano.
+Como hay que calcularlo a mano,
+muchas veces lo que se hace es
+hacer de Bravipad
+con el comando del programa,
+pero bueno,
+tiene las dos versiones,
+lo único que hay que saber,
+si quieren usar el estadístico de Bravipad,
+tenemos que asumir
+que los errores del código tienen un curso.
+Dicho eso,
+vamos a pasar al segundo de los modelos,
+que es el modelo de efectos fijos.
+Les recuerdo que la única diferencia que hay
+entre el modelo de efectos de letra y el modelo de efectos fijos
+es que el modelo de efectos fijos
+lo que asume es que existe algún tipo de relación
+entre la heterogeneidad no observada
+y las variables explicativas observadas.
+Es decir que la ecuación 38,
+que es la misma ecuación que vimos antes
+para el modelo de efectos aleatorios,
+en esta ecuación de componentes no observados,
+lo que vamos a asumir es que la covarianza
+entre C sub i y X y T
+es diferente de C.
+Y si es diferente de cero,
+entonces no se cumple el supuesto
+que hicimos para efectos aleatorios.
+Ahí tengo el siguiente problema.
+Si no se cumple el supuesto
+de que no hay relación entre C sub i y X y T,
+entonces yo no puedo dejar el C sub i
+adentro del error compuesto,
+como hacía el método de efectos aleatorios,
+básicamente porque, digamos,
+si yo lo paso a el modelo
+con errores compuestos,
+el modelo me quedaría como,
+lo voy a escribir acá arriba,
+voy a ponerlo en rojo,
+el modelo que utilizamos
+para desarrollar el método de estimación
+para efectos aleatorios,
+es I sub i T
+igual a X y T por beta
+más P sub i T,
+donde P sub i T es C sub i
+más el error idiosincrático,
+U sub i T.
+Pero que en ese modelo,
+como C sub i no está relacionado con X y T,
+C sub i no está relacionado con X y T,
+se cumple el supuesto de exogenidad.
+Cuando yo asumo que hay covarianza
+diferente de cero entre C sub i y X y T,
+si yo hago eso,
+P sub i y X y T están relacionados.
+Entonces, X y T se convierte
+en una o varias variables endógenas.
+Y cuando tengo una variable endógena,
+lo que sucede es que
+ni la estimación de mínimos cuadrados clásicos,
+ni la estimación de mínimos cuadrados generalizados
+me dan estimaciones que son positivas.
+Entonces, el problema a resolver
+es el hecho de que yo ya no puedo dejar
+la heterogeneidad no observada
+dentro del error compuesto,
+tengo que cambiar el método de estimación.
+Y lo que ocurría en el corte transversal,
+cuando uno tenía una variable
+que estaba relacionada con el error de la ecuación,
+lo que hacía era cambiar de método de estimación,
+del mismo cuadro clásico o del mismo cuadro generalizado
+o variables instrumentales,
+o del mismo cuadro de antes etapa.
+Que me permitía encontrar algún instrumento
+que fuera exógeno, etcétera,
+y podía estimar en forma conciliar.
+En datos de panel tengo un grado de libertad adicional.
+Es decir, no necesito cambiar directamente
+a un mismo cuadro de antes etapa
+o variables instrumentales,
+sino que puedo desarrollar dentro del modelo
+lo que nosotros vamos a llamar
+la estimación de efectos fijos.
+Que consiste en tomar el modelo,
+transformarlo de alguna forma,
+de eliminar ese subí y estimar.
+Entonces, tengo la ecuación 38.
+La ecuación 38 está escrita,
+es el modelo de componentes no observados,
+escrito para una observación genérica I
+y una observación genérica T.
+Sirve para todo I y para todo T.
+La segunda ecuación,
+o sea, en la primera igualdad de la ecuación 38,
+todos son escalados.
+Esto es un escalado,
+uno por uno,
+esto es uno por K,
+esto es K por uno,
+esto es uno por uno,
+esto es uno por uno.
+Son todos escalados.
+La segunda línea de la ecuación 18
+agrupa todas las observaciones de serie temporales
+para cada observación de corte transversal,
+o sea que es válida
+para todas las observaciones de corte transversal.
+Las de serie temporales ya las tengo,
+las de serie temporales ya las tengo adentro
+de cada vector,
+que los tienen definidos ahí abajo,
+pero I subí ahora es un vector T mayúscula por uno,
+que contiene todas las observaciones
+de I subí desde uno hasta T.
+Para la observación de corte transversal I,
+observación de corte transversal I,
+tengo todos los datos de serie temporales
+y de la variable dependiente.
+Después voy a tener una matriz X
+que va a juntar los T mayúscula valores
+de frecuencia temporal
+por las K variables explicativas
+que tenga en el modelo.
+Beta va a seguir siendo K por uno.
+C subí va a seguir siendo un escalar,
+pero lo tengo que transformar en un vector
+de dimensión T mayúscula por uno,
+o sea que yo lo voy a multiplicar por JT.
+JT es este vector que aparece acá,
+que es un vector T por uno de unos.
+Y eso lo que dice es que el C
+es constante a lo largo del tiempo.
+De nuevo, esta ecuación que vamos a tener
+va a estar,
+está escrita para una observación genérica I,
+pero vale para I igual a 1, 2, 3, hasta N.
+Y el último, el término de error,
+es un vector que contiene
+los errores
+de las T observaciones
+de la observación de fuertes transversal.
+Y...
+O sea que la primera línea
+de la ecuación 38
+está escrita
+para una observación genérica I
+y una observación genérica T.
+La segunda línea
+está escrita para una observación genérica I,
+agrupando todas las observaciones
+de frecuencia temporal.
+Tengo una tercera forma de escribir
+el modelo,
+que es
+no solo agrupar
+las observaciones
+de frecuencia temporal,
+sino que también puedo agrupar
+las observaciones
+de fuertes transversales.
+Entonces,
+si quiero escribir el modelo
+total,
+lo que voy a tener es
+como variable dependiente
+la variable I,
+que ahora va a ser de dimensión
+N por T por U.
+Lo pongo acá,
+pongo U,
+y la otra
+I
+es
+un vector
+que tiene
+al vector I sub 1,
+al vector I sub 2,
+al vector I sub i,
+al vector I sub n.
+¿Sí?
+Cada uno de esos vectores
+tiene dimensión T por U.
+Tengo N
+de esos vectores,
+la dimensión de I
+es
+N por T
+por U.
+¿Sí?
+Y ese vector I
+tiene que ser igual
+a
+la matriz X,
+que ahora
+lo que va a ser
+es lo mismo
+que con la I,
+solamente que voy a tener
+una matriz que tiene
+X sub 1,
+X sub 2,
+X sub n,
+o sea que voy a tener
+una matriz
+de
+dimensión
+N
+por T
+por K.
+¿Sí?
+Beta
+sigue siendo
+K por 1.
+De forma tal
+de que la multiplicación
+es Nt por 1.
+Nt por 1
+de la izquierda
+Nt por 1
+del lado derecho.
+¿Sí?
+Más.
+Ahora tengo que
+transformar
+el C sub i,
+que es un escalar,
+¿Sí?
+En un vector
+de dimensión
+Nt por 1.
+¿Sí?
+Entonces yo voy a hacer
+lo siguiente.
+Voy a definir
+la variable
+I sub n
+identidad de orden
+N
+Kronecker
+Jt
+y lo voy a
+multiplicar por gamma.
+Donde gamma
+lo voy a poner
+acá arriba.
+Gamma
+es el vector
+de los C.
+C1
+C2
+C sub i
+C sub i
+¿Sí?
+Todo eso.
+Esta matriz
+que tengo acá
+es de dimensión
+N por T
+por L
+gamma
+es N por 1
+¿Sí?
+La multiplicación
+es Nt por 1
+más Q
+lo de U
+de nuevo
+es Nt
+por 1
+¿Sí?
+y ahí tengo
+el modelo
+escrito
+para
+las N
+por T
+observaciones
+que tengo
+en el panel.
+Esto ya lo dije
+pero
+lo voy a
+volver
+a decir
+solamente
+para reafirmar
+estamos trabajando
+con paneles
+completos
+¿Sí?
+Por eso
+que lo puedo
+escribir así
+porque
+imagínense
+que me
+me falta
+alguna observación
+de series
+temporales
+para alguna
+observación
+de corte
+traversal
+ya no voy
+a tener
+vectores
+de dimensión
+N por T
+¿Sí?
+Voy a tener
+otro tipo
+de dimensión
+en bloco
+eso viene
+un poquito
+más adelante
+pero por ahora
+como los paneles
+son completos
+yo puedo
+todo escribirlo
+en términos
+de vectores
+y matrices
+de orden
+N
+mayúscula
+por T
+Entonces
+el supuesto
+de efectos
+fijos
+es
+el que
+mencionamos
+en la
+transparencia
+anterior
+es decir
+la covarianza
+entre
+la heterogeneidad
+no observada
+y las variables
+explicativas
+observadas
+es diferente
+de seno
+¿Sí?
+Y por lo tanto
+no se cumple
+el supuesto
+de exogeneidad
+estricta
+en el modelo
+que tiene
+errores compuestos
+y entonces
+yo no puedo
+estimar
+ni por
+mínimos cuadrados
+clásicos
+ni por mínimos
+cuadrados
+generalizados
+¿Sí?
+Voy a estimar
+el modelo
+de efectos
+fijos
+bajo el supuesto
+de que
+tengo
+exogeneidad
+estricta
+con respecto
+al error
+idiosincrático
+del modelo
+¿Sí?
+Que es lo que
+yo llamé
+supuesto
+FE1
+FixEffect1
+¿Sí?
+Que me dice
+que
+la esperanza
+del error
+idiosincrático
+condicional
+en
+XUI
+XUI
+contiene
+todas las
+observaciones
+de serie
+temporal
+¿Sí?
+Y C
+subí
+es igual
+a c
+y eso
+es válido
+para todo
+T
+¿Sí?
+este supuesto
+de efectos
+fijos
+¿Sí?
+Es exactamente
+el mismo
+supuesto
+que hicimos
+para el
+método
+de
+efectos
+aleatorios
+pero el
+supuesto
+1
+tenía
+dos
+subsupuestos
+el subsupuesto
+A
+es este
+que mismo
+que está acá
+y el subsupuesto
+B
+era que
+no había
+relación
+entre
+C
+y
+XT
+¿Sí?
+Entonces
+digo
+esto es
+como
+levantando
+el supuesto
+P
+de nuestro supuesto
+de exogeneidad
+estricta
+para el modelo
+de efectos
+de efectos
+aleatorios
+¿Sí?
+En ese
+en ese sentido
+¿Sí?
+en la
+literatura
+a veces
+¿Sí?
+Se
+entiende
+que el
+modelo de
+efecto
+fijo
+como más
+robusto
+que
+el
+modelo
+de efectos
+aleatorios
+porque hace
+menos
+subsupuestos
+igual
+esos
+menos
+subsupuestos
+que hace
+vienen
+con una
+precariedad
+que
+está mencionada
+ahí
+después la voy a
+poner bien
+pero
+está mencionada
+ahí en la
+en la
+en la
+transparencia
+¿Cómo
+cómo se hace
+la estimación?
+Dije
+ok
+no puedo
+dejar
+el
+el
+heterogeneidad
+observada
+dentro del error
+compuesto
+¿Sí?
+Y entonces
+tengo que cambiar
+de método de estimación
+y entonces
+dijimos
+bueno
+en el corte
+transversal
+cambio
+a
+variantes
+instrumentales
+mínimo
+parados
+el dato
+de panel
+lo que hace
+el método
+de efectos
+fijos
+es transformar
+el modelo
+y eliminar
+el CSUV
+¿Sí?
+Y cuando yo
+elimino el CSUV
+me quedo
+sin heterogeneidad
+no observada
+y entonces
+puedo estimar
+con cualquiera
+de los métodos
+que vimos
+al comienzo
+del curso
+porque usted
+transformó
+el modelo
+¿Sí?
+en un modelo
+de regresión
+de alguna
+sin ninguna
+variable
+en observación
+¿Sí?
+Entonces
+el punto
+es que
+cualquier
+transformación
+que yo
+utilice
+para eliminar
+el CSUV
+cualquier
+transformación
+que yo
+utilice
+para eliminar
+el CSUV
+me elimina
+cualquier
+variable
+explicativa
+observada
+que sea
+constante
+en el tiempo
+¿Sí?
+Porque el CSUV
+lo tengo que eliminar
+con alguna
+transformación
+y esa transformación
+del CSUV
+es constante
+en el tiempo
+o sea que
+si me cargo
+el CSUV
+me cargo
+cualquier variable
+que sea
+constante
+en el tiempo
+¿Sí?
+Entonces
+la mayor
+robustez
+de dejar
+de asumir
+la covarianza
+entre CSUV
+y el CT
+igual a cero
+tiene el precio
+de que no voy a poder
+incluir dentro
+de las equitas
+ninguna variable
+que sea
+constante
+en el tiempo
+Entonces
+si uno piensa
+en
+la estimación
+del
+modelo
+del capital
+humano
+donde la variable
+dependiente
+es
+el ingreso
+laboral
+y la
+esterogeneidad
+observada
+es la habilidad
+¿Sí?
+Y la habilidad
+está relacionada
+con la educación
+en X y T
+y esto es
+un modelo
+de frente fijo
+dentro de la C
+no podría poner
+el género
+de la persona
+hay dos cosas
+acá
+una
+género binario
+o yo era
+chiquito
+y
+no cambia
+en el tiempo
+y si
+ustedes piensan
+que ahora
+puede cambiar
+el panel
+tiene un T
+pequeño
+¿Sí?
+Y entonces
+dentro de
+la dimensión
+temporal
+no cambia
+el género
+de la persona
+y entonces
+cuando me carguen
+ese subí
+me cargo
+el género
+también
+¿Sí?
+esto es
+de nuevo
+si yo pongo
+una variable
+que sea constante
+en el tiempo
+adentro de X y T
+cuando yo me cargue
+ese subí
+me cargo
+la columna
+de X y T
+que tenga
+la variable constante
+y hago
+que X y T
+no tenga
+rango completo
+después
+no voy a poder
+estimar
+porque no voy a poder
+sacar la
+embarazada
+de X y T
+respuesta por X
+¿Sí?
+Después
+lo voy a
+mejor
+pero básicamente
+ese es el
+punto
+y
+en la
+en la
+literatura
+existen
+varias
+transformaciones
+que me eliminan
+ese subí
+¿Sí?
+Y yo voy a mencionar
+tres
+¿Sí?
+Que
+se conocen
+como
+la
+within
+transformation
+o la
+transformación
+de efectos
+fijos
+la transformación
+de diferencias
+limitas
+y la
+transformación
+de diferencias
+ortogonales
+o forward
+ortogonal
+de bien
+que tienen
+diferentes
+características
+la tradicional
+es la
+primera
+es la
+transformación
+de efectos
+fijos
+o
+la
+within
+transformation
+la tradicional
+quiero decir
+cuando uno
+estima
+con el
+status
+por ejemplo
+¿Sí?
+y uno pide
+la estimación
+de efectos fijos
+el status
+transforma
+con
+la
+transformación
+de efectos fijos
+de la
+política
+pero después
+hay dos
+hay dos
+transformaciones
+adicionales
+la segunda
+hay una
+diferencia
+finita
+digo
+si yo
+hago la
+resta
+de
+y subi
+t con
+y subi
+t-1
+como
+c subi
+vale
+c subi
+en
+pedido t
+c subi
+en pedido
+t-1
+hago la
+diferencia
+y me
+cargo
+el
+s-1
+¿Sí?
+esa
+transformación
+de diferencias
+finitas
+es útil
+cuando
+digo
+es útil
+siempre
+pero
+es mucho
+más útil
+cuando
+te mayúsculas
+dos
+porque
+entonces
+paso
+de un
+panel
+a un
+modelo
+de un
+corte
+transversal
+y existen
+un montón
+de
+métodos
+de estimación
+para
+evaluar
+el impacto
+de políticas
+públicas
+que tienen
+T mayúsculo
+igualado
+antes
+de la
+implementación
+de la
+política
+después
+de la
+implementación
+entonces
+esa
+transformación
+de
+diferencia
+finita
+nos va a
+servir
+cuando
+para aquellos
+que quieran
+hacer la
+materia
+entonces
+es
+una de las
+razones
+para darlo
+acá
+es
+que
+tiene
+alguna
+aplicación
+y entonces
+después
+no lo
+se usa
+y la
+última
+las
+derivaciones
+octagonales
+es
+una
+transformación
+que se
+aplica
+cuando
+el modelo
+en lugar
+de ser
+estático
+como estamos
+viendo
+ahora
+es un
+modelo
+dinámico
+modelo
+dinámico
+quiere decir
+que
+la
+variable
+dependiente
+y una
+o más
+variables
+explicativas
+se miden
+en distintos
+periodos
+temporales
+un
+autoregresivo
+de orden
+1
+en pan
+y la
+variable
+dependiente
+es
+y sub
+t
+y la
+variable
+explicativa
+es
+y sub
+it
+menos
+1
+es un
+modelo
+dinámico
+cuando
+tengo
+un
+modelo
+de ese
+de ese
+tipo
+no puedo
+asumir
+exogenidad
+estricta
+y
+necesito
+cambiar
+el supuesto
+de exogenidad
+y
+para
+cambiar
+el supuesto
+de exogenidad
+vamos a
+utilizar
+la transformación
+de
+enviación
+exotica
+yo voy
+a dar
+las tres
+transformaciones
+en el
+contexto
+de modelos
+estáticos
+la última
+la vamos
+a usar
+la última
+se utiliza
+más
+cuando
+el modelo
+dinámico
+ok
+entonces
+vamos
+por la
+primera
+de las
+transformaciones
+la within
+transformation
+la within
+transformation
+lo que me
+dice
+mirá
+vos tenés
+un modelo
+que
+es
+y sub
+it
+y sub
+it
+esta es la
+ecuación
+38
+igual a
+x y t
+por beta
+más
+c sub i
+más
+u sub i t
+¿sí?
+la ecuación
+38
+entonces
+lo que puedo
+hacer es
+sumar
+desde t
+igual 1
+hasta t
+del lado izquierdo
+y sumar
+desde t
+igual 1
+hasta t
+del lado
+derecho
+¿sí?
+y después
+si yo
+divido
+los dos lados
+con el volumen
+no cambia nada
+o dividí
+por t
+dividí
+por t
+dividí
+por t
+dividí
+por t
+y lo que
+tengo es
+la media
+temporal
+de cada
+variable
+para cada
+observación
+de corte
+transversal
+que yo
+la llamé
+en la
+ecuación
+39
+con una
+rayita
+arriba
+y raya
+i
+es la
+suma
+desde 1
+hasta t
+de i
+subí t
+y eso
+tengo
+y raya
+1
+y raya
+2
+y raya
+y raya
+para cada
+observación
+de corte
+transversal
+tengo la
+media
+temporal
+de la
+variable
+dependiente
+y lo mismo
+con las
+variables
+explicativas
+solo que
+el
+segundo
+elemento
+del lado
+derecho
+c subí
+es constante
+o sea que la suma
+de 1 a t
+de c subí
+es
+t veces
+se subí
+se subí
+más c subí
+más c subí
+t veces
+t veces
+se subí
+dividido t
+c subí
+¿sí?
+o sea que
+si yo agarro
+la ecuación
+38
+pongo acá
+i subí
+t
+igual a
+x y t
+por beta
+más c subí
+más
+u subí
+t
+y le resto
+a la ecuación
+39
+eso es lo que
+tienen en la
+primera línea
+de la ecuación
+40
+elimino el c subí
+tengo c subí
+en la ecuación
+38
+c subí
+en la ecuación
+39
+hago la resta
+me cargué
+el c subí
+¿sí?
+y acá
+está claro
+que
+si dentro
+de la ecuación
+x y t
+tengo una variable
+que es constante
+en el tiempo
+me la cargué
+también
+¿sí?
+pongan
+zi
+adentro
+de x y t
+si zi
+no varía
+en el tiempo
+cuando haga
+la suma
+y divida
+por t
+me va a quedar
+zi
+me la cargo
+y la elimino
+desde la ecuación
+entonces
+para no tener
+que escribir
+y subí
+t menos
+y
+raya
+y
+y subí
+t menos
+raya
+y
+la literatura
+le pone
+le pone
+a la nueva
+variable
+el mismo
+nombre
+de la variable
+con los dos puntitos
+arriba
+y subí t
+con los dos puntitos
+arriba
+y subí t
+con los dos puntitos
+arriba
+que es la variable
+original
+y subí t
+a la que le resté
+la media temporal
+de la variable
+en la observación
+x y t
+con los dos puntitos
+es x y t
+menos x
+raya y
+u subí t
+con los dos puntitos
+es
+u subí t
+menos
+u raya
+pero
+la ecuación
+la segunda línea
+de la ecuación 40
+o la ecuación 40
+que está mencionada
+en la transparencia
+es el momento
+de la relación
+de la línea múltiple
+de la primera clase
+lo único que
+cambia
+es que le puse
+dos puntitos
+arriba
+a la variable
+pero
+la ecuación 1
+con la que comenzamos
+el curso
+era
+y subí t
+igual a x y t
+por beta
+o a su subí t
+entonces
+si
+la ecuación 40
+este
+elimina
+la heterogeneidad
+no observada
+y tengo
+un modelo
+de regresión lineal
+múltiple
+ya sé
+cómo lo puedo estimar
+de hecho
+ya sé
+cuáles son
+los supuestos
+que tengo que tener
+para que la estimación
+por ejemplo
+por Pulo de Les
+por mismo cuadro clásico
+me dé estimador
+consistente
+¿sí?
+¿qué necesito?
+y necesito
+que en la ecuación 40
+se cumpla
+el supuesto
+de su calidad contemporánea
+x y t
+con los dos puntitos
+y un subí t
+con los dos puntitos
+¿sí?
+la esperanza
+de x y t
+trasfuesta
+con los dos puntitos
+por un subí t
+trasfuesta
+por un subí t
+con los dos puntitos
+tiene que ser igual a c
+si se cumple eso
+el estimador
+es consistente
+¿sí?
+yo necesito
+que se cumpla
+la ecuación 41
+exogenidad contemporánea
+¿sí?
+no tengo relación
+entre
+la variable
+las variables
+explicativas
+y el error
+de la ecuación
+¿sí?
+en el mismo periodo
+temporal
+pero
+el punto es que
+ahora
+antes era fácil
+porque era x y t
+y un subí t
+ahora tengo
+las x y las u
+transformadas
+tienen los dos puntitos
+arriba
+pues si ustedes miran
+la ecuación
+que está abajo
+si x y t
+trasfuesta
+con los dos puntitos
+arriba
+es
+x y t
+menos x
+raya y
+trasfuesta
+y un subí t
+con los dos puntitos
+arriba
+es u subí t
+menos u raya y
+y el problema
+es que cuando yo
+quiera calcular
+la esperanza
+matemática
+necesito hacer
+la distributiva
+entre los dos términos
+del primer paréntesis
+y los dos términos
+del segundo paréntesis
+¿sí?
+y entonces
+acá
+por ejemplo
+tendría
+una de las multiplicaciones
+es
+x y t
+trasfuesto
+por u raya y
+primer término
+del primer paréntesis
+y por segundo término
+del segundo paréntesis
+pero u raya y
+tiene todos los u
+u subí 1
+u subí 2
+u subí 3
+u subí t mayúscula
+la suma de todos estos
+u
+dividido
+t
+pero
+si esa esperanza
+tiene que ser cero
+no puedo tener
+ninguna relación
+entre
+las x
+y los errores
+idiosincráticos
+en ningún periodo temporal
+¿sí?
+o sea que para que
+se cumpla
+la ecuación 41
+que es
+exogenidad
+contemporánea
+en los errores
+transformados
+en el modelo
+transformado
+necesito exogenidad
+estricta
+en el modelo
+original
+¿sí?
+necesito que en el modelo
+original
+las x y las u
+no estén relacionadas
+en ningún periodo
+temporal
+¿sí?
+entonces
+el supuesto
+que yo necesito
+para hacer una
+estimación consistente
+cuando yo
+transformo
+el modelo
+por la transformación
+la cuidí
+y transformé
+yo la transformaría
+en el periodo
+que se cumple
+el supuesto
+de exogenidad
+estricta
+en el modelo
+original
+porque eso
+me garantiza
+la exogenidad
+contemporánea
+en el modelo
+transformado
+¿sí?
+y yo no puedo
+relajar el supuesto
+de exogenidad
+estricta
+en el modelo
+original
+porque cualquier
+otro supuesto
+que haga
+el transformado
+no me cumple
+la exogenidad
+no me cumple
+con el supuesto
+F1
+que es la exogenidad
+estricta
+en el modelo
+original
+yo puedo
+estimar
+la ecuación
+40
+por mismo
+cuadro clásico
+puro L
+y obtener
+estimación
+de concepto
+¿sí?
+y
+como dice
+ahí la transparencia
+al estimador
+de efectos
+electrónicos
+llamado
+vista sombrero
+R
+a este
+lo vamos a llamar
+vista sombrero
+Efecto
+de
+Fills Effect
+o Efecto
+Fijo
+y como dice
+el último punto
+el estimador
+de efectos fijos
+es
+vista sombrero
+Fills Effect
+es el estimador
+de puloles
+en la regresión
+del modelo
+transformado
+restándole
+la media temporal
+a cada variable
+en el corte
+transversal
+y puloles
+sabemos lo que es
+¿no?
+X
+apuesta por X
+inversa
+X
+apuesta por Y
+¿no?
+¿está eso?
+está escrito
+de varias formas
+pero es lo mismo
+¿no?
+nosotros escribimos
+o yo
+escribí
+el modelo
+original
+para
+una observación
+genérica
+Y
+y una observación
+genérica
+T
+para una observación
+genérica
+Y
+y para todas
+las observaciones
+en conjunto
+¿sí?
+voy a
+voy a poner acá
+la que falta
+¿sí?
+que es
+si yo
+escribo el modelo
+para una observación
+genérica
+Y
+y una observación
+genérica
+T
+¿sí?
+el estimador
+de efectos fijos
+es la suma
+desde T
+igual 1
+hasta T
+mayúscula
+la suma
+desde Y
+igual 1
+hasta N
+de X
+y T
+transpuesta
+con los dos puntitos
+por X
+y T
+todo inversa
+la suma
+desde T
+igual 1
+hasta T
+mayúscula
+la suma
+desde Y
+igual 1
+hasta N
+de X
+y T
+transpuesta
+con los dos puntitos
+por Y
+sub y T
+¿sí?
+esa es la ecuación
+32
+ese es el estimador
+de la ecuación
+que es exactamente
+el mismo que la ecuación
+que le sigue a la 38
+que está escrito ahí
+en la primera igualdad
+como tengo agrupadas
+todas las observaciones
+de serie temporal
+y la suma
+sobre T
+no la necesito
+porque el modelo
+está escrito
+para una observación
+genérica Y
+o sea que tengo que sumar
+todas las T
+y tengo lo mismo
+la suma
+de Y
+igual 1
+hasta N
+es de que
+Y
+de X
+y transpuesta
+con los dos puntitos
+por X
+y con los dos puntitos
+inversa
+la suma
+de Y
+igual 1
+hasta N
+de X
+y con los dos puntitos
+transpuesta
+por Y
+sub y
+con los dos puntitos
+es el mismo número
+solamente que uno
+está expresado
+este
+para una observación
+genérica Y
+y una observación
+genérica T
+y el primero
+el que está escrito
+en la transparencia
+para una observación
+genérica
+y en la ecuación 42
+que está acá
+tienen la estimación
+del
+el estimador
+del efecto fijo
+para la tercera forma
+en que nosotros
+escribimos el modelo
+que ahí ya le sigue
+de X
+transpuesta por X
+inversa
+de X transpuesta por Y
+solamente que ahora
+todas las épicas
+sí tienen los dos puntos
+de transpuesta
+pero es la misma
+todo me da exactamente
+el mismo número
+los
+mismo número
+por ejemplo
+en el medio
+tienen
+la
+expresión
+en términos
+de
+lo que la literatura
+llama
+la matriz
+time
+meaning
+que es
+Qt
+Qt
+es
+una matriz
+que
+aplicada
+sobre cualquier
+variable
+me devuelve
+la misma
+variable
+con los dos
+puntitos arriba
+y la definición
+de Qt
+es
+identidad
+de orden
+T
+menos
+Jt
+por Jt
+inversa
+por Jt
+trans
+Qt
+es una matriz
+idempotente
+y como
+condición
+de matriz
+idempotente
+Qt
+por Qt
+Qt
+Qt
+es igual
+a Qt
+trans
+Qt
+es igual
+a Qt
+inversa
+etc
+déjenme poner
+un ejemplo
+vamos a poner
+como ejemplo
+3
+Sciences
+a Qt
+en
+N
+M
+igual
+3
+C
+igual
+a Qt
+15
+Acá
+Lo que tengo es
+U2
+U2 es
+La identidad de orden 2
+1, 0, 0, 1
+Menos
+JT es un vector
+T por 1 de 1
+O sea que es 1, 1
+Y después tengo
+JT traspuesto
+1, 1, es un vector 1 por 2
+JT
+1, 1
+Inversa
+JT traspuesto
+1, 1
+¿Sí?
+I sub I
+Tengo 3
+I sub 1, I sub 2, es un 3
+Cualquiera
+I sub I
+Es un vector que tiene
+La primera observación temporal
+De la variable
+I para la observación de parte transversal
+I
+Y
+Y
+¿Sí?
+Y la segunda observación temporal
+Para la variable Y
+Observación de parte transversal
+Entonces yo multiplico
+U2
+Por I sub I
+Lo que tengo es
+Vamos a ponerlo
+Lo voy a poner en rojo acá
+U2
+Por
+I sub I
+Ok
+Todo esto
+Multiplicado por
+I sub I
+I sub I
+I sub I
+I sub I
+I
+I sub I
+I
+¿Sí?
+Todo eso
+Vamos a hacer la distributiva
+Primer término del corchete
+Multiplicado por
+I sub I
+I
+I sub I
+¿Cómo es la matriz identidad?
+La multiplicación de la matriz identidad
+Como un hierro en toma de rectores
+La matriz identidad
+Es como el 1
+En los escalales
+Lo que tengo acá es
+I sub I
+I sub I
+I sub I
+I
+I sub I
+¿Sí?
+¿Qué es lo que tengo en el centro
+Del segundo término?
+¿Sí?
+En el centro tengo JT de las cuentas
+Y por JT
+¿Sí?
+Que acá es
+1 por 1 más 1 por 1
+2
+Está en inversa
+O sea que es un medio
+¿Sí?
+Ahora
+Lo puse fácil para que
+Voy a hacer la cuenta
+Supongamos que
+La dimensión es T mayús
+¿Sí?
+Lo que tengo ahí es un vector
+De unos
+1 por T
+Por un vector columna
+De 1
+T por 1
+Y el resultado es
+1 por 1 más 1 por 1
+T mayúscula
+Inversa 1 sobre T
+¿Sí?
+O sea que
+Al primer vector
+Le voy a restar
+Un vector que es
+Un medio
+Un medio
+¿Sí?
+Es
+Este es un escalado
+O sea que
+Multiplicado por
+Este vector
+Me da un medio
+Un medio
+¿Sí?
+Y en general
+1 sobre T
+1 sobre T
+1 sobre T
+¿Sí?
+Y después tengo
+La multiplicación
+De
+Este vector
+JT
+Transpuesto
+Por el vector I
+¿Sí?
+¿Sí?
+Y eso es
+1 por
+I sub
+I1
+Más
+1 por
+I sub
+I2
+¿Sí?
+O sea que
+Lo que tengo aquí
+¿Sí?
+Es
+Voy a ponerlo acá
+Es
+La suma
+Desde T
+Igual
+1
+Hasta 2
+De I
+Y subí T
+Si en lugar de tener
+Dos períodos temporales
+Tengo T mayúscula
+Eso es la suma
+Hasta T mayúscula
+¿Sí?
+La suma
+Dividido
+Dos
+Esa
+Y raya
+Y en el segundo
+Elemento
+Tengo lo mismo
+La suma
+Dividido
+Dos
+Y raya
+O sea que
+Este segundo término
+Que tengo acá
+Es
+Y raya
+Y raya
+Y raya
+Y raya
+Y raya
+De nuevo
+Piensen
+En lugar de 2
+T mayúscula
+Lo que voy a tener
+Es un vector
+El primer término
+Es
+Y subí 1
+Y subí 2
+Y subí T mayúscula
+Menos
+Y raya
+Y raya
+Y raya
+Y raya
+Esto es lo que
+Nosotros llamamos
+I subí T
+Con los dos puntitos arriba
+¿Sí?
+Es esto
+Un indicio
+De acá
+U subí
+Por I subí
+Es
+I
+Con los dos puntitos arriba
+Yo multiplico
+La matriz
+Tantimini
+Por la variable
+Y me devuelve
+La misma variable
+Restando bien
+La media
+Temporal
+De la variable
+Para cada cuarto
+De través
+¿Sí?
+Y si yo multiplico
+Q sub T
+Por JT
+Me da 0
+De nuevo
+Piensen
+En
+Este ejemplo
+¿Sí?
+En este ejemplo
+Que tienen acá
+Y reemplacen
+Este vector
+¿Sí?
+Por JT
+JT es 1 a 1
+Cuando yo multiplique
+JT
+Por la identidad
+Me da JT
+Pero lo hago acá
+Acá arriba
+Si yo multiplico
+Esta expresión
+Por JT
+Me queda
+QT
+Por JT
+Es igual a
+Identidad de orden T
+Menos
+JT
+Por
+JT
+Traspuesto
+Por JT
+Inversa
+Por JT
+Traspuesto
+Y
+A esto
+Lo tengo que multiplicar
+Por JT
+Cuando multiplico
+JT
+Por la identidad
+De orden T
+Me da JT
+Y en el segundo término
+Me queda
+Menos JT
+Por
+JT
+Traspuesto
+Por JT
+Inversa
+Por JT
+Traspuesto
+Por JT
+Pero
+JT
+Traspuesto
+Inversa
+JT
+Traspuesto
+Por JT
+Inversa
+Multipliado
+Por JT
+Traspuesto
+Por JT
+La identidad
+Me queda
+JT
+Menos JT
+Cero
+Que es lógico
+Me cargo
+El C
+Subir
+Eso es lo que hace
+La matriz
+Time
+Dim
+Me saca
+La media
+Temporal
+De cada observación
+En el corte
+Traversal
+El C
+Subir
+No varía
+En el tiempo
+Me lo tengo que
+Cargar
+Y
+De nuevo
+UT
+Por XI
+Me da
+XI
+Con los dos
+Puntinos
+Entonces si ustedes miran
+Si
+Ustedes miran
+La
+La primera ecuación
+De la transparencia
+La primera ecuación
+De la transparencia
+Yo la puedo escribir así
+Beta
+Sombrero
+De
+Efectos fijos
+Es igual
+A
+Suma
+De
+DI
+Igual
+1
+Hasta
+N
+D
+En lugar de poner
+X
+Con los dos puntitos
+Arriba
+Traspuesto
+Voy a poner
+QT
+Por XI
+Todo
+Traspuesto
+Por
+QT
+Por XI
+Eso es
+XI
+Con los dos puntitos
+Todo
+Inverso
+Por
+Por
+La suma
+Desde
+I
+Igual
+1
+Hasta
+N
+De
+De nuevo
+X
+Dos puntitos
+Traspuesto
+Es
+UT
+Por
+XI
+Traspuesto
+UT
+Por
+I
+Subido
+Y
+De nuevo
+Adentro
+Adentro
+Del primer paréntesis
+Esta multiplicación
+Es
+XI
+Traspuesto
+Por
+QT
+Traspuesto
+Por QT
+Por
+XI
+Pero
+Como
+QT
+Es una
+Maticida
+Impotente
+Usted
+Traspuesto
+Por QT
+QT
+O sea
+Que en el
+Centro
+Del primer
+Paréntesis
+Tengo
+QT
+Y en el
+Segundo
+Término
+Me pasa
+Lo mismo
+Pues voy a
+Tener
+En el
+Primer
+Paréntesis
+Del
+Segundo
+Término
+XI
+Traspuesto
+Por QT
+Traspuesto
+Por QT
+Por XI
+QT
+Traspuesto
+Por QT
+Es QT
+En el
+Segundo
+Paréntesis
+De
+No
+Ok
+QT
+Me sirve
+Porque
+Puedo
+Expresar
+El modelo
+Escrito
+Para
+Vectores
+Y
+De
+Orden
+N
+Por T
+Por QT
+QT
+Está definido
+Para
+El
+Segundo
+De
+La
+Segunda
+De
+Las
+Ecuaciones
+Que
+Nosotros
+Usamos
+La
+Que está
+Bajo
+De
+La
+38
+Que es
+El modelo
+Escrito
+Para
+Una
+Observación
+Genérica
+I
+Observación
+Genérica
+De
+Corte
+Transversal
+I
+Como
+Está
+Definido
+Para
+Una
+Observación
+Genérica
+De
+Corte
+Transversal
+I
+Y
+En
+El
+Modelo
+De
+La
+De
+De
+De
+Los
+Vectores
+Y
+Matrices
+Estoy
+Apilando
+Toda
+La
+Si
+Necesito
+Extender
+El
+QI
+A
+Todos
+Los
+C
+Y
+Entonces
+La
+Forma
+De
+Extenderlo
+Es la
+Mismo
+Que
+Hicimos
+Para
+Los
+C
+Subir
+Definir
+Para
+La
+Matriz
+De
+Orden
+N
+Por T
+Y
+Subir
+N
+Kronecker
+QT
+Lo que
+Pasa
+Aquí
+Es que
+Tiene
+Esta
+Expresión
+Que
+Tienen
+En
+La
+Tercera
+Igualdad
+Uno
+La
+Puede
+Escribir
+Como
+Identidad
+De
+N
+Kronecker
+QT
+Por X
+Y
+Por X
+Perdón
+X
+Transpuesto
+Identidad
+De
+Orden
+N
+Kronecker
+QT
+Por X
+Todo
+Inverso
+Pongo
+La primera
+Segunda
+Parte
+De
+Lo mismo
+Esto
+De
+Nuevo
+Esto
+Es
+X
+Transpuesta
+Por
+Identidad
+De
+Orden
+N
+Kronecker
+QT
+Por
+Identidad
+De
+Orden
+N
+Kronecker
+QT
+Por X
+Todo
+Inverso
+¿Sí?
+Esto
+Es
+A
+Kronecker
+B
+Multiplicado
+Por
+C
+Kronecker
+D
+Es
+Es
+Igual
+A
+A
+Por C
+Kronecker
+B
+Por
+O sea
+Que
+Lo que
+Tengo
+Aquí
+Es
+Identidad
+De
+Orden
+N
+Por
+Identidad
+De
+Orden
+N
+Identidad
+De
+Orden
+N
+Es
+A
+B
+C
+D
+Identidad
+De
+Orden
+N
+A
+Por C
+Es
+Identidad
+De
+Orden
+N
+Kronecker
+QT
+Por
+QT
+O sea
+Que
+En el
+Centro
+Lo único
+Que va a
+Aparecer
+Es
+Identidad
+De
+N
+Y en
+El
+Segundo
+Termio
+Va a
+Pasar
+Lo
+Mismo
+Exactamente
+Lo
+Mismo
+Solo
+Que
+En lugar
+De
+Tener
+La
+Segunda
+X
+De
+Por
+Ahí
+Ok
+A esta
+Ecuación
+Si
+Ecuator
+42
+Y voy a
+Volver
+Sobre
+A esta
+Ecuación
+Lo hice
+Porque
+Necesito
+Volver
+A esta
+Ecuación
+Además
+De
+La
+Condición
+De
+Exoconía
+Estricta
+Necesito
+La
+Condición
+De
+Rango
+Hacer
+La
+Inversa
+De
+X
+De
+La
+En el
+Supuesto
+2
+F2
+Es
+Que
+El
+Rango
+De
+La
+Materia
+Que
+Está
+Cuenta
+Por
+X
+Es
+Completa
+Como tal
+Que
+La
+Materia
+Es
+Posistiva
+Definida
+Y
+Pueda
+Hacer
+La
+Inversa
+De
+Esa
+De
+Esa
+De
+Esa
+Y
+Vuelvo
+A
+Poner
+Que
+Obviamente
+Si
+X
+Y T
+Tiene
+Alguna
+Variable
+Que
+Importante
+En
+el
+Tiempo
+Cuando
+Yo
+Aplique
+El
+QT
+Me
+Cargo
+Esa
+Variable
+Me
+Hace
+Una
+Volumna
+De
+Ceros
+En
+La
+X
+Y T
+Y
+La
+Materia
+No
+Tiene
+Rango
+Completa
+No
+Se
+Fue
+El
+Estimador
+De
+La
+Ecuación
+42
+En la
+Literatura
+Se
+Lama
+Estimador
+De
+Efectos
+Vivos
+Within
+Estimator
+Tengo
+Otro
+Estimador
+Que
+Se
+Conoce
+Con
+El
+Nombre
+De
+Between
+Estimator
+Y
+El
+Between
+Estimator
+Lo
+Unico
+Que
+Hace
+Es
+Estimar
+El
+Vector
+De
+Parámetros
+Usando
+La
+Ecuación
+De
+Las
+Medias
+Temporales
+De
+Cada
+Variable
+Cuando
+Hicimos
+La
+Transformación
+De
+Efectos
+Vivos
+Al
+Modelo
+Original
+Le
+Restamos
+La
+Ecuación
+De
+Las
+Medias
+Temporales
+De
+La
+Variable
+Que
+La
+Tienen
+Ahí
+En el
+Segundo
+Punto
+De
+La
+Transparencia
+Y
+sub
+Y
+Raja
+Igual
+A
+X
+Y
+Raja
+Por
+Beta
+Más
+Y
+Y
+Y
+Y
+Y
+Y
+Tato
+De
+Panelo
+O sea
+Que
+Esa
+Que
+Esa
+Que
+La
+Dimensión
+Temporal
+Pero
+Me
+Queda
+La
+Dimensión
+De
+Corte
+Traversal
+Tipo
+En
+Y
+Mayúcula
+Observaciones
+Para
+Hacer
+Desestimación
+Y
+Puedo
+Hacer
+La
+Estimación
+En
+Lo
+Que
+De
+Acuerdo
+A
+Nuestro
+Supuesto
+No
+Es
+Consistente
+Si
+No
+Es
+Consistente
+Si
+Porque
+La
+Eh
+La
+Esperanza
+Entre
+La
+Variable
+Explicativa
+Y
+La
+Estimogeneidad
+No
+Observada
+Y
+Diferente
+Pero
+Ustedes
+Van a
+Ver
+Que
+Cuando
+Hagamos
+La
+Estimación
+Si
+El
+Programa
+Va a
+Decir
+Y
+Me
+Enchanta
+Si
+Yo
+Quiero
+Que
+Es
+Estimación
+Consistente
+Tengo
+Que
+Hacer
+El
+Mimo
+Supuesto
+De
+R
+1
+A
+Y
+B
+No
+Hay
+Relación
+Entre
+C
+Y
+Y
+Y
+Y
+Y
+Hay
+Exogenidad
+Estim
+Pero
+Si
+Yo
+No
+Hago
+Ese
+Supuesto
+Con
+Los
+Supuestos
+Que
+Pimos
+Para
+El
+Método
+De
+Efectos
+Fijos
+No
+No
+Es
+Consistente
+Esa
+Exigencia
+Inferencia
+Asintótica
+Para
+Hacer
+Inferencia
+Asintótica
+Lo
+Que
+Tienen
+En
+Esta
+Transparencia
+Es
+El
+Supuesto
+Estándar
+De
+Cualquier
+Programa
+Que
+Estime
+Usando
+El
+Estimador
+De
+Tracta
+Fija
+Básicamente
+Cuando
+Yo
+Tengo
+Contraversal
+Y
+Digo
+Me
+Digo
+Alex
+Excel
+O
+Alex
+Estime
+Por
+Mimo
+Poder
+Clásico
+Si
+El
+Estado
+Hace
+Todas
+Las
+Cuentitas
+Asumiendo
+Que
+Hay
+Linealidad
+Exogenidad
+Estricta
+La
+Valencia
+Sonora
+Esférica
+No
+Hay
+Multicolinearidad
+Etcétera
+Etcétera
+Y me
+Saca
+Además
+De la
+Estimación
+X
+Transpuesta
+Por
+X
+Inferencia
+Y me
+Saca
+La
+Estimación
+De
+Por
+Ejemplo
+La
+Matriz
+De
+Valencia
+Y
+La
+Matriz
+De
+Valencia
+De
+Los
+coeficientes
+En
+Términos
+De
+Los
+Supuestos
+De
+Validad
+Es
+Sincron
+Quadrado
+Por
+X
+Transpuesta
+Por
+X
+Que
+Solo
+Es
+Válida
+Siempre
+Que
+Los
+Errores
+Del
+Modelo
+Sean
+Homo
+Sedástico
+Y
+No
+Tengan
+Correlación
+Serial
+Bueno
+El
+Equivalente
+En
+Dato
+De
+Panel
+De
+La
+Estimación
+De
+Efecto
+Fijo
+Es
+Asumir
+Homo
+Sedasticidad
+Y
+Ausencia
+De
+Correlación
+Serial
+En
+El
+Tiempo
+Entonces
+El
+Supuesto
+Tres
+Que
+Tiene
+Ahí
+Es
+Que
+La
+Matriz
+De
+Varianza
+Y
+Covarianza
+De
+Los
+Errores
+Hiciosincráticos
+Los
+Errores
+Del
+Modelo
+Original
+Es
+Sigma
+Cuadrado
+Por
+La
+Identidad
+De
+Orden
+T
+Varianza
+Constante
+En
+Tiempo
+Covarianzas
+Iguales
+a C
+Es
+Supuesto
+Es
+Exactamente
+El
+Mismo
+Supuesto
+Que
+Hicimos
+Para
+El
+Modelo
+De
+Efectos
+Aleatorios
+En
+realidad
+Es
+Una
+parte
+Del
+Supuesto
+Tres
+Del
+Modelo
+De
+Efectos
+Aleatorios
+La
+La
+parte
+A
+La
+parte
+B
+Tiene
+Que
+ver
+Con
+El
+Movimiento
+de
+C
+Si
+No
+Eh
+El
+El
+Supuesto
+F3
+Implica
+Dos
+Cosas
+Si
+La
+Primera
+Es
+Que
+El
+La
+Matriz
+De
+Varianza
+Covarianzas
+El
+Error
+Compuesto
+En
+Efectos
+Fijos
+Tiene
+Exactamente
+La
+Mima
+Estructura
+Que
+En
+El
+Modelo
+De
+Efectos
+Aleatorios
+Pero
+Mientras
+Que
+En
+El
+Modelo
+De
+Efectos
+Aleatorios
+Eso
+Me pone
+Un
+Problema
+En
+El
+caso
+De
+Efectos
+Fijos
+No
+Tengo
+Ningún
+Problema
+Lo
+Que
+Tienen
+En
+La
+Siguiente
+Transparencia
+Es
+Ese
+K
+¿Sí?
+El
+Este
+La
+Ecuación
+Con
+Es
+El
+Modelo
+Transformado
+Por
+La
+Transformación
+De
+Efectos
+Fijos
+La
+Red
+Té
+A
+Cada
+Variable
+La
+Media
+Temporal
+De
+Esa
+Variable
+En
+Cada
+Part
+De
+Transparencia
+Y
+Vamos
+A
+Calcular
+La
+Media
+Valencia
+Covarianza
+Del
+U
+Con
+Los
+Dos
+Puntitos
+R
+¿Sí?
+Vamos
+A
+Calcular
+La
+Varianza
+Del
+Un
+Con
+Los
+Dos
+Puntitos
+La
+varianza
+Del
+Un
+Con
+Los
+Dos
+Puntitos
+Vamos
+A
+Largar
+La
+varianza
+De
+Un
+Sub
+T
+Por
+Dos
+Puntitos
+Arriba
+Por
+Definición
+De
+Varianza
+Es
+La
+Esperanza
+De
+Un
+Sub
+T
+Por
+Dos
+Puntitos
+Arriba
+Al
+Cuadrado
+Menos
+La
+Esperanza
+De
+Un
+Sub
+T
+Por
+Dos
+Puntitos
+Arriba
+Por
+Al
+Cuadrado
+¿Sí?
+Pero
+La
+Esperanza
+De
+Un
+Sub
+T
+Con
+Dos
+Puntos
+Arriba
+Es
+C
+O
+O
+O
+O
+O
+La
+Varianza
+Es
+La
+Esperanza
+De
+La
+Variable
+Le va
+Al
+Cuadrado
+Esa
+Esa
+Esa
+Esa
+Esa
+Esa
+Esa
+Esa
+Esa
+Esa
+Esa
+Esa
+Esperanza
+De
+U
+Sub
+T
+Con
+Los
+Puntitos
+Arriba
+Le va
+Al
+Cuadrado
+U
+Sub
+T
+Con
+Los
+Puntitos
+Arriba
+Es
+U
+Sub
+T
+Menos
+U
+Raya
+I
+Al
+Cuadrado
+¿Sí?
+Desarrollo
+El cuadrado
+Me queda
+U
+Sub
+T
+Al
+Cuadrado
+Más
+U
+Raya
+I
+Al
+Cuadrado
+Menos
+Dos
+veces
+U
+T
+Por
+U
+Raya
+I
+Aplico
+La
+Esperanza
+Matemática
+Y
+Tengo
+Esos
+Tres
+Entonces
+Este primer término
+Es la
+Valencia
+De
+U
+Sino
+Valencia
+De
+¿Sí?
+Este
+Segundo
+Término
+Este
+Segundo
+Término
+Es
+La
+Esperanza
+De
+U
+Raya
+I
+Elevado
+Al
+Cuadrado
+O sea
+Que
+Es
+La
+Esperanza
+De
+U
+Sub
+Uno
+T
+Al
+Cuadrado
+Más
+Dos
+T
+Al
+Cuadrado
+Más
+U
+T
+T
+Mayúscula
+Al
+Cuadrado
+¿Sí?
+Aplico
+La
+Esperanza
+Matemática
+Todas
+Esas
+Son
+Varias
+O sea
+Que
+Lo que
+Tengo
+Es
+Sino
+Al
+Cuadrado
+U
+Dividido
+T
+Y
+En
+El
+Último
+Término
+Tengo
+U
+Sub
+T
+Por
+U
+Raya
+I
+¿Sí?
+Entonces
+Me va
+A quedar
+U
+Raya
+I
+De
+Nuevo
+Es
+U
+I
+Uno
+Más
+U
+Sub
+Dos
+Más
+U
+T
+T
+Más
+U
+T
+Mayús
+Cuando
+Se
+Multiplique
+Un
+Sub
+T
+Con
+Un
+Sub
+T
+Me
+Va
+A quedar
+Una
+Varianza
+¿Sí?
+O sea
+Que me va
+A quedar
+Varianza
+Dividido
+Dos
+Veces
+Pero
+Tengo
+Cada
+U
+Dividido
+Y
+Saco
+Factor
+Común
+Y me
+Queda
+¿Qué me
+dice eso?
+Variasas
+constantes
+Es más
+Voy a
+Poner
+Acá
+Para
+Acordarme
+Que
+Si yo
+Sumo
+Desde
+T
+Igual
+Uno
+Hasta
+T
+La
+Esperanza
+De
+U
+Sub
+T
+Con
+Los
+Dos
+Pusquitos
+Arriba
+Al
+Cuadrado
+Eso
+Me
+Da
+El
+Lado
+Derecho
+T
+Ves
+Sigma
+Cuadrado
+De
+U
+Por
+Uno
+Sobre
+Por
+Uno
+Menos
+Uno
+Sobre
+T
+O sea
+Que
+Me
+Da
+Sigma
+Cuadrado
+De
+U
+Por
+T
+Menos
+¿Sí?
+Ok
+Calculemos
+La
+Cobalianza
+La
+Cobalianza
+De
+Nuevo
+Vamos a
+Calcular
+La
+Cobalianza
+Entre
+U
+Sub
+T
+En lugar
+De
+Acá
+De
+La
+Varianza
+Acá
+En la
+Arriba
+Y
+Todo
+En lugar
+De
+Tener
+La
+Varianza
+Voy a
+Tener
+La
+Cobalianza
+Cobalianza
+Entre
+U
+Sub
+T
+Con
+Los
+Dos
+Puntos
+Arriba
+Y
+U
+Sub
+I
+S
+Con
+Los
+Puntos
+Arriba
+Que
+Por
+Definición
+Es
+La
+Esperanza
+De
+U
+Sub
+T
+Con
+Los
+Dos
+Puntos
+Arriba
+Por
+U
+Sub
+S
+Con
+Los
+Dos
+Puntos
+Arriba
+Menos
+La
+Esperanza
+De
+U
+Sub
+T
+Por
+La
+Esperanza
+De
+S
+Con
+Dos
+Puntos
+Pero
+Esas
+Esperanzas
+O
+C
+O
+O
+O
+O
+O
+O
+La
+Esa
+La
+Esperanza
+De
+La
+Multiplicación
+De
+Las
+Dos
+variables
+al
+Primera
+Igualdad
+Transformo
+Las
+Variables
+Con
+Los
+Dos
+Puntos
+En
+La
+Variable
+Original
+Menos
+La
+Media
+Temporal
+De
+La
+Variable
+Y
+Después
+Hago
+La
+Distributiva
+Los
+Dos
+Terminan
+El
+Pré
+Paréntesis
+Y
+Aplico
+La
+Esperanza
+Conte
+Lo
+Que
+Obtengo
+Es
+Menos
+Sismo
+Cuadrado
+De
+U
+Divido
+T
+Menos
+Sismo
+Cuadrado
+De
+Divido
+T
+Quiere
+decir
+Que
+La
+Co
+Alianza
+Entre
+Errores
+De
+Diferencia
+De
+Observación
+En
+El
+Tiempo
+Es
+Diferente
+S
+Los
+Errores
+Del
+Modelo
+Transformado
+Tiene
+Correlación
+Sería
+Ahí les puse
+La
+Correlación
+Eso
+Digamos
+No va a tener
+Ningún
+Ninguna
+Influencia
+En
+La
+Inferencia
+Estadística
+En
+Este
+En
+El
+Modelo
+De
+Efectos
+Fijos
+Y
+Para
+Ver
+Eso
+Tienen
+Sacada
+La
+Distribución
+Asintótica
+De
+Estimador
+Está
+Escrita
+Para
+La
+Segunda
+Ecuación
+Está
+Abajo
+De
+La
+38
+Es
+Para
+Una
+Observación
+Genérica
+Y
+Entonces
+El
+Estimador
+Que estaba
+En la
+Transparencia
+Anterior
+Es la
+Suma
+De
+1
+A
+N
+De
+XI
+Con los
+Dos puntos
+de arriba
+Transpuesto
+Por
+XI
+Con los
+Dos puntos
+de arriba
+Inversa
+Por
+La
+Suma
+De
+Igual
+1
+T
+N
+De
+XI
+Con los
+Dos puntos
+de arriba
+Transpuesta
+Por
+Y
+Subí
+Con los
+Dos puntos
+de arriba
+Si yo
+Agarro
+Y
+Subí
+Con los
+Dos puntos
+de arriba
+Y lo
+Reemplazo
+Por el
+Modelo
+X
+Con los
+Dos puntos
+de arriba
+Subí
+Por
+Beta
+Más
+U
+Con los
+Dos puntos
+de arriba
+Subí
+Esta
+Ecuación
+Me
+Queda
+Cuando yo
+Multiplique
+Todo
+Esto
+Por
+El
+Primer
+Término
+Me
+Va
+Queda
+Beta
+Solito
+Y
+Cuando
+Multiplique
+Todo
+Esto
+Hasta
+Acá
+Por
+U
+Subí
+Con los
+Dos
+Puntitos
+Me
+Va
+Quedar
+Más
+Suma
+Desde
+I
+Igual
+1
+Hasta
+N
+De
+XI
+Con los
+Dos
+Puntitos
+Arriba
+Transpuesto
+Por
+XI
+Con los
+Dos
+Puntitos
+Todo
+Inversa
+Por
+La
+Suma
+Desde
+I
+Igual
+1
+Hasta
+N
+De
+XI
+Con los
+Dos
+Puntitos
+Arriba
+Transpuesto
+Por
+U
+Subí
+Con los
+Dos
+Puntitos
+Arriba
+¿Sí?
+Entonces
+Déjenme
+Ponerlo
+Acá
+XI
+Con los
+Dos
+Puntitos
+Arriba
+Transpuesto
+Por
+U
+Subí
+Con los
+Dos
+Puntitos
+Arriba
+Es
+Es
+Igual
+A
+QT
+Por
+XI
+Todo
+Transpuesto
+QT
+Por
+Un
+Subí
+O sea
+Que
+Esto es
+XI
+Transpuesto
+Por
+QT
+Por
+QT
+Por
+Un
+Subí
+Pero
+QT
+Por
+QT
+O sea
+Que
+Esto es
+XI
+Transpuesto
+Por
+QT
+Transpuesto
+Por
+U
+Subí
+Y
+Esto es
+XI
+Con los
+Dos
+Puntitos
+Arriba
+Por
+U
+Subí
+¿Sí?
+Que es
+Esta cosa
+La segunda
+Igualdad
+Es
+Esta
+Y
+Ahí
+Esto
+Me
+Fui
+De
+Subí
+Con
+Los
+Dos
+Puntitos
+Me
+Quedó
+El
+Reloj
+Desincrático
+Del
+Modelo
+Original
+Y
+Ahora
+Vamos
+A
+Hacer
+Lo
+Mismo
+Que
+Hicimos
+Con
+Para
+Clásico
+Para
+Transpuesto
+Yo
+Puedo
+Pasar
+En esa
+Segunda
+Igualdad
+Este beta
+Restando
+El primer
+Termo
+Para que me quede
+Beta
+Sobrelo
+De efecto
+Fijo
+Me lo
+B
+Y después
+Dividir esto
+Por
+M
+Directo
+Por
+M
+Y este
+Último
+N
+Ponerlo
+Como
+Raíz
+De N
+Por
+Raíz
+De N
+Y después
+Multiplicando
+Los dos lados
+Del igual
+Por
+Raíz
+De N
+Me queda
+Del lado
+Izquierdo
+Raíz
+De N
+Por
+Beta
+Sobrelo
+De efecto
+B
+Menos
+Beta
+Y del
+Lado
+Derecho
+Me queda
+En el
+Segundo
+Término
+1
+Sobre
+Raíz
+De N
+Por
+La
+Suma
+De
+X
+Y
+Por
+Y
+Entonces
+Digo
+Esto es
+Ley
+De los
+Grandes
+Números
+Esto
+Se va
+A
+Una
+Matriz
+Teorema
+Central
+Deslímite
+Eso
+Se va
+A
+Una
+Distribución
+Normal
+Con
+Pues
+El
+Estimador
+La
+Distribución
+Asintótica
+Del
+Estimador
+De
+Efectos
+Fijos
+Normal
+Media
+Cero
+Y
+Matriz
+De
+Varias
+Y
+Codarianza
+Sigma
+Quadrado
+De
+U
+Por
+La
+Esperanza
+De
+XI
+Transpuesto
+Por
+XI
+Las
+XI
+Tienen
+Los
+Dos
+Puntitos
+De
+Arriba
+Inversa
+Es
+De
+Nueva
+Es
+La
+Matriz
+Y
+Codarianza
+El
+Mismo
+Cuadrado
+Clásico
+Sigma
+Quadrado
+Por
+X
+Transpuesta
+Por
+X
+Inversa
+Y
+Tienen
+Esperanza
+La
+Asintótica
+Pero
+Cuando
+Yo
+La
+Estime
+Voy
+A
+Reemplazar
+La
+Esperanza
+Matemática
+Por
+Soler
+Lo
+De
+Mostrar
+¿Eh?
+Lo
+Tienen
+En
+La
+Ecuación
+45
+Sigma
+Quadrado
+Por
+X
+Transpuesta
+Por
+X
+Inversa
+Solamente
+Que
+Ahora
+Las
+X
+Tienen
+Los
+Dos
+Puntitos
+arriba
+Pero
+Tengo
+La
+Misma
+Matriz
+Y
+Conexia
+Y
+Conexia
+Que
+Es
+Mismo
+Quadrado
+Clásico
+Cuando
+Yo
+Sumo
+Hemosciaticidad
+Y
+Ucencia
+La
+Resulta
+Esto
+Ya lo
+Habíamos
+Dicho
+Pero
+Está
+Puesto
+Allí
+En
+La
+Transparencia
+Supuesto
+Tres
+Defectos
+Fijos
+Es
+Que
+La
+Materia
+O
+Alianzas
+De
+Los
+Salones
+Idiosincráticos
+Del
+Modelo
+Es
+Homosedástica
+Y no
+Tiene
+Con relación
+Serial
+En
+El
+Tito
+¿Esto
+para qué
+Me sirve?
+Bueno
+Me sirve
+Porque
+Cualquier
+Programa
+Programa
+Que
+Estime
+Por lo que
+Nosotros
+Llamamos
+El modelo
+De efectos
+Fijos
+Hace
+Esto
+Supuesto
+O sea
+La materia
+De valencia
+Y covarianza
+Que va a sacar
+En Estata
+Cuando
+En Estata
+Le dije
+Cual es
+El comando
+Para efectos
+De aleatorio
+Comando
+Para efectos
+Fijos
+Es
+XT
+Rey
+Variable
+Dependiente
+Variable
+Explicativo
+Coma
+F
+F
+Fix
+Efect
+Y cuando
+Yo le doy
+Al Estata
+En Comando
+Para que
+Estime
+Por efectos
+Fijos
+El Estata
+Me hace
+La transformación
+La
+Wooden
+Transformations
+Hace
+La estimación
+Por un
+Cono
+Clásico
+Y me
+Saca
+La tablita
+Que me
+Saca
+En todos
+Los
+Programas
+Primera
+Columna
+Los
+Entimadores
+Segunda
+Columna
+Los
+Erroros
+Estándar
+Tercera
+Columna
+Estadística
+Significatividad
+Individual
+Etcétera
+Etcétera
+Pero los
+Erroros
+Estándar
+Está sacado
+De esa
+Matriz
+Que asume
+Vamos a
+Easticidad
+Y ausencia
+De
+Coronación
+Serial
+En el
+tiempo
+Lo único
+Que me
+Falta
+Lo único
+Que me
+Falta
+Para hacer
+Los cálculos
+En la
+Práctica
+Es
+Estimar
+Este
+Animal
+Que yo
+Acá
+Lo
+Estimé
+Y dije
+Bueno
+Como estiman
+Los programas
+Lo que
+Hacen
+Es
+Recuerda
+Lo que hicimos
+Recién
+La suma
+Desde 1
+Hasta T
+De la esperanza
+Matemática
+Para que me
+Diera
+T-1
+Por Sino
+Por Sino
+Por Sino
+Esa es
+La suma
+De
+Esperanza
+Matemática
+Si paso
+Este T-1
+Dividiendo
+Al primer término
+Me queda
+1 sobre
+Sino
+Por la suma
+De 1
+At
+En esperanza
+De
+Un sub
+Y T
+Con los dos puntos
+De arriba
+Al cuadrado
+Es igual
+A Sino
+Al cuadrado
+Y entonces
+Para estimar
+Lo único
+Que tengo que hacer
+Son dos cosas
+Una
+Reemplazar la esperanza
+Por sonar
+A un muestral
+1 sobre
+N
+Por la suma
+De 1
+Y reemplazar
+Los errores
+Por los residuos
+Entonces
+La siguiente ecuación
+Tiene el definido
+De los residuos
+Un sombrero
+Con los dos puntitos
+De arriba
+Es
+Y sub
+Y T
+Con los dos puntos
+De arriba
+Menos
+X y T
+Con los dos puntos
+De arriba
+Por la estimada
+De efecto fija
+Y la ecuación
+47
+Reemplaza
+La esperanza
+Matemática
+Por 1 sobre
+N
+Por la suma
+De 1
+Solo que
+En lugar de
+Si yo reemplazo
+La esperanza
+Por 1 sobre
+N
+Por la suma
+De 1
+N
+El denominador
+De la estimación
+Sería
+1 sobre
+N
+Por T
+Menos 1
+Por la suma
+Sobre
+I
+Y la suma
+Sobre T
+De un sombrero
+Dos puntitos
+Y T
+Al cuadrado
+Pero
+En
+Los programas
+Lo que hacen
+En lugar de poner
+La estimación
+Asintótica
+Es la que tiene
+La corrección
+Por muestra
+Finita
+Que la resta
+El número
+De parámetros
+De estimación
+Igual que antes
+Cuando nosotros
+Estimábamos
+La varía
+De los errores
+En el mismo cuadro
+Clásico
+En el corte
+De la adversaria
+La suma
+De la suma
+De la suma
+De la suma
+Al cuadrado
+Dividido
+N
+Menos K
+De N
+Total
+De Dato
+Y K
+En el parámetro
+De la suma
+De parámetros
+De N
+Pero si
+La muestra
+Es muy muy grande
+Si N
+Tiene infinito
+Poner
+En el denominador
+N
+Menos K
+Poner
+N
+Es lo mismo
+Solo que
+Cuando la muestra
+Es finita
+Poner
+Los grados
+De libertad
+Es mejor
+Que no
+Y acá
+Pasa
+La ecuación
+47
+En la estimación
+De la 46
+Solamente
+Que en el denominador
+Le estoy sacando
+El número
+De parámetros
+Que tiene
+Y ahí ya tengo
+Todo
+Tengo la estimación
+De la varianza
+De los errores
+Tengo la
+Estimación
+De
+Este
+El resto
+De
+La expresión
+Tengo
+La
+La
+La
+La estimación
+De la mayoría
+De varianza
+De varianza
+De los estimadores
+De efectos fijos
+Eso es lo mismo
+Que dije antes
+Y hago
+La principal
+De la matriz
+La raíz cuadrada
+De los elementos
+De la principal
+Se usa para
+Los estadísticos
+T
+La matriz entera
+Se usa para
+El test de Wolf
+Que
+Antes lo que
+Como R
+Vita
+Menos R
+Ahí no
+La diferencia
+Entre el caso
+De la necesidad
+De la matriz
+De la matriz
+Esto es una digresión
+En la literatura
+Existe lo que se
+Conoce
+Como el
+Dice
+Square
+Damivario
+Bromón
+Que
+Históricamente
+Es la forma
+En que se
+Estimaba
+El modelo
+De efectos fijos
+Y la forma
+En que se
+Estimaba
+El modelo
+De efectos fijos
+Es considerar
+A la heterogeneidad
+No observada
+Como parámetros
+Estimando
+Es decir
+Además de estimar
+Los beta
+Estimar
+C sub 1
+C sub 1
+C sub 2
+C sub 2
+¿Sí?
+Entonces
+Como cada uno
+De esos
+C
+Son constantes
+En el tiempo
+Yo lo transformo
+En vector
+Y está multiplicado
+Por daños
+¿Sí?
+Y
+Entonces
+El modelo
+Llama
+Ese
+Square
+Damivario
+Ok
+Entonces
+Lo voy a poner acá
+Este es el
+La ecuación 48
+Es el modelo
+Escrito
+Para vectores
+Y matrices
+¿Sí?
+Eh
+De dimensión
+N por T
+Esto
+Segunda y vuelta
+Ya lo escribí
+¿Sí?
+Si ustedes miran
+Para arriba
+Lo que escribimos
+Como la tercera opción
+Es esta ecuación
+Que aparece ahí
+En la parte
+¿Sí?
+Entonces
+Lo que vamos a mostrar
+Es que
+Ahí
+En ese
+De nuevo
+En ese modelo
+¿Sí?
+Lo que tengo es
+Eh
+Variables
+Binarias
+Vamos a poner
+N
+Igual a 3
+T
+Igual a 3
+O sea que
+Lo que tengo acá
+En este término
+Es
+La identidad
+De orden 3
+Króniker
+J3
+¿Sí?
+Esto es
+La identidad
+De orden 3
+1
+0
+0
+0
+1
+0
+0
+0
+1
+Króniker
+J3
+1
+1
+1
+1
+O sea que
+La multiplicación
+Es
+1
+1
+1
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+1
+1
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+1
+1
+1
+Y el gamma
+N es 3
+O sea que
+El gamma
+Es
+C1
+C2
+C3
+¿Sí?
+Cuando yo multiplique
+Esto por gamma
+Tengo que multiplicar
+No me quedo mucho lugar
+Lo hago en la segunda y buena
+Tengo que multiplicar
+Esta matriz resultante
+Por C1
+C2
+C3
+¿Sí?
+Y esto
+Es
+C1
+C1
+C1
+C2
+C2
+C2
+C3
+C3
+O dicho de otra manera
+Cada uno de estos C
+Cada uno de estos C
+Está multiplicado por una variable binaria
+¿Sí?
+Por eso el modelo se llama
+Lease square
+Dummy
+Variable
+Entonces
+Lo voy a
+Lo voy a escribir acá
+Y
+Y es igual a
+Exactamente por acá
+X beta
+X beta
+X beta
+Más
+Identidad de orden
+N
+Kroninger
+Jp
+Por gamma
+Lo que vamos a mostrar
+Lo que vamos a mostrar
+Es que si yo estimo
+Por mismo cuadrado clásico
+Esta ecuación
+Con las gamis
+¿Sí?
+La estimación del beta
+Es igual
+A la estimación hecha
+Por
+Efecto fijo
+¿Sí?
+Entonces
+Esto yo lo puedo escribir así
+Y
+Igual
+X
+Y
+N
+Kroninger
+Jp
+Por
+Eta
+Gamma
+Vasu
+¿Sí?
+Donde
+Eta es una parte de partición
+Tengo todos los coeficientes
+¿Sí?
+Pues si quiero
+Estimar ese modelo
+¿Sí?
+Digo
+Si
+A esto
+A esta
+A este corchete
+Lo llamo W
+Y a este vector
+Lo llamo alfa
+La estimación de alfa es
+W transpuesta por W inversa
+W transpuesta por I
+¿Sí?
+Pero como tengo una matriz particionada
+Me tengo que saber la fórmula
+De la matriz particionada
+Y yo no me la sé
+¿Sí?
+Para hacer la invasa
+Entonces vamos a hacerlo
+Usando el teorema de
+Frisch
+Wohl
+¿Sí?
+¿No?
+Que es
+Por pasos
+En el primer paso
+Vamos a estimar
+I
+Contra las gamas
+Y de ahí
+Vamos a estimar
+Delta sombrero 1
+Y con delta sombrero 1
+Vamos a definir los residuos
+B sobre 1
+En el segundo paso
+Vamos a estimar
+X
+Contra las gamas
+Y vamos a estimar
+Un vector de
+Estimadores
+De estado
+Sombrero
+Y el azul
+Es ir
+B sobre 1
+Está eso
+B sobre 1
+Es I
+Menos el efecto de las damas
+B sobre 2
+Es X
+Menos el efecto de las damas
+Beta
+Sombrero
+Eh
+This square
+Dime variable
+Es
+La estimación
+De B
+Sombrero
+1
+Contra
+B
+Sombrero
+Voy a hacer el primer paso
+El segundo
+Es re fácil
+Ya lo van a ver
+El primer paso
+Lo voy a hacer
+Detallado
+Básicamente necesito
+Delta sombrero 1
+Y de esta sombrero 1
+Es
+X
+Transpuesta por X
+Inversa
+Y
+Transpuesta por Y
+Solamente que ahora no tengo X
+Tengo
+Identidad de orden
+N
+Kronecker
+JT
+O sea que
+Lo que tengo
+Es
+Identidad de orden
+N
+Kronecker
+JT
+Transpuesto
+Por
+Identidad de orden
+N
+Kronecker
+JT
+Inversa
+Identidad de orden
+N
+Kronecker
+JT
+Transpuesto
+X
+Transpuesto
+Por Y
+¿Sí?
+Entonces
+Lo que tengo
+Adentro del paréntesis
+Lo que tengo
+Adentro del paréntesis
+Es
+Si meto la
+Transpuesta
+Adentro del primer
+Paréntesis
+Me queda
+Identidad de orden
+N
+Kronecker
+JT
+Transpuesto
+¿Sí?
+Y después
+Tengo
+En el primer
+Paréntesis
+En el primer paréntesis
+En el primer paréntesis
+Tengo
+A
+Kronecker
+B
+Por C
+Kronecker
+D
+O sea que
+Esto que tengo acá
+Lo puedo escribir
+Como
+A por C
+Identidad de orden
+N
+Por identidad de orden
+N
+Me da identidad
+De orden
+Kronecker
+JT
+Transpuesto
+O JT
+B por D
+Todo inverso
+Por
+Identidad de orden
+N
+Kronecker
+JT
+Todo con I
+¿Sí?
+¿Sí?
+Me meto la inversa
+Adentro
+Me queda
+La inversa
+De IN
+Que es IN
+Kronecker
+JT
+Transpuesto
+Por JT
+Inversa
+Multiplicado
+Por
+IN
+Este
+De orden
+N
+Kronecker
+JT
+Estoy mirando
+La transpuesta
+Acá
+Y me va a salir
+Tengo la transpuesta
+Ahí
+Tengo la transpuesta
+Acá
+Por I
+Podría meter
+La transpuesta
+Esta
+Adentro
+De
+Segundo paréntesis
+¿Sí?
+Y ahora me queda
+A
+Kronecker
+B
+C
+Kronecker
+D
+O sea que
+La multiplicación
+Me queda
+A por C
+Identidad de orden
+N
+Por
+Identidad de orden
+N
+Identidad de orden
+N
+Kronecker
+JT
+Transpuesto
+Por
+JT
+Versa
+B
+B
+Orden
+JT
+Transpuesto
+¿Sí?
+Y ahora voy a generar
+Los residuos
+El primer paso decía
+Los residuos
+B sombrero
+U
+B sombrero
+U
+Es igual a
+I
+Menos
+Identidad de orden
+N
+Kronecker
+JT
+Multiplicado por
+Delta
+Sobrero
+1
+¿Sí?
+Eso lo recibo
+Y Delta
+Sobrero
+1
+Es
+Identidad de orden
+N
+Kronecker
+JT
+Transpuesto
+Por
+JT
+Inversa
+JT
+Transpuesto
+Todo por
+I
+¿Sí?
+No lo voy a decir
+De nuevo
+No lo voy a escribir
+Pero es
+A
+Kronecker
+B
+Por C
+Kronecker
+D
+Esto que tengo
+Acá
+¿Sí?
+El I
+Es
+Identidad de orden
+N
+Kronecker
+JT
+Por JT
+Transpuesto
+Por JT
+Inversa
+Por JT
+Transpuesto
+¿Sí?
+Todo multiplicado
+Por I
+¿Sí?
+¿Sí?
+¿Sí?
+Saco
+Factor
+Comuní
+Pero dos términos
+Para atrás
+Ahí me queda
+Los residuos
+¿Cómo?
+La identidad
+De orden
+N por T
+Porque I
+Es de orden
+N por T
+Menos
+Identidad de orden
+N
+Kronecker
+JT
+Por JT
+Transpuesto
+Por JT
+Inversa
+Por JT
+Transpuesto
+Todo
+Por I
+¿Sí?
+¿Sí?
+Y ahora
+Voy a borrar acá
+Voy a escribir
+Esta identidad
+Esta identidad
+De orden
+N por T
+La voy a escribir así
+Identidad
+De orden
+N
+Kronecker
+Identidad
+De orden
+T
+Y adentro
+Del paréntesis
+Voy a sacar
+El factor común
+Identidad
+De orden
+N
+Que está en los dos
+Para que me quede
+Identidad
+De orden
+N
+Kronecker
+Identidad
+De orden
+T
+Menos
+JT
+Por JT
+Transpuesto
+Por JT
+Inversa
+Por JT
+Transpuesto
+Todo por I
+Pero
+Este
+Término
+Que está acá
+Y T
+Menos
+JT
+Por JT
+Transpuesto
+Por JT
+Por JT
+Transpuesto
+Es un T
+O sea que
+Es un T
+Y el resultado
+Final
+Es un T
+Por I
+Eso
+Ign Care
+identidad de orden N
+crónica de QT
+murió
+ese es el primer paso
+este es el primer paso
+el segundo paso
+el segundo paso
+es hacer lo mínimo
+solamente que la variable dependiente
+en lugar de ser Y
+es X
+y yo al Y no lo toqué
+hice todos los cálculos sin tocar el Y
+o sea que si quiero estimar
+delta 2
+si yo quiero estimar
+delta 2
+sombrero
+delta 2 sombrero
+lo único que tengo que cambiar acá
+es eta Y por una X
+porque ahora la variable dependiente
+y en la segunda igualdad
+lo que reemplazar está Y por una X
+y en la tercera igualdad está Y por una X
+y en la tercera está Y por una X
+y acá está Y por una X
+y acá está Y por una X
+y en la última expresión
+esta Y
+está acá por una X
+y esto es
+y esto es
+B sombrero 2
+B sombrero 1 es
+Ute es identidad de orden N
+crónica-cute por Y
+B sombrero 2 es identidad de orden N
+crónica-cute por X
+y el tercer punto me dice Y para estimar beta
+es B sombrero 1
+contra B sombrero 2
+o sea que
+si yo quiero estimar beta acá
+beta sombrero
+B sombrero 2
+es igual a
+B sombrero 2
+transcuento por B sombrero 2
+inversa
+B sombrero 2
+transcuento por B sombrero 1
+X transcuenta por X
+inversa
+X transcuenta por Y
+o sea que
+esto es
+igual a
+B sombrero 2
+transcuento es
+identidad de orden N
+crónica-cute
+identidad de orden N
+crónica-cute
+por X
+todo transcuento
+por
+identidad de orden N
+crónica-cute
+por X
+todo transcuento
+por
+identidad de orden N
+crónica-cute
+por X
+todo transcuento
+identidad de orden N
+crónica-cute
+C
+todo esto
+y esto ya lo sirve ¿no?
+esto es
+identidad de orden N
+crónica-cute
+crónica-cute
+x
+transcuenta
+por
+x
+transcuenta
+por
+identidad de orden N
+crónica-cute
+por
+x
+x
+transcuenta
+por
+identidad de orden N
+crónica-cute
+por
+identidad de orden N
+crónica-cute
+por X
+todo inversa
+todo inversa
+x
+x
+transcuenta
+identidad de orden N
+crónica-cute
+por
+como trabajo
+identidad de orden N
+crónica-cute
+por
+y
+a
+crónica-cute
+por
+c
+crónica-cute
+esto que tengo acá
+es
+x
+transcuenta
+por
+identidad de orden N
+crónica-cute
+usted
+usted
+porque usted
+es usted
+por
+x
+todo inversa
+x
+transcuenta
+identidad de orden N
+crónica-cute
+por
+y
+crónica-cute
+pero ese
+que está ahí en la ecuación
+cincuenta
+es el estimador
+de
+el
+crónica-cute
+42
+era la ecuación
+o sea que
+estimar
+transformando el
+modelo
+con la
+within
+transformation
+o
+estimar
+usando
+los
+c sub
+como parámetros
+estimar
+me da
+exactamente
+el mismo
+estimador
+de los
+beta
+hay dos
+puntos ahí
+el primero
+es
+si lo
+estimo
+con la
+dami
+pierdo
+grado
+de libertad
+tengo
+más parámetros
+estimar
+y la
+segunda
+cuestión
+es que
+la
+estimación
+de los
+c sub
+y no la hice
+acá
+pero
+si
+hacen la
+inversa
+de la
+matriz
+particionada
+sacan los
+c sub
+y también
+o sea
+los
+gano
+esos
+estimadores
+no son
+consistentes
+la idea
+es que
+tengo
+n
+c
+y como
+la
+consistencia
+de estos
+modelos
+y la
+normalidad
+se sacan
+con n
+que tiene
+infinito
+o n
+tiene infinito
+tiene infinito c
+entonces las
+estimaciones
+no son
+consistentes
+por esas
+dos
+cosas
+de nuevo
+históricamente
+esto es lo
+primero que se
+hacía
+y después
+alguien se dio
+cuenta que
+el estimador
+era lo mismo
+que transformarlo
+como hicimos
+en la transformación
+de otro
+y entonces
+todos los
+programas
+lo hacen
+de esa manera
+porque
+ahorra tiempo
+y
+cuando se subió
+no me lo pone
+nunca
+porque no
+son
+un sistema
+ok
+cuando yo
+le digo
+al estata
+x
+te re
+igual
+de
+valería
+aplicativa
+como
+f
+el estata
+asume
+homosedasticidad
+y ausencia
+de correlación
+serial
+en el tiempo
+ahora
+si yo no quiero
+hacer ese supuesto
+la matriz
+de valianzas
+y covalianzas
+tiene que tomar
+en cuenta
+que puede haber
+entre
+elasticidad
+en el tiempo
+y correlación
+serial
+en el tiempo
+pero eso
+ya lo vimos
+también
+porque es la estimación
+de mínimo cuadrado
+plástico
+la primera
+que hicimos
+sin asumir
+ninguna
+cosa
+sobre los momentos
+de alrededor
+de los errores
+la matriz
+de valianzas
+y covalianzas
+de la ecuación
+13
+que aquí
+tiene dos cambios
+el primero
+es que
+en la ecuación
+13
+las x
+no tienen
+los dos puntitos
+arriba
+y los residuos
+que antes
+eran y sombrero
+ahora
+son los
+u dos
+ditos
+sombrero
+que tengo
+en el medio
+entonces
+nada
+la fórmula
+51
+es
+digo
+en la ecuometría
+cuando la vimos
+tengo
+heteroseticidad
+por relación
+serial
+la matriz
+de valianza
+y covalianza
+de los estimadores
+del mismo cuadrado
+clásico
+es
+sigma cuadrado
+por x
+transpuesta
+por x
+inversa
+por x
+transpuesta
+por omega
+por x
+por x
+es eso
+toda la
+tanto de panela
+lo que quieran
+la
+ahí
+el primer paréntesis
+de x
+transpuesta
+por x
+inversa
+en el medio
+tengo
+x
+transpuesta
+por omega
+por x
+y en el
+último paréntesis
+de x
+transpuesta
+por x
+inversa
+es exactamente
+la misma
+más
+solo que
+tiene
+estos
+estas cositas
+que le hicimos
+a las x
+y las transformamos
+tengo los dos puntitos
+los residuos
+son del modelo
+transformado
+etc
+la forma funcional
+es la misma
+que vinimos
+viendo
+viendo antes
+o sea que
+si yo no quiero hacer
+si yo no quiero hacer
+el supuesto
+de que
+los momentos
+de orden dos
+de los errores
+tienen un comportamiento
+tradicional
+como sea
+si ya
+y no sé
+se pareció
+en el tiempo
+para hacer inferencias
+estadísticas
+lo que tenemos que hacer
+es construir
+correctamente
+la matriz
+de valencia
+y por lo tanto
+me cansé
+pero
+¿qué pasa?
+si yo no quiero
+asumir
+nada
+sobre
+los momentos
+de orden dos
+de los errores
+¿sí?
+¿qué pasaba
+en el corte
+transversal?
+el corte
+transversal
+cuando tenía
+teros
+en relación serial
+estimada
+por un mejor
+clásico
+y
+para hacer
+diferencias
+estadísticas
+construía
+x-cuenta por x-inversa
+x-cuenta por x-uenta por x-uenta por x-uenta por x-uenta
+pero tenía
+otra opción
+que cambiar
+de método
+de estimación
+y en lugar
+de estimar
+por un mejor
+cuadro clásico
+estimar
+por un mejor
+cuadro generalizado
+que es el estimador
+eficiente
+entonces
+el clase que viene
+mínimo cuadro generalizado
+me va a dar lo mismo
+nada más que ahora
+van a tener dos puntitos
+esas cosas
+pero
+digamos
+ahora
+para completar
+el análisis
+digo bueno
+ok
+no quiero
+estudiar nada
+sobre
+este
+los
+90
+de los errores
+y quiero estimar
+por un mejor
+referencia
+se puede
+si se puede
+fix the heck
+generalize this
+bueno
+si
+ok
+cortemos acá
+seguimos
+la clase
+gracias
+gracias
+gracias
+perfecto
+buena semana
+gracias
+buen fin de semana
+igual
+chicos

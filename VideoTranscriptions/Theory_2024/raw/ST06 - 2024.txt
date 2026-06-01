@@ -1,0 +1,5860 @@
+Muy bien, vamos a terminar con la estimación del modelo autoregresivo de orden 1 en datos de panel.
+Lo que hicimos la clase pasada fue mostrar que cuando tenemos un modelo que tiene la variable dependiente rezagada como variable explicativa,
+esa variable no cumple con la condición de exogeneidad estricta,
+y entonces tanto la estimación por mínimos cuadrados clásicos como la estimación por mínimos cuadrados generalizados
+me deja estimadores que no son consistentes, y entonces necesitamos cambiar de método de estimación,
+y el método de estimación alternativo que controla por la endogeneidad de la variable sería el método de variables instrumentales.
+Entonces, en la literatura hay dos estimadores que utilizan este método,
+que utilizan el método más general de GMM, o método generalizado de momentos,
+que son el método de Arellano y Bond y el método de Blandelli-Bond.
+El método de Arellano y Bond es el que describimos en la clase pasada,
+que lo que hace es tomar diferencias finitas en el modelo para eliminar la heterogeneidad no observada,
+y cuando tomo diferencias finitas, lo que hago es, primero, perder las primeras dos observaciones para cada corte transversal,
+digo, la primera observación la pierdo porque tengo un modelo autoregalecido de orden 1,
+o sea que cuando quiero calcular I sub I T menos 1, pierdo la primera observación,
+cuando aplico la diferencia finita, pierdo la segunda observación,
+o sea que recién puedo empezar a estimar el modelo a partir de la observación 3,
+y lo que hace Arellano y Bond es extender la estimación que nosotros mencionamos al comienzo de Anderson y Siao,
+con una matriz que utiliza todos los instrumentos posibles para cada punto de frecuencia temporal,
+a partir de la observación T igual a 3.
+El método de Anderson y Siao, que mencionamos en la clase pasada, al principio,
+lo que hace es utilizar como instrumento para la diferencia finita de I sub I T menos 1,
+el valor en niveles de I sub I T menos 2,
+Anderson y, perdón, Arellano y Bond,
+lo que hacen es agregarle a ese solo instrumento todos los instrumentos posibles,
+para cada periodo temporal,
+y entonces eso le da una matriz que nosotros llamamos Z sub I,
+Z sub I para el modelo escrito para una observación genérica I,
+y agrupando todas las observaciones de frecuencia temporal,
+y después se utiliza un método de estimación de GMM,
+en el cual en lugar de tener el tradicional método de variables instrumentales,
+lo que tiene es el método de variables instrumentales ponderado por una matriz
+que nosotros llamamos W,
+y que en el contexto de corte transversal y en el contexto del sistema de ecuaciones,
+nosotros vimos el estimador de GMM,
+vimos varios estimadores de GMM,
+todos tienen la misma estructura que es
+X trascuesta por Z,
+Z trascuesta por W por Z,
+Z trascuesta por X inversa,
+y lo mismo pero multiplicado por...
+Y en el contexto de datos de panel,
+la matriz de instrumentos nosotros llamamos Z,
+y hay dos matrices ponderadoras que utilizan el Yery Bond,
+la matriz W1 y la matriz W2,
+la matriz W1 asume que los errores idiosincráticos no tienen ningún problema,
+y entonces es como si tuviéramos el estimador de mínimos cuadrados en dos etapas para sistema,
+eligiendo a W como Z trascuesta por Z inversa,
+y qué es lo que tienen allí en el primer recuadro W1,
+y cuando yo asumo que los errores pueden tener algún problema de esteroseasticidad
+con relación cerebral en el tiempo,
+entonces la matriz W2,
+que es la matriz del estimador de la región y bonde de dos pasos,
+es una matriz que en lugar de tener Z trascuesta por Z,
+tiene Z trascuesta por los residuos por los residuos trascuesta por Z.
+Y en este estimador del segundo paso,
+los residuos se construyen con la estimación del modelo utilizando la matriz W1.
+Entonces tenemos esos dos estimadores,
+la matriz de varianza y covalianza es la tradicional de GMM,
+la tienen en el caso particular del poder autoregresivo de orden 1,
+tengo una varianza porque tengo un solo coeficiente,
+que es el coeficiente autoregresivo,
+que nosotros llamamos ρ o ρ1, ya no me acuerdo.
+y la varianza de ρ1 es igual a la estimación de la varianza
+del error idiosincrático por delta trascuesta de I menos 1 por Z por W1 por Z,
+por delta de I menos 1,
+que es el vector de I sub it menos 1,
+agrupando todos los periodos temporales de cada observación del coeficiente.
+Inverso, todo eso inverso.
+Y la varianza del estimador de dos pasos,
+del coeficiente autoregresivo de orden 1,
+la única diferencia que tiene con la varianza anterior
+es que utilizamos aquí el ponderador de Z.
+Entonces necesitamos estimar,
+ahí ya está puesto,
+pero en términos de la derivación de cualquier matriz de varianzas y covalianza,
+o de varianza en este caso,
+tengo sigma cuadrada,
+lo tengo que estimar para ponerle el sombrerito a la varianza
+y para ponerle el sombrerito al sigma cuadrado,
+y la estimación es una estimación de la varianza de U.
+La estimación de la varianza de U es básicamente lo que tenemos siempre,
+que es suma de residuos al cuadrado y biogrado de libertad.
+Solo que aquí la suma de residuos al cuadrado
+es la suma de residuos del modelo transformado por diferencia finita.
+Entonces si yo quisiera calcular la varianza
+de diferencia finita de U sub y T,
+que es el error de la ecuación transformada por diferencia finita,
+esto es igual a la esperanza matemática
+de U sub y T menos U sub y T menos 1 al cuadrado.
+Menos la esperanza de U sub y T por la esperanza de U sub y T menos 1,
+pero la esperanza de U sub y T es 0,
+entonces es desaparente.
+Entonces, si yo desarrollo el cuadrado,
+esto es la esperanza de U sub y T al cuadrado más U sub y T menos 1 al cuadrado,
+más menos, perdón, menos U sub y T por U sub y T menos 1 por 2.
+Entonces, cuando aplique la esperanza matemática,
+el último término desaparece porque la covarianza entre U sub y T y U sub y T menos 1,
+y eso es 0, pero en los primeros dos términos me queda la varianza de U.
+O sea, acá tengo la esperanza de U sub y T al cuadrado es sigma al cuadrado de U,
+pongámosle,
+y la esperanza de U sub y T menos 1 al cuadrado es sigma al cuadrado.
+O sea que lo que tengo es dos veces la varianza de U.
+Entonces, cuando yo hago la suma de residuos al cuadrado,
+es esta suma que tengo acá, es la suma de residuos al cuadrado,
+dividido los grados de libertad.
+Los grados de libertad son estos que tengo acá.
+N por T menos 2 menos K.
+N por T menos 2 es el número de observación.
+Recuerdan que cuando aplico la diferencia finita,
+pierdo las primeras dos observaciones de series temporales
+para cada observación de corte transversal.
+Tengo N observaciones de corte transversal,
+observaciones de frecuencia temporal,
+T mayúscula menos 2,
+eso sería el total de datos,
+menos K,
+parámetros a estimar,
+eso sería suma de residuos al cuadrado dividido N menos K.
+Solo que, como estoy utilizando los residuos en primeras diferencias,
+la varianza de los residuos en primeras diferencias
+es dos veces la varianza que yo necesito.
+Entonces, este 2 que aparece acá,
+simplemente estoy calculando dos veces la varianza,
+dividido por 2,
+estimó la varianza.
+Entonces, estimo la varianza,
+y con la varianza estimada,
+entonces puedo
+reemplazar en la ecuación de la varianza
+del estimado de un paso,
+del estimado de dos pasos,
+y hacer inferencias estadísticas.
+Con la raíz cuadrada de la elevada principal
+para los estadísticos T,
+con la valencia licentera para los estadísticos de F o de N.
+Los residuos que están utilizados aquí,
+como mencioné en la transparencia anterior,
+son simplemente los residuos del modelo
+de la estimación de un paso,
+con la matriz W.
+Este fue uno de los primeros estimadores
+que aparecieron en la literatura
+para estimar el modelo autoregresivo
+de orden 1 en panel,
+y después vinieron Blandet y Bond,
+y plantearon el siguiente problema.
+Si bien el estimador de Arellano y Bond
+es un estimador consistente,
+no funciona tan bien
+si el coeficiente autoregresivo
+tiene mucha persistencia,
+o si el coeficiente autoregresivo
+es cercano a 1.
+Y el punto de Blandet y Bond
+para mostrar que eso es así,
+es el cálculo
+de la relación que existe
+entre la variable endógena
+y el instrumento.
+Entonces,
+lo que tienen allí
+en la primera ecuación
+de la transparencia
+es la esperanza matemática
+de I sub I t menos 2,
+que es uno de los instrumentos
+para diferencia finita
+de I sub I t menos 1.
+Y si yo reemplazo
+la diferencia finita
+de I sub I t menos 1
+por el modelo,
+lo que tienen es la primera igualdad
+de la transparencia.
+Esta primera igualdad.
+Hago la distributiva
+de I sub I t menos 2
+con C sub I,
+con I sub I t menos 2
+multiplicado por Rho menos 1,
+con U sub I t menos 2.
+Aplico la esperanza matemática,
+la esperanza matemática
+del instrumento
+por U sub I t es 0,
+porque el instrumento
+es exógeno
+en la ecuación original,
+y me quedan las esperanzas
+de I el instrumento
+por C sub I
+y el instrumento
+elevado al cuadrado.
+Entonces,
+esta esperanza matemática
+vamos a asumir
+por un momento que es 0.
+Después vamos a ver
+por qué tiene que ser 0.
+Pero supongamos que
+por un momento
+que la esperanza matemática
+entre la heterogeneidad
+no observada
+y el instrumento es 0.
+la relación que existe
+entre el instrumento
+y la variable endógena
+está dada por
+Rho menos 1
+por la esperanza
+del instrumento
+elevado al cuadrado.
+Y a medida que Rho
+se acerca a 1,
+esa covarianza
+se acerca a 0.
+Es decir,
+a medida que
+el coeficiente
+autoregresivo
+es más persistente,
+es cercano a 1,
+hay menos correlación
+entre el instrumento
+y la variable
+que tiene que instrumentar.
+Eso en la literatura
+se conoce como
+un instrumento débil.
+El instrumento débil
+es aquel instrumento
+que tiene poca correlación
+con la variable
+que tiene que
+instrumentar.
+En el límite,
+cuando Rho vale 1,
+no hay relación
+entre el instrumento
+y la variable endógena.
+Entonces,
+lo que
+Blandel y Bode
+plantean
+es que
+cuando Rho
+tiende a 1,
+los instrumentos
+que utiliza
+el estimador
+de la región y Bode
+son instrumentos débil.
+Y entonces,
+ellos sugieren
+un nuevo set
+de instrumentos
+para cuando
+el proceso
+autoregresivo
+es persistente.
+La forma
+en la cual
+el método
+de Blandel y Bode
+procede
+es
+considerar
+un sistema
+de ecuaciones
+en donde
+tengo
+la ecuación
+en niveles
+y además
+la ecuación
+en primeras diferencias.
+Entonces,
+lo que
+me dice
+el estimador
+de
+Blandel y Bode
+es que
+yo puedo
+agregarle
+a la
+ecuación
+que plantea
+que plantea
+Arellano y Bode
+que es esta primera
+la ecuación
+en primeras diferencias.
+Donde
+dentro
+del 20
+tengo
+la heterogeneidad
+no observada
+y
+el error
+idiosincrático
+del modelo
+del modelo
+original.
+Entonces,
+con estos dos
+con estos dos
+con estas dos
+ecuaciones
+lo que sucede
+es lo siguiente.
+En esta
+segunda ecuación
+como
+como
+este error
+B sub y T
+contiene
+la heterogeneidad
+no observada
+la variable
+que instrumente
+a
+y sub y T
+menos uno
+no tiene que estar
+correlacionada
+con el error
+de la ecuación.
+Entonces,
+la variable
+que instrumente
+no tiene
+que estar
+relacionada
+con
+el error
+de la ecuación
+que quiere decir
+lo mismo
+que
+la esperanza
+de
+y subiste
+menos dos
+y C subiste
+que es C.
+Porque la variable
+instrumento
+si no tiene que estar
+correlacionada
+con B
+no tiene que estar
+correlacionada
+ni con U
+ni con C.
+el procedimiento
+de Blandigón
+necesita
+que el instrumento
+que yo tenga
+no tenga
+relación
+con
+la heterogeneidad
+no observada.
+Eso
+es básicamente
+lo que
+sugiere
+y
+el
+punto
+del estimador
+de Blandigón
+es que
+dado que
+Arellano y Bond
+utilizan
+los instrumentos
+en niveles
+los instrumentos
+en niveles
+o sea
+los valores
+rezagados
+de la variable
+explicativa
+en niveles
+para la ecuación
+en primera diferencia
+lo que sugiere
+Blandigón
+es agregarle
+los instrumentos
+de la variable
+dependiente
+rezagada
+en primeras diferencias
+a la ecuación
+del nivel
+entonces
+lo que necesitan
+es que
+el instrumento
+dado por
+la diferencia
+finita
+de
+I sub
+y T
+y
+la heterogeneidad
+no observada
+sea igual
+para que
+el instrumento
+no esté relacionado
+con T
+y T
+ok
+la matriz
+de instrumentos
+es una matriz
+en bloque
+que tiene
+en el primer bloque
+diagonal en bloque
+les diría
+que tiene
+en el primer bloque
+la matriz
+de Arellano y Bond
+y esta matriz
+es la que instrumenta
+las ecuaciones
+en primera diferencia
+después
+a partir
+de
+el periodo
+T
+igual a 3
+lo que necesito
+es
+la
+el modelo
+sería
+I subí
+3
+igual a
+Rho
+por I
+subí
+2
+más
+P
+subí
+3
+nos dice
+instrumentar
+esto
+y lo hago
+con la diferencia
+para T
+igual a 4
+para T
+igual a 4
+tendría
+dos instrumentos
+diferencia
+finita
+de I subí 3
+y diferencia
+finita
+de I subí 2
+solo que
+lo que
+sugieren
+Blander y Bond
+es que
+como
+la matriz
+Z subí
+ya tiene
+todos los
+instrumentos
+posibles
+poner todos
+los instrumentos
+en primeras
+diferencias
+satura
+el modelo
+y a veces
+la matriz
+no tiene
+resolución
+porque me hace
+muchas veces
+la columna
+linealmente
+dependiente
+y no la puedo
+invertir
+entonces
+sugieren
+utilizar
+un instrumento
+para cada
+uno de los
+periodos
+temporales
+están puestos
+ahí
+en la diagonal
+principal
+I subí 2
+para el periodo
+3
+y subí 3
+para el periodo
+4
+y subí
+T-1
+para el periodo
+T
+y a esta
+matriz
+entera
+la vamos a llamar
+Z
+subí
+con una
+con un más
+esa
+esa matriz
+Z
+Z
+Z más
+contiene
+de nuevo
+todos los
+instrumentos
+de la
+y estos
+nuevos
+instrumentos
+de
+Blandell
+además
+de la matriz
+Z
+tenemos
+vamos a
+definir
+la matriz
+D
+ya la habíamos
+definido
+antes
+la matriz
+D
+es la matriz
+que yo
+aplico
+sobre
+cualquier
+variable
+y me devuelve
+la variable
+en primera
+diferencia
+y la matriz
+D
+era una matriz
+que estaba
+definida
+para
+vectores
+con
+con
+dimensión
+T
+mayu
+y entonces
+cuando yo
+aplicaba
+D
+por
+I subí
+me devolvía
+diferencia finita
+de
+I subí
+D
+me va a ayudar
+a escribir
+las
+ecuaciones
+en primeras
+diferencias
+vamos a
+definir
+la matriz
+H
+que es una
+matriz
+en bloque
+que tiene
+en el primer
+bloque
+D
+esa D
+se va a aplicar
+sobre las
+ecuaciones
+para darme
+las ecuaciones
+de Arellano y Bon
+y después
+voy a tener
+la matriz
+identidad
+que aplicada
+sobre el modelo
+me va a dar
+las ecuaciones
+que adiciona
+Blandell y Bon
+a
+este
+el
+el sistema
+de forma tal
+de que
+yo puedo
+reescribir
+este de nuevo
+no lo estoy diciendo
+pero ya lo dijimos
+varias veces
+este
+sistema que tengo
+acá
+este sistema
+que tengo acá
+este escrito
+para una
+observación
+genérica
+I
+y para una
+observación
+genérica
+T
+yo lo podría
+escribir
+para una
+observación
+genérica
+I
+agrupando
+todos los
+periodos
+temporales
+y lo podría
+escribir
+para todas
+las observaciones
+agrupando
+todos los
+periodos
+temporales
+y todas
+las observaciones
+del corte
+transversal
+la matriz
+D
+y la matriz
+identidad
+están definidas
+para
+lo que sería
+la segunda
+versión
+de nuestro
+modelo
+de componentes
+no observados
+que es
+los vectores
+y las matrices
+definidos
+para
+agrupando
+todas las
+observaciones
+de serie
+temporal
+o sea
+que
+el
+el
+el
+el H
+aplicado
+sobre
+el
+el modelo
+debería
+aplicarse
+sobre
+el modelo
+escrito
+para una
+observación
+genérica
+I
+I
+I
+I
+igual
+a
+Rho
+por delta
+I
+I
+menos
+uno
+más
+delta
+U
+I
+y
+y acá
+I
+subí
+igual
+a
+Rho
+por
+I
+menos
+uno
+más
+B
+yo tomo
+el modelo
+original
+y lo
+multiplico
+por
+este
+la matriz
+H
+H
+por
+I
+subí
+igual
+a
+Rho
+por
+I
+menos
+uno
+más
+delta
+subí
+B
+me devuelve
+el
+sistema
+en primera
+diferencia
+para
+y en niveles
+para
+y lo que
+tienen escrito
+en la
+última
+ecuación
+de la
+transparencia
+es
+la matriz
+H
+pero
+expandida
+al total
+de observaciones
+de corte
+transversal
+digo
+H
+por
+I
+subí
+H
+por
+I
+subí
+en
+términos
+de
+los
+vectores
+de
+dimensión
+I
+H
+por
+I
+subí
+me
+devuelve
+un
+vector
+que
+diferencia
+de
+I
+subí
+menos
+uno
+y
+menos
+uno
+para
+la
+observación
+genérica
+I
+si yo lo
+quiero
+para
+todas
+las
+observaciones
+tengo
+que
+extender
+el
+H
+a
+el
+total
+de
+observaciones
+de
+corte
+transversal
+esto lo
+hicimos
+con
+la
+matriz
+QT
+que
+la
+definíamos
+para
+la
+estimación
+por la
+transformación
+de
+efectos
+fijos
+que
+la
+extendíamos
+a
+N
+por
+T
+haciendo
+identidad
+de
+orden
+N
+Kronecker
+QT
+D
+que
+lo
+extendíamos
+a
+todo
+el
+modelo
+haciendo
+identidad
+de
+orden
+N
+Kronecker
+D
+y
+en
+este
+caso
+lo que
+tengo que
+hacer
+es
+expandir
+H
+que
+está
+definida
+para
+vector
+de
+dimensión
+T
+al
+resto
+de
+las
+observaciones
+del
+corte
+transversal
+o sea
+que
+va a
+ser
+identidad
+de
+orden
+N
+Kronecker
+H
+por
+I
+igual a
+Rho
+por
+identidad
+de
+orden
+Kronecker
+H
+y
+menos
+uno
+más
+identidad
+de
+orden
+Kronecker
+H
+Rho
+esta
+última
+ecuación
+es el
+sistema
+de
+Blander
+y
+God
+escrito
+para
+las
+N
+mayúsculas
+observaciones
+de
+corte
+transversal
+y
+todos los
+periodos
+temporales
+y ahí
+tienen
+las
+definiciones
+ya
+lo
+hemos
+mencionado
+antes
+y
+sub
+contiene
+todas las
+observaciones
+de la variable
+dependiente
+de
+2
+hasta
+t
+y
+sub
+i
+menos
+1
+todas
+las
+observaciones
+hasta
+t
+menos
+1
+v
+sub
+i
+todas
+las
+observaciones
+de
+2
+hasta
+t
+etc
+etc
+etc
+y
+la
+estimación
+del
+coeficiente
+de
+autoregresivo
+de orden
+1
+se hace
+con
+el
+estimador
+de
+GMM
+el mismo
+estimador
+de GMM
+de
+Carellano
+y
+Bond
+pero con
+la nueva
+matriz
+de instrumento
+Z
+con
+sismo
+más
+ahí
+arriba
+esas
+son las
+condiciones
+de
+ortogonalidad
+los
+instrumentos
+no están
+relacionados
+con el error
+de la
+ecuación
+de nuevo
+los
+instrumentos
+no están
+relacionados
+con el error
+de la
+ecuación
+si
+solo
+si
+el instrumento
+no está
+relacionado
+con la
+heterogeneidad
+no observada
+entonces yo puedo
+resolver
+esa
+condición
+de
+ortogonalidad
+empleando
+el
+estimador
+de
+método
+generalizado
+o de
+variables
+brutales
+si ustedes lo
+quieren hacer
+sencillo
+Landell y Bond
+plantean
+igual que
+a Johnny Bond
+un estimador
+de
+GMM
+en donde
+de nuevo
+igual que
+a Johnny Bond
+voy a tener
+dos estimadores
+un estimador
+de primer
+paso
+y un estimador
+de segundo
+paso
+el estimador
+del primer
+paso
+es la
+ecuación
+que tienen
+allí
+en el centro
+de la
+transparencia
+esa es
+la ecuación
+de estimación
+de GMM
+y la matriz
+ponderadora
+W1
+es
+una
+matriz
+ponderadora
+en el cual
+los
+momentos
+de orden
+2
+de los
+errores
+no tienen
+ningún problema
+la
+matriz
+ponderadora
+en lugar
+de ser
+Z
+de la
+ecuación
+por Z
+inversa
+como ahora
+el Z
+está transformado
+por H
+es
+Z
+de la ecuación
+por H
+por H
+de la ecuación
+por Z
+con Z
+que tiene
+el más
+S
+ahí arriba
+de la
+matriz
+de instrumentos
+de
+Landell y Bond
+inversa
+y
+la
+varianza
+de ese
+estimador
+tiene la
+misma
+estructura
+que la
+varianza
+anterior
+de
+Ari
+y
+Bond
+solamente
+que
+utiliza
+H
+como matriz
+de transformación
+en lugar
+de D
+y
+Z
+más
+como
+matriz
+de instrumentos
+la
+estimación
+de sigma
+cuadrado
+es la
+misma
+que
+antes
+y
+los
+residuos
+ahora
+están
+generados
+por
+la
+estimación
+de
+Landell y Bond
+del primer
+paso
+si
+yo no
+quiero
+asumir
+ningún
+supuesto
+no quiero
+hacer
+ningún
+supuesto
+acerca
+de los
+momentos
+de orden
+2
+de los
+residuos
+entonces
+tengo que
+utilizar
+una
+matriz
+de varianza
+y covarianza
+robusta
+ante la
+presencia
+de
+heteroseasticidad
+por relación
+señal del
+tiempo
+y entonces
+la matriz
+ponderadora
+incluye
+en el centro
+el
+outer
+product
+de los
+residuos
+está
+puesto
+allí
+en
+matriz
+ponderadora
+W
+BB
+de
+Landell y Bond
+y que
+incluye
+en el centro
+el
+outer
+product
+de los
+residuos
+B
+sombrero
+para
+esta
+estimación
+también
+tengo
+una
+varianza
+la varianza
+de nuevo
+es la misma
+que antes
+solamente
+que cambia
+la matriz
+ponderadora
+y
+cambia
+el
+residuo
+calculado
+con
+el
+estimador
+de
+de nuevo
+en cualquiera
+de estas dos
+estructuras
+la raíz cuadrada
+de la varianza
+se usa para
+definir
+la central
+y picote
+la varianza
+entera
+se utiliza
+para
+hacer
+cualquier
+estimación
+de
+de
+de
+desde
+web
+extensión
+del modelo
+autoregresivo
+de orden
+uno con
+componentes
+no observados
+es
+más
+variable
+es decir
+el modelo
+puede tener
+la variable
+de
+pero además
+otras variables
+y transformarse
+en lugar de tener
+lo que sería
+en corte
+de la varianza
+un modelo
+de regresión
+lineal simple
+o un modelo
+de regresión
+lineal
+que
+en la
+literatura
+se
+denomina
+R1
+X
+es un
+modelo
+de componentes
+no observado
+autoregresivo
+de orden
+uno
+con
+otra varia
+y
+la estimación
+del modelo
+usando
+Arellano y Bond
+o usando
+Blandero y Bond
+lo único
+que
+necesita
+saber
+es
+si estas
+variables
+que yo agrego
+en la ecuación
+cumplen
+con el supuesto
+de exogenidad
+estricta
+o cumplen
+con el supuesto
+de exogenidad
+secuencial
+porque
+si cumplen
+con el supuesto
+de exogenidad
+estricta
+no pasa nada
+porque
+como
+las variables
+son
+estrictamente
+exógenas
+pueden actuar
+como instrumento
+de simil
+si son
+secuencialmente
+exógenas
+le tengo que dar
+el mismo
+tratamiento
+que le doy
+a la variable
+dependiente
+rezagada
+como variable
+explicativa
+me tengo que
+construir
+instrumentos
+para
+esas variables
+secuencialmente
+secuencialmente
+exógenas
+entonces
+en forma
+canónica
+el primer
+la primera
+extensión
+del modelo
+a incluir
+variables
+explicativas
+adicionales
+es incluir
+variables
+explicativas
+que son
+estrictamente
+exógenas
+es decir
+que satisfacen
+la condición
+de exogenidad
+estricta
+expresada
+por
+la
+ecuación
+que está
+debajo
+de la ecuación
+remarcada
+ahí
+en el recuadro
+no la
+no la expliqué
+pero
+básicamente
+lo único
+que pasa
+es
+esto
+de nuevo
+está escrito
+para una
+observación
+genérica
+y
+y una
+observación
+genérica
+t
+y subit
+es un escalar
+en la variable
+dependiente
+se subía
+la heterogeneidad
+no observada
+y subit
+menos uno
+en la variable
+endógena
+y
+x y t
+es un conjunto
+de variables
+estrictamente
+exógenas
+en
+gama
+tras puesta
+esto lo podemos
+poner como
+x y t
+por gama
+o gama
+tras puesta
+por x y t
+dependiendo
+de la dimensión
+que le dé
+al vector
+de parámetros
+y al vector
+de variables
+desexplicativas
+da lo mismo
+gama
+es el vector
+del coeficiente
+que acompaña
+a cada una
+de las
+de las variables
+estrictamente
+exógenas
+la condición
+de exogeneidad
+me dice
+que
+el error
+idiosincrático
+del modelo
+condicional
+de la heterogeneidad
+no observada
+y en todas
+las variables
+explicativas
+en todos los
+periodos temporales
+en todas las x
+en todos los
+periodos temporales
+es igual a c
+en la fase
+del supuesto
+de exogeneidad
+estricta
+la variable
+y subiste
+menos uno
+no
+la variable
+de subiste
+menos uno
+ya mostramos
+que a lo sumo
+es secuencialmente
+exógeno
+entonces
+la extensión
+es directa
+lo único
+que necesito
+hacer
+es
+este
+transformar
+la matriz
+z
+subí
+de
+Arellano y Bon
+o la matriz
+z
+más
+y
+de
+Blandel y Bon
+agregándole
+instrumentos
+para las x
+pero los instrumentos
+para las x
+son las mismas x
+porque las variables
+son estrictamente
+exógenas
+o sea que los únicos
+instrumentos que voy a
+cambiar
+son los instrumentos
+de y subiste
+menos uno
+o sea que la matriz
+z
+y la matriz
+z
+más
+lo único
+que tienen es
+columnas adicionales
+con la z
+después les muestro
+un ejemplo
+con una variable
+explicativa
+para que vean
+un ejemplo
+pero es
+agregarle
+columnas
+con los valores
+de las variables
+explicativas
+estrictamente
+exógenas
+puede ser que
+en lugar
+de
+tener
+variables
+explicativas
+adicionales
+estrictamente
+exógenas
+tenga variables
+explicativas
+adicionales
+que sean
+secuencialmente
+exógenas
+entonces
+si son
+secuencialmente
+exógenas
+voy a necesitar
+instrumentos
+porque la variable
+x
+va a ser
+endógena
+entonces
+tienen allí
+este
+los instrumentos
+para las
+para las x
+que son
+todos los
+instrumentos
+de la misma x
+rezagada
+en el
+mtn
+entonces
+para
+el
+modelo
+escrito
+para la
+observación
+t
+igual a 3
+pierdo
+la primera
+porque tengo
+la variable
+dependiente
+rezagada
+como variable
+explicativa
+pierdo
+la segunda
+porque tengo
+que aplicar
+diferencia
+finita
+en este
+modelo
+tengo
+diferencia
+finita
+de i sub i
+3
+igual a
+ro
+por
+diferencia
+finita
+de i sub i
+2
+más
+déjenme poner
+una sola
+variable
+explicativa
+diferencia
+finita
+de
+perdón
+gama
+por
+diferencia
+finita
+de x
+y 3
+más
+diferencia
+finita
+de u sub i
+3
+entonces
+para
+esta
+variable
+el instrumento
+va a ser
+i sub i
+1
+valor
+rezagado
+en niveles
+para
+esta
+variable
+el instrumento
+va a ser
+en niveles
+rezagados
+x
+y 2
+para
+t
+igual a
+4
+tengo
+diferencia
+finita
+de i
+sub i
+4
+igual a
+ro
+por diferencia
+finita
+de i
+sub i
+3
+más
+gama
+por diferencia
+finita
+de x
+y
+4
+más
+diferencia
+finita
+de u
+sub i
+4
+y entonces
+para
+diferencia
+finita
+de i
+sub i
+3
+tengo
+dos
+instrumentos
+i
+sub i
+1
+y
+sub i
+2
+y para
+diferencia
+finita
+de i
+sub i
+4
+también
+tengo
+dos
+instrumentos
+x
+y 2
+x
+y 2
+y así
+hasta
+la observación
+t
+t
+minúscula
+igual a
+t
+en donde
+tengo
+i
+sub i
+1
+hasta
+i
+sub i
+t
+menos 2
+como
+instrumento
+de la
+diferencia
+finita
+de i
+sub i
+t
+menos 1
+y
+x
+y 2
+hasta
+x
+y
+t
+mayúscula
+menos 1
+para
+diferencia
+finita
+de x
+dicho
+esto
+si
+supongamos
+que tengo
+yo puse
+una sola
+pero es lo mismo
+no es así
+tengo
+más variables
+por ejemplo
+w
+y
+t
+o sea
+gama 1
+por diferencia
+finita
+de x
+y t
+gama 2
+por diferencia
+finita
+de w
+y t
+lo único
+que pasa
+es que
+la primera
+fila
+voy a
+tener
+i sub i
+1
+x
+y 2
+w
+y 2
+y la
+segunda
+voy a
+tener
+i sub i
+1
+y sub i
+2
+x2
+x3
+w
+2
+w
+3
+y
+supongamos
+que
+x
+es
+secuencialmente
+exógena
+pero w
+es estrictamente
+exógena
+entonces w
+actúa
+como
+su propio
+instrumento
+o sea
+que ahí
+en lugar
+de tener
+en la primera
+fila
+i sub i
+1
+x
+y 2
+w
+y 2
+voy a tener
+w
+y 3
+que es
+estrictamente
+exógena
+que es un
+instrumento
+de sí mismo
+y en la segunda
+voy a tener
+w y 4
+y así
+sucesión
+o sea que yo puedo
+construir la matriz
+de Arellano y Bond
+dependiendo de
+las variables
+que ingrese
+como
+variables
+explicativas
+adicionales
+a la variable
+dependiente
+rezagada
+dependiendo de
+si es
+secuencialmente
+exógena
+o si es
+estrictamente
+exógena
+para
+construir
+la variable
+Z
+esto
+para construir
+la variable
+Z
+para que ustedes
+vean
+como se
+construye
+la variable
+Z
+sepan que
+cuando yo
+a la estatal
+le diga
+XT a Bond
+y le diga
+estas variables
+son secuencialmente
+exógenas
+estas variables
+son
+estrictamente
+exógenas
+me construye
+esta matriz
+o sea
+la base
+de mi programa
+yo le voy a poner
+el comando
+y después
+que haga
+todos los cálculos
+pero
+yo puedo
+construir cualquier
+cosa
+porque
+dependiendo
+de si tengo
+variables
+secuencialmente
+exógenas
+le tengo que
+construir
+los instrumentos
+si tengo variables
+estrictamente
+exógenas
+son las mismas
+variables
+como instrumentos
+una
+ok
+esto
+no lo dije
+y lo
+y lo
+y lo
+y lo voy a decir
+una
+una
+una característica
+de
+de la matriz
+de
+de instrumentos
+es que
+si
+tengo
+muchas variables
+explicativas
+adicionales
+esa matriz
+es grandísima
+supongamos
+que
+tengo
+tres variables
+tres variables
+este
+explicativas
+adicionales
+secuencialmente
+exógenas
+tengo que ir
+agregando
+columnas
+a la matriz
+esa
+y
+la matriz
+tiene un montón
+de ceros
+a medida
+que yo voy
+agregando
+columnas
+se van
+multiplicando
+el número
+de ceros
+y eso
+algunas veces
+hace que la matriz
+deje de ser
+invertida
+entonces
+los programas
+que
+hacen
+esta estimación
+me permiten
+que yo
+reduzca el número
+de instrumentos
+por ejemplo
+que le diga
+mira
+tengo
+estas
+variables
+explicativas
+adicionales
+son secuencialmente
+exógenas
+pero
+utilizame
+dos instrumentos
+entonces
+si
+utilizo
+dos instrumentos
+en t igual
+3 me queda
+lo mismo
+en t igual
+4 me queda
+lo mismo
+en t igual
+5
+para x
+para y
+tendría
+y subi
+1
+y subi
+2
+y subi
+3
+y para x
+tendría
+x2
+x3
+x4
+pero esos son
+tres instrumentos
+para y
+tres instrumentos
+para y
+yo le digo
+dos instrumentos
+entonces
+para y
+me agarra
+y 2
+y 3
+para x
+me agarra
+x3
+x4
+y me dropea
+el y subi
+1
+y me dropea
+el x1
+y solo
+dos instrumentos
+y en la última
+fila
+en lugar de tener
+t menos 1
+instrumentos
+voy a tener 2
+para x
+x7
+menos 1
+x7
+menos 2
+y para y
+y subi
+t menos 2
+y subi
+t menos 1
+siempre
+mantengo
+dos instrumentos
+eso me reduce
+el número de ceros
+porque me reduce
+el número de columnas
+de la máquina
+si ustedes miran
+estimaciones
+de modelos
+usando este tipo
+de procedimientos
+rara vez
+rara vez
+este
+se utilizan
+más de
+3 o 4
+instrumentos
+da lo mismo
+o sea
+como uno
+verifica
+debería ser
+como uno
+podría verificar
+cuántos
+instrumentos
+hay
+este
+trabajos
+que
+te dicen
+cómo elegir
+el número
+óptimo
+de instrumentos
+en la práctica
+medio que nadie
+lo usa
+¿qué es lo que
+hace?
+en la práctica
+lo que hace
+es
+ok
+hago la estimación
+con 3 instrumentos
+hago la estimación
+con 4 instrumentos
+hago la estimación
+con 5 instrumentos
+y me fijo
+como dan
+los coeficientes
+y en general
+difieren
+en el tercer
+decimal
+esto es
+uno
+dice
+¿qué vamos a usar
+tanto instrumentos
+con 2 instrumentos
+3 instrumentos
+cuando uno
+presenta
+los resultados
+de la estimación
+muy pocas veces
+lo presenta
+con 3 decimales
+en general
+las tablas
+de los
+papers
+si quiere
+el 3 decimal
+entonces
+con 3 decimales
+las estimaciones
+que difieran
+en el cuarto decimal
+lo van a hablar
+entonces
+en general
+lo que uno
+ve en la práctica
+es
+ese tipo
+de
+ejercicio
+eso es
+lo que dice
+este segundo punto
+y el tercer punto
+dice lo que dije
+antes
+en general
+los programas
+utilizan solo
+alguna de las columnas
+y de nuevo
+en el comando
+de el startup
+voy a tener
+una opción
+que me dice
+cuántos instrumentos
+quiero tener
+para construir
+las matrices
+de instrumentos
+bueno
+acá tienen un ejemplo
+me avivantean
+ok
+supongamos que
+t es igual a 5
+t mayúscula
+es igual a 5
+y el modelo
+a estimar
+es
+i sub i t
+igual a
+rho
+por i sub i t
+menos 1
+más
+x y t
+por beta
+más c sub i
+más sub i t
+x y t
+es una variable
+es un escalar
+es una variable
+estrictamente exógena
+o sea que beta
+es un coeficiente
+rho es otro coeficiente
+tengo dos coeficientes
+entonces
+t igual a 5
+si
+i
+t
+1
+2
+3
+4
+5
+poner la observación
+1
+entonces
+cuando
+tengo
+i sub i t
+menos 1
+pierdo
+este valor
+porque acá tendría
+i sub i 1
+i sub i 2
+i sub i 3
+i sub i 4
+y cuando aplico
+diferencias finitas
+pierdo
+pierdo
+f
+si
+por acá tengo
+i
+sub i 2
+menos
+i sub i 1
+i sub i 3
+menos i
+sub i 2
+i sub i 4
+menos
+o sea que
+puedo
+empezar
+mi estimación
+a partir
+de la observación
+de
+este
+serie
+temporales
+3
+y esto me pasa
+con todas las observaciones
+de corte
+y traves
+con la 1
+con la 2
+con la 3
+con la 3
+con la 3
+con la 3
+con la 3
+con la 3
+cuando tomo
+diferencias finitas
+en el modelo
+cuando tomo
+diferencias finitas
+me cargo
+el c sub i
+c sub i
+ya no lo tengo
+y tengo que construir
+la matriz de instrumentos
+la matriz de instrumentos
+para
+esta variable
+que es secuencialmente
+exógena
+y esta variable
+que es estrictamente
+exógena
+entonces
+acá
+solo
+de nuevo
+t mayúscula
+es 5
+o sea que esto es
+t igual a 3
+esto es t igual a 4
+y esto es t igual a 5
+para todas las observaciones
+de corte transversal
+para t igual a 3
+lo que tengo es
+diferencia finita
+de i sub i 3
+igual a
+rho
+por diferencia finita
+de i sub i 2
+más
+diferencia finita
+de x i 3
+por beta
+más diferencia finita
+de u sub i
+3
+entonces
+para esta variable
+que es secuencialmente
+exógena
+el instrumento
+va a ser
+i sub i 1
+pero esta variable
+es estrictamente
+exógena
+así que
+actúa como
+instrumento
+de si
+para t igual a 4
+de nuevo
+esto es 4
+esto es 3
+esto es 4
+y esto es 4
+necesito un instrumento
+para
+diferencia finita
+de i sub i 3
+diferencia finita
+de i sub i 3
+los instrumentos
+van a ser
+i sub i 1
+i sub i 2
+y para
+diferencia finita
+de x i 4
+el mismo
+diferencia finita
+de x i 4
+porque la variable
+es estrictamente exógena
+para t igual 5
+tendría
+diferencia finita
+de i sub i 5
+igual a
+rho
+por diferencia finita
+de i sub i 4
+más diferencia finita
+de x i 5
+más diferencia finita
+de u sub i 5
+entonces
+para diferencia finita
+de i sub i 4
+tengo como instrumentos
+i sub i 1
+i sub i 2
+i sub i 3
+solo que acá
+en el
+el cuarto punto
+dice
+utilizando
+dos rezagos
+como quiero
+dos rezagos
+nada más
+acá tengo
+tres instrumentos
+quiero dos
+voy a usar
+estos dos
+i sub i 2
+i sub i
+si no quiero
+restringir
+el número
+de rezagos
+uso los tres
+y después
+necesito
+un instrumento
+para
+diferencia finita
+de x i 5
+pero como es
+estrictamente exógena
+tengo
+la misma variable
+con instrumentos
+de simila
+eso es
+ETAI
+en la matriz
+de instrumentos
+de Regenibod
+usando solo
+dos instrumentos
+en lugar
+de todos
+los que
+tengo
+en lugar
+de escribir
+el modelo
+con la diferencia
+finita
+lo puedo escribir
+multiplicando
+por la matriz
+D
+la matriz
+D se aplica
+sobre
+en lugar
+de sobre
+los escalares
+i sub i t
+sobre i sub i
+que es el vector
+que para la observación
+de corte
+transversal
+i
+tiene los valores
+de i
+para todas
+las observaciones
+de serie
+temporal
+entonces
+d por i
+es igual a
+d por i
+menos uno
+entre paréntesis
+arriba
+quiere decir
+que la variable
+dependiente
+es rezagada
+un periodo temporal
+un periodo temporal
+multiplicado
+por ro
+más d
+por x
+y por b
+por beta
+más d
+por un sub i
+y en la segunda ecuación
+lo único que tienen
+es agrupando
+la dos
+variables
+en
+d
+i
+menos uno
+y d
+x
+y
+multiplicado
+por el vector
+de parámetros
+que es ro
+y beta
+y digo
+si yo llamo
+a la matriz
+esa
+que incluye
+d
+i menos uno
+y d
+x
+que si yo
+la llamo
+b corta
+no
+b corta no
+porque lo tengo puesto ahí
+si la llamo
+sí
+b
+b sub i
+si lo llamo
+b sub i
+entonces puedo
+definir
+el estimador
+de ro
+y de beta
+con
+el estimador
+de
+método
+generalizado
+de momentos
+que tienen
+la última ecuación
+de la
+transparencia
+que es
+el estimador
+de Arellano y Bob
+sí
+este me da
+el estimador
+de los dos
+parámetros
+de nuevo
+b sub i
+la multiplicación
+de d
+por i
+y por x
+b sub i
+transpuesta
+por d
+por z
+por w
+z
+transpuesto
+por d
+por b sub i
+todo inversa
+b sub i
+transpuesta
+por d
+por z
+i
+por w
+z
+i
+transpuesto
+por d
+por i
+sub i
+para el estimador
+de un paso
+el estimador
+de un paso
+de la noticia
+ponderadora
+era
+z
+transpuesto
+por z
+inversa
+ahora
+tengo
+diferencias
+finitas
+de z
+o sea
+que es
+d
+por z
+transpuesto
+o d
+por z
+por z
+con el estimador
+de Blander y Bob
+me pasa algo
+similar
+ahora tengo
+un sistema
+de ecuaciones
+donde las primeras
+las primeras
+ecuaciones
+corresponden
+a
+Arellano y Bob
+a la especificación
+de Arellano y Bob
+y estas son las que
+agregan
+Blander y Bob
+que son
+las ecuaciones
+nivel
+y acá
+está escrito
+el modelo
+para
+una observación
+genérica
+y
+o sea que
+agrupa
+todas las observaciones
+de frecuencias
+temporales
+la matriz
+de instrumentos
+de Blander y Bob
+está compuesta
+por
+z
+i
+que es la matriz
+anterior
+de
+Arellano y Bob
+y después
+le voy a tener
+que agregar
+t igual a 3
+t igual a 4
+y t igual a 5
+con los instrumentos
+de Blander y Bob
+para esta segunda
+ecuación
+para esta segunda
+ecuación
+necesito
+instrumentar
+la variable
+dependiente
+la variable
+explicativa
+en niveles
+la voy a instrumentar
+con
+la primera diferencia
+rezagada
+para
+i sub
+para
+t igual a 3
+en la
+variable
+la variable
+explicativa
+hoy estoy con
+la variable
+dependiente
+rezagada
+una variable
+explicativa
+que es
+i sub
+i 2
+y el instrumento
+de diferencia
+finita
+de i sub
+i
+para t igual a 4
+la variable
+explicativa
+que es
+i sub i 3
+o sea que
+el instrumento
+con diferencia
+finita
+de i sub i 3
+y
+para t igual a 5
+la variable
+explicativa
+es i sub i 5
+perdón
+i sub i 4
+y el instrumento
+con diferencia
+finita
+de i sub i
+y después
+las x
+las x
+son estrictamente
+exógenas
+o sea que actúan
+como instrumentos
+de si mismo
+x y 3
+para t igual a 3
+x y 4
+para t igual a 4
+x y 5
+para t igual a 5
+y la última columna
+de la matriz
+tiene que incorporar
+el c sub i
+como el c sub i
+es constante
+en el tiempo
+esta
+columna
+de unos
+representa
+el c sub i
+vale
+1 en el periodo 3
+1 en el periodo 4
+1 en el periodo 3
+es jt
+este jt
+que está acá
+que nosotros
+definimos
+al comienzo
+del curso
+como
+un vector
+este
+columna
+t mayúscula
+unos
+t por uno
+t uno
+solo que acá
+es más chiquito
+me comí dos
+periodos temporales
+t mayúscula
+es 5
+y ahora lo tengo
+que construir
+con tres observaciones
+porque sobrevivieron
+a la aplicación
+de la diferencia
+finita
+t igual a 3
+t igual a 4
+y t igual a 5
+es un vector
+de tres subos
+y después
+lo mismo
+una vez que construí
+el z sub i
+más
+este
+hago la estimación
+acá
+reemplazando
+el z i
+por z i más
+y tengo la estimación
+de un paso
+o dos pasos
+como
+en el periodo
+inferencia estadística
+inferencia estadística
+para
+contrastar
+por la validez
+de los instrumentos
+porque yo estoy diciendo
+mira
+tengo un proceso
+autoregresivo
+de orden 1
+pongamos
+sin variables
+explicativas
+adicionales
+entonces
+los instrumentos
+para la variable
+endógena
+para Arellano y Bon
+por ejemplo
+son los valores
+rezagados
+en niveles
+porque el modelo
+va a estar
+diferenciado
+una vez
+ahora
+esos instrumentos
+son exógenos
+en el modelo
+original
+siempre y cuando
+el modelo
+sea un autoregresivo
+de orden 1
+pero si el modelo
+no es un autoregresivo
+de orden 1
+los instrumentos
+esos que puse
+no son exógenos
+entonces
+yo necesito
+algún contraste
+de hipótesis
+que me diga
+si los instrumentos
+son exógenos
+o no
+si los instrumentos
+son exógenos
+entonces yo puedo
+asumir que
+el modelo
+efectivamente
+es un autoregresivo
+de orden 1
+pero si yo rechazo
+la hipótesis
+de que los instrumentos
+son exógenos
+entonces hay otra
+estructura en el modelo
+y los instrumentos
+que elegí
+por la leyenda
+igual no me sirven
+tendría que fijarme
+qué tipo de instrumentos
+puedo utilizar
+hay dos test
+que se utilizan
+en la literatura
+para chequear
+la validez
+de los instrumentos
+el primero
+es el T de Sargan
+que hemos visto
+en el contexto
+de ecuaciones simultáneas
+para chequear
+la identificación
+de la sobreidentificación
+de las
+de las
+de las variables
+explicativas
+de las
+de las
+ecuaciones
+y consiste
+en
+utilizar
+la forma
+cuadrática
+de la
+condición
+de octogonal
+entonces
+la
+las hipótesis
+la
+ahí
+J
+¿sí?
+es la matriz
+de instrumentos
+le puse J
+básicamente
+porque
+cuando estoy
+en el caso
+de Arrellón y Bon
+es Z sub i
+cuando estoy
+en el caso
+de Blandini y Bon
+es Z con el más arriba
+cualquiera de las dos
+cualquiera de los dos casos
+puedo aplicar
+el
+el test
+de
+de Sargan
+y
+la
+hipótesis nula
+me dice
+que los instrumentos
+agrupados en J
+no tienen relación
+con el error
+de la ecuación
+entonces son valios
+y si yo rechazo
+la hipótesis nula
+entonces hay relación
+entre los instrumentos
+y los cerrados de la ecuación
+no son valios
+la
+esa es la
+la hipótesis nula
+es la condición
+de octogonalidad
+y yo construyo
+el estadístico
+con la forma cuadrática
+de la condición
+de octogonalidad
+reemplazando
+la esperanza matemática
+por su análogo
+muestral
+y los errores
+por los residuos
+lo que tienen
+en el
+estadístico
+de contraste
+S sub J
+o S de J
+que sería
+S de ZI
+en el caso
+de Arizón y Bon
+y S de Z más
+en el caso
+de Blandel y Bon
+es
+la condición
+de octogonalidad
+la forma cuadrática
+de la condición
+de octogonalidad
+la tengo
+acá
+en el
+numerador
+la tengo
+en el
+numerador
+multiplicando
+acá
+y multiplicando
+acá
+de nuevo
+reemplazamos
+la esperanza matemática
+por su análogo
+muestral
+la suma
+y en el centro
+tengo
+la matriz
+de varianza
+y covarianza
+inversa
+no lo vamos
+a mostrar
+pero
+la
+las condiciones
+de octogonalidad
+apropiadamente
+estandarizadas
+tienen una
+distinción normal
+la forma cuadrática
+tiene una distinción
+chica
+esto es lo mismo
+que vimos
+para
+situaciones
+simultáneas
+piensen
+que
+si
+los
+instrumentos
+son válidos
+es decir
+que la hipótesis
+nula
+es verdadera
+yo esperaría
+que lo que está
+en el numerador
+de esta expresión
+sea un número
+cercano a 0
+no hay relación
+entre los
+instrumentos
+y los errores
+de la ecuación
+o sea que valores
+pequeños
+del estadístico
+S
+sub J
+son evidencia
+en favor
+de la hipótesis nula
+valores grandes
+del estadístico
+S
+sub J
+son evidencia
+en favor
+de la hipótesis
+alternativa
+como defino
+grande o pequeño
+con la distribución
+de
+este
+el estadístico
+que lo tienen allí
+para Lejano y Bon
+y para
+Blandel
+y Bon
+la distribución
+es un
+h cuadrado
+y los grados
+de libertad
+son las columnas
+de
+la matriz
+de instrumentos
+menos
+el número
+de parámetros
+como las columnas
+son diferentes
+en el caso
+de
+Arellano y Bon
+y Blandel y Bon
+la distribución
+de chi cuadrado
+del estadístico
+cambia
+cambian los grados
+de libertad
+si yo estoy
+en el primer caso
+o en el segundo
+en el segundo
+entonces
+de nuevo
+calculo
+el estadístico
+S
+lo ubico
+en la distribución
+chi cuadrado
+y
+una distribución
+chi cuadrado
+tengo una distribución
+chi cuadrado
+acá
+vamos a
+marcar
+algún nivel
+de significación
+este es el valor
+crítico
+del
+chi cuadrado
+que me deja
+5%
+de la distribución
+o sea que
+si yo calculo
+el estadístico
+pongamos
+el de Arellano y Bon
+S
+AB
+y S
+AB
+cae
+entre 0
+y el valor
+crítico
+estoy en la zona
+de aceptación
+o de no rechazo
+de la hipótesis
+nula
+si S
+AB
+cae
+por encima
+del valor
+crítico
+estoy en la zona
+de rechazo
+de la hipótesis
+esa es
+una forma
+de
+de hacerlo
+la fórmula
+que
+la regla
+de decisión
+que vamos a utilizar
+nosotros
+es calcular
+este estadístico
+ubicarlo
+en la distribución
+por ejemplo
+acá
+S
+AB
+y calcular
+el valor
+de probabilidad
+del estadístico
+y usar la regla
+de decisión
+que es
+valor de probabilidad
+valor P
+del estadístico
+de contraste
+S
+AB
+menor
+a nivel
+de significación
+implica
+rechazo
+de
+conveniencia
+de utilizar
+la regla
+de decisión
+del valor
+de probabilidad
+claramente
+cualquier
+programa
+que hace
+la estimación
+de
+Aries
+y Bonde
+y Blandini
+Bonde
+tiene el comando
+para hacer
+el test de Sargan
+y lo que hace
+el programa
+es sacarle
+una salida
+donde me da
+el valor
+del estadístico
+y su valor
+de probabilidad
+me hace
+todo el trabajo
+sucio
+calcula el estadístico
+lo ubica
+en la distribución
+calcula el valor
+de probabilidad
+y me dice
+mira el valor
+de probabilidad
+es este
+y lo único
+que tengo que hacer
+yo es
+comparar el valor
+de probabilidad
+con el nivel
+de significación
+que elija
+para hacer
+el test
+si
+yo
+acepto
+o no rechazo
+la hipótesis nula
+entonces
+los instrumentos
+son válidos
+si rechazo
+la hipótesis nula
+los instrumentos
+no son válidos
+y probablemente
+el modelo
+esté mal
+especificado
+como dice
+el último
+punto de esa
+este es
+uno
+de los contrastes
+de hipótesis
+que se utilizan
+en la práctica
+el otro contraste
+de hipótesis
+es un contraste
+secuencial
+que tiene que ver
+con la estructura
+de los errores
+en el
+en el modelo
+autoregresivo
+de orden uno
+de componentes
+no observados
+en el panel
+y que tiene que ver
+con la estructura
+de la varianza
+y de las covarianzas
+de
+el
+el modelo
+entonces
+claramente
+lo que tienen aquí
+es
+la covarianza
+o la autocobarianza
+como decimos
+en serie de tiempo
+la autocobarianza
+de orden uno
+y la autocobarianza
+de orden dos
+calculadas aquí
+la autocobarianza
+de orden uno
+es
+la esperanza matemática
+de
+diferencia finita
+de un sub it
+por diferencia finita
+de un sub it
+menos uno
+menos la esperanza
+de la diferencia finita
+de un sub it
+por la esperanza
+de la diferencia finita
+de un sub it
+menos uno
+pero eso es
+separado de un cero
+o sea que la covarianza
+es la esperanza
+de la multiplicación
+de la diferencia finita
+de un sub it
+y la diferencia finita
+de un sub it
+que están escritas
+en la segunda igualdad
+como un sub it
+menos un sub it
+menos uno
+para la diferencia finita
+de un sub it
+y
+un sub it
+menos uno
+menos un sub it
+menos dos
+para la diferencia
+de un sub it
+menos uno
+y para aplicar la esperanza matemática
+necesito hacer la distributiva
+de los dos términos del primer paréntesis
+y eso es lo que tienen en la tercera igualdad
+en la tercera igualdad
+tengo la
+multiplicación de
+primer término del primer paréntesis
+con primer término del segundo paréntesis
+segundo término del primer paréntesis
+con primer término del segundo paréntesis
+primer término del primer paréntesis
+con segundo término del segundo paréntesis
+segundo término del primer paréntesis
+con segundo término del segundo paréntesis
+y una vez que hice la destructiva
+puedo aplicar la esperanza matemática
+sabiendo que
+la esperanza matemática
+de la multiplicación de errores
+en diferentes periodos temporales es igual a c
+porque los errores del modelo original
+son homosedásticos y no tienen correlación
+cuando aplique la esperanza matemática
+para el primer término
+para este término
+para este término
+y para este término
+ahí tengo c
+el único término que sobrevive
+va a ser el segundo
+que tengo u sub i
+t menos uno
+al cuadrado
+que cuando le aplique la esperanza matemática
+me da la varianza
+o como dice acá
+la autocovarianza de orden cero
+que es positiva
+pero está precedida de un signo negativo
+o sea que
+menos la autocovarianza de orden cero
+es un número negativo
+la covarianza de orden uno
+de los errores transformados
+por diferencia finita
+tiene correlación serial negativa
+¿qué pasa con la autocovarianza de orden dos?
+bueno, la autocovarianza de orden dos
+en la primera igualdad
+tienen la misma expresión
+que la primera igualdad
+de la autocovarianza de orden uno
+solamente que
+ahora
+como es de orden dos
+tengo la esperanza
+de la multiplicación
+de diferencia finita de u sub i t
+con diferencia finita de u sub i t menos dos
+y diferencia finita de u sub i t
+igual que antes
+es u sub i t menos u sub i t menos uno
+y diferencia finita de u sub i t menos dos
+es u sub i t menos dos
+menos u sub i t menos dos
+y para poder aplicar la esperanza matemática
+tengo que hacer una distributiva
+el dedo término de primer paréntesis
+y el dedo término de segundo paréntesis
+solo que ahora
+todas las multiplicaciones
+me dan multiplicaciones de errores
+en diferentes periodos temporales
+o sea, cuando aplique la esperanza matemática
+tengo la covarianza entre los errores
+y las covarianzas son todas iguales que así
+no tengo ninguna multiplicación
+entre términos del primer paréntesis
+y del segundo paréntesis
+que me deje un error elevado al cuadrado
+son todas multiplicaciones de errores
+en distintos periodos temporales
+cuando aplique la esperanza matemática
+todos los términos son 0
+o sea que
+la estructura
+la estructura
+la estructura
+de los errores
+del modelo autoregresivo de orden 1
+con componentes no observados
+es
+correlación serial de orden 1 negativa
+correlación serial de orden 2 0
+el segundo test que tenemos
+chequea estas dos cosas
+chequea
+que haya correlación serial de orden 1
+negativa
+chequea
+que la correlación serial de orden 2
+sea así
+tengo dos test
+uno para la covarianza de orden 1
+uno para la covarianza de orden 1
+que los tienen allí como 1 y 2
+dos conjuntos de hipótesis
+la hipótesis nula del primer test
+es que la autocovarianza de orden 1 es 0
+la hipótesis alternativa es que la autocovarianza de orden 1 es negativa
+y
+el segundo test
+tiene una hipótesis nula que me dice que la autocovarianza de orden 2 es 0
+y una hipótesis alternativa que me dice que la autocovarianza de orden 2 es 0
+entonces si yo hago el test
+hago los dos test
+para que
+el
+modelo tenga la estructura de un proceso autoregresivo de orden 1
+con componentes no observados
+lo que yo necesitaría es
+rechazar la hipótesis nula del primer test
+en favor de la autocovarianza de orden 1 negativa
+que es lo que mostramos en la transparencia anterior
+y aceptar la hipótesis nula del segundo test
+que me dice que no hay covarianza de orden 2
+diferente de ese
+y estos dos
+contrastes se hacen con
+una estandarización de la autocovarianza
+y los estadísticos se conocen con
+el nombre de M1 y M2
+que le puse yo ahí
+que son los nombres que usa el estatus
+cuando hago esto
+el estatus va a salir
+M1
+vale tanto
+valor de probabilidad
+tanto
+comparo el valor de probabilidad
+con el nivel de significación
+y sé si acepto o rechazo la hipótesis
+con el estadístico de orden 1
+M2
+valor
+valor de probabilidad
+comparo el valor de probabilidad
+con el nivel de significación
+y
+decido si acepto o rechazo
+la segunda de las hipótesis nulas
+de nuevo
+lo que
+necesitamos
+es que
+aceptar la
+perdón
+rechazar la hipótesis nula acá
+con M1
+con M1
+que está acá
+necesito rechazar
+y con M2
+necesito aceptarlo
+eso quiere decir que
+hay covarianza
+de orden 1 negativa
+no hay covarianza de orden 1
+si eso se cumple
+tengo
+un
+modelo
+como
+el que sugieren
+a Villano y a Villano
+y lo puedo estimar
+con cualquiera
+de los dos procedimientos
+¿está claro esto?
+ok
+tengo otro estimador
+que
+se utiliza
+cuando
+el coeficiente
+autoregresivo
+de orden 1
+es cercano a 1
+entonces
+cuando el coeficiente
+autoregresivo
+de orden 1
+se acerca a 1
+Blander y Bon
+me dicen
+ojo
+que los instrumentos
+de los Jolly Bon
+son débiles
+mejor utilizar
+mis procedimientos
+hay otro procedimiento
+que
+viene
+de
+un señor
+que se llama Kiviet
+que dice
+no mira
+no uses
+Blander y Bon
+hacelo
+de otra
+y la forma
+en que lo hace
+Kiviet
+es lo que se conoce
+en la literatura
+como
+least square
+dummy variable
+correcta
+o
+el modelo
+de variable
+dependiente
+el modelo
+de variable
+dependiente
+binaria
+corregido
+¿cómo corregido?
+y
+lo que me dice Kiviet
+es de
+mira
+hacelo
+yo le digo
+la estimación
+bruta
+hacelo
+la estimación
+de efecto
+fijo
+y ya sé
+que la estimación
+de efecto fijo
+ese es dado
+entonces
+sacarle el cego
+cego lo calculamos
+hicimos el cego
+de níquel
+al principio
+agarrá
+estimá
+y después
+restarle el cego
+y listo
+ahí tenés
+y el paper
+tiene varios
+lo que tienen
+desarrollado
+la transparencia
+es el trabajo
+que hizo
+en 1995
+después hizo otro
+en 1998
+y otro
+en el 2000
+distintas versiones
+de lo mismo
+ahora yo
+les voy a comentar
+cualitativamente
+que es lo que hace
+esta es la corrección
+de 95
+que
+ah no
+que en el trabajo
+Kiviet
+dice que
+esta estimación
+funciona mejor
+que Blanderio
+como está
+que está implementado
+lo bueno
+ok
+entonces
+cambié las letritas
+simplemente porque
+todo lo que está
+acá
+tiene las mismas letritas
+del paper
+por si alguno quiere
+o sea
+yo lo resumí
+si alguno lo quiere
+ir a ver
+con todas las demostraciones
+que yo no voy a hacer
+se van a encontrar
+con las mismas letritas
+el modelo
+que voy a estimar
+es la ecuación 3
+la ecuación 3
+de nuevo
+tiene
+una variable dependiente
+y subit
+en lugar de Rho
+Kiviet
+usa gama
+gama por
+y subit
+menos 1
+o sea que gama
+es el coeficiente
+de
+el coeficiente
+autorregresivo
+de ordenado
+más
+x y t
+por beta
+más c subit
+más u subit
+entonces
+supuestos que utilizan
+yo les voy a comentar
+cuáles son los supuestos
+intrascendentes
+y cuáles son los supuestos
+trascendentes
+entonces
+el
+primer supuesto
+que tienen aquí
+es que
+la heterogeneidad
+no observada
+tiene distribución
+normal
+con media cero
+y varianza constante
+este es un supuesto
+intrascendente
+podría
+no
+podría decir
+no tiene distribución
+normal
+no pasa nada
+las cuentas son
+un poco más complicadas
+pero no me va a afectar
+absolutamente nada
+¿sí?
+el segundo supuesto
+sí
+es trascendente
+porque
+el segundo supuesto
+me dice que
+este
+el error
+idiosincrático
+del modelo
+tiene distribución
+normal
+y no tiene problema
+en el
+en la frecuencia
+temporal
+ni de
+correlación serial
+ni de
+heterocertesis
+es homocedad
+¿ok?
+y este sí
+es un supuesto
+importante
+después
+tenemos
+ocho supuestos
+¿sí?
+el supuesto
+hay
+supuestos
+que son
+que ya hicimos
+antes
+pero el supuesto
+y
+o uno
+me dice que
+la covarianza
+entre los errores
+idiosincráticos
+es c
+y
+el supuesto
+dos
+me dice que
+la covarianza
+entre
+la heterogeneidad
+no observada
+de diferentes
+observaciones
+es c
+no hay relación
+el supuesto
+tres
+me dice que
+no hay relación
+entre la heterogeneidad
+no observada
+y el error
+idiosincrático
+¿sí?
+y no hay relación
+entre
+las variables
+explicativas
+y el error
+de la ecuación
+para todo
+J, I, T y S
+o sea que
+las variables
+explicativas
+son estrictamente
+exógenas
+variables
+explicativas
+adicionales
+a la variable
+dependiente
+rezagada
+son estrictamente
+exógenas
+el supuesto
+cinco
+es el
+supuesto
+tradicional
+de
+efecto fijo
+¿sí?
+hay relación
+entre
+la heterogeneidad
+no observada
+y las variables
+explicativas
+se observan
+o sea que
+tengo un modelo
+de efecto fijo
+el resto
+son
+supuestos
+sobre
+la primera
+observación
+de
+la variable
+dependiente
+si ustedes
+recuerdan
+nuestro desarrollo
+del proceso
+autoregresivo
+de orden
+uno
+en panel
+nosotros
+necesitábamos
+para la estimación
+de Anishani Bond
+y para la estimación
+de Mlandini Bond
+que el proceso
+fuera estacionario
+y para que el proceso
+fuera estacionario
+yo necesitaba
+dos cosas
+que
+el coeficiente
+autoregresivo
+sea menor a uno
+en valor absoluto
+eso me garantizaba
+me garantizaba
+estabilidad
+y después
+que los momentos
+de la primera
+observación
+de la variable
+dependiente
+coincidieran
+con los momentos
+de
+el proceso
+del estado
+estacionario
+bueno
+estos son
+los supuestos
+que aparecen
+ahí
+para Kibir
+solamente
+que
+yo cuando
+lo desarrollé
+usé
+como observación
+inicial
+y subí
+uno
+y
+Kibir
+usa
+y subí
+cero
+¿por qué
+usa
+y subí
+cero
+y no
+subí
+uno?
+porque
+es
+más elegante
+que
+las sumas
+me queden
+desde
+uno
+hasta
+T
+que
+que
+me queden
+como
+quedaban
+a mí
+desde
+dos
+T
+la primera
+observación
+la perdí
+este
+usa
+c
+o sea
+que
+si ustedes
+ven
+las tablitas
+que nosotros
+hicimos
+que yo
+siempre
+empiezo
+de la
+observación
+uno
+es como
+si tuviera
+T
+cero
+uno
+dos
+porque
+cuando
+pierdo
+la primera
+observación
+no me
+altera
+la suma
+desde
+uno
+hasta
+pero
+es la
+única
+diferencia
+podría
+haberlo
+escrito
+con
+uno
+y la
+suma
+va
+entre
+dos
+pero
+el
+journal
+donde
+lo
+punto
+debe
+haber
+dicho
+no
+pará
+m
+cero
+si
+la
+suma
+va
+en
+todas
+juntas
+pero
+nada
+y
+subí
+cero
+primera
+observación
+es una variable
+aleatoria
+no tiene relación
+con el error
+de la ecuación
+eso
+lo habíamos
+hecho
+no tiene
+puede tener relación
+con la
+heterogeneidad
+observada
+de corte
+traversal
+y
+la
+media
+de
+la
+primera
+de la
+primera
+observación
+de la
+variable
+dependiente
+coincide con
+la media
+del proceso
+un estado
+estacional
+que es
+uno
+sobre
+uno
+menos
+ro
+o
+gama
+pues
+es
+un
+entonces
+con eso
+tiene
+t más
+una
+observación
+al principio
+tiene
+t más
+una
+observación
+pero
+después
+le queda
+t
+ok
+entonces
+lo que hace
+Kibiet
+es mostrar
+que
+el sesgo
+del estimador
+se puede
+aproximar
+con un error
+de
+orden
+n a la
+menos
+1
+t a la
+menos
+3
+n
+y lo
+calcula
+yo no
+lo voy
+a hacer
+toda la
+matemática
+página
+64
+del
+paper
+este
+es
+el
+sesgo
+del estimador
+de efecto
+fí
+que está
+compuesto
+por
+tres
+partes
+esta
+es la
+primera
+parte
+que tengo
+acá
+vamos a
+ponerle
+uno
+esta es
+la
+segunda
+parte
+son
+tres
+términos
+vamos a
+ponerle
+dos
+y
+esta
+es
+el
+tercer
+término
+más
+un
+término
+que
+está
+bounded
+por
+un
+término
+que es
+n a la
+menos
+1
+t a la
+menos
+entonces
+1
+más
+2
+más
+3
+es lo
+que se
+conoce
+en la
+literatura
+como el
+sesgo
+de
+kirien
+entonces
+¿qué me va
+a decir
+este
+kirien
+estimada
+delta sombrero
+por efecto
+fijo
+y sacarle
+seco
+refinamiento
+tiene un
+paper
+de
+el
+98
+todos
+todos
+estos
+papers
+están
+en el
+journal
+económico
+y están
+listados
+en la
+bibliografía
+del curso
+del programa
+tiene un
+paper
+en el 98
+en donde
+parte
+este
+op
+n a la
+menos
+un medio
+t a la
+menos
+tres
+medio
+en
+op
+más
+chiquito
+y le
+agrega
+un
+cuatro
+un
+cuarto
+término
+al
+segundo
+y el
+paper
+del
+2000
+o del
+2001
+explica
+un
+quinto
+término
+o sea
+cabelo
+estimando
+mejor
+tres
+sí
+entonces
+tengo que
+calcular
+los tres
+términos
+del
+sesgo
+y
+la mayor
+parte
+de las
+matrices
+están
+definidas
+con
+anterioridad
+las que
+no
+las tienen
+definidas
+ahí
+abajo
+todo lo que
+tenga
+una rayita
+arriba
+son medias
+o esperanzas
+matemáticas
+D
+rayita
+W
+rayita
+transpuesto
+por
+QNT
+por
+W
+rayita
+más sigma
+cuadrado
+de U
+por N
+por la
+traza
+de C
+transpuesto
+por QT
+por C
+Q
+por Q
+transpuesto
+QT
+lo hemos
+definido
+QNT
+es QT
+expandido
+a las
+N
+observaciones
+de corte
+de corte
+transversal
+este
+QT
+por W
+barra
+es la esperanza
+de
+QT
+NT
+por W
+Q
+no lo definimos
+pero Q
+está definido
+acá
+Q
+este Q
+es un vector
+columna
+uno
+y ceros
+¿sí?
+delta
+transpuesto
+es
+el
+coeficiente
+autoregresivo
+de orden
+uno
+delta
+gama
+y
+el vector
+de parámetros
+que acompañan
+las variables
+aplicativas
+y
+me falta
+definir
+C
+donde C
+es esa
+matriz
+que aparece
+allí
+fíjense que
+en esta
+en esta
+definición
+todo lo que
+tenga
+rayitas
+son esperanza
+matemática
+de alguna
+matriz
+y
+lo único
+que tengo que hacer
+para estimarla
+es reemplazar
+la esperanza
+matemática
+por el
+suma
+de
+1
+entonces
+todas las
+el resto
+del Q
+es un vector
+conocido
+de 1
+0
+todo lo demás
+lo puedo calcular
+directamente
+de los datos
+de la monta
+lo único que no puedo
+calcular
+es C
+porque C
+depende de
+el
+coeficiente
+autoregresivo
+de orden
+si yo quiero
+estimar el
+cego
+el punto
+clave
+es estimar
+cego
+o
+dicho de otra
+manera
+el punto
+clave
+es estimar
+gano
+o en nuestro
+modelo
+ro
+sugerencia
+de Kibiet
+Anderson
+y Sio
+o sea
+estimar
+el coeficiente
+autoregresivo
+usando el
+procedimiento
+Anderson
+y Sio
+que
+les recuerdo
+significaba
+tomar diferencia
+finita
+en el modelo
+para eliminar
+el C sub
+y después
+utilizar
+el valor
+en nivel
+rezagado
+un periodo
+como
+instrumento
+de la variable
+de diferencia
+finita
+de la variable
+explicativa
+entonces
+Anderson
+iniciado
+aplicado
+me da
+la estimación
+de gama
+construyo
+C
+construyo
+los tres
+términos
+del sesgo
+y
+estimo
+el modelo
+de nuevo
+Lisa
+squared
+a mi variable
+básicamente
+porque
+lo hemos mostrado
+para
+el modelo
+estático
+hacer la transformación
+de efectos fijos
+o estimar
+los subí
+como parámetros
+que da exactamente
+el mismo
+estimador
+hago la estimación
+de efectos fijos
+y le saco
+el sesgo
+calculando
+los tres
+términos
+de
+de
+Kibbe
+ok
+en el
+data
+vas a escribir
+un comando
+que va a ser
+todo
+bueno
+no es que
+lo vamos a calcular
+hace
+4 o 5 años
+si había
+calculado
+todo
+ahora
+pongo el comando
+y lo hace
+el
+entonces
+el
+la estimación
+de nuevo
+es la estimación
+de efectos fijos
+menos
+el
+sesgo
+estimado
+y
+este chico
+lo que dice
+es
+mira
+esto así
+funciona mejor
+que
+el estimador
+de Blandelli
+si
+para hacer
+inferencia estadística
+necesito
+estimar
+la matriz
+de varianza
+y covarianza
+la matriz
+de varianza
+y covarianza
+es la matriz
+de varianza
+y covarianza
+del estimado
+de efectos fijos
+corregido
+porque tengo que
+calcular
+los residuos
+y los residuos
+lo único que hacen
+es reemplazar
+el delta
+sombrero
+de efectos fijos
+por el delta
+sombrero
+de Kibbe
+y después
+calcular
+la varianza
+como
+suma
+residuos
+al cuadrado
+dividido
+grado
+de alta
+que tienen
+ahí en azul
+en el centro
+sin más cuadrado
+de sombrero
+la suma
+de un sombrero
+por un sombrero
+un sombrero
+de nuevo
+los residuos
+de la estimación
+de Kibbe
+dividido
+de los grados
+de libertad
+ok
+preguntas
+después
+uno de los ejercicios
+del examen
+va a ser
+un ejercicio
+de simulación
+con los tres métodos
+de estimación
+con los cuatro
+con Anderson
+iniciado
+con Arellano y Bon
+y con Blander y Bon
+y con Kibbe
+variando
+el Rho
+a ver si es cierto
+que cuando se aproxima
+uno
+Blander y Bon
+funciona mejor
+que Arellano y Bon
+y Kibbe
+funciona mejor
+que Blander y Bon
+o por lo menos
+para que ustedes
+tengan una idea
+de cómo difieren
+los estimadores
+cuando cambia
+el valor de Rho
+en algunos casos
+difieren Rho
+poquito
+en otros casos
+difieren mucho
+ok
+con esto
+vamos a dar
+por finalizado
+el
+este
+la estimación
+de modelos
+dinámicos
+y ahora
+lo que vamos a hacer
+es
+volvernos
+a
+en principio
+modelos
+modelos
+estáticos
+pero
+vamos a
+levantar
+entre comillas
+el supuesto
+de que tenemos
+paneles
+complejos
+dentro de
+déjenme
+no tenemos
+mucho tiempo
+pero
+déjenme introducir
+el tema
+y si vemos
+la matemática
+la clase
+la idea
+es la siguiente
+qué quiere decir
+tener un panel
+incompleto
+tener un panel
+incompleto
+quiere decir
+que
+para
+algunas
+observaciones
+de corte
+transversal
+no tengo
+algunos datos
+en algún
+tipo de
+frecuencia
+temporal
+y
+esos
+datos
+faltantes
+pueden ser
+datos faltantes
+tanto
+en la variable
+dependiente
+como en las
+variables
+explicativas
+o solo
+en las
+variables
+explicativas
+y depende
+de
+cual sea
+el mecanismo
+de
+esos datos
+faltantes
+yo voy a
+describir
+tres
+mecanismos
+uno que es
+el más
+inocuo
+y es
+que
+yo tenga
+paneles
+rotativos
+paneles
+rotativos
+quiere decir
+que
+este
+yo
+no
+entrevisto
+a todos
+a todas
+las unidades
+de corte
+transversal
+todos los
+periodos
+temporales
+ejemplo
+la encuesta
+permanente
+de hogares
+aquí en
+argentina
+es un
+panel
+de hogares
+rotativos
+que
+tiene
+una
+estructura
+que
+se llama
+222
+que tiene
+una
+estructura
+222
+ponelo acá
+la
+EPH
+la EPH
+tiene una
+estructura
+222
+que
+significa
+que
+yo
+entrevisto
+hogares
+en dos
+trimestres
+sucesivos
+los hago
+descansar
+dos trimestres
+y los vuelvo
+a entrevistar
+en dos
+trimestres
+sucesivos
+por ejemplo
+si
+yo
+entrevisto
+hogares
+en el
+primer trimestre
+del 2022
+los vuelvo
+a entrevistar
+en el
+segundo trimestre
+del 2022
+los dejo
+descansar
+tercer trimestre
+y cuarto trimestre
+del 2022
+y los vuelvo
+a entrevistar
+en el
+primero y
+segundo trimestre
+del 2022
+pero además
+hay una
+rotación
+del 25%
+de los hogares
+entonces
+que
+supongamos
+que en el
+primer trimestre
+del 2022
+entrevisto
+100 hogares
+en el
+segundo trimestre
+del 2022
+repito
+75
+de esos
+hogares
+y 25
+son hogares
+9
+esos 75
+que entrevisté
+en el
+primero y
+segundo trimestre
+los dejo
+descansar
+tercer y
+cuarto trimestre
+del 2022
+y los vuelvo
+a ver
+en el
+primero y
+segundo trimestre
+del 2023
+solamente que
+en el primer
+trimestre
+del 2023
+en lugar
+de entrevistar
+a los
+75
+hogares
+voy a
+entrevistar
+a 50
+hogares
+o sea
+que
+voy a
+tener
+50
+hogares
+de
+la muestra
+original
+y 50
+hogares
+nuevos
+algunos
+que me
+vienen
+de antes
+y otros
+que se
+incorporan
+en ese
+momento
+y en el
+segundo
+trimestre
+de los
+50
+que
+entrevisté
+en los
+tres
+trimestres
+anteriores
+me van a
+quedar
+25
+25
+o sea
+que
+la encuesta
+tiene
+25
+hogares
+que yo
+entrevisto
+durante
+cuatro
+ondas
+primero
+y segundo
+trimestre
+del 2022
+primero
+y segundo
+trimestre
+del 2022
+tengo
+25%
+de los
+hogares
+que los
+entrevisté
+tres veces
+primero
+segundo
+y primero
+tengo
+50%
+de
+de
+de los
+hogares
+que los
+entrevisté
+dos veces
+primero y
+segundo
+y tengo
+25%
+y tengo
+100%
+de los
+hogares
+que los
+entrevisté
+en un
+trimestre
+si ustedes
+piensan
+en el
+panel
+completo
+tengo
+un montón
+de ceros
+que hay
+hogares
+que salen
+de la
+muestra
+en el
+segundo
+trimestre
+hay hogares
+que salen
+de la
+muestra
+en el
+primer trimestre
+del 2023
+hay hogares
+que salen
+de la
+muestra
+en el
+último
+trimestre
+de
+el
+segundo
+trimestre
+del
+trámico
+final
+esto es
+lo que
+se conoce
+en la literatura
+como
+atrilla
+o atrición
+que
+en general
+si uno
+lo diseña
+si
+ejemplo
+en la
+GPH
+la atrición
+es aleatoria
+yo
+aleatoriamente
+elijo
+cuáles son
+los hogares
+que salen
+en cada
+en cada
+trimestre
+y si la
+atrición
+es aleatoria
+no va a
+tener
+ningún
+no va a
+haber
+ningún
+problema
+ya lo
+vamos a
+ver
+la
+estimación
+que vimos
+para el
+panel
+completo
+va a
+sobrevivir
+a los
+paneles
+el problema
+es cuando
+la atrición
+no es
+aleatoria
+en principio
+cuando la
+atrición
+está relacionada
+con la variable
+que yo quiero
+explicar
+voy a tener
+problemas
+de sesgo
+de selección
+lo que engloba
+esta tercera
+lectura
+tengo sesgo
+de selección
+porque
+se me van
+los hogares
+que tienen
+mayores ingresos
+que no quieren
+contestar más
+porque ganan
+mucho
+o
+algún otro
+tipo
+de
+problema
+entonces
+eso me va
+a provocar
+que la muestra
+que en un principio
+piensen que
+la estructura
+que tenemos
+nosotros
+es que
+yo tomo
+una muestra
+de corte
+transversal
+en un momento
+del tiempo
+que es representativa
+de la población
+y hasta ahora
+lo que hicimos
+es llevar
+esa muestra
+representativa
+para todos
+los periodos
+temporales
+y siempre
+es la misma
+o sea que
+sigue siendo
+representativa
+de la población
+si
+se me van
+los hogares
+y la muestra
+se hace cada vez
+más chiquita
+o se hace
+más chiquita
+no necesito
+cada vez
+y
+lo que me queda
+no representa
+al total
+de la población
+y entonces
+tengo sesgo
+de selección
+entonces
+esa es la
+primera
+explicación
+de por qué
+puedo tener
+en la práctica
+paneles
+sin complejo
+la segunda
+explicación
+es lo que
+en
+el curso
+de econometría
+y de microeconometría
+uno
+llamamos
+truncamiento
+incidental
+que es el modelo
+de Heckman
+de la oferta
+de trabajo
+de las mujeres
+donde
+yo
+no observo
+las horas
+trabajadas
+de las mujeres
+que
+cuyo salario
+de mercado
+es menor
+al salario
+de reserva
+entonces
+para parte
+de la
+de las mujeres
+observo
+la zona
+trabajada
+para parte
+de las mujeres
+no las observo
+y
+ahora tengo
+ese mismo
+problema
+en datos
+de paneles
+hay una variable
+que trunca
+la observación
+de
+la otra
+de otra
+variable
+que está
+dentro
+de mi modelo
+que quiero
+aquí
+entonces
+en
+el caso
+de
+truncamiento
+incidental
+en el corte
+transversal
+tenemos el procedimiento
+de Heckman
+que lo que hacía
+era
+estimar un
+PROVIC
+e incorporar
+la inversa
+del cociente
+de milis
+en la
+regresión
+del segundo paso
+ahora voy a tener
+la extensión
+del procedimiento
+de Heckman
+a datos de panel
+que es el procedimiento
+de Gouldrich
+que aparece allí
+en la
+listado
+en la
+transparencia
+entonces
+el
+procedimiento
+lo que sigue
+en la
+transparencia
+primero
+presentar
+el problema
+de
+paneles
+incompletos
+no balanceados
+o desbalanceados
+cualquiera
+de los tres
+nombres
+aparecen
+en la
+literatura
+y
+establecer
+cuáles son
+las condiciones
+para que
+los estimadores
+que vimos
+hasta ahora
+funcionen
+como
+con la
+estimación
+en paneles
+incompletos
+y para eso
+lo que vamos
+a hacer
+es utilizar
+o volver
+al principio
+y utilizar
+modelos
+estáticos
+en el
+modelo estático
+vamos a decir
+mira
+para que
+yo pueda
+utilizar
+el estimador
+de efectos
+fijos
+que
+vimos
+en
+el comienzo
+del curso
+cuando los
+paneles
+son
+incompletos
+necesito
+que se
+cumplan
+estas
+condiciones
+y después
+vamos a
+ver los
+casos
+relevantes
+donde no
+se cumplen
+esas
+condiciones
+como
+como
+sé
+que no
+se
+cumplen
+esas
+condiciones
+necesito
+algún
+contraste
+de hipótesis
+que me
+diga
+si se
+cumplen
+las
+condiciones
+para que
+yo pueda
+usar
+la misma
+fórmula
+que vimos
+hasta ahora
+o no
+ese es
+el tercer
+punto
+vamos a
+tener
+un
+contraste
+de hipótesis
+para el
+problema
+de
+atrición
+y un
+contraste
+de hipótesis
+para el
+problema
+de
+truncamiento
+incidental
+si yo
+la hipótesis
+nula
+va a ser
+no hay
+atrición
+no hay
+truncamiento
+incidental
+si no
+si no hay
+atrición
+y no hay
+truncamiento
+incidental
+funciona
+la misma
+fórmula
+que vimos
+hasta ahora
+para paneles
+como
+si yo
+rechazo
+la hipótesis
+nula
+en favor
+de
+atrición
+o en favor
+de
+truncamiento
+incidental
+tengo
+sesgo
+de
+selección
+y entonces
+necesito
+corregir
+el sesgo
+de
+selección
+tercer
+punto
+de la
+transparencia
+corrección
+del sesgo
+de
+selección
+por
+truncamiento
+incidental
+y ahí
+vamos a
+ver
+el procedimiento
+de
+Wurtrich
+que es
+la
+extinción
+de
+Heckman
+y el
+procedimiento
+de
+Rochina
+Barrachina
+que es
+otra
+forma
+de
+hacer
+la
+la
+estimación
+si les
+digo
+la diferencia
+básica
+es que
+Wurtrich
+usa
+la transformación
+de efectos fijos
+y Rochina
+Barrachina
+utiliza la
+transformación
+de
+diferenciación
+para
+eliminar
+ese
+sumido
+y
+después de
+ver
+la
+corrección
+del sesgo
+por
+truncamiento
+incidental
+vamos a ver
+la corrección
+del sesgo
+cuando hay
+atrición
+son dos
+problemas
+diferentes
+la
+atrición
+me carga
+dejo de
+observar
+todas las
+variables
+del
+modelo
+en el
+truncamiento
+incidental
+sigo
+observando
+algunas
+de las
+variables
+para
+todas
+las
+observaciones
+para
+algunas
+observaciones
+no
+pero
+para
+otras
+tengo
+la
+información
+de
+todas
+las
+varías
+las
+atriciones
+se me van
+del
+panel
+y ya
+no
+observo
+la
+variable
+es
+explicativa
+entonces
+vamos a ver
+una forma
+de
+corregir
+el problema
+del sesgo
+de
+selección
+por
+atrición
+una vez
+que veamos
+eso
+voy a
+decir
+bueno
+ok
+esto
+para
+modelos
+que
+pasas
+los
+modelos
+dinámicos
+y
+en los
+modelos
+dinámicos
+vamos a ver
+que
+relación
+hay
+entre
+sesgo
+de
+selección
+y
+endogeneidad
+o sea
+que
+al
+final
+de
+esta
+transparencia
+vamos a
+haber
+visitado
+todo lo
+que vimos
+hasta
+ahora
+modelos
+de
+estáticos
+modelos
+dinámicos
+en
+paneles
+incompletos
+y
+una
+vez
+que
+sepamos
+hacer
+todo
+esto
+nos
+nos
+va
+a
+quedar
+un
+tema
+adicional
+que
+es
+levantar
+el
+supuesto
+de que
+los
+modelos
+son
+lineales
+y
+cuando
+levantemos
+el
+supuesto
+de que
+los
+modelos
+son
+lineales
+vamos
+vamos a
+ver
+los
+dos
+modelos
+tradicionales
+de
+variable
+dependiente
+y
+y
+ahí
+creo que
+vamos a
+terminar
+tengo
+algunas
+cosas más
+pero
+no sé
+si me
+está
+claro
+eso
+o sea
+que
+la clase
+que viene
+les hago
+la matemática
+digo
+que
+es fácil
+pero es
+básicamente
+mostrar
+la matemática
+y a mostrar
+para ver
+cuáles son
+las condiciones
+que se tienen
+que cumplir
+para que
+las fórmulas
+que hicimos
+antes
+funcionen
+cuando los
+paneles
+son
+incompletos
+porque ahora
+el problema
+en la notación
+va a ser que
+no voy a tener
+n mayúscula
+por t
+mayúscula
+observación
+n mayúscula
+por t
+mayúscula
+solo
+aparece
+cuando los
+paneles
+son
+completos
+los paneles
+son
+incompletos
+voy a tener
+n por t
+voy a tener
+menos
+entonces
+como para
+cada
+observación
+de corte
+transversal
+puedo tener
+diferentes
+observaciones
+de series
+temporales
+el
+número total
+va a ser
+la suma
+de
+todas las
+observaciones
+de series
+temporales
+para cada
+observación
+de serie
+de corte
+transversal
+multiplicado
+por el
+número
+de observaciones
+de corte
+transversal
+y ese
+va a ser
+mi total
+de datos
+pero
+piensen
+en
+que yo
+en
+variable
+dependiente
+primera
+observación
+de corte
+transversal
+10
+periodos
+temporales
+que es lo que
+pasaba
+cuando tenía
+un modelo
+de efecto
+fijo
+cuando tenía
+un modelo
+de efecto
+fijo
+lo que hacía
+es
+mirá
+en un modelo
+de efecto
+fijo
+lo que tengo
+que hacer
+es agarrar
+la variable
+original
+y sub
+y
+prestarle
+la media
+temporal
+de la
+variable
+y
+construirme
+el
+y
+y
+y
+y
+y
+con los
+puntitos
+arriba
+y la media
+temporal
+como era
+y es
+1 sobre t
+por la suma
+de 1 a t
+de i sub
+y t
+pero eso
+es cuando
+el panel
+es completo
+el panel
+es incompleto
+no puedo
+prestarle
+salvo que
+observe
+para esa
+observación
+todos los
+periodos
+temporales
+digamos que
+de los 10
+observo 8
+no puedo
+dividir por 10
+tengo que dividir por 8
+o sea que la
+matemática es un poquito
+más
+complicada
+le voy a sacar
+obviamente
+le voy a sacar
+la media temporal
+de las observaciones
+que puedo
+tener
+y
+sobre ese
+modelo
+vamos a ver
+cuáles son las
+condiciones que necesito
+para que
+la estimación por
+efecto fijo
+sea consistente
+y
+vamos a mostrar
+por qué
+en muchos casos
+no es consistente
+y vamos a ver
+las correcciones
+que tenemos
+tiene alguna
+pregunta
+ok
+cortemos acá
+y la clase que viene
+empezamos con
+la matemática
+de
+sesgo de
+selección
+gracias
+profe
+gracias
+profesor
+buen fin
+de semana
+gracias

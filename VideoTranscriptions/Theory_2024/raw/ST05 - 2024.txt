@@ -1,0 +1,5974 @@
+Muy bien, vamos a terminar. Tengo dos cositas para decirles sobre la transformación de efectos fijos en el STATA, y después pasamos a la estimación de modelos dinámicos.
+Si ustedes miran la transparencia anterior, cuando nosotros lo que hicimos fue poner el modelo incluyendo un efecto constante en el corte transversal
+y variable en el tiempo lambda t, la transformación que hicimos fue tomar el modelo original y restarle la media temporal en el corte transversal,
+la media en el corte transversal para cada frecuencia temporal y la media total.
+Si yo elimino este lambda t de todos los modelos,
+y elimino esta ecuación 73,
+la resta de la ecuación original 71 menos la ecuación 72,
+que es la ecuación de las medias temporales de cada observación de corte transversal,
+y le sumo la ecuación 74,
+lo que me aparece es que la resta entre la ecuación 71 y la ecuación 72 me elimina el alfa i,
+y la suma de la ecuación 74 me agrega una constante en el modelo,
+que básicamente es lo que hace el STATA cuando estima por efectos fijos.
+Con otras letritas que tienen acá en el manual del STATA,
+pero básicamente la ecuación 1 es la ecuación original del modelo de componentes no observados
+con heterogeneidad no observada,
+que en lugar de alfa i o c sub i la llama b sub i,
+y lo que hace el STATA cuando uno le pone el comando que está aquí,
+xtreg fe de Fixed Effects,
+lo puedo hacer.
+Esto son datos tomados del manual de Green,
+que tienen seis firmas desde el 70 hasta el 73,
+costo y producto,
+o sea, cuánto cuesta producir lo que acá llamo producto,
+y uno puede estimar esto por efectos fijos,
+poniéndole xt set,
+id es la variable que indica el corte transversal,
+id es la variable que indica la serie de puentes temporal,
+y después xtreg costo producto coma fe,
+cuando el STATA me da la salida,
+me aparece aquí una constante.
+En la transformación de efectos fijos,
+como yo la desarrollé en las transparencias,
+cuando yo le resto solamente la media temporal
+para cada variable en el corte transversal,
+elimino la constante,
+porque elimino todas las variables
+que no tienen variabilidad en el tiempo,
+o sea, que me cargo el C sub i,
+y me cargo todo lo que sea constante en el tiempo,
+constante,
+si el modelo tiene ordenada lo mismo.
+Pero cuando lo hago con el STATA,
+me aparece esta constante
+con la transformación de efectos fijos,
+y como en las transparencias yo lo expliqué
+como si no existiera esa constante,
+entonces les muestro cómo lo hace el STATA,
+que hace la misma transformación
+que hicimos para el modelo
+de los efectos de la heterogeneidad observada
+en el corte transversal
+y en las series temporales,
+pero sin la ecuación de la media
+de corte transversal.
+Me vuelvo al manual del STATA,
+y lo que hace el STATA es
+tomar la media temporal,
+esta es la ecuación 2,
+la ecuación 72 de la transparencia
+sin el lambda t,
+y después,
+si yo resto,
+la ecuación 3
+es lo que nosotros
+desarrollamos en las transparencias
+como la transformación de efectos fijos.
+Me eliminó
+la constante del modelo
+o el B sub i que llama el STATA.
+Y después lo que hace
+la ecuación 4
+es tomar la media total.
+la media total de la variable,
+que es nuestra ecuación 73,
+y se la suma.
+la media total la suma
+a la ecuación anterior
+de forma tal de que
+en términos del modelo
+tengo la ecuación original
+menos la media temporal
+más la media total,
+y entonces me vuelve a aparecer
+la constante aquí
+en la transformación.
+De forma tal de que
+cuando yo le digo al STATA
+estime
+por
+el modelo
+o el método
+de efectos fijos,
+lo que hace el STATA
+es esta transformación.
+Digo,
+recupera la constante
+sumándole
+a nuestra transformación
+de efectos fijos
+la media total
+de las variables.
+Es eso,
+nada más.
+Como
+lo van a usar
+en el
+en la estimación
+en el STATA
+y va a aparecer
+la constante
+sale de acá.
+Pero es exactamente
+la misma transformación
+cuando vos lo haces
+en el STATA
+si vos retras las pedias
+las haces manualmente
+y vos usas después
+el GITERREG
+¿puede ser que
+el GITERREG
+se atreve la misma estimación
+distintas variachas?
+Disculpame
+de nuevo.
+Claro.
+Le arrestás
+vos agarrás
+manualmente
+le arrestás
+la media temporal
+para cada
+sí
+y después
+lo estimás
+normal
+y después
+lo estimás
+pero con el
+comando
+GITERREG
+es posible
+pero GITERREG
+te vuelve
+a transformar
+o sea
+lo que yo decía
+era
+si se transforma
+el GITERREG
+tanto
+el ANN
+como
+la otra
+el corte
+transversal
+y el
+transversal
+es posible
+es posible
+que alguna vez
+me digo
+distintas varianzas
+y no sería
+la misma estimación
+pero lo que vos
+me describís
+no es la misma
+estimación
+o sea
+me dio
+el mismo
+valor del beta
+a ver
+de nuevo
+porque por ahí
+no te estoy entendiendo
+vos
+lo que me decís
+es que
+agarraste
+la
+ecuación
+original
+le arrestaste
+la media temporal
+de cada variable
+en el corte
+transversal
+y después
+estimaste
+por mismos
+cuadrados clásicos
+claro
+y eso
+lo comparás
+con
+la estimación
+de
+GITERREG
+claro
+bueno
+debería dar
+lo mismo
+debería dar
+lo mismo
+la varianza
+no
+porque el GITERREG
+del estatus
+te agregó
+la constante
+cuando vos
+lo hiciste a mano
+tu modelo
+no tiene
+constante
+o sea
+que
+en la varianza
+del error
+la estimación
+suma
+residencial
+al cuadrado
+dividido
+de n-k
+tenés
+por lo menos
+un parámetro
+menos
+entonces
+no deberían
+darte igual
+las varianzas
+lo que
+podés hacer
+es
+hacerlo a mano
+y a la red
+agarrar el modelo
+original
+restarle la media
+temporal
+y sumarle la media
+total
+y ahí debería
+darte
+exactamente
+lo mismo
+ok
+ahora
+lo que vamos a hacer
+es abandonar
+el modelo
+estático
+y
+empezar a ver
+modelos
+dinámicos
+y en realidad
+vamos a ver
+una partecita
+de los modelos
+dinámicos
+y dentro
+de esa partecita
+una partecita
+que es
+lo que
+en la
+literatura
+de datos
+de panel
+es lo que se conoce
+como un proceso
+autoregresivo
+de orden 1
+en panel
+que
+va a tener
+esta
+especificación
+i subit
+igual a
+c subi
+más
+ro
+por
+i subi
+t menos 1
+más
+u subit
+entonces
+nuestra
+variable
+explicativa
+es la variable
+dependiente
+rezagada
+un periodo
+temporal
+si yo tuviera
+un modelo
+de series
+temporales
+esto es
+un autoregresivo
+de orden 1
+con ordenada
+al origen
+ahora tengo
+la heterogeneidad
+no observada
+y
+la variable
+dependiente
+rezagada
+como variable
+explicativa
+es un modelo
+dinámico
+porque la variable
+dependiente
+y la variable
+explicativa
+se miden
+en distintos
+momentos
+temporales
+y lo que
+hace la literatura
+de datos
+de panel
+es llamar
+a este
+modelo
+un modelo
+dinámico
+y nosotros
+lo que vamos a ver
+es cómo
+hacemos la estimación
+de este modelo
+y cómo hacemos
+la estimación
+de un modelo
+que además
+de tener la variable
+dependiente
+rezagada
+como variable
+explicativa
+tenga otras variables
+explicativas
+se lo vamos a extender
+a mayor número
+de variables
+explicativas
+pero el modelo
+básico
+de este
+dinámico
+que vamos a
+analizar
+es ese que puse
+allí
+en la
+en el
+en la transparencia
+y
+la
+idea
+de
+el
+modelo
+es que
+cuando yo
+tengo
+la variable
+dependiente
+rezagada
+como variable
+explicativa
+esa variable
+es endógena
+está relacionada
+con el error
+de la
+de la ecuación
+y como la variable
+es endógena
+o la variable
+es endógena
+la estimación
+por mínimos cuadrados
+clásicos
+o por mínimos cuadrados
+generalizados
+efectos fijos
+efectos aleatorios
+me da estimadores
+que no son consistentes
+entonces
+lo primero
+que
+vamos a hacer
+es
+mostrar
+en el modelo
+este
+autoregresivo
+de orden 1
+que
+tenemos sesgo
+y vamos a
+establecer
+lo que la literatura
+llama
+el sesgo
+de níquel
+níquel
+fue el primero
+que mostró
+que
+la estimación
+tenía
+la estimación
+de mínimos cuadrados
+clásicos
+tenía
+sesgo
+y después
+vamos a ver
+cómo hacemos
+para
+tener
+una estimación
+consistente
+que
+básicamente
+va a seguir
+los pasos
+que
+hicimos
+en
+econometría
+en el corte
+transversal
+cuando tengo
+una variable
+que es
+endógena
+tengo que
+cambiar
+de método
+de estimación
+e irme
+hacia
+variables
+instrumentales
+o mínimos
+cuadrados
+en dos etapas
+para obtener
+este
+estimadores
+consistentes
+y
+dentro
+de esas
+estimaciones
+consistentes
+vamos a
+este
+especificar
+dos estimadores
+que tienen
+nombre y apellido
+que están allí
+que son
+Arellano y Bon
+y
+Blander y Bon
+que tienen
+sus comandos
+específicos
+en el STATA
+para
+hacer la estimación
+y por eso
+lo vamos a ver
+que son
+estimadores
+de método
+generalizado
+de momento
+como los
+estimadores
+de método
+generalizado
+de momento
+que vimos
+en econometría
+para
+ecuaciones
+simultáneas
+porque acá
+digamos
+si uno
+lo piensa
+en términos
+de las
+ecuaciones
+simultáneas
+que vimos
+en econometría
+los datos
+de panel
+en realidad
+es un tipo
+de ecuaciones
+simultáneas
+solamente
+que tengo
+la misma
+variable
+dependiente
+medida
+en distintas
+unidades
+en
+ecuaciones
+simultáneas
+tengo
+distintas
+variables
+dependientes
+en cada
+una
+de las
+ecuaciones
+pero
+el contexto
+es el mismo
+tengo
+ecuaciones
+y observaciones
+y acá
+tengo
+datos
+de corte
+transversal
+y datos
+de serie
+temporal
+o sea
+que tengo
+la dimensión
+de la matriz
+de datos
+es una matriz
+de dos
+dimensiones
+igual que
+en la
+en la
+estimación
+de
+de
+múltiples
+de múltiples
+ecuaciones
+entonces
+vamos a
+desarrollar
+la
+estimación
+de Arellano
+Bondi
+de Brander
+Bondi
+y después
+vamos a
+extender
+el modelo
+de autoregreso
+de orden 1
+a incluir
+otras variables
+explicativas
+dentro
+de
+el
+modelo
+vamos a ver
+inferencia estadística
+para chequear
+la validez
+de nuestros
+instrumentos
+y
+después
+vamos a
+ver
+qué es lo que
+sucede
+cuando
+los datos
+tienen
+persistencia
+y persistencia
+en nuestro
+contexto
+va a ser
+que el
+coeficiente
+autoregresivo
+de orden 1
+sea cercano
+a 1
+de nuevo
+si uno
+piensa
+en
+datos
+de serie
+temporales
+el autoregresivo
+de orden 1
+para que
+el proceso
+sea estacionario
+necesita
+que
+en valor absoluto
+sea menor a 1
+si el
+proceso
+si el coeficiente
+autoregresivo
+es igual a 1
+tengo un modelo
+de raíz unitaria
+y eso
+tiene
+dependencia
+infinita
+y
+las estimaciones
+tienen
+distribuciones
+que no son
+estándar
+y uno se complica
+bueno acá
+no voy a tener
+mucho problema
+con proceso
+de raíz unitaria
+básicamente
+porque
+T es fijo
+T mayúscula
+es fijo
+pero
+tengo
+algunas
+este
+algunos casos
+particulares
+cuando
+el coeficiente
+error es un
+número cercano
+a 1
+entonces
+déjenme
+poner
+el
+modelo
+que
+vamos a
+analizar
+que es el que puse
+en la
+en la
+transparencia
+anterior
+pero
+en términos
+generales
+y
+las
+los supuestos
+que
+que
+nosotros
+hicimos
+para obtener
+estimaciones
+consistentes
+de los
+parámetros
+que acompañan
+a las variables
+explicativas
+observadas
+entonces
+la
+si ustedes
+recuerdan
+en nuestros
+dos casos
+estimación
+por efectos fijos
+estimación
+por
+estimación
+por efectos fijos
+o cualquiera
+de las tres
+transformaciones
+que vimos
+estimación
+por
+efectos
+aleatorios
+la condición
+que yo necesito
+para
+obtener
+estimaciones
+consistentes
+es que
+exista
+exogeneidad
+estricta
+en los
+errores
+idiosincráticos
+del modelo
+original
+si
+si yo
+relajo
+el supuesto
+de exogeneidad
+estricta
+entonces
+los modelos
+transformados
+para efectos fijos
+o
+el modelo
+de efectos
+aleatorios
+me deja
+estimaciones
+que no son
+consistentes
+entonces
+toda la
+toda la
+la
+el problema
+aquí
+es que
+si
+efectivamente
+existe
+una relación
+entre
+alguna de las
+variables
+explicativas
+observadas
+y el error
+de la ecuación
+yo no puedo
+utilizar
+ninguno de los
+dos estimadores
+que hemos visto
+hasta hoy
+necesitamos
+una nueva
+forma de
+estimación
+de nuevo
+dentro del
+contexto
+de
+necesitamos
+consistencia
+hay normalidad
+sintótica
+con el corte
+transversal
+tendiendo infinito
+y T mayúscula
+fijo
+que es nuestra
+definición
+de datos
+del panel
+entonces
+el modelo
+que vamos a
+analizar
+es el mismo
+modelo
+que
+utilizamos
+antes
+de componentes
+no observados
+X y T
+perdón
+I sub y T
+igual a
+X y T
+por beta
+más C sub i
+más U sub y T
+T va desde
+1 hasta T
+mayúscula
+es el momento
+de
+el modelo
+de componentes
+no observados
+y nosotros
+lo vamos a
+desarrollar
+para el caso
+de efectos
+fijos
+es decir
+que en este
+modelo
+C sub i
+y X y T
+están relacionados
+la covarianza
+entre
+la heterogeneidad
+no observada
+y alguna
+de las variables
+explicativas
+no observadas
+es diferente
+de 0
+o sea que
+tengo el modelo
+de efectos
+fijos
+entonces
+el primer punto
+dice
+vamos a
+permitir
+que
+la heterogeneidad
+no observada
+C sub i
+y X y T
+estén correlacionados
+tengo el modelo
+de efectos fijos
+y además
+vamos a permitir
+que el error
+de la ecuación
+U sub i T
+esté relacionado
+con los valores
+futuros
+de las variables
+explicativas
+X y T
+más 1
+T más 2
+T más 3
+T más T
+dentro del contexto
+del modelo
+autoregresivo
+de orden 1
+y sub i T
+igual a
+y sub i T
+menos 1
+por beta
+más C sub i
+más
+U sub i
+T
+X y T
+es
+la variable
+dependiente
+resalada
+y
+U sub i T
+U sub i T
+va a estar
+relacionado
+U sub i T
+va a estar
+relacionado
+con
+I sub i T
+I sub i T
+es función
+de U sub i T
+o si usted
+lo quiere
+I sub i T
+menos 1
+va a estar
+relacionado
+con U sub i T
+menos 1
+porque
+si yo escribo
+el mismo
+autoregresivo
+pero para el
+periodo
+T menos 1
+lo que tengo
+es
+I sub i T
+menos 1
+igual a
+I sub i T
+menos 2
+por beta
+más
+C sub i
+más
+U sub i T
+menos 1
+o sea
+I sub i T
+menos 1
+está relacionado
+con
+U sub i T
+menos 1
+pero
+en ese
+en ese
+modelo
+no se
+satisface
+el supuesto
+de exogenidad
+estricta
+porque el supuesto
+de exogenidad
+estricta
+que me dice
+el supuesto
+de exogenidad
+estricta
+me dice
+que yo
+no quiero
+relación
+entre el error
+de la ecuación
+y las variables
+explicativas
+en el mismo
+periodo
+temporal
+ni en el
+pasado
+ni en el
+futuro
+o sea
+yo no quiero
+que
+U sub i T
+esté relacionado
+con X y T
+pero tampoco
+quiero que
+U sub i T
+esté relacionado
+con
+X y T
+menos 1
+T menos 2
+T menos 3
+y no quiero
+que U sub i T
+esté relacionado
+con
+X y T
+más 1
+T más 2
+T más T
+mayús
+no tengo que
+tener ninguna
+relación
+entre los errores
+y la variable
+explicativa
+en ningún
+periodo
+temporal
+pero aquí
+eso no se
+satisface
+tengo relación
+entre
+I sub i T
+menos 1
+y U sub i T
+menos 1
+o entre
+U sub i T
+y I sub i T
+o sea
+que no se
+satisface
+el supuesto
+de exogenidad
+estricta
+y si no se
+satisface
+el supuesto
+de exogenidad
+estricta
+la estimación
+por mínimo
+cuadrado clásico
+o mínimo
+cuadrado
+generalizado
+me deja
+estimaciones
+que no son
+consistentes
+entonces
+para poder
+analizar
+el modelo
+de
+autoregresivo
+del modelo
+dinámico
+autoregresivo
+orden 1
+que tienen
+allí
+en la
+transparencia
+vamos a
+tener que
+incorporar
+un nuevo
+supuesto
+de exogenidad
+que es
+lo que se
+conoce
+en la literatura
+como
+exogenidad
+secuencial
+debido a
+Chamberlain
+del año
+92
+y
+que me dice
+que las
+variables
+explicativas
+son secuencialmente
+exógenas
+si
+la esperanza
+de
+un sub
+y t
+condicional
+a
+x y t
+x y t
+menos 1
+x y 1
+y c sub i
+es igual a c
+coloquialmente
+en palabras
+lo que me dice
+la
+condición
+de
+exogenidad
+secuencial
+es que yo no
+quiero relación
+entre los errores
+del modelo
+u sub i t
+y las variables
+explicativas
+en el presente
+x y t
+y en el pasado
+x y t
+menos 1
+t
+menos 2
+hasta 1
+no quiero
+ninguna relación
+pero
+permito
+relación
+entre
+entre
+u sub i t
+y los valores
+futuros
+de x
+o sea
+esta condición
+de exogenidad
+secuencial
+no me restringe
+a que
+la esperanza
+de u sub i t
+por x
+y t
+más 1
+sea igual a c
+la condición
+de exogenidad
+secuencial
+me dice
+no quiero
+relación
+entre los errores
+del modelo
+y las variables
+explicativas
+ni en el presente
+ni en el pasado
+en el futuro
+puede haber
+relación
+no me importa
+entonces
+si lo escribo
+en términos
+de
+la esperanza
+matemática
+de la variable
+dependiente
+la esperanza
+matemática
+de y sub i t
+es igual a
+condicional
+en x y t
+x t menos 1
+etc
+etc
+etc
+es igual a
+x y t
+por beta
+más c sub i
+porque la esperanza
+de u sub i t
+condicional
+en x y t
+menos 1
+es 0
+por
+exogenidad
+secuencial
+y la condición
+de exogenidad
+secuencial
+es la que me va
+a permitir
+encontrar estimaciones
+consistentes
+de los parámetros
+del
+modelo
+entonces
+vamos a
+ponerlo
+en términos
+matemáticos
+consideremos
+el modelo
+que aparece
+en el
+último punto
+de la última
+ecuación
+de la
+transparencia
+donde
+tengo el
+modelo
+de componentes
+no observados
+tengo la
+heterogeneidad
+no observada
+que está relacionada
+con
+este
+con
+el
+error
+de la
+ecuación
+o sea que
+estoy
+en el caso
+de efectos
+de efectos
+fijos
+esta
+segunda
+ecuación
+es
+nosotros
+escribimos
+ese
+modelo
+como la
+ecuación
+la última
+ecuación
+de la
+transparencia
+anterior
+para una
+observación
+genérica
+de corte
+transversal
+y una
+observación
+genérica
+de
+frecuencia
+temporal
+t
+eso
+involucra
+que
+y sub
+y t
+es un
+escalar
+uno por
+uno
+si yo
+agrupo
+todas las
+observaciones
+de series
+temporales
+para cada
+observación
+de corte
+transversal
+tengo la
+primera
+ecuación
+de esta
+transparencia
+donde
+y subí
+ahora
+es un
+vector
+de dimensión
+t mayúscula
+por uno
+y
+cualquiera
+sea
+el modelo
+de efectos
+aleatorios
+o de
+efectos
+fijos
+efectos
+aleatorios
+se estima
+por mismos
+cuadros
+generalizados
+efectos
+fijos
+estima
+por
+transforma
+y estima
+por
+mínimos
+cuadrados
+clásicos
+o
+pool
+o
+el
+es
+la
+estimación
+no es
+consistente
+si
+tengo
+relación
+entre
+alguna
+de las
+x
+y el
+error
+de la
+de la
+ecuación
+y
+los dos
+modelos
+los dos
+métodos
+de estimación
+descansan
+en el supuesto
+de que
+no puede
+haber
+relación
+entre
+las variables
+explicativas
+y el error
+de la ecuación
+ni en el
+presente
+ni en el
+pasado
+ni en el
+futuro
+exogenidad
+estética
+la
+estimación
+de efectos
+fijos
+la tienen
+en la
+siguiente
+transparencia
+que es
+copy paste
+de nuestra
+estimación
+de efectos
+fijos
+x
+transpuesta
+por x
+inversa
+x
+transpuesta
+por y
+solamente
+que
+el
+x
+tiene
+los dos
+puntitos
+arriba
+los dos
+puntitos
+arriba
+de las
+x
+y de las
+y
+lo único
+que me
+dicen
+es que
+yo agarré
+la variable
+original
+y la
+resté
+la media
+temporal
+de la
+variable
+en cada
+corte
+traversal
+igual que
+hicimos
+antes
+lo puedo
+escribir
+aquí
+voy a poner
+1
+y subí
+t
+con los
+dos
+puntitos
+arriba
+es igual
+a
+y subí
+t
+menos
+y
+raya
+y
+en la
+media
+temporal
+de
+la
+variable
+en cada
+corte
+transpuesta
+entonces
+fíjense
+que
+la
+el
+modelo
+que voy a
+estimar
+es este
+que está
+acá
+y subí
+es igual
+a xy
+por beta
+más
+subí
+más
+u subí
+o sea
+que
+lo que yo
+puedo
+hacer
+en el
+estimador
+estimador
+beta
+sombrero
+de efectos
+fijos
+igual
+a
+la
+suma
+desde
+i
+igual
+1
+hasta
+n
+de
+xy
+con los
+dos
+puntitos
+arriba
+transpuesto
+por
+xy
+con los
+dos
+puntitos
+arriba
+inversa
+por
+la
+suma
+desde
+i
+igual
+1
+hasta
+n
+de
+xy
+con los
+dos
+puntitos
+arriba
+transpuesto
+por
+y subí
+con los
+dos
+puntos
+este es
+el estimador
+y
+si yo
+reemplazo
+este
+y subí
+con los
+dos
+puntitos
+arriba
+por
+xy
+con los
+dos
+puntitos
+arriba
+por
+beta
+más
+u subí
+con los
+dos
+puntitos
+arriba
+cuando hago
+la multiplicación
+de toda
+esta expresión
+por
+el primer
+término
+me queda
+este
+beta
+solito
+y cuando
+hago la
+multiplicación
+de todo
+este
+término
+por
+u subí
+con los
+dos
+puntitos
+arriba
+me queda
+este
+segundo
+sí
+y después
+sabiendo
+que
+qt
+es la
+matriz
+time
+demeaning
+que aplicada
+sobre cualquier
+variable
+me devuelve
+la variable
+con los dos
+puntitos
+de arriba
+yo sé que qt
+por
+u subí
+me devuelve
+u subí
+con los dos
+puntitos
+arriba
+y qt
+por xy
+me devuelve
+xy
+con los dos
+puntitos
+arriba
+o sea
+que
+este
+segundo
+término
+que tienen
+acá
+es la
+suma
+desde
+y
+igual
+uno
+hasta
+n
+de
+qt
+por xy
+traspuesto
+qt
+por u subí
+o
+suma
+desde
+y
+igual
+uno
+hasta
+n
+de
+xy
+traspuesto
+por
+qt
+traspuesto
+por qt
+por u subí
+pero como qt
+es una matriz
+idempotente
+qt
+por qt
+es qt
+o sea
+que esto
+que tengo
+acá
+en el centro
+es qt
+qt
+traspuesto
+porque qt
+y qt
+traspuesto
+son iguales
+entonces
+entonces
+lo que tengo
+aquí
+es
+si yo
+agrupo
+xy
+traspuesto
+por qt
+traspuesto
+me queda
+la suma
+la suma
+desde
+y igual
+uno
+hasta n
+de
+xy
+con los dos
+puntitos arriba
+traspuesto
+por u subí
+esa es la
+segunda
+igualdad
+de la
+transparencia
+y después
+si yo
+multiplico
+y divido
+por el mismo
+número
+no cambia
+nada
+entonces
+lo que hice
+acá fue
+multiplicar
+y dividir
+por n
+si n
+tiende
+infinito
+por la ley
+de los grandes números
+el último
+término
+converge a
+su esperanza
+matemática
+dentro de la esperanza
+matemática
+de
+xy
+con los dos
+puntitos arriba
+por u subí
+adentro
+de este
+xy
+con los dos
+puntitos arriba
+tengo
+x y t
+x y
+perdón
+menos
+x raya y
+y este
+x raya y
+está definido
+como
+uno
+sobre t
+por la suma
+desde t
+igual uno
+hasta t
+mayúscula
+de
+x y
+t
+o sea
+que adentro
+de
+el
+x
+raya y
+tengo
+x1
+x2
+x1
+x2
+x3
+x7
+mayúscula
+para que el estimador
+sea consistente
+esa esperanza matemática
+tiene que ser
+cero
+porque si
+esa esperanza
+matemática
+es cero
+entonces
+beta
+son pregos
+de efectos
+fijos
+convergen a beta
+y el segundo
+término
+se va a cero
+pero para que
+esa esperanza
+matemática
+sea cero
+yo no tengo
+que tener
+relación
+entre
+u subit
+y
+x y
+ni en el
+presente
+ni en el
+pasado
+ni en el
+futuro
+no quiero
+que haya
+relación
+entre
+u subit
+y x
+y 1
+no quiero
+que haya
+relación
+entre
+u subit
+y x
+y 2
+no quiero
+que haya
+relación
+entre
+u subit
+y x
+y t
+mayúscula
+no puedo
+tener
+relación
+entre
+las x
+en ningún
+periodo
+temporal
+y u subit
+si eso
+se cumple
+entonces
+el estimador
+es consistente
+y para que
+eso se cumpla
+es que nosotros
+asumimos
+exogenidad
+estricta
+exogenidad
+estricta
+entre
+las variables
+explicativas
+del modelo
+original
+x y t
+y los errores
+idiosincráticos
+del modelo
+original
+u subit
+para todo
+i y para
+todo t
+que es lo
+que está
+expresado
+en la ecuación
+en el centro
+de esta
+transparencia
+ahora
+lo que vamos
+a hacer
+es
+solo
+requerir
+exogenidad
+secuencial
+que es lo que
+puedo asumir
+en el modelo
+de panel
+dinámico
+es decir
+que
+lo que puedo
+garantizar
+en un modelo
+autoregresivo
+de orden 1
+en un modelo
+dinámico
+es la última
+ecuación
+que aparece
+ahí
+que me dice
+que
+u subit
+no está
+relacionado
+con las x
+ni en el presente
+ni en el pasado
+pero no me dice
+nada acerca
+de
+qué es lo que
+sucede
+en el futuro
+pero si
+la
+exogenidad
+secuencial
+es
+lo que
+podemos
+asumir
+en un modelo
+dinámico
+entonces
+no podemos
+garantizar
+que la esperanza
+de x y
+con los dos
+puntitos arriba
+por un subit
+sea cero
+que es lo que
+tienen en el centro
+de la transparencia
+la esperanza
+de x y t
+con los dos
+puntitos arriba
+por un subit
+es la esperanza
+de x y t
+menos
+x raya y
+que es
+1 sobre t
+por la suma
+de 1
+t de x y t
+por un subit
+yo puedo hacer
+la distributiva
+de un subit
+con x y t
+y con la suma
+y aplicar
+la esperanza
+matemática
+para que me quede
+esperanza
+de x y t
+por un subit
+menos 1 sobre t
+por la suma
+de una t
+de x y j
+por
+un subit
+la primera
+esperanza
+matemática
+es igual
+a cero
+por el supuesto
+de exogeneidad
+secuencial
+no quiero
+relación
+entre las variables
+explicativas
+y el error
+de la ecuación
+ni en el presente
+ni en el pasado
+y ahí lo tengo
+en el presente
+es fácil
+tengo que aplicar
+la ley de expectativas
+iterada
+y me da
+que
+la primera
+esperanza
+matemática
+es igual
+a cero
+el problema
+lo tengo
+con la segunda
+esperanza
+matemática
+porque la segunda
+esperanza
+matemática
+la segunda
+esperanza
+matemática
+incluye
+x
+que van
+desde j
+igual 1
+hasta t
+mayúscula
+esta x
+va desde j
+igual 1
+va desde x
+y 1
+hasta
+x
+y t
+mayúscula
+pasando por
+x y t
+entonces yo sé
+que
+hasta acá
+la esperanza
+matemática
+es cero
+por el supuesto
+de exogenidad
+secuencial
+pero a partir
+de
+x y
+t más 1
+hasta x y
+t mayúscula
+¿sí?
+ahí
+no puedo garantizar
+que esa esperanza
+es cero
+porque la exogenidad
+secuencial
+lo único
+que me garantiza
+es que
+en el presente
+y en el pasado
+no hay relación
+en el futuro
+no sé
+o sea que
+en la segunda
+en el segundo término
+esta esperanza
+matemática
+desde
+j
+t más 1
+hasta t
+con 1
+y t
+es distinta
+de cero
+y entonces
+el estimador
+de efectos fijos
+no es consistente
+como la estimación
+no es consistente
+necesito cambiar
+de método
+de estimación
+vamos a poner
+el modelo dinámico
+que vamos a analizar
+que es
+el
+modelo
+autoregresivo
+de orden 1
+que es un ejemplo
+de
+lo que
+pusimos
+como modelo
+de componente
+no cero
+donde
+x y t
+ahora es una sola
+variable
+y es la variable
+dependiente
+rezagada
+anterior
+o sea que
+el
+el modelo
+ahora
+es el último
+que tiene
+en la transparencia
+y sub it
+igual a c sub i
+más
+en lugar de x y t beta
+voy a poner
+ro por
+y sub it
+menos 1
+como variable
+explicativa
+más
+un sub it
+y lo que vamos a hacer
+es
+imponer
+considerar
+la exogenidad
+secuencial
+que me dice
+que
+cuando yo
+condiciono
+un sub it
+sobre
+x y 1
+x y t menos 2
+x y t menos 1
+eso
+es igual a cero
+esperanza
+de un sub it
+con x y con
+y sub it
+es distinto
+de cero
+porque
+es nuevo
+como lo mostramos
+antes
+y sub it menos 1
+está relacionado
+con un sub it menos 1
+y sub it
+está relacionado
+con un sub it
+el modelo
+que está
+recuadrado
+en la
+segunda ecuación
+de la transparencia
+se conoce
+en la literatura
+como modelo
+autoregresivo
+de orden 1
+de efectos
+no observables
+y lo que hace
+níquel
+es
+calcular
+el sesgo
+que hay
+cuando estimo
+por
+mínimo
+cuadrado
+clásico
+y el sesgo
+se conoce
+en la literatura
+como sesgo
+de níquel
+el sesgo
+de níquel
+está puesto
+allí
+en la
+en el centro
+de la transparencia
+solamente
+para
+este
+decir
+dos cosas
+una
+y es que
+este
+el sesgo
+es
+negativo
+siempre
+que
+el
+coeficiente
+autoregresivo
+de orden 1
+sea positivo
+el sesgo
+nunca converge
+a cero
+aun cuando
+el coeficiente
+autoregresivo
+sea cero
+y depende
+de t
+mayúscula
+como t
+fijo
+entonces voy
+a tener
+sesgo
+por más
+que el coeficiente
+error sea cero
+no puedo estimar
+por unos cuadros clásicos
+no puedo estimar
+por unos cuadros
+realizados
+porque los dos métodos
+me dejan estimadores
+que no son consistentes
+tengo que cambiar
+de método de estimación
+y para cambiar
+de método
+de estimación
+vamos a describir
+dos estimadores
+que se conocen
+en la literatura
+como el método
+de Arellano y Bond
+y el método
+de Blandelli
+y que
+como dije
+al comienzo
+tienen nombre
+y apellido
+básicamente
+porque
+en la literatura
+y en los paquetes
+estadísticos
+se estiman
+con
+comandos
+especiales
+el STATA
+que utiliza
+XTRG
+para estimar
+por
+pulo de ledes
+o por
+efecto fijo
+o por
+efectos aleatorios
+tiene un comando
+que es
+XTA
+Bond
+que estima
+por Arellano y Bond
+y XTSIS
+que estima
+por
+Landerio
+como están los comandos
+y uno los aprienta
+y sale
+el recontado
+lo vamos a describir
+los dos
+las dos
+estimaciones
+lo que tienen
+en la primera
+parte de la transparencia
+es
+como todas las esperanzas
+que
+vamos a tomar
+están condicionadas
+en
+todos los valores
+de las variables
+explicativas
+desde uno
+hasta
+T
+la voy a resumir
+en un vector
+tenemos el modelo
+autoregresivo
+de orden uno
+o sea que
+la
+variable
+explicativa
+del modelo
+es
+Y subí
+T menos uno
+y yo voy a resumir
+en el vector
+Y subí
+T menos uno
+supra T menos uno
+al vector
+que contiene
+todos los valores
+de
+la variable
+Y
+para la observación
+de corte transversal
+Y
+pequeña
+desde uno
+hasta T menos uno
+en la historia
+es el vector
+de la historia
+de las observaciones
+de la variable
+Y para el corte
+transversal
+Y
+pequeño
+y después
+vamos a hacer
+un supuesto
+estándar
+en
+series temporales
+y es que
+el modelo
+es estable
+el coeficiente
+autoregresivo
+de orden uno
+en valor absoluto
+es menor a uno
+aparte de
+el requerimiento
+de que
+el modelo
+sea estable
+vamos a
+asumir
+exogeneidad
+secuencial
+es decir
+la esperanza
+de un subité
+condicional
+en C sub I
+y en I sub I
+supra
+T menos uno
+es igual a C
+La exogeneidad
+secuencial
+implica
+ausencia
+de correlación
+serial
+en los errores
+idiosincratos
+para todo
+S
+positivo
+la covarianza
+entre
+U sub I
+T
+y U sub I
+T menos S
+es la esperanza
+de U sub I
+T
+por U sub I
+T menos S
+aplicando la ley
+de expectativas
+iteradas
+esto es la esperanza
+de la esperanza
+de la multiplicación
+condicional
+en C sub I
+y en I sub I
+hasta T menos uno
+¿sí?
+y después
+lo que vamos a hacer
+es
+reemplazar
+este
+U sub I
+T menos S
+por el modelo
+el modelo
+escrito para
+la observación
+T menos S
+sería
+I sub I
+T menos S
+igual a
+C sub I
+más
+Rho
+por I sub I
+T menos S
+menos uno
+más
+U sub I
+T menos S
+o sea que
+U sub I
+T menos S
+lo puedo reemplazar
+por I sub I
+T menos S
+menos C sub I
+menos Rho
+por I sub I
+T
+menos S
+menos uno
+¿sí?
+que es
+esta segunda igualdad
+que aparece aquí
+que tiene
+un error
+este más
+es un menos
+¿sí?
+este más es un menos
+y este más es un menos
+es pasar estos dos términos
+que están sumados
+del lado derecho
+restando al lado
+del lado derecho
+entonces
+de nuevo
+ahora
+lo que
+lo que puedo hacer
+es
+como estoy
+condicionando
+en
+I sub I
+T menos uno
+I sub I
+supra
+T menos uno
+eso es lo que estoy
+condicionando sobre
+I sub I uno
+I sub I dos
+hasta I sub I
+T menos uno
+todo lo que sea
+función de X
+hasta I sub I
+T menos uno
+lo puedo sacar afuera
+de la esperanza
+matemática
+¿sí?
+en particular
+como S es positivo
+todo lo que sea
+I sub I
+T menos S
+¿sí?
+sale afuera
+de la esperanza
+matemática
+¿sí?
+esto
+sale afuera
+de la esperanza
+matemática
+esto sale afuera
+de la esperanza
+matemática
+y esto sale afuera
+porque estoy
+condicionando sobre
+C sub I
+también
+o sea que me va
+a quedar
+la esperanza
+de
+todo esto
+que sale afuera
+de la segunda
+esperanza
+por la esperanza
+de U sub I
+T
+condicional
+en C sub I
+y en U sub I
+supra
+T menos uno
+¿sí?
+pero esa es
+la condición
+de exogenidad
+secuencial
+Bors
+exogenidad secuencial
+esa última esperanza
+matemática
+es cero
+no quiero relación
+entre los errores
+de la ecuación
+U sub I
+T
+y las variables
+explicativas
+ni en el presente
+ni en el pasado
+¿sí?
+o sea que
+no tengo
+relación
+entre
+los errores
+en
+diferentes
+periodos
+temporales
+no tengo
+correlación
+serial
+en los
+errores
+del modelo
+los errores
+idiosincráticos
+del
+modelo
+los dos
+métodos
+de estimación
+que vamos
+a ver
+¿sí?
+necesitan
+que
+el
+proceso
+estocástico
+se estacionar
+¿sí?
+entonces déjenme
+vamos a ponerlo
+acá
+voy a poner
+un modelo
+de serie
+temporales
+¿sí?
+un autorregresivo
+de orden 1
+vamos a ponerlo acá
+XT
+igual a
+C
+más
+alfa
+por XT
+menos 1
+más
+Epsilon T
+¿sí?
+con alfa
+en valor absoluto
+menor a 1
+y vamos a poner
+Epsilon T
+independiente
+idénticamente
+distribuido
+media cero
+varianza constante
+¿sí?
+entonces
+en ese
+en ese modelo
+¿sí?
+yo
+puedo escribirlo
+en términos de
+el operador
+rezago
+L
+¿sí?
+que es un operador
+que aplicado
+sobre cualquier
+variable
+me devuelve
+la misma
+variable
+en el
+periodo anterior
+¿sí?
+entonces yo puedo
+escribir este
+modelo
+como
+XT
+igual a
+C
+más
+alfa
+por L
+por XT
+más
+Epsilon T
+y
+pasando
+este término
+restando
+al primer
+al primer
+al lado izquierdo
+del igual
+me queda
+1
+menos
+alfa
+por L
+por XT
+igual a
+C
+más
+Epsilon T
+¿sí?
+y como
+alfa
+en valor absoluto
+es menor a 1
+yo puedo pasar
+yo puedo pasar
+este paréntesis
+que está acá
+dividiendo al segundo
+término
+para que me quede
+XT
+igual a
+C
+sobre
+1
+menos
+Rho
+más
+Epsilon T
+sobre
+1
+menos
+Rho
+por L
+y
+y
+1
+sobre
+1
+menos
+Rho
+por L
+es el resultado
+de la convergencia
+de una progresión
+geométrica
+de razón
+Rho
+por L
+o sea que
+esto es
+1
+más Rho
+por L
+más Rho
+al cuadrado
+por L
+al cuadrado
+más
+puntos
+o sea que
+en el
+proceso
+autoregresivo
+de orden 1
+esto es
+C
+sobre
+1
+menos
+Rho
+más
+Epsilon T
+más
+Rho
+por Epsilon T
+menos 1
+más
+Rho
+al cuadrado
+por Epsilon T
+menos 2
+más
+puntos
+¿cuál era
+nuestra definición
+de un proceso
+estacionario?
+un proceso
+estacionario
+era un proceso
+cuya esperanza
+matemática
+su varianza
+y su covarianza
+no dependían
+del tiempo
+una vez que yo
+puedo expresar
+a
+XT
+en función
+de
+una
+combinación
+lineal
+de Epsilon
+puedo calcular
+todos los momentos
+porque conozco
+todos los momentos
+de Epsilon
+en principio
+sé que
+la esperanza
+matemática
+la esperanza
+matemática
+la esperanza
+matemática
+de XT
+es
+C
+sobre
+1
+menos
+Rho
+constante
+en el tiempo
+el proceso
+es estacionario
+en medio
+¿ok?
+si quiero calcular
+la varianza
+la varianza
+de XT
+es igual
+a la varianza
+de Epsilon
+T
+más
+Rho
+por Epsilon
+T
+menos 1
+más Rho
+al cuadrado
+por Epsilon
+T
+menos 2
+más
+punto super
+simple
+la varianza
+de una suma
+de variables
+aleatorias
+es la suma
+de la varianza
+más 2 veces
+la suma
+de todas las
+covarianzas
+pero los Epsilon
+son independientes
+o sea que
+todas las covarianzas
+son iguales a 0
+y entonces me queda
+la varianza
+de la suma
+igual a la suma
+de las varianzas
+¿ok?
+esto
+¿qué me queda?
+me queda igual
+a la varianza
+de Epsilon
+T
+más Rho
+que sale
+al cuadrado
+por la varianza
+de Epsilon
+T
+menos 1
+más Rho
+al cuadrado
+que sale
+a la cuarta
+por la varianza
+de Epsilon
+T
+menos 2
+y así
+sucesivamente
+¿sí?
+y todas
+estas varianzas
+son iguales
+Sismo al cuadrado
+de Epsilon
+Sismo al cuadrado
+de Epsilon
+Sismo al cuadrado
+de Epsilon
+está en todos
+los términos
+porque todas
+las varianzas
+son Sismo al cuadrado
+de Epsilon
+entonces
+la
+varianza
+de X
+la varianza
+de X
+es igual a
+Sismo al cuadrado
+de Epsilon
+que lo puedo sacar
+factor común
+de
+1
+más
+Rho
+al cuadrado
+más
+Rho
+a la cuarta
+más
+punto de superfile
+¿sí?
+y esa
+es
+una progresión
+geométrica
+de razón
+Rho al cuadrado
+y como Rho
+en valor absoluto
+es menor a 1
+Rho al cuadrado
+es menor a 1
+la progresión
+geométrica
+converge
+converge
+a 1 sobre 1
+menos la razón
+de la progresión
+o sea que
+esto lo puedo escribir
+como
+Sismo al cuadrado
+de Epsilon
+dividido
+1 menos
+Rho al cuadrado
+la varianza
+es constante
+en el tiempo
+el proceso
+autoregresivo
+es estacionario
+en varianza
+y puedo calcular
+la covarianza
+lo que
+la literatura
+de series temporales
+llama
+auto
+covarianza
+porque es la covarianza
+de una variable
+consigo misma
+¿sí?
+entonces
+la autocovarianza
+o la covarianza
+covarianza
+entre
+XT
+y
+XT
+menos S
+¿sí?
+es igual
+por definición
+de covarianza
+a
+la esperanza
+la esperanza
+matemática
+de
+XT
+menos
+esperanza
+matemática
+multiplicado
+por
+XT
+menos S
+menos
+esperanza
+matemática
+¿sí?
+y como
+esta esperanza
+matemática
+y esta esperanza
+matemática
+la calculamos
+C
+sobre 1
+menos
+Rho
+constante
+¿sí?
+¿sí?
+la esperanza
+matemática
+¿sí?
+XT
+menos
+la esperanza
+de XT
+es
+Y en el segundo paréntesis
+tengo lo mismo
+pero para el periodo
+T menos S
+tengo
+Epsilon
+Epsilon
+T
+menos S
+más
+Rho
+por Epsilon
+T
+menos S
+menos 1
+más Rho
+al cuadrado
+por Epsilon
+T
+menos S
+menos 2
+más
+punto
+de
+Y para poder
+aplicar la esperanza
+matemática
+necesito hacer la distributiva
+entre los términos
+del primer paréntesis
+y los términos
+del segundo paréntesis
+con una ventaja
+y es que
+cualquier multiplicación
+de Epsilon
+en diferentes
+periodos temporales
+me da la covarianza
+entre esos Epsilon
+y como los Epsilon
+son independientes
+las covarianzas son 0
+¿sí?
+por ejemplo
+Epsilon
+T
+por Epsilon
+T
+menos S
+primer término
+del primer paréntesis
+y con primer término
+del segundo paréntesis
+¿sí?
+cuando aplique
+la esperanza matemática
+la esperanza de Epsilon
+T
+por Epsilon
+T
+menos S
+la covarianza
+entre Epsilon
+T
+y Epsilon
+T menos S
+la covarianza es 0
+porque los animales
+son independientes
+¿sí?
+¿cuáles son los términos
+que van a sobrevivir?
+bueno
+los únicos términos
+que van a sobrevivir
+son los que tengan
+la multiplicación
+de Epsilon
+en el mismo
+periodo de temporada
+¿sí?
+entonces
+si
+yo miro
+el primer
+paréntesis
+¿sí?
+acá
+y digo
+y digo
+¿cuál es
+el primer
+término
+¿cuál es
+el primer
+término?
+en el primer
+paréntesis
+que se repite
+en el segundo
+paréntesis
+es
+ro a la S
+por Epsilon
+T
+menos S
+¿sí?
+tengo
+ro por Epsilon
+T
+ro al cuadrado
+por Epsilon
+T
+menos
+ro al cubo
+por Epsilon
+ro a la S
+por Epsilon
+T
+menos S
+que cuando se multiplique
+con el primer
+término
+del segundo
+paréntesis
+voy a ponerlo
+acá
+me va a quedar
+ro a la S
+por la esperanza
+por Epsilon
+T
+menos S
+al cuadrado
+aquí no lo expliqué
+más
+el siguiente
+término
+acá es
+ro
+a la S
+más 1
+por Epsilon
+T
+menos S
+menos 1
+que cuando se multiplique
+con el segundo
+término
+del segundo
+paréntesis
+me va a quedar
+ro
+a la S
+más 2
+por Epsilon
+T
+menos S
+menos 1
+al cuadrado
+el siguiente
+término
+es ro
+a la S
+más 2
+por Epsilon
+T
+menos S
+menos 2
+que cuando se multiplique
+por el tercer
+término
+me va a quedar
+más
+ro
+a la S
+más 4
+por Epsilon
+T
+menos S
+menos 2
+al cuadrado
+y así con el resto
+de los términos
+que siguen
+ro a la S
+más 3
+por Epsilon
+T
+menos S
+menos 3
+multiplicado
+por el tercer
+entonces
+cuando aplique
+la esperanza
+matemática
+me va a quedar
+igual a
+ro a la S
+por la esperanza
+de Epsilon
+T
+menos S
+al cuadrado
+pero la esperanza
+de Epsilon
+T
+menos S
+al cuadrado
+es la varianza
+Epsilon
+que es
+sigma cuadrado
+de Epsilon
+más
+ro a la S
+más 2
+y yo puedo sacar
+de factor común
+ro a la S
+por sigma cuadrado
+de Epsilon
+que se repite
+en todos los términos
+factor común
+de 1
+más
+ro al cuadrado
+más
+ro a la cuarta
+más punto
+suficiente
+que es la misma
+progresión geométrica
+que teníamos
+en la varianza
+y como
+ro en valor
+absoluto
+es menor a 1
+ro al cuadrado
+es menor a 1
+y esta es una
+progresión geométrica
+de razón
+ro al cuadrado
+entonces converge
+a
+1 sobre 1
+menos la razón
+de la progresión
+de forma tal
+de que
+la covarianza
+entre XT
+y XT
+menos S
+es ro a la S
+por sigma cuadrado
+de Epsilon
+dividido
+1 menos
+ro al cuadrado
+y la covarianza
+tampoco
+depende del tiempo
+y entonces
+el proceso
+es
+estacionario
+de covarianza
+o estacionario
+de forma débil
+ni la media
+ni la varianza
+ni la covarianza
+depende del tiempo
+¿está claro esto?
+el punto
+el punto
+matemático
+el punto
+matemático
+¿está claro esto?
+es que yo puedo
+hacer todo esto
+¿está claro esto?
+yo puedo hacer
+todo esto
+porque
+T
+puede tender
+infinito
+y entonces
+yo puedo expresar
+a XT
+como una
+combinación lineal
+de infinito
+a sépsil
+¿está claro esto?
+entonces
+¿qué problema
+tengo
+¿qué problema
+tengo
+en
+datos de panel?
+T
+infinito
+yo no puedo
+hacer eso
+porque para poder
+hacer eso
+T mayúscula
+tiene que tender
+infinito
+o T minúscula
+tiene que tender
+infinito
+¿qué es lo que
+sucede
+en
+datos de panel?
+en datos de panel
+no puedo utilizar
+el operador
+resano
+lo único que puedo
+hacer es
+si quiero hacer
+lo mismo
+que
+hicimos recién
+¿sí?
+es
+escribir
+el modelo
+para
+las observaciones
+hasta llegar
+hasta la primera
+¿sí?
+que es lo que
+tienen allí
+en la transparencia
+la primera igualdad
+es el modelo
+original
+¿sí?
+la primera igualdad
+es el modelo
+original
+en el modelo
+original
+yo puedo
+reemplazar
+este
+I subí
+T menos uno
+por su expresión
+en términos
+del modelo
+C subí
+más ro
+por I subí
+T menos dos
+más U subí
+T menos uno
+más U subí
+T que es este
+fotograma
+¿sí?
+y si hago
+la distributiva
+de ro
+con cada uno
+de estos términos
+me queda
+la tercera igualdad
+uno más ro
+por C subí
+más ro al cuadrado
+por I subí
+T menos dos
+más U subí
+T más ro
+por U subí
+T menos uno
+¿sí?
+y acá puedo hacer
+lo mismo
+puedo poner
+uno
+más ro
+por C subí
+más
+ro al cuadrado
+y en lugar de poner
+I subí
+T menos dos
+puedo poner el modelo
+C subí
+más ro
+por I subí
+T menos tres
+más
+U subí
+T menos dos
+más
+U subí
+T
+más ro
+por U subí
+T menos uno
+¿sí?
+y si en esa ecuación
+hago la distributiva
+de ro al cuadrado
+con los tres términos
+del paréntesis
+¿sí?
+lo que voy a tener
+lo pongo acá abajo
+uno más ro
+más ro al cuadrado
+por C subí
+más ro al cubo
+por I subí
+T menos tres
+más
+más U subí
+T
+más ro
+por U subí
+T menos uno
+más ro al cuadrado
+por U subí
+T menos dos
+y así puedo seguir
+reemplazando
+I subí
+T menos tres
+por C subí
+más ro por U subí
+T
+I subí
+T menos cuatro
+más U subí
+T menos tres
+y así sucesivamente
+hasta la primera
+observación
+¿sí?
+no puedo seguir
+porque no tengo
+infinitos T
+¿sí?
+entonces
+fíjense que
+para la primera observación
+X uno
+o I sub uno
+¿sí?
+lo que tengo es
+fíjense
+el leading term
+este que tengo acá
+¿sí?
+está
+el coeficiente
+elevado
+al cubo
+I subí
+T menos tres
+¿sí?
+yo quiero llegar
+a I subí
+uno
+¿sí?
+o sea que
+para llegar a I subí
+uno
+esto se tiene que convertir
+en I subí
+T
+menos
+T menos uno
+¿sí?
+I subí
+T menos T menos uno
+I subí uno
+¿sí?
+entonces
+básicamente
+lo que estoy diciendo
+es que
+este ro
+que multiplica
+I subí uno
+tiene que estar
+elevado a la T menos uno
+¿sí?
+que es este segundo término
+que aparece aquí
+el primer término
+es este
+¿sí?
+que tiene
+uno
+más ro
+más ro
+al cuadrado
+por C subí
+¿sí?
+cuando el leading term
+está elevado
+al cubo
+el último ro
+acá
+está elevado
+al cuadrado
+o sea que
+si el leading term
+para la observación uno
+está elevado
+a la T menos uno
+¿sí?
+el último ro
+tiene que estar
+elevado
+a la T menos dos
+¿sí?
+esto que tengo acá
+en esta suma
+resumida
+es
+ro a la cero
+que es uno
+más ro
+a la uno
+más ro
+al cuadrado
+más punto subvencivo
+más ro
+a la T
+menos dos
+multiplicado
+por C subí
+¿sí?
+y después
+en el último término
+tengo con un subí
+un subí
+más ro
+por un subí
+menos uno
+más ro al cuadrado
+por un subí
+menos dos
+de nuevo
+de nuevo
+el leading term
+está al cubo
+el ro
+el último ro
+tiene que estar
+elevado
+a un periodo
+antes
+¿sí?
+o sea que si
+el leading term
+para la primera
+observación
+está elevado
+a la T menos uno
+los ro
+tienen que llegar
+hasta T menos dos
+de nuevo
+esta suma
+se resumen
+de
+U subí
+T
+cuando S
+vale cero
+más ro
+por un subí
+T menos uno
+un subí
+T menos uno
+cuando S
+vale uno
+más punto subvencivo
+hasta ro
+a la T menos dos
+por un subí
+T
+menos dos
+perdón
+un subí
+dos
+es decir
+este
+T menos tres
+T menos dos
+en la primera
+observación
+este es uno
+este es dos
+y hasta ahí llegué
+¿sí?
+¿qué es lo que pasa
+en series temporales?
+en series temporales
+como T
+se va al infinito
+el exponente
+del segundo
+término
+me queda
+ro al infinito
+¿sí?
+y como
+ro es menor a uno
+en valor absoluto
+ro al infinito
+me da cero
+y ese término
+desaparece
+y solo me queda
+el primero
+y el último
+¿sí?
+pero el primero
+es la progresión
+geométrica
+que va hasta infinito
+de razón
+ro
+o sea
+que
+cuando aplique
+cuando
+haga convergen
+eso es
+c sobre
+en este caso
+es c subí
+sobre uno
+menos ro
+¿sí?
+y después
+te escribo
+una combinación
+lineal
+de infinitos
+u
+¿sí?
+que es donde
+uno puede mostrar
+que la varianza
+es constante
+y la covarianza
+son constantes
+de infinito
+acá
+en datos de panel
+me quedo acá
+no puedo
+no puedo hacer nada más
+¿sí?
+entonces
+¿cómo hago para
+que el proceso
+sea estacionario
+en panel?
+para que el proceso
+sea estacionario
+en panel
+yo necesito
+¿sí?
+que
+la esperanza
+matemática
+sea constante
+en el tiempo
+la varianza
+sea constante
+en el tiempo
+y las covarianzas
+sean constantes
+en el tiempo
+¿sí?
+entonces
+vamos a calcular
+la esperanza
+matemática
+la esperanza
+matemática
+de
+I subí
+T
+condicional
+en C subí
+la podemos
+escribir
+usando la ley
+de expectativas
+iteradas
+como
+la esperanza
+matemática
+de
+la esperanza
+matemática
+de I subí
+T
+condicional
+en
+I subí
+T menos 1
+y C subí
+y la primera esperanza
+obviamente
+condicional en C subí
+entonces
+voy a agarrar
+este I subí
+T
+que tengo acá
+y lo voy a
+reemplazar
+por esta ecuación
+que ha quedado acá
+que es la segunda igualdad
+que tienen en la transparencia
+en lugar de
+I subí
+T
+voy a poner
+C subí
+por la suma
+de 0
+hasta T menos 2
+de la ropa S
+más ropa
+la T menos 1
+por I subí 1
+más suma
+de 0
+hasta T menos 2
+de ropa la S
+por U subí
+T menos S
+condicional en
+I subí
+T menos 1
+I subí
+supra
+T menos 1
+I subí
+pero como estoy
+condicionando
+en
+I subí
+supra T menos 1
+I subí
+la esperanza
+de este último término
+es 0
+por exogeneidad
+secuencial
+y lo único
+que me va a sobrevivir
+es
+la esperanza
+del primer término
+y la esperanza
+del segundo término
+pero la esperanza
+del primer término
+es una constante
+o sea que
+es la misma constante
+y en el segundo término
+solo tengo
+I subí
+I subí
+I subí
+o sea que
+me queda
+ropa la T menos 1
+por la esperanza
+de I subí
+1
+condicional
+en C subí
+entonces
+está escrito
+así
+este primer término
+la suma
+la suma
+desde S
+igual 0
+hasta T
+menos 2
+de
+ro
+a la S
+es
+1
+más ro
+más ro
+al cuadrado
+más
+punto suspensivo
+más
+ro
+a la T
+menos 2
+si
+yo pudiera
+tener
+infinitos
+periodos temporales
+esta progresión
+sigue
+ok
+más
+ro
+a la T
+menos 1
+más
+ro
+a la T
+más
+punto
+entonces
+si
+la progresión
+sigue
+hasta el infinito
+si la progresión
+sigue
+hasta el infinito
+esta es una
+progresión
+geométrica
+de razón
+ro
+esto es una
+progresión
+geométrica
+de razón
+ro
+hasta el infinito
+y como
+ro
+en valor absoluto
+es menor a 1
+esta progresión
+es
+1
+sobre
+1
+menos ro
+converge
+a 1
+sobre 1
+menos la razón
+de la
+poder
+ahora
+lo que está
+escrito en rojo
+es lo que tengo
+en el primer término
+y lo voy a escribir
+así
+lo voy a escribir
+como
+1
+sobre
+1
+menos ro
+esa es la progresión
+que va
+hasta infinito
+menos
+ro
+a la T
+menos 1
+menos
+ro
+a la T
+menos
+punto
+2
+a la progresión
+hasta infinito
+le resto
+la progresión
+que empieza
+en ro
+a la T
+más 1
+y sigue
+hasta infinito
+y eso
+me da
+solamente
+la parte
+que está
+escrita en ro
+pero
+esta
+esta
+progresión
+esta progresión
+la puedo escribir
+como
+ro
+a la T
+menos 1
+factor
+común
+de
+1
+menos
+acá
+1
+más ro
+más ro
+al cuadrado
+más
+fin
+y
+como
+esta progresión
+converge
+porque
+ro
+es
+menor
+a 1
+en valor
+absoluto
+esto
+es
+menos
+menos
+ro
+a la T
+menos 1
+dividido
+1
+menos ro
+o sea
+que la parte
+que está
+en rojo
+es
+1
+sobre
+1
+menos ro
+menos
+ro
+a la T
+menos 1
+dividido
+1
+menos ro
+que está
+escrito
+en la última
+igualdad
+de la
+transparencia
+como
+se subí
+por
+1
+menos ro
+a la T
+menos 1
+dividido
+1
+menos ro
+el
+punto
+aquí
+es que
+como yo
+no puedo
+hacer
+tender
+T
+infinito
+el último
+término
+no
+desaparece
+y la
+esperanza
+de
+I
+subí
+T
+condicional
+en C
+subí
+depende
+de la
+esperanza
+matemática
+del primer
+valor
+de la
+variable
+depende
+de la
+esperanza
+matemática
+de
+I
+subí
+1
+condicional
+en C
+subí
+entonces
+para que
+el proceso
+sea
+estacionario
+yo
+necesito
+que
+la esperanza
+matemática
+de la
+variable
+I
+en la
+primera
+observación
+sea
+igual
+a la
+esperanza
+matemática
+del proceso
+en estado
+estacionario
+y la
+esperanza
+matemática
+del proceso
+en estado
+estacionario
+es
+C subí
+sobre 1
+menos
+ro
+digo
+si yo
+pudiera
+de nuevo
+ya lo hicimos
+con series
+temporales
+lo hacemos
+acá
+si yo
+pudiera
+hacer
+T
+tender
+infinito
+este término
+desaparece
+y acá
+me queda
+ro
+al infinito
+cero
+se queda
+C subí
+por 1
+sobre 1
+menos
+ro
+o sea
+que
+la esperanza
+matemática
+es
+C subí
+sobre 1
+menos
+que yo
+voy a
+llamar
+mu subí
+mu subí
+es
+la esperanza
+matemática
+del proceso
+en estado
+estacionario
+si yo
+asumo
+que
+la esperanza
+de la
+primera
+observación
+mu subí
+C subí
+sobre 1
+menos ro
+entonces
+la esperanza
+de
+I subí
+T
+condicional
+en C subí
+mu subí
+esta
+primera
+igualdad
+en la ecuación
+a la que llegamos
+reemplazamos
+esta esperanza
+matemática
+por
+C subí
+dividido
+1
+menos ro
+C subí
+dividido
+1
+menos ro
+y hacemos
+la continuidad
+básicamente
+esto
+lo puedo
+escribir
+así
+este
+primer término
+que tengo
+acá
+puedo hacer
+C subí
+por 1
+dividido
+1
+menos ro
+menos
+C subí
+por ro
+a la t
+menos 1
+dividido
+1
+menos ro
+el primer término
+C subí
+dividido
+1
+menos ro
+menos
+C subí
+por ro
+a la t
+menos 1
+dividido
+1
+menos ro
+más
+más
+más ro
+a la t
+menos 1
+por C subí
+sobre 1
+menos ro
+menos
+C subí
+por ro
+a la t
+menos 1
+sobre 1
+menos ro
+más
+C subí
+por ro
+a la t
+menos 1
+sobre 1
+menos ro
+me queda
+C subí
+sobre 1
+y el proceso
+es
+estacionario
+en medio
+para que el proceso
+en datos de panel
+sea estacionario
+necesito
+dos cosas
+uno
+estabilidad
+coeficiente
+en valor absoluto
+tiene que ser
+menor a 1
+2
+la esperanza
+matemática
+de la observación
+de la primera
+observación
+de la variable
+tiene que ser
+igual a la esperanza
+matemática
+del proceso
+en estado
+se acciona
+ahora voy a
+calcular
+la varianza
+y de nuevo
+para el
+modelo
+de series
+temporales
+calculamos
+la varianza
+y la varianza
+que era
+y la varianza
+era sigma cuadrado
+sobre 1
+menos ro
+1
+menos ro
+al cuadrado
+calculamos acá
+sigma cuadrado
+de éxilo
+sobre 1
+menos ro
+al cuadrado
+ahora
+vamos a calcular
+la varianza
+en datos de panel
+la auto
+covarianza
+que es la esperanza
+de u sub it
+al cuadrado
+condicional
+en c sub i
+y sub i
+supra
+t más 1
+igual a
+sigma cuadrado
+y lo único
+y lo único
+que vamos a hacer
+es
+asumir
+que
+la varianza
+de la primera
+observación
+de i
+coincide con la
+varianza
+en estado
+estacional
+la varianza
+de i sub i
+1
+condicional
+en c sub i
+que es sigma cuadrado
+sobre 1
+menos ro
+al cuadrado
+entonces
+vamos a escribir
+el modelo
+en desvío
+por respecto
+a la media
+para que
+me quede
+i sub i
+t
+menos
+mu sub i
+igual a ro
+por i sub i t
+menos 1
+menos mu sub i
+más u sub i t
+y vamos a escribir
+el mismo i
+pero para la observación
+t menos k
+i sub i t menos k
+menos mu sub i
+igual a ro
+por i sub i
+t menos k menos 1
+menos mu sub i
+más u sub i t menos k
+y vamos a hacer
+el mismo ejercicio
+que hicimos con la media
+es decir
+yo lo que voy a hacer ahora
+es
+reemplazar
+este
+paréntesis que está acá
+por el modelo
+ro
+ro por u sub i t menos 2
+menos mu sub i
+más u sub i t menos 1
+y después voy a reemplazar
+el i sub i t menos 2
+menos u sub i
+por el modelo
+ro por i sub i t menos 3
+menos mu sub i
+más u sub i t menos 2
+y así sucesivamente
+hasta la primera observación
+está escrito
+algo
+o sea
+no lo hice
+ya lo hicimos
+la primera observación
+es esta que está acá
+y vamos a hacer lo mismo
+con la segunda
+expresión
+la segunda expresión
+para la primera observación
+está escrita
+y las autocovarianzas
+es la esperanza
+de
+i sub i t menos u sub i
+por i sub i t menos k
+menos u sub i
+esa es
+la covarianza
+entre i sub i t
+y i sub i t menos k
+o sea que
+lo que voy a tener
+es
+la covarianza
+entre
+i sub i t
+e i sub i t menos k
+como la esperanza matemática
+de
+i sub i t menos mu sub i
+por
+i sub i t menos k
+menos mu sub i
+y condicional en c
+o sea que
+en este primer paréntesis
+que tengo acá
+i sub i t menos mu sub i
+voy a poner
+esta primera ecuación
+o sea que
+en lugar de i sub i t
+menos mu sub i
+voy a poner
+ro a la t menos 1
+por i sub i 1
+menos mu sub i
+más suma desde 0
+hasta t menos 2
+de ro a la s
+por i sub i t menos s
+y en lugar de
+el segundo paréntesis
+i sub i t
+menos k
+menos mu sub i
+voy a poner
+esto auténtico
+que es lo que tienen acá
+una vez que pongo eso
+hago la distributiva
+y aplico esperanza matemática
+cuando haga la distributiva
+y aplique la esperanza matemática
+la multiplicación
+la multiplicación
+de este primer término
+por este
+primer término que tengo acá
+me queda
+ro a la t menos k menos 1
+más t menos 1
+2t menos k menos 2
+y después me queda
+la esperanza de este término
+por este término
+que es la esperanza
+de i sub i t
+menos mu sub i al cuadrado
+y esa es la varianza
+de i sub i 1
+esa es la varianza
+de i sub i 1
+condicional
+en c sub i
+y después
+me va a sobrevivir
+a la esperanza matemática
+la multiplicación
+de este segundo término
+que aparece acá
+con este segundo término
+que aparece acá
+cuando los u
+están en el mismo periodo
+para que me quede
+el u al cuadrado
+que cuando aplique
+la esperanza matemática
+me va a quedar la varianza
+y eso es
+el segundo término
+que aparece aquí
+ro a la k
+por suma
+desde s igual 0
+hasta t menos k menos 2
+de ro a la 2
+por s
+por sigma cuadrado
+entonces voy a reemplazar
+este término
+por la varianza
+del proceso
+en estado estacional
+sigma cuadrado
+sobre 1
+menos ro al cuadrado
+y después
+hacer las cuentitas
+y si yo no me equivoqué
+el resultado es
+ro a la k
+por sigma cuadrado
+sobre 1
+menos ro al cuadrado
+que yo lo llamé
+gamma k
+cuando k es 0
+cuando k es igual a 0
+tengo la varianza
+de i sub i t
+condicional en c sub i
+que es
+ro a la 0
+1
+sigma cuadrado
+sobre
+1
+menos ro al cuadrado
+cuando k es distinto de 0
+tengo la varianza
+k igual a 1
+tengo la varianza
+entre
+i sub i t
+e i sub i t
+menos 1
+es ro
+por sigma cuadrado
+sobre 1
+menos ro al cuadrado
+que son estas
+varianzas
+que hicimos antes
+la varianza
+entre
+x t
+y x t
+menos 1
+es
+ro a la 1
+ro
+por sigma cuadrado
+sobre 1
+menos ro al cuadrado
+la varianza
+entre
+x t
+y x t
+menos 2
+es ro al cuadrado
+por sigma cuadrado
+sobre 1
+menos ro al cuadrado
+es lo mismo
+ni la media
+ni la varianza
+ni la covarianza
+dependen del tiempo
+para que el proceso
+autoregresivo
+de orden 1
+en datos de panel
+sea estacionario
+se tienen que cumplir
+dos condiciones
+uno
+el proceso
+tiene que ser estable
+ro en valor absoluto
+o menor a uno
+coeficiente autoregresivo
+de orden 1
+en valor absoluto
+o menor a uno
+dos
+la esperanza
+matemática
+de la primera
+observación
+de la variable
+tiene que coincidir
+con la esperanza
+matemática
+del proceso
+en estado estacional
+y la varianza
+de la primera
+observación
+de la variable
+tiene que cumplir
+tiene que coincidir
+con la varianza
+del proceso
+en estado estacional
+con esos dos requerimientos
+el proceso
+es estacional
+la condición
+de estabilidad
+en serie temporal
+nunca decimos
+estabilidad
+lo que decimos
+es estación
+el coeficiente autoregresivo
+menor a uno
+en valor absoluto
+es el proceso
+estacional
+y si es estacionario
+porque yo lo puedo
+extender hasta el infinito
+acá necesito
+la diferencia
+entre estabilidad
+y estacionalidad
+la estabilidad
+en datos de panel
+no me garantiza
+estacionalidad
+porque sólo
+con estabilidad
+la varianza
+de I sub y T
+depende de la varianza
+de I sub y 1
+y la esperanza
+matemática
+de I sub y T
+depende de la esperanza
+matemática
+de I sub y 1
+o sea que
+los momentos
+del proceso
+del panel
+dependen
+de los momentos
+de la primera
+observación
+de la variante
+para tener
+el proceso
+estacionario
+en panel
+yo necesito
+agregarle
+a la condición
+de estabilidad
+que el proceso
+sea estacionario
+asegurándome
+de que
+la esperanza
+matemática
+de la primera
+observación
+de la variable
+coincida
+con la esperanza
+matemática
+del proceso
+en estado
+estacionario
+y la varianza
+de la primera
+observación
+de la variable
+coincida
+con la varianza
+del proceso
+en estado
+estacionario
+ahí lo tienen
+resumido
+si los momentos
+de la primera
+observación
+del proceso
+son los momentos
+en estado
+estacionario
+el proceso
+entero
+es estacionario
+y comparte
+esos mismos
+momentos
+ok
+estimador
+de origen
+y voto
+modelo
+original
+primera
+ecuación
+y subit
+es igual
+a c subit
+por ro
+por i subit
+menos uno
+más subit
+tengo un modelo
+de efectos fijos
+ese es el modelo
+de componentes
+no observables
+el autoregresivo
+de orden uno
+de componentes
+no observables
+c subit
+heterogeneidad
+no observada
+está relacionada
+con la variable
+explicativa
+y por lo tanto
+para poder
+estimar
+el modelo
+necesito
+transformarlo
+eliminando
+c subit
+la transformación
+más fácil
+es aplicando
+diferencia finita
+si yo aplico
+diferencia finita
+me cargo
+el c subit
+porque el c subit
+no varía en el tiempo
+y entonces
+el modelo
+que puedo estimar
+es
+diferencia finita
+de i subit
+segunda igualdad
+diferencia finita
+de i subit
+igual a
+ro
+por diferencia finita
+de i subit
+menos uno
+más diferencia finita
+de u subit
+para que la estimación
+de este modelo
+me deje resultados
+consistentes
+necesito
+exogeneidad
+contemporánea
+necesito que
+la esperanza
+de la variable
+explicativa
+diferencia finita
+de i subit
+menos uno
+y el error
+de la ecuación
+diferencia finita
+de i subit
+sea c
+solo que
+diferencia finita
+de i subit
+menos uno
+es
+i subit
+menos uno
+menos
+i subit
+menos dos
+y diferencia finita
+de u subit
+es
+u subit
+menos
+u subit
+menos uno
+o sea que
+para poder aplicar
+la esperanza matemática
+necesito hacer
+la distributiva
+entre los dos términos
+del primer paréntesis
+y los dos términos
+del segundo paréntesis
+que es
+todo este término
+que tienen acá
+i subit
+menos uno
+por
+u subit
+primer término
+es la multiplicación
+del primer término
+del primer paréntesis
+con el primer término
+del segundo paréntesis
+i subit
+menos uno
+u subit
+menos uno
+es la multiplicación
+del primer término
+del primer paréntesis
+con el segundo término
+del segundo paréntesis
+I sub it menos 2 por U sub it es la multiplicación del segundo término del primer paréntesis
+con el primer término del segundo paréntesis
+I sub it menos 2 por U sub it menos 1 es la multiplicación del segundo término del primer paréntesis
+con el segundo término del segundo paréntesis
+Y el problema es que cuando aplique la esperanza matemática
+la esperanza matemática
+de i sub i t-1
+y u sub i t-1
+es distinta de 0
+de nuevo, si yo escribo este modelo
+para el periodo t-1
+y sub i t-1
+es igual a c sub i
+más ro
+por u sub i t-2
+más u sub i t-1
+o sea que u sub i t-1
+y u sub i t-1
+están relacionados
+si yo transformo el modelo
+aplicando diferencias finitas
+la variable explicativa
+y el error están relacionados
+no se cumple el supuesto de exogenia contemporánea
+no se cumple el supuesto de exogenia contemporánea
+la estimación de mínimo cuadrado clásico
+de pul o el es en esta ecuación
+me deja estimador que no son consistentes
+¿por qué?
+ya lo dijimos
+porque la variable aplicativa es endógena
+digo, puse este
+que es el más fácil
+puedo hacer la transformación
+de efecto fijo
+y lo que tengo que restarle
+la media temporal de i
+o sea que voy a tener un montón de estos términos
+que en la media temporal de i tengo
+y sub i
+desde 1
+y sub i 1
+hasta y sub i t mayúscula
+y en u también
+desde u sub i 1
+hasta u sub i t mayúscula
+o sea que voy a tener un montón de términos
+que no se hacen cero
+no se cumple el supuesto de exogenia contemporánea
+en el modelo transformado
+básicamente porque no se cumple el supuesto de exogenia estricta
+en el modelo original
+entonces la estimación por mínimo cuadrado clásico
+por pul o el es
+o por efecto fijo
+como hace
+el estata
+me deja estimador que no son consistentes
+entonces
+¿qué me dice
+el
+el estimador de
+una especie de estimador de Arellano y Bohm
+¿sí?
+es
+el cambio de método de estimación
+en lugar de utilizar
+un mismo cuadrado clásico
+pul o el es
+utiliza variables
+¿sí?
+entonces
+necesitamos
+un instrumento
+de nuevo
+esta condición que aparece acá
+esta condición que aparece acá
+me dice que
+la variable
+explicativa
+del modelo transformado
+transformado
+diferencia
+de i sub i
+t menos 1
+es endógena
+o sea que necesito un instrumento
+para esta variable explicativa
+el primer instrumento que yo puedo tomar
+es
+i sub i
+t menos 2
+¿sí?
+porque
+i sub i t menos 2
+es una variable exógena en el modelo transformado
+la esperanza matemática
+la esperanza matemática
+de i sub i
+t menos 2
+y diferencia finita
+de i sub i t
+es igual a 0
+¿sí?
+porque tengo
+i sub i t menos 2
+multiplicado por
+i sub i t
+menos i sub i t menos 1
+¿sí?
+y esas dos esperanzas
+son iguales a 0
+y se cumple el supuesto
+de exógenidad secuencial
+¿sí?
+entonces
+obviamente
+esto
+que tengo acá
+es
+i sub i
+t menos 1
+menos
+i sub i t menos 2
+o sea que
+esta variable
+de instrumento
+además de ser exógena
+en el modelo original
+está relacionada
+con la variable endógena
+¿sí?
+o sea que
+cumple con las dos condiciones
+de instrumento
+una que está relacionada
+con la variable
+endógena
+dos que sea exógena
+en el modelo original
+¿sí?
+entonces
+lo voy a poner acá
+i sub i sub i t menos 2
+es un instrumento
+para
+la variable endógena
+diferencia finita
+de i sub i t menos 1
+¿sí?
+y el estimador
+que usa
+i sub i t menos 2
+como
+instrumento
+de
+de
+diferencia finita
+de i sub i t menos 1
+se conoce
+en la literatura
+como
+el estimador
+de
+Anderson
+y si out
+y lo menciono
+porque
+este
+en el estatus
+el comando
+es
+a h
+Anderson
+yo le digo
+al estatus
+que estime
+por Anderson
+y si out
+lo que hace
+el estatus
+que es tomar
+a i sub i t menos 2
+como instrumento
+de
+diferencia finita
+de
+i sub i t menos 1
+¿sí?
+ok
+¿qué me dice
+la literatura
+de
+este
+variables instrumentales?
+la literatura
+de variables instrumentales
+me dice
+mira
+si vos tenés
+más
+de un
+instrumento
+por cada
+variable
+endógena
+el estimador
+más eficiente
+es el que utiliza
+todos los instrumentos
+y es
+en
+en
+en
+en
+econometría
+en el corte
+travesal
+pasamos
+del estimador
+de variables instrumentales
+un instrumento
+por cada variable
+endógena
+al estimador
+del mismo
+cuadrado
+en vez
+el estado
+entonces
+todos los instrumentos
+bueno
+¿qué es lo que pasa aquí?
+i sub i t menos 2
+es un instrumento
+pero si yo digo
+i sub i t menos 3
+i sub i t menos 3
+también es un instrumento
+i sub i t menos 4
+también es un instrumento
+o sea que tengo un montón
+de instrumentos
+¿sí?
+el estimador
+de Arellano y Bon
+usa todos los instrumentos
+y usa
+todos los instrumentos
+en
+una estimación
+de
+método
+generalizado
+de los momentos
+que si ustedes
+se van
+al curso
+de econometría
+cuando nosotros
+vimos ecuaciones
+simultáneas
+desarrollamos un montón
+de estos estimadores
+de GMM
+de hecho
+el estimador
+de GMM
+que utiliza
+como matriz
+ponderadora
+C
+de traspuesto
+por C
+inversa
+que es el estimador
+de mínimo cuadrado
+en tres etapas
+para sistemas
+¿sí?
+y después vimos
+el estimador
+de
+este
+tres etapas
+el chi cuadrado
+mínimo
+vimos un montón
+de estimadores
+bueno
+Arellano y Bon
+utilizan
+un estimador
+de GMM
+¿sí?
+y
+lo que
+hacen
+es
+construirse
+la matriz
+de instrumentos
+¿sí?
+la primera ecuación
+dice lo que dije
+antes
+en matemáticas
+¿sí?
+cualquier
+variable
+y
+de GMM
+para atrás
+es un instrumento
+y ahí está escrito
+como la historia
+de
+I
+subí
+supra
+GMM
+hasta
+GMM
+o sea que
+I subí
+1
+I subí
+2
+I subí
+GMM
+son instrumentos
+de
+la diferencia
+son
+todos los instrumentos
+son exógenos
+en el modelo
+original
+entonces
+lo que tienen
+allí
+como matriz
+Z
+es la matriz
+de instrumentos
+déjenme dar
+un ejemplo
+supongamos que
+I
+Tengo cuatro observaciones
+1
+1
+1
+4 observaciones
+de corte
+trasvasal
+¿sí?
+¿sí?
+entonces
+I
+subí
+T
+es
+I
+sub 1
+1
+I
+sub 1
+2
+I
+sub 1
+3
+I
+sub 1
+4
+¿sí?
+para la observación
+para la observación
+de corte
+trasvasal
+1
+tengo cuatro
+observaciones
+de series
+temporales
+¿sí?
+¿sí?
+diferencia
+finita
+de I
+sub
+T
+es
+I
+sub
+2
+menos
+I
+sub
+1
+I
+sub
+3
+menos
+I
+sub
+2
+I
+sub
+I
+4
+menos
+I
+sub
+I
+3
+este primer
+valor
+lo pierdo
+porque tendría
+que tener
+I
+sub
+I
+1
+menos
+I
+sub
+I
+0
+pero
+I
+sub
+I
+0
+no
+existe
+mi
+variable
+explicativa
+mi variable
+explicativa
+es
+diferencia
+finita
+de I
+sub
+I
+T
+menos
+1
+o sea
+que la
+diferencia
+finita
+de I
+sub
+I
+T
+menos
+1
+es
+I
+sub
+2
+menos
+I
+sub
+I
+1
+I
+sub
+I
+3
+menos
+I
+sub
+I
+2
+I
+sub
+4
+menos
+1
+o sea
+que
+cuando
+yo
+tengo
+la
+variable
+explicativa
+pierdo
+las
+primeras
+dos
+observaciones
+porque
+esta
+debería
+ser
+I
+sub
+1
+menos
+I
+sub
+0
+o sea
+que
+yo
+solo
+puedo
+hacer
+las
+estimaciones
+a partir
+de la
+tercera
+observación
+de series
+temporal
+a partir
+de T
+igual a 3
+entonces
+déjenme escribir
+acá
+el modelo
+para la
+observación
+T
+menos 3
+para la
+observación
+T
+igual a 3
+para la
+observación
+T
+igual a 3
+voy a tener
+diferencia
+finita
+de I
+sub
+i3
+igual
+a
+rho
+por
+diferencia
+finita
+de
+i
+sub
+i2
+más
+diferencia
+finita
+de
+u sub
+i3
+sí
+y
+el
+instrumento
+que tengo
+para la
+diferencia
+finita
+de
+i sub
+i2
+es
+i sub
+i1
+i sub
+i2
+es
+i sub
+i2
+menos
+i sub
+i1
+i sub
+i1
+es un
+instrumento
+para
+esa
+diferencia
+lo escribo
+para otra
+observación
+para la
+observación
+T
+igual a
+4
+tengo
+diferencia
+finita
+de
+i sub
+i4
+igual a
+rho
+por
+diferencia
+finita
+de
+i
+sub
+i3
+más
+estoy
+poniendo
+sub
+i
+y es
+sub
+1
+porque estoy
+con la
+primera
+observación
+pero
+es lo
+mismo
+más
+diferencia
+finita
+de
+un
+sub
+i4
+para
+esta
+variable
+tengo
+dos
+instrumentos
+i
+sub
+i1
+y sub
+i1
+y sub
+i1
+y sub
+i1
+y sub
+i1
+y sub
+i1
+fíjense
+la matriz
+que tienen
+acá
+para la
+observación
+de corte
+transversal
+i
+esta
+primera
+fila
+es t
+igual a
+3
+esta
+segunda
+fila
+es t
+igual a
+4
+para t
+igual a
+3
+tengo
+un
+solo
+instrumento
+para t
+igual a
+4
+tengo
+dos
+instrumentos
+i1
+y sub
+i2
+para t
+igual a
+5
+tengo
+3
+instrumentos
+i1
+y sub
+i2
+y sub
+i3
+para t
+igual a
+6
+tengo
+4
+instrumentos
+y sub
+i1
+y sub
+i2
+y sub
+i3
+y sub
+i4
+y así
+voy a
+llegar
+hasta
+la
+observación
+t
+y en la
+observación
+t
+voy a
+tener
+t
+mayúscula
+menos
+dos
+instrumentos
+i1
+y sub
+i2
+y sub
+i3
+y sub
+t
+menos
+2
+esta
+matriz
+de
+instrumentos
+es
+válida
+para la
+primera
+observación
+de corte
+transversal
+para la
+segunda
+observación
+de corte
+transversal
+para la
+enésima
+observación
+de corte
+transversal
+y es
+la matriz
+de instrumentos
+que utilizan
+Arellano y
+Bob
+todos los
+instrumentos
+que puedo
+tener
+vamos a
+escribir
+el estimador
+de Arellano y
+Bob
+el estimador
+de Arellano y
+Bob
+vamos a
+definir
+diferencia
+finita
+de
+i
+como
+la
+diferencia
+finita
+de
+i
+sub
+i
+de
+3
+hasta
+t
+recuerden
+los primeros
+dos
+periodos
+temporales
+los pierden
+diferencia
+finita
+de i
+menos
+1
+va
+de
+2
+hasta
+t
+menos
+1
+y
+el
+estimador
+si yo
+utilizara
+variables
+instrumentales
+sería
+z
+transpuesto
+por x
+inversa
+z
+transpuesto
+por y
+donde
+z
+es
+la z
+de
+está
+mal
+lo que
+estoy
+diciendo
+en realidad
+vamos a decirlo
+bien
+si yo
+quiero
+utilizar
+variables
+instrumentales
+necesito
+mismos
+cuadrados
+en dos
+etapas
+porque
+tengo
+más de
+un
+instrumento
+para
+la
+variable
+y la
+estimación
+de
+este
+mismos
+cuadrados
+en dos
+etapas
+es
+x
+transpuesta
+por
+z
+transpuesto
+por z
+transpuesto
+por z
+inversa
+por z
+por x
+todo
+inversa
+por x
+transpuesta
+por z
+transpuesta
+por z
+transpuesta
+por z
+inversa
+por z
+por i
+ahora
+lo que tengo
+es algo
+parecido
+a eso
+solamente
+que
+en lugar
+de tener
+z
+transpuesto
+por z
+lo que
+tengo
+es
+z
+transpuesto
+por omega
+por z
+transpuesto
+z
+por omega
+por z
+por w
+por z
+transpuesto
+donde w
+y la matriz
+ponderadora
+de gm
+entonces
+si yo
+agarro
+y pongo
+w
+igual a
+z
+transpuesta
+por z
+inversa
+tengo
+mismo
+cuadrado
+en dos
+etapas
+en sistema
+pero
+puede ser
+cualquier otra
+matriz
+ponderada
+en principio
+el estimador
+de arellano
+y bond
+del coeficiente
+ro
+autoregresivo
+de orden
+uno
+es
+x
+transpuesta
+por z
+por w
+por z
+transpuesto
+por z
+perdón
+por
+por x
+todo inversa
+x
+transpuesto
+por z
+por w
+por z
+transpuesto
+por y
+solo que
+ahora
+en lugar
+de x
+e y
+tengo
+diferencia
+finita
+de y
+menos uno
+diferencia
+finita
+de y
+y
+arellano y bond
+utilizan
+dos matrices
+ponderadoras
+la primera
+matriz
+ponderadora
+es la que me da
+lo que sería
+el
+estimador
+de mínimo
+cuadrado
+en dos
+etapas
+en sistema
+que es
+utilizar
+z
+transpuesto
+por z
+inversa
+solo que
+ahora
+tengo
+diferencia
+finita
+de z
+transpuesto
+por diferencia
+finita
+de z
+inversa
+y eso
+es lo que
+arellano y bond
+llaman w
+y es lo que
+se conoce
+como
+la matriz
+ponderadora
+de un
+paso
+la matriz
+ponderadora
+de un
+paso
+asume
+que
+los errores
+del modelo
+son homosedácticos
+y no tienen
+correlación
+serial
+si yo
+no quiero
+hacer el
+supuesto
+de que los
+errores del
+modelo
+son homosedácticos
+y no tienen
+correlación
+serial
+entonces
+tengo otra
+matriz
+ponderadora
+que
+en lugar
+de usar
+z
+transpuesto
+por z
+inversa
+usa
+z
+transpuesto
+por u
+por u
+transpuesto
+por z
+inversa
+reemplazando
+los u
+que son
+errores
+por
+los residuos
+solamente
+que aquí
+en lugar
+de tener
+los residuos
+un sombrero
+tengo
+diferencia
+finita
+de un sombrero
+y tiene
+un unito
+ahí arriba
+porque
+son los residuos
+del modelo
+estimado
+con la
+matriz
+ponderadora
+w
+el estimador
+de arellón y bonde
+un paso
+el primer recuadro
+que tienen allí
+utiliza w
+1 como matriz
+ponderadora
+el estimador
+de dos pasos
+es el segundo
+recuadro
+que dice
+ro sub 2
+los sombreros
+sub 2
+es el que usa
+la segunda
+matriz ponderadora
+y en el
+status
+voy a tener
+un comando
+que es
+xt
+addon
+y le voy a decir
+1
+o 2
+5
+¿está claro esto?
+ok
+voy a cortar acá
+porque ya me cansé
+y la clase que viene
+lo que voy a hacer
+es describir
+la matriz
+de valencia
+y coagreanza
+son las dos
+ecuaciones
+que tienen ahí
+pueden repasar
+si ustedes quieren
+los apuntes
+de econometría
+de ecuaciones
+simultáneas
+porque lo estoy diciendo
+lo estoy diciendo
+rápido
+porque ya lo hicimos
+es cambiarle
+de electrita
+pero todo esto
+ya lo hicimos
+en econometría
+para el corte
+de transversal
+y lo hago
+en el status
+y después
+pasamos
+al segundo
+estimador
+que es el estimador
+de Blandeligón
+y después
+que describamos
+Blandeligón
+generalizamos
+los dos procedimientos
+a un procedimiento
+a un modelo
+autoregresivo
+de orden 1
+con más variables
+explicativos
+los dos procedimientos
+los vamos a generalizar
+ok
+cortemos aquí
+y seguimos
+el viernes
+si
+ya está

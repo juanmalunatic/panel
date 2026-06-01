@@ -1,0 +1,5153 @@
+start	end	text
+0	9820	Muy bien, jóvenes, vamos a empezar con paneles desbalanceados.
+10980	17580	La clase pasada al final describimos algunas de las características de este tema
+17580	22400	que están repetidas aquí en esta primera transparencia.
+22400	36280	La idea es que yo voy a tener, como caracterizamos nosotros los datos del panel,
+37360	45860	una muestra representativa de una población en un determinado periodo temporal
+45860	52020	y a partir de ese periodo temporal yo observo hacia adelante
+52020	60320	esa muestra de unidades de corte transversal, individuos, empresas, etc.
+60320	73780	Y lo que hicimos hasta ahora fue desarrollar la estimación de modelos estáticos y dinámicos
+73780	84160	y datos de panel cuando la observación de las variables es completa.
+84360	89880	Es decir, que nadie abandona la muestra en ningún periodo temporal,
+90840	97340	nadie no responde las preguntas del cuestionario, es decir, que yo tengo observación completa
+97340	102880	de todas las variables involucradas en el modelo.
+103560	110680	Y lo que vamos a hacer ahora es plantear qué es lo que sucede cuando uno no tiene
+110680	120080	un panel completo, es decir, cuando algunas variables en algunos periodos temporales
+120080	122080	no se observan.
+122080	135080	Y como mencionamos la clase pasada, hay tres grandes agrupamientos o causas
+135680	144100	de los paneles no balanceados, desbalanceados o incompletos, que tienen que ver con
+144100	152220	primero el diseño del muestreo, que lo tienen allí en el cuarto punto
+152220	156480	de la transparencia.
+156840	163620	Si el diseño del muestreo es un panel rotativo, entonces yo solo observo
+163620	170000	a algunas unidades de corte transversal en algunos periodos temporales,
+170000	182640	de forma tal de que la muestra no es completa, de nuevo, poniéndonos en el contexto de
+182640	191160	yo tengo, supongamos que quiero analizar el ingreso de los hogares de la Ciudad Autónoma
+191160	200420	de Buenos Aires, yo tomo una muestra aleatoria de 400 hogares en un punto del tiempo,
+200520	206720	400 hogares de la Ciudad Autónoma de Buenos Aires, y sigo esos 400 hogares durante 12 meses.
+207860	212780	Si la muestra es completa, yo en cada momento del tiempo tengo la muestra representativa
+212780	215440	de la población de hogares de la Ciudad Autónoma de Buenos Aires.
+215440	224680	Si yo hago un panel rotativo, es decir, que solo retengo una porción de los hogares
+224680	235020	en cada muestreo, aleatoriamente el 25% de los hogares cambia cada uno de los meses,
+235600	240160	al final del periodo de 12 meses yo voy a tener observaciones para hogares
+240160	248300	de un mes, dos meses, tres meses, cuatro meses, etc. Y para el resto de los periodos
+248300	256520	voy a tener valores missing en las variables. Como el diseño del panel rotativo
+256520	263700	está encargado por la persona que va a hacer la estimación, yo al diseñar la rotación
+263700	269180	en forma aleatoria, siempre retengo una muestra representativa de la población
+269180	275280	de la Ciudad Autónoma de Buenos Aires. Distinto es el caso de las otras dos razones
+275280	281360	o causas que mencionamos en la clase pasada, que son la atrición, atrición,
+281500	287140	es decir, que algunas unidades eligen salirse del panel en algún periodo temporal,
+287140	296060	y si esa salida del panel no es aleatoria, entonces la muestra que me queda
+296060	304140	no es representativa del total de la población. Como ejemplo extremo
+304880	311880	de este ejercicio de muestra de 400 hogares para analizar el ingreso
+311880	316580	de los hogares en la Ciudad Autónoma de Buenos Aires, supongamos que se me van yendo
+316580	319340	los hogares de Caballito.
+321260	329420	Al final del periodo no voy a tener hogares de Caballito, y entonces, salvo que los hogares
+329420	336460	del resto de los barrios tengan las mismas características que los hogares de Caballito,
+336580	340560	entonces la muestra que me queda no va a ser representativa del total de los hogares
+340560	343920	de la Ciudad Autónoma de Buenos Aires. Entonces, ahí tengo un problema
+343920	352360	que ocurre frecuentemente en la práctica, que en la literatura se conoce como atrición
+352360	359360	o atrición en inglés, y es que algunos hogares deciden salirse del panel
+359360	364900	y esa salida, como no es aleatoria, provoca que la muestra que me queda
+364900	370700	no sea representativa de la población, que comencé a analizar, y entonces tengo
+370700	377440	lo que en econometría y en microeconometría 1 llamamos sesgo de sección.
+377440	386880	Y la cuarta, la tercera razón, que está en el último punto de la transparencia,
+386980	394060	tiene que ver con lo que en econometría y microeconometría llamamos el modelo de Hekman,
+394680	401980	de estimación de la oferta de trabajo de las mujeres, donde hay una variable,
+401980	409700	en el caso de ese ejemplo, el salario, que trunca el comportamiento de la oferta
+409700	415240	de trabajo. Porque yo solo observo la oferta de trabajo para las mujeres que trabajan
+415240	419480	y las mujeres que trabajan tomando la decisión de si el salario que le ofrecen
+419480	422360	en el mercado de trabajo es mayor al salario de reserva que tiene.
+422360	436540	Entonces, si tengo un truncamiento incidental, como dice el último punto de la transparencia,
+436640	440780	es posible que, de nuevo, la muestra que tengo para estimar el modelo
+440780	446140	no sea representativa de la población original.
+446140	456340	No entendí la pregunta.
+456640	461620	Claro, ¿por qué mantendría un panel? Voy diciendo, bueno, saco 25, busco otro 25,
+462020	462600	y no hago...
+462600	464460	No, yo no... Hacé lo que quiera.
+465960	470360	Claro, ¿para qué me expongo a hacer, no sé, el artich, el panel, todo eso,
+470740	471660	y hacer una muestra?
+471660	477420	Bueno, a ver, es un ejemplo que di, yo tengo que dar un curso de datos de panel,
+477620	481060	si no te lo pongo en el contexto de datos de panel, no te lo puedo explicar.
+481580	485220	Claro, además necesito menos muestras y me sé más barato, todo eso.
+487180	487840	No entendí.
+488760	492040	Si tenés menos muestras, tenés más variabilidad en las estimaciones.
+492760	492940	Sí.
+493600	495880	Y eso no tiene nada que ver con sesgo de selección.
+496780	499100	Claro, te lo digo, necesito 700 tipos.
+499100	502420	¿Es lo mismo que a una muestra de 700 todos los meses?
+502500	503760	Depende de lo que quieras hacer.
+503920	507080	Es lo mismo en algunos casos y no es lo mismo en otros casos.
+507280	508500	Depende de lo que vos quieras hacer.
+509560	517340	O sea, depende de si vos querés introducir la habilidad dentro de esa estimación o no.
+517560	524240	Si vos tenés un corte transversal repetido,
+524540	526500	la habilidad cambia periodo a periodo.
+526500	533280	Si tenés los mismos individuos en periodos cortos,
+533420	537640	la habilidad no cambia y entonces tenés un modelo de datos de panel.
+538060	541900	Pero la verdad es que depende de lo que vos quieras analizar,
+542460	547340	podés tener un panel, podés tener un corte transversal repetido,
+547820	549740	podés tener muestra de un corte transversal.
+549740	555200	Con los tres contextos pueden ser la estimación que quieras,
+555300	563640	solo que el único cuidado que tenés que tener es que dependiendo de la muestra que tengas,
+563700	565680	vas a poder sacar determinadas conclusiones.
+566200	566780	Pero nada más.
+566780	582500	Lo primero que vamos a hacer, como dice allí la transparencia,
+582700	590240	es analizar los casos en los que potencialmente la prisión o el truncamiento incidental
+590240	595700	provocan sesgo de selección en la muestra.
+595700	603480	Y lo primero que vamos a analizar es
+603480	614100	qué condiciones necesitamos para que los estimadores,
+614100	618700	en principio, de un modelo lineal estático,
+619480	621140	los estimadores de efectos fijos,
+621220	628140	ya vamos a ver por qué en general uno no utiliza el modelo de efectos selectoros,
+628220	629920	pero en qué contexto,
+630460	633020	o cuáles son las condiciones que yo necesito que se cumplan
+633020	636100	para que la estimación que presentamos para
+636100	644100	el modelo de componentes no observables estáticos con efectos fijos en paneles completos,
+645220	648580	me deje estimadores que tienen las mismas propiedades,
+648700	650760	son consistentes, asintóticamente normales,
+650980	652540	cuando los paneles son desvanecidos.
+654000	660280	Entonces, nuestra ecuación de interés va a ser la ecuación uno,
+660380	663560	que de nuevo es el modelo de componentes no observados
+663560	666780	que vimos cuando analizamos efectos fijos y efectos aleatorios,
+667100	669180	y subit es la variable explicativa,
+669980	671300	x y t son las variables,
+671740	673960	y subit es la variable dependiente,
+674160	676000	x y t son las variables explicativas,
+676140	679320	beta es el vector de parámetros a estimarse,
+679460	682880	subi es la heterogeneidad no observada de corte transversal,
+683000	689320	y subit es el error idiosincrático de la ecuación.
+689320	693920	La dimensión de x y t es uno por k,
+694060	696600	o sea que tengo k variables explicativas,
+696720	697760	beta es k por uno,
+698340	704100	no tengo relación entre la heterogeneidad no observada
+704100	706440	y una o varias de las variables explicativas,
+706540	707720	y entonces tengo un modelo de efectos.
+708420	713680	O varianza entre x y t y c sub i es diferente de c.
+713680	718100	Tenemos N observaciones, N mayúsculas observaciones
+718100	718980	de corte transversal,
+719080	720760	y toda la de nuestra teoría sintética
+720760	722640	sigue siendo con N del número A.
+726480	731060	Entonces, el caso que vamos a analizar
+731060	732560	es un caso en el cual
+732560	734520	el primer periodo temporal,
+734740	735660	t igual a uno,
+736780	739800	yo tengo una muestra representativa de la población,
+739800	742900	y en ese periodo yo observo a todos.
+743860	745980	Observo la medición de todas las variables,
+746160	748780	de todas las observaciones de corte transversal.
+748880	749480	Y después,
+750160	753260	a medida que el periodo temporal se va haciendo más grande,
+754460	757520	algunas observaciones de corte transversal,
+758000	760300	o para algunas observaciones de corte transversal,
+760380	763800	voy a dejar de observar alguna de las variables.
+763800	765320	O por atrillón,
+765760	769520	o por truncamiento incidental.
+770040	775800	El último periodo temporal va a ser t igual a t mayúscula.
+777100	778820	Entonces, lo primero que vamos a hacer
+778820	782780	es definir una variable indicadora
+782780	786320	que la vamos a llamar s y t.
+786320	789020	s y t
+789020	796060	es una variable indicadora que vale 1
+796060	799060	si yo observo
+799060	802760	a las variables
+802760	806640	y vale 0
+806640	809760	si no observo a las variables.
+809760	814980	Y
+814980	818280	este s y t
+818280	819940	es un indicador
+819940	820580	escrito
+820580	824480	para una observación genérica i
+824480	826440	y una observación genérica t,
+827020	828200	que es lo que tienen
+828200	831800	en el
+831800	833660	modelo 1
+833660	835480	que podríamos
+835480	836420	escribirlo
+836420	838420	como lo escribimos
+838420	839940	para la ecuación 2
+839940	841320	que es
+841320	842280	agrupando
+842280	844240	todas las observaciones
+844240	845600	de series temporales
+845600	846340	i sub i
+846340	847520	igual a
+847520	848380	x y
+848380	849260	beta
+849260	850260	más
+850260	851580	c sub i
+851580	852540	por j t
+852540	853680	más
+853680	854300	u sub i
+854300	857060	en lugar de tener escalares
+857060	858240	lo que tengo son
+858240	859360	vectores de dimensión
+859360	860280	t mayúscula
+860280	860760	por 1
+860760	861120	¿ok?
+861500	862280	Entonces, si yo
+862280	863720	construyo el vector
+863720	866320	de todos los indicadores
+866320	867960	s sub i
+867960	870760	va a contener
+870760	872300	para la observación
+872300	873440	de corte transversal
+873440	873660	i
+873660	876140	todos los indicadores
+876140	876580	desde
+876580	878520	el periodo temporal 1
+878520	879620	hasta el periodo temporal
+879620	881140	t mayúscula.
+881140	882700	si yo
+882700	885680	supongamos que
+885680	888680	observo
+888680	889080	para
+889080	890280	la
+890280	891780	unidad
+891780	892720	de corte transversal
+892720	893660	todos los periodos
+893660	894140	temporales
+894140	895020	es decir, que observo
+895020	896040	pongámosle la variable
+896040	896680	dependiente
+896680	897560	i sub i t
+897560	899120	observo i sub i 1
+899120	899620	i sub i 2
+899620	900140	i sub i 3
+900140	901460	i sub i t mayúscula
+901460	902680	entonces todos los indicadores
+902680	903140	valen 1
+903140	904020	y estoy en el caso
+904020	904360	de
+904360	905440	un panel
+905440	905980	completo
+905980	908060	si
+908060	909460	alguno
+909460	910120	de esos
+910120	910580	s y t
+910580	911060	es 0
+911060	912220	es que en algún
+912220	913320	momento del tiempo
+913320	915220	yo dejo de observar
+915220	916020	alguna de las
+916020	916620	di el ejemplo
+916620	917120	con la variable
+917120	917500	dependiente
+917500	918260	pero lo mismo
+918260	918840	con las variables
+918840	919940	las variables
+919940	920640	explicativas
+920640	920980	¿no?
+921180	921440	o sea
+921440	927520	el punto
+927520	928100	es que
+928100	928780	cuando
+928780	930440	tenemos
+930440	931920	un panel
+931920	932800	completo
+932800	934080	el estimador
+934080	935620	el estimador
+935620	936620	de efectos fijos
+936620	938940	el estimador
+938940	940260	de efectos fijos
+940260	942840	beta
+942840	943620	sombrero
+943620	945120	de efectos fijos
+945120	948800	era igual
+948800	949420	a
+949420	950860	suma
+950860	951960	desde i
+951960	952700	igual 1
+952700	953740	hasta n
+953740	955140	suma
+955140	956400	desde t
+956400	957520	igual 1
+957520	958460	hasta t
+958460	959580	mayúscula
+959580	959980	de
+959980	961480	x y
+961480	962460	con los dos
+962460	963400	puntitos arriba
+963400	964120	traspuesto
+964120	965680	por x y
+965680	966620	con los dos
+966620	967480	puntitos arriba
+967480	968360	x y t
+968360	969340	x y t
+969340	970680	inversa
+970680	975340	suma
+975340	976400	desde i
+976400	977180	igual 1
+977180	978080	hasta n
+978080	979340	suma
+979340	981220	suma
+981220	982140	desde i
+982140	982880	igual 1
+982880	983520	hasta t
+983520	984620	mayúscula
+984620	986220	de x y t
+986220	987140	con los dos
+987140	988080	puntitos arriba
+988080	988780	traspuesto
+988780	989380	y
+989380	990420	sub i t
+990420	991000	con los dos
+991000	991380	puntitos
+991380	992420	este es
+992420	992680	nuestro
+992680	993860	estimador
+993860	994180	de
+994180	995560	efectos
+995560	996560	efectos fijos
+996560	996860	¿sí?
+996860	998420	ahora voy a tener
+998420	999040	exactamente
+999040	1000020	lo mismo
+1000020	1001240	solamente
+1001240	1001960	que
+1001960	1003420	el
+1003420	1004400	x y
+1004400	1004940	con los dos
+1004940	1005580	puntitos arriba
+1005580	1005940	y el
+1005940	1006380	sub i
+1006380	1006740	con los dos
+1006740	1007200	puntitos arriba
+1007200	1007680	van a estar
+1007680	1008480	multiplicados
+1008480	1008820	por el
+1008820	1009540	indicador
+1009540	1012800	si ustedes
+1012800	1013160	miran
+1013160	1013660	la primera
+1013660	1014780	igualdad
+1014780	1015220	de la ecuación
+1015220	1015540	2
+1015540	1015940	esta que
+1015940	1016540	tengo acá
+1016540	1019500	el n
+1019500	1019960	olvídense
+1019960	1020780	porque el n
+1020780	1021080	está
+1021080	1022440	lo puedo poner
+1022440	1022700	acá
+1022700	1023740	lo tengo
+1023740	1024380	multiplicando
+1024380	1024960	y dividiendo
+1024960	1025380	hasta que se
+1025380	1025820	cancela
+1025820	1027080	pero la expresión
+1027080	1027620	es la misma
+1027620	1028000	lo único
+1028000	1028540	que cambia
+1028540	1028980	es que
+1028980	1030300	lo que tengo
+1030300	1031120	aquí
+1031120	1031720	es
+1031720	1034180	esta variable
+1034180	1035220	indicadora
+1035220	1036780	y esa variable
+1036780	1037320	indicadora
+1037320	1038180	es 1 0
+1038180	1039100	lo único
+1039100	1039460	que hace
+1039460	1039960	es decirme
+1039960	1040440	cuáles son
+1040440	1041300	las multiplicaciones
+1041300	1042080	que puedo hacer
+1042080	1043460	las que puedo sumar
+1043460	1048260	supongamos
+1048260	1048580	que
+1048580	1050280	t mayúscula
+1050280	1051260	es 4
+1051260	1052720	si t mayúscula
+1052720	1053260	es 4
+1053260	1054860	yo acá
+1054860	1055300	tengo
+1055300	1059600	la suma
+1059600	1061340	desde 1
+1061340	1062040	hasta 4
+1062040	1062980	de X
+1062980	1064240	y 1
+1064240	1065500	con los puntitos
+1065500	1065900	arriba
+1065900	1066480	traspuesto
+1066480	1067180	por X
+1067180	1068040	y 1
+1068040	1068940	con los dos
+1068940	1069240	puntitos
+1069240	1069640	arriba
+1069640	1070160	más
+1070160	1070960	X
+1070960	1071740	y 2
+1071740	1072720	con los dos
+1072720	1073040	puntitos
+1073040	1073520	arriba
+1073520	1074260	traspuesto
+1074260	1074940	por X
+1074940	1075520	y 2
+1075520	1076020	con los dos
+1076020	1076360	puntos
+1076360	1076720	arriba
+1076720	1077280	más
+1077280	1078180	X
+1078180	1078760	y 3
+1078760	1079300	con los dos
+1079300	1079640	puntitos
+1079640	1080100	arriba
+1080100	1081080	traspuesto
+1081080	1081740	por X
+1081740	1082300	y 3
+1082300	1084020	con los dos puntitos arriba, más
+1084020	1085700	X y 4
+1085700	1087960	con los dos puntitos arriba
+1087960	1090400	por, el transpuesto
+1090400	1091980	por X y 4
+1091980	1092800	con los dos puntitos.
+1093920	1095060	El sistema mayúscula es 4.
+1096060	1097220	Solo que ahí
+1097220	1100220	tengo que observar
+1100220	1101820	para la observación y
+1101820	1104540	todos los periodos temporales, de 1 a 4.
+1106780	1108540	Supongamos que no observo
+1108540	1109780	el periodo 3.
+1109780	1112420	Si no observo
+1112420	1113380	el periodo 3
+1113380	1116160	lo único que podría sumar
+1116160	1118000	en esa suma es
+1118000	1121720	todos los términos menos Z.
+1121960	1123000	Ese no lo observo.
+1124860	1126760	O sea que la suma
+1126760	1127560	sería
+1127560	1129420	la suma
+1129420	1131400	de 1 hasta 2
+1131400	1134180	más 4.
+1137380	1138720	Para que
+1138720	1140860	las sumas sean
+1140860	1141720	completas
+1141720	1144860	y quede lindo
+1144860	1146040	matemáticamente
+1146040	1147940	en lugar de ponerlo así
+1147940	1149260	lo que hago
+1149260	1150380	es multiplicar todo
+1150380	1151160	por S y T.
+1152640	1153800	Entonces como S y T
+1153800	1154160	vale
+1154160	1156300	1, 1, 0, 1
+1156300	1158700	me saca
+1158700	1160820	el periodo temporal 3.
+1161820	1162720	Y yo sumo
+1162720	1163460	los 4.
+1163460	1164640	solo que
+1164640	1165440	hay 1
+1165440	1166000	que es 0.
+1169400	1171100	Si yo multiplico
+1171100	1173300	para él
+1173300	1174540	supongo que no observo
+1174540	1175520	el periodo
+1175520	1176700	el periodo 3
+1176700	1177240	entonces
+1177240	1180840	S y
+1180840	1183080	va a ser
+1183080	1184640	S y 1
+1184640	1186520	S y 2
+1186520	1189040	S y 3
+1189040	1191020	S y 4
+1191020	1192860	y esto es un vector
+1192860	1195600	1, 1, 0, 1
+1195600	1199840	como el S y T
+1199840	1200760	está multiplicando
+1200760	1201400	a cada uno
+1201400	1202600	de las multiplicaciones
+1202600	1203440	de X y T
+1203440	1204200	con los dos puntos
+1204200	1204480	de arriba
+1204480	1205220	por X y T
+1205220	1206200	y X y T
+1206200	1206760	con los dos puntos
+1206760	1207040	de arriba
+1207040	1207420	tras puesto
+1207420	1208140	por I sub y T
+1208140	1209920	cuando es 0
+1209920	1210620	no suma nada
+1210620	1212460	y cuando es 1
+1212460	1213240	suma
+1213240	1214280	lo que tiene que sumar.
+1215660	1216180	Entonces
+1216180	1218680	la expresión
+1218680	1220940	la primera igualdad
+1220940	1221760	es
+1221760	1223100	el estimador
+1223100	1224980	de efectos fijos
+1224980	1226540	en un
+1226540	1227240	contexto
+1227240	1227680	de datos
+1227680	1228140	de panel
+1228140	1229200	no balanceado
+1229200	1230480	incompleto
+1230480	1231960	¿sí?
+1232140	1232920	De nuevo
+1232920	1234480	si yo observo
+1234480	1235980	todos los periodos
+1235980	1236440	temporales
+1236440	1237240	para cada unidad
+1237240	1238300	de corte transversal
+1238300	1239060	el S y T
+1239060	1239560	es 1
+1239560	1241320	y tengo la fórmula
+1241320	1241820	de abajo
+1241820	1242880	¿sí?
+1242940	1243560	La fórmula
+1243560	1244600	de efectos fijos
+1244600	1245140	en paneles
+1245140	1245680	completos
+1245680	1247860	entonces
+1247860	1248860	la
+1248860	1250860	la
+1250860	1253060	segunda igualdad
+1253060	1253940	de la ecuación 2
+1253940	1254460	¿sí?
+1254720	1255740	Lo único que hace
+1255740	1256480	es tomar
+1256480	1257480	este
+1257480	1260600	estimador
+1260600	1261520	perdón
+1261520	1262160	esta variable
+1262160	1263420	y subí
+1263420	1265860	T
+1265860	1266800	con los dos puntitos
+1266800	1267240	arriba
+1267240	1268580	y reemplazarla
+1268580	1269720	por el modelo
+1269720	1270340	que es
+1270340	1271660	X y T
+1271660	1273120	con los dos puntitos
+1273120	1273540	arriba
+1273540	1274180	por beta
+1274180	1275940	más
+1275940	1277660	U sub y T
+1277660	1279540	con los dos puntitos
+1279540	1279900	arriba
+1279900	1281680	entonces cuando hago
+1281680	1282540	la distributiva
+1282540	1283220	de todo
+1283220	1283800	por
+1283800	1284920	X y T
+1284920	1285240	beta
+1285240	1285760	me aparece
+1285760	1286240	este beta
+1286240	1286920	solito acá
+1286920	1288280	porque se cancela
+1288280	1288960	en la matriz
+1288960	1290680	y su inversa
+1290680	1292420	y cuando multiplico
+1292420	1293360	por este
+1293360	1295240	término
+1295240	1295800	que está acá
+1295800	1297300	me debería
+1297300	1298000	aparecer acá
+1298000	1298720	el término
+1298720	1299820	con el Q
+1299820	1301380	con los dos puntitos
+1301380	1302880	pero como hemos visto
+1302880	1304540	en el curso
+1304540	1304960	yo puedo
+1304960	1306120	destransformar
+1306120	1308540	los dos puntitos
+1308540	1309080	de la X
+1309080	1309640	y del U
+1309640	1310580	y como me queda
+1310580	1311060	en términos
+1311060	1311560	de una matriz
+1311560	1312460	que sigue en potente
+1312460	1314080	volver a transformar
+1314080	1314560	solo uno
+1314560	1315020	de los
+1315020	1316360	de la variable
+1316360	1316920	que es X
+1316920	1317920	con los dos puntitos
+1317920	1318280	y me queda
+1318280	1318700	en función
+1318700	1319040	de
+1319040	1319980	U sub y T
+1319980	1321040	que son los errores
+1321040	1322540	del modelo
+1322540	1323320	original
+1323320	1325740	y
+1325740	1328680	para que
+1328680	1329840	el estimador
+1329840	1332560	de efectos
+1332560	1333160	fijos
+1333160	1333780	en
+1333780	1335160	paneles
+1335160	1336260	desbalanceados
+1336260	1338040	sea consistente
+1338040	1338620	yo ya sé
+1338620	1339440	lo que necesito
+1339440	1341780	para que
+1341780	1342480	el
+1342480	1347660	puedo ponerlo
+1347660	1347960	así
+1347960	1349960	para que
+1349960	1350780	el
+1350780	1352320	estimador
+1352320	1353600	sea
+1353600	1355300	consistente
+1355300	1356580	necesito
+1356580	1356980	que
+1356980	1358580	suma
+1358580	1359260	desde
+1359260	1359840	T
+1359840	1361200	igual 1
+1361200	1361800	hasta T
+1361800	1362520	mayúscula
+1362520	1363020	1
+1363020	1364020	sobre N
+1364020	1365480	suma
+1365480	1366320	desde
+1366320	1366780	I
+1366780	1367780	igual 1
+1367780	1368940	hasta N
+1368940	1370000	de
+1370000	1370940	S
+1370940	1371940	y T
+1371940	1374620	por
+1374620	1375620	X
+1375620	1376540	y T
+1376540	1377760	con los dos
+1377760	1378680	puntitos arriba
+1378680	1379400	traspuesto
+1379400	1380540	por
+1380540	1382240	U
+1382240	1383080	sub y T
+1383080	1384360	con los dos
+1384360	1384780	puntitos
+1384780	1385240	arriba
+1385240	1387200	esto
+1387200	1390360	converga
+1390360	1391080	a la
+1391080	1391760	esperanza
+1391760	1393460	1
+1393460	1394080	sobre N
+1394080	1395380	por la suma
+1395380	1395940	que me tiene
+1395940	1396520	infinito
+1396520	1397180	por la ley de los
+1397180	1397740	grandes números
+1397740	1398540	converga la esperanza
+1398540	1399200	matemática
+1399200	1400340	esto me queda
+1400340	1400860	la esperanza
+1400860	1401540	matemática
+1401540	1402180	de S
+1402180	1402660	y T
+1402660	1403700	por
+1403700	1404280	X
+1404280	1406060	y T
+1406060	1406920	con los dos
+1406920	1407300	puntitos
+1407300	1407620	arriba
+1407620	1408360	traspuesto
+1408360	1408660	por
+1408660	1408860	U
+1408860	1409460	sub y T
+1409460	1411620	con los dos
+1411620	1411960	puntitos
+1411960	1412320	arriba
+1412320	1414140	esto es la
+1414140	1415140	suma
+1415140	1415460	desde
+1415460	1415800	T
+1415800	1416520	igual 1
+1416520	1416900	hasta
+1416900	1417200	opciones
+1417200	1417540	después
+1417540	1419680	y lo que
+1419680	1420260	necesito
+1420260	1420600	para
+1420600	1421860	tener un
+1421860	1422180	empujador
+1422180	1422700	consistente
+1422700	1422940	es que
+1422940	1423380	esa esperanza
+1423380	1423940	se acera
+1423940	1427700	necesito
+1427700	1428400	exogeneidad
+1428400	1429400	contemporánea
+1429400	1431420	en el modelo
+1431420	1432300	transformado
+1432300	1432840	por la
+1432840	1433560	transformación
+1433560	1434160	de efectos
+1434160	1436480	como estoy
+1436480	1436840	estimando
+1436840	1437180	con el mismo
+1437180	1437740	cuadro clásico
+1437740	1438260	si se cumple
+1438260	1438820	la exogeneidad
+1438820	1439420	contemporánea
+1439420	1440220	el estimador
+1440220	1441540	es consistente
+1441540	1444320	necesito
+1444320	1445400	que el primer
+1445400	1446020	sumando
+1446020	1446740	converja
+1446740	1447980	aplicando
+1447980	1448360	la ley
+1448360	1448680	de los más
+1448680	1449320	grandes números
+1449320	1450420	a una matriz
+1450420	1452060	nosotros
+1452060	1452600	lo llamamos
+1452600	1452920	A
+1452920	1454600	A
+1454600	1455020	inverse
+1455020	1458960	me queda
+1458960	1460240	la multiplicación
+1460240	1461020	de una
+1461020	1461760	secuencia
+1461760	1462540	o grande
+1462540	1462980	P1
+1462980	1463340	por una
+1463340	1463680	secuencia
+1463680	1464060	pequeña
+1464060	1464540	P1
+1464540	1465580	se va
+1465580	1465960	todo a
+1465960	1466180	cero
+1466180	1466680	y beta
+1466680	1467160	sombrero
+1467160	1467380	con
+1467380	1467580	vector
+1467580	1469620	ahora
+1469620	1470940	ya sabemos
+1470940	1471280	que
+1471280	1471940	para que
+1471940	1472340	haya
+1472340	1473460	exogeneidad
+1473460	1474520	contemporánea
+1474520	1476140	en el
+1476140	1476480	modelo
+1476480	1477200	transformado
+1477200	1477420	por
+1477420	1477820	diferencia
+1477820	1478240	finita
+1478240	1478940	necesito
+1478940	1479280	algún
+1479280	1479600	tipo
+1479600	1479760	de
+1479760	1480260	exogeneidad
+1480260	1480880	estricta
+1480880	1481620	con respecto
+1481620	1481920	a los
+1481920	1482260	errores
+1482260	1482720	del modelo
+1482720	1483120	original
+1483120	1483560	son los
+1483560	1483760	que me
+1483760	1484100	quedaron
+1484100	1484380	en la
+1484380	1484720	ecuación
+1484720	1486740	¿por qué?
+1486900	1487400	y porque
+1487400	1488320	adentro
+1488320	1489120	del X y T
+1489120	1489440	con los
+1489440	1490060	dos puntitos
+1490060	1490500	tengo
+1490500	1491680	la suma
+1491680	1492200	desde T
+1492200	1492380	igual
+1492380	1492580	1
+1492580	1493160	hasta T
+1493160	1494580	mayúscula
+1494580	1495600	de X y T
+1495600	1496660	y adentro
+1496660	1497040	de
+1497040	1497740	el
+1497740	1498740	U sub
+1498740	1498980	y T
+1498980	1499280	con los
+1499280	1499440	dos
+1499440	1499740	puntos
+1499740	1500060	arriba
+1500060	1500300	tengo
+1500300	1501460	la suma
+1501460	1501860	de U
+1501860	1501980	sub
+1501980	1502260	y T
+1502260	1502800	desde T
+1502800	1502960	igual
+1502960	1503160	1
+1503160	1503480	hasta T
+1503480	1503640	o sea
+1503640	1503960	que tengo
+1503960	1504300	todos los
+1504300	1504620	errores
+1504620	1505220	todos los
+1505220	1506400	los X
+1506400	1506900	necesito
+1506900	1507420	que no haya
+1507420	1508040	relación
+1508040	1509400	entre los
+1509400	1509880	errores
+1509880	1510420	y la
+1510420	1510660	variable
+1510660	1511180	aplicativa
+1511180	1511720	en ninguna
+1511720	1512180	observación
+1512180	1512660	temporal
+1512660	1515220	de forma tal
+1515220	1515480	de que la
+1515480	1515760	esperanza
+1515760	1516400	matemática
+1516400	1516640	me
+1516640	1516940	de C
+1516940	1517860	o sea
+1517860	1518280	que necesito
+1518280	1518760	exogenidad
+1518760	1519680	estricta
+1519680	1520280	en el
+1520280	1520640	modelo
+1520640	1521380	original
+1521380	1521760	eso ya
+1521760	1522140	lo habíamos
+1522140	1522580	dicho
+1522580	1523800	cuando
+1523800	1524400	hicimos
+1524400	1526360	dividido por
+1526360	1526580	N
+1526580	1527080	porque tengo
+1527080	1527280	N
+1527280	1527820	tipitos
+1527820	1528840	¿me da
+1528840	1529300	lo mismo
+1529300	1529700	que una
+1529700	1530040	prespa
+1530040	1530660	una vez
+1530660	1531000	pero
+1531000	1531300	presa
+1531300	1531600	cinco
+1531600	1532060	veces
+1532060	1532840	¿se pondrá
+1532840	1533160	igual?
+1534100	1534480	no
+1534480	1535120	no
+1535120	1536000	entendí
+1536000	1537500	claro
+1537500	1539320	tengo
+1539320	1539540	N
+1539540	1540000	tipitos
+1540000	1541180	si
+1541180	1542560	una
+1542560	1543380	puede que
+1543380	1543580	tengo
+1543580	1543880	una
+1543880	1544300	que aparece
+1544300	1544620	cinco
+1544620	1545040	veces
+1545040	1545420	y
+1545420	1545980	99
+1545980	1546460	que aparece
+1546460	1547040	una vez
+1547040	1547840	si
+1547840	1549600	cada
+1549600	1549820	uno
+1549820	1550080	es un
+1550080	1550500	99
+1550500	1551420	se pondera
+1551420	1551780	igual
+1551780	1552540	que aparece
+1552540	1552840	cinco
+1552840	1552960	veces
+1552960	1553600	se pondera
+1553600	1554000	igual
+1554000	1554500	¿qué
+1554500	1554740	quiere
+1554740	1555160	decir?
+1556560	1557440	igual
+1557440	1558080	promedio
+1558080	1560040	¿qué
+1560040	1560660	promedio?
+1560660	1568480	Ah no
+1568480	1569540	esa sumatoria
+1569540	1570840	va a ser
+1570840	1572140	una sumatoria
+1572140	1574720	incompleta
+1574720	1575260	si yo
+1575260	1575840	no tengo
+1575840	1578620	pero
+1578620	1579300	da lo mismo
+1579300	1579520	¿no?
+1579980	1580280	o sea
+1580280	1582020	en el límite
+1582020	1583080	lo que sea
+1583080	1583500	va a tener
+1583500	1584080	infinito
+1584080	1584660	si yo quiero
+1584660	1585060	calcular
+1585060	1585320	la
+1585320	1585820	función
+1585820	1586420	asintótica
+1586420	1590480	ok
+1590480	1591140	tengo
+1591140	1591760	solo
+1591760	1594380	una cosa
+1594380	1594760	que
+1594760	1595520	agregar
+1595520	1596640	y es que
+1596640	1597340	en el
+1597340	1598500	en el panel
+1598500	1599220	completo
+1599220	1600740	en el panel
+1600740	1601400	completo
+1601400	1605680	por ejemplo
+1605680	1606080	it
+1606080	1607120	con los dos
+1607120	1607980	puntitos arriba
+1607980	1609300	era igual
+1609300	1610340	a el valor
+1610340	1610820	de it
+1610820	1612560	menos
+1612560	1613460	la media
+1613460	1614240	temporal
+1614240	1616060	suma
+1616060	1616300	donde
+1616300	1616760	t
+1616760	1617280	igual
+1617280	1617740	uno
+1617740	1618540	hasta t
+1618540	1619300	mayúscula
+1619300	1621880	de
+1621880	1622400	y
+1622400	1622940	subito
+1622940	1626840	y
+1626840	1628260	en un
+1628260	1628920	panel
+1628920	1630760	incompleto
+1630760	1631760	como este
+1631760	1632180	ejemplo
+1632180	1633120	que mencionamos
+1633120	1633460	acá
+1633460	1636560	yo no le puedo
+1636560	1637320	restar
+1637320	1638420	la media
+1638420	1638880	total
+1638880	1641060	porque
+1641060	1641460	si t
+1641460	1641920	mayúscula
+1641920	1642260	es 4
+1642260	1642600	y yo
+1642600	1643600	la observación
+1643600	1644000	3
+1644000	1645560	no la observo
+1645560	1646120	no puedo
+1646120	1646420	calcular
+1646420	1647020	el promedio
+1647020	1648860	entonces
+1648860	1649200	lo que
+1649200	1649740	le puedo
+1649740	1650460	restar
+1650460	1651780	es la
+1651780	1651980	media
+1651980	1652420	temporal
+1652420	1652600	que
+1652600	1653460	observo
+1653460	1655140	en mi
+1655140	1655580	ejemplo
+1655580	1656820	sería
+1656820	1658580	y subí
+1658580	1660060	1
+1660060	1660980	menos
+1660980	1661920	1
+1661920	1662800	sobre 3
+1662800	1664460	suma
+1664460	1665380	y subí
+1665380	1665640	1
+1665640	1666540	y subí
+1666540	1666760	2
+1666760	1667200	y subí
+1667200	1667480	4
+1667480	1671940	bueno
+1671940	1674320	vamos a escribirlo
+1674320	1675420	en lugar
+1675420	1675800	de para
+1675800	1676680	t igual a
+1676680	1677260	4
+1677260	1677800	para t
+1677800	1678400	igual a t
+1678400	1680140	así
+1680140	1681660	como aparece
+1681660	1682000	acá
+1682000	1689960	la suma
+1689960	1691620	va a ser
+1691620	1692140	completa
+1692140	1692820	desde 1
+1692820	1693300	hasta t
+1693300	1693960	mayúscula
+1693960	1694720	de que
+1694720	1695260	y
+1695260	1696980	de la variable
+1696980	1697740	indicadora
+1697740	1698340	por
+1698340	1699780	y subí
+1699780	1701900	digamos
+1701900	1702680	mi ejemplo
+1702680	1703620	la variable
+1703620	1704100	indicadora
+1704100	1704300	es
+1704300	1704520	1
+1704520	1704740	1
+1704740	1705040	0
+1705040	1705340	1
+1705340	1705580	o sea
+1705580	1705800	que
+1705800	1706220	sumo
+1706220	1706740	hasta 4
+1706740	1707660	pero
+1707660	1708240	cuando
+1708240	1708840	multiplico
+1708840	1709100	por
+1709100	1709400	s
+1709400	1709800	y
+1709800	1710060	r
+1710060	1711500	voy a
+1711500	1711780	sumar
+1711780	1712120	3
+1712120	1713580	observación
+1713580	1715240	y voy
+1715240	1715700	a dividir
+1715700	1716200	por 3
+1716200	1719680	el 3
+1719680	1720000	acá
+1720000	1720340	va a estar
+1720340	1721040	representado
+1721040	1721520	por t
+1721520	1721960	subí
+1721960	1724340	donde
+1724340	1725060	t subí
+1725060	1726500	es la suma
+1726500	1727360	de los indicadores
+1727360	1728540	para la observación
+1728540	1728720	y
+1728720	1730240	de nuevo
+1730240	1731760	para la observación
+1731760	1732000	y
+1732000	1733200	la suma
+1733200	1734120	de los indicadores
+1734120	1735120	en mi ejemplo
+1735120	1735540	es 3
+1735540	1737740	o sea
+1737740	1738280	que divido
+1738280	1738720	por 3
+1738720	1740840	si la suma
+1740840	1741660	de los indicadores
+1741660	1742140	es 8
+1742140	1742720	tengo que dividir
+1742720	1743180	por 8
+1743180	1744720	porque sumo
+1744720	1745140	los 1
+1745140	1746300	sumo
+1746300	1747120	las observaciones
+1747120	1747640	que tengo
+1747640	1748620	los 0
+1748620	1749260	no los cuento
+1749260	1750780	o sea
+1750780	1751040	que
+1751040	1753400	le voy a restar
+1753400	1755480	a cada variable
+1755480	1756840	en el corte transversal
+1756840	1757680	la media temporal
+1757680	1758580	que observo
+1758580	1761880	eso vale
+1761880	1762440	para y
+1762440	1763280	y vale
+1763280	1764020	para x
+1764020	1768640	salvo eso
+1768640	1771180	todo lo demás
+1771180	1771840	es igual
+1771840	1781440	entonces
+1781440	1782640	lo que
+1782640	1785600	lo que sigue
+1785600	1786000	abajo
+1786000	1786560	es lo que
+1786560	1787080	dije
+1787080	1788400	en la transparencia
+1788400	1789120	anterior
+1789120	1790380	necesito
+1790380	1790980	exogenidad
+1790980	1791920	contemporánea
+1791920	1793080	en
+1793080	1793680	este
+1793680	1795220	en el modelo
+1795220	1796160	transformado
+1796160	1796800	por diferencia
+1796800	1797280	finita
+1797280	1798000	y como necesito
+1798000	1798540	exogenidad
+1798540	1799340	contemporánea
+1799340	1800300	este
+1800300	1801020	necesito
+1801020	1801860	alguna forma
+1801860	1802260	de
+1802260	1803280	exogenidad
+1803280	1804020	estricta
+1804020	1805680	en los errores
+1805680	1806260	del modelo
+1806260	1807100	original
+1807100	1808700	entonces
+1808700	1810500	la forma
+1810500	1811200	de la exogenidad
+1811200	1811500	estricta
+1811500	1812380	está resumida
+1812380	1813460	en el supuesto
+1813460	1813820	1
+1813820	1814460	yo le puse
+1814460	1816040	F.E.U.P.
+1816220	1816640	que es
+1816640	1817400	Fixed Effect
+1817400	1818000	Unbalanced
+1818000	1818400	Panel
+1818400	1819600	Panel 1
+1819600	1821560	que tiene
+1821560	1822280	tres ítems
+1822280	1823380	el ítem
+1823380	1823820	A
+1823820	1825540	es la condición
+1825540	1827020	de exogenidad
+1827020	1828080	estricta
+1828080	1828760	la esperanza
+1828760	1829380	de un sub-IT
+1829380	1829920	condicional
+1829920	1830460	en X
+1830460	1830920	en S
+1830920	1831440	y en C
+1831440	1831940	es C
+1831940	1833080	para todo
+1833080	1836920	y después
+1836920	1837440	tengo
+1837440	1839240	dos
+1839240	1841960	ítems
+1841960	1842960	adicionales
+1842960	1844240	el B
+1844240	1845380	es la condición
+1845380	1845960	de rango
+1845960	1846640	que necesito
+1846640	1847220	para que
+1847220	1848660	la matriz
+1848660	1849300	de variables
+1849300	1849840	explicativas
+1849840	1851180	tenga inversa
+1851180	1851920	o sea
+1851920	1852340	que el
+1852340	1853120	supuesto
+1853120	1853420	B
+1853420	1854180	es que
+1854180	1854620	la suma
+1854620	1854900	de 1
+1854900	1855200	a T
+1855200	1856060	de la esperanza
+1856060	1856560	de S
+1856560	1856880	y T
+1856880	1857420	por X
+1857420	1857740	y T
+1857740	1858400	con los dos puntos
+1858400	1858840	arriba
+1858840	1859300	transpuestos
+1859300	1859640	por X
+1859640	1859860	y T
+1859860	1860460	con los dos puntos
+1860460	1860860	arriba
+1860860	1862580	no sea singular
+1862580	1863200	o tenga rango
+1863200	1863660	completo
+1863660	1864580	así la puede invertir
+1864580	1868020	y el supuesto
+1868020	1868380	C
+1868380	1869420	no es necesario
+1869420	1870640	pero
+1870640	1874100	vamos a hacer
+1874100	1875380	para que las cuentas
+1875380	1876400	sean más fáciles
+1876400	1877800	el supuesto
+1877800	1878200	C
+1878200	1879100	es
+1879100	1880400	el equivalente
+1880400	1881460	al supuesto
+1881460	1882260	de varianza
+1882260	1882880	de los errores
+1882880	1883620	esféricas
+1883620	1884420	en el corte
+1884420	1884840	de rosa
+1884840	1885780	supuesto
+1885780	1886220	C
+1886220	1888300	que ya hicimos
+1888300	1888920	antes
+1888920	1889480	me dice
+1889480	1889820	que
+1889820	1891000	los errores
+1891000	1891780	del modelo
+1891780	1892440	los errores
+1892440	1893340	idiosincráticos
+1893340	1893920	del modelo
+1893920	1895080	no tienen
+1895080	1896300	heteroseasticidad
+1896300	1896880	ni correlación
+1896880	1897140	serial
+1897140	1897660	en el tiempo
+1897660	1899860	la matriz
+1899860	1900220	de varianza
+1900220	1900720	y covalianza
+1900720	1901780	es sigma cuadrado
+1901780	1902880	por la matriz
+1902880	1903340	identidad
+1903340	1904180	podría no hacer
+1904180	1904900	ese supuesto
+1904900	1907080	después lo voy a levantar
+1907080	1908400	y lo único que cambia
+1908400	1909260	es que la matriz
+1909260	1910060	de varianza y covalianza
+1910060	1910780	de los coeficientes
+1910780	1911840	acá
+1911840	1913440	es la estándar
+1913440	1914600	y si no asumo
+1914600	1915440	es la robusta
+1915440	1916280	ante la presencia
+1916280	1917420	de alguno
+1917420	1918180	de esos problemas
+1918180	1919620	son las
+1919620	1920600	ecuaciones
+1920600	1921300	13
+1921300	1922360	y 23
+1922360	1924260	de la lectura
+1924260	1924560	1
+1924560	1929880	entonces
+1929880	1930960	bajo el supuesto
+1930960	1931620	de exogeneidad
+1931620	1932040	estricta
+1932040	1932720	se cumple
+1932720	1933460	el supuesto
+1933460	1934940	de exogeneidad
+1934940	1935820	contemporánea
+1935820	1936780	en el modelo
+1936780	1937920	transformado
+1937920	1940080	usando la ley
+1940080	1941020	de expectativas
+1941020	1941760	iteradas
+1941760	1943640	el supuesto
+1943640	1943900	B
+1943900	1944580	es la condición
+1944580	1945140	de rango
+1945140	1947020	y esos dos
+1947020	1947360	supuestos
+1947360	1947940	me aseguran
+1947940	1948980	que el estimado
+1948980	1949520	es consistente
+1949520	1951080	lo puedo sacar
+1951080	1951960	y es consistente
+1951960	1956240	entonces
+1956240	1957380	en el
+1957380	1958240	el punto 3
+1958240	1959060	lo que me dice
+1959060	1959360	es que
+1959360	1959940	en el caso
+1959940	1960720	de paneles
+1960720	1961140	rotativos
+1961140	1962140	aleatorios
+1962140	1963960	en el
+1963960	1964480	en el caso
+1964480	1965040	de paneles
+1965040	1965480	aleativos
+1965480	1966600	rotativos
+1966600	1967700	aleatorios
+1967700	1968500	el
+1968500	1969400	mecanismo
+1969400	1969960	de selección
+1969960	1970600	es completamente
+1970600	1971200	aleatorio
+1971200	1973440	y como es
+1973440	1974280	completamente
+1974280	1975540	aleatorio
+1975540	1976640	condicionar
+1976640	1977380	en SIT
+1977380	1977920	o no
+1977920	1978660	me da lo mismo
+1978660	1980400	porque
+1980400	1981280	SIT
+1981280	1981880	aleatorio
+1981880	1982760	es independiente
+1982760	1983440	de cualquier
+1983440	1983840	cosa
+1983840	1985500	entonces
+1985500	1987000	la
+1987000	1988440	condición
+1988440	1989040	que
+1989040	1991160	usamos
+1991160	1991720	en
+1991720	1992780	paneles
+1992780	1993180	completos
+1993180	1993540	se sigue
+1993540	1994140	manteniendo
+1994140	1994480	aquí
+1994480	1996880	en lugar
+1996880	1997940	de condicionar
+1997940	1999440	el error
+1999440	2000300	sobre
+2000300	2001040	XI
+2001040	2001660	SI
+2001660	2002120	y C
+2002120	2002520	subí
+2002520	2003640	puedo condicionar
+2003640	2004240	solamente
+2004240	2004640	sobre
+2004640	2005040	XI
+2005040	2005220	y C
+2005220	2005580	subí
+2005580	2006160	porque
+2006160	2006560	el SI
+2006560	2007400	es completamente
+2007400	2008440	aleatorio
+2008440	2018960	bueno
+2018960	2019880	mostramos
+2019880	2020340	así
+2020340	2021080	más o menos
+2021080	2021940	consistencia
+2021940	2022960	más o menos
+2022960	2023640	porque ya lo hicimos
+2023640	2024540	para poner el completo
+2024540	2025260	y acá es lo mismo
+2025260	2027360	y podemos mostrar
+2027360	2028400	normalidad sintótica
+2028400	2028780	también
+2028780	2030080	de nuevo
+2030080	2030560	en esta
+2030560	2032100	en esta
+2032100	2034000	última
+2034000	2034800	ecuación
+2034800	2035140	este
+2035140	2035600	N
+2035600	2036900	a la
+2036900	2037140	menos
+2037140	2037400	1
+2037400	2037800	lo puedo
+2037800	2038160	escribir
+2038160	2038640	como 1
+2038640	2039180	sobre raíz
+2039180	2039600	de N
+2039600	2040120	por 1
+2040120	2040480	sobre raíz
+2040480	2040880	de N
+2040880	2041380	este
+2041380	2041700	beta
+2041700	2042080	lo paso
+2042080	2042480	restando
+2042480	2043600	a la izquierda
+2043600	2044120	de la igualdad
+2044120	2044580	paso 1
+2044580	2045060	de las raíz
+2045060	2045460	de N
+2045460	2046280	multiplicando
+2046280	2046980	y el último
+2046980	2047420	término
+2047420	2047820	convergo
+2047820	2048400	en el normal
+2048400	2049820	con media
+2049820	2050180	cero
+2050180	2051160	y varianza
+2051160	2051700	la varianza
+2051700	2052380	de la secuencia
+2052380	2052940	y tengo
+2052940	2055460	y como
+2055460	2056280	la materia
+2056280	2056620	de varianza
+2056620	2056980	y covalianza
+2056980	2057340	de los errores
+2057340	2057900	es sigma cuadrada
+2057900	2058340	por la matriz
+2058340	2058820	de identidad
+2058820	2059720	la materia
+2059720	2060120	de varianza
+2060120	2060720	y covalianza
+2060720	2061180	va a ser
+2061180	2062740	sigma cuadrado
+2062740	2063740	por x
+2063740	2064540	con los dos
+2064540	2065260	puntos arriba
+2065260	2065800	tras puesto
+2065800	2066220	por x
+2066220	2066680	con los dos
+2066680	2067240	puntos arriba
+2067240	2067960	que es la
+2067960	2069340	materia de varianza
+2069340	2069760	y covalianza
+2069760	2070340	estándar
+2070340	2071120	en mínimos cuadrados
+2071120	2071560	clásicos
+2071560	2072400	cuando se cumple
+2072400	2073440	el supuesto
+2073440	2074820	de varianza
+2074820	2075380	de los errores
+2075380	2076760	específicos
+2076760	2079820	bueno
+2079820	2080160	ahí está
+2080160	2084920	en este caso
+2084920	2086940	hacemos las motores
+2086940	2087920	de I1
+2087920	2088500	hasta N
+2088500	2091140	pero si es rotativo
+2091140	2091640	y después
+2091640	2093020	entra otra gente
+2093020	2094520	sigue siendo
+2094520	2094980	hasta N
+2094980	2095600	sigue siendo
+2095600	2096020	hasta N
+2096020	2097280	¿N es el primero?
+2097800	2098620	¿O N es la cantidad
+2098620	2099280	que hayan entrado?
+2099560	2099840	no
+2099840	2101020	N es el primero
+2101020	2102220	N
+2102220	2103420	se mantiene
+2103420	2104160	siempre en N
+2104160	2106020	si es panel
+2106020	2106640	rotativo
+2106640	2108080	yo lo que digo
+2108080	2109080	tengo 400
+2109080	2109920	en el primer periodo
+2109920	2110300	temporal
+2110300	2112240	en el segundo
+2112240	2113020	periodo temporal
+2113020	2114360	roto el 50%
+2114360	2115060	o sea que me quedo
+2115060	2115760	con 200
+2115760	2116980	claro
+2116980	2118220	con una
+2118220	2119780	roto el 50%
+2119780	2120500	por decir algo
+2120500	2121680	tengo 200
+2121680	2122760	que los observé
+2122760	2123220	en el primer
+2123220	2124240	en el primer
+2124240	2125220	periodo temporal
+2125220	2125600	en el segundo
+2125600	2126080	periodo temporal
+2126080	2126980	y 200
+2126980	2127640	que entran 9
+2127640	2129060	y el tamaño
+2129060	2129620	sigue siendo
+2129620	2129980	14
+2129980	2130980	claro
+2130980	2132060	pero entonces
+2132060	2133440	el S
+2133440	2135120	en ese caso
+2135120	2135520	aquí
+2135520	2136280	o sea
+2136280	2136740	las I
+2136740	2137260	¿cuáles serían?
+2137700	2138000	si decís
+2138000	2138720	estos estallitos
+2138720	2139180	no están
+2139180	2140060	las I
+2140060	2140800	son
+2140800	2141620	las 400
+2141620	2142540	que empiezan
+2142540	2143320	originales
+2143320	2144640	si
+2144640	2145360	entonces
+2145360	2146240	la información
+2146240	2146860	que no usas
+2146860	2147420	no
+2147420	2149280	no
+2149280	2150800	depende de
+2150800	2150980	cómo
+2150980	2152040	no sé cómo
+2152040	2152860	lo estás pensando
+2152860	2153640	yo pienso
+2153640	2154140	hay 400
+2154140	2154360	entonces
+2154360	2155060	luego
+2155060	2155980	pongo una
+2155980	2156700	tablita
+2156700	2158460	pongo una
+2158460	2159080	tablita
+2159080	2160380	entonces tengo
+2160380	2160860	I
+2160860	2161580	a veces
+2161580	2162160	chiquito
+2162160	2164160	I
+2164160	2164820	I
+2164820	2168700	1
+2168700	2169080	2
+2169080	2169640	3
+2169640	2170360	4
+2170360	2171360	5
+2171360	2175540	y subí
+2175540	2176280	1
+2176280	2177880	lo que sea
+2177880	2178140	¿no?
+2179720	2180640	en el primer
+2180640	2181540	periodo temporal
+2181540	2183220	observo
+2183220	2184080	todas las palabras
+2184080	2192680	en el segundo
+2192680	2193840	periodo temporal
+2193840	2198700	roto 2
+2198700	2200360	la primera y la segunda
+2200360	2200960	claro
+2200960	2201340	¿eh?
+2201700	2202960	y agregó
+2202960	2204520	6
+2204520	2207080	entonces
+2207080	2208300	acá tenés
+2208300	2209900	este lo observo
+2209900	2211580	este lo observo
+2211580	2212900	este lo observo
+2212900	2214080	y acá observo
+2214080	2215580	y acá observo
+2215580	2216200	bien
+2216200	2218080	el panel
+2218080	2221260	es incompleto
+2221260	2222540	para todas las observaciones
+2222540	2224040	para la observación
+2224040	2224820	6 y 7
+2224820	2227040	no observo
+2227040	2228180	los primeros
+2228180	2230320	el valor
+2230320	2230820	de la variable
+2230820	2231900	en el primer periodo temporal
+2231900	2233040	para las observaciones
+2233040	2233660	1 y 2
+2233660	2234240	no observo
+2234240	2234640	en el segundo
+2234640	2235360	periodo temporal
+2235360	2235900	¿eh?
+2236140	2237560	pero en el
+2237560	2240240	en la diagonal
+2240240	2240860	siempre tengo
+2240860	2241180	el mismo
+2241180	2241720	número
+2241720	2242140	claro
+2242140	2243240	¿eh?
+2243880	2244180	o sea
+2244180	2244560	de n
+2244560	2245180	no cambia
+2245180	2246480	esa es mi pregunta
+2246480	2246940	o sea
+2246940	2248060	n no cambia
+2248060	2249180	pero es el
+2249180	2249620	como
+2249620	2250380	el maxi
+2250380	2250780	es la cantidad
+2250780	2251160	de individuos
+2251160	2251400	total
+2251400	2251700	que hubo
+2251700	2251980	a lo largo
+2251980	2252500	de todo el panel
+2252500	2253640	y si
+2253640	2254120	es el panel
+2254120	2254860	entero
+2254860	2257440	no era 5
+2257440	2258040	sería 7
+2258040	2258580	en este caso
+2258580	2263760	¿ahí te ganaría
+2263760	2264240	si
+2264240	2265560	vas a rotar 2
+2265560	2266500	o 1
+2266500	2266900	solo
+2266900	2268040	o 4
+2268040	2268840	no
+2268840	2269800	es
+2269800	2270560	digo
+2270560	2271840	hay procedimientos
+2271840	2272880	de muestreo
+2272880	2274140	que te permiten
+2274140	2275140	rotar
+2275140	2276860	lo que vos quieras
+2276860	2277940	a mí
+2277940	2278280	no me
+2278280	2279340	o sea
+2279340	2281240	usar
+2281240	2282620	el que quieras
+2282620	2283340	¿sí?
+2284780	2285700	no tiene
+2285700	2286020	nada
+2286020	2286280	que
+2286280	2286680	o sea
+2286680	2288800	en este curso
+2288800	2292280	hay un procedimiento
+2292280	2292720	de
+2292720	2293900	muestreo
+2293900	2294720	que te deja
+2294720	2296700	la rotación
+2296700	2297360	¿sí?
+2297400	2298640	en forma aleatoria
+2298640	2301720	puede ser
+2301720	2303080	una
+2303080	2303940	un
+2303940	2305180	muestreo
+2305180	2305660	aleatorio
+2305660	2306200	simple
+2306200	2307440	o estratificado
+2307440	2308440	o sistemático
+2308440	2310020	el que vos quieras
+2310020	2310820	lo que yo
+2310820	2311720	tengo para
+2311720	2312160	trabajar
+2312160	2313480	es el panel
+2313480	2314360	incompleto
+2314360	2315640	lo que ve
+2315640	2315980	a mí
+2315980	2316520	que me ve
+2316520	2316920	el panel
+2316920	2317640	incompleto
+2317640	2318240	y que me diga
+2318240	2318440	mira
+2318440	2319560	yo usé
+2319560	2320160	un procedimiento
+2320160	2320700	de muestreo
+2320700	2321000	que
+2321000	2322040	rotó
+2322040	2323020	una observación
+2323020	2323820	por cada
+2323820	2324160	periodo
+2324160	2324460	temporal
+2324460	2328020	lo único
+2328020	2328940	que yo necesito
+2328940	2330000	es que
+2330000	2332040	cuando armo
+2332040	2332400	el panel
+2332400	2333280	sepa
+2333280	2333780	cuáles son
+2333780	2334260	las variables
+2334260	2334880	que observo
+2334880	2335520	en qué periodo
+2335520	2335940	temporal
+2335940	2336500	y cuáles son
+2336500	2336860	las variables
+2336860	2337400	que no observo
+2337400	2337920	en qué periodo
+2337920	2338300	temporal
+2338300	2340140	¿sí?
+2341420	2342060	entonces
+2342060	2342740	nada
+2342740	2345220	este
+2345220	2347940	los dos puntos
+2347940	2348540	que aparecen
+2348540	2348840	aquí
+2348840	2349480	en la
+2349480	2351640	en la transparencia
+2351640	2353660	son importantes
+2353660	2354140	digamos
+2354140	2355080	están medio
+2355080	2355660	mezclados
+2355660	2355960	ahí
+2355960	2356320	o
+2356320	2357120	ocultos
+2357120	2357840	en nuestro
+2357840	2358360	supuesto
+2358360	2358620	pero
+2358620	2359960	el supuesto
+2359960	2361200	de exogenidad
+2361200	2361620	tricta
+2361620	2362420	no requiere
+2362420	2363640	o no restringe
+2363640	2365820	la relación
+2365820	2366620	o no relación
+2366620	2367120	que haya
+2367120	2368100	entre el mecanismo
+2368100	2369120	de selección
+2369120	2369840	el S y T
+2369840	2371340	con las variables
+2371340	2371960	explicativas
+2371960	2372620	observadas
+2372620	2373320	o la heterogenidad
+2373320	2373860	no observada
+2373860	2375300	yo podría
+2375300	2375920	tener
+2375920	2377200	relación
+2377200	2377820	entre
+2377820	2379340	el mecanismo
+2379340	2380660	de selección
+2380660	2381360	y las variables
+2381360	2381900	explicativas
+2381900	2382580	observadas
+2382580	2383000	o
+2383000	2385120	en la heterogeneidad
+2385120	2386580	no observada
+2386580	2387760	lo único
+2387760	2389080	que requiere
+2389080	2389740	el supuesto
+2389740	2390120	uno
+2390120	2390580	es que
+2390580	2391080	el mecanismo
+2391080	2391500	de selección
+2391500	2392240	no está relacionado
+2392240	2392640	con uno
+2392640	2402380	entonces
+2402380	2403160	de nuevo
+2403160	2404540	si agregamos
+2404540	2405140	el supuesto
+2405140	2405460	3
+2405460	2406960	de varianza
+2406960	2408580	de los errores
+2408580	2409280	constantes
+2409280	2409960	en el tiempo
+2409960	2410440	y
+2410440	2411760	no hay
+2411760	2412240	correlación
+2412240	2412700	serial
+2412700	2413940	la materia de varianza
+2413940	2414400	y covarianza
+2414400	2415200	de los coeficientes
+2415200	2415620	de
+2415620	2417700	de la estimación
+2417700	2418280	es esa
+2418280	2418860	que aparece ahí
+2418860	2419640	que básicamente
+2419640	2421640	sigma cuadrado
+2421640	2422280	por x
+2422280	2423520	inversa
+2423520	2424180	solamente
+2424180	2425000	ahora las x
+2425000	2426500	tienen los dos puntitos
+2426500	2426800	arriba
+2426800	2427840	y están multiplicadas
+2427840	2428540	por S y T
+2428540	2429380	porque el panel
+2429380	2429980	es igual
+2429980	2430220	en C
+2430220	2437560	si yo no quiero
+2437560	2439920	si yo no quiero
+2439920	2440760	asumir
+2440760	2441520	el supuesto
+2441520	2442160	C
+2442160	2445640	la matriz de varianza
+2445640	2446220	y covarianza
+2446220	2446720	va a tener
+2446720	2447540	en el medio
+2447540	2448020	acá
+2448020	2449960	un sombrero
+2449960	2451920	con los dos puntitos
+2451920	2452180	arriba
+2452180	2452600	tras puesto
+2452600	2453380	por un sombrero
+2453380	2454080	con los dos puntitos
+2454080	2454460	arriba
+2454460	2456400	esa es la
+2456400	2457880	ecuación 13
+2457880	2459580	de la primera
+2459580	2460140	lectura
+2460140	2461700	porque
+2461700	2462400	digamos
+2462400	2463100	necesito
+2463100	2464220	controlar
+2464220	2465360	por
+2465360	2467360	heteroseasticidad
+2467360	2467820	y correlación
+2467820	2468120	serial
+2468120	2472420	necesito estimar
+2472420	2472920	la
+2472920	2474860	la varianza
+2474860	2475240	de U
+2475240	2478540	para estimar
+2478540	2479100	la varianza
+2479100	2479580	de U
+2479580	2481680	lo que
+2481680	2482700	hacíamos
+2482700	2483140	antes
+2483140	2483640	era
+2483640	2486060	S
+2486060	2486620	cuadrado
+2486620	2487240	S
+2487240	2487880	cuadrado
+2487880	2489140	era la suma
+2489140	2489880	de residuos
+2489880	2490520	al cuadrado
+2490520	2491300	dividido
+2491300	2491780	los grados
+2491780	2492440	de libertad
+2492440	2493220	que era
+2493220	2493700	N
+2493700	2494520	por T
+2494520	2495500	menos K
+2495500	2501220	ahora
+2501220	2503120	el único
+2503120	2503860	inconveniente
+2503860	2504360	que tengo
+2504360	2504920	es este
+2504920	2509360	porque
+2509360	2509760	N
+2509760	2510160	grande
+2510160	2510720	por T
+2510720	2511340	mayúscula
+2511340	2511780	es cuando
+2511780	2512340	tengo el panel
+2512340	2512900	completo
+2512900	2517020	lo único
+2517020	2517800	que cambia
+2517800	2518960	es
+2518960	2519660	ese
+2519660	2520980	denominador
+2520980	2521700	que
+2521700	2522440	acá está
+2522440	2522940	puesto
+2522940	2524100	como
+2524100	2525200	sin la
+2525200	2526020	corrección
+2526020	2529180	ahí está
+2529180	2529500	puesto
+2529500	2529940	sin la
+2529940	2530620	corrección
+2530620	2531740	por los grados
+2531740	2532320	de libertad
+2532320	2533220	igual los programas
+2533220	2533980	después lo agregan
+2533980	2534480	sin este
+2534480	2534780	K
+2534780	2535620	o sea que
+2535620	2536200	dividido
+2536200	2536740	en N
+2536740	2537180	por T
+2537180	2537640	solo que
+2537640	2538000	ahora
+2538000	2539320	no tengo
+2539320	2539600	N
+2539600	2540080	por T
+2540080	2541080	tengo
+2541080	2541200	tengo
+2541200	2545200	tengo
+2545200	2545480	esto
+2545480	2546140	tamaño
+2546140	2547900	tengo
+2547900	2549140	perdón
+2549140	2550320	esto es la suma
+2550320	2550620	desde
+2550620	2551180	I igual
+2551180	2551580	1
+2551580	2552380	hasta N
+2552380	2554360	de T
+2554360	2554880	sub I
+2554880	2555460	por
+2555460	2556780	menos 1
+2556780	2558280	o sea
+2558280	2559460	básicamente
+2559460	2560960	lo que estoy
+2560960	2561420	sumando
+2561420	2561920	es por ejemplo
+2561920	2562760	para mi ejemplo
+2562760	2563720	para la primera
+2563720	2564200	observación
+2564200	2564560	3
+2564560	2566940	para la segunda
+2566940	2567980	observación
+2567980	2569900	lo que es la suma
+2569900	2570260	de
+2570260	2571340	este
+2571340	2571360	este
+2571360	2573260	sub I
+2573260	2573700	es la suma
+2573700	2574180	de los S
+2574180	2575260	y
+2575260	2581200	de nuevo
+2581200	2581760	acá
+2581760	2587080	es la suma
+2587080	2587300	de
+2587300	2587940	I
+2587940	2589100	igual 1
+2589100	2589760	hasta N
+2589760	2591960	y
+2591960	2593280	está acá
+2593280	2593880	y views
+2593880	2595260	la restan acá
+2595260	2596640	para obtener
+2596640	2597480	la corrección
+2597480	2598540	de muestras
+2598540	2599060	finitas
+2599060	2601080	en el límite
+2601080	2602080	poner
+2602080	2602940	este
+2602940	2604680	NT
+2604680	2606160	o suma
+2606160	2606600	de T
+2606600	2606900	sub I
+2606900	2607420	menos 1
+2607420	2608400	y
+2608400	2609140	NT
+2609140	2609680	menos K
+2609680	2610720	o suma
+2610720	2611280	de T
+2611280	2611540	sub I
+2611540	2611860	menos 1
+2611860	2612380	menos K
+2612380	2618440	y de nuevo
+2618440	2619360	el
+2619360	2621500	la suma
+2621500	2621900	de residuos
+2621900	2622380	al cuadrado
+2622380	2623760	es la suma
+2623760	2624800	de
+2624800	2625920	un sombrero
+2625920	2626760	cuadrado
+2626760	2627400	y T
+2627400	2628620	multiplicado
+2628620	2629120	por
+2629120	2629920	S
+2629920	2631960	porque obviamente
+2631960	2633000	no los tengo todos
+2633000	2634280	como el panel
+2634280	2635180	es incompleto
+2635180	2636080	yo voy a tener
+2636080	2636760	una suma
+2636760	2637820	solamente con
+2637820	2639420	los que observe
+2639420	2640320	los residuos
+2640320	2640500	que
+2640500	2641420	observe
+2641420	2648880	esto ya
+2648880	2649520	el primer punto
+2649520	2649940	ya lo dije
+2649940	2651400	yo no quiero
+2651400	2651900	asumir
+2651900	2652380	el supuesto
+2652380	2652740	C
+2652740	2653440	de varianza
+2653440	2654240	de los errores
+2654240	2656220	que es constante
+2656220	2656820	en el tiempo
+2656820	2657460	y no tienen
+2657460	2657880	correlación
+2657880	2658580	en el tiempo
+2658580	2658840	entonces
+2658840	2659340	hay que usar
+2659340	2660100	la corrección
+2660100	2661780	en la varianza
+2661780	2662120	esa
+2662120	2662820	de
+2662820	2664280	los estimadores
+2664280	2664920	de efectos fijos
+2664920	2665280	en la ecuación
+2665280	2665740	23
+2665740	2666860	la ecuación 13
+2666860	2667300	perdón
+2667300	2668200	que
+2668200	2673900	meten en medio
+2673900	2675340	el outer product
+2675340	2676280	de los residuos
+2676280	2678460	del modelo
+2678460	2682040	dos puntos
+2682040	2683620	adicionales
+2683620	2687620	el segundo
+2687620	2689480	y el tercero
+2689480	2690120	que es
+2690120	2695660	yo
+2695660	2698240	puedo
+2698240	2699560	trabajar
+2699560	2700900	con el estimador
+2700900	2702080	de efectos fijos
+2702080	2703540	como si fuera
+2703540	2704000	un panel
+2704000	2704700	completo
+2704700	2705820	si
+2705820	2706360	y solo
+2706360	2706740	si
+2706740	2708100	el mecanismo
+2708100	2708940	de selección
+2708940	2710200	no está relacionado
+2710200	2710940	con los errores
+2710940	2711740	idiosincráticos
+2711740	2712180	del modelo
+2712180	2715540	o sea
+2715540	2715780	que
+2715780	2716760	la práctica
+2716760	2718920	la práctica
+2718920	2720320	para saber
+2720320	2720880	si
+2720880	2722460	tengo
+2722460	2723080	o no
+2723080	2724000	sesgo
+2724000	2724860	de selección
+2724860	2725940	lo único
+2725940	2726420	que tengo
+2726420	2727160	que chequear
+2727160	2728060	es si el mecanismo
+2728060	2728560	de selección
+2728560	2729440	está relacionado
+2729440	2729660	o no
+2729660	2730140	con usted
+2730140	2735000	si está relacionado
+2735000	2736040	hay sesgo
+2736040	2736620	de selección
+2736620	2737860	si no está relacionado
+2737860	2738520	no hay sesgo
+2738520	2739080	de selección
+2739080	2744780	¿por qué
+2744780	2745640	estamos trabajando
+2745640	2747200	con el modelo
+2747200	2748500	de efectos fijos
+2748500	2749180	por el último
+2749180	2749720	punto
+2749720	2750840	de esta
+2750840	2751900	transparencia
+2751900	2753080	para que
+2753080	2753820	el estimador
+2753820	2755100	de efectos aleatorios
+2755100	2756600	sea consistente
+2756600	2758760	necesitamos
+2758760	2759580	además
+2759580	2761140	de
+2761140	2762660	el supuesto
+2762660	2763960	uno
+2763960	2765560	que no haya
+2765560	2766320	relación
+2766320	2767640	entre la
+2767640	2768440	heterogeneidad
+2768440	2769160	no observada
+2769160	2769780	y el mecanismo
+2769780	2770360	de selección
+2770360	2773260	¿sí?
+2774500	2775440	porque de nuevo
+2775440	2776320	efecto aleatorio
+2776320	2776860	me va a dejar
+2776860	2777500	la heterogeneidad
+2777500	2778220	no observada
+2778220	2779160	en el error
+2779160	2779880	de la ecuación
+2779880	2781460	pero si me la dejan
+2781460	2781820	en el error
+2781820	2782300	de la ecuación
+2782300	2783060	yo necesito
+2783060	2784680	imperiosamente
+2784680	2785760	que
+2785760	2786540	este
+2786540	2787120	el mecanismo
+2787120	2787540	de selección
+2787540	2788340	no esté relacionado
+2788340	2788760	con el error
+2788760	2790260	o
+2790260	2791920	no esté relacionado
+2791920	2792960	con la heterogeneidad
+2792960	2793440	no observada
+2793440	2794020	que es la que me va
+2794020	2794420	a quedar
+2794420	2795880	en el error
+2795880	2796400	y
+2796400	2797660	en general
+2797660	2798420	la mayoría
+2798420	2799280	de los modelos
+2799280	2799980	económicos
+2799980	2801640	tienen un mecanismo
+2801640	2802220	de selección
+2802220	2802800	que tiene
+2802800	2804240	heterogeneidad
+2804240	2804780	no observada
+2804780	2808260	entonces
+2808260	2809640	las estimaciones
+2809640	2811660	no son
+2811660	2812220	consistentes
+2813100	2818820	ok
+2818820	2820200	entonces
+2820200	2821200	nada
+2821200	2822520	tengo un panel
+2822520	2823380	de balanceado
+2823380	2824400	tengo mi modelo
+2824400	2825500	voy a estimar
+2825500	2826080	y digo
+2826080	2826640	bueno ok
+2826640	2827240	vamos a ver
+2827240	2828920	si puedo estimar
+2828920	2829460	o la misma
+2829460	2829940	fórmula
+2829940	2830720	que utilizo
+2830720	2831440	con estos cambios
+2831440	2832080	marginales
+2832080	2832720	del SIT
+2832720	2833100	etc
+2833100	2833440	etc
+2833440	2834460	con la misma
+2834460	2834920	fórmula
+2834920	2836240	de paneles
+2836240	2837060	lo único
+2837060	2838000	que tengo que verificar
+2838000	2838560	es que
+2838560	2839840	la muestra
+2839840	2840480	que tengo
+2840480	2842460	no sea
+2842460	2843320	una muestra
+2843320	2843860	con sesgo
+2843860	2844340	de selección
+2844340	2845640	siga siendo
+2845640	2846380	representativa
+2846380	2847000	de la población
+2847000	2848760	y para eso
+2848760	2849180	de nuevo
+2849180	2849600	lo único
+2849600	2850200	que necesito
+2850200	2850560	hacer
+2850560	2851580	es
+2851580	2852560	este
+2852560	2855000	chequear
+2855000	2856120	que el mecanismo
+2856120	2856820	de selección
+2856820	2857980	no está relacionado
+2857980	2858620	con el error
+2858620	2859400	y de su
+2859400	2860520	entonces
+2860520	2860940	tengo
+2860940	2861980	dos
+2861980	2862640	contrastes
+2862640	2863340	de hipótesis
+2863340	2864160	que vamos a ver
+2864160	2865700	uno ya lo vimos
+2865700	2869220	lo voy a poner
+2869220	2869840	segundo
+2869840	2870400	es
+2870400	2871960	el contraste
+2871960	2872560	por sesgo
+2872560	2873100	de selección
+2873100	2873500	de cheque
+2873500	2876620	y el otro
+2876620	2877920	es
+2877920	2879040	el contraste
+2879040	2880440	para ver
+2880440	2881200	si hay atrillo
+2881200	2882840	que
+2882840	2884280	el que se usa
+2884280	2884680	es
+2884680	2885560	el
+2885560	2886040	este
+2886040	2886460	test
+2886460	2886840	de
+2886840	2887880	Nijman
+2887880	2888180	y
+2888180	2889200	Berbeck
+2889200	2889900	del
+2889900	2890860	92
+2890860	2891700	que
+2891700	2892680	sugieren
+2892680	2894620	agregarle
+2894620	2895160	a
+2895160	2896420	la
+2896420	2897400	ecuación
+2897400	2898000	original
+2898000	2899420	el mecanismo
+2899420	2900200	de selección
+2900200	2901180	rezagado
+2901180	2901900	un periodo
+2901900	2902900	o adelantado
+2902900	2904200	un periodo
+2904200	2905560	y chequear
+2905560	2906320	que el coeficiente
+2906320	2907140	que acompaña
+2907140	2908040	a ese mecanismo
+2908040	2908840	sea igual a cero
+2908840	2910780	porque si el coeficiente
+2910780	2911540	es distinto de cero
+2911540	2912100	es porque
+2912100	2913880	el mecanismo
+2913880	2914420	de selección
+2914420	2914980	y el error
+2914980	2915600	está en relación
+2915600	2921480	lo que dice
+2921480	2922300	el último punto
+2922300	2923560	es que
+2923560	2930140	si tengo
+2930140	2932840	digo
+2932840	2934220	dice dos cosas
+2934220	2935600	lo voy a hacer
+2935600	2936060	con el
+2936060	2939640	dice dos cosas
+2939640	2944760	no tiene sentido
+2944760	2945160	poner
+2945160	2945600	SIT
+2945600	2947740	porque
+2947740	2948200	SIT
+2948200	2948920	vale uno
+2948920	2949680	no tiene ninguna
+2949680	2950420	variabilidad
+2950420	2952160	que vale uno
+2952160	2953620	para lo que observo
+2953620	2954060	y son
+2954060	2954520	las únicas
+2954520	2955100	las únicas
+2955100	2957420	la estimación
+2957420	2957900	la puedo hacer
+2957900	2958640	con lo que observo
+2958640	2959120	o sea que
+2959120	2960660	poner SIT
+2960660	2961700	no tiene sentido
+2961700	2962420	porque no tiene
+2962420	2962860	ninguna
+2962860	2964140	variabilidad
+2964140	2964740	y si tengo
+2964740	2965220	atrillo
+2965220	2967760	tampoco puedo
+2967760	2968620	poner SIT
+2968620	2969300	menos uno
+2969300	2970500	porque tampoco
+2970500	2971620	tiene variabilidad
+2971620	2972740	cuando tengo
+2972740	2973180	atrillo
+2973180	2974020	lo que tengo que hacer
+2974020	2974560	es poner un
+2974560	2974860	lead
+2974860	2976100	SIT
+2976100	2977820	más uno
+2977820	2979500	que es lo que me asegura
+2979500	2980180	que cambia
+2980180	2981040	de uno a cero
+2981040	2982180	en algún punto
+2982180	2984700	ahora les voy a poner
+2984700	2985160	un ejemplo
+2985160	2988980	ahí tienen
+2988980	2990020	una tablita
+2990020	2992500	que tiene
+2992500	2994380	producto
+2994380	2995380	en
+2995380	2997680	millones de kilovatios
+2997680	2998040	hora
+2998040	2998880	y costo total
+2998880	2999580	de generación
+2999580	3000320	de energía
+3000320	3001100	millones de dólares
+3001100	3001420	para
+3001420	3002700	diez firmas
+3002700	3003200	observadas
+3003200	3004180	durante cuatro años
+3004180	3006280	y tengo
+3006280	3006740	firma
+3006740	3007040	uno
+3007040	3007240	dos
+3007240	3007360	tres
+3007360	3007620	cuatro
+3007620	3008120	cinco
+3008120	3009440	en la
+3009440	3010040	primera
+3010040	3011240	columna
+3011240	3011540	seis
+3011540	3011760	siete
+3011760	3011980	ocho
+3011980	3012200	nueve
+3012200	3012620	y diez
+3012620	3014060	las variables
+3014060	3014720	son costo
+3014720	3015740	y producto
+3015740	3016280	para
+3016280	3016880	observadas
+3016880	3017480	para T igual
+3017480	3017700	uno
+3017700	3018060	T igual
+3018060	3018220	dos
+3018220	3018900	cuatro
+3018900	3020880	cuatro
+3020880	3023700	y como
+3023700	3024440	pueden ver
+3024440	3027520	la firma
+3027520	3027940	dos
+3027940	3031120	se sale
+3031120	3032020	del panel
+3032020	3032920	en el periodo
+3032920	3033300	cuatro
+3033300	3035160	la firma
+3035160	3035420	tres
+3035420	3035920	también
+3035920	3039300	la firma
+3039300	3039740	cuatro
+3039740	3040320	también
+3040320	3042500	la firma
+3042500	3042780	cinco
+3042780	3043180	se sale
+3043180	3043760	en el periodo
+3043760	3044040	tres
+3044040	3047260	la firma
+3051200	3051600	cinco
+3051600	3051940	se sale
+3051940	3052520	en el periodo
+3052520	3052740	tres
+3052740	3053740	la firma
+3053740	3053980	seis
+3053980	3054340	se sale
+3054340	3054880	en el periodo
+3054880	3055160	tres
+3055160	3056280	la firma
+3056280	3057440	ocho
+3057440	3057840	se sale
+3057840	3058460	en el periodo
+3058460	3058820	dos
+3058820	3061760	la firma
+3061760	3062060	nueve
+3062060	3062280	sale
+3062280	3062840	en el periodo
+3062840	3063140	tres
+3063140	3064900	vamos
+3064900	3068400	vamos a ponerlo así
+3068400	3078720	entonces firma
+3078720	3086440	y en el periodo
+3086440	3094720	la firma 1, 1, 1, 1, 1
+3094720	3095940	la firma 2
+3095940	3101440	periodo
+3101440	3106900	1, 2, 3, 4
+3106900	3110340	1, 2, 3, 4
+3110340	3114720	y vamos a poner C
+3114720	3116600	C y T, C y T
+3116600	3118600	es el costo
+3118600	3122680	C y T
+3122680	3124620	es el costo de la firma I
+3124620	3125260	en el periodo
+3125260	3127680	o sea que voy a tener acá
+3127680	3133960	3
+3133960	3136180	4
+3136180	3138080	5, 6
+3138080	3139280	y
+3139280	3141680	4
+3141680	3143420	6
+3143420	3144880	8
+3144880	3145980	y
+3145980	3146420	6
+3146420	3151300	si
+3151300	3152160	entonces
+3152160	3154380	S y T
+3154380	3157800	S y T
+3157800	3159500	vale
+3159500	3162980	1, 1, 1, 1
+3162980	3163960	para la firma 1
+3163960	3167660	1, 1, 1, 0
+3167660	3169080	para la firma 2
+3169080	3173640	yo puedo estimar
+3173640	3175780	con todos los valores hasta acá
+3175780	3180460	y si pongo S y T
+3180460	3181660	en la ecuación original
+3181660	3183160	piensen que esto
+3183160	3185200	pues es C y T
+3185200	3196380	logaritmo natural de C y T
+3196380	3198760	igual a alfa
+3198760	3199680	más beta
+3199680	3201180	por el logaritmo natural
+3201180	3203180	de P y T
+3203180	3204120	donde P y T
+3204120	3205100	es el producto
+3205100	3206160	de la firma I
+3206160	3213620	entonces
+3213620	3214540	yo puedo estimar
+3214540	3216140	si agrego S y T
+3216140	3217740	S y T
+3217740	3218360	vale 1
+3218360	3220280	no tiene ningún tipo de variabilidad
+3220280	3223060	si pongo
+3223060	3225000	S y T menos 1
+3225000	3227760	S y T menos 1
+3227760	3230000	lo que tengo es
+3230000	3233080	1, 1, 1
+3233080	3235840	y acá tengo
+3235840	3238040	1, 1, 1
+3238040	3240020	S y T
+3240020	3240220	es el tema
+3240220	3240620	de la firma
+3240620	3251840	Tampoco tengo variabilidad
+3251840	3253140	con las observaciones
+3253140	3253580	que tengo
+3253580	3254200	para estimar
+3254200	3255340	vale 1
+3255340	3256760	en todas las observaciones
+3256760	3261140	si pongo
+3261140	3263520	S y T
+3263520	3265200	y T más 1
+3265200	3267800	lo que tengo es
+3267800	3269960	1, 1, 1
+3269960	3271260	punto
+3271260	3274720	1, 1
+3274720	3276900	0
+3276900	3282520	y ahí tengo variabilidad
+3282520	3284320	lo tengo que hacer con todas
+3284320	3286420	pero
+3286420	3289000	cuando tengo atrillo
+3289000	3289840	como en este caso
+3289840	3290600	las unidades
+3290600	3291580	eligen salirse
+3291580	3293580	del panel
+3293580	3294440	no me sirve
+3294440	3295720	poner S y T
+3295720	3296640	no me sirve poner
+3296640	3297520	S y T menos 1
+3297520	3298380	tengo que poner
+3298380	3299420	S y T más 1
+3299420	3301520	que es el único
+3301520	3302460	que tiene variabilidad
+3302460	3303080	lo tienen puesto
+3303080	3303720	en la tablita
+3303720	3304280	que sigue
+3304280	3310580	ahí tienen la firma
+3310580	3312000	1, 2, 3, 4, 5
+3312000	3312320	y 0
+3312320	3318700	y lo que
+3318700	3321520	lo que me dice
+3321520	3323060	ni más ni verbo
+3323060	3323460	es bueno
+3323460	3325100	agregue
+3325100	3326200	el indicador
+3326200	3327640	adelantado
+3327640	3328560	y chequee
+3328560	3329140	que el coeficiente
+3329140	3329740	que acompaña
+3329740	3330520	a ese indicador
+3330520	3332780	sea igual a 0
+3332780	3334100	si es igual a 0
+3334100	3335680	no tengo 0
+3335680	3336160	de selección
+3336160	3337060	si es distinto de 0
+3337060	3337560	tengo 0
+3337560	3341120	creo que lo tienen hecho
+3341120	3341600	allí
+3341600	3342380	los datos
+3342380	3342720	ok
+3342720	3344240	los datos están sacados
+3344240	3345000	del libro de Green
+3345000	3347800	el capítulo de datos
+3347800	3348280	de panel
+3348280	3351600	mi edición
+3351600	3352700	debe ser la segunda
+3352700	3354720	o sea que
+3354720	3356820	creo que mi edición
+3356820	3357900	es el capítulo 14
+3357900	3360180	seguro que cambió
+3360180	3361120	pero los datos
+3361120	3361820	siguen estando
+3361820	3364060	y es
+3364060	3364860	un panel
+3364860	3365560	completo
+3365560	3367260	los CNA
+3367260	3368140	se los agregué yo
+3368140	3369340	o sea que
+3369340	3369780	si quieren
+3369780	3370560	pueden buscar
+3370560	3371400	los datos
+3371400	3371980	son
+3371980	3374740	para hacer
+3374740	3375080	esto acá
+3375080	3375940	de nuevo
+3375940	3377200	esto es bien
+3377200	3379300	voy a
+3379300	3380180	hacer el test
+3380180	3380640	de
+3380640	3382180	Nijman y Berbeck
+3382180	3382480	pero
+3382480	3383320	mis comandos
+3383320	3384020	del Estata
+3384020	3385500	deben ser los
+3385500	3386580	del Estata 4
+3386580	3387260	o algo así
+3387260	3388440	cuando no había nada
+3388440	3389480	ahora está todo hecho
+3389480	3390400	ok
+3390400	3391220	entonces
+3391220	3395940	no teníamos
+3395940	3396560	XTR
+3396560	3399000	en ese
+3399000	3400020	entonces
+3400020	3400840	entonces
+3400840	3402160	era más
+3402160	3402540	amante
+3402540	3403460	pero acá
+3403460	3404140	tienen
+3404140	3408000	LN
+3408000	3409180	C y T
+3409180	3410080	es
+3410080	3411240	el logaritmo
+3411240	3411720	natural
+3411720	3412640	del costo
+3412640	3414000	LN
+3414000	3414780	I sub
+3414780	3415160	y T
+3415160	3416060	es el logaritmo
+3416060	3416380	natural
+3416380	3417120	del producto
+3417120	3418320	y
+3418320	3419000	S
+3419000	3420080	le dice al Estata
+3420080	3420400	que
+3420400	3421220	la variable
+3421220	3421780	de corte
+3421780	3422540	transversal
+3422540	3423840	indicadora
+3423840	3424420	es firma
+3424420	3425540	y la variable
+3425540	3426780	de frecuencia
+3426780	3427220	temporal
+3427220	3427660	están
+3427660	3430820	ahora es
+3430820	3431480	XTC
+3431480	3432500	y uno pone
+3432500	3432980	las dos
+3432980	3434460	antes había que
+3434460	3435520	ponerlas separadas
+3435520	3436880	y
+3436880	3437640	de nuevo
+3437640	3438240	no teníamos
+3438240	3439120	XTRES
+3439120	3440600	el comando
+3440600	3440620	el comando
+3440620	3441520	original
+3441520	3443100	ARREG
+3443100	3445100	que
+3445100	3447640	cuya opción
+3447640	3447980	era
+3447980	3449100	absorb
+3449100	3449700	firm
+3449700	3451300	decía
+3451300	3451780	al Estata
+3451780	3452060	que
+3452060	3453480	le queríamos sacar
+3453480	3455040	los efectos fijos
+3455040	3456600	restándole
+3456600	3458400	la media temporal
+3458400	3460060	a cada
+3460060	3461480	variable
+3461480	3462020	en el corte
+3462020	3462600	transversal
+3462600	3464180	y
+3464180	3465020	la
+3465020	3468020	la
+3468020	3469940	ecuación
+3469940	3470280	es
+3470280	3471420	el
+3471420	3473020	logaritmo
+3473020	3473660	del costo
+3473660	3474020	contra el
+3474020	3474340	logaritmo
+3474340	3474820	del producto
+3474820	3475860	y el indicador
+3475860	3476400	adelantado
+3476400	3477540	en periodo
+3477540	3481100	y acá está
+3481100	3481720	la tablita
+3481720	3484820	no sirve para nada
+3484820	3486060	simplemente para decir
+3486060	3486700	que el indicador
+3486700	3487380	adelantado
+3487380	3488480	un periodo
+3488480	3489260	me da
+3489260	3491300	un coeficiente
+3491300	3491960	de menos
+3491960	3493200	0.116
+3493200	3494040	y un
+3494040	3498000	estadístico
+3498000	3498460	T
+3498460	3499700	1.97
+3499700	3500300	que es
+3500300	3502360	el 10%
+3502360	3502720	es
+3502720	3504300	estadísticamente
+3504300	3505040	significativo
+3505040	3506200	o sea que
+3506200	3506640	en esto
+3506640	3507060	es así
+3507060	3507460	pero
+3507460	3509180	habría
+3509180	3510960	a Trish
+3510960	3521560	¿está claro esto?
+3522140	3522720	ok
+3522720	3525680	después si alguno
+3525680	3526380	lo hace con los
+3526380	3527320	comandos modernos
+3527320	3528140	tengo que cambiar
+3528140	3528760	esta apariencia
+3528760	3529360	pero nunca
+3529360	3530020	tengo tiempo
+3530020	3531680	y me lo pasa
+3531680	3532300	el campo
+3532300	3532740	pero es cuando
+3532740	3533140	el Microsoft
+3533140	3533540	sería
+3533540	3534220	Xdirect
+3534220	3534780	y en
+3534780	3535400	Absorption
+3535400	3535720	y en
+3535720	3536240	Pselect
+3536240	3537400	Exactamente
+3537400	3538960	y el
+3538960	3539520	crearte
+3539520	3540660	el indicador
+3540660	3541280	adelantado
+3541280	3542260	es lo mismo
+3542260	3547100	y el otro
+3547100	3548120	esto es
+3548120	3548880	el Outred
+3548880	3549340	que ahora
+3549340	3550140	no sé si se usa
+3550140	3551800	para poner la tablita
+3551800	3552640	o hay alguno
+3552640	3553060	en comando
+3553060	3553480	mejor
+3553480	3555360	pero eso
+3555360	3555800	es para poner
+3555800	3556440	la cosa
+3556440	3557260	con el asesorismo
+3557260	3562600	y también depende
+3562600	3562920	del nivel
+3562920	3563480	de significancia
+3563480	3564700	que no
+3564700	3565640	que no
+3565640	3566040	no
+3566040	3566340	si
+3566340	3567400	eso es un ejercicio
+3567400	3569840	con 10 firmas
+3569840	3570660	en 4 periodos
+3570660	3570940	o sea
+3570940	3571820	no tiene ningún sentido
+3571820	3572860	pero lo que
+3572860	3574080	quiero ejemplificar
+3574080	3575280	es que uno lo hace así
+3575280	3577360	de nuevo
+3577360	3578780	en la práctica
+3578780	3579280	voy a tener
+3579280	3580400	muchísimas observaciones
+3580400	3581440	de corte transversal
+3581440	3582420	y pocos periodos
+3582420	3583160	de corte transversal
+3583160	3583700	no voy a tener
+3583700	3585480	100
+3585480	3586080	200
+3586080	3587080	300 firmas
+3587080	3587940	¿estás testeando
+3587940	3588740	que hay o que no hay
+3588740	3589140	atrillo
+3589140	3590420	o se van a tener
+3590420	3590700	100
+3590700	3592460	que hay o que no hay
+3592460	3592860	atrillo
+3592860	3593980	¿es una vez
+3593980	3594740	tipo asimplicista
+3594740	3595740	me dan la bandita?
+3595940	3596200	no
+3596200	3598320	que se me fue
+3598320	3598700	si
+3598700	3599320	pero la
+3599320	3600120	se va
+3600120	3601300	puede ser aleatorio
+3601300	3602340	¿cuál?
+3602480	3603480	¿estás testeando
+3603480	3604220	que no es aleatorio?
+3604780	3605440	estoy testeando
+3605440	3606440	que hay 6 concepción
+3606440	3607100	que hay atrillo
+3607100	3611080	si se van aleatoriamente
+3611080	3612400	no se dice atrillo
+3612400	3614060	si se van aleatoriamente
+3614060	3615560	no se dice atrillo
+3615560	3616080	atrillo
+3616080	3616620	es que
+3616620	3617620	se van
+3617620	3618980	relacionados
+3618980	3619440	con
+3619440	3621320	el sesgo de selección
+3621320	3624020	o sea
+3624020	3624720	estoy chequeando
+3624720	3625560	que haya atrillo
+3625560	3626640	o que no haya atrillo
+3626640	3627120	y
+3627120	3628200	de nuevo
+3628200	3631760	te tomo el punto
+3631760	3632100	pero
+3632100	3633060	lo ves
+3633060	3634160	porque la tabla
+3634160	3634940	tiene 10
+3634940	3635620	sin fila
+3635620	3638280	ahora
+3638280	3639060	decime
+3639060	3639500	que tengo
+3639500	3640500	200 firm
+3640500	3642480	no es fácil
+3642480	3642880	ver
+3642880	3643540	no
+3643540	3644680	que hay atrillo
+3644680	3645640	o que no hay atrillo
+3645640	3646540	o que se van
+3646540	3646720	o
+3646720	3647140	tío
+3647140	3649120	se me van
+3649120	3649380	tipo
+3649380	3649740	no
+3649740	3650380	atrillo
+3650380	3651040	es
+3651040	3651800	se van
+3651800	3653040	no
+3653040	3653500	atrillo
+3653500	3654300	se van
+3654300	3655380	y
+3655380	3657080	los que se van
+3657080	3658340	se van por alguna razón
+3658340	3659340	relacionada
+3659340	3660520	con la variable
+3660520	3661480	que vos querés
+3661480	3662260	analizar
+3662260	3663460	o sea
+3663460	3664280	eso es lo que nosotros
+3664280	3665240	le vamos a llamar atrillo
+3665240	3666300	en este caso
+3666300	3668200	si no
+3668200	3672220	es un panel
+3672220	3673100	incompleto
+3673100	3673940	que
+3673940	3675380	podés resolver
+3675380	3676740	con
+3676740	3678320	el herramiental
+3678320	3679000	para paneles
+3679000	3679780	completos
+3679780	3680180	ok
+3680180	3685520	segundo caso
+3685520	3686960	es
+3686960	3689720	truncamiento
+3689720	3690620	incidental
+3690620	3696800	la gente
+3696800	3697920	como dijiste antes
+3697920	3698360	por ejemplo
+3698360	3698820	se quedan
+3698820	3699460	en el caballito
+3699460	3700640	y como usted
+3700640	3701060	deja de ser
+3701060	3701960	representacional
+3701960	3703840	¿puedo seguir adelante?
+3704780	3705060	si
+3705060	3706100	¿sigo adelante?
+3706520	3706680	no
+3706680	3706880	no
+3706880	3706940	no
+3706940	3707960	pará
+3707960	3709300	como que me queda
+3709300	3709560	un poco
+3709560	3710200	perdón
+3710200	3710460	no
+3710460	3711040	un poco
+3711040	3711420	de duda
+3711420	3711900	¿qué hago?
+3712040	3712500	si me muestra
+3712500	3712700	ya
+3712700	3713040	pero
+3713040	3713780	¿todavía
+3713780	3715040	te lo tengo que enseñar?
+3715440	3715600	no
+3715600	3715720	no
+3715720	3717120	pero
+3717120	3718340	no
+3718340	3718760	pará
+3718760	3721040	lo único
+3721040	3721620	lo único
+3721620	3722500	que estoy haciendo
+3722500	3723120	es
+3723120	3724700	presentándote
+3724700	3725300	o sea
+3725300	3725760	yo
+3725760	3727120	vos me decís
+3727120	3727380	mira
+3727380	3728680	tengo un panel
+3728680	3729780	que no es completo
+3729780	3730960	y yo te digo
+3730960	3731320	ok
+3731320	3731900	bueno
+3731900	3732840	estas son las causas
+3732840	3734320	las causas pueden ser
+3734320	3736240	que la
+3736240	3737820	este
+3737820	3739400	que
+3739400	3740160	la
+3740160	3741200	incompletitud
+3741200	3741820	del panel
+3741820	3743560	sea porque
+3743560	3745180	aleatoriamente
+3745180	3746400	algunas unidades
+3746400	3747060	o variables
+3747060	3747960	dejo de observar
+3747960	3749680	o por atrision
+3749680	3751160	o por truncamiento
+3751160	3751820	incidental
+3751820	3752720	¿sí?
+3753200	3754100	y entonces vos me decís
+3754100	3754360	pero
+3754360	3754820	ok
+3754820	3756060	si
+3756060	3758180	el mecanismo de selección
+3758180	3758860	es aleatorio
+3758860	3759920	entonces puedo usar
+3759920	3760640	toda la herramienta
+3760640	3761460	que vimos hasta ahora
+3761460	3762100	y yo te digo
+3762100	3762860	perfecto
+3762860	3763100	sí
+3763100	3764660	es correcto
+3764660	3764860	¿sí?
+3765180	3766120	¿cómo sé
+3766120	3767040	si el panel
+3767040	3767780	si mi panel
+3767780	3768720	incompleto
+3768720	3769480	¿sí?
+3769820	3771320	no tiene sesgo de selección
+3771320	3772140	bueno
+3772140	3773700	necesito dos contrastes
+3773700	3774140	de hipótesis
+3774140	3775060	uno para chequear
+3775060	3775420	que
+3775420	3777120	los que se van
+3777120	3778480	como en el ejemplo
+3778480	3779180	de la tablita
+3779180	3779620	¿sí?
+3779960	3781160	me dejen una muestra
+3781160	3781980	representativa
+3781980	3782280	o sea
+3782280	3783360	no haya sesgo de selección
+3783360	3784180	no haya trillón
+3784180	3785980	o no haya
+3785980	3787920	truncamiento
+3787920	3788500	incidental
+3788500	3788980	¿sí?
+3789300	3789600	gracias
+3789600	3790280	entonces
+3790280	3790700	no
+3790700	3791240	pero
+3791240	3792540	iba a eso
+3792540	3793560	contraste de sesgo
+3793560	3794160	de selección
+3794160	3795000	¿sí?
+3795480	3796760	una vez que yo te presente
+3796760	3798100	los dos contrastes
+3798100	3798960	¿sí?
+3799740	3800720	una vez que yo te presente
+3800720	3801760	los dos contrastes
+3801760	3802520	¿sí?
+3802920	3803780	te voy a mostrar
+3803780	3804700	la corrección
+3804700	3806860	la corrección
+3806860	3807380	o sea
+3807380	3807940	¿qué hago?
+3808120	3808280	ok
+3808280	3809620	hay atrillo
+3809620	3811660	corrección de sesgo
+3811660	3812180	de selección
+3812180	3813080	cuando hay atrillo
+3813080	3814940	hay truncamiento
+3814940	3815560	incidental
+3815560	3816520	corrección
+3816520	3817320	del truncamiento
+3817320	3818040	incidental
+3818040	3819440	de Heckman
+3819440	3820100	o de Gull
+3820100	3820600	para hacer
+3820600	3823840	o sea
+3823840	3824880	no
+3824880	3826080	lo único
+3826080	3826480	que estoy
+3826480	3827260	en el comienzo
+3827260	3827680	es diciendo
+3827680	3827940	bueno
+3827940	3828220	mira
+3828220	3831660	¿puedo estimar
+3831660	3833820	usando
+3833820	3835200	los mismos
+3835200	3835700	métodos
+3835700	3836040	que vimos
+3836040	3836620	en el panel
+3836620	3837100	completo?
+3837560	3838100	y la respuesta
+3838100	3838560	es sí
+3838560	3839800	¿cuándo?
+3840120	3840860	cuando el mecanismo
+3840860	3841700	de selección
+3841700	3843360	no está relacionado
+3843360	3843840	con el error
+3843840	3844380	de la ecuación
+3844380	3845500	y ahora
+3845500	3846700	lo que hacemos
+3846700	3847800	es chequear
+3847800	3848860	que eso funcione
+3848860	3850000	para ver
+3850000	3850580	si puedo
+3850580	3851020	o no
+3851020	3852500	estimar
+3852500	3853240	con los métodos
+3853240	3853740	anteriores
+3853740	3855200	pero si yo rechazo
+3855200	3855820	como en este caso
+3855820	3856700	la hipótesis nula
+3856700	3857740	tengo atrillo
+3857740	3858840	y vos me decís
+3858840	3859420	¿puedo continuar?
+3859560	3860220	sí puedo continuar
+3860220	3860700	pero todavía
+3860700	3861340	no te enseñé
+3861340	3861760	cómo
+3861760	3862760	¿sí?
+3863680	3864240	te enseñé
+3864240	3866200	todavía no dije
+3866200	3868080	cómo hago la estimación
+3868080	3868980	cuando hay atrillo
+3868980	3870160	tengo que decir
+3870160	3871020	cómo hago la estimación
+3871020	3871700	cuando hay atrillo
+3871700	3872860	cómo hago la estimación
+3872860	3873700	cuando hay sesgo
+3873700	3874960	de selección
+3874960	3875940	y después
+3875940	3877820	te voy a decir
+3877820	3878020	bueno
+3878020	3878740	pero ahora el modelo
+3878740	3879600	no es estático
+3879600	3880420	es dinámico
+3880420	3883360	entonces la variable
+3883360	3883880	dependiente
+3883880	3885160	es endógena
+3885160	3886100	la variable explicativa
+3886100	3887360	es endógena
+3887360	3889300	puedo hacer lo mismo
+3889300	3890000	tengo un panel
+3890000	3890720	incompleto
+3890720	3891100	y además
+3891100	3892280	la variable explicativa
+3892280	3893480	es endógena
+3893480	3894320	puedo hacer lo mismo
+3894320	3894720	y
+3894720	3896760	necesito un contraste
+3896760	3897400	de hipótesis
+3897400	3898640	necesito una corrección
+3898640	3899580	utilizando
+3899580	3901300	algún procedimiento
+3901300	3902340	cuando tengo atrillo
+3902340	3905380	como dije
+3905380	3905900	en la clase pasada
+3905900	3906220	cuando
+3906220	3907300	terminemos
+3907300	3907940	de ver esto
+3907940	3908640	vamos a ver
+3908640	3909040	visto
+3909040	3909680	todo lo que vimos
+3909680	3910880	hasta la clase pasada
+3910880	3913080	modelos estáticos
+3913080	3914000	modelos dinámicos
+3914000	3914840	pero en paneles
+3914840	3915460	incompletos
+3915460	3916960	¿sí?
+3917960	3918440	entonces
+3918440	3919580	el segundo
+3919580	3920760	ok
+3920760	3921980	la segunda
+3921980	3923100	razón
+3923100	3925100	digo
+3925100	3926080	los paneles
+3926080	3926480	rotativos
+3926480	3926860	ya vimos
+3926860	3927500	que no van a
+3927500	3928600	causar ningún problema
+3928600	3929400	la segunda razón
+3929400	3929840	que puede
+3929840	3930820	que puede
+3930820	3931720	darme un panel
+3931720	3932460	incompleto
+3932460	3932940	y que
+3932940	3934360	me dé problemas
+3934360	3935360	es el caso
+3935360	3936560	de
+3936560	3937640	truncamiento
+3937640	3938520	incidental
+3938520	3939240	y lo vamos a ver
+3939240	3939600	con
+3939600	3940740	el
+3940740	3942940	modelo de
+3942940	3943280	Heckman
+3943280	3944640	entonces
+3944640	3945980	el modelo
+3945980	3946700	de Heckman
+3946700	3952680	en el contexto
+3952680	3953080	de
+3953080	3954520	datos de panel
+3954520	3956180	con heterogeneidad
+3956180	3957400	no observable
+3957400	3959020	entonces
+3959020	3959780	para
+3959780	3963360	recordar
+3963360	3965520	este
+3965520	3966400	el
+3966400	3968400	procedimiento
+3968400	3969060	de Heckman
+3969060	3970000	que vimos
+3970000	3970560	en
+3970560	3971540	el corte
+3971540	3972240	transversal
+3972240	3981880	lo que hice
+3981880	3982300	fue
+3982300	3983040	traer
+3983040	3983380	acá
+3983380	3985820	la transparencia
+3985820	3986720	del curso
+3986720	3986880	de
+3986880	3987540	cronometría
+3987540	3988420	y o
+3988420	3988940	el curso
+3988940	3989320	de micro
+3989320	3989840	cronometría
+3989840	3991860	simplemente
+3991860	3992540	para
+3992540	3994220	recordar
+3994220	3994980	el procedimiento
+3994980	3995540	de Heckman
+3995540	3996060	porque después
+3996060	3996720	voy a agarrar
+3996720	3997520	este procedimiento
+3997520	3998040	y lo voy a
+3998040	3998480	extender
+3998480	3998940	a panel
+3998940	4001400	entonces
+4001400	4001940	si
+4001940	4003260	lo hago
+4003260	4003820	rápido
+4003820	4005380	si no se
+4005380	4005700	entiende
+4005700	4006440	alguna cosa
+4006440	4007420	me dice
+4007420	4007940	pero todo esto
+4007940	4008460	ya lo vi
+4008460	4010760	¿qué me dice
+4010760	4011360	el
+4011360	4013600	el modelo
+4013600	4014000	de
+4014000	4015040	de Heckman
+4015040	4015800	el procedimiento
+4015800	4016160	de Heckman
+4016160	4016600	el procedimiento
+4016600	4017140	de Heckman
+4017140	4020060	estaba desarrollado
+4020060	4021500	en la estimación
+4021500	4022760	de la oferta
+4022760	4023200	de trabajo
+4023200	4023860	de las mujeres
+4023860	4025800	donde
+4025800	4026220	la variable
+4026220	4026680	dependiente
+4026680	4027100	era las horas
+4027100	4027660	trabajadas
+4027660	4028100	y la variable
+4028100	4028660	explicativa
+4028660	4029300	toda la variable
+4029300	4029800	que explica
+4029800	4030100	las horas
+4030100	4030600	trabajadas
+4030600	4032320	y la segunda
+4032320	4032920	ecuación
+4032920	4034280	la que
+4034280	4036040	me truncaba
+4036040	4036420	las horas
+4036420	4037120	trabajadas
+4037120	4038260	era la ecuación
+4038260	4038860	de salario
+4038860	4039500	que me decía
+4039500	4040660	siempre que
+4040660	4041380	el salario
+4041380	4041820	de mercado
+4041820	4042220	es mayor
+4042220	4042820	que el salario
+4042820	4043560	de reserva
+4043560	4045340	la mujer
+4045340	4045720	trabaja
+4045720	4046180	y observo
+4046180	4046500	las horas
+4046500	4047200	siempre que
+4047200	4047700	el salario
+4047700	4048220	de mercado
+4048220	4048560	es menor
+4048560	4049020	que el salario
+4049020	4049520	de reserva
+4049520	4049800	la mujer
+4049800	4050200	no trabaja
+4050200	4050800	y no observo
+4050800	4051520	la zona
+4051520	4051800	de trabajo
+4051800	4054480	y lo que sucedía
+4054480	4054980	en ese
+4054980	4057220	en ese modelo
+4057220	4057640	es que
+4057640	4058560	si
+4058560	4059840	este
+4059840	4060780	eh
+4060780	4061900	eh
+4061900	4062560	tengo
+4062560	4063560	cerro de selección
+4063560	4064300	eh
+4064300	4066460	ese cerro de selección
+4066460	4067040	me aparece
+4067040	4067740	en el modelo
+4067740	4069560	con una variable
+4069560	4070440	adicional
+4070440	4071860	a las variables
+4071860	4072160	de los
+4072160	4073520	que es lo que
+4073520	4074140	nosotros llamamos
+4074140	4074680	la inversa
+4074680	4075160	del cociente
+4075160	4075480	de mixto
+4075480	4076300	que es el cociente
+4076300	4076680	entre
+4076680	4077440	la función
+4077440	4077980	de densidad
+4077980	4078480	de la normal
+4078480	4079200	de estándar
+4079200	4079720	y la función
+4079720	4080200	de distribución
+4080200	4080740	acumulada
+4080740	4081200	de la normal
+4081200	4082440	y ese
+4082440	4084000	ese inversa
+4084000	4085220	del cociente
+4085220	4086400	de mixto
+4086400	4086860	aparece
+4086860	4087420	porque
+4087420	4088260	eh
+4088260	4089460	lo que hace
+4089460	4090900	Helman
+4090900	4091740	es asumir
+4091740	4092980	que el error
+4092980	4093800	de la ecuación
+4093800	4094300	de
+4094300	4095440	que quiero estimar
+4095440	4095780	el error
+4095780	4096200	de la ecuación
+4096200	4096700	de interés
+4096700	4097740	y el error
+4097740	4098140	de
+4098140	4099640	el mecanismo
+4099640	4100220	de selección
+4100220	4101260	tiene distribución
+4101260	4101600	normal
+4101600	4102120	bivariada
+4102120	4102960	conjunta
+4102960	4104420	¿sí?
+4105220	4105940	Entonces
+4105940	4107180	como
+4107180	4108500	en la distribución
+4108500	4108900	normal
+4108900	4109540	bivariada
+4109540	4110760	hay una variable
+4110760	4111660	que trunca
+4111660	4113380	la distribución
+4113380	4114120	¿sí?
+4114480	4115120	lo que tengo
+4115120	4116200	es una distribución
+4116200	4116960	normal
+4116960	4117660	truncada
+4117660	4119580	¿sí?
+4119940	4120180	que
+4120180	4120980	en términos
+4120980	4121520	generales
+4121520	4121960	está puesta
+4121960	4122500	en la primera
+4122500	4123960	la función
+4123960	4124480	de probabilidad
+4124480	4125020	conjunta
+4125020	4125380	de una
+4125380	4126200	la función
+4126200	4126580	de probabilidad
+4126580	4126980	conjunta
+4126980	4127200	entre
+4127200	4127660	i y z
+4127660	4128340	con z
+4128340	4128940	truncando
+4128940	4129780	la distribución
+4129780	4130800	ustedes quieren
+4130800	4131660	lo pueden poner
+4131660	4133060	en términos
+4133060	4133340	de
+4133340	4135240	la función
+4135240	4135640	de
+4135640	4138080	f
+4138080	4138880	de
+4138880	4139400	i
+4139400	4140060	y z
+4140060	4141340	es la distribución
+4141340	4142060	acumulada
+4142060	4143000	la integral
+4143000	4144000	entre menos
+4144000	4144700	infinito
+4144700	4145720	y más
+4145720	4146380	infinito
+4146380	4147120	la integral
+4147120	4148120	entre menos
+4148120	4148840	infinito
+4148840	4149640	y más
+4149640	4150380	infinito
+4150380	4151500	de f
+4151500	4152080	de
+4152080	4152640	i
+4152640	4153600	z
+4153600	4155420	tendría que poner
+4155420	4156100	una f
+4156100	4157500	mayúscula
+4157660	4158740	f
+4158740	4159080	de i
+4159080	4159320	z
+4159320	4160340	diferencial
+4160340	4160580	i
+4160580	4161300	diferencial
+4161300	4161580	z
+4161580	4162780	y esto
+4162780	4163080	es 1
+4163080	4164480	el área
+4164480	4165240	abajo
+4165240	4165660	de
+4165660	4168760	la función
+4168760	4169260	de densidad
+4169260	4169840	conjunta
+4169840	4170420	me tiene que dar
+4170420	4170620	1
+4170620	4171420	para ser una
+4171420	4171720	función
+4171720	4172380	de probabilidad
+4172380	4173520	y el problema
+4173520	4173540	y el problema
+4173540	4175540	que plantea
+4175540	4176880	Heckman
+4176880	4177660	es que
+4177660	4178520	mira
+4178520	4179520	la
+4179520	4181400	variable z
+4181400	4182660	no va entre
+4182660	4183660	menos infinito
+4183660	4184640	y más infinito
+4184640	4185700	sino que va
+4185700	4186440	entre a
+4186440	4187800	y más infinito
+4187800	4190320	entonces
+4190320	4190900	esto deja
+4190900	4191420	de dar
+4191420	4191960	1
+4191960	4198040	y para
+4198040	4199200	volver a
+4199200	4200440	que me dé
+4200440	4200780	1
+4200780	4202500	lo que tengo
+4202500	4202800	que hacer
+4202800	4203420	es rescalar
+4203420	4204320	las probabilidades
+4204320	4205600	¿cómo las
+4205600	4205980	rescalo?
+4206100	4206800	y divido
+4206800	4207640	por la probabilidad
+4207640	4207980	de z
+4207980	4208480	mayor a
+4208480	4209140	a
+4209140	4210240	la probabilidad
+4210240	4210580	que hay
+4210580	4211240	por encima
+4211240	4211680	de a
+4211680	4213860	y entonces
+4213860	4214900	cuando yo hago
+4214900	4216440	esto es decir
+4216440	4217240	que
+4217240	4217720	esta
+4217720	4219640	esta integral
+4219640	4220440	me da
+4220440	4221740	la probabilidad
+4221740	4222760	de z
+4222760	4223400	mayor a
+4223400	4224760	en lugar de 1
+4224760	4226720	entonces
+4226720	4227620	cuando yo divido
+4227620	4228040	esto
+4228040	4228560	por
+4228560	4229500	la probabilidad
+4229500	4229820	de z
+4229820	4230380	de igual a
+4230380	4231280	reconstruyo
+4231280	4231640	el 1
+4231640	4235060	esto es lo que
+4235060	4235540	dice
+4235540	4236380	esta ecuación
+4236380	4237820	en la conjunta
+4237820	4238520	dividido
+4238520	4241820	la masa
+4241820	4242620	de probabilidad
+4242620	4243080	que hay
+4243080	4243760	a partir del
+4243760	4244660	punto de truncamiento
+4244660	4246480	y como
+4246480	4248720	esa es cualquier
+4248720	4249820	distribución truncada
+4249820	4251880	Heisman asume
+4251880	4252260	que
+4252260	4253460	los errores
+4253460	4254120	de la ecuación
+4254120	4254660	de interés
+4254660	4255080	y de la ecuación
+4255080	4255540	de selección
+4255540	4256500	son normales
+4256500	4257720	y variados
+4257720	4258160	y entonces
+4258160	4259320	lo que tengo
+4259320	4260200	en el teorema
+4260200	4261220	ese que aparece ahí
+4261220	4262500	son los momentos
+4262500	4263180	de la distribución
+4263180	4263720	truncada
+4263720	4264760	la esperanza
+4264760	4265220	matemática
+4265220	4265680	y la variada
+4265680	4267420	y en principio
+4267420	4269280	por ahora
+4269280	4270100	nos va a interesar
+4270100	4271320	la esperanza
+4271320	4271980	matemática
+4271980	4272440	la esperanza
+4272440	4273120	matemática
+4273120	4274380	de i
+4274380	4275860	dado que
+4275860	4276920	z es mayor a
+4276920	4279200	mu sub i
+4279200	4280160	que es la media
+4280160	4280960	de la variable
+4280960	4282640	i sin truncamiento
+4282640	4283260	más
+4283260	4284460	un término
+4284460	4284940	que aparece
+4284940	4286080	debido al truncamiento
+4286080	4286840	que es ro
+4286840	4287660	que es el coeficiente
+4287660	4288540	de correlación
+4288540	4289980	entre i y z
+4289980	4291180	sigma
+4291180	4292220	de i
+4292220	4293300	por lambda
+4293300	4294480	de alfa z
+4294480	4295340	donde lambda
+4295340	4296040	de alfa z
+4296040	4298580	es la inversa
+4298580	4299000	del coeficiente
+4299000	4301420	evaluado
+4301420	4301940	en el punto
+4301940	4302640	de truncamiento
+4302640	4303460	estandarizado
+4303460	4307700	alfa z
+4307700	4309800	que es simplemente
+4309800	4311580	a
+4311580	4314900	menos su media
+4314900	4315500	mu de z
+4315500	4316040	dividido
+4316040	4316420	su
+4316420	4317940	está
+4317940	4318600	estandarizado
+4318600	4320260	el punto
+4320260	4320920	de truncamiento
+4320920	4321720	estandarizado
+4321720	4324560	es el argumento
+4324560	4325820	de la inversa
+4325820	4326420	del coeficiente
+4326420	4327500	de mil
+4327500	4328600	entonces
+4328600	4329900	si yo tengo
+4329900	4330540	el modelo
+4330540	4331880	de Grunov
+4331880	4332480	o de
+4332480	4333580	o de
+4333580	4334080	Heckman
+4334080	4335600	tengo dos ecuaciones
+4335600	4336660	la primera ecuación
+4336660	4337180	es
+4337180	4338140	la ecuación
+4338140	4338760	de selección
+4338760	4339400	que está puesta
+4339400	4339760	ahí
+4339760	4340940	como
+4340940	4342380	z i estrella
+4342380	4345880	z i estrella
+4345880	4347340	que es igual
+4347340	4347860	a
+4347860	4348580	pongámosle
+4348580	4349400	salario
+4349400	4351000	de mercado
+4351000	4352260	ofrecido
+4352260	4353060	a la persona
+4353060	4353860	y menos
+4353860	4355040	salario
+4355040	4356040	de reserva
+4356040	4356660	de la persona
+4356660	4356960	y
+4356960	4358900	que depende
+4358900	4359680	de un montón
+4359680	4360220	de variables
+4360220	4368120	y
+4368120	4370540	cuando
+4370540	4372680	z i estrella
+4372680	4373840	es mayor a cero
+4373840	4375220	es porque
+4375220	4376180	el salario
+4376180	4377180	que le ofrecen
+4377180	4379260	de mercado
+4379260	4379920	a la persona
+4379920	4380200	y
+4380200	4381180	es más grande
+4381180	4382440	que el salario
+4382440	4383740	de reserva
+4383740	4384100	y entonces
+4384100	4384620	la persona
+4384620	4385180	trabaja
+4385180	4385760	y si la persona
+4385760	4386740	trabaja
+4386740	4388760	observo la ecuación
+4388760	4389580	que quiero estimar
+4389580	4390060	la ecuación
+4390060	4390460	de oferta
+4390460	4390780	donde
+4390780	4391260	i sub i
+4391260	4391760	son las horas
+4391760	4392360	trabajadas
+4392360	4393420	y x
+4393420	4394640	son las variables
+4394640	4395220	de la oferta
+4395220	4395500	de oferta
+4395500	4400160	de nuevo
+4400160	4401000	u sub i
+4401000	4402160	es el error
+4402160	4402740	de la ecuación
+4402740	4403700	de selección
+4403700	4405180	epsilon i
+4405180	4406580	es el error
+4406580	4407220	de la ecuación
+4407220	4408260	de interés
+4408260	4409860	entonces
+4409860	4410840	la
+4410840	4413180	este
+4413180	4416920	la
+4416920	4417980	el supuesto
+4417980	4418340	de
+4418340	4418640	de
+4418640	4419340	de
+4419340	4419400	de
+4419400	4419960	hekman
+4419960	4420520	es
+4420520	4422020	epsilon i
+4422020	4422840	y u sub i
+4422840	4425240	tienen distribución
+4425240	4425920	bivariada
+4425920	4426540	normal
+4426540	4427240	con media
+4427240	4428020	igual a cero
+4428020	4429040	y coeficiente
+4429040	4429780	de correlación
+4429780	4430080	ron
+4430080	4438920	calculemos
+4438920	4442980	la esperanza
+4442980	4444940	de
+4444940	4445900	las horas
+4445900	4446500	trabajadas
+4446500	4446940	dado que
+4446940	4447440	observo
+4447440	4447740	las horas
+4447740	4448200	trabajando
+4448200	4451980	eso es
+4451980	4453380	la esperanza
+4453380	4453860	de las horas
+4453860	4454540	trabajadas
+4454540	4455460	dado que
+4455460	4456220	zi estrella
+4456220	4456860	es mayor a cero
+4456860	4459720	entonces
+4459720	4460660	si
+4460660	4462520	zi estrella
+4462520	4464540	es mayor a cero
+4464540	4467220	si zi estrella
+4467220	4469680	es mayor a cero
+4469680	4472280	como zi estrella
+4472280	4473680	es igual a
+4473680	4474480	gamma transpuesta
+4474480	4475240	por wi
+4475240	4476020	más u sub i
+4476020	4478520	que zi estrella
+4478520	4479580	voy a ponerlo acá
+4479580	4481140	zi estrella
+4481140	4483780	sea mayor a cero
+4483780	4485280	es lo mismo
+4485280	4485840	que decir
+4485840	4488760	menos
+4488760	4491700	gamma transpuesta
+4491700	4492860	por wi
+4492860	4497740	sea menor a
+4497740	4498380	u sub i
+4498380	4503340	tengo cero acá
+4503340	4504440	paso esto
+4504440	4507620	que está sumando
+4507620	4508080	aquí
+4508080	4509940	restando
+4509940	4510620	de este lado
+4510620	4511040	y me queda
+4511040	4511480	u sub i
+4511480	4512160	mayor a
+4512160	4513300	menos gamma
+4513300	4513720	transpuesta
+4513720	4514160	por wi
+4514160	4516120	entonces
+4516120	4517920	en la
+4517920	4520280	segunda igualdad
+4520280	4521660	en lugar de poner
+4521660	4522440	zi estrella
+4522440	4523040	mayor a cero
+4523040	4523420	pongo
+4523420	4524680	menos wi
+4524680	4526220	transpuesto
+4526220	4526740	por
+4526740	4528360	u sub i
+4528360	4528880	mayor que
+4528880	4529640	menos wi
+4529640	4530140	transpuesto
+4530140	4530500	por
+4530500	4531740	gamma
+4531740	4537020	y después
+4537020	4537720	tengo
+4537720	4538520	el
+4538520	4539520	modelo
+4539520	4540020	que quiero
+4540020	4540680	estimar
+4540680	4542100	el modelo
+4542100	4542440	que quiero
+4542440	4542740	estimar
+4542740	4542980	que es
+4542980	4543280	este
+4543280	4545760	y sub i
+4545760	4546300	es igual a
+4546300	4546460	beta
+4546460	4546840	transpuesto
+4546840	4547500	por x i
+4547500	4548460	más
+4548460	4549120	epsilon i
+4549120	4549600	o sea que
+4549600	4550520	en la tercera
+4550520	4551060	igualdad
+4551060	4552480	lo único que voy a hacer
+4552480	4553200	es reemplazar
+4553200	4553740	este
+4553740	4554580	y sub i
+4554580	4556180	por beta
+4556180	4556560	transpuesto
+4556560	4557100	por x i
+4557100	4557780	más epsilon i
+4557780	4558760	cuando tome la esperanza
+4558760	4559160	de la suma
+4559160	4559440	la suma
+4559440	4560240	de las esperanzas
+4560240	4560980	voy a tener
+4560980	4561540	beta
+4561540	4561980	transpuesto
+4561980	4562600	por x i
+4562600	4563180	más la esperanza
+4563180	4564060	de epsilon i
+4564060	4565360	dado que
+4565360	4566020	u sub i
+4566020	4566740	es mayor
+4566740	4567780	a
+4567780	4568260	menos
+4568260	4568460	gamma
+4568460	4568840	transpuesto
+4568840	4569260	por w
+4569260	4572000	y ahí
+4572000	4572520	tengo
+4572520	4574180	la esperanza
+4574180	4574820	matemática
+4574820	4575680	de una variable
+4575680	4576520	truncada
+4576520	4577780	de una variable
+4577780	4578540	epsilon i
+4578540	4579120	truncada
+4579120	4579580	por otra
+4579580	4580120	u sub i
+4580120	4582620	y entonces
+4582620	4583440	puedo aplicar
+4583440	4584620	el teorema
+4584620	4585000	el teorema
+4585000	4585540	que me decía
+4585540	4585940	el teorema
+4585940	4586300	me decía
+4586300	4586560	mira
+4586560	4588200	la esperanza
+4588200	4588700	matemática
+4588700	4589400	de una variable
+4589400	4590160	truncada
+4590160	4590460	es
+4590460	4591500	la esperanza
+4591500	4592040	matemática
+4592040	4592600	de la variable
+4592600	4593460	sin truncamiento
+4593460	4594520	más
+4594520	4595640	el coeficiente
+4595640	4596520	de correlación
+4596520	4597500	entre la variable
+4597500	4598260	que trunca
+4598260	4599040	y la variable
+4599040	4602580	de interés
+4602580	4603420	por
+4603420	4604100	el desvío
+4604100	4604740	de la variable
+4604740	4606020	de interés
+4606020	4606900	por
+4606900	4607840	lambda
+4607840	4608980	inversa
+4608980	4609500	del cociente
+4609500	4609980	de mil
+4609980	4610460	evaluada
+4610460	4610860	del punto
+4610860	4611460	de truncamiento
+4611460	4613520	solo que
+4613520	4615800	epsilon i
+4615800	4617160	y u sub i
+4617160	4618140	son errores
+4618140	4619160	de media
+4619160	4619560	cero
+4619560	4620040	o sea que
+4620040	4621280	la esperanza
+4621280	4623200	de u sub i
+4623200	4624340	es igual a cero
+4624340	4627240	y la esperanza
+4627240	4628500	de epsilon i
+4628500	4629280	es igual a cero
+4629280	4630640	entonces
+4630640	4631700	si ustedes miran
+4631700	4632500	el teorema
+4632500	4636060	ustedes miran
+4636060	4636800	el teorema
+4636800	4640340	en nuestro caso
+4640340	4641580	esto es
+4641580	4642080	epsilon
+4642080	4643800	y esto es u
+4643800	4646880	la esperanza
+4646880	4647380	de
+4647380	4648720	epsilon
+4648720	4650000	es cero
+4650000	4652440	y solo
+4652440	4653060	me queda
+4653060	4654060	rho
+4654060	4656320	que es el coeficiente
+4656320	4657000	de correlación
+4657000	4657400	entre
+4657400	4658460	epsilon y u
+4658460	4660480	sigma i
+4660480	4661760	que es sigma
+4661760	4662260	de epsilon
+4662260	4663260	lambda
+4663260	4664080	evaluado en el punto
+4664080	4664660	de truncamiento
+4664660	4667420	que es lo que aparece
+4667420	4669180	en la ecuación
+4669180	4670320	53
+4670320	4671840	rho
+4671840	4673460	sigma de epsilon
+4673460	4674200	por lambda
+4674200	4675140	evaluado en el punto
+4675140	4675660	de truncamiento
+4675660	4681820	y
+4681820	4683100	a
+4683100	4684380	rho
+4684380	4685220	por sigma
+4685220	4685960	de epsilon
+4685960	4687400	lo llamé
+4687400	4688660	beta de lambda
+4688660	4692240	o sea que
+4692240	4694080	si la esperanza
+4694080	4694560	de i
+4694560	4695100	dado que i
+4695100	4695860	es observado
+4695860	4696660	en la ecuación
+4696660	4697300	54
+4697300	4698340	lo que yo puedo
+4698340	4699220	estimar es esto
+4699220	4701160	i sub i
+4701160	4702020	dado que
+4702020	4702840	i sub i
+4702840	4703880	es observada
+4703880	4711780	es igual a
+4711780	4712200	beta
+4712200	4714200	traspuesto
+4714200	4715280	por x i
+4715280	4716620	más
+4716620	4718320	beta lambda
+4718320	4720500	por lambda
+4720500	4721620	y evaluado
+4721620	4722560	en el punto
+4722560	4723360	de truncamiento
+4723360	4725180	más
+4725180	4725860	un error
+4725860	4726580	de media serie
+4726580	4729840	de forma
+4729840	4730080	tal
+4730080	4730180	que
+4730180	4730900	aplique la esperanza
+4730900	4731380	matemática
+4731380	4731920	tiene la ecuación
+4731920	4732360	sin particular
+4732360	4737940	pero eso
+4737940	4740360	eso
+4740360	4743600	lo que me dice
+4743600	4744080	es que
+4744080	4745540	si yo
+4745540	4746820	agarro
+4746820	4747380	la ecuación
+4747380	4747920	de interés
+4747920	4748360	la ecuación
+4748360	4748900	de oferta
+4748900	4750540	y
+4750540	4752320	la estimo
+4752320	4753860	solamente
+4753860	4754900	con las variables
+4754900	4755520	que afectan
+4755520	4755840	la oferta
+4755840	4756440	de trabajo
+4756440	4757400	x i
+4757400	4759280	me estoy olvidando
+4759280	4760080	de una variable
+4760080	4761740	la inversa
+4761740	4762240	del cociente
+4762240	4762600	de mi
+4762600	4766380	y si esa variable
+4766380	4767240	es estadísticamente
+4767240	4767960	relevante
+4767960	4770260	los coeficientes
+4770260	4770780	estimados
+4770780	4771420	por unos cuadrados
+4771420	4772020	clásicos
+4772020	4773200	son cegados
+4773200	4777720	sesgo
+4777720	4778380	por omisión
+4778380	4779080	de una variable
+4779080	4779540	de relevo
+4779540	4787780	tengo
+4787780	4790780	un problema
+4790780	4791880	y es que
+4791880	4792940	ok
+4792940	4795400	ya sé
+4795400	4795900	no puedo
+4795900	4796220	hacer
+4796220	4796720	la
+4796720	4797480	la
+4797480	4799580	la
+4799580	4800520	estimación
+4800520	4801140	solamente
+4801140	4802260	con las x i
+4802260	4806640	tengo que poner
+4806640	4807200	la inversa
+4807200	4807720	del cociente
+4807720	4808100	de mil
+4808100	4809500	solo que
+4809500	4810640	la inversa
+4810640	4811160	del cociente
+4811160	4811620	de mil
+4811620	4813620	es una variable
+4813620	4814440	no observable
+4814440	4815300	como la habilidad
+4815300	4817580	que depende
+4817580	4818380	de parámetros
+4818380	4819740	que yo
+4819740	4820620	no observo
+4820620	4825080	digo
+4825080	4826420	está puesto
+4826420	4826960	abajo
+4826960	4829320	desagregado
+4829320	4829560	pero
+4829560	4831020	el punto
+4831020	4831960	del truncamiento
+4831960	4833120	es
+4833120	4834640	lambda
+4834640	4835120	transpuesto
+4835120	4835660	por doble
+4835660	4836200	y sobre
+4836200	4836500	sigma
+4836500	4836880	de u
+4836880	4838040	lambda
+4838040	4838460	transpuesto
+4838460	4838940	por doble
+4838940	4839320	y sobre
+4839320	4839600	sigma
+4839600	4839920	de u
+4839920	4842720	si quiero
+4842720	4843240	construir
+4843240	4844700	la inversa
+4844700	4845200	del cociente
+4845200	4845700	de mil
+4845700	4846420	necesito
+4846420	4846880	saber
+4846880	4847280	cuánto
+4847280	4847620	vale
+4847620	4848460	gamma
+4848460	4848860	transpuesto
+4848860	4849320	y cuánto
+4849320	4849500	vale
+4849500	4849880	si no
+4849880	4855300	si no
+4855300	4855760	no lo puedo
+4855760	4857860	lo que hace
+4857860	4858300	es decirme
+4858300	4858560	bueno
+4858560	4860340	no te preocupes
+4860340	4860600	si
+4860600	4861920	no vas a poder
+4861920	4862720	poner lambda
+4862720	4864560	pero
+4864560	4865660	lo puedes
+4865660	4866880	estimar
+4866880	4870760	lo puedes estimar
+4870760	4871500	y meterlo
+4871500	4872320	ahí
+4872320	4873760	como variable
+4873760	4874400	explicativa
+4874400	4876220	como
+4876220	4878940	como
+4878940	4879240	hacemos
+4879240	4879740	la
+4879740	4881100	estimación
+4881100	4883560	tengo que
+4883560	4884580	estimar
+4884580	4888540	la ecuación
+4888540	4889300	de selección
+4889300	4893380	voy a
+4893380	4893800	escribir
+4893800	4894060	acá
+4894060	4894440	arriba
+4894440	4894860	de nuevo
+4894860	4895420	tengo que
+4895420	4895720	estimar
+4895720	4895920	esto
+4895920	4909920	para poder
+4909920	4910380	estimar
+4910380	4910760	eso
+4910760	4912680	necesito
+4912680	4914180	datos
+4914180	4914340	de
+4914340	4914900	WI
+4914900	4915180	que los
+4915180	4915580	tengo
+4915580	4917060	y datos
+4917060	4917300	de
+4917300	4917880	ZI
+4917880	4918300	estrella
+4918300	4918640	que no
+4918640	4918840	los
+4918840	4919140	tengo
+4919140	4921520	para saber
+4921520	4922000	datos
+4922000	4922840	de ZI
+4922840	4923400	estrella
+4923400	4924360	necesito
+4924360	4924720	conocer
+4924720	4925560	el salario
+4925560	4926140	de reserva
+4926140	4926440	de cada
+4926440	4926900	persona
+4926900	4929500	no se
+4929500	4929760	puede
+4929760	4931140	lo que
+4931140	4931480	sí
+4931480	4932300	observo
+4932300	4933100	lo que
+4933100	4933300	sí
+4933300	4933980	observo
+4933980	4934680	es si
+4934680	4935300	la persona
+4935300	4935820	está
+4935820	4936600	trabajando
+4936600	4937280	o no
+4937280	4938040	es decir
+4938040	4938280	que
+4938280	4939000	lo que
+4939000	4939200	yo
+4939200	4939480	sí
+4939480	4940240	observo
+4940240	4941080	es
+4941080	4941960	una
+4941960	4942360	variable
+4942360	4943080	indicadora
+4943080	4943880	ZI
+4943880	4945300	que vale
+4945300	4945820	1
+4945820	4948200	si
+4948200	4949700	ZI
+4949700	4950220	estrella
+4950220	4950600	es mayor
+4950600	4951040	a 0
+4951040	4952520	y vale
+4952520	4953020	0
+4953020	4954180	si
+4954180	4955320	ZI
+4955320	4956020	estrella
+4956020	4956440	es menor
+4956440	4956820	a 0
+4956820	4958560	mayor
+4958560	4958920	igual
+4958920	4959300	o menor
+4959300	4959600	igual
+4959600	4961580	0
+4961580	4962180	va a 0
+4962180	4967600	entonces
+4967600	4967940	lo que
+4967940	4968300	puedo
+4968300	4969660	estimar
+4969660	4971260	es
+4971260	4980080	este
+4980080	4985920	lo que
+4985920	4986100	puedo
+4986100	4986500	estimar
+4986500	4986660	es
+4986660	4987000	esto
+4987000	4990740	ZI
+4990740	4992060	igual
+4992060	4992520	a
+4992520	4993200	gamma
+4993200	4993920	traspuesto
+4993920	4995020	por
+4995020	4995340	W
+4995340	4996360	más
+4996360	4996740	U
+4996740	4996860	sub
+4996860	4998580	y como
+4998580	4999240	U
+4999240	4999440	sub
+4999440	5000540	tiene
+5000540	5001100	distribución
+5001100	5001660	normal
+5001660	5004180	esto
+5004180	5004440	es un
+5004440	5004740	problem
+5004740	5010420	entonces
+5010420	5010860	lo que
+5010860	5011280	hace
+5011280	5011980	es
+5011980	5012580	estimar
+5012580	5012660	el
+5012660	5013020	problem
+5013020	5015620	estimar
+5015620	5015740	un
+5015740	5016160	probit
+5016160	5016940	variable
+5016940	5017140	de
+5017140	5017340	20
+5017340	5017840	01
+5017840	5020780	obtener
+5020780	5021240	a partir
+5021240	5021500	del
+5021500	5021940	probit
+5021940	5022160	las
+5022160	5022760	estimaciones
+5022760	5023620	del
+5023620	5023980	gamma
+5023980	5025760	los
+5025760	5026140	gamma
+5026140	5027440	y
+5027440	5028180	construí
+5028180	5028980	la inversa
+5028980	5029140	del
+5029140	5029560	cociente
+5029560	5029760	de
+5029760	5029880	1000
+5029880	5030120	eso
+5030120	5030320	es
+5030320	5030440	todo
+5030440	5030740	lo que
+5030740	5031060	dice
+5031060	5031920	el
+5031920	5032180	paso
+5032180	5032580	1
+5032580	5032880	de
+5032880	5033220	acá
+5033220	5036140	estimo
+5036140	5036480	un
+5036480	5036880	probit
+5036880	5037240	para la
+5037240	5037520	ecuación
+5037520	5037680	de
+5037680	5038300	selección
+5038300	5041460	construyo
+5041460	5042520	el
+5042520	5043100	lambda
+5043100	5043460	y
+5043460	5044240	sombrero
+5044240	5046780	y
+5046780	5047140	meto
+5047140	5047280	el
+5047280	5047540	lambda
+5047540	5047740	y
+5047740	5048320	sombrero
+5048320	5049060	en la
+5049060	5049360	ecuación
+5049360	5049560	del
+5049560	5049840	segundo
+5049840	5050180	paso
+5050180	5053020	la
+5053020	5053300	ecuación
+5053300	5053500	del
+5053500	5053840	segundo
+5053840	5054380	paso
+5054380	5055420	es
+5055420	5055440	es
+5055440	5055460	es
+5055460	5059140	solamente
+5059140	5059820	que ahora
+5059820	5060240	acá
+5060240	5061400	voy a
+5061400	5061760	poner
+5061760	5062080	lambda
+5062080	5062560	sombrero
+5062560	5062780	y
+5062780	5063160	porque me
+5063160	5063700	estimé
+5063700	5070400	esta
+5070400	5070560	esta es la
+5070560	5070840	ecuación
+5070840	5071220	que puedo
+5071220	5071780	estimar
+5071780	5074480	y
+5074480	5076060	en esta
+5076060	5076760	ecuación
+5076760	5078300	en esta
+5078300	5078900	ecuación
+5078900	5081280	la
+5081280	5081960	hipótesis
+5081960	5082360	nula
+5082360	5082820	de
+5082820	5083820	beta
+5083820	5084360	lambda
+5084360	5085180	igual a
+5085180	5085520	cero
+5085520	5088180	implica que
+5088180	5088920	no hay
+5088920	5090500	sesgo
+5090500	5090640	de
+5090640	5091080	selección
+5091080	5100960	si beta
+5100960	5101420	lambda
+5101420	5102080	es cero
+5102080	5103540	si beta
+5103540	5103880	lambda
+5103880	5104480	es cero
+5104480	5105800	entonces tengo la
+5105800	5106200	función de
+5106200	5106480	oferta
+5106480	5112340	para las
+5112340	5112880	observaciones
+5112880	5113400	que tengo
+5113400	5116420	y subí
+5116420	5117360	para las que
+5117360	5117740	tengo
+5117740	5118560	todas las
+5118560	5118960	trabajadas
+5118960	5119420	que tengo
+5119420	5120540	contra
+5120540	5121080	x y
+5121080	5121900	que son las variables
+5121900	5122540	explicativas
+5122540	5122780	de la
+5122780	5123400	función de oferta
+5123400	5129900	si beta
+5129900	5130420	lambda
+5130420	5132060	es distinto
+5132060	5132640	de cero
+5132640	5137640	si beta
+5137640	5138120	lambda
+5138120	5139760	es distinto
+5139760	5140340	de cero
+5140340	5141600	entonces hay
+5141600	5141840	cero
+5141840	5142380	de selección
+5142380	5168540	el contraste
+5168540	5169540	se hace
+5169540	5170060	con
+5170060	5171760	el estadístico
+5171760	5172080	t
+5172080	5174360	de
+5174360	5177220	beta
+5177220	5177580	lambda
+5177580	5178180	sombrero
+5178180	5181080	beta
+5181080	5181760	sombrero
+5181760	5182280	lambda
+5182280	5183160	sobre
+5183160	5184620	error
+5184620	5185400	estándar
+5185400	5186460	de
+5186460	5187100	beta
+5187100	5187720	sombrero
+5187720	5188280	lambda
+5188280	5190660	que tiene
+5190660	5191520	distribución
+5191520	5192020	t
+5192020	5193200	con
+5193200	5193980	n
+5193980	5194340	menos
+5194340	5194620	k
+5194620	5194900	grader
+5194900	5203960	tiene
+5203960	5204200	una
+5204200	5204800	distribución
+5204800	5205080	t
+5205080	5206080	porque
+5206080	5207940	yo resuelvo
+5207940	5208620	el contraste
+5208620	5209040	de hipótesis
+5209040	5210320	nula
+5210320	5210860	es verdadera
+5210860	5211320	si asumo
+5211320	5211560	que la
+5211560	5212020	hipótesis
+5212020	5212320	nula
+5212320	5213400	es verdadera
+5213400	5214260	beta
+5214260	5214540	lambda
+5214540	5215020	es cero
+5215020	5215520	y no me
+5215520	5215940	aparece
+5215940	5216420	ningún
+5216420	5216940	lambda
+5216940	5217520	ninguna
+5217520	5217880	variable
+5217880	5218340	lambda
+5218340	5218700	en el
+5218700	5219040	modelo
+5219040	5220980	cualquier
+5220980	5221520	otro
+5221520	5222080	contraste
+5222080	5222600	de hipótesis
+5222600	5223000	que quiera
+5223000	5223400	hacer
+5223400	5224980	es un
+5224980	5225340	contraste
+5225340	5226040	de hipótesis
+5226040	5226800	no
+5226800	5227460	estándar
+5227460	5228900	porque
+5228900	5230160	me aparece
+5230160	5230680	el lambda
+5230680	5231260	sombrero
+5231260	5231660	ese
+5231660	5232220	ahí
+5232220	5233920	y
+5233920	5234700	si ustedes
+5234700	5235380	recuerdan
+5235380	5236220	el problema
+5236220	5237540	de
+5237540	5239060	hacer una
+5239060	5239820	regresión
+5239820	5241280	con variables
+5241280	5242140	generadas
+5242140	5242720	a partir
+5242720	5243040	de
+5243040	5243700	estimaciones
+5243700	5244460	anteriores
+5244460	5246540	lo que hace
+5246540	5246780	es que
+5246780	5247240	cambie
+5247240	5247740	la matriz
+5247740	5248260	de varianzas
+5248260	5249060	y covarianzas
+5249060	5249980	de los estimadores
+5249980	5250420	del mismo
+5250420	5251120	cuadro clásico
+5251120	5252700	en la segunda
+5252700	5253040	etapa
+5253040	5253580	de Hechtman
+5253580	5254000	Hechtman
+5254000	5255540	te calcula
+5255540	5255800	la
+5255800	5256180	no sé
+5256180	5256460	si está
+5256460	5257500	creo que
+5257500	5257700	no
+5257700	5263120	se calcula
+5263120	5263640	la matriz
+5263640	5264280	verdadera
+5264280	5264760	de
+5264760	5267120	varianzas
+5267120	5267960	y covarianzas
+5267960	5269040	cuando
+5269040	5269760	me aparece
+5269760	5270560	una variable
+5270560	5271400	generada
+5271400	5272320	a partir
+5272320	5272960	de estimaciones
+5272960	5273860	anteriores
+5273860	5274140	está
+5274140	5274540	ahí
+5274540	5275340	por las
+5275340	5275740	importantes
+5275740	5276580	de la
+5276580	5277240	distribución
+5277240	5278840	que se
+5278840	5279400	terminaban
+5279400	5280080	variadas
+5280080	5280360	por la
+5280360	5280460	me
+5280460	5280580	no
+5280580	5285080	entendí
+5285080	5286080	claro
+5286080	5286580	dice
+5286580	5287820	esto
+5287820	5288020	tiene
+5288020	5288520	distribución
+5288520	5288900	normal
+5288900	5289620	y variada
+5289620	5291680	y usando
+5291680	5292120	eso
+5292120	5292660	es que
+5292660	5293180	te calcula
+5293180	5293300	el
+5293300	5294120	si
+5294120	5295240	y no
+5295240	5296540	lo circulamos
+5296540	5301740	son todas
+5301740	5302400	instituciones
+5302400	5303240	asintóticas
+5303240	5307480	esto ya lo vi
+5307480	5312760	lo vimos
+5312760	5313180	el trimestre
+5313180	5313560	pasado
+5313560	5313720	en
+5313720	5314320	microcometría
+5314320	5314580	hoy
+5314580	5316500	sacamos
+5316500	5316700	todas
+5316700	5316860	las
+5316860	5317300	distribuciones
+5317300	5318080	asintóticas
+5318080	5319260	sin
+5319260	5320260	el supuesto
+5320260	5320980	de normalidad
+5320980	5323220	de los errores
+5323220	5324080	no
+5324080	5324560	pero no
+5324560	5324880	es normal
+5324880	5325600	de los errores
+5325600	5326380	te dice
+5326380	5328240	que
+5328240	5328440	la
+5328440	5329880	distribución
+5329880	5330240	normal
+5330240	5330340	y
+5330340	5332180	los errores
+5332180	5334440	de la
+5334440	5334720	ecuación
+5334720	5335220	de interés
+5335220	5335740	y la ecuación
+5335740	5336120	de
+5336120	5337620	selección
+5337620	5337900	tienen
+5337900	5338340	distribución
+5338340	5338680	normal
+5338680	5339240	y variante
+5339240	5340900	eso es lo que
+5340900	5341080	dice
+5341080	5341400	el modelo
+5341400	5348380	ok
+5348380	5349280	no tengo
+5349280	5349740	puesta
+5349740	5350080	la
+5350080	5350340	materia
+5350340	5350640	de varíces
+5350640	5351320	y covarianzas
+5351320	5352120	simplemente
+5352120	5352740	porque
+5352740	5354920	voy a
+5354920	5355480	extender
+5355480	5356080	este mismo
+5356080	5356700	procedimiento
+5356700	5357000	a datos
+5357000	5357320	de panel
+5357320	5357740	y ahí
+5357740	5357900	si
+5357900	5358040	la
+5358040	5358340	van
+5358340	5362300	para
+5362300	5363700	la
+5363700	5364560	extensión
+5364560	5365520	a datos
+5365520	5365940	de panel
+5365940	5366700	vamos a
+5366700	5367280	utilizar
+5367280	5368820	lo que
+5368820	5369580	se conoce
+5369580	5369960	como
+5369960	5371040	el procedimiento
+5371040	5371360	de
+5371360	5371760	gul
+5371760	5380280	el procedimiento
+5380280	5380960	de
+5380960	5381720	buldrich
+5381720	5395080	procedimiento
+5395080	5395800	de buldrich
+5395800	5396820	del noventa y cinco
+5396820	5426200	no sé
+5426200	5426340	qué
+5426340	5426620	hice
+5426620	5427120	y ahora
+5427120	5427320	me
+5427320	5427880	desaparece
+5427880	5428060	la
+5428060	5432080	ecuación
+5432080	5432580	de interés
+5432580	5433020	es esta
+5433020	5444200	y es el
+5444200	5444600	modelo
+5444600	5446480	de componentes
+5446480	5447180	no observados
+5447180	5447740	en panel
+5447740	5450500	esa es la ecuación
+5450500	5451180	que yo quiero
+5451180	5453480	estimar
+5453480	5455140	en un panel
+5455140	5457000	incompleto
+5457000	5458100	o sea que
+5458100	5458680	yo
+5458680	5460320	solo observo
+5460320	5461000	y sub it
+5461000	5462820	siempre que
+5462820	5464880	s it
+5464880	5465640	que mi variable
+5465640	5466260	indicadora
+5466260	5466920	valga uno
+5466920	5470460	y
+5470460	5472160	s it
+5472160	5474480	mecanismo
+5474480	5475240	de selección
+5475240	5476420	igual que
+5476420	5477220	en el procedimiento
+5477220	5477380	de
+5477380	5477700	Hegman
+5477700	5478060	es un
+5478060	5478360	problem
+5478360	5480060	s it
+5480060	5481080	la función
+5481080	5481820	indicadora
+5481820	5482500	uno
+5482500	5483940	que me dice
+5483940	5485220	cuando
+5485220	5486320	eta cero
+5486320	5486860	más
+5486860	5488260	x i
+5488260	5489080	raya
+5489080	5490580	x y media
+5490580	5491280	por eta
+5491280	5491700	más
+5491700	5492260	x y t
+5492260	5492800	por delta
+5492800	5493100	más
+5493100	5493620	b sub it
+5493620	5494560	es mayor a cero
+5494560	5496540	entonces
+5496540	5498460	el indicador
+5498460	5498960	vale uno
+5498960	5499660	si es menor
+5499660	5500220	o igual a cero
+5500220	5501360	vale cero
+5501360	5503460	y esta
+5503460	5506340	especificación
+5506340	5506640	de
+5506640	5507760	el
+5507760	5508460	el
+5508460	5508880	PROBIT
+5508880	5509420	es lo que
+5509420	5510160	en la literatura
+5510160	5510800	se conoce
+5510800	5511180	como
+5511180	5512280	la
+5512280	5513380	especificación
+5513380	5513560	de
+5513560	5514240	MUNLAC
+5514240	5516680	M U N
+5516680	5517020	D
+5517020	5517800	L A S
+5517800	5518180	K
+5518180	5518920	MUNLAC
+5518920	5520820	que
+5520820	5521860	utiliza
+5521860	5522880	la media
+5522880	5523440	temporal
+5523440	5524520	de las variables
+5524520	5525280	explicativas
+5525280	5525840	en el corte
+5525840	5526440	transversal
+5526440	5527340	x raya i
+5527340	5528540	como variables
+5528540	5529140	explicativas
+5529140	5529760	además
+5529760	5530420	de las variables
+5530420	5531060	explicativas
+5531060	5531360	en cada
+5531360	5531740	periodo
+5531740	5532100	temporal
+5532100	5532720	x y t
+5532720	5535120	y tiene
+5535120	5536200	una
+5536200	5537220	ordenada
+5537220	5537720	al origen
+5537720	5538380	dada por
+5538380	5539140	eta cero
+5539140	5540840	eta es el vector
+5540840	5542360	de parámetros
+5542360	5543080	que acompañan
+5543080	5543620	a las variables
+5543620	5544620	en x raya i
+5544620	5545840	delta es el vector
+5545840	5546340	de parámetros
+5546340	5547020	que acompaña
+5547020	5547980	a las variables
+5547980	5548840	en x y t
+5548840	5549760	b sub it
+5549760	5550420	es el error
+5550420	5551420	de la ecuación
+5551420	5553780	y es un PROBIT
+5553780	5554260	básicamente
+5554260	5554820	porque
+5554820	5556640	el error
+5556640	5557240	de la ecuación
+5557240	5557880	de selección
+5557880	5558600	tiene distribución
+5558600	5559160	normal cero
+5559160	5564280	una cosa
+5564280	5564780	que
+5564780	5567020	muestra
+5567020	5568200	Bullrich
+5568200	5569120	es que
+5569120	5570020	esa ecuación
+5570020	5570540	4
+5570540	5572440	o sea
+5572440	5573080	que el
+5573080	5573440	mecanismo
+5573440	5573860	de selección
+5573860	5574500	no necesita
+5574500	5575180	estar bien
+5575180	5576020	especificado
+5576020	5576940	sino que uno
+5576940	5577720	puede tomar
+5577720	5578460	a esa ecuación
+5578460	5579160	como una forma
+5579160	5579840	reducida
+5579840	5581100	de
+5581100	5582340	múltiples
+5582340	5582900	mecanismos
+5582900	5583380	de selección
+5583380	5584100	estructurales
+5584100	5584700	que puedo tener
+5584700	5585160	en la plan
+5585160	5586340	y eso lo muestra
+5586340	5587100	es como
+5587100	5588580	el
+5588580	5588840	T
+5588840	5589500	de hipótesis
+5589500	5589980	de white
+5589980	5590960	de heterosegasticidad
+5590960	5591780	que resume
+5591780	5593500	heterosegasticidades
+5593500	5594480	que pueden aparecer
+5594480	5595980	por distintos motivos
+5595980	5596680	en un solo T
+5596680	5596900	bueno
+5596900	5598440	este PROBIT
+5598440	5599140	que pone
+5599140	5600080	Bullrich
+5600080	5601300	resume
+5601300	5602440	un montón
+5602440	5603100	de mecanismos
+5603100	5603580	de selección
+5603580	5604500	estructurales
+5604500	5605340	que pueden ser
+5605340	5605900	capturados
+5605900	5606540	con esta
+5606540	5608440	especificación
+5608440	5609620	de la ecuación
+5609620	5609980	4
+5609980	5618720	tengo que hacer
+5618720	5619300	dos cosas
+5619300	5619800	una
+5619800	5624800	ahora
+5624800	5625760	para
+5625760	5631960	hay dos cosas
+5631960	5632600	una
+5632600	5634840	supongamos
+5634840	5635820	que
+5635820	5637560	el C sub i
+5637560	5638140	no estuviera
+5638140	5640220	si el C sub i
+5640220	5640900	no estuviera
+5640900	5641820	puedo hacer
+5641820	5642820	el mismo cálculo
+5642820	5643220	que hicimos
+5643220	5643860	con Heckman
+5643860	5646420	es decir
+5646420	5648520	tomar la esperanza
+5648520	5649240	matemática
+5649240	5650380	de i sub i t
+5650380	5651440	dado que observo
+5651440	5652000	i sub i t
+5652000	5653340	y entonces
+5653340	5654240	me va a quedar
+5654240	5656300	el error
+5656300	5657040	u sub i t
+5657040	5657740	truncado
+5657740	5658720	por
+5658720	5660300	la ecuación
+5660300	5661360	de selección
+5661360	5662480	y me va a aparecer
+5662480	5663160	la inversa
+5663160	5663720	del cociente
+5663720	5668300	solo que
+5668300	5668720	ahora
+5668720	5669040	tengo
+5669040	5669780	el C sub i
+5669780	5671820	o sea
+5671820	5672100	que
+5672100	5672800	lo que
+5672800	5673460	sucede
+5673460	5674340	es que
+5674340	5675920	para poder
+5675920	5676400	aplicar
+5676400	5676860	Heckman
+5676860	5677620	primero me tengo
+5677620	5678080	que cargar
+5678080	5678900	el C sub i
+5678900	5681320	entonces
+5681320	5682300	lo que voy a hacer
+5682300	5683200	es
+5683200	5684900	tomar
+5684900	5685540	la ecuación
+5685540	5686060	3
+5686060	5688280	¿me hicieron
+5688280	5688560	la
+5688560	5691940	mágicamente
+5691940	5692700	lo que había escrito
+5692700	5693260	que ahora
+5693260	5694820	mereció
+5694820	5698520	muy raro
+5698520	5703520	decía
+5703520	5705200	me voy a cargar
+5705200	5705900	el C sub i
+5705900	5707340	aplicando
+5707340	5708060	la transformación
+5708060	5708500	de efectos
+5708500	5708720	vivos
+5708720	5709380	que vimos antes
+5709380	5709740	la C
+5709740	5710560	con los dos puntitos
+5710560	5711440	la i con los dos puntitos
+5711440	5711960	para eliminar
+5711960	5712520	el C sub i
+5712520	5714460	pero
+5714460	5715280	cuando
+5715280	5716500	elimine
+5716500	5717460	el C sub i
+5717460	5719180	en la ecuación
+5719180	5720000	que voy a estimar
+5720000	5721120	en el segundo paso
+5721120	5722420	me queda
+5722420	5723060	la inversa
+5723060	5723620	del cociente
+5723620	5724140	de Mills
+5724140	5724720	que también
+5724720	5725340	tiene que tener
+5725340	5726040	los dos puntitos
+5726040	5730020	porque ahora
+5730020	5730500	de nuevo
+5730500	5732520	voy a tener
+5732520	5733400	la ecuación
+5733400	5734840	3
+5734840	5735820	con los dos puntitos
+5735820	5736300	que va a decir
+5736300	5737260	i sub i t
+5737260	5737960	con los dos puntitos
+5737960	5738240	arriba
+5738240	5738500	igual
+5738500	5739040	x y t
+5739040	5739720	con los dos puntitos
+5739720	5740000	arriba
+5740000	5740520	por beta
+5740520	5741980	más u sub i t
+5741980	5742660	con los dos puntitos
+5742660	5742920	arriba
+5742920	5743600	esa es la ecuación
+5743600	5744040	de oferta
+5744040	5748840	y la ecuación
+5748840	5749360	de selección
+5749360	5749700	es el
+5749700	5749940	pro
+5749940	5751860	entonces
+5751860	5752500	cuando tome
+5752500	5752980	la esperanza
+5752980	5753660	matemática
+5753660	5755500	de i sub i t
+5755500	5756240	con los dos puntitos
+5756240	5756580	arriba
+5756580	5757960	dado que observo
+5757960	5758420	i sub i t
+5758420	5759060	con los dos puntitos
+5759060	5759440	arriba
+5759440	5760440	me aparece
+5760440	5761060	el lambda
+5761060	5762260	con los dos puntitos
+5762260	5762660	arriba
+5762660	5771720	el lambda
+5771720	5772680	no lo observo
+5772680	5773700	porque
+5773700	5774600	depende
+5774600	5775300	de parámetros
+5775300	5776100	poblacionales
+5776100	5776500	están ahí
+5776500	5777420	el lambda
+5777420	5777980	no lo observo
+5777980	5778640	porque depende
+5778640	5779580	de eta cero
+5779580	5781180	de eta
+5781180	5782420	y de delta
+5782420	5786300	esto lo puedo estimar
+5786300	5788860	lo puedo estimar
+5788860	5795620	con un pro
+5795620	5798620	que ahí dice
+5798620	5802800	pull pro
+5802800	5812700	pull pro
+5812700	5813280	y quiere decir
+5813280	5813720	que
+5813720	5815480	en
+5815480	5817040	esta ecuación
+5817040	5817580	cuatro
+5817580	5819840	en lugar
+5819840	5820440	de verlo
+5820440	5821240	como un panel
+5821240	5822020	lo voy a ver
+5822020	5822680	como un gran
+5822680	5823740	corte transversal
+5823740	5826640	donde voy a tener
+5826640	5828160	n por t
+5828160	5828780	observación
+5828780	5829660	n mayúscula
+5829660	5830400	por t mayúscula
+5830400	5831000	observación
+5831000	5835920	y ahí
+5835920	5836440	estimo
+5836440	5837500	un provi
+5837500	5838420	como si fuera
+5838420	5838960	un provita
+5838960	5839420	en el corte
+5839420	5840060	transversal
+5840060	5844660	estimo el provita
+5844660	5845120	en el corte
+5845120	5845660	transversal
+5845660	5846620	y obtengo
+5846620	5847800	eta cero
+5847800	5848360	sombrero
+5848360	5849200	eta sombrero
+5849200	5850040	y delta sombrero
+5850040	5853960	y con esas
+5853960	5855040	estimaciones
+5855040	5856460	construyo
+5856460	5857120	el
+5857120	5858220	lambda sombrero
+5858220	5861780	lambda sombrero
+5861780	5864400	que es
+5864400	5865960	pi
+5865960	5867720	evaluado
+5867720	5868460	en
+5868460	5869640	eta cero
+5869640	5870360	sombrero
+5870360	5871140	más
+5871140	5872580	x
+5872580	5872600	x
+5872600	5873720	y por
+5873720	5874920	eta sombrero
+5874920	5876360	más
+5876360	5877640	x
+5877640	5878140	y t
+5878140	5879760	por delta sombrero
+5879760	5881720	dividido
+5881720	5883400	pi
+5883400	5884140	mayúscula
+5884140	5884920	la normal
+5884920	5885660	acumulada
+5885660	5886360	evaluada
+5886360	5886880	en el mismo
+5886880	5887420	eta
+5887420	5888940	sub cero
+5888940	5889520	más
+5889520	5890020	x
+5890020	5891700	y por
+5891700	5893120	eta sombrero
+5893120	5894100	más
+5894100	5894660	x
+5894660	5895240	y t
+5895240	5896560	por delta sombrero
+5896560	5903160	pero
+5903160	5903740	de nuevo
+5903740	5905680	en la ecuación
+5905680	5907020	del segundo paso
+5907020	5907760	tengo que poner
+5907760	5908780	eta lambda
+5908780	5909660	con los dos puntitos
+5909660	5910080	de arriba
+5910080	5914340	y la lambda
+5914340	5915060	con los dos puntitos
+5915060	5915420	de arriba
+5915420	5916160	se obtiene
+5916160	5916980	igual que hicimos
+5916980	5917400	antes
+5917400	5917860	o sea
+5917860	5918960	el lambda
+5918960	5919780	con los dos puntitos
+5919780	5920200	arriba
+5920200	5920900	el lambda sombrero
+5920900	5921500	con los dos puntitos
+5921500	5921840	de arriba
+5921840	5922620	la variable
+5922620	5923120	original
+5923120	5923440	lambda
+5923440	5923700	y t
+5923700	5924340	sombrero
+5924340	5925560	menos
+5925560	5926120	la media
+5926120	5926580	que le puedo
+5926580	5926980	sacar
+5926980	5928180	y la media
+5928180	5928680	que le puedo
+5928680	5929000	sacar
+5929000	5930000	depende de
+5930000	5931080	cuáles sean
+5931080	5931860	las observaciones
+5931860	5932340	que tengo
+5932340	5932660	de
+5932660	5933520	lambda
+5933520	5956940	¿está claro esto?
+5958940	5959580	¿está bien?
+5961440	5961700	ok
+5961700	5962860	entonces
+5962860	5963400	la ecuación
+5963400	5963760	que puedo
+5963760	5964160	estimar
+5964160	5964460	es la que
+5964460	5965000	tienen ahí
+5965000	5965880	al final
+5965880	5966760	de la transparencia
+5966760	5967400	y subi t
+5967400	5968060	con los dos puntitos
+5968060	5968400	de arriba
+5968400	5969840	igual a
+5969840	5970360	x y t
+5970360	5970960	con los dos puntitos
+5970960	5971240	de arriba
+5971240	5971740	por beta
+5971740	5972760	más ro
+5972760	5973400	por lambda
+5973400	5973820	sombrero
+5973820	5974560	con los dos puntitos
+5974560	5974980	de arriba
+5974980	5975380	y t
+5975380	5976400	más una ro
+5976400	5980900	y
+5980900	5984180	Woodridge
+5984180	5985000	lo que me dice
+5985000	5985300	es
+5985300	5985540	mira
+5985540	5990680	si ro
+5990680	5991060	es igual
+5991060	5991440	a cero
+5991440	5997260	si ro
+5997260	5997660	es igual
+5997660	5998100	a cero
+5998100	5999280	este término
+5999280	5999660	no está
+5999660	6001200	y lo que
+6001200	6001620	tengo
+6001620	6002600	es
+6002600	6005100	el modelo
+6005100	6005540	original
+6005540	6009400	tengo el modelo
+6009400	6009820	original
+6009820	6011280	para las observaciones
+6011280	6011820	que tengo
+6011820	6014420	no hay
+6014420	6015380	cego
+6015380	6015980	de selección
+6015980	6020000	si ro
+6020000	6020480	distinto
+6020480	6021100	de cero
+6021100	6027940	ro
+6027940	6028480	distinto
+6028480	6029020	de cero
+6029020	6030520	hay cego
+6030520	6030920	de centro
+6030920	6049840	¿cuál es el
+6049840	6050260	estático
+6050260	6050920	contraste
+6050920	6053280	ro
+6053280	6053820	sombrero
+6053820	6054340	sobre
+6054340	6054800	error
+6054800	6055260	estándar
+6055260	6055540	de ro
+6055540	6055860	sombrero
+6055860	6057740	que tiene
+6057740	6058300	distribución
+6058300	6058520	td
+6058520	6058880	student
+6058880	6062720	con grado
+6062720	6063300	de libertad
+6063300	6063780	por número
+6063780	6064340	de observaciones
+6064340	6064800	menos
+6064800	6065780	parámetros
+6065780	6066360	de estimar
+6066360	6069380	y
+6069380	6071000	este
+6071000	6072540	que es el
+6072540	6072980	único
+6072980	6073580	contraste
+6073580	6074060	de hipótesis
+6074060	6074680	que puedo hacer
+6074680	6075020	que tiene
+6075020	6075480	distribución
+6075480	6076020	estándar
+6076020	6077440	como yo
+6077440	6077940	resuelvo
+6077940	6078500	el contraste
+6078500	6079420	de hipótesis
+6079420	6080260	bajo la hipótesis
+6080260	6080580	nula
+6080580	6081880	bajo la hipótesis
+6081880	6082100	nula
+6082100	6082340	error
+6082340	6082600	es igual
+6082600	6082880	a cero
+6082880	6083100	y el
+6083100	6083280	lambda
+6083280	6083640	sombrero
+6083640	6084180	no existe
+6084180	6085620	o sea
+6085620	6086260	tengo la ecuación
+6086260	6086860	original
+6086860	6087320	que quiero
+6087320	6087760	estimar
+6087760	6089360	cualquier
+6089360	6089660	otro
+6089660	6090080	contraste
+6090080	6090800	de hipótesis
+6090800	6091620	puede tener
+6091620	6092100	problemas
+6092100	6092840	pero este
+6092840	6093900	no
+6093900	6096660	entonces
+6096660	6097120	tengo
+6097120	6098640	dos
+6098640	6099180	contrastes
+6099180	6100380	de hipótesis
+6100380	6101320	nickman
+6101320	6101700	verde
+6101700	6103520	que uso
+6103520	6103860	cuando
+6103860	6104440	quiero
+6104440	6105180	saber si hay
+6105180	6105580	atrillo
+6105580	6106100	o no
+6106100	6108600	td
+6108600	6109120	waldrich
+6109120	6109660	para saber
+6109660	6110000	si hay
+6110000	6110500	truncamiento
+6110500	6111040	incidental
+6111040	6111520	o si el
+6111520	6112120	truncamiento
+6112120	6112900	incidental
+6112900	6114200	provoca
+6114200	6115240	sesgo
+6115240	6115980	de selección
+6115980	6128860	mismos datos
+6128860	6129340	que la tabla
+6129340	6129620	1
+6129620	6131920	solo que
+6131920	6133660	le cambié
+6133660	6134640	los
+6134640	6134860	n
+6134860	6136500	por ejemplo
+6136500	6138020	para la
+6138020	6139200	empresa
+6139200	6139880	o la firma
+6139880	6140260	5
+6140260	6141780	no observo
+6141780	6142540	el periodo
+6142540	6143220	t igual a 3
+6143220	6143860	pero observo
+6143860	6144280	el periodo
+6144280	6144940	t igual a 4
+6144940	6146800	o sea que
+6146800	6147120	esto es
+6147120	6147540	distinto
+6147540	6148180	del atrillo
+6148180	6153300	y otras
+6153300	6153540	no
+6153540	6154000	o sea que
+6154000	6154160	hay
+6154160	6154840	truncamiento
+6154840	6156100	incidental
+6156100	6157320	también
+6157320	6157520	los
+6157520	6157820	SMA
+6157820	6158640	para que
+6158640	6159280	simule
+6159280	6159880	truncamiento
+6159880	6160360	incidental
+6160360	6160820	pero no
+6160820	6161680	nada
+6161680	6163720	nada más
+6163720	6164280	que para ver
+6164280	6165300	cómo lo hago
+6165300	6166020	en la práctica
+6166020	6167400	en la práctica
+6167400	6167920	de nuevo
+6167920	6169020	tengo
+6169020	6173020	primero
+6173020	6173740	generé
+6173740	6174680	la media
+6174680	6175720	de XI
+6175720	6176140	XI
+6176140	6176160	XI
+6176160	6176480	raya
+6176480	6178720	y
+6178720	6179620	estimé
+6179620	6180540	el probio
+6180540	6182540	SIT
+6182540	6183360	que es mi variable
+6183360	6184480	1 0
+6184480	6188780	LNIT
+6188780	6189820	es XIT
+6189820	6192280	LNIT
+6192280	6193480	con la raya
+6193480	6193960	de arriba
+6193960	6194500	es XI
+6194500	6194740	raya
+6194740	6195320	esa es la
+6195320	6195920	especificación
+6195920	6196280	de mundo
+6196280	6198140	y
+6198140	6200660	usando
+6200660	6201220	predi
+6201220	6201980	construí
+6201980	6202520	el índice
+6202520	6203020	XB
+6203020	6204960	o sea que
+6204960	6206100	eso me da
+6206100	6207880	eta 0
+6207880	6208500	sombrero
+6208500	6209380	más
+6209380	6210260	X
+6210260	6210560	raya
+6210560	6210820	I
+6210820	6211320	por eta
+6211320	6211900	sombrero
+6211900	6212660	más
+6212660	6213740	XIT
+6213740	6214360	por delta
+6214360	6214740	sombrero
+6214740	6218840	y después
+6218840	6219480	generé
+6219480	6220720	el lambda
+6220720	6221880	lambda
+6221880	6222320	y T
+6222320	6225280	el lambda
+6225280	6225700	y T
+6225700	6226720	como
+6226720	6228540	fi minúscula
+6228540	6230060	de
+6230060	6231100	X beta
+6231100	6232380	dividido
+6232380	6234800	fi mayúscula
+6234800	6235200	de
+6235200	6235960	X beta
+6235960	6241640	arregle
+6241640	6242700	variable
+6242700	6243480	dependiente
+6243480	6244120	variable
+6244120	6244820	explicativa
+6244820	6246080	esto es
+6246080	6247500	la ecuación
+6247500	6247980	original
+6247980	6248980	costo
+6248980	6249980	contraproducto
+6249980	6251260	el logaritmo
+6251260	6252940	y el lambda
+6252940	6255620	y le puse
+6255620	6256980	absorb
+6256980	6257820	para que
+6257820	6258420	y para que
+6258420	6258880	le ponga
+6258880	6259380	la variable
+6259380	6259820	con los dos
+6259820	6260440	puntitos arriba
+6260440	6264140	a la variable
+6264140	6264700	explicativa
+6264700	6265400	y al lambda
+6265400	6268120	y después
+6268120	6271120	saqué la tablita
+6271120	6273500	el coeficiente
+6273500	6274220	que acompaña
+6274220	6274600	lambda
+6274600	6275180	sombrero
+6275180	6275600	con los dos
+6275600	6276120	puntitos
+6276120	6277000	es
+6277000	6279300	beta
+6279300	6279880	sombrero
+6279880	6280260	lambda
+6280260	6284520	y este
+6284520	6286080	1.66
+6286080	6287740	es el estadístico
+6287740	6288100	T
+6288100	6288920	de beta
+6288920	6289460	sombrero
+6289460	6289980	lambda
+6289980	6292640	beta
+6292640	6293240	sombrero
+6293240	6293720	lambda
+6293720	6294920	sobre
+6294920	6296140	error
+6296140	6296900	estándar
+6296900	6298200	de beta
+6298200	6298640	sombrero
+6298640	6305840	1.66
+6305840	6310020	no es
+6310020	6310760	estadísticamente
+6310760	6311760	significativo
+6311760	6312400	ni al 1
+6312400	6313000	ni al 5
+6313000	6314060	ni al 10%
+6314060	6315960	o sea que
+6315960	6317140	acepto
+6317140	6317720	la hipótesis
+6317720	6317960	nula
+6317960	6318680	de que beta
+6318680	6319100	lambda
+6319100	6320020	es cero
+6320020	6321000	si beta
+6321000	6321320	lambda
+6321320	6321780	es cero
+6321780	6323020	no hay
+6323020	6324280	sesgo
+6324280	6324940	de selección
+6324940	6325600	por truncamiento
+6325600	6325620	por truncamiento
+6325620	6326160	incidental
+6326160	6330660	si
+6330660	6339580	entonces
+6339580	6339940	tenemos
+6339940	6343320	si alguien
+6343320	6343680	viene
+6343680	6344080	y me dice
+6344080	6344280	mira
+6344280	6344740	tengo que estimar
+6344740	6345100	este modelo
+6345100	6345500	pero tengo
+6345500	6345940	un palito
+6345940	6346480	completo
+6346480	6347440	y yo digo
+6347440	6347740	no tengo
+6347740	6348220	no tengo
+6348220	6348660	problema
+6348660	6349140	el palito
+6349140	6349640	completo
+6349640	6350080	te puedo
+6350080	6350620	chequear
+6350620	6351220	si hay
+6351220	6352020	sesgo de selección
+6352020	6352720	en el palito
+6352720	6353220	o si no hay
+6353220	6353880	sesgo de selección
+6353880	6355020	y para chequear
+6355020	6355440	si hay sesgo
+6355440	6355840	de selección
+6355840	6357140	o no hay
+6357140	6357640	sesgo de selección
+6357640	6358180	tengo dos
+6358180	6358780	contratitos
+6358780	6359960	Nisman-Berbeck
+6359960	6360320	y Bull
+6360320	6364560	si yo
+6364560	6365180	acepto
+6365180	6365680	la hipótesis
+6365680	6365900	nula
+6365900	6366260	de la T
+6366260	6366620	no hay
+6366620	6367440	sesgo de selección
+6367440	6368920	haga
+6368920	6369900	como si tuviera
+6369900	6370260	un palito
+6370260	6370640	completo
+6370640	6372980	si rechazo
+6372980	6374660	la hipótesis
+6374660	6375040	nula
+6375040	6376040	del T
+6376040	6376940	de Nisman-Berbeck
+6376940	6378100	o del T
+6378100	6378480	de Bull
+6378480	6379500	tengo problemas
+6379500	6379860	de sesgo
+6379860	6380440	de selección
+6380440	6381400	entonces
+6381400	6382240	lo que necesito
+6382240	6382640	ahora
+6382640	6383620	es
+6383620	6385040	un procedimiento
+6385040	6386100	para estimar
+6386100	6387380	el modelo
+6387380	6387940	cuando hay
+6387940	6388300	atrillo
+6388300	6389260	y cuando hay
+6389260	6389700	truncamiento
+6389700	6390240	incidental
+6390240	6390560	con seis
+6390560	6393060	y dado que
+6393060	6393520	está esto
+6393520	6394040	puesto acá
+6394040	6394320	creo que
+6394320	6394680	empecé
+6394680	6395040	con
+6395040	6396000	truncamiento
+6396000	6397040	incidental
+6397040	6404000	¿sabes que
+6404000	6404960	debe estar
+6404960	6405960	todo
+6405960	6407320	es del 95
+6407320	6410040	debería estar
+6410040	6412420	ya me olvidé
+6412420	6412780	pero
+6412780	6414160	si está
+6414160	6414640	lo van a ver
+6414640	6415200	en la práctica
+6415200	6420420	ok
+6420420	6422780	para hacer
+6422780	6423500	la estimación
+6423500	6424460	es un procedimiento
+6424460	6426080	mucho más complejo
+6426080	6426680	que para hacer
+6426680	6427140	el contraste
+6427140	6429480	entonces
+6429480	6430560	voy a cortar
+6430560	6431020	acá
+6431020	6432740	no lo voy a dejar
+6432740	6433080	en la mitad
+6433080	6433780	no se puede
+6433780	6434500	dejar en la mitad
+6434500	6436040	y es largo
+6436040	6438600	pero lo que necesito
+6438600	6439880	es que
+6439880	6440900	se miren
+6440900	6442180	las transparencias
+6442180	6443380	del curso
+6443380	6443940	de
+6443940	6444880	microgrometría
+6444880	6445100	1
+6445100	6445940	lectura 4
+6445940	6466080	lectura 3
+6466080	6469540	lectura 3
+6469540	6471040	no
+6471040	6471080	no
+6471080	6473180	tenemos
+6473180	6473600	metros
+6473600	6474080	y
+6474080	6474780	excel
+6474780	6475780	Gracias.
+6504780	6530280	Lectura 4 de microeconometría, la ecuación 26 es la ecuación de donde sacamos la distribución asintótica de los coeficientes del segundo paso.
+6530280	6550000	Cuando tengo una variable generada a partir de estimadores del primer paso, que es la ecuación 36.
+6550000	6565520	Es la matriz de varianzas y covarianzas del estimador de dos pasos del método M de estimación no línea.
+6565520	6581520	Lo que voy a hacer es calcular la matriz de varianzas y covarianzas de los estimadores del segundo paso, utilizando este herramiental, porque lo necesitamos para hacer inferencias estadísticas.
+6581520	6601360	¿Estamos de acuerdo? Mírenselo. Igual voy a explicar algunas cosas, pero no voy a hacer cosas detalladas de cómo calcular la matriz de varianza y covarianza de los estimadores en dos pasos.
+6601360	6611040	Y de nuevo, puedo mostrarlo acá.
+6611040	6632720	Esta es la estimación.
+6632720	6655040	La matriz de varianza y covarianza, la matriz de varianza y covarianza tiene un montón de desarrollo para obtener esto que es la matriz de varianza y covarianza del estimador de dos pasos que vimos en el curso.
+6655040	6663860	Entonces, voy a dar algunas de estas definiciones, pero todo está en el microcognitivo.
+6668860	6673200	Ok, cortemos aquí y seguimos el lunes.

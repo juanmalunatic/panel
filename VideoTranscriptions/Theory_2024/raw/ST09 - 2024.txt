@@ -1,0 +1,5072 @@
+Buenas tardes.
+Buenas tardes. Vamos a seguir con la estimación en paneles no balanceados
+cuando tenemos cerro de selección.
+Lo que vimos hasta ahora fue dos procedimientos que son la generalización del procedimiento de HEPPAN
+para la corrección del CEO de selección en corte transversal,
+la generalización a datos de HEPPAN, que hizo Bullrich en el 2005, como se ve.
+Y los que empezamos a ver la clase pasada y que vamos a terminar hoy
+es un procedimiento alternativo debido a Rochina barra China.
+Cuando terminemos con el trabajo de Rochina barra China,
+nos queda uno o varios procedimientos para corregir o estimar el modelo
+cuando tenemos atrillo, porque todas estas conexiones son para el sesgo de selección
+preocupados por el truncamiento incidental, o sea que nos queda la parte de atrillo.
+Y una vez que terminemos con atrillo, vamos a extender las correcciones a modelos
+en los cuales las variables explicativas observadas puedan ser endógenas.
+Recordemos que en todos estos procedimientos que estamos viendo,
+la condición para obtener estimadores consistentes es que las variables explicativas
+sean estrictamente exógenas y cuando tenemos alguna variable endógena
+ese supuesto no se cumple y entonces vamos a tener que especificar otro tipo de corrección
+parecido a esto que estamos viendo, pero involucrando algún tipo de variable
+para poder hacer la corrección.
+En términos de los procedimientos que vimos, recapitulo un poquito
+el procedimiento que vamos a ver ahora, que es el procedimiento de Rochina barra China,
+que lo que hace es levantar uno de los supuestos que hace Wulthich en la corrección
+del sesgo por truncamiento incidental en el panel, que es el supuesto C, W1C,
+lo llamamos nosotros en las transparencias, que lo que hace es especificar
+la heterogeneidad no observada en términos de las variables explicativas observadas.
+Y nosotros vimos para el procedimiento de Wulthich dos especificaciones
+de esa heterogeneidad no observada, lo que llamamos la especificación de Mumbla,
+que relaciona a la heterogeneidad no observada con las medias temporales
+de las variables explicativas en el corte transversal, y la especificación de Chamberlain,
+que especifica esa heterogeneidad no observada en función de las variables explicativas
+en todos los periodos temporales.
+En cualquiera de las dos especificaciones, el supuesto, lo único que hace es eliminar
+la ecuación de interés, la heterogeneidad no observada, sin hacer ninguna de las transformaciones
+que vimos para eliminarla en los modelos estáticos en paneles completos.
+Es decir, no utiliza ni diferencia finita, ni la transformación de efectos fijos,
+ni la transformación de diferencias ortogonales.
+Entonces, hace el supuesto de la heterogeneidad no observada relacionada con las variables explicativas
+observadas para, efectivamente, cuando uno toma la esperanza matemática,
+reemplazar esa esperanza matemática por la forma funcional de la heterogeneidad no observada,
+y entonces eliminar la heterogeneidad no observada del modelo original.
+Rochina Barrachina va a levantar ese supuesto, va a suponer que la relación entre la heterogeneidad no observada
+y las variables explicativas observadas no se conoce, es decir, que yo no sé cuál es,
+y como yo no sé cuál es la relación, no voy a poder hacer la transformación,
+no voy a poder eliminar la heterogeneidad no observada,
+utilizando ninguna de las, utilizando la especificación de Uldrich en ninguna de sus dos versiones,
+y el levantamiento de ese supuesto tiene que tener otros supuestos alternativos,
+básicamente porque si no tuviera otro supuesto alternativo,
+que sería una estimación más general, porque utiliza un supuesto menos,
+los supuestos alternativos que utilizan, que utiliza Rochina Barrachina son los supuestos que vimos la clase pasada
+con el procedimiento de Bunderson en el corte transversal, es decir, el procedimiento de Bunderson era,
+si ustedes recuerdan, la estimación de un modelo de salarios para aquellos trabajadores que quedaban en la empresa
+después de haber recibido capacitación, y esa capacitación, quedar en la empresa después de recibir la capacitación,
+que era una combinación de decisiones de la empresa y del trabajador,
+si el trabajador se quería quedar o se quería ir, si la empresa se quería retenerlo o no al trabajador,
+y lo que va a hacer Rochina Barrachina en la generalización a datos de paneles,
+que en lugar de tener dos decisiones de trabajador y de empresa,
+lo que va a hacer es utilizar el operador de diferencia finita para eliminar el C sub i,
+y después me va a quedar un mecanismo de selección en el periodo t y un mecanismo de selección en el periodo t-1,
+y esas van a ser nuestras dos decisiones conjuntas,
+que es la eliminación del C sub i.
+Entonces, vamos a detallar el procedimiento como lo propone Rochina Barrachina,
+que lo mencioné en la clase pasada, que es para T mayúscula igual a 2,
+y después vamos a ver cómo uno podría extender este procedimiento a T mayúscula mayor a 2.
+La ecuación de interés va a ser la ecuación 7 que tienen allí en la transparencia,
+tiene I sub i t como variable dependiente,
+y X j, en lugar de I, X j t,
+1 como variables explicativas observadas,
+beta es el vector de parámetros,
+C sub j es la heterogeneidad no observada,
+U j t es el error idiosincrático de la ecuación,
+y Rochina Barrachina presenta como mecanismo de selección
+una ecuación estructural que vincula a una variable latente,
+H j estrella, que es igual a C j,
+que va a representar la heterogeneidad no observada en el mecanismo de selección,
+N es el mecanismo de selección,
+X j t por delta,
+X j t van a ser las variables explicativas del mecanismo de selección,
+delta es el vector de parámetros,
+como dijimos en la clase pasada,
+en general,
+X j t es distinto de
+X j t 1,
+no puedo incluir las mismas variables explicativas en el mecanismo de selección,
+y en la ecuación de interés,
+porque va a aparecer algún lambda inversa del cociente de mix,
+o variable explicativa adicional cuando haya sesgo de selección,
+y entonces quiero evitar que haya colinealidad entre las variables explicativas y el lambda que va a estar construido a partir de las variables explicativas del mecanismo de selección.
+Y a j t va a ser el error del mecanismo de selección.
+El mecanismo de selección va a determinar un S j t que va a ser la indicadora que vale 1, 0, 1 si observo a las variables 0, si no lo observo,
+y ese mecanismo de selección basado en la variable latente h j t estrellas va a ser 1 cuando h j t estrellas sea mayor o igual a 0 y va a ser igual a 0 cuando no se cumpla esa ecuación.
+Los primeros dos puntos ya lo dije,
+S j va a ser la heterogeneidad no observada en la ecuación de interés,
+si j va a ser la heterogeneidad no observada en el mecanismo de selección,
+u j el error idiosincrático de la ecuación de interés,
+a j t, u j t y a j t el error idiosincrático,
+a j t el error idiosincrático del mecanismo de selección,
+y para obtener estimadores consistentes,
+en la ecuación 7,
+utilizando solamente las variables que observo,
+necesitamos la condición que aparece en la ecuación 8.
+La condición que aparece en la ecuación 8 es la condición que vimos cuando utilizamos el procedimiento de diferencias finitas en paneles completos.
+Cuando utilizamos el procedimiento de diferencias finitas en paneles completos para eliminar el C sub i,
+lo que hicimos fue aplicar la diferencia finita de orden 1,
+o sea, escribir el modelo para el periodo T,
+escribir el modelo para el periodo T-1,
+y después restar miembro a miembro el modelo escrito en T menos el modelo escrito en T-1.
+Ahora tengo un panel que no es completo,
+y no es claro que yo pueda observar la variable en el periodo T y en el periodo T-1.
+Pero yo sé que si observo la variable en el periodo 1 y en el periodo 10,
+la resta entre el modelo en 1 y el modelo en 10 también me elimina el C sub i.
+Entonces, ¿cómo está escrita la ecuación 8?
+La ecuación 8 está escrita como la diferencia de los errores en el periodo T y en el periodo S,
+donde en T y en S observo las variables.
+Por eso la condición es SJT igual a SJS igual a U.
+Si yo observo las variables en T y en T-1,
+es decir, S y en T-1, tengo la diferencia finita,
+como la definimos tradicionalmente.
+Pero si no observo en T y en T-1,
+me da lo mismo observar en T y en T-2,
+o en T-5 y en T-10,
+me da lo mismo, digamos,
+la recta de las dos ecuaciones
+en dos periodos temporales diferentes me elimina el C sub i.
+Entonces, en términos de paneles completos,
+lo que nosotros pusimos fue diferencia finita,
+delta de, en lugar de poner UJT menos UJS,
+lo que hicimos fue poner el modelo transformado,
+diferencia finita de UJT.
+Ahora, como puede ser que observe,
+puede ser que no observe dos periodos seguidos,
+entonces tengo definida la diferencia finita
+como UJT, UJS.
+Entonces, el profesor va a seguir utilizando
+diferencia finita para referirse a la diferencia
+entre el periodo T y el periodo S.
+No es exactamente la definición formal de diferencia finita,
+pero no tengo un nombre mejor,
+y no voy a decir todo el tiempo T menos S,
+voy a decir diferencia finita,
+y en este contexto nosotros vamos a interpretar
+que es UJT menos UJS.
+Lo que me dice la ecuación 8
+es que se cumple el supuesto de exogenidad,
+pero, de nuevo,
+el supuesto de que en general no se va a cumplir.
+Esto es lo que yo necesitaría
+para obtener explicaciones consistentes
+de la ecuación que quiero escribir.
+Eso ya lo dije.
+Entonces, de nuevo,
+si hay ciego de selección,
+la ecuación 8 no se va a cumplir.
+Entonces,
+para derivar la corrección,
+lo que vamos a hacer es
+imponer
+supuestos
+que en principio
+levantan el supuesto C de UJT,
+complementan
+los supuestos
+A y B
+del problema
+de la corrección impuesta
+por UJT.
+Los supuestos
+están,
+el primer supuesto
+está mencionado
+en la transparencia
+como supuesto
+RB1
+tiene tres ítems,
+el supuesto A
+es,
+me dice que
+CJ,
+recuerda,
+CJ
+es la heterogeneidad
+no observada
+del mecanismo de selección,
+está relacionada
+con XJ
+a través de la siguiente
+especificación.
+CJ
+igual a
+eta 0
+más
+XJ1
+por eta 1
+XJ2
+por eta 2
+XJT
+mayúscula
+por eta T
+mayúscula
+más
+alfa j1.
+Entonces,
+este supuesto
+este supuesto
+A
+de rochina
+barra china
+es
+igual
+al supuesto
+W1
+C
+A
+que usa
+Gurdjieff
+para eliminar
+la heterogeneidad
+no observada
+de la ecuación
+original.
+Solo que
+rochina barra china
+lo plantea
+para eliminar
+la heterogeneidad
+no observada
+del mecanismo de selección.
+Es el mismo
+supuesto,
+solamente que
+rochina barra china
+se va a cargar
+la heterogeneidad
+no observada
+del mecanismo
+de selección
+con el mismo
+supuesto
+que hizo
+Gurdjieff
+para cargarse
+la heterogeneidad
+no observada
+de la ecuación
+de interés.
+Y la especificación
+es la especificación
+de Chamberlain
+y de todas
+las variedades
+explicativas
+en todos los
+periodos temporales.
+Los errores
+del mecanismo
+de selección
+tienen distribución
+normal.
+Los errores
+del mecanismo
+de selección
+están compuestos.
+Los errores
+compuestos
+están
+en la suma
+de los errores
+idiosincráticos
+AJT
+y la heterogeneidad
+no observada
+SIJO.
+Tienen distribución
+normal
+con media cero
+y varianza
+sigma cuadrado
+de T.
+y el supuesto
+C
+que es el supuesto
+que nos va
+a permitir
+implementar
+la corrección
+de Gunderson
+es que
+los errores
+de la ecuación
+de interés
+formada
+por la diferencia
+finita
+y los dos errores
+de los mecanismos
+de selección
+en el periodo T
+y en el periodo S
+tienen distribución
+normal
+trivaliente.
+En el caso
+de Gunderson
+los errores
+de la ecuación
+de interés
+la ecuación
+de salario
+y los errores
+de los dos
+mecanismos
+de selección
+de la empresa
+y el de
+el empleado
+tenían distribución
+trivaliente
+normal.
+Ahora
+va a pasar
+lo mismo
+solamente
+que
+el error
+de la ecuación
+de interés
+está transformado
+aplicando
+lo que yo voy a llamar
+diferencia finita
+y los dos
+errores
+del mecanismo
+de selección
+son
+uno para el periodo T
+y otro para el periodo T
+Entonces
+de nuevo
+con esto
+con estos
+supuestos
+lo que uno
+puede hacer
+es
+hacer el mismo
+cálculo
+que hace Gunderson
+en el
+corte
+transversal
+pero
+en los datos
+de España
+que es
+básicamente
+la generalización
+del teorema
+de los momentos
+de la distribución
+truncada
+por una variable
+que vimos
+en el corte
+transversal
+y en los datos
+del panel
+con
+Hedman
+y
+ahora me van a
+aparecer
+dos
+términos
+El caso
+de Gunderson
+me aparecía
+un término
+de corrección
+vinculado
+con
+la decisión
+del empleado
+y un término
+de corrección
+vinculado
+con la decisión
+de la empresa
+y acá me van a
+aparecer
+dos términos
+uno
+vinculado
+con
+el mecanismo
+de selección
+del periodote
+y uno
+vinculado
+con el mecanismo
+de selección
+del periodote
+que están
+resumidos
+allí
+en
+la esperanza
+que aparece
+en
+el segundo
+punto
+de esta
+transparencia
+la esperanza
+de los errores
+de la ecuación
+de interés
+aplicando
+la diferencia
+finita
+dado que yo
+observo
+el modelo
+en el periodo
+t y en el periodo
+s
+ahora voy a decir
+que es h
+va a ser igual
+a un coeficiente
+olvídense
+de toda la letrita
+este es un coeficiente
+multiplicado
+por lambda
+que va a ser
+entre comillas
+la inversa
+del cociente
+de Mills
+del periodo
+t
+otro coeficiente
+multiplicado
+por lambda
+que va a ser
+la inversa
+del cociente
+de Mills
+en el otro
+periodo
+y
+el h
+s
+es simplemente
+para no tener
+que escribir
+mucho
+es básicamente
+el mecanismo
+de selección
+para s y t
+acá está
+el pito contado
+x j
+t
+por delta
+más la esperanza
+de epsilon j
+condicional
+en x j
+epsilon
+perdón
+h j
+j
+s
+es x
+j s
+por delta
+más
+de
+x j
+condicional
+en x
+entonces
+¿qué
+pasa aquí?
+bueno
+esta
+esperanza
+matemática
+por el
+supuesto
+a
+de rochina
+barrochina
+se puede
+reemplazar
+por
+la función
+de la heterogeneidad
+observada
+en variables
+observadas
+o sea
+eso es lo que
+elimina
+el c
+sub j
+de la
+de la ecuación
+que voy a
+que voy a
+estimar
+y
+los
+lambdas
+están
+especificados
+aquí
+tienen
+la misma
+especificación
+que vimos
+para
+Wundersen
+pero
+para
+el mecanismo
+de selección
+en el periodo
+t
+y en el periodo
+y en el periodo
+n
+básicamente
+pi
+minúscula
+es
+la función
+de densidad
+de la
+normal
+estándar
+pi
+mayúscula
+es la función
+de distribución
+de la
+normal
+cero
+uno
+y
+pi
+mayúscula
+dos
+es la
+función
+de distribución
+de la
+normal
+bivariante
+o sea
+que
+adentro
+de
+los
+m
+que están
+dependiendo
+o sea
+es todo
+para no tener
+que escribir
+todo junto
+pi
+depende
+de
+m
+m
+depende
+de
+delta
+y de
+depende
+de
+delta
+depende
+de
+eta
+cero
+hasta
+eta
+t
+y
+depende
+de
+sigma
+cuadrado
+de t
+¿sí?
+han puesto
+acá
+que está
+el h
+que
+justamente
+depende
+de delta
+y de
+z
+sigma
+t
+que me
+queda
+acá
+digo
+básicamente
+porque
+para
+la
+distribución
+de
+los errores
+compuestos
+de normal
+cero
+sigma
+cuadrado
+de t
+yo
+necesito
+estimar
+un
+probit
+o un
+by
+probit
+y eso
+tiene
+distribución
+normal
+cero
+uno
+para
+poder
+transformar
+la
+normal
+con cualquier
+varianza
+en una
+normal
+cero
+uno
+tengo que
+dividir
+por
+el
+desvío
+estándar
+y por eso
+aparece ahí
+el desvío
+estándar
+pero
+vamos
+a
+probit
+variado
+vamos
+a
+sacar
+los
+estimadores
+y también
+depende
+de
+rho
+que está
+acá
+que es
+el coeficiente
+de
+correlación
+entre
+los errores
+del mecanismo
+de selección
+en el periodo
+de T
+creo que
+la ecuación
+que vamos
+a estimar
+es
+esta que
+aparece
+y JT
+menos
+y JS
+igual a
+X
+supra
+uno
+JT
+menos
+JS
+por beta
+más
+un coeficiente
+multiplicado
+por el
+lambda
+del periodo
+S
+más
+otro coeficiente
+multiplicado
+por el
+lambda
+del periodo
+S
+más
+un error
+de media
+C
+construcción
+¿sí?
+o sea
+que
+construcción
+este
+E
+JT
+¿sí?
+es
+la
+diferencia
+de
+errores
+idiosincráticos
+menos
+la
+corrección
+que aparece
+por el cero
+de selección
+el
+término
+de error
+satisface
+el
+supuesto
+de
+media
+C
+entonces
+la
+solución
+de
+la
+estimación
+de la
+ecuación
+9
+es
+bueno
+puedo
+estimar
+la ecuación
+9
+no tiene
+heterogeneidad
+no observada
+porque la saqué
+con las diferencias
+finitas
+o sea
+le puedo
+aplicar
+puro
+el S
+¿sí?
+el único
+problema
+que tengo
+es que no
+conozco
+lambda
+dos variables
+no conozco
+ni lambda
+t
+ni lambda
+s
+porque
+lambda
+t
+y lambda
+s
+dependen
+de parámetros
+poblacionales
+los delta
+los z
+etc
+etc
+¿sí?
+pero vamos
+a hacer
+lo mismo
+que hicimos
+antes
+¿no?
+o sea
+no los
+conozco
+los voy
+a estimar
+entonces
+la idea
+es que
+en un
+primer paso
+lo que uno
+puede hacer
+es
+estimar
+un
+provis
+bivariado
+encontrar
+estimaciones
+de los delta
+y del
+rho
+y con
+las estimaciones
+de los delta
+y del rho
+construir
+el phi
+minúscula
+evaluado
+en eso
+el phi
+mayúscula
+evaluado
+en eso
+el phi
+mayúscula
+sub 2
+evaluado
+en esos
+parámetros
+por las variables
+y construir
+los lambda
+que van a ser
+los lambda
+sombreros
+una vez que
+tengo
+los lambda
+sombreros
+¿sí?
+los meto
+en la ecuación
+9
+y estimo
+por pulo
+la estimación
+me va a dejar
+estimador
+que son
+consistentes
+la ecuación
+original
+la ecuación
+original
+que yo
+quiero
+estimar
+es
+esta
+que aparece
+aquí
+la ecuación
+original
+era
+IJT
+igual
+a
+C sub J
+más
+XJT
+1
+por beta
+más
+UJT
+es la ecuación
+original
+entonces
+si tuviera
+un panel
+completo
+aplico
+diferencias
+finitas
+elimino
+el
+C sub J
+esa es
+el primer
+punto
+en lugar
+de tener
+la diferencia
+finita
+definida
+formalmente
+es
+la variable
+T
+menos
+la variable
+S
+son los dos
+periodos
+que observo
+la ecuación
+¿sí?
+Tengo
+el mecanismo
+de selección
+¿sí?
+que
+debería
+ser
+S
+J
+Tau
+¿sí?
+Delta
+Tau
+B
+J
+Tau
+¿sí?
+para T
+y para X
+tengo
+uno
+para el
+periodo
+T
+y uno
+para el
+periodo
+S
+o sea
+que
+cambien
+de la
+letrita
+de T
+a Tau
+en
+la
+en la
+ecuación
+¿sí?
+Cuando yo
+tomo la
+esperanza
+matemática
+de la ecuación
+original
+condicional
+en que
+observo
+en T
+y en S
+me aparecen
+las lácteas
+esta es
+la ecuación
+original
+y estos son
+los
+lambdas
+que aparecen
+por el
+cero de C
+entonces
+yo que voy
+yo que
+¿qué debería
+estimar?
+yo debería
+estimar
+I
+subí
+T
+menos
+I
+sigo
+I
+J
+T
+menos
+I
+J
+S
+dado
+que
+observo
+I
+J
+T
+e
+I
+J
+S
+igual
+a
+X
+J
+T
+1
+menos
+X
+J
+S
+1
+por
+beta
+más
+L
+T
+S
+por
+Lambda
+J
+T
+S
+más
+L
+S
+T
+por
+Lambda
+J
+S
+T
+más
+1
+de
+M
+S
+este es un
+coeficiente
+este es el
+otro
+coeficiente
+estos son
+todos los
+coeficientes
+que acompañan
+a las variables
+explicativas
+observadas
+que es mi
+objeto de interés
+yo quiero
+estimar en forma
+consistente
+los parámetros
+que acompañan
+a las variables
+explicativas
+observadas
+de la ecuación
+original
+los otros
+aparecen por
+el sesgo
+de selección
+los voy a tener
+estimados
+también
+pero nuestro interés
+recae en
+los ventas
+a red
+entonces
+el
+problema
+que tengo
+para estimar
+la última
+ecuación
+es que no
+conozco
+los
+Lambda
+los
+Lambda
+los tienen
+definidos
+allí
+con las
+M
+son los
+mismos
+Lambda
+que aparecían
+en el trabajo
+de
+Bunderson
+solamente
+que ahora
+los mecanismos
+de selección
+son dos
+periodos
+temporales
+diferentes
+el
+Lambda
+de nuevo
+están
+puestos
+allí
+para que
+vean
+que
+el
+Lambda
+JT
+y el
+Lambda
+ST
+dependen
+de
+Delta
+y
+de
+Rho
+Delta
+y
+Rho
+Delta
+y
+Rho
+o sea
+que
+para
+poder
+incluir
+esos
+Lambda
+dentro
+de la
+ecuación
+que tengo
+que estimar
+necesito
+estimar
+los
+Delta
+y
+Rho
+y
+los
+Lambda
+no son
+observados
+porque
+dependen
+de parámetros
+poblacional
+lo que
+me dice
+Rho
+China
+Barra
+China
+es
+primero
+el
+Dime
+un
+Pro
+y
+Viva
+ahí
+ahí
+tienen
+Omega
+Barrita
+Omega
+Barrita
+TS
+que es
+el
+vector
+de
+parámetros
+Delta
+T
+Delta
+S
+y
+Rho
+Omega
+TS
+barrita
+con el
+sombrerito
+es el
+vector
+de estimador
+Delta
+sombrero
+Delta
+sombrero
+y
+razonero
+Estima
+un
+provis
+bivariado
+con
+las
+observaciones
+de
+SJT
+y SJS
+y las
+variables
+explicativas
+y después
+para la
+submuestra
+para la
+que yo
+observo
+los valores
+de la
+variable
+dependiente
+y las
+variables
+explicativas
+de la
+segunda
+ecuación
+estimó
+pulo
+el
+S
+usando
+los
+lambda
+sombrero
+construidos
+a partir
+de estas
+estimaciones
+esto es
+fácil
+esto es
+digamos
+no
+tiene
+mayores
+problemas
+lo único
+que yo
+voy a
+hacer
+es
+tengo
+los
+datos
+en lugar
+de
+usar
+la
+función
+de
+verosimilitud
+del
+provis
+voy a usar
+la
+función
+de
+verosimilitud
+del
+b-pro
+provis
+varía
+b-pro
+y
+d-
+es
+b-pro
+b-pro
+y
+variadas
+distintas
+variadas
+indicativas
+p-mail
+que me va a
+dar
+los estimadores
+de los
+Delta
+y
+del
+ro
+y
+una vez
+que tengo
+los estimadores
+construyo
+el lambda
+con
+el pi
+minúscula
+el pi
+mayúscula
+o sea
+eso
+no tengo
+demasiados
+problemas
+para
+implementarlo
+una vez
+que tengo
+el lambda
+sombrero
+meto
+los estimadores
+en
+la regresión
+del segundo
+paso
+estimo
+por
+p-be-be
+y eso
+tampoco
+tiene
+ningún
+problema
+porque
+pasa
+el mismo
+parado
+clásico
+una vez
+que yo
+metí
+ahí
+los
+los
+estimadores
+y saqué
+las estimaciones
+consistentes
+tengo
+dos
+dos
+puntos
+adicionales
+uno
+es
+en esta
+ecuación
+voy a poner
+la que escribí
+yo acá
+en esta ecuación
+cuando yo
+este
+reemplazo
+los lambda
+por
+la estimación
+dada por
+el
+provis variado
+¿eh?
+puedo
+chequear
+la hipótesis
+nula
+es que
+LTS
+es igual
+a LST
+es igual
+a cero
+¿sí?
+porque
+si los
+coeficientes
+que acompañan
+a los lambda
+son cero
+entonces
+me queda
+esta ecuación
+¿verdad?
+vos haces
+el error
+que es
+el
+es la ecuación
+original
+o sea que
+si los L
+los coeficientes
+que acompañan
+a los lambda
+son cero
+no tengo
+cero
+o sea que
+ese es un
+contraste
+adicional
+para chequear
+cero
+que es un
+test de
+y es un
+test de
+wall
+tradicional
+porque
+como yo
+resuelvo
+todos los
+contratos
+de hipótesis
+asumiendo
+que la hipótesis
+nula
+me dice
+que no existe
+en verdad
+que los dos
+parámetros
+son iguales
+a cero
+o sea que
+la distribución
+sigue siendo
+chil cuadrado
+u f
+dependiendo
+de
+la especificación
+que uno
+quiera
+para el
+estadístico
+de wall
+pero
+puedo chequear
+que haya
+o no
+este
+sesgo
+de selección
+con
+un
+test
+de wall
+que chequee
+que en conjunto
+los dos
+coeficientes
+compañeros
+sean
+iguales
+entonces la
+alternativa
+es que al menos
+uno de esos
+coeficientes
+es distinto
+de cero
+aunque al menos
+uno de esos
+coeficientes
+es distinto
+de cero
+tengo sesgo
+de selección
+y me aparece
+el lambda
+sombrero
+en este caso
+y entonces
+eso aparece
+porque hay
+ese
+punto
+el segundo
+punto
+tiene que ver
+justamente
+con el
+hecho
+de que
+estoy
+reemplazando
+una
+variable
+que es
+función
+de parámetros
+por
+dos variables
+son funciones
+de parámetros
+por dos variables
+que son funciones
+de variables
+aleatorias
+porque estoy
+reemplazando
+parámetros
+delta y ro
+por estimación
+delta sombrero t
+delta sombrero s
+y ro sombrero
+entonces
+la introducción
+de variables
+explicativas
+generadas
+a partir de
+estimaciones
+anteriores
+hacen que
+la matriz
+de varianza
+y covarianza
+de las estimaciones
+por mínimo
+cuadrado
+por pulo
+de ley
+del segundo
+paso
+no se está
+exacto
+cualquier
+contraste
+de hipótesis
+diferente
+del que
+chequea
+ausencia
+de sesgo
+de selección
+tiene que
+tomar en cuenta
+el hecho
+de que
+tengo variables
+generadas
+a partir
+de estimaciones
+anteriores
+o sea que
+lo que
+necesito
+es calcular
+de forma
+correcta
+la matriz
+de varianza
+y de covarianza
+del mismo cuadro clásico
+pulo de ley
+es la ecuación
+1
+y esto es
+lo mismo
+que hicimos
+con los procedimientos
+anteriores
+del 1
+aquí está
+con la terminología
+de Rosguina
+Barrachina
+por si ustedes
+quieren
+ir a
+mirar
+el paper
+pero
+es lo mismo
+o muy parecido
+a lo que hicimos
+con
+vamos a definir
+con
+R
+mayúscula
+JTS
+a
+las
+variables
+explicativas
+de
+la
+ecuación
+nueva
+la ecuación
+del segundo
+paso
+y ahí
+de nuevo
+para no tener
+que escribirlo
+todo el tiempo
+puse
+DELCA
+pero ese
+DELCA
+de nuevo
+T
+menos
+S
+entonces
+estas son
+las
+condiciones
+de
+de
+primer
+orden
+en el
+segundo
+del segundo
+del segundo
+paso
+en donde
+estas son
+las variables
+explicativas
+y estos son
+los errores
+los errores
+los residuos
+piensen en
+este
+corte
+transversal
+mínimo
+cuadrado
+clásico
+condiciones
+de
+primer
+orden
+y
+el
+modelo
+es
+I
+igual
+esto
+lo hicimos
+en
+tri
+I
+igual
+X
+beta
+más
+epsilon
+¿sí?
+estimo
+por mínimo
+cuadrado
+clásicos
+condiciones
+de
+primer
+orden
+X
+transcuesta
+por E
+igual a C
+¿sí?
+donde E
+son los residuos
+bueno
+esto es esto
+residuo
+por variables
+explicativas
+igual así
+esa es la
+condición
+de primer
+orden
+de
+las
+mínimas
+con
+cambio
+porque
+de nuevo
+estoy en
+panel
+o sea
+que tengo
+que
+sumar
+estoy en
+panel
+incompleto
+o sea
+que tengo
+que sumar
+multiplicando
+por los dos
+indicadores
+porque yo
+necesito
+observar
+esas variables
+y lo
+residuo
+en el
+periodo T
+y en el
+periodo S
+o sea
+que
+la única
+forma
+de observarlo
+es que
+SJT
+sea uno
+y SJS
+sea uno
+¿sí?
+que de nuevo
+es lo que
+el Wundersoll
+llamaba Z
+Z
+Z era
+el mecanismo
+de selección
+del empleado
+multiplicado por
+el mecanismo
+de selección
+del empleador
+cuando los dos
+cuando uno
+quería quedarse
+y el empleador
+quería retenerlo
+uno por uno
+es lo que
+observaba
+y si alguno
+de los dos
+se debía
+y decía
+el empleador
+no lo quiere
+o el empleado
+se quiere ir
+uno de esos
+indicadores
+cero
+y no observo
+nada
+bueno
+eso es lo
+lo único
+que está
+haciendo eso
+es decirme
+mira
+esto lo puedo
+sumar
+esto no
+y los únicos
+términos que puedo
+sumar
+son los que
+observo
+en los dos
+periodos temporales
+en T
+y en S
+que es la
+multiplicación
+de S
+por T
+por
+SJS
+y sumo
+sobre
+dos
+uno a
+pero
+esa es la
+condición
+de
+primer orden
+vamos a
+definir
+con
+pi
+sombrero
+al vector
+de estimadores
+de la ecuación
+del segundo
+paso
+pi
+va a ser
+el vector
+de parámetros
+de la ecuación
+del segundo
+paso
+y
+EJTS
+son los
+errores
+de la ecuación
+del segundo
+paso
+ya lo
+he puesto
+el nombre
+puse
+E
+como residuos
+acá
+E
+son los
+errores
+que es
+básicamente
+la
+variable
+dependiente
+menos
+las variables
+implicativas
+por beta
+menos
+los dos
+términos
+de parámetros
+del segundo
+de la ecuación
+¿a qué
+converge
+la
+IDN
+por
+W
+barra
+TS
+sombrero
+menos
+W
+barra
+TS
+bueno
+es
+texto
+son los
+parámetros
+y los
+estimadores
+de
+el
+primer
+paso
+se va
+a
+1 sobre
+el IDN
+por la suma
+de
+la inversa
+de la matriz
+de información
+de Fischer
+por
+la función
+score
+que yo acá
+llame a todo eso
+lambda
+yo no
+los
+china
+y la
+lambda
+ahí
+tienen
+y
+inversa
+W
+la inversa
+de la matriz
+de información
+de Fischer
+para el modelo
+probability
+variado
+y
+tienen
+todas las
+definiciones
+de
+las
+funciones
+de densidad
+de la
+normal
+estándar
+para el periodo
+T
+para el periodo
+S
+función
+bivariada
+este
+perdón
+función
+de distribución
+de la
+normal
+estándar
+para el periodo
+T
+y para el periodo
+S
+y
+este
+la
+función
+de distribución
+bivariada
+del
+propio
+lo que
+esta vez
+va a ser
+en un momento
+la
+distribución
+asintótica
+de los estimadores
+del segundo
+caso
+la
+si ustedes
+si ustedes
+piensan
+en
+en el
+modelo
+ese
+que puse
+arriba
+del mismo
+cuadrado
+clásico
+esta
+sombrero
+es igual
+a
+x
+transpuesta
+por x
+inversa
+x
+transpuesta
+por u
+donde uso
+los errores
+perdón
+por y
+y
+si yo
+reemplazo
+y por
+x beta
+más u
+donde uso
+los errores
+esto me queda
+beta
+más
+x
+transpuesta
+por x
+inversa
+x
+transpuesta
+por u
+y lo que
+nosotros
+hacemos
+tradicionalmente
+es
+dividir esto
+por n
+dividir esto
+por n
+pero
+dividir esto
+dividir esto
+n lo hacemos
+raíz de n
+por raíz de n
+entonces acá me queda
+u raíz de n
+y
+este beta
+lo paso
+restando
+el primer término
+y me queda
+raíz de n
+por
+beta
+sombrero
+menos beta
+igual a
+x
+transpuesta
+por x
+inversa
+sobre n
+por
+x
+transpuesta
+por u
+sobre raíz de n
+y
+ley de los
+grandes números
+esto se va
+a su
+esperanza
+matemática
+ley de los
+grandes números
+teorema central
+del límite
+esto se va
+a una normal
+de media
+cero
+y matriz
+de varianza
+de varianza
+b
+que es la varianza
+de la secuencia
+y la varianza
+de la secuencia
+es la varianza
+de n
+que es
+la esperanza
+de
+x
+transpuesta
+por u
+transpuesto
+por u
+por e
+y entonces
+la
+matriz de varianza
+y covarianza
+de
+raíz de n
+por
+beta
+sombrero
+menos beta
+converge a
+una normal
+con media
+cero
+y
+materia de varianza
+y covarianza
+esperanza
+de x
+transpuesta
+por x
+inversa
+por esperanza
+de x
+transpuesta
+por u
+transpuesta
+por u
+por x
+por esperanza
+de x
+transpuesta
+por x
+inversa
+esto que está
+adelante
+de la normal
+entra
+adentro
+de la varianza
+al cuadrado
+o son matrices
+entra con la forma
+estatal
+cuando yo
+asumo
+o sea
+elasticidad
+y ausencia
+de correlación
+serial
+en el medio
+en lugar de tener
+la esperanza
+de x
+transpuesta
+por u
+transpuesta
+por u
+por x
+tengo
+sigma cuadrado
+por x
+transpuesta
+por u
+así la
+y me queda
+sigma cuadrado
+por x
+transpuesta
+por x
+inversa
+sigma cuadrado
+por esperanza
+de x
+transpuesta
+por x
+inversa
+como la matriz
+de varianza
+y si no
+me queda
+esa expresión
+que es la expresión
+robusta
+en la presencia
+de correlación
+serial
+y
+bueno
+acá
+solo que
+no tengo
+x
+tengo r
+pero esto
+que tienen
+acá
+esto que tienen
+acá
+es
+la esperanza
+de x
+transpuesta
+por x
+inversa
+solo que
+de nuevo
+tengo r
+y tengo
+un panel
+incompleto
+o sea que
+esa
+esperanza
+solamente
+los términos
+en los cuales
+s j t
+y s j s
+valga
+nulo
+para los otros
+valga
+cero
+pero
+r
+que
+el vector
+de varianza
+es explicativo
+o sea que es como x
+y
+esto que tienen
+aquí
+tiene dos partes
+esta parte
+que hay acá
+es esta
+estos son los errores
+estas son las variables
+implicativas
+o sea que
+si yo no tuviera
+variables generadas
+con estimaciones
+anteriores
+lo único que tengo que hacer
+es
+hacer entender
+n infinito
+y sacar la distribución
+normal acá
+está hecho
+en dos pasos
+primero
+la convergencia
+en probabilidad
+porque apliqué
+la ley
+de los grandes
+o sea que
+solo me dice
+converger
+el primer término
+el segundo término
+todavía no lo dice
+converger
+cuando lo haga
+converger
+va a ser la
+convergencia
+en distribución
+porque eso
+se va a ir
+a una normal
+solamente
+que la normal
+a la que se va
+tiene
+por un lado
+el mismo término
+que me aparecía
+antes
+porque esto
+es básicamente
+x transpuesta
+por 1
+más
+un término
+que aparece
+por la
+influencia
+de las estimaciones
+del primer paso
+en el segundo
+de nuevo
+este
+lambda j
+que aparece acá
+este lambda j
+que aparece acá
+que es
+que es
+la inversa
+de la matriz
+de información
+de Fisher
+multiplicado
+por las funciones
+por
+esto
+en el procedimiento
+de Wiltrich
+nosotros
+lo llamamos
+R subj
+¿sí?
+después
+voy
+para arriba
+en el procedimiento
+de Wiltrich
+que nosotros
+R
+R sombrero
+R sombrero
+era
+la inversa
+de la matriz
+de información
+de Fisher
+el PROBIT
+multiplicado
+por la función
+SCOT
+lo hacíamos
+para cada
+periodo temporal
+y después
+lo acumulábamos
+para todos
+los periodos
+temporales
+bueno
+el lambda
+j
+es como
+el R sombrero
+j
+lambda j
+es como
+el R sombrero
+j
+la inversa
+de la matriz
+de información
+de Fisher
+multiplicado
+con la fusión
+SCOT
+y
+lo que
+Rochina
+barra
+china
+llama
+A
+esto es
+el lambda j
+es el rj
+en Wiltrich
+y el A
+este
+es de
+singular
+de
+un
+gr
+un
+gr
+un
+gr
+un
+gr
+un
+embr
+D, que era la multiplicación de
+esto que es el plano de regresión
+muestral multiplicado por G
+donde G era la matriz que tenía
+la derivada de la inversa del
+cociente de Mitz
+en rotina barraquina
+este A cumple el mismo papel que D
+en Woolwich
+A es la esperanza de
+este primer término
+es la derivada
+de lambda
+en T y en S
+y este segundo término
+una es la derivada en T y la otra es la derivada en S
+multiplicado por
+S, D y S, S
+o sea que solo
+tengo la multiplicación cuando los dos indicadores valen
+pero es exactamente lo mismo
+y este término aparece
+solamente por la influencia que hay
+de los estimados desde el primer paso en el segundo
+si no existiera eso
+tengo la misma matriz de valencia y equivalencia
+que la que usamos normalmente
+cuando hay intersegasticidad y correlación serial
+el mismo parácter
+por ahí lo tienen puesto
+la
+distribución asintótica de los estimadores del segundo paso
+es una normal con media cero
+y matriz de varianzas y covarianzas
+no sé cuál es el nombre de esta letra
+es una T
+media T
+de nuevo
+esto es
+esperanza de X
+tras vuelta por X inversa
+esperanza de X
+tras vuelta por X inversa
+y esto que tengo acá
+es la varianza de la secuencia
+solamente que la secuencia ahora no es X
+tras vuelta por U
+es X tras vuelta por U
+más
+la multiplicación de A
+por lambda por U
+si ustedes recuerdan
+si yo quiero hacer inferencia estadística
+lo único que necesito es
+estimar esta matriz de valencia y covarianza
+y para eso
+necesito la estimación de
+este término que aparece
+rochina barra china
+utiliza
+el estimador de
+beren
+no me va a hacer
+beren
+hall
+este
+el
+comando de la estatua es
+b
+h
+h
+h
+beren
+hall
+este debe ser otro hall
+y este es
+búsquenlo
+pero
+es para estimar la matriz de información de Pigeon
+pero
+digamos
+es una de las opciones
+hay más opciones
+una vez que tengo eso
+ya está
+porque tengo
+la matriz de valencia y covarianza correcta
+y puedo hacer inferencia estadística
+en el modelo
+tiene otras electricistas
+pero es lo mismo que hace
+que hace
+que hace
+que hace
+solo que
+este
+en este caso
+tenemos
+dos
+variables
+como mencionamos
+al comienzo
+el trabajo
+está hecho para
+de mayúscula
+igual a dos
+que pasa
+si
+te mayúscula
+es mayor
+quiero decir
+supongamos que tengo
+vamos a ponerlo
+supongamos que yo
+observo
+la ecuación que quiero estimar
+en el periodo 1
+en el periodo 5
+y en el periodo 10
+entonces
+si quiero aplicar el procedimiento
+de rotina-barroquina
+rotina-barroquina me dice
+mira
+de mayúscula vale 2
+o sea que
+si yo observo
+en estos tres periodos temporales
+yo solo necesito 2
+T y S
+o sea
+yo me podría
+cargar la heterogeneidad
+no observada
+del modelo original
+haciendo la resta
+de 1 y 5
+y aplicar el procedimiento
+de rotina-barroquina
+pero también podría ser
+1 y S
+y también me cargaría
+al C sub J
+o podría ser 5 y 10
+también me cargaría
+al C sub J
+o sea que
+en principio
+entre ejemplo pago
+tengo 3
+tengo 3 procedimientos
+de rotina-barroquina
+diferentes
+que yo elija
+T igual 1
+y S igual 5
+elija T igual 1
+y S igual 10
+elija T igual 5
+y S igual 10
+y lo que me pasa
+es que
+igual que pasaba
+con el problema
+de las variables
+instrumentales
+cuando yo
+tengo
+más de un instrumento
+por cada variable endógena
+necesitaba
+usar el procedimiento
+de mínimo cuadrado
+en dos etapas
+porque
+usar todos los instrumentos
+me da una estimación
+más eficiente
+en este caso
+usar
+todos los periodos
+temporales
+me debería dar
+una estimación
+más eficiente
+solo que
+el procedimiento
+está hecho
+para T mayúscula
+igual a 2
+T y S
+entonces lo que
+sugiere
+rotina-barroquina
+es que
+uno puede
+hacer dos cosas
+puede elegir
+dos
+en mi ejemplo
+de los tres
+periodos temporales
+y aplicar
+el procedimiento
+ahí
+y ese procedimiento
+tiene todas
+las características
+que lo vamos a ver
+son los que
+no es el más
+eficiente
+si quiero
+haber más eficiente
+te voy a usar
+todos
+los periodos
+de APAS
+y eso se puede
+hacer usando
+el GMM
+una matriz
+que pondere
+¿qué es eso?
+puedo decir
+.33
+.33
+.33
+y me da
+un estimador
+ponderado
+usando los tres
+¿sí?
+más formalmente
+que
+es usar
+una matriz
+W ponderadora
+en un procedimiento
+de GMM
+¿sí?
+¿cómo?
+no sé
+lo que hace
+el requino-barroquina
+es sugerir
+que
+podría
+hacerse
+un procedimiento
+de
+GMM
+para usar
+todos los
+periodos
+temporales
+¿sí?
+Igual
+todos los
+periodos
+temporales
+dentro
+de lo que
+nosotros
+hemos llamado
+datos de panel
+donde
+T mayúscula
+es muy chiquito
+¿sí?
+tampoco
+es que
+va a cambiar
+demasiada
+la
+ciencia
+si tengo
+muchos periodos
+temporales
+sí
+voy a tener
+muchos periodos
+en los cuales
+observo
+¿sí?
+al modelo
+pero si tengo
+pocos periodos
+temporales
+el pH
+a lo sumo
+observo
+cuatro periodos
+temporales
+ahí
+digo
+tener
+de nuevo
+mi ejemplo
+es relevante
+tengo tres
+observaciones
+podría ser
+podría elegir
+dos
+¿cómo lo haría
+sin tener
+que recurrir
+a GMM?
+y hago
+los tres
+estimaciones
+y veo
+cómo dan
+los parámetros
+si dan
+más o menos
+parecidos
+con cualquiera
+de las
+así
+por cualquier
+atriz
+hasta ahora
+es
+truncamiento
+incidental
+truncamiento
+incidental
+procedimiento
+de Gultrich
+con el
+PROBI
+procedimiento
+de Gultrich
+con el
+PROBI
+con China
+ahora tengo
+atrillo
+atrillo
+es la segunda
+causa
+de
+paneles
+paneles
+sin
+y
+lo que vamos a hacer
+es
+analizar
+un caso
+particular
+de atrillo
+que es
+el caso
+en el cual
+atrillo
+¿qué es atrillo?
+atrillo
+quiere decir
+que algunas
+unidades
+de corte
+traversal
+en algún
+momento
+deciden
+salirse
+del panel
+y nosotros
+lo
+ejemplificamos
+con
+presa
+corto
+producción
+que algunas
+se iban
+en el periodo
+3
+otras
+se iban
+en el periodo
+4
+otras
+se iban
+en el periodo
+6
+atrillo
+es
+algunas
+algunas
+empresas
+algunas
+algunas
+unidades
+de corte
+traversal
+eligen
+salirse
+del panel
+en algún
+periodo
+y hay
+dos
+posibilidades
+es
+que
+las unidades
+de corte
+transversal
+eligen
+salirse
+del panel
+y no
+vuelven
+más
+o
+las unidades
+de corte
+transversal
+eligen
+salirse
+del panel
+y en algún
+periodo
+futuro
+retorna
+el caso
+particular
+que nosotros
+vamos a ver
+es lo que
+se conoce
+en la literatura
+como
+la trillón
+como un estado
+absorbente
+es decir
+la unidad
+de corte
+transversal
+elige
+salirse del panel
+y no vuelve
+en un
+lado
+¿sí?
+¿por qué
+vemos este
+caso particular?
+hay dos razones
+una
+la primera
+la que mencioné
+recién
+dentro del
+contexto
+del dato
+del panel
+T
+es pequeño
+de mayúsculas
+pequeño
+entonces
+irse
+y volver
+a ingresar
+poco
+caso
+el EPH
+no podría
+son
+cuatro
+o sea
+si lo observo
+en la primera
+lo observo
+en la segunda
+elige salirse
+en la tercera
+no va a
+el otro
+el otro
+el otro
+si lo retorna
+en la cuarta
+no tengo observaciones
+entonces
+con T
+pequeño
+es más difícil
+tener
+una atrilla
+en general
+que es permitir
+que las unidades
+que salen
+vuelvan a ingresar
+el segundo
+la segunda
+característica
+es que
+cualquier muestra
+con la atrilla
+en general
+la puedo convertir
+en un caso
+particular
+de la T
+supongamos que tengo
+una observación
+de corte
+transversal
+que elige salirse
+y después elige
+reentrar
+entonces yo puedo
+hacer dos cosas
+una
+si elige reentrar
+cerrar los ojos
+y decir
+no ahí está
+se eligió salir
+no lo observo
+y entonces pongo
+no observada
+a partir de la primera
+salida
+del panel
+y lo convertí
+en un
+en un caso
+particular
+de atrilla
+o
+decir
+mira
+vuelve a reentrar
+a esta
+le voy a
+a esta empresa
+que decidió
+reentrar
+le voy a poner
+un clon
+que es esta
+voy a poner
+abajo
+y si tengo
+otra empresa
+con la misma
+característica
+que decidió
+salirse
+después
+y entonces
+tengo
+dos observaciones
+con la misma
+característica
+una decidió
+salirse
+como si tuviera
+dos empresas
+¿eh?
+cuáles
+en este caso
+una decide
+salirse
+en un periodo
+temporal temprano
+otra decide
+salirse
+en un periodo
+temporal
+más allá
+lo vuelvo
+a convertir
+en un
+problema
+de atrilla
+con
+la dosa
+en general
+en la práctica
+lo que uno ve
+es que
+para casos
+canónicos
+de datos
+de panel
+con T
+pequeño
+de mayúscula
+pequeño
+el caso
+relevante
+es el caso
+de atrilla
+conectados
+¿sí?
+Perdón
+la simulás
+agrandola
+con los mismos
+datos
+pero se salen
+más adelante
+¿y dónde los
+encontré?
+¿a dónde los...?
+¿qué edad?
+Perdón
+por ejemplo
+imagínate que yo
+respondo
+a la IPH
+respondo
+o no respondo
+después
+quiero volver
+a responder
+de cuatro
+y cuatro
+y cuatro
+y cuatro
+y cuatro
+y cuatro
+y cuatro
+vuelvo a responder
+y vos dijiste
+lo que haces
+es simular
+con estos mismos
+datos
+y los que yo
+no respondí
+vos saliste
+vos sos
+dos personas
+ok
+tu primera persona
+elige salirse
+en el segundo
+periodo temporal
+ok
+y se fue
+nunca más
+nunca más
+tu segunda persona
+entró
+ah perfecto
+en el periodo
+cuatro
+la observo
+y se va
+cuando se va
+perfecto
+para el tres
+se queda
+missing siempre
+y para el tres
+queda missing siempre
+o sea
+tu primera persona
+eligió salirse
+en el periodo
+por todo el tiempo
+que resta
+que yo vuelve
+no está
+bien
+entonces tengo como
+dos salidas
+para transformar
+pero de nuevo
+digo
+a PH
+es muy difícil
+que tenga
+reentrada
+pero si
+llego a tener
+un T
+razonable
+de grande
+puede ser
+que exista
+esas son las dos
+en realidad
+estoy mintiendo
+esas son
+dos alternativas
+que tenés
+para transformar
+el problema
+en atrillo
+no solamente
+yo puedo estimar
+con un atrillo
+en general
+es más difícil
+pero esto tiene que ver
+con lo mismo
+que uno discute
+cuando
+tiene algún
+modelo
+PROBIT
+o LOGIT
+generalizado
+en términos de
+variable dependiente
+es una variable
+categórica
+que es
+la marca
+de auto
+que compró
+la familia
+Ford
+Porsche
+Audi
+Mercedes
+que se
+y yo
+para poder estimar
+categorizo
+esas variables
+con valores
+uno
+Ford
+Porsche
+y después
+cuando lo quiero estimar
+estimo
+la probabilidad
+de que la familia
+compre
+auto
+marca
+Ford
+Porsche
+cuando yo
+estimo
+la estimación
+canónica
+restringe
+a que
+yo compro
+la familia
+compra uno
+y solo
+un auto
+de una marca
+la probabilidad
+de Ford
+es uno
+o cero
+uno
+si compró Ford
+es uno
+para Ford
+y cero
+para todas
+las marcas
+ahora
+¿puedo permitir
+que la familia
+compre dos
+marcas
+dos autos
+Ford y Ferrari
+y sí
+lo que pasa
+es que
+las probabilidades
+Ford
+no son
+cero
+uno
+es más complejo
+acá me pasa
+lo mismo
+las funciones
+que voy a usar
+para estimar
+van a ser
+un poco más
+complejas
+si yo permito
+reingreso
+de la
+como
+no
+no
+digamos
+dentro del contexto
+en el cual
+nosotros estamos
+desarrollando
+los datos
+de panel
+no tiene
+mucho sentido
+complicar
+la estimación
+y la mayoría
+de las estimaciones
+que uno ve
+en la práctica
+de la investigación
+son del tipo
+de trabajo
+de un paso
+entonces
+la idea
+del problema
+va a ser
+que yo
+en el periodo
+T igual a uno
+primer periodo
+¿sí?
+el periodo T igual a uno
+tengo
+una muestra
+representativa
+de la población
+de interés
+con variatorias
+dice
+ahí
+y ahí observo
+todo
+o sea
+en el primer periodo
+temporal
+todo el mundo
+responde
+no hay ningún
+problema
+y a partir
+del periodo
+temporal 2
+hay atrillos
+o sea
+por ahí
+en el periodo
+temporal 2
+también observo
+todo
+pero a partir
+del periodo
+temporal 2
+algunas
+oportunidades
+pueden elegir
+salirse
+del panel
+¿sí?
+entonces
+quiero estimar
+la relación 10
+y JT
+es igual a
+XJT
+por meta
+más C sub J
+más JT
+y como dije antes
+X e Y
+se observan
+para todo J
+cuando T es igual a uno
+¿sí?
+y después
+vamos a definir
+SJT
+como
+el indicador
+de selección
+vale uno
+si observo
+a XJ
+vale cero
+si no lo sé
+¿sí?
+¿sí?
+¿sí?
+en este caso
+particular
+de la trillón
+sabemos que
+si
+SJT
+vale uno
+entonces
+vale uno
+para todos
+los periodos
+temporales
+anteriores
+que si yo
+lo observo
+en este periodo
+temporal
+es decir
+que no eligió
+salirse
+lo observo
+en todos
+los periodos
+anteriores
+o sea
+que si
+SJT
+vale uno
+entonces
+SJR
+para todo
+R
+también vale uno
+dado que
+si lo observo
+en T
+seguro
+lo observo
+en T
+menos uno
+me voy a cargar
+la interoperabilidad
+no observada
+con la diferencia
+finita
+de orden
+¿sí?
+la ecuación
+11
+es
+la ecuación
+original
+transformada
+por la diferencia
+finita
+la forma
+reducida
+de la ecuación
+de selección
+está en la ecuación
+2
+y es un
+problema
+¿sí?
+SJT
+es la indicadora
+de
+WJT
+por delta T
+más BJT
+mayor a C
+¿sí?
+donde BJT
+es el error
+en la ecuación
+de selección
+que tiene
+distribución
+normal 0
+¿sí?
+esa es la
+especificación
+más general
+que puedo tener
+que
+lo que hace
+es
+definir
+el PROBI
+con respecto
+a
+parámetros
+delta T
+o sea que
+yo estoy
+permitiendo
+que los
+delta
+sean
+diferentes
+en cada
+periodo
+temporal
+podría
+restringirlo
+y poner
+delta
+y
+lo único
+que hago
+es decir
+mira
+los delta
+son
+constantes
+en el tiempo
+pero
+la forma
+general
+digamos
+es permitir
+que esos
+delta
+pudieran
+variar
+a partir
+de
+las observaciones
+de
+de
+serie
+de
+serie
+de
+serie
+temporal
+¿sí?
+La
+única
+restricción
+que tengo
+en las variables
+explicativas
+del mecanismo
+de selección
+es que
+obviamente
+no puedo
+tener variables
+en DOGE
+sigo
+insistiendo
+voy a
+eliminar
+la heterogeneidad
+no observada
+con la diferencia
+finita
+y para poder
+hacer la estimación
+de la ecuación
+transformada
+por diferencia
+finita
+necesito
+exogenidad
+estricta
+en el modelo
+original
+es explicativa
+del modelo
+original
+que es
+estrictamente
+exógeno
+si pongo
+la variable
+dependiente
+resagada
+un periodo
+ya digo
+que
+esa variable
+es endógena
+no puede
+estar
+entonces
+el supuesto
+los
+supuestos
+son
+que
+XJT
+son
+estrictamente
+exógenas
+el mecanismo
+de selección
+no depende
+de la diferencia
+finita
+de XJT
+una vez
+que
+controlo
+por las variables
+explicativas
+el mecanismo
+de selección
+y
+normalidad
+de
+los errores
+de la ecuación
+de interés
+transformada
+por diferencia
+finita
+y
+el error
+de la ecuación
+de selección
+normal
+y variante
+la ecuación
+13
+es el supuesto
+B
+de Hedman
+es el supuesto
+W1B
+de
+Wulfft
+la ecuación
+la ecuación
+13
+me dice
+que
+el error
+del mecanismo
+de selección
+y el error
+de la ecuación
+de interés
+se relacionan
+a través
+del coeficiente
+Rho
+Ross
+Ross
+B
+Hedman
+que me decía
+y que
+la
+correlación
+entre
+el error
+del mecanismo
+de selección
+y
+el error
+del espacio
+de interés
+era
+roto
+que tenía
+un solo
+periodo
+temporal
+de la verdad
+Wuldrich
+me dice
+mirá
+tengo más
+periodo
+temporal
+puedo permitir
+que la correlación
+entre
+el error
+del mecanismo
+de selección
+y el error
+del ecuación
+de interés
+valiera el tiempo
+y pusimos
+Rho
+1T
+pero yo podría
+poner ahí
+Rho
+y decir
+mirá
+hay relación
+entre los errores
+del mecanismo
+de selección
+y los errores
+del ecuación
+de interés
+y es constante
+en el T
+es un modelo
+más reflejido
+ahí está puesto
+roto
+para permitir
+que van
+bien
+la correlación
+en el
+pero eso
+lo que va a hacer
+es que cuando yo
+tome
+la esperanza
+matemática
+cuando yo tome
+la esperanza
+matemática
+de
+esta ecuación
+yo tome
+la esperanza
+matemática
+delta
+jt
+delta y
+jt
+dado que
+observo
+delta
+y jt
+eso me va a quedar
+delta
+xjt
+por beta
+más
+la esperanza
+de
+creencia finita
+de un jt
+dado que
+observo
+creencia finita
+de un jt
+y cuando
+observo
+diferencias finitas
+de jt
+y cuando
+es jt
+vale 1
+o
+cuando
+bjt
+es mayor
+a menos
+w
+por delta
+pero eso
+es la
+distribución
+truncada
+trunco
+esta variable
+con esta otra
+y como
+b y u
+tienen
+distribución
+normal
+ejemplo
+el u
+me aparece
+lambda
+que es la inversa
+del cociente
+de mi
+y
+no les puso
+otra vez
+todas las
+esperadas
+pero es lo mismo
+cuando aplique
+la esperanza
+matemática
+condicional
+que observo
+la variable
+dependiente
+y me aparece
+la inversa
+del cociente
+de mi
+fenomenal
+dada la ecuación
+14
+dada la ecuación
+14
+lo que yo puedo
+estimar
+es
+ijt
+dado que
+observo
+ijt
+delta
+ijt
+dado que
+observo
+delta
+de ijt
+igual a
+delta
+de cxjt
+por beta
+más
+rote
+blanda
+más
+una ronda
+de cxjt
+y si yo
+pudiera
+observar
+lambda
+pulo
+el es
+en esa ecuación
+me deja
+estimador
+el que son
+fácil
+bueno
+tengo el mismo
+problema
+que antes
+no observo
+porque
+y porque
+el lambda
+depende
+del delta
+delta
+es un parámetro
+poblacional
+entonces
+este
+el procedimiento
+que me dice
+y bueno
+no concede
+el
+el
+y más
+delta
+construir
+lambda
+los sombreros
+mi pelo
+adentro de la ecuación
+y el
+más
+tengo acá
+dos cosas
+para decir
+una
+puedo estimar
+esta ecuación
+si meto acá
+lambda
+sombrero
+¿está?
+meto lambda
+sombrero
+pero este
+lambda
+sombrero
+está multiplicado
+por un coeficiente
+que varía
+en el tiempo
+o sea que
+yo necesito
+la estimación
+de
+rho
+uno
+rho
+dos
+rho
+tres
+rho
+tema
+luna
+para todos
+los periodos
+temporales
+¿se acuerdan
+como lo escribíamos
+para el procedimiento
+de
+Uldrich
+generamos
+una variable
+que tenía
+todas las variables
+explicativas
+del modelo
+original
+todas las variables
+explicativas
+con las cuales
+yo me cargaba
+la heterogeneidad
+no observada
+que aparecían
+en el supuesto
+C
+y después
+ceros
+lambda
+sombrero
+y T
+en la
+columna T
+minúscula
+C
+y ese
+lambda
+sombrero
+que aparecía
+en la columna
+T
+es porque
+estaba
+definiendo
+W
+y T
+en ese caso
+si era
+W
+y uno
+el lambda
+ese
+estaba
+en la
+primera
+posición
+y todo
+cero
+o sea
+que tengo
+un lambda
+en cada
+periodo
+temporal
+¿sí?
+¿cómo hago?
+y hago
+lo que dice
+el primer
+punto
+voy a
+definir
+damis
+temporal
+tengo
+el lambda
+sombrero
+estimado
+¿sí?
+voy a
+definir
+damis
+temporal
+T
+sub
+2
+D
+2
+T
+es una
+damis
+que vale
+1
+en el
+periodo
+temporal
+2
+y 0
+en el
+todo
+lo
+D
+T
+es una
+variable
+damis
+que vale
+1
+en el
+tercer
+periodo
+temporal
+y 0
+en todo
+lo
+D
+T
+mayúscula
+T
+es una
+variable
+que vale
+1
+en el
+último
+periodo
+temporal
+y 0
+en todo
+lo
+Y eso
+es lo
+que voy
+a
+multiplicar
+por
+los
+lamas
+voy a
+tener
+un
+lambda
+que
+entre igual
+a 1
+un
+lambda
+entre igual
+a 2
+un
+lambda
+voy a
+estimar
+un
+coeficiente
+de cada
+uno
+de cada
+lambda
+voy a
+estar en
+la
+estimación
+de
+1
+es
+de
+diferencia
+finita
+de
+jt
+sobre
+diferencia
+finita
+de
+jt
+y
+la
+variable
+temporal
+multiplicada
+por
+lambda
+sombrero
+j
+la
+variable
+temporal
+multiplicada
+por
+lambda
+sombrero
+j
+para
+t
+de
+2
+hasta
+t
+mayor
+la
+estimación
+me deja
+estimaciones
+consistentes
+de
+los
+ve
+son los
+parámetros
+que
+acompañan
+a las
+variables
+eficacias
+observadas
+en la
+ecuación
+de
+interés
+¿está
+claro
+hasta ahí?
+ok
+punto
+1
+sí
+ro
+ro
+ro
+1
+es
+igual
+a
+ro
+2
+es
+igual
+a
+ro
+3
+es
+igual
+a
+ro
+t
+mayúscula
+y es
+igual
+a
+0
+desaparece
+el
+lambda
+sombrero
+desaparece
+el
+lambda
+es
+la
+ecuación
+14
+y lo que me queda
+es la ecuación
+de interés
+transformada por
+diferencia finita
+o sea
+no hay
+cero de
+selección
+o sea que
+un contraste
+de hipótesis
+que chequee
+que todos
+los robos
+son iguales a
+cero
+es un
+contraste
+sobre la
+existencia
+o no
+del
+cero de
+selección
+si acerco
+la hipótesis
+nula
+no hay
+cero de
+selección
+si rechazo
+la hipótesis
+nula
+hay
+cero de
+selección
+es de
+bueno
+segundo
+punto
+me aparece
+ro
+1
+ro
+ro
+ro
+ro
+ro
+ro
+t
+mayúscula
+porque yo
+en la
+ecuación
+13
+permití
+que la
+correlación
+entre el
+error
+de la
+ecuación
+interés
+y el
+error
+del
+mecanismo
+de
+selección
+varía en el
+tiempo
+pero
+podría haberlo
+puesto
+constante
+como hace
+hetman
+porque tiene
+solo
+periodo
+temporal
+y poner
+ro
+pero si
+pongo
+ro
+no necesito
+poner todas
+las
+damis
+por el
+lambda
+sombrero
+solo voy a
+tener un
+solo
+lambda
+sombrero
+porque voy a
+tener
+un
+coeficiente
+constante
+en todos
+los
+periodos
+temporales
+o sea
+que si
+yo hago
+el
+supuesto
+de que
+la
+correlación
+entre el
+error
+de la
+ecuación
+interés
+y el
+error
+de la
+ecuación
+de selección
+es constante
+en el
+tiempo
+entonces
+si
+ro
+es igual
+a cero
+no hay
+cero
+cero
+contraste
+de hipótesis
+estadístico
+t
+significatividad
+individual
+sobre el
+coeficiente
+que acompaña
+a
+lambda
+cero
+de nuevo
+de nuevo
+el
+t
+de
+wall
+el
+t
+son dos
+contrastes
+t
+de
+wall
+que chequea
+que todos
+los
+no son
+iguales
+o
+cero
+son
+todos
+contrastes
+son dos
+contrastes
+por la presencia
+de cero
+de selección
+y como
+la hipótesis
+nula
+de los
+dos
+contrastes
+es que
+no hay
+cero
+de selección
+la distribución
+del
+estadístico
+de wall
+la distribución
+del
+estadístico
+t
+son
+las
+distribuciones
+de
+estado
+pero
+esos
+son los
+únicos
+contrastes
+de hipótesis
+que puedo
+hacer
+sin que
+me
+afecte
+haber
+reemplazado
+lambda
+por lambda
+sombrero
+porque si yo
+reemplazo
+lambda
+por lambda
+sombrero
+entonces
+necesito
+calcular
+correctamente
+la matriz
+de valencia
+la puse
+acá
+porque la vieja
+active
+de valianza
+y covalianza
+que hicimos
+con
+burling
+porque
+el burling
+el mecanismo
+de selección
+aparece
+por
+un
+camis
+incidental
+y acá
+el mecanismo
+de selección
+aparece
+por
+ratrillos
+como
+nosotros
+definimos
+ratrillos
+o sea
+que si
+quiero hacer
+si tengo
+atrillo
+y quiero
+estimar
+estimo
+como
+si
+estimara
+por
+el procedimiento
+de
+burling
+o
+un
+probing
+y calculo
+la matriz
+de valianza
+y covalianza
+con las mismas
+matriz
+de valianza
+y covalianza
+que calculamos
+hay dos
+supuestos
+que son
+más o menos
+restrictivos
+en este
+procedimiento
+el primero
+es
+el hecho
+de que
+las variables
+explicativas
+observadas
+no afectan
+la trillón
+una vez que yo
+tomé en cuenta
+WIJT
+que son las variables
+explicativas
+del mecanismo
+de selección
+eso puede ser
+que no
+y el segundo
+el segundo
+supuesto
+restrictivo
+que
+en este
+procedimiento
+comparte
+con
+el resto
+de los
+procedimientos
+que vimos
+hasta ahora
+es que las
+variables
+explicativas
+observadas
+la trillón
+original
+tiene que ser
+estrictamente
+exacta
+¿qué me dice
+la literatura?
+bueno
+que los dos
+problemas
+se pueden
+resolver
+usando variables
+instrumentales
+entonces
+hacia arriba
+el siguiente
+tema
+es
+cerro de
+selección
+y endogenia
+pero vamos a hacer
+la misma
+estrategia
+que utilizamos
+en
+los modelos
+con
+variables
+explicativas
+estrictamente
+exactas
+lo primero
+que vamos a hacer
+es
+describir
+qué supuesto
+necesito
+para hacer
+la estimación
+en un modelo
+que tiene
+variables
+endógenas
+y paneles
+incompletos
+que ya
+desarrollamos
+para paneles
+completos
+y los dos
+métodos
+que utilizamos
+en paneles
+completos
+son
+pull
+two stages
+and
+fix effect
+two stages
+and
+lo primero
+que vamos a hacer
+es
+presentar
+los dos
+métodos
+en paneles
+incompletos
+quiero estimar
+la ecuación
+15
+la ecuación
+15
+es
+y sub
+y t
+igual a
+x y t
+por beta
+más b sub
+y t
+donde b sub
+y t
+es el error
+compuesto
+b sub
+y t
+por acá
+b sub
+y t
+este b sub
+y t
+es la suma
+de c sub
+i
+que es la
+heterogeneidad
+no observada
+y u
+sub
+y t
+que es el error
+idiosincrático
+de la ecuación
+x y t
+es de dimensión
+uno por k
+y tiene variables
+exógenas
+y endógenas
+y beta
+es un vector
+k por uno
+entonces
+tengo variables
+endógenas
+entonces voy a
+definir
+z y t
+como un vector
+de instrumentos
+el vector
+de instrumentos
+que
+cumple
+con la
+condición
+de ortogonalidad
+en los errores
+del modelo
+original
+en esta
+corrección
+vamos a asumir
+que
+tanto
+el vector
+de variables
+explicativas
+de la ecuación
+original
+como
+el vector
+de instrumentos
+tienen un acorde
+esto es estándar
+lo hemos hecho así
+el corte
+transversal
+y el dato
+del panel
+completo
+el supuesto
+2
+es
+los instrumentos
+están suficientemente
+correlacionados
+con la variable
+que van a instrumentar
+es decir
+no tengo
+el problema
+de blandero y bond
+de instrumentos
+de
+también es un supuesto
+estándar
+que conseguimos
+los instrumentos
+y el supuesto
+3
+es que
+el vector
+Z
+incluye
+todas las variables
+exógenas
+del modelo
+original
+si ustedes
+piensan
+en
+este
+corte
+transversal
+mínimo
+para
+dos etapas
+Z
+incluye
+todas las variables
+exógenas
+del modelo
+original
+y todos los
+Z
+Z1
+Z2
+hasta ZN
+que son
+todos los
+instrumentos
+que viene
+de
+la forma
+reducida
+de la variable
+en 2
+XK
+en función
+de
+X1
+hasta
+XK
+menos 1
+y todos los
+Z
+ahora
+no sé
+si vamos a introducir
+seco de selección
+diría
+que
+lo que vamos a hacer
+es
+introducir
+panel
+incompleto
+vamos a definir
+un indicador
+de selección
+que vale 1
+si yo observo
+las variables
+dependientes
+las variables
+explicativas
+zógenas
+y endógenas
+y todos los
+instrumentos
+entonces
+estimación
+en panel
+completo
+yo lo voy a
+poner acá
+disculpen
+factores
+cuando ustedes
+revisan
+y bien
+bien la
+formulita
+pero
+solamente
+para intuición
+mínimo cuadrado
+en dos etapas
+mínimo cuadrado
+en dos etapas
+el beta
+sombrero
+de
+mínimo cuadrado
+en dos etapas
+como dice
+ahí
+es
+X
+transpuesto
+por Z
+inversa
+Z
+transpuesto
+por Z
+inversa
+perdón
+esto no
+X
+transpuesto
+por Z
+por
+Z
+transpuesto
+por Z
+inversa
+por
+Z
+transpuesto
+por Z
+todo
+inversa
+por
+X
+transpuesto
+por Z
+Z
+transpuesto
+por Z
+inversa
+se trata de la cuesta
+con
+eso es el mismo
+para donde se
+esto es
+el que interpreta
+por T sub Z
+por E
+el que interpreta
+por P sub Z
+lo que sucede
+a la propia proyección
+lo que es la resta
+a M
+etc
+a M
+potente
+etc
+ok
+ahora
+lo voy a hacer
+en el panel
+lo voy a hacer
+en el panel
+y en el panel
+tengo
+algunos cambios
+primero
+acá
+esto es
+X transpuesto por C
+es C
+solo que
+tengo que sumar
+sobre I
+sobre N
+y tengo que
+multiplicar
+por
+S
+IT
+que solo puedo
+sumar
+los que observo
+cuando S
+IT
+vale 1
+esto que tengo
+acá
+es
+C
+es
+inversa
+de nuevo
+sumo sobre I
+sumo sobre T
+porque tengo un panel
+multiplico por S
+y T
+y después
+tengo
+C
+transpuesto por X
+esto
+de nuevo
+multiplicado por S
+y T
+sumado sobre I
+sumado sobre T
+todo inversa
+todo inversa
+multiplicado por
+X
+transpuesto por Z
+Z
+transpuesto por Z
+inversa
+Z
+transpuesto por Z
+la suma
+lo único
+que
+cambia
+en mi estimación
+si ustedes
+midan
+la estimación
+por
+PURTUS
+T
+S
+S
+que vimos en paneles
+completos
+es que
+desaparece
+el decente
+en la misma
+fórmula
+sin
+el decente
+y
+si yo
+agarro
+I
+en lugar
+de
+este
+I
+sub
+T
+que tengo
+acá
+pongo
+el modelo
+me aparece
+B
+está
+solito
+y
+X
+transpuesto por Z
+Z
+transpuesto por Z
+inversa
+Z transpuesto por X
+todo inversa
+X transpuesto por Z
+Z transpuesto por Z
+inversa
+Z transpuesto por B
+¿Cómo?
+¿Cómo?
+¿Cómo?
+¿La esperanza
+de B
+incondicional
+en Z
+es cero?
+¿Cuándo yo
+haga
+N
+tendiendo
+infinito
+acá
+me va a
+quedar
+la esperanza
+de Z
+transpuesto por B
+la esperanza
+de B
+dando
+Z
+es cero
+la esperanza
+de B
+transpuesto por Z
+es cero
+y el estimado
+es consistente
+eso es lo que
+ya sabíamos
+con la única
+diferencia
+es que ahora
+le estoy diciendo
+mirá
+tiene que multiplicar
+por el indicador
+¿sí?
+Supuesto
+pull
+two
+stage
+least
+square
+1
+observo
+la variable
+dependiente
+y las variables
+aplicativas
+exógena
+y bien
+ojo
+en el instrumento
+cuando
+el indicador
+vale 1
+2
+se cumple
+el supuesto
+de exogeneidad
+entre el error
+compuesto
+y
+el mecanismo
+de selección
+el rango
+de la matriz
+entre el objeto
+por X
+es completo
+no lo puedo invertir
+y el rango
+de la matriz
+entre el objeto
+por Z
+es completo
+no lo puedo invertir
+y entre nosotros
+si ustedes
+previsan
+las notas
+que Z
+ha trascuento
+por X
+y técnicas
+estaba garantizado
+por las condiciones
+de variones
+instrumentales
+entonces
+el supuesto
+2
+es
+como
+definimos
+en paneles
+incompletos
+la exogeneidad
+el error
+compuesto
+de la ecuación
+de interés
+es independiente
+en media
+condicional
+de Z
+y el mecanismo
+de selección
+en T
+bajo el supuesto
+1
+ahí dice
+y condiciones
+de regularidad
+estándar
+el estimador
+de Pult
+usted
+es consistente
+y asintóticamente
+condición
+de regularidad
+estándar
+es
+qué sé yo
+por ejemplo
+el teorema
+que nosotros
+utilizamos
+es el teorema
+de Lindenberg-Levis
+que requiere
+que la varianza
+de la secuencia
+sea finita
+¿sí?
+los argumentos
+yo no los puse acá
+pero
+esas condiciones
+de regularidad
+tiene que existir
+y sea finita
+la varianza
+la esperanza
+tiene que ser cero
+para
+condiciones para poder
+aplicar
+la ley
+de los grandes números
+son las mismas
+que
+veníamos
+entonces
+dos
+remarks
+el primero
+es que
+el supuesto
+dos
+de exogeneidad
+no
+restringe
+la relación
+entre el error
+de la ecuación
+y el mecanismo
+de selección
+para R
+distinto
+de T
+es decir
+que el mecanismo
+de selección
+es
+contemporáneamente
+exógeno
+pero no estrictamente
+exógeno
+y el remar
+dos
+dice que
+no hay ninguna
+restricción
+en la relación
+de la
+endogeneidad
+en el sentido
+de que
+la variable
+endógena
+puede ser
+una variable
+continua
+o puede ser
+una variable
+binaria
+¿está bien?
+¿está claro esto
+hasta acá?
+¿sí?
+voy a cortar acá
+no dejarlo
+en el medio
+pero ahora
+lo que vamos a hacer
+es hacer
+la misma estimación
+pero en el modelo
+con respecto a Fichel
+cuando yo no pueda dejar
+la heterogeneidad
+en el
+para hacer
+para estimación
+de Pueblo Eglés
+necesito
+como si fuera
+el supuesto
+de efectos aleatorios
+la tragedia
+observada
+no está relacionada
+con la variable
+desexplicativa
+cuando tengo
+Fichel Fichel
+levanto
+ese
+ese supuesto
+y ahora voy a permitir
+que su vida
+está relacionada
+con la serie
+te voy a tener
+una estimación
+ya la vimos
+pero
+en el panel
+completo
+vamos a presentar
+la estimación
+en el panel
+incompleto
+y vamos a ver
+cuáles son los requisitos
+que necesito
+para que la estimación
+sea consistente
+y asintóticamente
+normal
+y una vez que tengamos
+eso
+acá hay el sesgo
+de selección
+¿está claro?
+ok
+cortemos aquí
+y seguimos
+el lunes
+gracias profesor
+yo
+bueno
+no

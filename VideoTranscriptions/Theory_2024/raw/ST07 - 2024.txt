@@ -1,0 +1,5152 @@
+Muy bien, jóvenes, vamos a empezar con paneles desbalanceados.
+La clase pasada al final describimos algunas de las características de este tema
+que están repetidas aquí en esta primera transparencia.
+La idea es que yo voy a tener, como caracterizamos nosotros los datos del panel,
+una muestra representativa de una población en un determinado periodo temporal
+y a partir de ese periodo temporal yo observo hacia adelante
+esa muestra de unidades de corte transversal, individuos, empresas, etc.
+Y lo que hicimos hasta ahora fue desarrollar la estimación de modelos estáticos y dinámicos
+y datos de panel cuando la observación de las variables es completa.
+Es decir, que nadie abandona la muestra en ningún periodo temporal,
+nadie no responde las preguntas del cuestionario, es decir, que yo tengo observación completa
+de todas las variables involucradas en el modelo.
+Y lo que vamos a hacer ahora es plantear qué es lo que sucede cuando uno no tiene
+un panel completo, es decir, cuando algunas variables en algunos periodos temporales
+no se observan.
+Y como mencionamos la clase pasada, hay tres grandes agrupamientos o causas
+de los paneles no balanceados, desbalanceados o incompletos, que tienen que ver con
+primero el diseño del muestreo, que lo tienen allí en el cuarto punto
+de la transparencia.
+Si el diseño del muestreo es un panel rotativo, entonces yo solo observo
+a algunas unidades de corte transversal en algunos periodos temporales,
+de forma tal de que la muestra no es completa, de nuevo, poniéndonos en el contexto de
+yo tengo, supongamos que quiero analizar el ingreso de los hogares de la Ciudad Autónoma
+de Buenos Aires, yo tomo una muestra aleatoria de 400 hogares en un punto del tiempo,
+400 hogares de la Ciudad Autónoma de Buenos Aires, y sigo esos 400 hogares durante 12 meses.
+Si la muestra es completa, yo en cada momento del tiempo tengo la muestra representativa
+de la población de hogares de la Ciudad Autónoma de Buenos Aires.
+Si yo hago un panel rotativo, es decir, que solo retengo una porción de los hogares
+en cada muestreo, aleatoriamente el 25% de los hogares cambia cada uno de los meses,
+al final del periodo de 12 meses yo voy a tener observaciones para hogares
+de un mes, dos meses, tres meses, cuatro meses, etc. Y para el resto de los periodos
+voy a tener valores missing en las variables. Como el diseño del panel rotativo
+está encargado por la persona que va a hacer la estimación, yo al diseñar la rotación
+en forma aleatoria, siempre retengo una muestra representativa de la población
+de la Ciudad Autónoma de Buenos Aires. Distinto es el caso de las otras dos razones
+o causas que mencionamos en la clase pasada, que son la atrición, atrición,
+es decir, que algunas unidades eligen salirse del panel en algún periodo temporal,
+y si esa salida del panel no es aleatoria, entonces la muestra que me queda
+no es representativa del total de la población. Como ejemplo extremo
+de este ejercicio de muestra de 400 hogares para analizar el ingreso
+de los hogares en la Ciudad Autónoma de Buenos Aires, supongamos que se me van yendo
+los hogares de Caballito.
+Al final del periodo no voy a tener hogares de Caballito, y entonces, salvo que los hogares
+del resto de los barrios tengan las mismas características que los hogares de Caballito,
+entonces la muestra que me queda no va a ser representativa del total de los hogares
+de la Ciudad Autónoma de Buenos Aires. Entonces, ahí tengo un problema
+que ocurre frecuentemente en la práctica, que en la literatura se conoce como atrición
+o atrición en inglés, y es que algunos hogares deciden salirse del panel
+y esa salida, como no es aleatoria, provoca que la muestra que me queda
+no sea representativa de la población, que comencé a analizar, y entonces tengo
+lo que en econometría y en microeconometría 1 llamamos sesgo de sección.
+Y la cuarta, la tercera razón, que está en el último punto de la transparencia,
+tiene que ver con lo que en econometría y microeconometría llamamos el modelo de Hekman,
+de estimación de la oferta de trabajo de las mujeres, donde hay una variable,
+en el caso de ese ejemplo, el salario, que trunca el comportamiento de la oferta
+de trabajo. Porque yo solo observo la oferta de trabajo para las mujeres que trabajan
+y las mujeres que trabajan tomando la decisión de si el salario que le ofrecen
+en el mercado de trabajo es mayor al salario de reserva que tiene.
+Entonces, si tengo un truncamiento incidental, como dice el último punto de la transparencia,
+es posible que, de nuevo, la muestra que tengo para estimar el modelo
+no sea representativa de la población original.
+No entendí la pregunta.
+Claro, ¿por qué mantendría un panel? Voy diciendo, bueno, saco 25, busco otro 25,
+y no hago...
+No, yo no... Hacé lo que quiera.
+Claro, ¿para qué me expongo a hacer, no sé, el artich, el panel, todo eso,
+y hacer una muestra?
+Bueno, a ver, es un ejemplo que di, yo tengo que dar un curso de datos de panel,
+si no te lo pongo en el contexto de datos de panel, no te lo puedo explicar.
+Claro, además necesito menos muestras y me sé más barato, todo eso.
+No entendí.
+Si tenés menos muestras, tenés más variabilidad en las estimaciones.
+Sí.
+Y eso no tiene nada que ver con sesgo de selección.
+Claro, te lo digo, necesito 700 tipos.
+¿Es lo mismo que a una muestra de 700 todos los meses?
+Depende de lo que quieras hacer.
+Es lo mismo en algunos casos y no es lo mismo en otros casos.
+Depende de lo que vos quieras hacer.
+O sea, depende de si vos querés introducir la habilidad dentro de esa estimación o no.
+Si vos tenés un corte transversal repetido,
+la habilidad cambia periodo a periodo.
+Si tenés los mismos individuos en periodos cortos,
+la habilidad no cambia y entonces tenés un modelo de datos de panel.
+Pero la verdad es que depende de lo que vos quieras analizar,
+podés tener un panel, podés tener un corte transversal repetido,
+podés tener muestra de un corte transversal.
+Con los tres contextos pueden ser la estimación que quieras,
+solo que el único cuidado que tenés que tener es que dependiendo de la muestra que tengas,
+vas a poder sacar determinadas conclusiones.
+Pero nada más.
+Lo primero que vamos a hacer, como dice allí la transparencia,
+es analizar los casos en los que potencialmente la prisión o el truncamiento incidental
+provocan sesgo de selección en la muestra.
+Y lo primero que vamos a analizar es
+qué condiciones necesitamos para que los estimadores,
+en principio, de un modelo lineal estático,
+los estimadores de efectos fijos,
+ya vamos a ver por qué en general uno no utiliza el modelo de efectos selectoros,
+pero en qué contexto,
+o cuáles son las condiciones que yo necesito que se cumplan
+para que la estimación que presentamos para
+el modelo de componentes no observables estáticos con efectos fijos en paneles completos,
+me deje estimadores que tienen las mismas propiedades,
+son consistentes, asintóticamente normales,
+cuando los paneles son desvanecidos.
+Entonces, nuestra ecuación de interés va a ser la ecuación uno,
+que de nuevo es el modelo de componentes no observados
+que vimos cuando analizamos efectos fijos y efectos aleatorios,
+y subit es la variable explicativa,
+x y t son las variables,
+y subit es la variable dependiente,
+x y t son las variables explicativas,
+beta es el vector de parámetros a estimarse,
+subi es la heterogeneidad no observada de corte transversal,
+y subit es el error idiosincrático de la ecuación.
+La dimensión de x y t es uno por k,
+o sea que tengo k variables explicativas,
+beta es k por uno,
+no tengo relación entre la heterogeneidad no observada
+y una o varias de las variables explicativas,
+y entonces tengo un modelo de efectos.
+O varianza entre x y t y c sub i es diferente de c.
+Tenemos N observaciones, N mayúsculas observaciones
+de corte transversal,
+y toda la de nuestra teoría sintética
+sigue siendo con N del número A.
+Entonces, el caso que vamos a analizar
+es un caso en el cual
+el primer periodo temporal,
+t igual a uno,
+yo tengo una muestra representativa de la población,
+y en ese periodo yo observo a todos.
+Observo la medición de todas las variables,
+de todas las observaciones de corte transversal.
+Y después,
+a medida que el periodo temporal se va haciendo más grande,
+algunas observaciones de corte transversal,
+o para algunas observaciones de corte transversal,
+voy a dejar de observar alguna de las variables.
+O por atrillón,
+o por truncamiento incidental.
+El último periodo temporal va a ser t igual a t mayúscula.
+Entonces, lo primero que vamos a hacer
+es definir una variable indicadora
+que la vamos a llamar s y t.
+s y t
+es una variable indicadora que vale 1
+si yo observo
+a las variables
+y vale 0
+si no observo a las variables.
+Y
+este s y t
+es un indicador
+escrito
+para una observación genérica i
+y una observación genérica t,
+que es lo que tienen
+en el
+modelo 1
+que podríamos
+escribirlo
+como lo escribimos
+para la ecuación 2
+que es
+agrupando
+todas las observaciones
+de series temporales
+i sub i
+igual a
+x y
+beta
+más
+c sub i
+por j t
+más
+u sub i
+en lugar de tener escalares
+lo que tengo son
+vectores de dimensión
+t mayúscula
+por 1
+¿ok?
+Entonces, si yo
+construyo el vector
+de todos los indicadores
+s sub i
+va a contener
+para la observación
+de corte transversal
+i
+todos los indicadores
+desde
+el periodo temporal 1
+hasta el periodo temporal
+t mayúscula.
+si yo
+supongamos que
+observo
+para
+la
+unidad
+de corte transversal
+todos los periodos
+temporales
+es decir, que observo
+pongámosle la variable
+dependiente
+i sub i t
+observo i sub i 1
+i sub i 2
+i sub i 3
+i sub i t mayúscula
+entonces todos los indicadores
+valen 1
+y estoy en el caso
+de
+un panel
+completo
+si
+alguno
+de esos
+s y t
+es 0
+es que en algún
+momento del tiempo
+yo dejo de observar
+alguna de las
+di el ejemplo
+con la variable
+dependiente
+pero lo mismo
+con las variables
+las variables
+explicativas
+¿no?
+o sea
+el punto
+es que
+cuando
+tenemos
+un panel
+completo
+el estimador
+el estimador
+de efectos fijos
+el estimador
+de efectos fijos
+beta
+sombrero
+de efectos fijos
+era igual
+a
+suma
+desde i
+igual 1
+hasta n
+suma
+desde t
+igual 1
+hasta t
+mayúscula
+de
+x y
+con los dos
+puntitos arriba
+traspuesto
+por x y
+con los dos
+puntitos arriba
+x y t
+x y t
+inversa
+suma
+desde i
+igual 1
+hasta n
+suma
+suma
+desde i
+igual 1
+hasta t
+mayúscula
+de x y t
+con los dos
+puntitos arriba
+traspuesto
+y
+sub i t
+con los dos
+puntitos
+este es
+nuestro
+estimador
+de
+efectos
+efectos fijos
+¿sí?
+ahora voy a tener
+exactamente
+lo mismo
+solamente
+que
+el
+x y
+con los dos
+puntitos arriba
+y el
+sub i
+con los dos
+puntitos arriba
+van a estar
+multiplicados
+por el
+indicador
+si ustedes
+miran
+la primera
+igualdad
+de la ecuación
+2
+esta que
+tengo acá
+el n
+olvídense
+porque el n
+está
+lo puedo poner
+acá
+lo tengo
+multiplicando
+y dividiendo
+hasta que se
+cancela
+pero la expresión
+es la misma
+lo único
+que cambia
+es que
+lo que tengo
+aquí
+es
+esta variable
+indicadora
+y esa variable
+indicadora
+es 1 0
+lo único
+que hace
+es decirme
+cuáles son
+las multiplicaciones
+que puedo hacer
+las que puedo sumar
+supongamos
+que
+t mayúscula
+es 4
+si t mayúscula
+es 4
+yo acá
+tengo
+la suma
+desde 1
+hasta 4
+de X
+y 1
+con los puntitos
+arriba
+traspuesto
+por X
+y 1
+con los dos
+puntitos
+arriba
+más
+X
+y 2
+con los dos
+puntitos
+arriba
+traspuesto
+por X
+y 2
+con los dos
+puntos
+arriba
+más
+X
+y 3
+con los dos
+puntitos
+arriba
+traspuesto
+por X
+y 3
+con los dos puntitos arriba, más
+X y 4
+con los dos puntitos arriba
+por, el transpuesto
+por X y 4
+con los dos puntitos.
+El sistema mayúscula es 4.
+Solo que ahí
+tengo que observar
+para la observación y
+todos los periodos temporales, de 1 a 4.
+Supongamos que no observo
+el periodo 3.
+Si no observo
+el periodo 3
+lo único que podría sumar
+en esa suma es
+todos los términos menos Z.
+Ese no lo observo.
+O sea que la suma
+sería
+la suma
+de 1 hasta 2
+más 4.
+Para que
+las sumas sean
+completas
+y quede lindo
+matemáticamente
+en lugar de ponerlo así
+lo que hago
+es multiplicar todo
+por S y T.
+Entonces como S y T
+vale
+1, 1, 0, 1
+me saca
+el periodo temporal 3.
+Y yo sumo
+los 4.
+solo que
+hay 1
+que es 0.
+Si yo multiplico
+para él
+supongo que no observo
+el periodo
+el periodo 3
+entonces
+S y
+va a ser
+S y 1
+S y 2
+S y 3
+S y 4
+y esto es un vector
+1, 1, 0, 1
+como el S y T
+está multiplicando
+a cada uno
+de las multiplicaciones
+de X y T
+con los dos puntos
+de arriba
+por X y T
+y X y T
+con los dos puntos
+de arriba
+tras puesto
+por I sub y T
+cuando es 0
+no suma nada
+y cuando es 1
+suma
+lo que tiene que sumar.
+Entonces
+la expresión
+la primera igualdad
+es
+el estimador
+de efectos fijos
+en un
+contexto
+de datos
+de panel
+no balanceado
+incompleto
+¿sí?
+De nuevo
+si yo observo
+todos los periodos
+temporales
+para cada unidad
+de corte transversal
+el S y T
+es 1
+y tengo la fórmula
+de abajo
+¿sí?
+La fórmula
+de efectos fijos
+en paneles
+completos
+entonces
+la
+la
+segunda igualdad
+de la ecuación 2
+¿sí?
+Lo único que hace
+es tomar
+este
+estimador
+perdón
+esta variable
+y subí
+T
+con los dos puntitos
+arriba
+y reemplazarla
+por el modelo
+que es
+X y T
+con los dos puntitos
+arriba
+por beta
+más
+U sub y T
+con los dos puntitos
+arriba
+entonces cuando hago
+la distributiva
+de todo
+por
+X y T
+beta
+me aparece
+este beta
+solito acá
+porque se cancela
+en la matriz
+y su inversa
+y cuando multiplico
+por este
+término
+que está acá
+me debería
+aparecer acá
+el término
+con el Q
+con los dos puntitos
+pero como hemos visto
+en el curso
+yo puedo
+destransformar
+los dos puntitos
+de la X
+y del U
+y como me queda
+en términos
+de una matriz
+que sigue en potente
+volver a transformar
+solo uno
+de los
+de la variable
+que es X
+con los dos puntitos
+y me queda
+en función
+de
+U sub y T
+que son los errores
+del modelo
+original
+y
+para que
+el estimador
+de efectos
+fijos
+en
+paneles
+desbalanceados
+sea consistente
+yo ya sé
+lo que necesito
+para que
+el
+puedo ponerlo
+así
+para que
+el
+estimador
+sea
+consistente
+necesito
+que
+suma
+desde
+T
+igual 1
+hasta T
+mayúscula
+1
+sobre N
+suma
+desde
+I
+igual 1
+hasta N
+de
+S
+y T
+por
+X
+y T
+con los dos
+puntitos arriba
+traspuesto
+por
+U
+sub y T
+con los dos
+puntitos
+arriba
+esto
+converga
+a la
+esperanza
+1
+sobre N
+por la suma
+que me tiene
+infinito
+por la ley de los
+grandes números
+converga la esperanza
+matemática
+esto me queda
+la esperanza
+matemática
+de S
+y T
+por
+X
+y T
+con los dos
+puntitos
+arriba
+traspuesto
+por
+U
+sub y T
+con los dos
+puntitos
+arriba
+esto es la
+suma
+desde
+T
+igual 1
+hasta
+opciones
+después
+y lo que
+necesito
+para
+tener un
+empujador
+consistente
+es que
+esa esperanza
+se acera
+necesito
+exogeneidad
+contemporánea
+en el modelo
+transformado
+por la
+transformación
+de efectos
+como estoy
+estimando
+con el mismo
+cuadro clásico
+si se cumple
+la exogeneidad
+contemporánea
+el estimador
+es consistente
+necesito
+que el primer
+sumando
+converja
+aplicando
+la ley
+de los más
+grandes números
+a una matriz
+nosotros
+lo llamamos
+A
+A
+inverse
+me queda
+la multiplicación
+de una
+secuencia
+o grande
+P1
+por una
+secuencia
+pequeña
+P1
+se va
+todo a
+cero
+y beta
+sombrero
+con
+vector
+ahora
+ya sabemos
+que
+para que
+haya
+exogeneidad
+contemporánea
+en el
+modelo
+transformado
+por
+diferencia
+finita
+necesito
+algún
+tipo
+de
+exogeneidad
+estricta
+con respecto
+a los
+errores
+del modelo
+original
+son los
+que me
+quedaron
+en la
+ecuación
+¿por qué?
+y porque
+adentro
+del X y T
+con los
+dos puntitos
+tengo
+la suma
+desde T
+igual
+1
+hasta T
+mayúscula
+de X y T
+y adentro
+de
+el
+U sub
+y T
+con los
+dos
+puntos
+arriba
+tengo
+la suma
+de U
+sub
+y T
+desde T
+igual
+1
+hasta T
+o sea
+que tengo
+todos los
+errores
+todos los
+los X
+necesito
+que no haya
+relación
+entre los
+errores
+y la
+variable
+aplicativa
+en ninguna
+observación
+temporal
+de forma tal
+de que la
+esperanza
+matemática
+me
+de C
+o sea
+que necesito
+exogenidad
+estricta
+en el
+modelo
+original
+eso ya
+lo habíamos
+dicho
+cuando
+hicimos
+dividido por
+N
+porque tengo
+N
+tipitos
+¿me da
+lo mismo
+que una
+prespa
+una vez
+pero
+presa
+cinco
+veces
+¿se pondrá
+igual?
+no
+no
+entendí
+claro
+tengo
+N
+tipitos
+si
+una
+puede que
+tengo
+una
+que aparece
+cinco
+veces
+y
+99
+que aparece
+una vez
+si
+cada
+uno
+es un
+99
+se pondera
+igual
+que aparece
+cinco
+veces
+se pondera
+igual
+¿qué
+quiere
+decir?
+igual
+promedio
+¿qué
+promedio?
+Ah no
+esa sumatoria
+va a ser
+una sumatoria
+incompleta
+si yo
+no tengo
+pero
+da lo mismo
+¿no?
+o sea
+en el límite
+lo que sea
+va a tener
+infinito
+si yo quiero
+calcular
+la
+función
+asintótica
+ok
+tengo
+solo
+una cosa
+que
+agregar
+y es que
+en el
+en el panel
+completo
+en el panel
+completo
+por ejemplo
+it
+con los dos
+puntitos arriba
+era igual
+a el valor
+de it
+menos
+la media
+temporal
+suma
+donde
+t
+igual
+uno
+hasta t
+mayúscula
+de
+y
+subito
+y
+en un
+panel
+incompleto
+como este
+ejemplo
+que mencionamos
+acá
+yo no le puedo
+restar
+la media
+total
+porque
+si t
+mayúscula
+es 4
+y yo
+la observación
+3
+no la observo
+no puedo
+calcular
+el promedio
+entonces
+lo que
+le puedo
+restar
+es la
+media
+temporal
+que
+observo
+en mi
+ejemplo
+sería
+y subí
+1
+menos
+1
+sobre 3
+suma
+y subí
+1
+y subí
+2
+y subí
+4
+bueno
+vamos a escribirlo
+en lugar
+de para
+t igual a
+4
+para t
+igual a t
+así
+como aparece
+acá
+la suma
+va a ser
+completa
+desde 1
+hasta t
+mayúscula
+de que
+y
+de la variable
+indicadora
+por
+y subí
+digamos
+mi ejemplo
+la variable
+indicadora
+es
+1
+1
+0
+1
+o sea
+que
+sumo
+hasta 4
+pero
+cuando
+multiplico
+por
+s
+y
+r
+voy a
+sumar
+3
+observación
+y voy
+a dividir
+por 3
+el 3
+acá
+va a estar
+representado
+por t
+subí
+donde
+t subí
+es la suma
+de los indicadores
+para la observación
+y
+de nuevo
+para la observación
+y
+la suma
+de los indicadores
+en mi ejemplo
+es 3
+o sea
+que divido
+por 3
+si la suma
+de los indicadores
+es 8
+tengo que dividir
+por 8
+porque sumo
+los 1
+sumo
+las observaciones
+que tengo
+los 0
+no los cuento
+o sea
+que
+le voy a restar
+a cada variable
+en el corte transversal
+la media temporal
+que observo
+eso vale
+para y
+y vale
+para x
+salvo eso
+todo lo demás
+es igual
+entonces
+lo que
+lo que sigue
+abajo
+es lo que
+dije
+en la transparencia
+anterior
+necesito
+exogenidad
+contemporánea
+en
+este
+en el modelo
+transformado
+por diferencia
+finita
+y como necesito
+exogenidad
+contemporánea
+este
+necesito
+alguna forma
+de
+exogenidad
+estricta
+en los errores
+del modelo
+original
+entonces
+la forma
+de la exogenidad
+estricta
+está resumida
+en el supuesto
+1
+yo le puse
+F.E.U.P.
+que es
+Fixed Effect
+Unbalanced
+Panel
+Panel 1
+que tiene
+tres ítems
+el ítem
+A
+es la condición
+de exogenidad
+estricta
+la esperanza
+de un sub-IT
+condicional
+en X
+en S
+y en C
+es C
+para todo
+y después
+tengo
+dos
+ítems
+adicionales
+el B
+es la condición
+de rango
+que necesito
+para que
+la matriz
+de variables
+explicativas
+tenga inversa
+o sea
+que el
+supuesto
+B
+es que
+la suma
+de 1
+a T
+de la esperanza
+de S
+y T
+por X
+y T
+con los dos puntos
+arriba
+transpuestos
+por X
+y T
+con los dos puntos
+arriba
+no sea singular
+o tenga rango
+completo
+así la puede invertir
+y el supuesto
+C
+no es necesario
+pero
+vamos a hacer
+para que las cuentas
+sean más fáciles
+el supuesto
+C
+es
+el equivalente
+al supuesto
+de varianza
+de los errores
+esféricas
+en el corte
+de rosa
+supuesto
+C
+que ya hicimos
+antes
+me dice
+que
+los errores
+del modelo
+los errores
+idiosincráticos
+del modelo
+no tienen
+heteroseasticidad
+ni correlación
+serial
+en el tiempo
+la matriz
+de varianza
+y covalianza
+es sigma cuadrado
+por la matriz
+identidad
+podría no hacer
+ese supuesto
+después lo voy a levantar
+y lo único que cambia
+es que la matriz
+de varianza y covalianza
+de los coeficientes
+acá
+es la estándar
+y si no asumo
+es la robusta
+ante la presencia
+de alguno
+de esos problemas
+son las
+ecuaciones
+13
+y 23
+de la lectura
+1
+entonces
+bajo el supuesto
+de exogeneidad
+estricta
+se cumple
+el supuesto
+de exogeneidad
+contemporánea
+en el modelo
+transformado
+usando la ley
+de expectativas
+iteradas
+el supuesto
+B
+es la condición
+de rango
+y esos dos
+supuestos
+me aseguran
+que el estimado
+es consistente
+lo puedo sacar
+y es consistente
+entonces
+en el
+el punto 3
+lo que me dice
+es que
+en el caso
+de paneles
+rotativos
+aleatorios
+en el
+en el caso
+de paneles
+aleativos
+rotativos
+aleatorios
+el
+mecanismo
+de selección
+es completamente
+aleatorio
+y como es
+completamente
+aleatorio
+condicionar
+en SIT
+o no
+me da lo mismo
+porque
+SIT
+aleatorio
+es independiente
+de cualquier
+cosa
+entonces
+la
+condición
+que
+usamos
+en
+paneles
+completos
+se sigue
+manteniendo
+aquí
+en lugar
+de condicionar
+el error
+sobre
+XI
+SI
+y C
+subí
+puedo condicionar
+solamente
+sobre
+XI
+y C
+subí
+porque
+el SI
+es completamente
+aleatorio
+bueno
+mostramos
+así
+más o menos
+consistencia
+más o menos
+porque ya lo hicimos
+para poner el completo
+y acá es lo mismo
+y podemos mostrar
+normalidad sintótica
+también
+de nuevo
+en esta
+en esta
+última
+ecuación
+este
+N
+a la
+menos
+1
+lo puedo
+escribir
+como 1
+sobre raíz
+de N
+por 1
+sobre raíz
+de N
+este
+beta
+lo paso
+restando
+a la izquierda
+de la igualdad
+paso 1
+de las raíz
+de N
+multiplicando
+y el último
+término
+convergo
+en el normal
+con media
+cero
+y varianza
+la varianza
+de la secuencia
+y tengo
+y como
+la materia
+de varianza
+y covalianza
+de los errores
+es sigma cuadrada
+por la matriz
+de identidad
+la materia
+de varianza
+y covalianza
+va a ser
+sigma cuadrado
+por x
+con los dos
+puntos arriba
+tras puesto
+por x
+con los dos
+puntos arriba
+que es la
+materia de varianza
+y covalianza
+estándar
+en mínimos cuadrados
+clásicos
+cuando se cumple
+el supuesto
+de varianza
+de los errores
+específicos
+bueno
+ahí está
+en este caso
+hacemos las motores
+de I1
+hasta N
+pero si es rotativo
+y después
+entra otra gente
+sigue siendo
+hasta N
+sigue siendo
+hasta N
+¿N es el primero?
+¿O N es la cantidad
+que hayan entrado?
+no
+N es el primero
+N
+se mantiene
+siempre en N
+si es panel
+rotativo
+yo lo que digo
+tengo 400
+en el primer periodo
+temporal
+en el segundo
+periodo temporal
+roto el 50%
+o sea que me quedo
+con 200
+claro
+con una
+roto el 50%
+por decir algo
+tengo 200
+que los observé
+en el primer
+en el primer
+periodo temporal
+en el segundo
+periodo temporal
+y 200
+que entran 9
+y el tamaño
+sigue siendo
+14
+claro
+pero entonces
+el S
+en ese caso
+aquí
+o sea
+las I
+¿cuáles serían?
+si decís
+estos estallitos
+no están
+las I
+son
+las 400
+que empiezan
+originales
+si
+entonces
+la información
+que no usas
+no
+no
+depende de
+cómo
+no sé cómo
+lo estás pensando
+yo pienso
+hay 400
+entonces
+luego
+pongo una
+tablita
+pongo una
+tablita
+entonces tengo
+I
+a veces
+chiquito
+I
+I
+1
+2
+3
+4
+5
+y subí
+1
+lo que sea
+¿no?
+en el primer
+periodo temporal
+observo
+todas las palabras
+en el segundo
+periodo temporal
+roto 2
+la primera y la segunda
+claro
+¿eh?
+y agregó
+6
+entonces
+acá tenés
+este lo observo
+este lo observo
+este lo observo
+y acá observo
+y acá observo
+bien
+el panel
+es incompleto
+para todas las observaciones
+para la observación
+6 y 7
+no observo
+los primeros
+el valor
+de la variable
+en el primer periodo temporal
+para las observaciones
+1 y 2
+no observo
+en el segundo
+periodo temporal
+¿eh?
+pero en el
+en la diagonal
+siempre tengo
+el mismo
+número
+claro
+¿eh?
+o sea
+de n
+no cambia
+esa es mi pregunta
+o sea
+n no cambia
+pero es el
+como
+el maxi
+es la cantidad
+de individuos
+total
+que hubo
+a lo largo
+de todo el panel
+y si
+es el panel
+entero
+no era 5
+sería 7
+en este caso
+¿ahí te ganaría
+si
+vas a rotar 2
+o 1
+solo
+o 4
+no
+es
+digo
+hay procedimientos
+de muestreo
+que te permiten
+rotar
+lo que vos quieras
+a mí
+no me
+o sea
+usar
+el que quieras
+¿sí?
+no tiene
+nada
+que
+o sea
+en este curso
+hay un procedimiento
+de
+muestreo
+que te deja
+la rotación
+¿sí?
+en forma aleatoria
+puede ser
+una
+un
+muestreo
+aleatorio
+simple
+o estratificado
+o sistemático
+el que vos quieras
+lo que yo
+tengo para
+trabajar
+es el panel
+incompleto
+lo que ve
+a mí
+que me ve
+el panel
+incompleto
+y que me diga
+mira
+yo usé
+un procedimiento
+de muestreo
+que
+rotó
+una observación
+por cada
+periodo
+temporal
+lo único
+que yo necesito
+es que
+cuando armo
+el panel
+sepa
+cuáles son
+las variables
+que observo
+en qué periodo
+temporal
+y cuáles son
+las variables
+que no observo
+en qué periodo
+temporal
+¿sí?
+entonces
+nada
+este
+los dos puntos
+que aparecen
+aquí
+en la
+en la transparencia
+son importantes
+digamos
+están medio
+mezclados
+ahí
+o
+ocultos
+en nuestro
+supuesto
+pero
+el supuesto
+de exogenidad
+tricta
+no requiere
+o no restringe
+la relación
+o no relación
+que haya
+entre el mecanismo
+de selección
+el S y T
+con las variables
+explicativas
+observadas
+o la heterogenidad
+no observada
+yo podría
+tener
+relación
+entre
+el mecanismo
+de selección
+y las variables
+explicativas
+observadas
+o
+en la heterogeneidad
+no observada
+lo único
+que requiere
+el supuesto
+uno
+es que
+el mecanismo
+de selección
+no está relacionado
+con uno
+entonces
+de nuevo
+si agregamos
+el supuesto
+3
+de varianza
+de los errores
+constantes
+en el tiempo
+y
+no hay
+correlación
+serial
+la materia de varianza
+y covarianza
+de los coeficientes
+de
+de la estimación
+es esa
+que aparece ahí
+que básicamente
+sigma cuadrado
+por x
+inversa
+solamente
+ahora las x
+tienen los dos puntitos
+arriba
+y están multiplicadas
+por S y T
+porque el panel
+es igual
+en C
+si yo no quiero
+si yo no quiero
+asumir
+el supuesto
+C
+la matriz de varianza
+y covarianza
+va a tener
+en el medio
+acá
+un sombrero
+con los dos puntitos
+arriba
+tras puesto
+por un sombrero
+con los dos puntitos
+arriba
+esa es la
+ecuación 13
+de la primera
+lectura
+porque
+digamos
+necesito
+controlar
+por
+heteroseasticidad
+y correlación
+serial
+necesito estimar
+la
+la varianza
+de U
+para estimar
+la varianza
+de U
+lo que
+hacíamos
+antes
+era
+S
+cuadrado
+S
+cuadrado
+era la suma
+de residuos
+al cuadrado
+dividido
+los grados
+de libertad
+que era
+N
+por T
+menos K
+ahora
+el único
+inconveniente
+que tengo
+es este
+porque
+N
+grande
+por T
+mayúscula
+es cuando
+tengo el panel
+completo
+lo único
+que cambia
+es
+ese
+denominador
+que
+acá está
+puesto
+como
+sin la
+corrección
+ahí está
+puesto
+sin la
+corrección
+por los grados
+de libertad
+igual los programas
+después lo agregan
+sin este
+K
+o sea que
+dividido
+en N
+por T
+solo que
+ahora
+no tengo
+N
+por T
+tengo
+tengo
+tengo
+esto
+tamaño
+tengo
+perdón
+esto es la suma
+desde
+I igual
+1
+hasta N
+de T
+sub I
+por
+menos 1
+o sea
+básicamente
+lo que estoy
+sumando
+es por ejemplo
+para mi ejemplo
+para la primera
+observación
+3
+para la segunda
+observación
+lo que es la suma
+de
+este
+este
+sub I
+es la suma
+de los S
+y
+de nuevo
+acá
+es la suma
+de
+I
+igual 1
+hasta N
+y
+está acá
+y views
+la restan acá
+para obtener
+la corrección
+de muestras
+finitas
+en el límite
+poner
+este
+NT
+o suma
+de T
+sub I
+menos 1
+y
+NT
+menos K
+o suma
+de T
+sub I
+menos 1
+menos K
+y de nuevo
+el
+la suma
+de residuos
+al cuadrado
+es la suma
+de
+un sombrero
+cuadrado
+y T
+multiplicado
+por
+S
+porque obviamente
+no los tengo todos
+como el panel
+es incompleto
+yo voy a tener
+una suma
+solamente con
+los que observe
+los residuos
+que
+observe
+esto ya
+el primer punto
+ya lo dije
+yo no quiero
+asumir
+el supuesto
+C
+de varianza
+de los errores
+que es constante
+en el tiempo
+y no tienen
+correlación
+en el tiempo
+entonces
+hay que usar
+la corrección
+en la varianza
+esa
+de
+los estimadores
+de efectos fijos
+en la ecuación
+23
+la ecuación 13
+perdón
+que
+meten en medio
+el outer product
+de los residuos
+del modelo
+dos puntos
+adicionales
+el segundo
+y el tercero
+que es
+yo
+puedo
+trabajar
+con el estimador
+de efectos fijos
+como si fuera
+un panel
+completo
+si
+y solo
+si
+el mecanismo
+de selección
+no está relacionado
+con los errores
+idiosincráticos
+del modelo
+o sea
+que
+la práctica
+la práctica
+para saber
+si
+tengo
+o no
+sesgo
+de selección
+lo único
+que tengo
+que chequear
+es si el mecanismo
+de selección
+está relacionado
+o no
+con usted
+si está relacionado
+hay sesgo
+de selección
+si no está relacionado
+no hay sesgo
+de selección
+¿por qué
+estamos trabajando
+con el modelo
+de efectos fijos
+por el último
+punto
+de esta
+transparencia
+para que
+el estimador
+de efectos aleatorios
+sea consistente
+necesitamos
+además
+de
+el supuesto
+uno
+que no haya
+relación
+entre la
+heterogeneidad
+no observada
+y el mecanismo
+de selección
+¿sí?
+porque de nuevo
+efecto aleatorio
+me va a dejar
+la heterogeneidad
+no observada
+en el error
+de la ecuación
+pero si me la dejan
+en el error
+de la ecuación
+yo necesito
+imperiosamente
+que
+este
+el mecanismo
+de selección
+no esté relacionado
+con el error
+o
+no esté relacionado
+con la heterogeneidad
+no observada
+que es la que me va
+a quedar
+en el error
+y
+en general
+la mayoría
+de los modelos
+económicos
+tienen un mecanismo
+de selección
+que tiene
+heterogeneidad
+no observada
+entonces
+las estimaciones
+no son
+consistentes
+ok
+entonces
+nada
+tengo un panel
+de balanceado
+tengo mi modelo
+voy a estimar
+y digo
+bueno ok
+vamos a ver
+si puedo estimar
+o la misma
+fórmula
+que utilizo
+con estos cambios
+marginales
+del SIT
+etc
+etc
+con la misma
+fórmula
+de paneles
+lo único
+que tengo que verificar
+es que
+la muestra
+que tengo
+no sea
+una muestra
+con sesgo
+de selección
+siga siendo
+representativa
+de la población
+y para eso
+de nuevo
+lo único
+que necesito
+hacer
+es
+este
+chequear
+que el mecanismo
+de selección
+no está relacionado
+con el error
+y de su
+entonces
+tengo
+dos
+contrastes
+de hipótesis
+que vamos a ver
+uno ya lo vimos
+lo voy a poner
+segundo
+es
+el contraste
+por sesgo
+de selección
+de cheque
+y el otro
+es
+el contraste
+para ver
+si hay atrillo
+que
+el que se usa
+es
+el
+este
+test
+de
+Nijman
+y
+Berbeck
+del
+92
+que
+sugieren
+agregarle
+a
+la
+ecuación
+original
+el mecanismo
+de selección
+rezagado
+un periodo
+o adelantado
+un periodo
+y chequear
+que el coeficiente
+que acompaña
+a ese mecanismo
+sea igual a cero
+porque si el coeficiente
+es distinto de cero
+es porque
+el mecanismo
+de selección
+y el error
+está en relación
+lo que dice
+el último punto
+es que
+si tengo
+digo
+dice dos cosas
+lo voy a hacer
+con el
+dice dos cosas
+no tiene sentido
+poner
+SIT
+porque
+SIT
+vale uno
+no tiene ninguna
+variabilidad
+que vale uno
+para lo que observo
+y son
+las únicas
+las únicas
+la estimación
+la puedo hacer
+con lo que observo
+o sea que
+poner SIT
+no tiene sentido
+porque no tiene
+ninguna
+variabilidad
+y si tengo
+atrillo
+tampoco puedo
+poner SIT
+menos uno
+porque tampoco
+tiene variabilidad
+cuando tengo
+atrillo
+lo que tengo que hacer
+es poner un
+lead
+SIT
+más uno
+que es lo que me asegura
+que cambia
+de uno a cero
+en algún punto
+ahora les voy a poner
+un ejemplo
+ahí tienen
+una tablita
+que tiene
+producto
+en
+millones de kilovatios
+hora
+y costo total
+de generación
+de energía
+millones de dólares
+para
+diez firmas
+observadas
+durante cuatro años
+y tengo
+firma
+uno
+dos
+tres
+cuatro
+cinco
+en la
+primera
+columna
+seis
+siete
+ocho
+nueve
+y diez
+las variables
+son costo
+y producto
+para
+observadas
+para T igual
+uno
+T igual
+dos
+cuatro
+cuatro
+y como
+pueden ver
+la firma
+dos
+se sale
+del panel
+en el periodo
+cuatro
+la firma
+tres
+también
+la firma
+cuatro
+también
+la firma
+cinco
+se sale
+en el periodo
+tres
+la firma
+cinco
+se sale
+en el periodo
+tres
+la firma
+seis
+se sale
+en el periodo
+tres
+la firma
+ocho
+se sale
+en el periodo
+dos
+la firma
+nueve
+sale
+en el periodo
+tres
+vamos
+vamos a ponerlo así
+entonces firma
+y en el periodo
+la firma 1, 1, 1, 1, 1
+la firma 2
+periodo
+1, 2, 3, 4
+1, 2, 3, 4
+y vamos a poner C
+C y T, C y T
+es el costo
+C y T
+es el costo de la firma I
+en el periodo
+o sea que voy a tener acá
+3
+4
+5, 6
+y
+4
+6
+8
+y
+6
+si
+entonces
+S y T
+S y T
+vale
+1, 1, 1, 1
+para la firma 1
+1, 1, 1, 0
+para la firma 2
+yo puedo estimar
+con todos los valores hasta acá
+y si pongo S y T
+en la ecuación original
+piensen que esto
+pues es C y T
+logaritmo natural de C y T
+igual a alfa
+más beta
+por el logaritmo natural
+de P y T
+donde P y T
+es el producto
+de la firma I
+entonces
+yo puedo estimar
+si agrego S y T
+S y T
+vale 1
+no tiene ningún tipo de variabilidad
+si pongo
+S y T menos 1
+S y T menos 1
+lo que tengo es
+1, 1, 1
+y acá tengo
+1, 1, 1
+S y T
+es el tema
+de la firma
+Tampoco tengo variabilidad
+con las observaciones
+que tengo
+para estimar
+vale 1
+en todas las observaciones
+si pongo
+S y T
+y T más 1
+lo que tengo es
+1, 1, 1
+punto
+1, 1
+0
+y ahí tengo variabilidad
+lo tengo que hacer con todas
+pero
+cuando tengo atrillo
+como en este caso
+las unidades
+eligen salirse
+del panel
+no me sirve
+poner S y T
+no me sirve poner
+S y T menos 1
+tengo que poner
+S y T más 1
+que es el único
+que tiene variabilidad
+lo tienen puesto
+en la tablita
+que sigue
+ahí tienen la firma
+1, 2, 3, 4, 5
+y 0
+y lo que
+lo que me dice
+ni más ni verbo
+es bueno
+agregue
+el indicador
+adelantado
+y chequee
+que el coeficiente
+que acompaña
+a ese indicador
+sea igual a 0
+si es igual a 0
+no tengo 0
+de selección
+si es distinto de 0
+tengo 0
+creo que lo tienen hecho
+allí
+los datos
+ok
+los datos están sacados
+del libro de Green
+el capítulo de datos
+de panel
+mi edición
+debe ser la segunda
+o sea que
+creo que mi edición
+es el capítulo 14
+seguro que cambió
+pero los datos
+siguen estando
+y es
+un panel
+completo
+los CNA
+se los agregué yo
+o sea que
+si quieren
+pueden buscar
+los datos
+son
+para hacer
+esto acá
+de nuevo
+esto es bien
+voy a
+hacer el test
+de
+Nijman y Berbeck
+pero
+mis comandos
+del Estata
+deben ser los
+del Estata 4
+o algo así
+cuando no había nada
+ahora está todo hecho
+ok
+entonces
+no teníamos
+XTR
+en ese
+entonces
+entonces
+era más
+amante
+pero acá
+tienen
+LN
+C y T
+es
+el logaritmo
+natural
+del costo
+LN
+I sub
+y T
+es el logaritmo
+natural
+del producto
+y
+S
+le dice al Estata
+que
+la variable
+de corte
+transversal
+indicadora
+es firma
+y la variable
+de frecuencia
+temporal
+están
+ahora es
+XTC
+y uno pone
+las dos
+antes había que
+ponerlas separadas
+y
+de nuevo
+no teníamos
+XTRES
+el comando
+el comando
+original
+ARREG
+que
+cuya opción
+era
+absorb
+firm
+decía
+al Estata
+que
+le queríamos sacar
+los efectos fijos
+restándole
+la media temporal
+a cada
+variable
+en el corte
+transversal
+y
+la
+la
+ecuación
+es
+el
+logaritmo
+del costo
+contra el
+logaritmo
+del producto
+y el indicador
+adelantado
+en periodo
+y acá está
+la tablita
+no sirve para nada
+simplemente para decir
+que el indicador
+adelantado
+un periodo
+me da
+un coeficiente
+de menos
+0.116
+y un
+estadístico
+T
+1.97
+que es
+el 10%
+es
+estadísticamente
+significativo
+o sea que
+en esto
+es así
+pero
+habría
+a Trish
+¿está claro esto?
+ok
+después si alguno
+lo hace con los
+comandos modernos
+tengo que cambiar
+esta apariencia
+pero nunca
+tengo tiempo
+y me lo pasa
+el campo
+pero es cuando
+el Microsoft
+sería
+Xdirect
+y en
+Absorption
+y en
+Pselect
+Exactamente
+y el
+crearte
+el indicador
+adelantado
+es lo mismo
+y el otro
+esto es
+el Outred
+que ahora
+no sé si se usa
+para poner la tablita
+o hay alguno
+en comando
+mejor
+pero eso
+es para poner
+la cosa
+con el asesorismo
+y también depende
+del nivel
+de significancia
+que no
+que no
+no
+si
+eso es un ejercicio
+con 10 firmas
+en 4 periodos
+o sea
+no tiene ningún sentido
+pero lo que
+quiero ejemplificar
+es que uno lo hace así
+de nuevo
+en la práctica
+voy a tener
+muchísimas observaciones
+de corte transversal
+y pocos periodos
+de corte transversal
+no voy a tener
+100
+200
+300 firmas
+¿estás testeando
+que hay o que no hay
+atrillo
+o se van a tener
+100
+que hay o que no hay
+atrillo
+¿es una vez
+tipo asimplicista
+me dan la bandita?
+no
+que se me fue
+si
+pero la
+se va
+puede ser aleatorio
+¿cuál?
+¿estás testeando
+que no es aleatorio?
+estoy testeando
+que hay 6 concepción
+que hay atrillo
+si se van aleatoriamente
+no se dice atrillo
+si se van aleatoriamente
+no se dice atrillo
+atrillo
+es que
+se van
+relacionados
+con
+el sesgo de selección
+o sea
+estoy chequeando
+que haya atrillo
+o que no haya atrillo
+y
+de nuevo
+te tomo el punto
+pero
+lo ves
+porque la tabla
+tiene 10
+sin fila
+ahora
+decime
+que tengo
+200 firm
+no es fácil
+ver
+no
+que hay atrillo
+o que no hay atrillo
+o que se van
+o
+tío
+se me van
+tipo
+no
+atrillo
+es
+se van
+no
+atrillo
+se van
+y
+los que se van
+se van por alguna razón
+relacionada
+con la variable
+que vos querés
+analizar
+o sea
+eso es lo que nosotros
+le vamos a llamar atrillo
+en este caso
+si no
+es un panel
+incompleto
+que
+podés resolver
+con
+el herramiental
+para paneles
+completos
+ok
+segundo caso
+es
+truncamiento
+incidental
+la gente
+como dijiste antes
+por ejemplo
+se quedan
+en el caballito
+y como usted
+deja de ser
+representacional
+¿puedo seguir adelante?
+si
+¿sigo adelante?
+no
+no
+no
+pará
+como que me queda
+un poco
+perdón
+no
+un poco
+de duda
+¿qué hago?
+si me muestra
+ya
+pero
+¿todavía
+te lo tengo que enseñar?
+no
+no
+pero
+no
+pará
+lo único
+lo único
+que estoy haciendo
+es
+presentándote
+o sea
+yo
+vos me decís
+mira
+tengo un panel
+que no es completo
+y yo te digo
+ok
+bueno
+estas son las causas
+las causas pueden ser
+que la
+este
+que
+la
+incompletitud
+del panel
+sea porque
+aleatoriamente
+algunas unidades
+o variables
+dejo de observar
+o por atrision
+o por truncamiento
+incidental
+¿sí?
+y entonces vos me decís
+pero
+ok
+si
+el mecanismo de selección
+es aleatorio
+entonces puedo usar
+toda la herramienta
+que vimos hasta ahora
+y yo te digo
+perfecto
+sí
+es correcto
+¿sí?
+¿cómo sé
+si el panel
+si mi panel
+incompleto
+¿sí?
+no tiene sesgo de selección
+bueno
+necesito dos contrastes
+de hipótesis
+uno para chequear
+que
+los que se van
+como en el ejemplo
+de la tablita
+¿sí?
+me dejen una muestra
+representativa
+o sea
+no haya sesgo de selección
+no haya trillón
+o no haya
+truncamiento
+incidental
+¿sí?
+gracias
+entonces
+no
+pero
+iba a eso
+contraste de sesgo
+de selección
+¿sí?
+una vez que yo te presente
+los dos contrastes
+¿sí?
+una vez que yo te presente
+los dos contrastes
+¿sí?
+te voy a mostrar
+la corrección
+la corrección
+o sea
+¿qué hago?
+ok
+hay atrillo
+corrección de sesgo
+de selección
+cuando hay atrillo
+hay truncamiento
+incidental
+corrección
+del truncamiento
+incidental
+de Heckman
+o de Gull
+para hacer
+o sea
+no
+lo único
+que estoy
+en el comienzo
+es diciendo
+bueno
+mira
+¿puedo estimar
+usando
+los mismos
+métodos
+que vimos
+en el panel
+completo?
+y la respuesta
+es sí
+¿cuándo?
+cuando el mecanismo
+de selección
+no está relacionado
+con el error
+de la ecuación
+y ahora
+lo que hacemos
+es chequear
+que eso funcione
+para ver
+si puedo
+o no
+estimar
+con los métodos
+anteriores
+pero si yo rechazo
+como en este caso
+la hipótesis nula
+tengo atrillo
+y vos me decís
+¿puedo continuar?
+sí puedo continuar
+pero todavía
+no te enseñé
+cómo
+¿sí?
+te enseñé
+todavía no dije
+cómo hago la estimación
+cuando hay atrillo
+tengo que decir
+cómo hago la estimación
+cuando hay atrillo
+cómo hago la estimación
+cuando hay sesgo
+de selección
+y después
+te voy a decir
+bueno
+pero ahora el modelo
+no es estático
+es dinámico
+entonces la variable
+dependiente
+es endógena
+la variable explicativa
+es endógena
+puedo hacer lo mismo
+tengo un panel
+incompleto
+y además
+la variable explicativa
+es endógena
+puedo hacer lo mismo
+y
+necesito un contraste
+de hipótesis
+necesito una corrección
+utilizando
+algún procedimiento
+cuando tengo atrillo
+como dije
+en la clase pasada
+cuando
+terminemos
+de ver esto
+vamos a ver
+visto
+todo lo que vimos
+hasta la clase pasada
+modelos estáticos
+modelos dinámicos
+pero en paneles
+incompletos
+¿sí?
+entonces
+el segundo
+ok
+la segunda
+razón
+digo
+los paneles
+rotativos
+ya vimos
+que no van a
+causar ningún problema
+la segunda razón
+que puede
+que puede
+darme un panel
+incompleto
+y que
+me dé problemas
+es el caso
+de
+truncamiento
+incidental
+y lo vamos a ver
+con
+el
+modelo de
+Heckman
+entonces
+el modelo
+de Heckman
+en el contexto
+de
+datos de panel
+con heterogeneidad
+no observable
+entonces
+para
+recordar
+este
+el
+procedimiento
+de Heckman
+que vimos
+en
+el corte
+transversal
+lo que hice
+fue
+traer
+acá
+la transparencia
+del curso
+de
+cronometría
+y o
+el curso
+de micro
+cronometría
+simplemente
+para
+recordar
+el procedimiento
+de Heckman
+porque después
+voy a agarrar
+este procedimiento
+y lo voy a
+extender
+a panel
+entonces
+si
+lo hago
+rápido
+si no se
+entiende
+alguna cosa
+me dice
+pero todo esto
+ya lo vi
+¿qué me dice
+el
+el modelo
+de
+de Heckman
+el procedimiento
+de Heckman
+el procedimiento
+de Heckman
+estaba desarrollado
+en la estimación
+de la oferta
+de trabajo
+de las mujeres
+donde
+la variable
+dependiente
+era las horas
+trabajadas
+y la variable
+explicativa
+toda la variable
+que explica
+las horas
+trabajadas
+y la segunda
+ecuación
+la que
+me truncaba
+las horas
+trabajadas
+era la ecuación
+de salario
+que me decía
+siempre que
+el salario
+de mercado
+es mayor
+que el salario
+de reserva
+la mujer
+trabaja
+y observo
+las horas
+siempre que
+el salario
+de mercado
+es menor
+que el salario
+de reserva
+la mujer
+no trabaja
+y no observo
+la zona
+de trabajo
+y lo que sucedía
+en ese
+en ese modelo
+es que
+si
+este
+eh
+eh
+tengo
+cerro de selección
+eh
+ese cerro de selección
+me aparece
+en el modelo
+con una variable
+adicional
+a las variables
+de los
+que es lo que
+nosotros llamamos
+la inversa
+del cociente
+de mixto
+que es el cociente
+entre
+la función
+de densidad
+de la normal
+de estándar
+y la función
+de distribución
+acumulada
+de la normal
+y ese
+ese inversa
+del cociente
+de mixto
+aparece
+porque
+eh
+lo que hace
+Helman
+es asumir
+que el error
+de la ecuación
+de
+que quiero estimar
+el error
+de la ecuación
+de interés
+y el error
+de
+el mecanismo
+de selección
+tiene distribución
+normal
+bivariada
+conjunta
+¿sí?
+Entonces
+como
+en la distribución
+normal
+bivariada
+hay una variable
+que trunca
+la distribución
+¿sí?
+lo que tengo
+es una distribución
+normal
+truncada
+¿sí?
+que
+en términos
+generales
+está puesta
+en la primera
+la función
+de probabilidad
+conjunta
+de una
+la función
+de probabilidad
+conjunta
+entre
+i y z
+con z
+truncando
+la distribución
+ustedes quieren
+lo pueden poner
+en términos
+de
+la función
+de
+f
+de
+i
+y z
+es la distribución
+acumulada
+la integral
+entre menos
+infinito
+y más
+infinito
+la integral
+entre menos
+infinito
+y más
+infinito
+de f
+de
+i
+z
+tendría que poner
+una f
+mayúscula
+f
+de i
+z
+diferencial
+i
+diferencial
+z
+y esto
+es 1
+el área
+abajo
+de
+la función
+de densidad
+conjunta
+me tiene que dar
+1
+para ser una
+función
+de probabilidad
+y el problema
+y el problema
+que plantea
+Heckman
+es que
+mira
+la
+variable z
+no va entre
+menos infinito
+y más infinito
+sino que va
+entre a
+y más infinito
+entonces
+esto deja
+de dar
+1
+y para
+volver a
+que me dé
+1
+lo que tengo
+que hacer
+es rescalar
+las probabilidades
+¿cómo las
+rescalo?
+y divido
+por la probabilidad
+de z
+mayor a
+a
+la probabilidad
+que hay
+por encima
+de a
+y entonces
+cuando yo hago
+esto es decir
+que
+esta
+esta integral
+me da
+la probabilidad
+de z
+mayor a
+en lugar de 1
+entonces
+cuando yo divido
+esto
+por
+la probabilidad
+de z
+de igual a
+reconstruyo
+el 1
+esto es lo que
+dice
+esta ecuación
+en la conjunta
+dividido
+la masa
+de probabilidad
+que hay
+a partir del
+punto de truncamiento
+y como
+esa es cualquier
+distribución truncada
+Heisman asume
+que
+los errores
+de la ecuación
+de interés
+y de la ecuación
+de selección
+son normales
+y variados
+y entonces
+lo que tengo
+en el teorema
+ese que aparece ahí
+son los momentos
+de la distribución
+truncada
+la esperanza
+matemática
+y la variada
+y en principio
+por ahora
+nos va a interesar
+la esperanza
+matemática
+la esperanza
+matemática
+de i
+dado que
+z es mayor a
+mu sub i
+que es la media
+de la variable
+i sin truncamiento
+más
+un término
+que aparece
+debido al truncamiento
+que es ro
+que es el coeficiente
+de correlación
+entre i y z
+sigma
+de i
+por lambda
+de alfa z
+donde lambda
+de alfa z
+es la inversa
+del coeficiente
+evaluado
+en el punto
+de truncamiento
+estandarizado
+alfa z
+que es simplemente
+a
+menos su media
+mu de z
+dividido
+su
+está
+estandarizado
+el punto
+de truncamiento
+estandarizado
+es el argumento
+de la inversa
+del coeficiente
+de mil
+entonces
+si yo tengo
+el modelo
+de Grunov
+o de
+o de
+Heckman
+tengo dos ecuaciones
+la primera ecuación
+es
+la ecuación
+de selección
+que está puesta
+ahí
+como
+z i estrella
+z i estrella
+que es igual
+a
+pongámosle
+salario
+de mercado
+ofrecido
+a la persona
+y menos
+salario
+de reserva
+de la persona
+y
+que depende
+de un montón
+de variables
+y
+cuando
+z i estrella
+es mayor a cero
+es porque
+el salario
+que le ofrecen
+de mercado
+a la persona
+y
+es más grande
+que el salario
+de reserva
+y entonces
+la persona
+trabaja
+y si la persona
+trabaja
+observo la ecuación
+que quiero estimar
+la ecuación
+de oferta
+donde
+i sub i
+son las horas
+trabajadas
+y x
+son las variables
+de la oferta
+de oferta
+de nuevo
+u sub i
+es el error
+de la ecuación
+de selección
+epsilon i
+es el error
+de la ecuación
+de interés
+entonces
+la
+este
+la
+el supuesto
+de
+de
+de
+de
+hekman
+es
+epsilon i
+y u sub i
+tienen distribución
+bivariada
+normal
+con media
+igual a cero
+y coeficiente
+de correlación
+ron
+calculemos
+la esperanza
+de
+las horas
+trabajadas
+dado que
+observo
+las horas
+trabajando
+eso es
+la esperanza
+de las horas
+trabajadas
+dado que
+zi estrella
+es mayor a cero
+entonces
+si
+zi estrella
+es mayor a cero
+si zi estrella
+es mayor a cero
+como zi estrella
+es igual a
+gamma transpuesta
+por wi
+más u sub i
+que zi estrella
+voy a ponerlo acá
+zi estrella
+sea mayor a cero
+es lo mismo
+que decir
+menos
+gamma transpuesta
+por wi
+sea menor a
+u sub i
+tengo cero acá
+paso esto
+que está sumando
+aquí
+restando
+de este lado
+y me queda
+u sub i
+mayor a
+menos gamma
+transpuesta
+por wi
+entonces
+en la
+segunda igualdad
+en lugar de poner
+zi estrella
+mayor a cero
+pongo
+menos wi
+transpuesto
+por
+u sub i
+mayor que
+menos wi
+transpuesto
+por
+gamma
+y después
+tengo
+el
+modelo
+que quiero
+estimar
+el modelo
+que quiero
+estimar
+que es
+este
+y sub i
+es igual a
+beta
+transpuesto
+por x i
+más
+epsilon i
+o sea que
+en la tercera
+igualdad
+lo único que voy a hacer
+es reemplazar
+este
+y sub i
+por beta
+transpuesto
+por x i
+más epsilon i
+cuando tome la esperanza
+de la suma
+la suma
+de las esperanzas
+voy a tener
+beta
+transpuesto
+por x i
+más la esperanza
+de epsilon i
+dado que
+u sub i
+es mayor
+a
+menos
+gamma
+transpuesto
+por w
+y ahí
+tengo
+la esperanza
+matemática
+de una variable
+truncada
+de una variable
+epsilon i
+truncada
+por otra
+u sub i
+y entonces
+puedo aplicar
+el teorema
+el teorema
+que me decía
+el teorema
+me decía
+mira
+la esperanza
+matemática
+de una variable
+truncada
+es
+la esperanza
+matemática
+de la variable
+sin truncamiento
+más
+el coeficiente
+de correlación
+entre la variable
+que trunca
+y la variable
+de interés
+por
+el desvío
+de la variable
+de interés
+por
+lambda
+inversa
+del cociente
+de mil
+evaluada
+del punto
+de truncamiento
+solo que
+epsilon i
+y u sub i
+son errores
+de media
+cero
+o sea que
+la esperanza
+de u sub i
+es igual a cero
+y la esperanza
+de epsilon i
+es igual a cero
+entonces
+si ustedes miran
+el teorema
+ustedes miran
+el teorema
+en nuestro caso
+esto es
+epsilon
+y esto es u
+la esperanza
+de
+epsilon
+es cero
+y solo
+me queda
+rho
+que es el coeficiente
+de correlación
+entre
+epsilon y u
+sigma i
+que es sigma
+de epsilon
+lambda
+evaluado en el punto
+de truncamiento
+que es lo que aparece
+en la ecuación
+53
+rho
+sigma de epsilon
+por lambda
+evaluado en el punto
+de truncamiento
+y
+a
+rho
+por sigma
+de epsilon
+lo llamé
+beta de lambda
+o sea que
+si la esperanza
+de i
+dado que i
+es observado
+en la ecuación
+54
+lo que yo puedo
+estimar es esto
+i sub i
+dado que
+i sub i
+es observada
+es igual a
+beta
+traspuesto
+por x i
+más
+beta lambda
+por lambda
+y evaluado
+en el punto
+de truncamiento
+más
+un error
+de media serie
+de forma
+tal
+que
+aplique la esperanza
+matemática
+tiene la ecuación
+sin particular
+pero eso
+eso
+lo que me dice
+es que
+si yo
+agarro
+la ecuación
+de interés
+la ecuación
+de oferta
+y
+la estimo
+solamente
+con las variables
+que afectan
+la oferta
+de trabajo
+x i
+me estoy olvidando
+de una variable
+la inversa
+del cociente
+de mi
+y si esa variable
+es estadísticamente
+relevante
+los coeficientes
+estimados
+por unos cuadrados
+clásicos
+son cegados
+sesgo
+por omisión
+de una variable
+de relevo
+tengo
+un problema
+y es que
+ok
+ya sé
+no puedo
+hacer
+la
+la
+la
+estimación
+solamente
+con las x i
+tengo que poner
+la inversa
+del cociente
+de mil
+solo que
+la inversa
+del cociente
+de mil
+es una variable
+no observable
+como la habilidad
+que depende
+de parámetros
+que yo
+no observo
+digo
+está puesto
+abajo
+desagregado
+pero
+el punto
+del truncamiento
+es
+lambda
+transpuesto
+por doble
+y sobre
+sigma
+de u
+lambda
+transpuesto
+por doble
+y sobre
+sigma
+de u
+si quiero
+construir
+la inversa
+del cociente
+de mil
+necesito
+saber
+cuánto
+vale
+gamma
+transpuesto
+y cuánto
+vale
+si no
+si no
+no lo puedo
+lo que hace
+es decirme
+bueno
+no te preocupes
+si
+no vas a poder
+poner lambda
+pero
+lo puedes
+estimar
+lo puedes estimar
+y meterlo
+ahí
+como variable
+explicativa
+como
+como
+hacemos
+la
+estimación
+tengo que
+estimar
+la ecuación
+de selección
+voy a
+escribir
+acá
+arriba
+de nuevo
+tengo que
+estimar
+esto
+para poder
+estimar
+eso
+necesito
+datos
+de
+WI
+que los
+tengo
+y datos
+de
+ZI
+estrella
+que no
+los
+tengo
+para saber
+datos
+de ZI
+estrella
+necesito
+conocer
+el salario
+de reserva
+de cada
+persona
+no se
+puede
+lo que
+sí
+observo
+lo que
+sí
+observo
+es si
+la persona
+está
+trabajando
+o no
+es decir
+que
+lo que
+yo
+sí
+observo
+es
+una
+variable
+indicadora
+ZI
+que vale
+1
+si
+ZI
+estrella
+es mayor
+a 0
+y vale
+0
+si
+ZI
+estrella
+es menor
+a 0
+mayor
+igual
+o menor
+igual
+0
+va a 0
+entonces
+lo que
+puedo
+estimar
+es
+este
+lo que
+puedo
+estimar
+es
+esto
+ZI
+igual
+a
+gamma
+traspuesto
+por
+W
+más
+U
+sub
+y como
+U
+sub
+tiene
+distribución
+normal
+esto
+es un
+problem
+entonces
+lo que
+hace
+es
+estimar
+el
+problem
+estimar
+un
+probit
+variable
+de
+20
+01
+obtener
+a partir
+del
+probit
+las
+estimaciones
+del
+gamma
+los
+gamma
+y
+construí
+la inversa
+del
+cociente
+de
+1000
+eso
+es
+todo
+lo que
+dice
+el
+paso
+1
+de
+acá
+estimo
+un
+probit
+para la
+ecuación
+de
+selección
+construyo
+el
+lambda
+y
+sombrero
+y
+meto
+el
+lambda
+y
+sombrero
+en la
+ecuación
+del
+segundo
+paso
+la
+ecuación
+del
+segundo
+paso
+es
+es
+es
+solamente
+que ahora
+acá
+voy a
+poner
+lambda
+sombrero
+y
+porque me
+estimé
+esta
+esta es la
+ecuación
+que puedo
+estimar
+y
+en esta
+ecuación
+en esta
+ecuación
+la
+hipótesis
+nula
+de
+beta
+lambda
+igual a
+cero
+implica que
+no hay
+sesgo
+de
+selección
+si beta
+lambda
+es cero
+si beta
+lambda
+es cero
+entonces tengo la
+función de
+oferta
+para las
+observaciones
+que tengo
+y subí
+para las que
+tengo
+todas las
+trabajadas
+que tengo
+contra
+x y
+que son las variables
+explicativas
+de la
+función de oferta
+si beta
+lambda
+es distinto
+de cero
+si beta
+lambda
+es distinto
+de cero
+entonces hay
+cero
+de selección
+el contraste
+se hace
+con
+el estadístico
+t
+de
+beta
+lambda
+sombrero
+beta
+sombrero
+lambda
+sobre
+error
+estándar
+de
+beta
+sombrero
+lambda
+que tiene
+distribución
+t
+con
+n
+menos
+k
+grader
+tiene
+una
+distribución
+t
+porque
+yo resuelvo
+el contraste
+de hipótesis
+nula
+es verdadera
+si asumo
+que la
+hipótesis
+nula
+es verdadera
+beta
+lambda
+es cero
+y no me
+aparece
+ningún
+lambda
+ninguna
+variable
+lambda
+en el
+modelo
+cualquier
+otro
+contraste
+de hipótesis
+que quiera
+hacer
+es un
+contraste
+de hipótesis
+no
+estándar
+porque
+me aparece
+el lambda
+sombrero
+ese
+ahí
+y
+si ustedes
+recuerdan
+el problema
+de
+hacer una
+regresión
+con variables
+generadas
+a partir
+de
+estimaciones
+anteriores
+lo que hace
+es que
+cambie
+la matriz
+de varianzas
+y covarianzas
+de los estimadores
+del mismo
+cuadro clásico
+en la segunda
+etapa
+de Hechtman
+Hechtman
+te calcula
+la
+no sé
+si está
+creo que
+no
+se calcula
+la matriz
+verdadera
+de
+varianzas
+y covarianzas
+cuando
+me aparece
+una variable
+generada
+a partir
+de estimaciones
+anteriores
+está
+ahí
+por las
+importantes
+de la
+distribución
+que se
+terminaban
+variadas
+por la
+me
+no
+entendí
+claro
+dice
+esto
+tiene
+distribución
+normal
+y variada
+y usando
+eso
+es que
+te calcula
+el
+si
+y no
+lo circulamos
+son todas
+instituciones
+asintóticas
+esto ya lo vi
+lo vimos
+el trimestre
+pasado
+en
+microcometría
+hoy
+sacamos
+todas
+las
+distribuciones
+asintóticas
+sin
+el supuesto
+de normalidad
+de los errores
+no
+pero no
+es normal
+de los errores
+te dice
+que
+la
+distribución
+normal
+y
+los errores
+de la
+ecuación
+de interés
+y la ecuación
+de
+selección
+tienen
+distribución
+normal
+y variante
+eso es lo que
+dice
+el modelo
+ok
+no tengo
+puesta
+la
+materia
+de varíces
+y covarianzas
+simplemente
+porque
+voy a
+extender
+este mismo
+procedimiento
+a datos
+de panel
+y ahí
+si
+la
+van
+para
+la
+extensión
+a datos
+de panel
+vamos a
+utilizar
+lo que
+se conoce
+como
+el procedimiento
+de
+gul
+el procedimiento
+de
+buldrich
+procedimiento
+de buldrich
+del noventa y cinco
+no sé
+qué
+hice
+y ahora
+me
+desaparece
+la
+ecuación
+de interés
+es esta
+y es el
+modelo
+de componentes
+no observados
+en panel
+esa es la ecuación
+que yo quiero
+estimar
+en un panel
+incompleto
+o sea que
+yo
+solo observo
+y sub it
+siempre que
+s it
+que mi variable
+indicadora
+valga uno
+y
+s it
+mecanismo
+de selección
+igual que
+en el procedimiento
+de
+Hegman
+es un
+problem
+s it
+la función
+indicadora
+uno
+que me dice
+cuando
+eta cero
+más
+x i
+raya
+x y media
+por eta
+más
+x y t
+por delta
+más
+b sub it
+es mayor a cero
+entonces
+el indicador
+vale uno
+si es menor
+o igual a cero
+vale cero
+y esta
+especificación
+de
+el
+el
+PROBIT
+es lo que
+en la literatura
+se conoce
+como
+la
+especificación
+de
+MUNLAC
+M U N
+D
+L A S
+K
+MUNLAC
+que
+utiliza
+la media
+temporal
+de las variables
+explicativas
+en el corte
+transversal
+x raya i
+como variables
+explicativas
+además
+de las variables
+explicativas
+en cada
+periodo
+temporal
+x y t
+y tiene
+una
+ordenada
+al origen
+dada por
+eta cero
+eta es el vector
+de parámetros
+que acompañan
+a las variables
+en x raya i
+delta es el vector
+de parámetros
+que acompaña
+a las variables
+en x y t
+b sub it
+es el error
+de la ecuación
+y es un PROBIT
+básicamente
+porque
+el error
+de la ecuación
+de selección
+tiene distribución
+normal cero
+una cosa
+que
+muestra
+Bullrich
+es que
+esa ecuación
+4
+o sea
+que el
+mecanismo
+de selección
+no necesita
+estar bien
+especificado
+sino que uno
+puede tomar
+a esa ecuación
+como una forma
+reducida
+de
+múltiples
+mecanismos
+de selección
+estructurales
+que puedo tener
+en la plan
+y eso lo muestra
+es como
+el
+T
+de hipótesis
+de white
+de heterosegasticidad
+que resume
+heterosegasticidades
+que pueden aparecer
+por distintos motivos
+en un solo T
+bueno
+este PROBIT
+que pone
+Bullrich
+resume
+un montón
+de mecanismos
+de selección
+estructurales
+que pueden ser
+capturados
+con esta
+especificación
+de la ecuación
+4
+tengo que hacer
+dos cosas
+una
+ahora
+para
+hay dos cosas
+una
+supongamos
+que
+el C sub i
+no estuviera
+si el C sub i
+no estuviera
+puedo hacer
+el mismo cálculo
+que hicimos
+con Heckman
+es decir
+tomar la esperanza
+matemática
+de i sub i t
+dado que observo
+i sub i t
+y entonces
+me va a quedar
+el error
+u sub i t
+truncado
+por
+la ecuación
+de selección
+y me va a aparecer
+la inversa
+del cociente
+solo que
+ahora
+tengo
+el C sub i
+o sea
+que
+lo que
+sucede
+es que
+para poder
+aplicar
+Heckman
+primero me tengo
+que cargar
+el C sub i
+entonces
+lo que voy a hacer
+es
+tomar
+la ecuación
+3
+¿me hicieron
+la
+mágicamente
+lo que había escrito
+que ahora
+mereció
+muy raro
+decía
+me voy a cargar
+el C sub i
+aplicando
+la transformación
+de efectos
+vivos
+que vimos antes
+la C
+con los dos puntitos
+la i con los dos puntitos
+para eliminar
+el C sub i
+pero
+cuando
+elimine
+el C sub i
+en la ecuación
+que voy a estimar
+en el segundo paso
+me queda
+la inversa
+del cociente
+de Mills
+que también
+tiene que tener
+los dos puntitos
+porque ahora
+de nuevo
+voy a tener
+la ecuación
+3
+con los dos puntitos
+que va a decir
+i sub i t
+con los dos puntitos
+arriba
+igual
+x y t
+con los dos puntitos
+arriba
+por beta
+más u sub i t
+con los dos puntitos
+arriba
+esa es la ecuación
+de oferta
+y la ecuación
+de selección
+es el
+pro
+entonces
+cuando tome
+la esperanza
+matemática
+de i sub i t
+con los dos puntitos
+arriba
+dado que observo
+i sub i t
+con los dos puntitos
+arriba
+me aparece
+el lambda
+con los dos puntitos
+arriba
+el lambda
+no lo observo
+porque
+depende
+de parámetros
+poblacionales
+están ahí
+el lambda
+no lo observo
+porque depende
+de eta cero
+de eta
+y de delta
+esto lo puedo estimar
+lo puedo estimar
+con un pro
+que ahí dice
+pull pro
+pull pro
+y quiere decir
+que
+en
+esta ecuación
+cuatro
+en lugar
+de verlo
+como un panel
+lo voy a ver
+como un gran
+corte transversal
+donde voy a tener
+n por t
+observación
+n mayúscula
+por t mayúscula
+observación
+y ahí
+estimo
+un provi
+como si fuera
+un provita
+en el corte
+transversal
+estimo el provita
+en el corte
+transversal
+y obtengo
+eta cero
+sombrero
+eta sombrero
+y delta sombrero
+y con esas
+estimaciones
+construyo
+el
+lambda sombrero
+lambda sombrero
+que es
+pi
+evaluado
+en
+eta cero
+sombrero
+más
+x
+x
+y por
+eta sombrero
+más
+x
+y t
+por delta sombrero
+dividido
+pi
+mayúscula
+la normal
+acumulada
+evaluada
+en el mismo
+eta
+sub cero
+más
+x
+y por
+eta sombrero
+más
+x
+y t
+por delta sombrero
+pero
+de nuevo
+en la ecuación
+del segundo paso
+tengo que poner
+eta lambda
+con los dos puntitos
+de arriba
+y la lambda
+con los dos puntitos
+de arriba
+se obtiene
+igual que hicimos
+antes
+o sea
+el lambda
+con los dos puntitos
+arriba
+el lambda sombrero
+con los dos puntitos
+de arriba
+la variable
+original
+lambda
+y t
+sombrero
+menos
+la media
+que le puedo
+sacar
+y la media
+que le puedo
+sacar
+depende de
+cuáles sean
+las observaciones
+que tengo
+de
+lambda
+¿está claro esto?
+¿está bien?
+ok
+entonces
+la ecuación
+que puedo
+estimar
+es la que
+tienen ahí
+al final
+de la transparencia
+y subi t
+con los dos puntitos
+de arriba
+igual a
+x y t
+con los dos puntitos
+de arriba
+por beta
+más ro
+por lambda
+sombrero
+con los dos puntitos
+de arriba
+y t
+más una ro
+y
+Woodridge
+lo que me dice
+es
+mira
+si ro
+es igual
+a cero
+si ro
+es igual
+a cero
+este término
+no está
+y lo que
+tengo
+es
+el modelo
+original
+tengo el modelo
+original
+para las observaciones
+que tengo
+no hay
+cego
+de selección
+si ro
+distinto
+de cero
+ro
+distinto
+de cero
+hay cego
+de centro
+¿cuál es el
+estático
+contraste
+ro
+sombrero
+sobre
+error
+estándar
+de ro
+sombrero
+que tiene
+distribución
+td
+student
+con grado
+de libertad
+por número
+de observaciones
+menos
+parámetros
+de estimar
+y
+este
+que es el
+único
+contraste
+de hipótesis
+que puedo hacer
+que tiene
+distribución
+estándar
+como yo
+resuelvo
+el contraste
+de hipótesis
+bajo la hipótesis
+nula
+bajo la hipótesis
+nula
+error
+es igual
+a cero
+y el
+lambda
+sombrero
+no existe
+o sea
+tengo la ecuación
+original
+que quiero
+estimar
+cualquier
+otro
+contraste
+de hipótesis
+puede tener
+problemas
+pero este
+no
+entonces
+tengo
+dos
+contrastes
+de hipótesis
+nickman
+verde
+que uso
+cuando
+quiero
+saber si hay
+atrillo
+o no
+td
+waldrich
+para saber
+si hay
+truncamiento
+incidental
+o si el
+truncamiento
+incidental
+provoca
+sesgo
+de selección
+mismos datos
+que la tabla
+1
+solo que
+le cambié
+los
+n
+por ejemplo
+para la
+empresa
+o la firma
+5
+no observo
+el periodo
+t igual a 3
+pero observo
+el periodo
+t igual a 4
+o sea que
+esto es
+distinto
+del atrillo
+y otras
+no
+o sea que
+hay
+truncamiento
+incidental
+también
+los
+SMA
+para que
+simule
+truncamiento
+incidental
+pero no
+nada
+nada más
+que para ver
+cómo lo hago
+en la práctica
+en la práctica
+de nuevo
+tengo
+primero
+generé
+la media
+de XI
+XI
+XI
+raya
+y
+estimé
+el probio
+SIT
+que es mi variable
+1 0
+LNIT
+es XIT
+LNIT
+con la raya
+de arriba
+es XI
+raya
+esa es la
+especificación
+de mundo
+y
+usando
+predi
+construí
+el índice
+XB
+o sea que
+eso me da
+eta 0
+sombrero
+más
+X
+raya
+I
+por eta
+sombrero
+más
+XIT
+por delta
+sombrero
+y después
+generé
+el lambda
+lambda
+y T
+el lambda
+y T
+como
+fi minúscula
+de
+X beta
+dividido
+fi mayúscula
+de
+X beta
+arregle
+variable
+dependiente
+variable
+explicativa
+esto es
+la ecuación
+original
+costo
+contraproducto
+el logaritmo
+y el lambda
+y le puse
+absorb
+para que
+y para que
+le ponga
+la variable
+con los dos
+puntitos arriba
+a la variable
+explicativa
+y al lambda
+y después
+saqué la tablita
+el coeficiente
+que acompaña
+lambda
+sombrero
+con los dos
+puntitos
+es
+beta
+sombrero
+lambda
+y este
+1.66
+es el estadístico
+T
+de beta
+sombrero
+lambda
+beta
+sombrero
+lambda
+sobre
+error
+estándar
+de beta
+sombrero
+1.66
+no es
+estadísticamente
+significativo
+ni al 1
+ni al 5
+ni al 10%
+o sea que
+acepto
+la hipótesis
+nula
+de que beta
+lambda
+es cero
+si beta
+lambda
+es cero
+no hay
+sesgo
+de selección
+por truncamiento
+por truncamiento
+incidental
+si
+entonces
+tenemos
+si alguien
+viene
+y me dice
+mira
+tengo que estimar
+este modelo
+pero tengo
+un palito
+completo
+y yo digo
+no tengo
+no tengo
+problema
+el palito
+completo
+te puedo
+chequear
+si hay
+sesgo de selección
+en el palito
+o si no hay
+sesgo de selección
+y para chequear
+si hay sesgo
+de selección
+o no hay
+sesgo de selección
+tengo dos
+contratitos
+Nisman-Berbeck
+y Bull
+si yo
+acepto
+la hipótesis
+nula
+de la T
+no hay
+sesgo de selección
+haga
+como si tuviera
+un palito
+completo
+si rechazo
+la hipótesis
+nula
+del T
+de Nisman-Berbeck
+o del T
+de Bull
+tengo problemas
+de sesgo
+de selección
+entonces
+lo que necesito
+ahora
+es
+un procedimiento
+para estimar
+el modelo
+cuando hay
+atrillo
+y cuando hay
+truncamiento
+incidental
+con seis
+y dado que
+está esto
+puesto acá
+creo que
+empecé
+con
+truncamiento
+incidental
+¿sabes que
+debe estar
+todo
+es del 95
+debería estar
+ya me olvidé
+pero
+si está
+lo van a ver
+en la práctica
+ok
+para hacer
+la estimación
+es un procedimiento
+mucho más complejo
+que para hacer
+el contraste
+entonces
+voy a cortar
+acá
+no lo voy a dejar
+en la mitad
+no se puede
+dejar en la mitad
+y es largo
+pero lo que necesito
+es que
+se miren
+las transparencias
+del curso
+de
+microgrometría
+1
+lectura 4
+lectura 3
+lectura 3
+no
+no
+tenemos
+metros
+y
+excel
+Gracias.
+Lectura 4 de microeconometría, la ecuación 26 es la ecuación de donde sacamos la distribución asintótica de los coeficientes del segundo paso.
+Cuando tengo una variable generada a partir de estimadores del primer paso, que es la ecuación 36.
+Es la matriz de varianzas y covarianzas del estimador de dos pasos del método M de estimación no línea.
+Lo que voy a hacer es calcular la matriz de varianzas y covarianzas de los estimadores del segundo paso, utilizando este herramiental, porque lo necesitamos para hacer inferencias estadísticas.
+¿Estamos de acuerdo? Mírenselo. Igual voy a explicar algunas cosas, pero no voy a hacer cosas detalladas de cómo calcular la matriz de varianza y covarianza de los estimadores en dos pasos.
+Y de nuevo, puedo mostrarlo acá.
+Esta es la estimación.
+La matriz de varianza y covarianza, la matriz de varianza y covarianza tiene un montón de desarrollo para obtener esto que es la matriz de varianza y covarianza del estimador de dos pasos que vimos en el curso.
+Entonces, voy a dar algunas de estas definiciones, pero todo está en el microcognitivo.
+Ok, cortemos aquí y seguimos el lunes.

@@ -1,0 +1,3647 @@
+Muy bien, entonces, primera lectura del curso, voy a repetir algunas cosas que dije para el programa, el principio de la introducción, va a ser una definición de notación que vamos a utilizar en el curso,
+yo después voy a brevemente hacer un repaso de las propiedades de convergencia en probabilidad y convergencia en distribución, esto es exactamente lo mismo que vimos en Econometría,
+o sea que yo asumo que ustedes lo saben y lo voy a pasar súper rápido porque lo único que hice fue hacer copy-paste de esas slides y ponerlas acá solamente para que recuerden,
+lo tengan todo en la misma transparencia, pero es lo mismo, las mismas propiedades que utilizamos en Econometría, básicamente porque nuestra forma de evaluar las propiedades asintóticas de los estimadores
+es con el corte transversal tendiendo a infinito y tamaño de las siguientes corales.
+Y después vamos a analizar lo que aquí dice, modelos de datos de panel lineales, es básicamente el modelo de regresión lineal simple y el modelo de regresión lineal múltiple,
+que vimos en Econometría, pero en el contexto del dato de panel.
+Después del modelo de regresión lineal simple y del modelo de regresión lineal múltiple,
+tienen una parte que tiene que ver con modelos específicos de datos de panel,
+que son los que la literatura llama modelos de efectos fijos y modelos de efectos aleatorios,
+que es dentro de lo que yo mencioné en el programa, que es agregarle un componente que en la literatura de datos de panel se llama heterogeneidad no observada,
+y que en el ejemplo que mencioné en la descripción del programa podría ser la habilidad,
+en el contexto del modelo de capital lineal múltiple.
+Hay dos modelos en la literatura, uno trata a la heterogeneidad no observada como una variable que puede o no estar relacionada
+con las otras variables explicativas observadas del modelo.
+Si no tiene relación, el modelo se llama modelo de efectos fijos,
+si tiene relación, el modelo se llama modelo de efectos aleatorios,
+si tiene relación, se llama modelo de efectos aleatorios.
+Entonces vamos a describir la estimación de lo que la literatura de panel llama
+Estimador de efectos aleatorios y estimador de efectos fijos.
+Que no es ni más ni menos que la aplicación de mismos cuadros clásicos y mismos cuadros analizados.
+Terminemos la parte de los modelos de datos de panel lineales,
+tenemos todas las herramientas para seguir adelante,
+solo que cuando se aplica a datos de panel cada estimador tiene su nombre propio
+y en lugar de decir, bueno, estimamos por mismo cuadro clásico,
+decimos, vamos a estimar por efectos fijos.
+O FixEffectFE, que va a ser el comando de la SATA,
+o RRANGOFE, que va a ser el comando de la SATA para estimar el modelo de efectos aleatorios.
+Y la única diferencia es que uno estima por mismo cuadro clásico y el otro estima por mismo cuadro clásico.
+Solo que, sin vuestro nombre, el comando lo apretá y le va a hacer la cuenta a mano, salió.
+Y después voy a extender este modelo de efectos fijos y de efectos aleatorios,
+en lo que se conoce como Two-Way FixEffectmodel.
+De nuevo, P-W-F-E, que va a ser el comando de la SATA para hacer la estimación.
+Que, en la primera parte de esto de...
+Vamos a hacerlo con el ejemplo de la habilidad.
+Cuando yo agrego la habilidad en el modelo de capital humano,
+esa habilidad solo va a tener variabilidad en el corte trasvasal.
+Cada uno de los individuos tiene una habilidad diferente,
+pero va a ser constante en el tiempo.
+De nuevo, bajo nuestro supuesto de datos de panel.
+Yo observo durante poquitos periodos temporales,
+entonces la habilidad no está más.
+Si hubiera paneles de 10 años y ahí la habilidad de un individuo puede cambiarlo.
+Si los paneles son cortitos en la frecuencia temporal,
+la habilidad se puede asumir constante en el tiempo
+y solo tiene variabilidad en el corte trasvasal.
+El Two-Way FixEffect le agrega a la heterogeneidad no observada
+del corte trasvasal, la heterogeneidad en el tiempo.
+Variable que solo varía en el tiempo.
+No varía en el corte.
+Y que, digamos, esta partecita que está acá
+es la introducción a uno de los métodos de estimación
+que vamos a ver en la cuestión de corometría,
+en el microcormetría 2.
+Muy bien.
+Entonces,
+corte trasvasal, ya dije,
+digamos, los datos de panel están caracterizados por dos dimensiones,
+corte trasvasal y datos de panel,
+perdón, corte trasvasal y frecuencia temporal.
+El corte trasvasal, aquí lo vamos a expresar con el subíndice J,
+o con el subíndice I,
+y los datos de corte trasvasal van a ir de 1 hasta N,
+los datos de series temporales los vamos a indicar con la letra T minúscula,
+que van desde 1 hasta T mayúscula,
+de forma tal de que tengo N mayúscula por T datos.
+Tengo una matriz de datos de dimensión N por T.
+Y la notación va a ser que nuestra variable,
+que es variable I, variable pendiente,
+en el corte trasvasal era I subí,
+en la serie temporales era I subí,
+T, y el dato de panel va a ser I subí,
+o I subí, J, T,
+con alguna transparencia,
+si está con J en otro país,
+está con I,
+que le explica el corte trasvasal.
+Y
+la definición de datos de panel va a ser como la que
+mencionamos en el programa,
+es decir,
+la cantidad de datos de corte trasvasal
+siempre es más grande que la cantidad de datos de serie temporales.
+Creo que tienen un grafitito
+en la siguiente transparencia,
+que es el salario real promedio del jefe del hogar por deciles,
+tomando la encuesta permanente de hogares desde el año 1990 hasta el año 2003.
+y lo que tienen ahí son los 10 valores correspondientes a los 10 deciles del salario real.
+Este gráfico es un ejemplo de lo que la literatura identificaría como datos longitudinal.
+Si yo quiero hacer más grande el panel,
+la única dimensión que puede crecer es la temporada.
+Solo puede crecer T.
+Yo me siga, 2003, 2004, 2005, 2006, 2007.
+N no puede crecer más, porque son 10 deciles.
+O sea que cuando yo tengo deciles de ingresos medidos en el tiempo,
+tengo datos lógicos.
+Ahora, piensen que en lugar de hacer deciles son individuos.
+Si son individuos, uno podría tener datos de panel.
+Voy a tener 10 individuos, voy a tener 20.000 individuos.
+En un periodo temporal relativamente más corto.
+Y ahí, N es más grande que T,
+y entonces la teoría sintética que nosotros vamos a utilizar va a funcionar.
+Con N tendiendo A.
+Convergencia en probabilidad, convergencia en distribución.
+Paso rápido.
+El punto 1 es la definición de convergencia en probabilidad.
+A, X, N es una secuencia de variables aleatorias convergen a la constante A,
+si para todo épsilon pequeño y positivo,
+la probabilidad de que el valor absoluto de X, N y A
+sea mayor a N si no es igual a cero cuando es L.
+Y la notación que utilizamos en econometría y que vamos a utilizar acá es X, N flechita con una P arriba A,
+eso quiere decir que X, N converge en probabilidad A,
+o A es el límite de X, N.
+El caso particular de convergencia en probabilidad es cuando A vale cero,
+cuando A vale cero, X, N converge a cero,
+y nosotros lo llamamos O pequeña P1.
+Cualquier secuencia O pequeña P1 es una secuencia que converge en probabilidad a cero.
+Bounded in probability, la definición del punto 3,
+el incendio está limitada en probabilidad,
+si y solo si, para cada épsilon pequeño positivo existe un número B subépsilon finito,
+y un entero N subépsilon tal que la probabilidad de que la secuencia sea mayor al número B,
+menor a épsilon cuando N es más grande que N subépsilon.
+Hablando mal y pronto, si una secuencia de estabilidad de probability no converge a cero.
+Entonces, si no converge a cero en probabilidad,
+la notación tradicional es una secuencia O grande P1.
+Una secuencia O grande P1 quiere decir que no converge a cero en probabilidad.
+Si X, N converge en probabilidad al número A,
+constante A,
+entonces X, N es O grande P1.
+El lema 2 tiene
+las operaciones suma, recta, multiplicación
+de secuencias que se van a cero en probabilidad
+y secuencias que están bounded in probability.
+W y X, N son dos secuencias que se van a cero en probabilidad.
+Y Z son dos secuencias que están bounded in probability.
+La suma de dos secuencias que se van a cero
+en probabilidad es una secuencias que se van a cero en probabilidad.
+La suma de dos secuencias que están bounded in probability
+me da otra secuencia que está bounded in probability.
+La multiplicación de dos secuencias bounded in probability
+es una secuencia bounded in probability.
+Y la multiplicación de una secuencia que se va a cero en probabilidad
+y una secuencia que está bajo
+y de probabilidad se va a hacer en pronto.
+Y eso es lo que nosotros utilizamos
+cuando mostramos las propiedades
+de consistencia y normalidad sintótica
+de los cuadradores clásicos.
+Todas estas propiedades se cumplen
+para vectores y matrices,
+elemento por elemento.
+Tengo dos lemas, me parece.
+Teorema.
+Teorema de Flussky.
+D más cuatro es el teorema de Flussky.
+El teorema de Flussky lo que me dice
+es que si tengo una función continua
+en un punto C, la función G,
+y XN es una secuencia de vectores
+que converge a C,
+entonces la función evaluada en XN
+converge a la función evaluada en C.
+Básicamente,
+nosotros lo utilizamos cuando, por ejemplo,
+hacemos converger
+X traspuesta por X a su esperanza matemática
+y después decimos
+y X traspuesta por X
+convergen a su esperanza matemática
+la inversa de X traspuesta por X.
+Por X convergen a la inversa de su esperanza.
+La misma propiedad,
+pero para la convergencia en distribución,
+la definición 2 es la definición de convergencia en distribución,
+lo que me dice es que si tengo una secuencia
+de variables aleatorias XN que converge en distribución
+a la variable de aleatoria X,
+si y solo si la función de distribución acumulada
+de XN converge a la función de distribución acumulada de X.
+cuando N entiende a A.
+Nuestra definición,
+igual que decíamos XN,
+flechita P A es la convergencia en probabilidad,
+acá XN flechita con una D arriba,
+es XN converge en distribución a X.
+¿Vale?
+Obviamente,
+si XN converge en distribución a algo,
+está va a un dilitorio.
+No se lo hace.
+Y después vamos a utilizar,
+tengo el Continuous Mountain Thielen,
+que es el teorema de Schlucki,
+pero para convergencia en distribución,
+y me dice lo mismo que el teorema de Schlucki.
+Tengo una función,
+y XN converge en distribución a X,
+entonces F de XN converge en distribución a GD.
+Es lo mismo que el teorema de Schlucki,
+pero para convergencia en distribución.
+El teorema 1 que aparece ahí es el teorema de la Ley de los Grandes Números.
+La Ley de los Grandes Números me dice que sea WJ una secuencia de vectores aleatorios,
+que son independientes idénticamente distribuidos,
+con momento de orden 1 finito.
+Y aquí es donde entra el hecho de que nosotros vamos a trabajar en el corte transversal.
+Porque las variables en el corte transversal pueden ser independientes e idénticamente distribuidos.
+Piensen en el ejemplo del consumo y el ingreso,
+si en familia, consumo de una familia,
+puede ser independiente del consumo de la otra familia,
+ahora si estoy en un segundo caso y mido para una familia el consumo y el ingreso
+a lo largo del tiempo, esas variables no pueden ser dependientes.
+Nadie gana aleatoriamente de un mes al otro el salario,
+o sea que las variables son dependientes.
+Y cuando son dependientes necesito otro herramiental
+para mostrar las propiedades asistentes.
+O sea que entra en medio de los grandes números
+y el teorema que viene atrás,
+el teorema central del límite,
+solo me sirven cuando yo estoy utilizando una teoría sintótica
+que hace converger el tamaño del corte transversal al infinito.
+El teorema es el mismo que vimos en la economía,
+el teorema del límite,
+el teorema del límite,
+porque lo que es una secuencia de vector sanitario,
+de nuevo, independientes,
+idénticamente distribuidos,
+con momento de orden 2 finito,
+y momento de orden 1 igual a 0,
+y entonces la secuencia es satisfacer,
+no lo dije en la ley de los grandes números,
+pero básicamente,
+no lo dije en la ley de los grandes números,
+lo que me dice es que la suma sobre n converge a su esperanza.
+Y el teorema central del límite,
+lo que me dice es que
+la suma de la secuencia escalada por 1 sobre raíz de n
+converge a una distribución normal
+con media sello y matriz de varianza y covarianza
+en la matriz de varianza y covarianza de la secuencia.
+B le puse yo,
+siguiendo nuestra anotación de econometría,
+donde B es la varianza de la secuencia,
+o la matriz de varianza y covarianza de donde está.
+Ok, con este herramental
+vamos a describir los modelos.
+El supuesto ordenador
+de todo nuestro modelo
+es el primero que aparece en esta transparencia,
+que es que yo tengo
+una muestra aleatoria de la población,
+una muestra aleatoria de la población
+que quiero analizar
+en el corte de trabajar.
+Quiero analizar el consumo
+de los hogares de la ciudad autónoma de Buenos Aires,
+me consigo
+una muestra de hogares
+representativa de los hogares
+de la ciudad autónoma de Buenos Aires
+en un punto del tiempo
+y sigo esa muestra
+y sigo esa muestra
+la ruta.
+Nuestras variables
+X, J e I, J
+son independientes,
+aleatorias e idénticamente.
+I, J y X, J
+son vectores
+y o matrices
+que incluyen
+todas las observaciones
+de frecuencias temporales.
+Por ejemplo, I sub J
+I sub J
+consumo de la familia J
+supongamos que yo
+mido el consumo
+durante seis meses
+ese vector
+tiene seis observaciones
+del consumo de la familia J
+una para cada uno.
+X, J
+obviamente va a ser una matriz
+que voy a tener
+salvo que
+tenga una sola
+variable explicativa
+y no tenga constante
+el modelo
+lo que voy a tener
+es una matriz
+que va a tener
+en nuestra anotación
+K variables explicativas
+y para las K variables
+explicativas
+voy a tener datos
+durante
+T mayúscula
+perdida
+temporal
+es que X, J
+es una matriz
+de dimensión
+T por K
+y como dice ahí
+incluyo en la primera columna
+de 1
+T por 1
+porque los modelos
+que vamos a analizar
+tienen consta
+tienen ordenado
+entonces
+las ecuaciones
+1 y 2
+es
+la representación
+del modelo
+de regresión lineal
+escrito
+ecuación 1
+para una observación
+genérica
+de corte transversal
+J
+y una observación
+genérica
+de serie temporal
+de minúscula
+y escrito
+para una observación
+genérica
+de corte transversal
+J
+ecuación 2
+la diferencia
+entre la ecuación 1
+y la ecuación 2
+es que
+en la ecuación 1
+la variable dependiente
+es un escalar
+1 por 1
+esto es un escalar
+1 por 1
+xj
+es un vector
+de dimensión
+1
+por K
+beta
+es un vector
+de parámetros
+de dimensión
+K por 1
+de forma tal
+que la multiplicación
+es un escalar
+y el error
+es un escalar
+si yo
+para cada observación
+de corte transversal
+agrupo
+todas las observaciones
+de frecuencia temporal
+los escalares
+se convierten
+en vectores
+y matrices
+entonces
+I sub J
+I sub J
+I sub J
+es un vector
+de dimensión
+T por 1
+que tiene
+los T valores
+de I
+para la observación
+de corte transversal
+I sub J
+a 1
+I sub J a 2
+I sub J
+a 2
+familia J
+y mide el consumo
+tengo el consumo
+en el primer periodo
+en el segundo periodo
+en el décimo periodo
+suma
+X
+J
+ok
+tengo
+X J
+es una
+esto es
+de dimensión
+T por 1
+esto
+X J
+ya lo pusimos
+ahí arriba
+de dimensión
+T por K
+tengo
+las T
+observaciones
+de serie
+temporales
+para cada
+una de las
+K variables
+explicativas
+del mundo
+o sea que
+si
+lo pudiera
+si lo pusiera
+en términos
+de una
+matriz
+X J
+es
+1
+1
+1
+1
+de 1
+esa es la
+ordenada
+del origen
+después tengo
+X
+J
+1
+X
+J
+2
+ahí
+tengo
+un modelo
+de regresión
+lineal
+sin una sola
+variable
+explicativa
+y no
+podría poner
+qué sé yo
+en lugar de
+la
+de X
+podría poner
+las variables
+son Z
+y W
+una columna
+de
+Z
+J1
+Z
+J2
+Z
+J
+T
+mayúscula
+W
+J1
+W
+J2
+T
+T
+general
+K
+variables
+explicativas
+un sub
+J
+es
+un vector
+de dimensión
+T
+por
+el modelo
+de la ecuación
+2
+que es el mismo
+de la ecuación
+1
+solamente
+que está
+escrito
+apilando
+entre comillas
+todas las observaciones
+de series temporales
+para cada observación
+de cuánto
+y
+puedo poner
+la tercera
+forma
+de
+escribir
+el modelo
+vamos a poner acá
+la ecuación
+3
+la ecuación
+3
+la podemos
+escribir
+a partir
+de la ecuación
+2
+apilando
+entre comillas
+todas las observaciones
+de corto
+transversal
+por ejemplo
+vamos a definir
+el vector
+y
+el vector
+y
+que tiene
+y 1
+y 2
+y n
+cada uno
+cada uno
+de estos vectores
+acá en el medio
+tengo
+y subj
+cada uno
+de estos
+vectores
+es de dimensión
+T por 1
+o sea que la dimensión
+del vector
+y
+es
+n veces
+T
+por 1
+o sea que ahí
+tengo
+todos los datos
+de la variable
+dependiente
+en todos los
+períodos temporales
+en todas las
+observaciones
+y obviamente
+yo puedo escribir
+el modelo
+en la ecuación
+3
+para vectores
+y matrices
+de dimensión
+n por t
+y
+es igual a
+x beta
+más u
+donde
+y es
+n por t
+por 1
+x es
+n por t
+por k
+beta
+es k
+por 1
+o sea que la multiplicación
+es n por t
+por 1
+y u
+es n por t
+por 1
+y la ecuación
+3
+está escrita
+ahora
+todas las
+observaciones
+¿está claro
+esto?
+bueno
+nada
+escribí la ecuación
+3
+y me vuelvo
+al curso
+de econometría
+y este es el modelo
+de regresión
+lineal múlti
+igual que
+beta más u
+¿sí?
+o sea que puedo estimarlo
+por mismo para plaza
+beta sombrero
+x está puesta
+por x inversa
+x está puesta
+por 1
+¿sí?
+pues
+¿puedo hacerlo?
+y sí
+¿cómo lo voy a hacer?
+sí
+pero
+quiero saber
+cuáles son las propiedades
+de ese estimador
+y para saber
+cuáles son las propiedades
+de ese estimador
+necesito
+hacer ciertos supuestos
+para garantizar
+que esas propiedades
+sean buenas
+¿cómo hacíamos en
+econometría
+para encontrar
+estimaciones
+consistentes
+del vector
+de parámetros
+del modelo
+asumíamos
+asumíamos
+algún tipo
+de exogeneidad
+que
+si ustedes recuerdan
+nosotros
+en econometría
+establecimos
+dos propiedades
+de exogeneidad
+trabajamos la mayor
+parte
+del curso
+con una
+pero
+establecimos dos
+formas de exogeneidad
+que llamamos
+exogeneidad
+contemporánea
+y exogeneidad
+estricta
+la diferencia
+entre la exogeneidad
+contemporánea
+y la exogeneidad
+estricta
+es que la exogeneidad
+contemporánea
+requiere que las variables
+explicativas
+y el error
+de la ecuación
+no estén
+relacionados
+¿sí?
+en
+el mismo
+periodo temporal
+en el caso
+del corte
+transversal
+tengo un solo
+periodo temporal
+pero yo tengo
+una muerta
+de corte transversal
+en un punto
+del tiempo
+¿sí?
+y lo que necesitaba
+es que
+la esperanza
+de XJ
+por J
+sea cero
+¿sí?
+o sea
+en la misma J
+no tenía relación
+entre
+este
+la variable
+explicativa
+las variables
+explicativas
+y el error
+de la
+ahora tengo
+muchos periodos
+¿sí?
+y lo que
+se entiende
+por exogeneidad
+contemporánea
+es que
+en ninguno
+de los periodos
+temporales
+haya relación
+entre el error
+de la ecuación
+y las variables
+explicativas
+esa es la ecuación
+tres
+la esperanza
+de un J
+de un JT
+dado XJT
+es cero
+para TOTE
+no quiero relación
+entre los errores
+y las variables
+explicativas
+en ningún periodo
+temporal
+el mismo
+periodo temporal
+en ningún periodo
+temporal
+la condición
+de exogeneidad
+contemporánea
+me garantizaba
+que
+este
+el estimador
+de mínimos
+cuadrados clásicos
+era
+consciente
+básicamente
+si
+corte
+transversal
+vamos a hacer
+lo mismo
+tenía
+I
+igual a
+X beta
+sub
+beta
+sombrero
+era igual a
+X
+transpuesta por
+X
+inversa
+X
+transpuesta por
+I
+y esto era igual
+a
+X
+transpuesta por
+X
+inversa
+X
+transpuesta por
+X
+beta
+más U
+y esto era igual
+a beta
+más
+X
+transpuesta por
+X
+inversa
+X
+transpuesta
+dividiría esto por
+N
+dividiría esto por
+N
+esto se va a
+superar esa
+matemática
+y este
+espera
+esa matemática
+cero por
+la condición
+de exogenidad
+de
+X
+beta
+sombrero
+converge
+a beta
+esto no es
+más fácil
+la
+segunda
+condición
+de exogenidad
+por la
+ecuación
+4
+es lo que se
+conoce como
+exogenidad
+estricta
+la exogenidad
+estricta
+que es la
+de la
+la
+la
+condición
+de exogenidad
+que nosotros
+trabajamos
+en el
+en el curso
+de
+econometría
+lo que requiere
+es que
+el error
+de la ecuación
+no esté relacionado
+con
+las variables
+explicativas
+en ningún
+periodo
+ni en el mismo
+ni antes
+ni después
+ni en el pasado
+ni en el presente
+ni en el futuro
+yo no
+quiero ningún
+tipo de relación
+entre los errores
+y las variables
+explicativas
+en ningún
+periodo
+temporal
+esa es
+obviamente
+una condición
+más fuerte
+que la
+exogenidad
+contemporánea
+la exogenidad
+contemporánea
+solo requiere
+que en el mismo
+periodo
+temporal
+no haya
+relación
+entre las
+X y N
+la exogenidad
+estricta
+requiere
+que en el mismo
+periodo
+temporal
+no haya
+relación
+pero además
+no haya
+relación
+en ninguno
+de los
+otros
+periodos
+temporales
+el pasión 4
+me dice
+que la esperanza
+de UJT
+dado
+XJT
+1
+2
+T mayúscula
+se hace
+¿por qué
+en el curso
+de economía
+trabajamos
+para la condición
+de exogenidad
+estricta
+sí mismos
+cuadros clásicos
+solo requiere
+exogenidad
+contemporánea
+para la
+consistencia
+porque
+la exogenidad
+estricta
+engloba
+las propiedades
+de los restos
+de los estimadores
+que vimos
+en particular
+mismos
+cuadros
+generalizados
+consistentes
+si se cumple
+el supuesto
+de exogenidad
+estricta
+si se cumple
+el supuesto
+de exogenidad
+contemporánea
+el estimador
+del mismo
+cuadro generalizado
+no es
+así
+entonces
+para englobar
+todos
+en una sola
+condición
+de exogenidad
+nosotros
+mencionamos
+la exogenidad
+estricta
+con una condición
+de exogenidad
+acá
+dependiendo
+de lo que yo asuma
+voy a tener
+un estimador
+consistento
+entonces
+de nuevo
+esto ya lo dije
+lo vamos a poner
+acá
+con las letritas
+para estimar
+beta
+en la ecuación
+2
+recuerden que
+en esta
+otra vez
+la ecuación
+3 no existe
+ni yo
+la ecuación
+2 es
+i sub j
+igual a
+xj
+por beta
+más u sub j
+para poder
+estimar
+en forma
+consistente
+los mismos
+cuadrados
+clásicos
+la ecuación
+2
+necesito
+el supuesto
+de exogenidad
+contemporánea
+necesito
+que la esperanza
+de xj
+transpuesto
+por uj
+se hace
+en el mismo
+periodo temporal
+x y u
+no están
+relacion
+como
+la matriz
+xj
+la dimensión
+t por k
+tiene una columna
+de unos
+esta condición
+implica que
+la esperanza
+del error
+es
+una
+de las condiciones
+para que se
+mantenga
+el supuesto
+1
+es que
+la esperanza
+de xj
+te
+transpuesto
+por uj
+t
+se hace
+para todos
+la ecuación
+2
+la ecuación
+2
+me decía
+mirá
+i sub j
+es igual
+a xj
+por meta
+más
+u sub j
+yo sé
+que
+en la ecuación
+2
+u sub j
+es igual
+a
+i sub j
+menos
+xj
+por meta
+y en
+el supuesto
+1
+lo que tengo
+es
+la
+esperanza
+matemática
+de x
+por
+uj
+que es
+esta ecuación
+que aparece
+acá
+solo que
+en lugar
+de un
+j
+estoy poniendo
+ij
+menos
+t
+que es
+esa
+esa es
+la
+condición
+de
+ortogonalidad
+hago
+la
+distributiva
+de xj
+con los dos
+términos
+de paréntesis
+aplico
+la esperanza
+matemática
+y me da
+la ecuación
+5
+las
+ecuaciones
+5
+que
+en el
+contexto
+de
+economía
+miembros
+para
+prácticos
+con lo que
+nosotros
+llamamos
+las
+ecuaciones
+normales
+las
+ecuaciones
+normales
+definen
+el valor
+del vector
+beta
+si
+y solo
+si
+tienen
+una
+única
+solución
+y para
+que tengan
+una
+única
+solución
+en el
+caso
+de
+el
+curso
+de
+cronometría
+mismo
+cuadro
+clásico
+lo que
+necesitamos
+era el
+supuesto
+3
+de
+no
+singularidad
+o no
+multicolinealidad
+que me
+permitía
+invertir
+la matriz
+x
+y de
+pejar
+beta
+bueno
+acá
+el supuesto
+que necesito
+que lo voy a llamar
+supuesto 2
+es que
+esta
+matriz
+que tengo
+acá
+es la
+inversa
+pues si
+tiene
+inversa
+pero multiplico
+lo de al lado
+con la
+inversa
+de la
+matriz
+y
+dejo
+1
+supuesto 2
+la
+esperanza
+de
+xj
+transguesto
+por xj
+que lo voy a llamar
+a
+es una matriz
+no aleatoria
+no singular
+quiere decir que tiene
+el rango completo
+quiere decir que tiene
+inversa
+espejo
+beta
+de la ecuación
+anterior
+pero multiplicando
+por la inversa
+de la esperanza
+de xj
+transguesto
+por xj
+y después
+para obtener
+el estimador
+del vector
+de parámetros
+reemplazo
+la esperanza
+matemática
+por su
+análogo
+1 sobre n
+por la suma
+de 1
+las cenas
+se cancelan
+tengo el estimador
+tradicional
+del mismo
+parámetros
+x
+transguesto
+por x
+inversa
+x
+transguesto
+por x
+x
+transguesto
+por x
+x
+transguesto
+por x
+x
+transguesto
+por x
+inversa
+x
+transguesto
+por y
+el mismo cuadro
+clásico
+es la ecuación
+3
+que yo escribí
+que agrupa
+todo
+ecuación
+2
+agrupaba
+todas las observaciones
+del 7
+temporales
+o sea
+que estaba
+escrita
+para una
+observación
+genérica
+de corte
+transversal
+j
+o sea
+que necesito
+la suma
+a través
+del corte
+transversal
+por eso
+la suma
+van desde
+j igual
+1
+hasta
+n
+y en la
+primera
+ecuación
+que escribimos
+para una
+observación
+genérica
+j
+y una
+observación
+genérica
+de serie
+temporal
+y
+t minúscula
+necesito
+las dos
+sumas
+en esa
+ecuación
+el beta
+sombrero
+para la
+para la
+ecuación
+1
+es la
+suma
+desde
+j
+igual
+1
+hasta
+n
+la suma
+desde
+t
+igual
+1
+hasta
+t
+mayúscula
+de
+x
+j
+t
+tras
+puerto
+por
+x
+j
+t
+todo
+inversa
+por
+la suma
+desde
+j
+igual
+1
+hasta
+n
+la suma
+desde
+t
+igual
+1
+hasta
+t
+mayúscula
+de
+x
+j
+t
+traspuesto
+por
+j
+eso es lo mismo
+que
+si tengo
+el modelo
+escrito
+para una
+observación
+genérica
+de corte
+transversal
+y una
+observación
+genérica
+de series
+temporales
+beta
+sombrero
+lleva
+dos
+sumas
+mejor
+que se
+retén
+si tengo
+el modelo
+escrito
+para una
+observación
+genérica
+de corte
+transversal
+agrupando
+todas las
+observaciones
+de series
+temporales
+tengo
+una
+solo suma
+j
+de
+de
+un
+contra
+n
+si
+agrupé
+las
+observaciones
+de series
+temporales
+y agrupé
+las
+observaciones
+de
+pan
+transversal
+no tengo
+sumas
+solo tengo
+x
+traspuesta
+por x
+inversa
+pero todo
+me da
+el mismo
+número
+vector
+genérica
+la
+ecuación
+8
+es la
+estimación
+usando
+la
+estimación
+de
+la
+ecuación
+1
+que decía
+que
+este
+jt
+era igual
+a
+x
+jt
+por beta
+más
+1
+por beta
+y yo agarro
+la ecuación
+8
+y
+en lugar
+de
+y
+jt
+acá
+pongo
+x
+jt
+por beta
+más
+1
+jt
+me queda
+la segunda
+igualdad
+de la transparencia
+me va a quedar
+acá
+suma
+de
+x
+jt
+por
+x
+jt
+multiplicado por su inversa
+se cancela y solo me queda el beta
+y después me va a quedar
+esta matriz inversa
+multiplicada por la doble suma
+x
+jt
+por
+1
+jt
+usando la ley de los grandes números
+1 sobre n
+suma de
+j
+igual 1
+hasta n
+cuando n
+es infinito
+convergen
+a
+su esperanza matemática
+1 sobre n
+suma desde
+jt
+igual 1
+hasta n
+cuando n
+es infinito
+convergen a
+la esperanza matemática
+después
+recuerdan que
+llamamos
+a
+a la esperanza
+de
+xj
+trajo esto
+por xj
+o sea que
+esto es
+esto es
+inversa
+inversa
+de
+esto es
+o grande
+de
+y
+de nuevo
+esta esperanza matemática
+es ser
+por el supuesto
+de la exogenidad
+mismo periodo
+temporal
+no tengo relación
+entre el error
+y
+las variables
+explicativas
+o sea que
+esta secuencia
+es o
+pequeña
+pero
+la multiplicación
+de una secuencia
+grande
+por una secuencia
+pequeña
+es o pequeña
+o sea que
+todo eso se va a cero
+y cuando n
+es infinito
+el estimador
+beta
+sombrero
+converge
+probabilidad
+y es un estimador
+consistente
+que ya lo sabía
+que hicimos
+la metría
+cuando hay
+exogenidad
+contemporánea
+es
+un estimador
+consistente
+del vector
+del parámetro
+de población
+en la literatura
+del alto
+del panel
+este estimador
+se conoce
+como
+pool
+o l
+el
+el
+el
+el
+va a ser
+el
+comando
+del
+estatal
+para
+hacer
+la estimación
+por el mismo
+el
+el dato
+del panel
+no decimos
+mismo
+para
+el
+pool
+pero
+piensen
+que tengo
+en este
+contexto
+un gran
+corte
+transversal
+de dimensión
+n mayúscula
+parte
+mayor
+es como
+si
+hubiera
+un gran
+corte
+transversal
+bueno
+voy a
+hacer
+o sea
+una
+supra
+cosita
+en la
+segunda
+igualdad
+segunda
+igualdad
+vamos a
+agarrar
+este
+beta
+y lo
+vamos a
+pasar
+restando
+al
+primer
+canto
+más tarde
+que
+en este
+lado
+me
+quede
+beta
+sombrero
+menos
+beta
+cuando hago
+eso
+esto
+desaparece
+después
+voy a
+escribir
+este
+1
+sobre
+raíz
+de
+n
+como
+1
+sobre
+n
+como
+1
+sobre
+raíz
+de n
+multiplicado
+por
+1
+sobre
+raíz
+de n
+esto
+lo saco
+de acá
+y lo
+que pongo
+es
+1
+sobre
+raíz
+de n
+y después
+voy a
+agarrar
+y
+del lado
+izquierdo
+voy a
+multiplicar
+beta
+sombrero
+menos
+beta
+por
+raíz
+de n
+y
+multiplico
+el lado
+derecho
+o sea
+que
+una
+de
+estas
+raíces
+de n
+desaparece
+entonces
+lo que
+tengo
+es
+la ecuación
+9
+que aparece
+en la
+siguiente
+transformación
+raíz
+de n
+por beta
+sobre
+1
+por beta
+es igual
+a
+1
+sobre n
+suma
+de
+xj
+traspuesto
+por
+xj
+inversa
+multiplicado
+por
+1
+sobre
+raíz
+de n
+suma
+desde
+j
+igual
+1
+hasta
+n
+de
+xj
+traspuesto
+por
+1
+la ecuación
+9
+está escrito
+como la
+primera
+ecuación
+o sea
+que
+necesito
+las dos
+sumas
+sobre
+j
+y
+sobre
+t
+yo
+en un
+cierre
+recién
+estoy usando
+la ecuación
+2
+que
+agrupa
+las
+observaciones
+se
+deje
+poner
+necesito
+una
+suma
+y una
+suma
+ahí
+está
+escrito
+con
+las
+dos
+sumas
+básicamente
+porque
+nuestra
+definición
+de
+exogenidad
+contemporánea
+la hicimos
+con
+xjt
+y
+y
+y
+y
+y
+y
+y
+y
+y
+y
+y
+y
+y
+y
+y
+y
+y
+y
+y
+y
+y
+y
+y
+y
+y
+y
+y
+y
+y
+y
+y
+y
+y
+y
+y
+y
+la suma
+de xjt
+transpuesta
+por jts
+para aplicar
+el teorema central
+del límite
+necesito que
+la varianza
+entre famillas
+de la
+de la secuencia
+sea fin
+para aplicar
+el teorema
+de Lindel
+Bepi-Levy
+si
+la
+varianza
+es finita
+entonces
+la segunda
+parte
+segundo
+término
+del lado
+derecho
+converge
+a una
+distribución
+normal
+con media
+cero
+y matriz
+de varianza
+y parianza
+B
+donde B
+es
+la varianza
+de la secuencia
+la primera
+parte
+cuando
+n
+tiene
+infinito
+este
+término
+lo vimos
+en el
+en la
+consistencia
+con ver que
+a
+inversa
+este
+término
+se va
+a una
+normal
+con media
+cero
+y matriz
+de varianza
+y parianza
+B
+o sea
+que
+cuando
+n
+tiene
+infinito
+raíz
+de n
+veinte
+sombrero
+menos
+B
+converge
+en distribución
+a una
+normal
+vamos a ver
+lo primero
+así
+converge
+en distribución
+a
+A
+inversa
+por una
+normal
+cero
+B
+o
+una
+normal
+cero
+A
+inversa
+B
+A
+inversa
+A
+inversa
+entra
+comillas
+al cuadrado
+adentro
+de la
+base
+en forma
+cuadrada
+son
+trizas
+entonces
+esa es
+la distribución
+asintótica
+del estimador
+de Pulo
+L
+que me dice
+que
+el estimador
+de mínimo
+cuadrado clásico
+tiene
+distribución
+1
+y yo puedo
+escribirlo
+como la
+ecuación
+10
+o
+sacar
+el raíz
+de n
+que está
+acá
+y
+ponerlo
+acá
+raíz
+de n
+este
+raíz
+de n
+entra
+dentro
+de la
+varianza
+al cuadrado
+o sea
+que lo puedo
+sacar
+de acá
+cuando hice
+mal
+esto va a ver
+eso
+esto es
+1
+sobre raíz
+de n
+1
+sobre raíz
+de n
+entra
+al cuadrado
+de la varianza
+o sea
+que lo puedo
+sacar
+de acá
+y
+con la
+ropa
+entonces
+puedo decir
+mira
+beta
+sombrero
+convergen
+distribución
+a una
+normal
+media
+beta
+y
+matriz
+de varianza
+y covarianza
+A
+impensa
+B
+A impensa
+medio
+de n
+que es
+la ecuación
+11
+de la varianza
+la matriz
+de varianza
+citótica
+del estimador
+del mismo
+cuadrado
+clásico
+es
+A inversa
+por B
+por A inversa
+y no
+A y B
+involucran
+la esperanza
+matemática
+solo la
+poca
+de la
+si observo
+la población
+no
+solo la población
+no
+para estimar
+puedo usar
+los análogos
+que muestran
+para A
+es fácil
+a sombrero
+que es
+en lugar
+de la esperanza
+matemática
+voy a poner
+su análogo
+postral
+1 sobre 1
+por la suma
+de descóticos
+de 1
+hasta el
+de 1
+y eso
+lo puedo
+calcular
+desde el
+trato
+B
+hago lo mismo
+hago lo mismo
+lo único que hago
+es reemplazar
+la esperanza
+matemática
+o su análogo
+postral
+por la suma
+por la suma
+de descóticos
+de 1
+hasta el
+solo que
+la secuencia
+involucra
+los errores
+del modelo
+los errores
+no son observados
+o sea que
+los tengo que reemplazar
+por una estimación
+que van a ser
+los residuos
+del modelo
+estimado
+la estimación
+de B
+va a ser
+reemplazando
+la esperanza
+matemática
+por el
+análogo
+postral
+y reemplazando
+los errores
+por los residuos
+y esa es
+una estimación
+consistente
+de B
+para mostrar
+consistencia
+lo tienen mostrado
+ahí abajo
+lo único
+que tenemos
+que hacer
+es
+agarrar
+los residuos
+un sombrero
+J
+igual a
+I
+sub J
+menos
+X
+J
+por beta
+y
+J
+por beta
+sombrero
+y
+sumar
+X
+J
+por beta
+restar
+X
+J
+por beta
+eso es
+gráfico
+sumo
+un reto
+la misma
+cantidad
+agarrar
+I
+sub J
+con
+este valor
+negativo
+entonces
+I
+sub J
+menos
+X
+J
+por beta
+y
+entre
+estos dos
+términos
+que tienen
+X
+J
+en los dos
+sacar factor
+común
+menos
+X
+J
+lo común
+de
+menos
+y
+este
+y
+J
+menos
+X
+J
+por beta
+es
+las
+no
+que es
+esto
+y
+lo que vamos a hacer
+es
+en lugar de poner
+un sombrero
+J
+acá
+es poner
+esta resta
+y en lugar de poner
+un sombrero
+J
+traspuesto
+poner
+esta resta
+traspuesto
+no sé
+no sé si
+si
+no
+si
+esto
+es
+esto
+es
+U
+J
+sombrero
+y esto
+es
+U
+J
+y
+después
+lo otro
+en matemática
+debe de ser
+la de
+X
+J
+con U
+con
+X
+J
+con
+X
+J
+son
+todos los términos
+que aparecen ahí
+en la ecuación
+S
+todos los términos
+que aparecen
+en la
+ecuación
+12
+el
+segundo
+término
+este
+que está
+acá
+cuando
+n
+tiene infinito
+se va a
+cero
+básicamente
+porque
+como
+el estimador
+es consistente
+el infinito
+de los sombreros
+con parque a beta
+el sombrero
+con parque a beta
+todo esto se hace cero
+el tercer término
+se hace cero
+por lo mismo
+por dos formas
+de mostrarlo
+porque beta sombrero
+menos beta
+cuando hay
+el estimado infinito
+se va a cero
+en probabilidad
+porque
+son estimadores
+consistentes
+o
+cuando hay
+el estimado infinito
+este
+1 sobre n
+sobre la suma
+convergen la esperanza
+matemática
+y la esperanza
+matemática
+de x
+conta por
+j
+es cero
+por uno
+de los supuestos
+de los genios
+y el último
+término
+también se va a cero
+por la misma
+razón
+o sea
+o sea
+que el único
+término
+que sobrevive
+es este
+que cuando n
+tiene infinito
+1 sobre n
+por la suma
+convergen la esperanza
+matemática
+pero la esperanza
+matemática
+de x
+j
+por
+u
+j
+o u
+j
+tras
+puerto
+por x
+j
+es b
+o sea
+que
+cuando n
+es infinito
+b
+sombrero
+converge
+a b
+que sombrero
+animado
+de nuevo
+usando los residuos
+lugar de los errores
+es un estimado
+consistente
+muy bien
+¿verdad?
+¿verdad?
+¿verdad?
+¿verdad?
+la estimación
+de las
+variaciones
+y variaciones
+era inversa
+por b
+por a
+inversa
+ahora
+de esa
+sombrero
+inversa
+por b
+sombrero
+por a
+inversa
+dividido
+n
+si estoy
+calculando
+la
+cantidad de
+variaciones
+de la variación
+de beta
+sombrero
+en la ecuación
+13
+tienen
+a
+inversa
+sombrero
+b
+sombrero
+y a
+inversa
+sombrero
+escrito
+con la
+c
+y con
+sus
+sombrero
+la ecuación
+13
+es
+la matriz
+de varianzas
+y covarianzas
+de los
+estimadores
+de mismos
+cuadros clásicos
+de los estimadores
+de
+pool
+o
+l
+solo
+asumiendo
+exogeneidad
+contemporánea
+y
+el supuesto
+2
+que
+la matriz
+de variables
+explicativas
+tiene
+inversa
+no
+use
+ningún
+supuesto
+sobre
+los
+momentos
+de orden
+2
+del
+error
+o sea
+que
+la matriz
+que hay
+la matriz
+de varianzas
+iguales
+de la ecuación
+13
+es una
+matriz
+robusta
+nosotros
+la llamamos
+en econometría
+ante la
+potencial
+presencia
+de
+esterosegasticidad
+o
+correlación
+seria
+porque
+yo
+no
+asumí
+ni
+homosegasticidad
+ni
+ausencia
+de
+correlación
+no
+asumí
+nada
+no
+me
+importa
+¿está bien?
+¿está bien?
+la raíz cuadrada
+de los elementos
+de la
+diagonal
+principal
+de la
+matriz
+13
+es la
+raíz cuadrada
+de la
+varianza
+de los
+estimadores
+que según
+utiliza
+para definir
+el estadístico
+T
+de significatividad
+individual
+la matriz
+13
+entera
+es la
+que uso
+para definir
+el estadístico
+de Wall
+o sea
+que puedo
+chequear
+o hacer
+inferencia
+estadística
+sobre
+el modelo
+usando
+esa estimación
+de la
+matriz
+de varianzas
+iguales
+puedo
+simplificar
+la ecuación
+13
+sí
+puedo simplificar
+la ecuación
+13
+asumiendo
+como
+canónicamente
+uno asume
+el mínimo
+cuadrado clásico
+que no hay
+heterosepticidad
+y no hay
+correlación
+en el caso
+de panel
+en el caso
+de panel
+lo que
+uno asume
+es que no hay
+heterosepticidad
+y correlación
+serial
+en el tiempo
+y yo agrego
+un ejemplo
+ahí
+bueno
+ahí tienen
+el político
+de Wall
+o sea
+R
+me pasó
+primero
+que nos sale
+minúscula
+tras puesto
+la hipótesis nula
+es
+R
+mayúscula
+beta
+igual a R
+centro
+tengo
+R
+por la matriz
+de varianza
+de varianza
+y covarianza
+ponernos
+de apuestas
+con inversa
+es lo mismo
+que vimos
+en econometría
+solamente
+que
+en el medio
+ahora tengo
+esta nueva
+los supuestos
+de
+homosedasticidad
+y ausencia
+de correlación
+serían
+en el tiempo
+están
+resumidos
+en el supuesto
+3
+si yo
+asumo
+homosedasticidad
+y ausencia
+de correlación
+serial
+y todo
+funciona
+de la misma
+manera
+básicamente
+ve
+ve
+ve
+ve
+ve
+cuando
+esto que está acá en el medio
+y ANSA
+SU no tiene ningún problema
+es
+términos de
+supuesto 4 de varianza de los errores
+en Fénica
+6 más cuadrados por la matriz identidad
+o sea que
+lo que pasa es que acá
+me sale un
+sigma cuadrado, en el caso de
+corte
+traversal
+mismos cuadrados clásicos
+la matriz de varianza de los U
+es sigma cuadrado por la matriz identidad
+entonces acá esto sería
+la varianza de X
+multiplicado por sigma cuadrado
+P
+la esperanza de
+X
+transpuesto por U
+por U transpuesto por X
+eso es
+sigma cuadrado
+por la esperanza de X transpuesto por X
+sigma cuadrado por A
+como en la matriz
+la matriz
+queda A
+inversa
+por B
+por A
+inversa
+cuando asumo
+este
+homosegasticidad y ausencia de correlación
+en el tiempo
+esto me queda
+A
+inversa
+por
+sigma cuadrado por A
+eso es B
+por A
+inversa
+este A
+se cancela con este A
+inversa y me queda
+sigma cuadrado por A
+inversa
+sigma cuadrado por
+inversa
+sigma cuadrado por
+ahí está estimado
+sobre esperanza matemática de A
+por
+suma de 1 hasta B
+suma de J
+de 1
+y
+sigma cuadrado
+signo cuadrado
+que esté estimado
+puesto acá como
+sigma sombrero
+al cuadrado
+a
+o sea
+O sea, me revisen.
+Y básicamente este sigma sombrero al cuadrado
+sigma sombrero al cuadrado es
+suma de residuos al cuadrado sobre grado de libertad.
+De nuevo, la ecuación 13
+en la matriz de varianzas y covarianzas de los estimadores,
+en la matriz de varianzas y covarianzas sintóticas
+de los estimadores de mínimos cuadrados clásicos
+robusta ante la presencia de heterosegaticidad y covarianzas de los.
+La ecuación 15
+es la matriz de varianza y covarianza sintótica
+de los estimados de mínimos cuadrados clásicos
+cuando yo asumo homosegaticidad y ausencia para la sensibilidad.
+¿Qué pasa
+si yo no asumo
+homosegaticidad y ausencia de correlación serial?
+Tengo que usar la ecuación 13.
+Para poder hacer inferencia estadística
+necesito calcular correctamente la matriz de varianza y covarianza.
+La matriz de varianza y covarianza
+La matriz de varianza y covarianza
+de los estimadores de mínimos cuadrados clásicos
+en presencia de heterosegaticidad y correlación serial
+en econometría
+era
+x transpuesta por x inversa
+x transpuesta por omega por x
+y x transpuesta por x inversa
+que es lo mismo que tenemos acá.
+Porque es un gran corte transversal.
+¿Qué es lo que sucedía
+cuando
+mi modelo
+tenía heterosegaticidad
+y yo
+correlación serial?
+Los estimadores
+de mínimos cuadrados clásicos
+dejan de ser eficientes.
+Siguen siendo consistentes
+siguen siendo
+asintóticamente normales
+pero dejan de ser eficientes.
+Si yo quisiera
+los estimadores eficientes
+tengo que cambiar de método de estimación.
+y pasar
+de
+mínimo cuadrado clásico
+a mínimo cuadrado generalizado.
+Cuando había heterosegaticidad
+o correlación serial
+nosotros teníamos dos caminos.
+el primer camino era
+estimar con
+mínimos cuadrados clásicos
+y para hacer inferencia estadística
+calcular correctamente
+la matriz de valencia y covalencia.
+o
+estimar con
+mínimos cuadrados generalizados.
+Pero
+el estimador
+de mínimos cuadrados generalizados
+necesita
+para ser consistente
+que yo
+refuerce
+la condición de exogeneidad.
+y eso está hecho
+en el supuesto
+uno primos
+que me dice que
+en lugar de
+exogeneidad
+contemporánea
+lo que ahora
+voy a exigir
+es exogeneidad
+estricta
+en el modelo.
+Está escrito
+en forma rara
+está escrito
+en forma rara
+básicamente porque
+es más fácil
+después para
+hacer la demostración.
+Pero
+la
+o sea
+como lo escribimos
+en
+este
+en econometría
+y escribimos
+esperanza de UJ
+condicional
+en XJ
+es igual.
+Y acá
+está escrito como
+la esperanza de XJ
+producto crónica
+con UJ
+es igual a ser.
+En el que
+el producto crónica
+es multiplicar
+UJ
+por cada uno
+de los elementos
+de la matriz X.
+O sea
+que
+básicamente
+me dice lo mismo
+no necesito
+ninguna relación
+entre
+UJ
+que incluye
+todos los periodos
+temporales
+o ningún X
+en ningún periodo
+temporal.
+Y
+necesito
+reforzar
+el supuesto 2
+porque el supuesto 2
+el dato de panel
+era que
+la esperanza de X
+transpuesta por X
+y la esperanza de XJ
+transpuesta por XJ
+es la inversa.
+Pero ahora
+lo que necesito
+que tenga inversa
+es
+la esperanza de XJ
+transpuesta por omega
+por XJ
+para poder
+despejar
+el beta
+del mismo
+parámetro
+de X.
+O sea
+que el supuesto
+2'
+está puesto allí
+que es
+omega
+positiva
+definida
+y la esperanza
+de XJ
+de respuesta por omega
+inversa por XJ
+no es singular
+tiene rango
+completo
+de tira inversa.
+Si ustedes
+miran
+sus apuntes
+de
+econometría
+nosotros
+definimos
+la inversa
+de omega
+como
+P
+por P
+tras
+puerto
+y
+multiplicamos
+todo
+el modelo
+por P
+acá
+en lugar
+de definir
+P
+P
+tras
+puerto
+puse
+omega
+a la menos
+un medio
+omega
+a la menos
+un medio
+omega
+a la menos
+un medio
+omega
+a la menos
+un medio
+omega
+a la menos
+pre-multiplico
+por P
+por omega
+a la menos
+un medio
+el lado
+izquierdo
+el lado
+derecho
+y eso
+me transforma
+las variables
+en un modelo
+con
+estrellita
+y en este
+modelo
+ecuación
+16
+la esperanza
+de
+un J
+estrellita
+por
+un J
+estrellita
+la cuesta
+es la más
+distinta
+si le saco
+la
+heterosegasticidad
+y o
+fracción
+se pierna
+un tiempo
+también
+transformo
+el modelo
+para eliminar
+el problema
+una vez que
+elimino
+el problema
+la estimación
+del mínimo
+cuadrado
+clásico
+en la ecuación
+16
+me da
+estimadores
+que son
+eficientes
+consistente
+y
+asintóticamente
+normal
+filda
+sombrero
+creo que
+puse
+beta
+tilde
+y
+así
+beta
+para diferenciarlo
+dos
+beta
+sombrero
+le puse
+al mismo
+cuadrado
+plástico
+beta
+tilde
+el mismo
+cuadrado
+generalizado
+beta
+tilde
+es
+suma
+desde
+J
+igual
+uno
+hasta
+N
+de
+X
+J
+estrellita
+tras
+muerto
+por
+X
+J
+estrellita
+todo
+es
+suma
+desde
+J
+igual
+uno
+hasta
+N
+X
+J
+estrellita
+tras
+puerto
+por
+I
+J
+después
+puedo
+deshacer
+las estrellitas
+esto
+es
+omega
+a la menos
+un medio
+por
+X
+J
+todo
+traspuesto
+esto
+es
+X
+J
+traspuesto
+por
+omega
+a la
+menos
+un
+medio
+y esta
+X
+J
+estrellita
+es
+omega
+a la
+menos
+un
+medio
+por
+X
+J
+o sea
+que
+todo lo
+que tengo
+aquí
+es
+suma
+en el
+J
+igual
+uno
+hasta
+N
+X
+J
+traspuesto
+por
+omega
+inversa
+por
+X
+J
+todo
+inversa
+y esto
+que tengo
+acá
+me va a
+quedar
+suma
+de
+J
+igual
+uno
+hasta
+N
+de
+X
+J
+traspuesto
+por
+omega
+inversa
+por
+Y
+X
+traspuesta
+por
+omega
+inversa
+por
+X
+todo
+inversa
+X
+traspuesta
+por
+omega
+inversa
+por
+Y
+es
+nuestro
+estimado
+del
+mismo
+para
+3
+este
+es
+el estimado
+del
+16
+exactamente
+igual
+que lo
+escribí
+yo
+la ecuación
+17
+es
+desarmar
+las
+estrellitas
+que aparece
+y lo
+medio
+y pasa
+en el
+medio
+y después
+la ecuación
+18
+consiste
+en agarrar
+la ecuación
+17
+y
+en lugar
+de
+I
+sub
+J
+poner
+20
+J
+por
+beta
+más
+Y
+beta
+queda
+solito
+y el
+segundo
+término
+queda
+multiplicado
+por
+Y
+por
+la ley
+de los
+grandes
+números
+cuando
+N
+tiende
+a
+infinito
+el
+primer
+término
+1
+sobre
+N
+suma
+de
+X
+J
+X
+J
+converte
+en su
+esperanza
+matemática
+que nosotros
+llamará
+antes
+A
+era
+esperanza
+de
+X
+J
+transpuesto
+por
+X
+J
+ahora
+A
+es
+esperanza
+de
+X
+J
+transpuesto
+por
+omega
+inversa
+por
+X
+y
+en el
+primal
+en el
+segundo
+término
+en el
+lado
+derecho
+lo que
+tengo
+es
+la
+inversa
+de este
+número
+y
+por
+el
+problema
+de
+Lusky
+si
+lo que
+tengo
+entre
+paréntesis
+converge
+a
+la
+inversa
+converge
+a
+inversa
+y
+con la
+ley
+de los
+grandes
+números
+esto
+se va
+a
+esperanza
+matemática
+esperanza
+de
+X
+J
+transpuesto
+por
+omega
+inversa
+por
+esa
+última
+esperanza
+matemática
+es
+cero
+si se
+cumple
+el
+supuesto
+de
+exogenia
+estricta
+vamos a
+esta
+esperanza
+matemática
+se va
+a cero
+si se
+cumple
+el supuesto
+de
+exogenia
+estricta
+vamos a
+aprovechar
+el hecho
+de que
+tenemos
+dos
+operadores
+lineales
+uno es
+la
+vectorización
+y otro
+es la
+esperanza
+matemática
+y una
+de las
+propiedades
+de la
+vectorización
+es que
+la
+vectorización
+de la
+multiplicación
+de tres
+matrices
+D
+por E
+por F
+yo la puedo
+escribir
+como
+F
+transpuesto
+producto
+crónica
+por D
+multiplicado
+por la
+vectorización
+de la
+matriz
+del
+B
+los operadores
+son lineales
+o sea que
+yo tengo
+esta esperanza
+matemática
+acá
+voy a aplicar
+la vectorización
+y después voy
+a intercambiar
+voy a poner
+la vectorización
+primero
+y la
+esperanza
+después
+y
+acá me va
+a quedar
+esperanza
+de la
+vectorización
+de
+por E
+por F
+y eso es
+la esperanza
+de
+F
+sub J
+necesito
+F
+transpuesto
+es
+la esperanza
+de un J
+transpuesto
+crónica
+X
+J
+transpuesto
+por la
+vectorización
+de
+pero
+justamente
+esto
+que lo puedo
+escribir así
+sacando la esperanza
+para afuera
+es como
+nosotros
+escribimos
+el supuesto
+de sugeriente
+esperanza
+del producto
+crónica
+de
+X
+J
+y J
+y
+veces
+no quiero
+ninguna
+relación
+entre
+el error
+de ninguna
+observación
+y la X
+y la X
+en el color
+seco
+si
+se cumple
+el supuesto
+de exogenidad
+estricta
+entonces
+esto se va
+a cero
+esto es
+O
+pequeña
+P1
+esto es
+O
+grande
+P1
+la multiplicación
+de
+O
+grande
+por O
+pequeña
+migrado
+o
+pequeña
+y
+beta
+tilde
+converte
+en probabilidad
+a beta
+y el estimado
+le
+es
+posible
+que
+así
+o
+r
+o
+y
+o
+biga
+me
+hyper
+l
+o
+me
+maybe
+o
+home
+y
+bin
+an
+Sketch
+$ testing
+ecuación de visiones
+lo digo
+este beta
+que está acá
+lo paso restando al primer término
+esta n que está acá
+1 sobre n
+la reemplazo por
+1 sobre raíz de n
+1 sobre raíz de n
+y después
+multiplico lo del lado por raíz de n
+para que de este lado
+me quede
+el lado izquierdo
+el lado izquierdo me va a quedar
+raíz de n
+por
+beta
+y del lado derecho
+acá me va a quedar una raíz de n
+esa es la ecuación
+clico el
+teorema saltar del límite
+el primer término del lado derecho
+converge a inversa
+el segundo término converge a una normal
+con media cero
+y matriz de varianza y covarianza
+B mayúscula
+donde B mayúscula
+es la varianza de la secuencia
+es la esperanza
+de X
+J
+traspuesto por omega
+inversa
+por J
+por J
+traspuesto por omega
+inversa
+la matriz de varianza y covarianzas
+del estimador del mismo cuadrado generalizado
+es la misma que antes
+A
+inversa
+por B
+por A inversa
+solamente que A y B
+ahora tienen la
+definición
+el problema
+es lo mismo
+¿sí?
+bien allí
+A inversa por B
+por A inversa
+solamente que ahora
+A inversa
+involucra omega
+inversa
+B
+involucra omega
+inversa
+pero no
+aclaro
+porque ya no
+pero
+básicamente ahora
+lo que tengo que hacer
+es
+mostrar
+una vez que mostramos
+las propiedades
+asintóticas del mismo cuadrado generalizado
+en la práctica
+omega no lo conocemos
+lo tenemos que estimar
+physical GLM
+mínimo cuadrado generalizado
+nos va a mostrar
+equivalencia asintótica
+para mostrar que
+physical GLM
+hereda todas las propiedades
+de GLS
+eso lo hacemos
+en la clase
+¿tienen alguna pregunta?
+cortemos aquí
+y seguimos
+en la clase
+gracias profesor
+gracias maestro
+gracias maestro
+gracias
+gracias
+no
+gracias
+no
+pues
+yo
+ya
