@@ -1,6 +1,5 @@
 # AGENTS.md
 
-Small commit.
 This repository contains course materials for Panel Data Econometrics.
 
 When answering content questions:
