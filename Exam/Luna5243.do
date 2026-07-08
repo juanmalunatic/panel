@@ -1251,6 +1251,62 @@ if $RUN_E2 {
 						(`hansen_p') (`sargan_p') (`n_inst')
 				}
 
+				// -------------------------
+				// Kiviet / LSDVC
+				// -------------------------
+
+				// Uso el mismo setup de la práctica (A-H como base)
+				capture xtlsdvc y_i x_i, initial(ah) bias(2)
+
+				if _rc {
+					post handle ("`scenario'") (`simu') ("Kiviet") ///
+						(`alpha') (`N') (`T') (.) (.) (.) (1) ///
+						(.) (.) (.)
+				}
+				else {
+					// Calculo la matriz de varcov como en la práctica ...
+					matrix blsdvc = e(b)
+					scalar alpha_lsdvc = blsdvc[1,1]
+					scalar beta_lsdvc  = blsdvc[1,2] // solo que hay que agregar otro param
+
+					scalar NT_kiv = e(N) // renombrar vars para no colisionar
+					scalar T_kiv  = e(Tbar)
+					scalar N_kiv  = e(N_g)
+					scalar K_kiv  = colsof(e(b))
+
+					gen yL1_kiv = L.y_i
+
+					egen bar_yi   = mean(y_i), by(id)
+					egen bar_yL1i = mean(yL1_kiv), by(id)
+					egen bar_xi   = mean(x_i), by(id) // agregar para el reg. exógeno
+
+					gen with_y   = y_i     - bar_yi
+					gen with_yL1 = yL1_kiv - bar_yL1i
+					gen with_x   = x_i     - bar_xi  // acá también
+
+					// Ajustar los errores para incluir x
+					gen u_kiv = with_y - alpha_lsdvc * with_yL1 - beta_lsdvc * with_x
+
+					// Los otros cálculos matriciales son idénticos
+					matrix accum uTu = u_kiv, noconstant
+					matrix sigma2u = (uTu) / (NT_kiv - N_kiv - T_kiv - K_kiv + 1)
+
+					matrix accum ZTZ = with_yL1 with_x, noconstant
+					matrix Var_lsdvc = sigma2u * inv(ZTZ)
+
+					// Finalmente obtener el SE
+					scalar se_lsdvc = sqrt(Var_lsdvc[1,1])
+
+					// Por ultimo implemento el t-test a mano
+					scalar tstat_kiv = (alpha_lsdvc - `alpha') / se_lsdvc
+					scalar pval_kiv = 2 * ttail(NT_kiv - K_kiv, abs(tstat_kiv))
+					local reject_H0 = (pval_kiv < 0.05)
+
+					post handle ("`scenario'") (`simu') ("Kiviet") ///
+						(`alpha') (`N') (`T') (alpha_lsdvc) (se_lsdvc) (`reject_H0') (0) ///
+						(.) (.) (.)
+				}
+
 				// Almacenar resultados dummy
 				/*post handle ("`scenario'") (`simu') ("DGP") ///
 					(`alpha') (`N') (`T') (.) (.) (.) (0) ///
