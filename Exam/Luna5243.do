@@ -1089,6 +1089,42 @@ if $RUN_E2 {
 						(.) (.) (.)
 				}
 
+				// -------------------------
+				// Anderson-Hsiao
+				// -------------------------
+
+				// Uso nombres un poco más legibles para las variables
+				gen dy  = D.y_i
+				gen ldy = L.D.y_i
+				gen dx  = D.x_i
+				gen l2y = L2.y_i
+
+				// Se instrumenta D.y_{t-1} con y_{t-2}, el instrumento AH mínimo
+				// Stata incluye el regresor estrictamente exógeno como su propio instrumento
+				capture ivregress 2sls dy dx (ldy = l2y), nocons
+
+				if _rc {
+					post handle ("`scenario'") (`simu') ("AH") ///
+						(`alpha') (`N') (`T') (.) (.) (.) (1) ///
+						(.) (.) (.)
+				}
+				else {
+					local alpha_hat = _b[ldy]
+					local se_ah = _se[ldy]
+
+					capture test ldy = `alpha'
+					if _rc {
+						local reject_H0 = .
+					}
+					else {
+						local reject_H0 = (r(p) < 0.05)
+					}
+
+					post handle ("`scenario'") (`simu') ("AH") ///
+						(`alpha') (`N') (`T') (`alpha_hat') (`se_ah') (`reject_H0') (0) ///
+						(.) (.) (.)
+				}
+
 
 				// Almacenar resultados dummy
 				/*post handle ("`scenario'") (`simu') ("DGP") ///
