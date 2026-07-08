@@ -937,8 +937,24 @@ if $RUN_E2 {
 	local xi_0 = 0 // TO-DO consultar con Iara
 	local yi_0 = 0
 
+	// ------------------------------------
+	// Holder de resultados E2
+	// ------------------------------------
+	
+	// GPT me recomendó usar postfile en lugar de matrices grandes como en el 1er ej.
+	// La idea es hacer una fila para cada combinación:
+	// escenario x simulacion x estimador
+	// después sobre ese dataset se pueden hacer los calculos de SD, RMSE, etc..
+	tempfile e2_results
+	postfile handle ///
+		str1 scenario ///
+		int rep ///
+		str12 estimator ///
+		double alpha0 N T alpha_hat se reject fail ///
+		double hansen_p sargan_p n_inst ///
+		using `e2_results', replace
+
 	// Loop de escenarios
-	local escenario = 1 // 1:A, 2:B, etc.
 	forvalues esce = 1/4 {
 		
 		// Empiezo cada escenario en el mismo seed
@@ -946,21 +962,25 @@ if $RUN_E2 {
 
 		// Setup de parámetros de acuerdo a escenario
 		if (`esce' == 1) {
+			local scenario = "A" // label legible para el postfile
 			local alpha = 0.5
 			local N = 30
 			local T = 10
 		}
 		 else if (`esce' == 2) {
+		 	local scenario = "B"
 			local alpha = 0.5
 			local N = 100
 			local T = 10
 		}
 		else if (`esce' == 3) {
+			local scenario = "C"
 			local alpha = 0.8
 			local N = 30
 			local T = 7
 		}
 		else if (`esce' == 4) {
+			local scenario = "D"
 			local alpha = 0.92
 			local N = 100
 			local T = 4
@@ -1029,36 +1049,28 @@ if $RUN_E2 {
 				gen t = t_full - 10
 				xtset id t
 
-				// -------------------------
-				// Diagnóstico de tamaño final
-				// -------------------------
-				count
-				local obs_final = r(N)
+				// Queda todo listo para usar.
 
-				levelsof id, local(ids_final)
-				local N_final : word count `ids_final'
+				// TO-DO cálculos
 
-				summ t, meanonly
-				local Tmin_final = r(min)
-				local Tmax_final = r(max)
-
-				bysort id: gen T_check = _N
-				summ T_check, meanonly
-				local Tmin_by_id = r(min)
-				local Tmax_by_id = r(max)
-				drop T_check
-
-				noisily di as text "E2 DGP check | escenario=`esce' | simu=`simu'" ///
-					" | alpha=`alpha' | N target=`N' | T target=`T'" ///
-					" | N final=`N_final' | t min=`Tmin_final' | t max=`Tmax_final'" ///
-					" | obs final=`obs_final' | obs target=" `N' * `T' ///
-					" | T por id min=`Tmin_by_id' | T por id max=`Tmax_by_id'"
+				// Almacenar resultados
+				post handle ("`scenario'") (`simu') ("DGP") ///
+					(`alpha') (`N') (`T') (.) (.) (.) (0) ///
+					(.) (.) (.)
 			}
-
 		}
 	}
 
-		
+	// ------------------------------------
+	// Cierro y reviso holder de resultados
+	// ------------------------------------
+
+	postclose handle
+
+	use `e2_results', clear
+
+	di as text "== E2: resultados posteados =="
+	list, sepby(scenario)		
 }
 di as text "== EJERCICIO 2: fin =="
 end
