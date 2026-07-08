@@ -1051,12 +1051,49 @@ if $RUN_E2 {
 
 				// Queda todo listo para usar.
 
-				// TO-DO cálculos
+				// ----------------------------------------
+				// Estimadores
+				// -----------------------------------------
 
-				// Almacenar resultados
-				post handle ("`scenario'") (`simu') ("DGP") ///
+				// Para cada estimador implemento el test H0: a = a0 al 5%
+				// a0 es el valor real del escenario.
+
+				// El patrón es ver si fallan la regresión o el test
+				// y en ese caso almacenar NA. En caso contrario, se 
+				// almacenan los estimates y si se rechazó o no el test.
+
+				// -------------------------
+				// LSDV
+				// -------------------------
+
+				capture reg y_i L.y_i x_i i.id
+				if _rc {
+					post handle ("`scenario'") (`simu') ("LSDV") ///
+						(`alpha') (`N') (`T') (.) (.) (.) (1) ///
+						(.) (.) (.)
+				}
+				else {
+					local alpha_hat = _b[L.y_i]
+					local se_lsdv = _se[L.y_i]
+
+					capture test L.y_i = `alpha'
+					if _rc {
+						local reject_H0 = .
+					}
+					else {
+						local reject_H0 = (r(p) < 0.05)
+					}
+
+					post handle ("`scenario'") (`simu') ("LSDV") ///
+						(`alpha') (`N') (`T') (`alpha_hat') (`se_lsdv') (`reject_H0') (0) ///
+						(.) (.) (.)
+				}
+
+
+				// Almacenar resultados dummy
+				/*post handle ("`scenario'") (`simu') ("DGP") ///
 					(`alpha') (`N') (`T') (.) (.) (.) (0) ///
-					(.) (.) (.)
+					(.) (.) (.)*/
 			}
 		}
 	}
