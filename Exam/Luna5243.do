@@ -1125,6 +1125,63 @@ if $RUN_E2 {
 						(.) (.) (.)
 				}
 
+				// -------------------------
+				// AB-GMM1
+				// -------------------------
+
+				// Con nolevel le decimos que no es BB (i.e. que no meta la ecuación en niveles al sistema)
+				capture xtabond2 y_i L.y_i x_i, gmm(L.y_i) iv(x_i) nolevel
+
+				if _rc {
+					post handle ("`scenario'") (`simu') ("AB-GMM1") ///
+						(`alpha') (`N') (`T') (.) (.) (.) (1) ///
+						(.) (.) (.)
+				}
+				else {
+					local alpha_hat = _b[L.y_i]
+					local se_ab1 = _se[L.y_i]
+
+					capture test L.y_i = `alpha'
+					if _rc {
+						local reject_H0 = .
+					}
+					else {
+						local reject_H0 = (r(p) < 0.05)
+					}
+
+					post handle ("`scenario'") (`simu') ("AB-GMM1") ///
+    					(`alpha') (`N') (`T') (`alpha_hat') (`se_ab1') (`reject_H0') (0) ///
+    					(.) (.) (.)
+				}
+
+				// -------------------------
+				// AB-GMM2
+				// -------------------------
+
+				// Básicamente lo mismo pero con twostep
+				capture xtabond2 y_i L.y_i x_i, gmm(L.y_i) iv(x_i) nolevel twostep
+
+				if _rc {
+					post handle ("`scenario'") (`simu') ("AB-GMM2") ///
+						(`alpha') (`N') (`T') (.) (.) (.) (1) ///
+						(.) (.) (.)
+				}
+				else {
+					local alpha_hat = _b[L.y_i]
+					local se_ab2 = _se[L.y_i]
+
+					capture test L.y_i = `alpha'
+					if _rc {
+						local reject_H0 = .
+					}
+					else {
+						local reject_H0 = (r(p) < 0.05)
+					}
+
+					post handle ("`scenario'") (`simu') ("AB-GMM2") ///
+						(`alpha') (`N') (`T') (`alpha_hat') (`se_ab2') (`reject_H0') (0) ///
+						(.) (.) (.)
+				}
 
 				// Almacenar resultados dummy
 				/*post handle ("`scenario'") (`simu') ("DGP") ///
