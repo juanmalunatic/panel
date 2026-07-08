@@ -24,9 +24,9 @@ Flags para correr únicamente partes de ejercicios específicos.
 ********************************************************************/
 
 global RUN_E1_A 0
-global RUN_E1_B 1
+global RUN_E1_B 0
 
-global RUN_E2   0
+global RUN_E2   1
 global RUN_E3   0
 
 
@@ -910,6 +910,96 @@ if $RUN_E1_B {
 di as text "== EJERCICIO 1: fin =="
 end
 /******************************************************************************/
+
+/*******************************************************************************
+EJERCICIO 2 - Paneles Dinámicos - Sesgo de Nickell, Arellano–Bond y Blundell–Bond
+*******************************************************************************/
+
+capture program drop EJERCICIO_2
+program define EJERCICIO_2
+version 17
+di as text "== EJERCICIO 2: inicio =="
+if $RUN_E2 {
+	set seed $THE_SEED
+	
+	// Frame aparte para arrancar de cero
+	capture frame drop E2_DATA
+	frame create E2_DATA
+	frame change E2_DATA
+
+	
+	local scenario = 1 // 1:A, 2:B, etc.
+	local S = 1 // Simulaciones
+
+	if (`scenario' == 1) {
+		local alpha = 0.5
+		local N = 30
+		local T = 10
+	}
+
+	// Primero declaro el panel "full" para usar operadores built-in cómodos
+	// Agregamos los periodos extra
+	local T_full = `T' + 10
+	local T_full_plus1 = `T_full' + 1
+	local NT_full = `N' * `T_full_plus1'
+	
+	set obs `NT_full'
+	egen id     = seq(), f(1) t(`N') b(`T_full_plus1')
+	egen t_full = seq(), f(0) t(`T_full')
+	xtset id t_full
+
+	// Setup de parametros
+	local beta = 1
+	local sig_c = 1
+	local sig_u = 1
+	local sig_v = sqrt(0.9)
+
+	// Valores iniciales 
+	local xi_0 = 0 // TO-DO consultar con Iara
+	local yi_0 = 0
+
+	// -------------------------
+	// Creación de variables
+	// -------------------------
+	qui {
+		// bysort hace operaciones por grupo
+		// acá "entro" a un bloque con id fijo
+		// _n es el item interno. genero el valor para el primer item del bloque
+
+		bysort id: gen c_i = rnormal(0, `sig_c') if _n == 1
+		// después, copio el mismo valor a todos los otros elems del bloque
+		bysort id: replace c_i = c_i[1]
+
+		// Errores. Dejo el primero missing para no confundirme
+		gen u_i = .
+		replace u_i = rnormal(0, `sig_u') if t_full >= 1
+
+		gen v_i = .
+		replace v_i = rnormal(0, `sig_v') if t_full >= 1
+
+		// Genero las bases de los recursivos, con una idea similar
+		gen x_i = .
+		replace x_i = `xi_0' if t_full == 0
+		gen y_i = .
+		replace y_i = `yi_0' if t_full == 0
+
+		// GPT me recomendó que asegurara el sort 
+		sort id t_full
+		xtset id t_full
+
+		forvalues tt = 1/`T_full' { // acá sí itero a mano
+			replace x_i = 0.8 * L.x_i + v_i if t_full == `tt'
+			replace y_i = `alpha' * L.y_i + `beta' * x_i + c_i + u_i if t_full == `tt'
+		}
+
+		// Acá lo más polémico: quitar B=10 periodos y reindexar t
+		keep if t_full > 10
+		gen t = t_full - 10
+		xtset id t
+	}	
+}
+di as text "== EJERCICIO 2: fin =="
+end
 
 /********************************************************************
 Control de flujo
