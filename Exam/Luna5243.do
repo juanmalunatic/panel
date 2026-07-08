@@ -920,83 +920,145 @@ program define EJERCICIO_2
 version 17
 di as text "== EJERCICIO 2: inicio =="
 if $RUN_E2 {
-	set seed $THE_SEED
 	
 	// Frame aparte para arrancar de cero
 	capture frame drop E2_DATA
 	frame create E2_DATA
 	frame change E2_DATA
 
-	
-	local scenario = 1 // 1:A, 2:B, etc.
-	local S = 1 // Simulaciones
 
-	if (`scenario' == 1) {
-		local alpha = 0.5
-		local N = 30
-		local T = 10
-	}
-
-	// Primero declaro el panel "full" para usar operadores built-in cómodos
-	// Agregamos los periodos extra
-	local T_full = `T' + 10
-	local T_full_plus1 = `T_full' + 1
-	local NT_full = `N' * `T_full_plus1'
-	
-	set obs `NT_full'
-	egen id     = seq(), f(1) t(`N') b(`T_full_plus1')
-	egen t_full = seq(), f(0) t(`T_full')
-	xtset id t_full
-
-	// Setup de parametros
-	local beta = 1
+	// Parametros que no cambian
+	local beta = 1 // TO-DO consultar con Iara
 	local sig_c = 1
 	local sig_u = 1
 	local sig_v = sqrt(0.9)
 
-	// Valores iniciales 
+	// Valores iniciales DGP
 	local xi_0 = 0 // TO-DO consultar con Iara
 	local yi_0 = 0
 
-	// -------------------------
-	// Creación de variables
-	// -------------------------
-	qui {
-		// bysort hace operaciones por grupo
-		// acá "entro" a un bloque con id fijo
-		// _n es el item interno. genero el valor para el primer item del bloque
+	// Loop de escenarios
+	local escenario = 1 // 1:A, 2:B, etc.
+	forvalues esce = 1/4 {
+		
+		// Empiezo cada escenario en el mismo seed
+		set seed $THE_SEED
 
-		bysort id: gen c_i = rnormal(0, `sig_c') if _n == 1
-		// después, copio el mismo valor a todos los otros elems del bloque
-		bysort id: replace c_i = c_i[1]
-
-		// Errores. Dejo el primero missing para no confundirme
-		gen u_i = .
-		replace u_i = rnormal(0, `sig_u') if t_full >= 1
-
-		gen v_i = .
-		replace v_i = rnormal(0, `sig_v') if t_full >= 1
-
-		// Genero las bases de los recursivos, con una idea similar
-		gen x_i = .
-		replace x_i = `xi_0' if t_full == 0
-		gen y_i = .
-		replace y_i = `yi_0' if t_full == 0
-
-		// GPT me recomendó que asegurara el sort 
-		sort id t_full
-		xtset id t_full
-
-		forvalues tt = 1/`T_full' { // acá sí itero a mano
-			replace x_i = 0.8 * L.x_i + v_i if t_full == `tt'
-			replace y_i = `alpha' * L.y_i + `beta' * x_i + c_i + u_i if t_full == `tt'
+		// Setup de parámetros de acuerdo a escenario
+		if (`esce' == 1) {
+			local alpha = 0.5
+			local N = 30
+			local T = 10
+		}
+		 else if (`esce' == 2) {
+			local alpha = 0.5
+			local N = 100
+			local T = 10
+		}
+		else if (`esce' == 3) {
+			local alpha = 0.8
+			local N = 30
+			local T = 7
+		}
+		else if (`esce' == 4) {
+			local alpha = 0.92
+			local N = 100
+			local T = 4
 		}
 
-		// Acá lo más polémico: quitar B=10 periodos y reindexar t
-		keep if t_full > 10
-		gen t = t_full - 10
-		xtset id t
-	}	
+		// ------------------------------------
+		// Loop de simulaciones intra-escenario
+		// ------------------------------------
+
+		local S = 1 // Simulaciones TO-DO cambiar a valor grande
+		forvalues simu = 1/`S' {
+			// -------------
+			// Panel setup
+			// -------------
+			
+			// Limpio la data del panel anterior
+			clear
+
+			// Primero declaro el panel "full" para usar operadores built-in cómodos
+			// Agregamos los periodos extra (los de burn-in que luego se remueven)
+			local T_full = `T' + 10
+			local T_full_plus1 = `T_full' + 1
+			local NT_full = `N' * `T_full_plus1'
+			
+			set obs `NT_full'
+			egen id     = seq(), f(1) t(`N') b(`T_full_plus1')
+			egen t_full = seq(), f(0) t(`T_full')
+			xtset id t_full
+
+			// -------------------------
+			// Creación de variables
+			// -------------------------
+			qui {
+				// bysort hace operaciones por grupo
+				// acá "entro" a un bloque con id fijo
+				// _n es el item interno. genero el valor para el primer item del bloque
+
+				bysort id: gen c_i = rnormal(0, `sig_c') if _n == 1
+				// después, copio el mismo valor a todos los otros elems del bloque
+				bysort id: replace c_i = c_i[1]
+
+				// Errores. Dejo el primero missing para no confundirme
+				gen u_i = .
+				replace u_i = rnormal(0, `sig_u') if t_full >= 1
+
+				gen v_i = .
+				replace v_i = rnormal(0, `sig_v') if t_full >= 1
+
+				// Genero las bases de los recursivos, con una idea similar
+				gen x_i = .
+				replace x_i = `xi_0' if t_full == 0
+				gen y_i = .
+				replace y_i = `yi_0' if t_full == 0
+
+				// GPT me recomendó que asegurara el sort 
+				sort id t_full
+				xtset id t_full
+
+				forvalues tt = 1/`T_full' { // acá sí itero a mano
+					replace x_i = 0.8 * L.x_i + v_i if t_full == `tt'
+					replace y_i = `alpha' * L.y_i + `beta' * x_i + c_i + u_i if t_full == `tt'
+				}
+
+				// Acá quito B=10 periodos y reindexo t ("burn in")
+				keep if t_full > 10
+				gen t = t_full - 10
+				xtset id t
+
+				// -------------------------
+				// Diagnóstico de tamaño final
+				// -------------------------
+				count
+				local obs_final = r(N)
+
+				levelsof id, local(ids_final)
+				local N_final : word count `ids_final'
+
+				summ t, meanonly
+				local Tmin_final = r(min)
+				local Tmax_final = r(max)
+
+				bysort id: gen T_check = _N
+				summ T_check, meanonly
+				local Tmin_by_id = r(min)
+				local Tmax_by_id = r(max)
+				drop T_check
+
+				noisily di as text "E2 DGP check | escenario=`esce' | simu=`simu'" ///
+					" | alpha=`alpha' | N target=`N' | T target=`T'" ///
+					" | N final=`N_final' | t min=`Tmin_final' | t max=`Tmax_final'" ///
+					" | obs final=`obs_final' | obs target=" `N' * `T' ///
+					" | T por id min=`Tmin_by_id' | T por id max=`Tmax_by_id'"
+			}
+
+		}
+	}
+
+		
 }
 di as text "== EJERCICIO 2: fin =="
 end
