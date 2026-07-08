@@ -1183,6 +1183,74 @@ if $RUN_E2 {
 						(.) (.) (.)
 				}
 
+				// -------------------------
+				// BB-GMM1
+				// -------------------------
+
+				// System GMM. Al no usar nolevel, xtabond2 agrega la ecuación en niveles.
+				capture xtabond2 y_i L.y_i x_i, gmm(L.y_i) iv(x_i)
+
+				if _rc {
+					post handle ("`scenario'") (`simu') ("BB-GMM1") ///
+						(`alpha') (`N') (`T') (.) (.) (.) (1) ///
+						(.) (.) (.)
+				}
+				else {
+					local alpha_hat = _b[L.y_i]
+					local se_bb1 = _se[L.y_i]
+
+					capture test L.y_i = `alpha'
+					if _rc {
+						local reject_H0 = .
+					}
+					else {
+						local reject_H0 = (r(p) < 0.05)
+					}
+
+					post handle ("`scenario'") (`simu') ("BB-GMM1") ///
+						(`alpha') (`N') (`T') (`alpha_hat') (`se_bb1') (`reject_H0') (0) ///
+						(.) (.) (.)
+				}
+
+				// -------------------------
+				// BB-GMM2
+				// -------------------------
+
+				// Two-step System GMM. Al no usar nolevel, esto es BB y no AB.
+				capture xtabond2 y_i L.y_i x_i, gmm(L.y_i) iv(x_i) twostep
+
+				if _rc {
+					post handle ("`scenario'") (`simu') ("BB-GMM2") ///
+						(`alpha') (`N') (`T') (.) (.) (.) (1) ///
+						(.) (.) (.)
+				}
+				else {
+					local alpha_hat = _b[L.y_i]
+					local se_bb2 = _se[L.y_i]
+
+					capture test L.y_i = `alpha'
+					if _rc {
+						local reject_H0 = .
+					}
+					else {
+						local reject_H0 = (r(p) < 0.05)
+					}
+
+					local hansen_p = .
+					local sargan_p = .
+					local n_inst   = .
+
+					if "`scenario'" == "B" {
+						capture local hansen_p = e(hansenp)
+						capture local sargan_p = e(sarganp)
+						capture local n_inst   = e(j)
+					}
+
+					post handle ("`scenario'") (`simu') ("BB-GMM2") ///
+						(`alpha') (`N') (`T') (`alpha_hat') (`se_bb2') (`reject_H0') (0) ///
+						(`hansen_p') (`sargan_p') (`n_inst')
+				}
+
 				// Almacenar resultados dummy
 				/*post handle ("`scenario'") (`simu') ("DGP") ///
 					(`alpha') (`N') (`T') (.) (.) (.) (0) ///
