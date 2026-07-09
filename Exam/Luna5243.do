@@ -1159,7 +1159,8 @@ if $RUN_E2 {
 				// -------------------------
 
 				// Básicamente lo mismo pero con twostep
-				capture xtabond2 y_i L.y_i x_i, gmm(L.y_i) iv(x_i) nolevel twostep
+				// Con corrección "robust" de SE para el segundo step (lo recomienda la doc de xtabond2)
+				capture xtabond2 y_i L.y_i x_i, gmm(L.y_i) iv(x_i) nolevel twostep robust
 
 				if _rc {
 					post handle ("`scenario'") (`simu') ("AB-GMM2") ///
@@ -1217,7 +1218,8 @@ if $RUN_E2 {
 				// -------------------------
 
 				// Two-step System GMM. Al no usar nolevel, esto es BB y no AB.
-				capture xtabond2 y_i L.y_i x_i, gmm(L.y_i) iv(x_i) twostep
+				// También se aplica la corrección de two-step de la documentación.
+				capture xtabond2 y_i L.y_i x_i, gmm(L.y_i) iv(x_i) twostep robust
 
 				if _rc {
 					post handle ("`scenario'") (`simu') ("BB-GMM2") ///
