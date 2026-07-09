@@ -990,7 +990,7 @@ if $RUN_E2 {
 		// Loop de simulaciones intra-escenario
 		// ------------------------------------
 
-		local S = 1 // Simulaciones TO-DO cambiar a valor grande
+		local S = 20 // Simulaciones TO-DO cambiar a valor grande
 		forvalues simu = 1/`S' {
 			// -------------
 			// Panel setup
@@ -1324,7 +1324,37 @@ if $RUN_E2 {
 	use `e2_results', clear
 
 	di as text "== E2: resultados posteados =="
-	list, sepby(scenario)		
+	list, sepby(scenario)
+
+	// ------------------------------------
+	// Parte A: tabla resumen
+	// ------------------------------------
+
+	preserve
+
+	keep if fail == 0
+
+	gen bias_alpha = alpha_hat - alpha0
+	gen sqerr_alpha = bias_alpha^2
+
+	collapse ///
+		(mean) mean_alpha = alpha_hat ///
+		(sd)   sd_alpha   = alpha_hat ///
+		(mean) rmse_aux   = sqerr_alpha ///
+		(mean) size_5     = reject ///
+		(count) reps_valid = alpha_hat, ///
+		by(scenario estimator alpha0 N T)
+
+	gen rmse = sqrt(rmse_aux)
+	drop rmse_aux
+
+	sort scenario estimator
+
+	di as text "== E2 Parte A: resumen Monte Carlo =="
+	list scenario estimator alpha0 N T mean_alpha sd_alpha rmse size_5 reps_valid, ///
+		sepby(scenario) noobs
+
+	restore
 }
 di as text "== EJERCICIO 2: fin =="
 end
