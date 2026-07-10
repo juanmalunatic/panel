@@ -964,10 +964,11 @@ if $RUN_E2 {
 	// Holder de resultados E2
 	// ------------------------------------
 	
-	// GPT me recomendó usar postfile en lugar de matrices grandes como en el 1er ej.
-	// La idea es hacer una fila para cada combinación:
-	// escenario x simulacion x estimador
-	// después sobre ese dataset se pueden hacer los calculos de SD, RMSE, etc..
+	// Para este ejercicio uso postfiles en vez de matrices de almacenamiento.
+	// La ventaja es que puedo usar `collapse' después para los estadísticos de forma sencilla y legible.
+
+	// [e2_results] tiene una fila para cada combinación:
+	//   escenario x simulacion x estimador
 	tempfile e2_results
 	postfile handle ///
 		str1 scenario ///
@@ -976,6 +977,16 @@ if $RUN_E2 {
 		double alpha0 N T alpha_hat se reject fail ///
 		double hansen_p sargan_p n_inst ///
 		using `e2_results', replace
+
+	// [e2_b1_corr] almacena el correlograma empirico
+	tempfile e2_b1_corr
+	postfile handle_b1 ///
+		str1 scenario ///     // el escenario (siempre es D pero queda más legible)
+		int rep ///           // se registra una fila por simulacion 
+		byte lag_depth ///    // la distancia en t del instrumento a \Delta y_{i.t-1} (para T=4 es {2,3})
+		double corr ///       // la correlación entre el instrumento y el delta
+		using `e2_b1_corr', replace
+	
 
 	// Loop de escenarios
 	forvalues esce = 1/4 {
@@ -1073,9 +1084,9 @@ if $RUN_E2 {
 
 				// Queda todo listo para usar.
 
-				// ----------------------------------------
+				// ========================================================
 				// Estimadores
-				// -----------------------------------------
+				// ========================================================
 
 				// Para cada estimador implemento el test H0: a = a0 al 5%
 				// a0 es el valor real del escenario.
@@ -1331,6 +1342,44 @@ if $RUN_E2 {
 						(.) (.) (.)
 				}
 
+				// =====================================================
+				// Cálculos auxiliares
+				// =====================================================
+				
+				// ---------------------------------
+				// Parte B.1: Correlograma empírico
+				// ---------------------------------
+				if "`scenario'" == "D" {
+
+					// Creamos las variables
+					capture drop dy_lag_b1 instr_l2_b1 instr_l3_b1
+
+					// El delta endógeno a instrumentar (\Delta y_{i.t-1})
+					gen dy_lag_b1   = L.y_i - L2.y_i
+					// El instrumento a distancia 2
+					gen instr_l2_b1 = L2.y_i
+					// El instrumento a distancia 3
+					gen instr_l3_b1 = L3.y_i
+
+					// Vacío por defecto, si no hay error numérico almaceno corr.
+					local corr_l2 = .
+					local corr_l3 = .
+
+					capture quietly corr dy_lag_b1 instr_l2_b1
+					if !_rc {
+						local corr_l2 = r(rho)
+					}
+
+					capture quietly corr dy_lag_b1 instr_l3_b1
+					if !_rc {
+						local corr_l3 = r(rho)
+					}
+
+					// Guardo resultado en postfile
+					post handle_b1 ("`scenario'") (`simu') (2) (`corr_l2') // distancia 2
+					post handle_b1 ("`scenario'") (`simu') (3) (`corr_l3') // distancia 3
+				}
+
 				// Almacenar resultados dummy
 				/*post handle ("`scenario'") (`simu') ("DGP") ///
 					(`alpha') (`N') (`T') (.) (.) (.) (0) ///
@@ -1340,23 +1389,46 @@ if $RUN_E2 {
 	}
 
 	// ------------------------------------
-	// Cierro y reviso holder de resultados
+	// Cerramos los postfiles
 	// ------------------------------------
 
 	postclose handle
-
-	use `e2_results', clear
+	postclose handle_b1
 
 	// Acá exporto los resultados raw de Monte Carlo
+	// TO-DO entender estas lineas
+	use `e2_results', clear
 	save "`outdir'/`run_prefix'__e2_raw.dta", replace
+	di "----------------------------------------------"
+	di as text "Monte Carlo terminó. Datos exportados."
+	di "----------------------------------------------"
 
-	// TO-DO Agregar bloque de fail rates
-	//export delimited using "`outdir'/`run_prefix'__e2_raw_failrates.csv", replace
-
-	di as text "== E2: resultados posteados =="
+	// TO-DO esto quitarlo, dejarlo solo para debug GPT.
 	count
 	tab scenario estimator
 	tab estimator fail
+
+	// [Error numérico para cada estimador]
+	preserve // Snapshot del dataset MC
+
+		// Se colapsa a los estadísticos de interés 
+		collapse ///
+			(mean) fail_rate = fail /// 
+			(count) reps_total = fail, ///
+			by(scenario estimator) // una sola fila por combinación {escenario, estimador}
+
+		// Despliegue y exportación
+		sort scenario estimator
+		di as text "== E2 diagnostico: fail rates =="
+		list, sepby(scenario) noobs
+		export delimited using "`outdir'/`run_prefix'__e2_raw_failrates.csv", replace
+	
+	restore
+
+
+	//export delimited using "`outdir'/`run_prefix'__e2_raw_failrates.csv", replace
+
+	
 
 	// ------------------------------------
 	// Parte A: tabla resumen
@@ -1364,39 +1436,63 @@ if $RUN_E2 {
 
 	preserve
 
-	qui keep if fail == 0
+		qui keep if fail == 0
 
-	gen bias_alpha = alpha_hat - alpha0
-	gen sqerr_alpha = bias_alpha^2
+		gen bias_alpha = alpha_hat - alpha0
+		gen sqerr_alpha = bias_alpha^2
 
-	collapse ///
-		(mean) mean_alpha = alpha_hat ///
-		(sd)   sd_alpha   = alpha_hat ///
-		(mean) rmse_aux   = sqerr_alpha ///
-		(mean) size_5     = reject ///
-		(count) reps_valid = alpha_hat, ///
-		by(scenario estimator alpha0 N T)
+		collapse ///
+			(mean) mean_alpha = alpha_hat ///
+			(sd)   sd_alpha   = alpha_hat ///
+			(mean) rmse_aux   = sqerr_alpha ///
+			(mean) size_5     = reject ///
+			(count) reps_valid = alpha_hat, ///
+			by(scenario estimator alpha0 N T)
 
-	gen rmse = sqrt(rmse_aux)
-	drop rmse_aux
+		gen rmse = sqrt(rmse_aux)
+		drop rmse_aux
 
-	sort scenario estimator
+		sort scenario estimator
 
-	// Exportar tabla de resumen
-	di as text "== E2 Parte A: resumen Monte Carlo =="
-	list scenario estimator alpha0 N T mean_alpha sd_alpha rmse size_5 reps_valid, ///
-		sepby(scenario) noobs
+		// Exportar tabla de resumen
+		di as text "== E2 Parte A: resumen Monte Carlo =="
+		list scenario estimator alpha0 N T mean_alpha sd_alpha rmse size_5 reps_valid, ///
+			sepby(scenario) noobs
 
-	export delimited using "`outdir'/`run_prefix'__e2_A.csv", replace
-
+		export delimited using "`outdir'/`run_prefix'__e2_A.csv", replace
 	
+	restore
+
+	// ------------------------------------
+	// Parte B1: instrumentos debiles en D
+	// ------------------------------------
+
+	preserve
+
+	use `e2_b1_corr', clear // Uso el holder de correlaciones
+
+		collapse ///
+			(mean) mean_corr = corr ///      // Saco mean
+			(sd)   sd_corr   = corr ///      // SD
+			(count) reps_valid = corr, ///   // y simulaciones sin error numérico
+			by(scenario lag_depth)           // para D.s=2 y D.s=3 (con s: rezagos)
+
+		sort scenario lag_depth
+
+		di as text "== E2 Parte B1: correlaciones instrumentos AB en escenario D =="
+		list scenario lag_depth mean_corr sd_corr reps_valid, noobs
+
+		export delimited using "`outdir'/`run_prefix'__e2_B1.csv", replace
+
+	restore
+
+		
 	// TO-DO Agregar bloques de exportación de parte B siguiendo la convención
 	// export delimited using "`outdir'/`run_prefix'__e2_B1.csv", replace
 	// export delimited using "`outdir'/`run_prefix'__e2_B2.csv", replace
 	// export delimited using "`outdir'/`run_prefix'__e2_B3.csv", replace
 
-
-	restore
+	
 }
 di as text "== EJERCICIO 2: fin =="
 end

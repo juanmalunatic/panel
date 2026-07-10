@@ -1,0 +1,1644 @@
+--------------------------------------------------------------------------------------------------------------------
+      name:  <unnamed>
+       log:  C:\AcademicRepos\Panel\Luna5243.log
+  log type:  text
+ opened on:  10 Jul 2026, 17:36:42
+
+. 
+. 
+. /********************************************************************
+> Flags para correr únicamente partes de ejercicios específicos.
+> ********************************************************************/
+. 
+. global RUN_E1_A 0
+
+. global RUN_E1_B 0
+
+. 
+. global RUN_E2   1
+
+. global RUN_E3   0
+
+. 
+. 
+. /*******************************************************************************
+> EJERCICIO 1 - Pruebas de Especificación, Hausman y Errores Estándar Robustos
+> *******************************************************************************/
+. 
+. /* 
+> Modelo de efectos no observables con heterogeneidad individual
+> y_it = b0 + b1 x1_it + b2 x2_it + c_i + u_it  con i \in [1,...,N] y t = \in [1, ..., T]
+> */
+.    
+. /******************************************************************************/
+. 
+. // EJ1: Prerequisitos: 
+. 
+. // Básicamente ejecutar el built-in de stata, con "sigmamore" como ajuste.
+. // Así no tengo que copiar y pegar tantas veces el mismo bloque
+. // y queda más legible.
+. capture program drop hausman_stata_pair
+
+. program define hausman_stata_pair, rclass
+  1.     version 17
+  2. 
+.         // Esperamos 3 vars de entrada: y, x1, x2 y ponemos significancia hardcoded.
+.     syntax varlist(min=3 numeric) [if] [in], [Alpha(real 0.05)]
+  3. 
+.         // Por default dejamos missing. Solo se reemplaza si el cálculo sale bien.
+.         return scalar reject_raw = .
+  4.         return scalar reject_cor = .
+  5. 
+.         // Me recomendó GPT para respetar restricciones de missing values
+.     marksample touse
+  6.     gettoken y xvars : varlist
+  7.     tempname fe re
+  8. 
+.         // Hacemos FE (within)
+.     quietly xtreg `y' `xvars' if `touse', fe
+  9.     estimates store `fe'
+ 10. 
+.         // Hacemos RE
+.     quietly xtreg `y' `xvars' if `touse', re
+ 11.     estimates store `re'
+ 12. 
+.         // Hausman sin corrección.
+.         capture quietly hausman `fe' `re'
+ 13.         if !_rc & !missing(r(p)) & !missing(r(chi2)) & r(chi2) >= 0 {
+ 14.                 return scalar reject_raw = (r(p) < `alpha')
+ 15.         }
+ 16. 
+.         // Hausman con sigmamore.
+.         // - sigmamore hace que ambas matrices varcov usen una estimación común de sigma2
+.     // - en particular, usa la varianza del estimador eficiente. En este caso, RE bajo H0.
+.         capture quietly hausman `fe' `re', sigmamore
+ 17.         
+.         if !_rc & !missing(r(p)) & !missing(r(chi2)) & r(chi2) >= 0 {
+ 18.                 // Reemplazamos . con el resultado correcto
+.                 return scalar reject_cor = (r(p) < `alpha')
+ 19.         }
+ 20. 
+.         // Como antes, se retorna 0 si no rechaza, 1 si sí, . si error numérico.
+.     capture estimates drop `fe' `re'
+ 21. end
+
+. 
+. // Aquí implementamos lo mismo como check y herramienta pedagógica
+. // pero con las ecuaciones matriciales vistas en clase y el escalado
+. // que reporta la documentación de Stata que hace con `sigmamore'
+. capture program drop hausman_manual_pair
+
+. program define hausman_manual_pair, rclass
+  1.     version 17
+  2. 
+.     syntax varlist(min=3 numeric) [if] [in], [Alpha(real 0.05)]
+  3. 
+.         // Como antes dejamos missing por default
+.         return scalar reject_raw = .
+  4.         return scalar reject_cor = .
+  5. 
+.     marksample touse
+  6.     gettoken y xvars : varlist
+  7. 
+.         // acá almacenamos k para permitir que hubiera otro numero de regresores
+.     local k : word count `xvars'
+  8. 
+.     tempname b_fe V_fe b_re V_re bdiff
+  9.         tempname Vdiff_raw Vdiff_cor V_fe_cor Vinv chi2
+ 10.     tempname sig_fe sig_re h
+ 11. 
+.         // FE-within y almacenamos los valores necesarios
+.         quietly xtreg `y' `xvars' if `touse', fe
+ 12.         matrix `b_fe' = e(b)
+ 13.         matrix `V_fe' = e(V)
+ 14.         scalar `sig_fe' = e(sigma_e)^2
+ 15.         
+.         // RE, ídem.
+.     quietly xtreg `y' `xvars' if `touse', re
+ 16.         matrix `b_re' = e(b)
+ 17.         matrix `V_re' = e(V)
+ 18.         scalar `sig_re' = e(rmse)^2
+ 19. 
+.         // Se agarran los primeros k regresores
+.     matrix `bdiff' = `b_fe'[1,1..`k'] - `b_re'[1,1..`k']
+ 20. 
+.         // --------------------------------------------------
+.         // Hausman manual sin corrección
+.         // --------------------------------------------------
+. 
+.     matrix `Vdiff_raw' = `V_fe'[1..`k',1..`k'] - `V_re'[1..`k',1..`k']
+ 21. 
+.         // Si no se puede invertir, queda missing
+.     capture matrix `Vinv' = inv(`Vdiff_raw')
+ 22.         
+.         // Check de inversibilidad
+.         local ok = (_rc == 0)
+ 23. 
+.         if `ok' {
+ 24.                 capture matrix `chi2' = `bdiff' * `Vinv' * `bdiff''
+ 25.                 
+.                 // Check de producto exitoso
+.                 local ok = (_rc == 0)
+ 26.         }
+ 27. 
+.         if `ok' {
+ 28.                 scalar `h' = `chi2'[1,1]
+ 29.                 if !missing(`h') & `h' >= 0 {
+ 30.                         // Si todo salio bien y la matriz era definida positiva
+.                         return scalar reject_raw = (chi2tail(`k', `h') < `alpha')
+ 31.                 }
+ 32.         }
+ 33. 
+.         // --------------------------------------------------
+.         // Hausman manual con corrección tipo sigmamore
+.         // --------------------------------------------------
+. 
+.     // Como antes, corrección tipo sigmamore pero a mano.
+.         // Fuerza escala común de sigma usando la sigma del estimador eficiente, RE bajo H0.
+.         
+.         // El factor de escala que usa Stata
+.         matrix `V_fe_cor' = `V_fe' * (`sig_re' / `sig_fe')
+ 34.         
+.         // Aplicandolo a la matriz
+.         matrix `Vdiff_cor' = `V_fe_cor'[1..`k',1..`k'] - `V_re'[1..`k',1..`k']
+ 35. 
+.         // Acá exactamente los mismos sanity checks que en el programa anterior ...
+.         capture matrix `Vinv' = inv(`Vdiff_cor')
+ 36.         local ok = (_rc == 0)
+ 37. 
+.         if `ok' {
+ 38.                 capture matrix `chi2' = `bdiff' * `Vinv' * `bdiff''
+ 39.                 local ok = (_rc == 0)
+ 40.         }
+ 41. 
+.         if `ok' {
+ 42.                 scalar `h' = `chi2'[1,1]
+ 43.                 if !missing(`h') & `h' >= 0 {
+ 44.                         // ... y sobreescribo solo si llegamos hasta acá.
+.                         return scalar reject_cor = (chi2tail(`k', `h') < `alpha')
+ 45.                 }
+ 46.         }
+ 47. 
+.         // Como en el programa built-in, se retorna 0 si no rechaza, 1 si sí, . si error numérico.
+. end
+
+. 
+. // EJ1: Flujo principal
+. capture program drop EJERCICIO_1 
+
+. program define EJERCICIO_1
+  1. 
+. version 17
+  2. di as text "== EJERCICIO 1: inicio =="
+  3. 
+. if $RUN_E1_A {
+  4.         // Reproducibilidad
+.         set seed $THE_SEED
+  5.         di as text "!!! ---------- 1A -------------- !!! "
+  6.         
+.         // Frame aparte para arrancar de cero
+.         capture frame drop E1A_DATA
+  7.         frame create E1A_DATA
+  8.         frame change E1A_DATA
+  9.         
+.         // Setup del panel y simus
+.         local S = 500
+ 10.         local N = 200
+ 11.         local T = 6
+ 12.         local NT = `N' * `T'
+ 13.         
+.         set obs `NT'
+ 14.         egen id = seq(), f(1) t(`N') b(`T')
+ 15.         egen time = seq(), f(1) t(`T')
+ 16.         xtset id time
+ 17.         
+.         // Setup de parametros
+.         local beta0 = 1 
+ 18.         local beta1 = 0.6
+ 19.         local beta2 = -0.4
+ 20.         
+.         local sig2_c  = 4
+ 21.         local sig2_e  = 1
+ 22.         local sig2_v  = 2
+ 23.         local sig2_x2 = 3
+ 24.         local rho     = 0.6
+ 25.         
+.         // Matrices para almacenar resultados
+.         
+.         matrix b1h_ols = J(`S',1,.)  // OLS
+ 26.         matrix b2h_ols = J(`S',1,.)
+ 27.         
+.         matrix b1h_re  = J(`S',1,.)  // RE
+ 28.         matrix b2h_re  = J(`S',1,.)
+ 29.         
+.         matrix b1h_fe  = J(`S',1,.)  // FE
+ 30.         matrix b2h_fe  = J(`S',1,.)
+ 31.         
+.         matrix se1_fe_conv = J(`S',1,.) // SE convencionales
+ 32.         matrix se2_fe_conv = J(`S',1,.)
+ 33.         
+.         matrix se1_fe_rc = J(`S',1,.) // SE robustos clustered
+ 34.         matrix se2_fe_rc = J(`S',1,.)
+ 35.         
+.         // Medidas de Hausman para el inciso 4
+.         
+.         // Sin corrección
+.         matrix haus_man = J(`S',1,.) // Hausman manual
+ 36.         matrix haus_sta = J(`S',1,.) // Hausman built-in
+ 37.         matrix haus_al1 = J(`S',1,.)  // rho=0 con endog.
+ 38.         matrix haus_al2 = J(`S',1,.)  // rho=0 con exoge.
+ 39.         
+.         // Con corrección
+.         matrix haus_man_c = J(`S',1,.) // igual que arriba pero corregidos
+ 40.         matrix haus_sta_c = J(`S',1,.)
+ 41.         matrix haus_al1_c = J(`S',1,.)
+ 42.         matrix haus_al2_c = J(`S',1,.)
+ 43.         
+.         matrix mundlak = J(`S',1,.) // Mundlak
+ 44.         
+.         // Loop. s indexa simulacion
+.         qui {
+ 45.         forvalues s=1/`S'{
+ 46.                 
+.                 // Limpia todo menos la estructura del panel
+.                 keep id time
+ 47.                 
+.                 // Avisa progreso
+.                 if floor((`s')/50)==(`s')/50 {
+ 48.                 noisily display "working on `s' out of `S' at $S_TIME" 
+ 49.                 }
+ 50.                 
+.                 // --------------------------
+.                 // Creación de variables
+.                 // --------------------------
+.                 
+.                 // AI: Error del que me salvó la IA: sqrt(sig^2) en vez de sig^2 solo
+.                 
+.                 gen c_i = .
+ 51.                 forvalues i = 1/`N' {
+ 52.                         scalar c_i_aux = rnormal(0, sqrt(`sig2_c'))
+ 53.                         qui replace c_i = c_i_aux if id == `i'
+ 54.                 } 
+ 55.                 
+.                 gen v1_it = rnormal(0, sqrt(`sig2_v'))
+ 56.                 gen x1_it = 0.5 * c_i + v1_it
+ 57.                 gen x2_it = rnormal(0, sqrt(`sig2_x2')) 
+ 58.                 
+.                 // primero creo el shock del error
+.                 gen eps_it = rnormal(0, sqrt(`sig2_e'))
+ 59.                 gen u_it = .
+ 60.                 // para t = 1, asumo u_i0 = 0, entonces u_i1 = e_i1
+.                 replace u_it = eps_it if time == 1 
+ 61.                 // para t >= 2, se implementa AR(1)
+.                 forvalues t = 2/`T' {
+ 62.                         replace u_it = `rho' * L.u_it + eps_it if time == `t'
+ 63.                 }
+ 64.                 gen y_it = `beta0' + `beta1' * x1_it + `beta2' * x2_it + c_i + u_it
+ 65.                 
+.                 // Spoiler inciso 4 {
+.                 // generamos vars para DGP alternativo para el tamaño empírico
+.                 // rho = 0
+.                 gen ualt_it = eps_it
+ 66.                 gen yalt1_it = `beta0' + `beta1' * x1_it + `beta2' * x2_it + c_i + ualt_it
+ 67.                 // rho = 0 y ademas exog
+.                 gen x1alt_it = v1_it            
+ 68.                 gen yalt2_it = `beta0' + `beta1' * x1alt_it + `beta2' * x2_it + c_i + ualt_it
+ 69.                 // }
+.                 
+.                 // --------------------------
+.                 // Estimaciones
+.                 // --------------------------
+.                 
+.                 // AI: Error del que me salvó la IA: c_i incluido
+.                 
+.                 // Inciso 1, POLS
+.                 reg y_it x1_it x2_it
+ 70.                 matrix b1h_ols[`s',1] = _b[x1_it]
+ 71.                 matrix b2h_ols[`s',1] = _b[x2_it]
+ 72.                 
+.                 // Inciso 2, RE
+.                 xtreg y_it x1_it x2_it, re
+ 73.                 matrix b1h_re[`s',1] = _b[x1_it]
+ 74.                 matrix b2h_re[`s',1] = _b[x2_it]
+ 75. 
+.                 // Inciso 3
+.                 // FE-within
+.                 xtreg y_it x1_it x2_it, fe
+ 76.                 matrix b1h_fe[`s',1] = _b[x1_it]
+ 77.                 matrix b2h_fe[`s',1] = _b[x2_it]
+ 78.                 
+.                 matrix se1_fe_conv[`s',1] = _se[x1_it] // Almacenamos SE para comprarar
+ 79.                 matrix se2_fe_conv[`s',1] = _se[x2_it]
+ 80.                 
+.                 // FE con cluster
+.                 xtreg y_it x1_it x2_it, fe vce(cluster id)      
+ 81.                 
+.                 matrix se1_fe_rc[`s',1] = _se[x1_it]  // Acá también
+ 82.                 matrix se2_fe_rc[`s',1] = _se[x2_it]
+ 83.                 
+.                 // Inciso 4
+.                 
+.                 /*
+>                 // DGP base: AR(1) + endogeneidad, Hausman manual
+>                 quietly hausman_manual_pair ///
+>                         y_it x1_it x2_it
+>                 matrix haus_man[`s',1]   = r(reject_raw) // Sin corregir
+>                 matrix haus_man_c[`s',1] = r(reject_cor) // Corregido
+>                 */
+. 
+.                 // DGP base: AR(1) + endogeneidad, Hausman de Stata
+.                 quietly hausman_stata_pair ///
+>                         y_it x1_it x2_it
+ 84.                 matrix haus_sta[`s',1]   = r(reject_raw)
+ 85.                 matrix haus_sta_c[`s',1] = r(reject_cor)
+ 86. 
+.                 /*
+>                 // Alt1: rho = 0, pero endogeneidad. Hausman de Stata
+>                 quietly hausman_stata_pair /// 
+>                         yalt1_it x1_it x2_it
+>                 matrix haus_al1[`s',1]   = r(reject_raw)
+>                 matrix haus_al1_c[`s',1] = r(reject_cor)
+>                 */
+. 
+.                 // Alt2: rho = 0 y exogeneidad respecto de c_i. Hausman de Stata
+.                 quietly hausman_stata_pair ///  
+>                         yalt2_it x1alt_it x2_it
+ 87.                 matrix haus_al2[`s',1]   = r(reject_raw)
+ 88.                 matrix haus_al2_c[`s',1] = r(reject_cor)
+ 89.                 
+.                 // Inciso 5
+.                 bysort id: egen mean_x1 = mean(x1_it) // calculamos las medias
+ 90.                 bysort id: egen mean_x2 = mean(x2_it)
+ 91.         xtreg y_it x1_it x2_it mean_x1 mean_x2, re  // RE con medias como regres.
+ 92.                 test mean_x1 mean_x2
+ 93.                 matrix mundlak[`s',1] = (r(p) < 0.05)   
+ 94.                 
+.                 
+.         }
+ 95.         }
+ 96.         
+.         // Se usa el truco de la práctica para manejar los resultados en un dataframe
+.         frame create E1A_RESULTS
+ 97.         frame change E1A_RESULTS
+ 98.         
+.         
+.         // TO-DO remove: Versión vieja con todos los Hausmans
+.         /*
+>         matrix results = b1h_ols, b2h_ols, b1h_re, b2h_re, b1h_fe, b2h_fe, ///
+>                                          se1_fe_conv, se2_fe_conv, se1_fe_rc, se2_fe_rc, ///
+>                                          haus_man,   haus_sta,   haus_al1,   haus_al2, ///
+>                                          haus_man_c, haus_sta_c, haus_al1_c, haus_al2_c, ///
+>                                          mundlak
+>                                          
+> 
+>         matrix colnames results = b1_ols b2_ols b1_re b2_re b1_fe b2_fe ///
+>                                                           se1_fe_conv se2_fe_conv se1_fe_rc se2_fe_rc ///
+>                                                           haus_man   haus_sta   haus_alt1   haus_alt2 ///
+>                                                           haus_man_c haus_sta_c haus_alt1_c haus_alt2_c ///
+>                                                           mundlak
+> 
+>         svmat double results, names(col)
+>         */
+.         
+.         matrix results = b1h_ols, b2h_ols, b1h_re, b2h_re, b1h_fe, b2h_fe, ///
+>                                          se1_fe_conv, se2_fe_conv, se1_fe_rc, se2_fe_rc, ///
+>                                          haus_sta, haus_al2, haus_sta_c, haus_al2_c, ///
+>                                          mundlak
+ 99. 
+.         matrix colnames results = b1_ols b2_ols b1_re b2_re b1_fe b2_fe ///
+>                                                           se1_fe_conv se2_fe_conv se1_fe_rc se2_fe_rc ///
+>                                                           haus_base_raw haus_size_raw ///
+>                                                           haus_base_cor haus_size_cor ///
+>                                                           mundlak
+100. 
+.         svmat double results, names(col)
+101.         
+.         // --------------------------------------------------
+.         // Tabla final: beta1
+.         // Media, desvio estandar Monte Carlo y RMSE
+.         // --------------------------------------------------
+. 
+.         gen sqerr_b1_ols = (b1_ols - `beta1')^2
+102.         gen sqerr_b1_re  = (b1_re  - `beta1')^2
+103.         gen sqerr_b1_fe  = (b1_fe  - `beta1')^2
+104. 
+.         matrix TAB_B1 = J(3,3,.)
+105.         matrix rownames TAB_B1 = POLS RE FE
+106.         matrix colnames TAB_B1 = mean sd rmse
+107. 
+.         local r = 1
+108.         foreach est in ols re fe {
+109.                 quietly summarize b1_`est'
+110.                 matrix TAB_B1[`r',1] = r(mean)
+111.                 matrix TAB_B1[`r',2] = r(sd)
+112. 
+.                 quietly summarize sqerr_b1_`est'
+113.                 matrix TAB_B1[`r',3] = sqrt(r(mean))
+114. 
+.                 local r = `r' + 1
+115.         }
+116. 
+.         di as text "== beta1: media, SD Monte Carlo, RMSE =="
+117.         matrix list TAB_B1, format(%12.4f)
+118.         
+.         
+.         // --------------------------------------------------
+.         // Tabla final: beta2
+.         // Media, desvio estandar Monte Carlo y RMSE
+.         // --------------------------------------------------
+. 
+.         gen sqerr_b2_ols = (b2_ols - `beta2')^2
+119.         gen sqerr_b2_re  = (b2_re  - `beta2')^2
+120.         gen sqerr_b2_fe  = (b2_fe  - `beta2')^2
+121. 
+.         matrix TAB_B2 = J(3,3,.)
+122.         matrix rownames TAB_B2 = POLS RE FE
+123.         matrix colnames TAB_B2 = mean sd rmse
+124. 
+.         local r = 1
+125.         foreach est in ols re fe {
+126.                 quietly summarize b2_`est'
+127.                 matrix TAB_B2[`r',1] = r(mean)
+128.                 matrix TAB_B2[`r',2] = r(sd)
+129. 
+.                 quietly summarize sqerr_b2_`est'
+130.                 matrix TAB_B2[`r',3] = sqrt(r(mean))
+131. 
+.                 local r = `r' + 1
+132.         }
+133. 
+.         di as text "== beta2: media, SD Monte Carlo, RMSE =="
+134.         matrix list TAB_B2, format(%12.4f)
+135.         
+.         // --------------------------------------------------
+.         // Comparacion de errores estandar FE
+.         // --------------------------------------------------
+. 
+.         matrix TAB_SE_FE = J(2,5,.)
+136.         matrix rownames TAB_SE_FE = beta1 beta2
+137.         matrix colnames TAB_SE_FE = MC_sd mean_SE_conv mean_SE_cluster ratio_conv ratio_cluster
+138. 
+.         // beta1
+.         quietly summarize b1_fe
+139.         local mc_sd = r(sd)
+140. 
+.         quietly summarize se1_fe_conv
+141.         local se_conv = r(mean)
+142. 
+.         quietly summarize se1_fe_rc
+143.         local se_cl = r(mean)
+144. 
+.         matrix TAB_SE_FE[1,1] = `mc_sd'
+145.         matrix TAB_SE_FE[1,2] = `se_conv'
+146.         matrix TAB_SE_FE[1,3] = `se_cl'
+147.         matrix TAB_SE_FE[1,4] = `se_conv' / `mc_sd'
+148.         matrix TAB_SE_FE[1,5] = `se_cl' / `mc_sd'
+149. 
+.         // beta2
+.         quietly summarize b2_fe
+150.         local mc_sd = r(sd)
+151. 
+.         quietly summarize se2_fe_conv
+152.         local se_conv = r(mean)
+153. 
+.         quietly summarize se2_fe_rc
+154.         local se_cl = r(mean)
+155. 
+.         matrix TAB_SE_FE[2,1] = `mc_sd'
+156.         matrix TAB_SE_FE[2,2] = `se_conv'
+157.         matrix TAB_SE_FE[2,3] = `se_cl'
+158.         matrix TAB_SE_FE[2,4] = `se_conv' / `mc_sd'
+159.         matrix TAB_SE_FE[2,5] = `se_cl' / `mc_sd'
+160. 
+.         di as text "== FE: comparacion de SE convencionales vs cluster =="
+161.         matrix list TAB_SE_FE, format(%12.4f)
+162.         
+.         
+.         // --------------------------------------------------
+.         // Hausman: potencia y tamaño empirico
+.         // --------------------------------------------------
+. 
+.         matrix TAB_HAUS = J(4,2,.)
+163.         matrix rownames TAB_HAUS = base_raw base_sigmamore size_raw size_sigmamore
+164.         matrix colnames TAB_HAUS = rejection_rate valid_N
+165. 
+.         quietly summarize haus_base_raw
+166.         matrix TAB_HAUS[1,1] = r(mean)
+167.         matrix TAB_HAUS[1,2] = r(N)
+168. 
+.         quietly summarize haus_base_cor
+169.         matrix TAB_HAUS[2,1] = r(mean)
+170.         matrix TAB_HAUS[2,2] = r(N)
+171. 
+.         quietly summarize haus_size_raw
+172.         matrix TAB_HAUS[3,1] = r(mean)
+173.         matrix TAB_HAUS[3,2] = r(N)
+174. 
+.         quietly summarize haus_size_cor
+175.         matrix TAB_HAUS[4,1] = r(mean)
+176.         matrix TAB_HAUS[4,2] = r(N)
+177. 
+.         di as text "== Hausman: potencia y tamaño empirico =="
+178.         matrix list TAB_HAUS, format(%12.4f)
+179.         
+.         // --------------------------------------------------
+.         // Mundlak: potencia comparada con Hausman
+.         // --------------------------------------------------
+. 
+.         matrix TAB_POWER = J(2,2,.)
+180.         matrix rownames TAB_POWER = Hausman_sigmamore Mundlak
+181.         matrix colnames TAB_POWER = rejection_rate valid_N
+182. 
+.         quietly summarize haus_base_cor
+183.         matrix TAB_POWER[1,1] = r(mean)
+184.         matrix TAB_POWER[1,2] = r(N)
+185. 
+.         quietly summarize mundlak
+186.         matrix TAB_POWER[2,1] = r(mean)
+187.         matrix TAB_POWER[2,2] = r(N)
+188. 
+.         di as text "== Potencia: Hausman vs Mundlak =="
+189.         matrix list TAB_POWER, format(%12.4f)
+190.         
+.         // TO-DO: Retirar
+.         
+.         di as text "== Diagnósticos raw == "
+191.         
+.         // beta1
+.         tabstat b1_ols b1_re b1_fe, ///
+>                 statistics(mean sd) ///
+>                         columns(statistics) ///
+>                         format(%12.4f) ///
+>                         varwidth(14)
+192.         
+.         
+.         // beta2
+.         tabstat b2_ols b2_re b2_fe, ///
+>                 statistics(mean sd) ///
+>                         columns(statistics) ///
+>                         format(%12.4f) ///
+>                         varwidth(14)
+193.         
+.         // se1
+.         tabstat se1_fe_conv se1_fe_rc, ///
+>                 statistics(mean sd) ///
+>                 columns(statistics) ///
+>                 format(%12.4f) ///
+>                 varwidth(14)
+194.         
+.         // se2
+.         tabstat se2_fe_conv se2_fe_rc, ///
+>                 statistics(mean sd) ///
+>                 columns(statistics) ///
+>                 format(%12.4f) ///
+>                 varwidth(14)
+195.         
+.         /* TO-DO remove
+>         // Hausman sin corregir: tasas de rechazo entre simulaciones válidas
+>         tabstat haus_man haus_sta haus_alt1 haus_alt2, ///
+>         statistics(mean count) ///
+>         columns(statistics) ///
+>         format(%12.4f) ///
+>         varwidth(18)
+>         
+>         // Hausman corregido: tasas de rechazo entre simulaciones válidas      
+>         tabstat haus_man_c haus_sta_c haus_alt1_c haus_alt2_c, ///
+>         statistics(mean count) ///
+>         columns(statistics) ///
+>         format(%12.4f) ///
+>         varwidth(18)
+>         */
+.         
+.         // Hausman sin corregir: tasas de rechazo entre simulaciones válidas
+.         tabstat haus_base_raw haus_size_raw, ///
+>         statistics(mean count) ///
+>         columns(statistics) ///
+>         format(%12.4f) ///
+>         varwidth(18)
+196.         
+.         // Hausman corregido: tasas de rechazo entre simulaciones válidas      
+.         tabstat haus_base_cor haus_size_cor, ///
+>         statistics(mean count) ///
+>         columns(statistics) ///
+>         format(%12.4f) ///
+>         varwidth(18)
+197.                 
+.         tabstat mundlak, ///
+>                 statistics(mean count) ///
+>                 columns(statistics) ///
+>                 format(%12.4f) ///
+>                 varwidth(18)
+198.                 
+.     //frame change E1A_DATA
+. 
+. }
+199. 
+. if $RUN_E1_B {
+200.         // Reproducibilidad
+.         set seed $THE_SEED
+201.         di as text "!!! ---------- 1B -------------- !!! "
+202.         
+.         // Frame aparte para arrancar de cero
+.         capture frame drop E1B_DATA
+203.         frame create E1B_DATA
+204.         frame change E1B_DATA
+205.         
+.         // Tres setups
+.         local S = 300
+206.         local TAMS = 3 // 3 configs de tamanios muestrales
+207.         
+.         // Matrices de almacenamiento
+.         matrix b1h_ols = J(`S',`TAMS',.)  // OLS
+208.         matrix b1h_re  = J(`S',`TAMS',.)  // RE
+209.         matrix b1h_fe  = J(`S',`TAMS',.)  // FE
+210. 
+.         matrix b2h_ols = J(`S',`TAMS',.)  // OLS
+211.         matrix b2h_re  = J(`S',`TAMS',.)  // RE
+212.         matrix b2h_fe  = J(`S',`TAMS',.)  // FE
+213. 
+.         matrix se1_fe_conv = J(`S',`TAMS',.) // SE convencionales
+214.         matrix se2_fe_conv = J(`S',`TAMS',.)
+215. 
+.         matrix se1_fe_rc = J(`S',`TAMS',.) // SE robustos clustered
+216.         matrix se2_fe_rc = J(`S',`TAMS',.)
+217.         
+.         // Loop principal de tamaños
+.         forvalues tam = 1/`TAMS'{
+218.                 
+.                 if (`tam' == 1) {
+219.                         local N = 50
+220.                         local T = 4
+221.                 }
+222.                 else if (`tam' == 2) {
+223.                         local N = 200
+224.                         local T = 6
+225.                 }
+226.                 else if (`tam' == 3) {
+227.                         local N = 500
+228.                         local T = 10
+229.                 }
+230.                 
+.                 local NT = `N' * `T'
+231.                 
+.                 // Creación de panel
+.                 clear
+232.                 set obs `NT'
+233.                 egen id = seq(), f(1) t(`N') b(`T')
+234.                 egen time = seq(), f(1) t(`T')
+235.                 xtset id time
+236.                 
+.                 // Setup de parametros
+.                 local beta0 = 1 
+237.                 local beta1 = 0.6
+238.                 local beta2 = -0.4
+239.                 
+.                 local sig2_c  = 4
+240.                 local sig2_e  = 1
+241.                 local sig2_v  = 2
+242.                 local sig2_x2 = 3
+243.                 local rho     = 0.6             
+244.                 
+.                 // Loop. s indexa simulacion
+.                 qui {
+245.                 forvalues s=1/`S'{
+246.                         
+.                         // Limpia todo menos la estructura del panel
+.                         keep id time
+247.                         
+.                         // Avisa progreso
+.                         if floor((`s')/50)==(`s')/50 {
+248.                         noisily display "working on `s' out of `S' at $S_TIME" 
+249.                         }
+250.                         
+.                         // --------------------------------------
+.                         // Creación de variables: Igual que en 1A
+.                         // --------------------------------------
+.                         
+.                         gen c_i = .
+251.                         forvalues i = 1/`N' {
+252.                                 scalar c_i_aux = rnormal(0, sqrt(`sig2_c'))
+253.                                 qui replace c_i = c_i_aux if id == `i'
+254.                         } 
+255.                         
+.                         gen v1_it = rnormal(0, sqrt(`sig2_v'))
+256.                         gen x1_it = 0.5 * c_i + v1_it
+257.                         gen x2_it = rnormal(0, sqrt(`sig2_x2')) 
+258.                         gen eps_it = rnormal(0, sqrt(`sig2_e'))
+259.                         
+.                         gen u_it = .
+260.                         replace u_it = eps_it if time == 1 
+261.                         forvalues t = 2/`T' {
+262.                                 replace u_it = `rho' * L.u_it + eps_it if time == `t'
+263.                         }
+264.                         
+.                         gen y_it = `beta0' + `beta1' * x1_it + `beta2' * x2_it + c_i + u_it
+265.                 
+.                         
+.                         // --------------------------
+.                         // Estimaciones
+.                         // --------------------------
+.                         
+.                         * POLS
+.                         reg y_it x1_it x2_it
+266.                         matrix b1h_ols[`s',`tam'] = _b[x1_it]
+267.                         matrix b2h_ols[`s',`tam'] = _b[x2_it]
+268.                 
+.                         * RE
+.                         xtreg y_it x1_it x2_it, re
+269.                         matrix b1h_re[`s',`tam'] = _b[x1_it]
+270.                         matrix b2h_re[`s',`tam'] = _b[x2_it]
+271.                         
+.                         * FE-within
+.                         xtreg y_it x1_it x2_it, fe
+272.                         matrix b1h_fe[`s',`tam'] = _b[x1_it]
+273.                         matrix b2h_fe[`s',`tam'] = _b[x2_it]
+274.                                         
+.                         matrix se1_fe_conv[`s',`tam'] = _se[x1_it] // Almacenamos SE para comprarar
+275.                         matrix se2_fe_conv[`s',`tam'] = _se[x2_it]
+276.                         
+.                         * FE con cluster
+.                         xtreg y_it x1_it x2_it, fe vce(cluster id)      
+277.                         
+.                         matrix se1_fe_rc[`s',`tam'] = _se[x1_it]  // Acá también
+278.                         matrix se2_fe_rc[`s',`tam'] = _se[x2_it]        
+279.                         
+.                 }
+280.                 }
+281.                 
+.                 
+.         }
+282.         
+.         // Se usa el truco de la práctica para manejar los resultados en un dataframe
+.         // ==================================================
+.         // RESULTADOS EJERCICIO 1B
+.         // Usamos la misma lógica de 1A: matriz results + svmat
+.         // ==================================================
+.         capture frame drop E1B_RESULTS
+283.         frame create E1B_RESULTS
+284.         frame change E1B_RESULTS
+285. 
+.         // --------------------------------------------------
+.         // Pasar matrices Monte Carlo a variables con svmat
+.         // Cada matriz es S x 3, con columnas:
+.         // 1 = N50T4, 2 = N200T6, 3 = N500T10
+.         // --------------------------------------------------
+. 
+.         matrix results = ///
+>                 b1h_ols, b1h_re, b1h_fe, ///
+>                 b2h_ols, b2h_re, b2h_fe, ///
+>                 se1_fe_conv, se1_fe_rc, ///
+>                 se2_fe_conv, se2_fe_rc
+286. 
+.         matrix colnames results = ///
+>                 b1_ols_n50t4   b1_ols_n200t6   b1_ols_n500t10 ///
+>                 b1_re_n50t4    b1_re_n200t6    b1_re_n500t10 ///
+>                 b1_fe_n50t4    b1_fe_n200t6    b1_fe_n500t10 ///
+>                 b2_ols_n50t4   b2_ols_n200t6   b2_ols_n500t10 ///
+>                 b2_re_n50t4    b2_re_n200t6    b2_re_n500t10 ///
+>                 b2_fe_n50t4    b2_fe_n200t6    b2_fe_n500t10 ///
+>                 se1_fe_conv_n50t4 se1_fe_conv_n200t6 se1_fe_conv_n500t10 ///
+>                 se1_fe_rc_n50t4   se1_fe_rc_n200t6   se1_fe_rc_n500t10 ///
+>                 se2_fe_conv_n50t4 se2_fe_conv_n200t6 se2_fe_conv_n500t10 ///
+>                 se2_fe_rc_n50t4   se2_fe_rc_n200t6   se2_fe_rc_n500t10
+287. 
+.         set obs `S'
+288.         svmat double results, names(col)
+289. 
+. 
+.         // --------------------------------------------------
+.         // Tabla 1B.7: beta1
+.         // Media, SD Monte Carlo y RMSE para POLS, RE y FE
+.         // bajo las tres combinaciones (N,T)
+.         // --------------------------------------------------
+. 
+.         matrix TAB_E1B_B1 = J(9,3,.)
+290.         matrix rownames TAB_E1B_B1 = ///
+>                 POLS_n50t4 POLS_n200t6 POLS_n500t10 ///
+>                 RE_n50t4   RE_n200t6   RE_n500t10 ///
+>                 FE_n50t4   FE_n200t6   FE_n500t10
+291. 
+.         matrix colnames TAB_E1B_B1 = mean sd rmse
+292. 
+.         local r = 1
+293.         foreach est in ols re fe {
+294.                 foreach tam in n50t4 n200t6 n500t10 {
+295. 
+.                         gen sqerr_b1_`est'_`tam' = (b1_`est'_`tam' - `beta1')^2
+296. 
+.                         quietly summarize b1_`est'_`tam'
+297.                         matrix TAB_E1B_B1[`r',1] = r(mean)
+298.                         matrix TAB_E1B_B1[`r',2] = r(sd)
+299. 
+.                         quietly summarize sqerr_b1_`est'_`tam'
+300.                         matrix TAB_E1B_B1[`r',3] = sqrt(r(mean))
+301. 
+.                         local r = `r' + 1
+302.                 }
+303.         }
+304. 
+.         di as text "== E1B.7: beta1, media, SD Monte Carlo y RMSE =="
+305.         matrix list TAB_E1B_B1, format(%12.4f)
+306. 
+. 
+.         // --------------------------------------------------
+.         // Tabla 1B.6: comparación FE
+.         // SE convencionales vs cluster por tamaño muestral
+.         // --------------------------------------------------
+. 
+.         matrix TAB_E1B_SE_FE = J(6,6,.)
+307.         matrix rownames TAB_E1B_SE_FE = ///
+>                 beta1_n50t4 beta1_n200t6 beta1_n500t10 ///
+>                 beta2_n50t4 beta2_n200t6 beta2_n500t10
+308. 
+.         matrix colnames TAB_E1B_SE_FE = ///
+>                 MC_sd mean_SE_conv mean_SE_cluster ///
+>                 ratio_conv_MC ratio_cluster_MC ratio_conv_cluster
+309. 
+.         local r = 1
+310.         foreach b in 1 2 {
+311.                 foreach tam in n50t4 n200t6 n500t10 {
+312. 
+.                         quietly summarize b`b'_fe_`tam'
+313.                         local mc_sd = r(sd)
+314. 
+.                         quietly summarize se`b'_fe_conv_`tam'
+315.                         local se_conv = r(mean)
+316. 
+.                         quietly summarize se`b'_fe_rc_`tam'
+317.                         local se_cl = r(mean)
+318. 
+.                         matrix TAB_E1B_SE_FE[`r',1] = `mc_sd'
+319.                         matrix TAB_E1B_SE_FE[`r',2] = `se_conv'
+320.                         matrix TAB_E1B_SE_FE[`r',3] = `se_cl'
+321.                         matrix TAB_E1B_SE_FE[`r',4] = `se_conv' / `mc_sd'
+322.                         matrix TAB_E1B_SE_FE[`r',5] = `se_cl' / `mc_sd'
+323.                         matrix TAB_E1B_SE_FE[`r',6] = `se_conv' / `se_cl'
+324. 
+.                         local r = `r' + 1
+325.                 }
+326.         }
+327. 
+.         di as text "== E1B.6: FE, comparación SE convencionales vs cluster =="
+328.         matrix list TAB_E1B_SE_FE, format(%12.4f)
+329. 
+. 
+.         // --------------------------------------------------
+.         // Diagnóstico opcional: medias crudas de SE
+.         // --------------------------------------------------
+. 
+.         di as text "== Diagnostico E1B: SE FE beta1 =="
+330.         tabstat se1_fe_conv_n50t4 se1_fe_rc_n50t4 ///
+>                         se1_fe_conv_n200t6 se1_fe_rc_n200t6 ///
+>                         se1_fe_conv_n500t10 se1_fe_rc_n500t10, ///
+>                         statistics(mean sd) columns(statistics) ///
+>                         format(%12.4f) varwidth(22)
+331. 
+.         di as text "== Diagnostico E1B: SE FE beta2 =="
+332.         tabstat se2_fe_conv_n50t4 se2_fe_rc_n50t4 ///
+>                         se2_fe_conv_n200t6 se2_fe_rc_n200t6 ///
+>                         se2_fe_conv_n500t10 se2_fe_rc_n500t10, ///
+>                         statistics(mean sd) columns(statistics) ///
+>                         format(%12.4f) varwidth(22)
+333.                 
+.     //frame change E1B_DATA
+. }
+334. 
+. di as text "== EJERCICIO 1: fin =="
+335. end
+
+. /******************************************************************************/
+. 
+. /*******************************************************************************
+> EJERCICIO 2 - Paneles Dinámicos - Sesgo de Nickell, Arellano–Bond y Blundell–Bond
+> *******************************************************************************/
+. 
+. capture program drop EJERCICIO_2
+
+. program define EJERCICIO_2
+  1. version 17
+  2. di as text "== EJERCICIO 2: inicio =="
+  3. if $RUN_E2 {
+  4.         
+.         // Frame aparte para arrancar de cero
+.         capture frame drop E2_DATA
+  5.         frame create E2_DATA
+  6.         frame change E2_DATA
+  7. 
+. 
+.         // Parametros que no cambian
+.         local beta = 1 // TO-DO consultar con Iara
+  8.         local sig_c = 1
+  9.         local sig_u = 1
+ 10.         local sig_v = sqrt(0.9)
+ 11. 
+.         // Valores iniciales DGP
+.         local xi_0 = 0 // TO-DO consultar con Iara
+ 12.         local yi_0 = 0
+ 13. 
+.         // ------------------------------------
+.         // Escribir a disco resultados de E1
+.         // ------------------------------------
+. 
+.         // Numero de simulaciones
+.         local S = 2
+ 14. 
+.         capture mkdir "output"
+ 15.         capture mkdir "output/e2"
+ 16. 
+.         local dnum = daily("`c(current_date)'", "DMY")
+ 17.         local yyyy = string(year(`dnum'), "%04.0f")
+ 18.         local mm   = string(month(`dnum'), "%02.0f")
+ 19.         local dd   = string(day(`dnum'), "%02.0f")
+ 20.         local hhmmss = subinstr("`c(current_time)'", ":", "", .)
+ 21. 
+.         local run_stamp  = "`yyyy'-`mm'-`dd'_`hhmmss'"
+ 22.         local run_prefix = "`run_stamp'__S`S'"
+ 23.         local outdir     = "output/e2"
+ 24. 
+.         di as text "E2 run_prefix: `run_prefix'"
+ 25. 
+.         // ------------------------------------
+.         // Holder de resultados E2
+.         // ------------------------------------
+.         
+.         // Para este ejercicio uso postfiles en vez de matrices de almacenamiento.
+.         // La ventaja es que puedo usar `collapse' después para los estadísticos de forma sencilla y legible.
+. 
+.         // [e2_results] tiene una fila para cada combinación:
+.         //   escenario x simulacion x estimador
+.         tempfile e2_results
+ 26.         postfile handle ///
+>                 str1 scenario ///
+>                 int rep ///
+>                 str12 estimator ///
+>                 double alpha0 N T alpha_hat se reject fail ///
+>                 double hansen_p sargan_p n_inst ///
+>                 using `e2_results', replace
+ 27. 
+.         // [e2_b1_corr] almacena el correlograma empirico
+.         tempfile e2_b1_corr
+ 28.         postfile handle_b1 ///
+>                 str1 scenario ///     // el escenario (siempre es D pero queda más legible)
+>                 int rep ///           // se registra una fila por simulacion 
+>                 byte lag_depth ///    // la distancia en t del instrumento a \Delta y_{i.t-1} (para T=4 es {2,3})
+>                 double corr ///       // la correlación entre el instrumento y el delta
+>                 using `e2_b1_corr', replace
+ 29.         
+. 
+.         // Loop de escenarios
+.         forvalues esce = 1/4 {
+ 30.                 
+.                 // Empiezo cada escenario en el mismo seed
+.                 set seed $THE_SEED
+ 31. 
+.                 // Setup de parámetros de acuerdo a escenario
+.                 if (`esce' == 1) {
+ 32.                         local scenario = "A" // label legible para el postfile
+ 33.                         local alpha = 0.5
+ 34.                         local N = 30
+ 35.                         local T = 10
+ 36.                 }
+ 37.                  else if (`esce' == 2) {
+ 38.                         local scenario = "B"
+ 39.                         local alpha = 0.5
+ 40.                         local N = 100
+ 41.                         local T = 10
+ 42.                 }
+ 43.                 else if (`esce' == 3) {
+ 44.                         local scenario = "C"
+ 45.                         local alpha = 0.8
+ 46.                         local N = 30
+ 47.                         local T = 7
+ 48.                 }
+ 49.                 else if (`esce' == 4) {
+ 50.                         local scenario = "D"
+ 51.                         local alpha = 0.92
+ 52.                         local N = 100
+ 53.                         local T = 4
+ 54.                 }
+ 55. 
+.                 // ------------------------------------
+.                 // Loop de simulaciones intra-escenario
+.                 // ------------------------------------
+. 
+.                 forvalues simu = 1/`S' {
+ 56.                         // -------------
+.                         // Panel setup
+.                         // -------------
+.                         
+.                         // Limpio la data del panel anterior
+.                         clear
+ 57. 
+.                         // Primero declaro el panel "full" para usar operadores built-in cómodos
+.                         // Agregamos los periodos extra (los de burn-in que luego se remueven)
+.                         local T_full = `T' + 10
+ 58.                         local T_full_plus1 = `T_full' + 1
+ 59.                         local NT_full = `N' * `T_full_plus1'
+ 60.                         
+.                         qui set obs `NT_full'
+ 61.                         egen id     = seq(), f(1) t(`N') b(`T_full_plus1')
+ 62.                         egen t_full = seq(), f(0) t(`T_full')
+ 63.                         qui xtset id t_full
+ 64. 
+.                         // -------------------------
+.                         // Creación de variables
+.                         // -------------------------
+.                         qui {
+ 65.                                 // bysort hace operaciones por grupo
+.                                 // acá "entro" a un bloque con id fijo
+.                                 // _n es el item interno. genero el valor para el primer item del bloque
+. 
+.                                 bysort id: gen c_i = rnormal(0, `sig_c') if _n == 1
+ 66.                                 // después, copio el mismo valor a todos los otros elems del bloque
+.                                 bysort id: replace c_i = c_i[1]
+ 67. 
+.                                 // Errores. Dejo el primero missing para no confundirme
+.                                 gen u_i = .
+ 68.                                 replace u_i = rnormal(0, `sig_u') if t_full >= 1
+ 69. 
+.                                 gen v_i = .
+ 70.                                 replace v_i = rnormal(0, `sig_v') if t_full >= 1
+ 71. 
+.                                 // Genero las bases de los recursivos, con una idea similar
+.                                 gen x_i = .
+ 72.                                 replace x_i = `xi_0' if t_full == 0
+ 73.                                 gen y_i = .
+ 74.                                 replace y_i = `yi_0' if t_full == 0
+ 75. 
+.                                 // GPT me recomendó que asegurara el sort 
+.                                 sort id t_full
+ 76.                                 xtset id t_full
+ 77. 
+.                                 forvalues tt = 1/`T_full' { // acá sí itero a mano
+ 78.                                         replace x_i = 0.8 * L.x_i + v_i if t_full == `tt'
+ 79.                                         replace y_i = `alpha' * L.y_i + `beta' * x_i + c_i + u_i if t_full == `
+> tt'
+ 80.                                 }
+ 81. 
+.                                 // Acá quito B=10 periodos y reindexo t ("burn in")
+.                                 keep if t_full > 10
+ 82.                                 gen t = t_full - 10
+ 83.                                 xtset id t
+ 84. 
+.                                 // Queda todo listo para usar.
+. 
+.                                 // ========================================================
+.                                 // Estimadores
+.                                 // ========================================================
+. 
+.                                 // Para cada estimador implemento el test H0: a = a0 al 5%
+.                                 // a0 es el valor real del escenario.
+. 
+.                                 // El patrón es ver si fallan la regresión o el test
+.                                 // y en ese caso almacenar NA. En caso contrario, se 
+.                                 // almacenan los estimates y si se rechazó o no el test.
+. 
+.                                 // -------------------------
+.                                 // LSDV
+.                                 // -------------------------
+. 
+.                                 capture reg y_i L.y_i x_i i.id
+ 85.                                 if _rc {
+ 86.                                         post handle ("`scenario'") (`simu') ("LSDV") ///
+>                                                 (`alpha') (`N') (`T') (.) (.) (.) (1) ///
+>                                                 (.) (.) (.)
+ 87.                                 }
+ 88.                                 else {
+ 89.                                         local alpha_hat = _b[L.y_i]
+ 90.                                         local se_lsdv = _se[L.y_i]
+ 91. 
+.                                         capture test L.y_i = `alpha'
+ 92.                                         if _rc {
+ 93.                                                 local reject_H0 = .
+ 94.                                         }
+ 95.                                         else {
+ 96.                                                 local reject_H0 = (r(p) < 0.05)
+ 97.                                         }
+ 98. 
+.                                         post handle ("`scenario'") (`simu') ("LSDV") ///
+>                                                 (`alpha') (`N') (`T') (`alpha_hat') (`se_lsdv') (`reject_H0') (0) 
+> ///
+>                                                 (.) (.) (.)
+ 99.                                 }
+100. 
+.                                 // -------------------------
+.                                 // Anderson-Hsiao
+.                                 // -------------------------
+. 
+.                                 // Uso nombres un poco más legibles para las variables
+.                                 gen dy  = D.y_i
+101.                                 gen ldy = L.D.y_i
+102.                                 gen dx  = D.x_i
+103.                                 gen l2y = L2.y_i
+104. 
+.                                 // Se instrumenta D.y_{t-1} con y_{t-2}, el instrumento AH mínimo
+.                                 // Stata incluye el regresor estrictamente exógeno como su propio instrumento
+.                                 capture ivregress 2sls dy dx (ldy = l2y), nocons
+105. 
+.                                 if _rc {
+106.                                         post handle ("`scenario'") (`simu') ("AH") ///
+>                                                 (`alpha') (`N') (`T') (.) (.) (.) (1) ///
+>                                                 (.) (.) (.)
+107.                                 }
+108.                                 else {
+109.                                         local alpha_hat = _b[ldy]
+110.                                         local se_ah = _se[ldy]
+111. 
+.                                         capture test ldy = `alpha'
+112.                                         if _rc {
+113.                                                 local reject_H0 = .
+114.                                         }
+115.                                         else {
+116.                                                 local reject_H0 = (r(p) < 0.05)
+117.                                         }
+118. 
+.                                         post handle ("`scenario'") (`simu') ("AH") ///
+>                                                 (`alpha') (`N') (`T') (`alpha_hat') (`se_ah') (`reject_H0') (0) //
+> /
+>                                                 (.) (.) (.)
+119.                                 }
+120. 
+.                                 // -------------------------
+.                                 // AB-GMM1
+.                                 // -------------------------
+. 
+.                                 // Con nolevel le decimos que no es BB (i.e. que no meta la ecuación en niveles al
+>  sistema)
+.                                 capture xtabond2 y_i L.y_i x_i, gmm(L.y_i) iv(x_i) nolevel
+121. 
+.                                 if _rc {
+122.                                         post handle ("`scenario'") (`simu') ("AB-GMM1") ///
+>                                                 (`alpha') (`N') (`T') (.) (.) (.) (1) ///
+>                                                 (.) (.) (.)
+123.                                 }
+124.                                 else {
+125.                                         local alpha_hat = _b[L.y_i]
+126.                                         local se_ab1 = _se[L.y_i]
+127. 
+.                                         capture test L.y_i = `alpha'
+128.                                         if _rc {
+129.                                                 local reject_H0 = .
+130.                                         }
+131.                                         else {
+132.                                                 local reject_H0 = (r(p) < 0.05)
+133.                                         }
+134. 
+.                                         post handle ("`scenario'") (`simu') ("AB-GMM1") ///
+>                                         (`alpha') (`N') (`T') (`alpha_hat') (`se_ab1') (`reject_H0') (0) ///
+>                                         (.) (.) (.)
+135.                                 }
+136. 
+.                                 // -------------------------
+.                                 // AB-GMM2
+.                                 // -------------------------
+. 
+.                                 // Básicamente lo mismo pero con twostep
+.                                 // Con corrección "robust" de SE para el segundo step (lo recomienda la doc de xta
+> bond2)
+.                                 capture xtabond2 y_i L.y_i x_i, gmm(L.y_i) iv(x_i) nolevel twostep robust
+137. 
+.                                 if _rc {
+138.                                         post handle ("`scenario'") (`simu') ("AB-GMM2") ///
+>                                                 (`alpha') (`N') (`T') (.) (.) (.) (1) ///
+>                                                 (.) (.) (.)
+139.                                 }
+140.                                 else {
+141.                                         local alpha_hat = _b[L.y_i]
+142.                                         local se_ab2 = _se[L.y_i]
+143. 
+.                                         capture test L.y_i = `alpha'
+144.                                         if _rc {
+145.                                                 local reject_H0 = .
+146.                                         }
+147.                                         else {
+148.                                                 local reject_H0 = (r(p) < 0.05)
+149.                                         }
+150. 
+.                                         post handle ("`scenario'") (`simu') ("AB-GMM2") ///
+>                                                 (`alpha') (`N') (`T') (`alpha_hat') (`se_ab2') (`reject_H0') (0) /
+> //
+>                                                 (.) (.) (.)
+151.                                 }
+152. 
+.                                 // -------------------------
+.                                 // BB-GMM1
+.                                 // -------------------------
+. 
+.                                 // System GMM. Al no usar nolevel, xtabond2 agrega la ecuación en niveles.
+.                                 capture xtabond2 y_i L.y_i x_i, gmm(L.y_i) iv(x_i)
+153. 
+.                                 if _rc {
+154.                                         post handle ("`scenario'") (`simu') ("BB-GMM1") ///
+>                                                 (`alpha') (`N') (`T') (.) (.) (.) (1) ///
+>                                                 (.) (.) (.)
+155.                                 }
+156.                                 else {
+157.                                         local alpha_hat = _b[L.y_i]
+158.                                         local se_bb1 = _se[L.y_i]
+159. 
+.                                         capture test L.y_i = `alpha'
+160.                                         if _rc {
+161.                                                 local reject_H0 = .
+162.                                         }
+163.                                         else {
+164.                                                 local reject_H0 = (r(p) < 0.05)
+165.                                         }
+166. 
+.                                         post handle ("`scenario'") (`simu') ("BB-GMM1") ///
+>                                                 (`alpha') (`N') (`T') (`alpha_hat') (`se_bb1') (`reject_H0') (0) /
+> //
+>                                                 (.) (.) (.)
+167.                                 }
+168. 
+.                                 // -------------------------
+.                                 // BB-GMM2
+.                                 // -------------------------
+. 
+.                                 // Two-step System GMM. Al no usar nolevel, esto es BB y no AB.
+.                                 // También se aplica la corrección de two-step de la documentación.
+.                                 capture xtabond2 y_i L.y_i x_i, gmm(L.y_i) iv(x_i) twostep robust
+169. 
+.                                 if _rc {
+170.                                         post handle ("`scenario'") (`simu') ("BB-GMM2") ///
+>                                                 (`alpha') (`N') (`T') (.) (.) (.) (1) ///
+>                                                 (.) (.) (.)
+171.                                 }
+172.                                 else {
+173.                                         local alpha_hat = _b[L.y_i]
+174.                                         local se_bb2 = _se[L.y_i]
+175. 
+.                                         capture test L.y_i = `alpha'
+176.                                         if _rc {
+177.                                                 local reject_H0 = .
+178.                                         }
+179.                                         else {
+180.                                                 local reject_H0 = (r(p) < 0.05)
+181.                                         }
+182. 
+.                                         local hansen_p = .
+183.                                         local sargan_p = .
+184.                                         local n_inst   = .
+185. 
+.                                         if "`scenario'" == "B" {
+186.                                                 capture local hansen_p = e(hansenp)
+187.                                                 capture local sargan_p = e(sarganp)
+188.                                                 capture local n_inst   = e(j)
+189.                                         }
+190. 
+.                                         post handle ("`scenario'") (`simu') ("BB-GMM2") ///
+>                                                 (`alpha') (`N') (`T') (`alpha_hat') (`se_bb2') (`reject_H0') (0) /
+> //
+>                                                 (`hansen_p') (`sargan_p') (`n_inst')
+191.                                 }
+192. 
+.                                 // -------------------------
+.                                 // Kiviet / LSDVC
+.                                 // -------------------------
+. 
+.                                 // Uso el mismo setup de la práctica (A-H como base)
+.                                 capture xtlsdvc y_i x_i, initial(ah) bias(2)
+193. 
+.                                 if _rc {
+194.                                         post handle ("`scenario'") (`simu') ("Kiviet") ///
+>                                                 (`alpha') (`N') (`T') (.) (.) (.) (1) ///
+>                                                 (.) (.) (.)
+195.                                 }
+196.                                 else {
+197.                                         // Calculo la matriz de varcov como en la práctica ...
+.                                         matrix blsdvc = e(b)
+198.                                         scalar alpha_lsdvc = blsdvc[1,1]
+199.                                         scalar beta_lsdvc  = blsdvc[1,2] // solo que hay que agregar otro param
+200. 
+.                                         scalar NT_kiv = e(N) // renombrar vars para no colisionar
+201.                                         scalar T_kiv  = e(Tbar)
+202.                                         scalar N_kiv  = e(N_g)
+203.                                         scalar K_kiv  = colsof(e(b))
+204. 
+.                                         gen yL1_kiv = L.y_i
+205. 
+.                                         egen bar_yi   = mean(y_i), by(id)
+206.                                         egen bar_yL1i = mean(yL1_kiv), by(id)
+207.                                         egen bar_xi   = mean(x_i), by(id) // agregar para el reg. exógeno
+208. 
+.                                         gen with_y   = y_i     - bar_yi
+209.                                         gen with_yL1 = yL1_kiv - bar_yL1i
+210.                                         gen with_x   = x_i     - bar_xi  // acá también
+211. 
+.                                         // Ajustar los errores para incluir x
+.                                         gen u_kiv = with_y - alpha_lsdvc * with_yL1 - beta_lsdvc * with_x
+212. 
+.                                         // Los otros cálculos matriciales son idénticos
+.                                         matrix accum uTu = u_kiv, noconstant
+213.                                         matrix sigma2u = (uTu) / (NT_kiv - N_kiv - T_kiv - K_kiv + 1)
+214. 
+.                                         matrix accum ZTZ = with_yL1 with_x, noconstant
+215.                                         matrix Var_lsdvc = sigma2u * inv(ZTZ)
+216. 
+.                                         // Finalmente obtener el SE
+.                                         scalar se_lsdvc = sqrt(Var_lsdvc[1,1])
+217. 
+.                                         // Por ultimo implemento el t-test a mano
+.                                         scalar tstat_kiv = (alpha_lsdvc - `alpha') / se_lsdvc
+218.                                         scalar pval_kiv = 2 * ttail(NT_kiv - K_kiv, abs(tstat_kiv))
+219.                                         local reject_H0 = (pval_kiv < 0.05)
+220. 
+.                                         post handle ("`scenario'") (`simu') ("Kiviet") ///
+>                                                 (`alpha') (`N') (`T') (alpha_lsdvc) (se_lsdvc) (`reject_H0') (0) /
+> //
+>                                                 (.) (.) (.)
+221.                                 }
+222. 
+.                                 // =====================================================
+.                                 // Cálculos auxiliares
+.                                 // =====================================================
+.                                 
+.                                 // ---------------------------------
+.                                 // Parte B.1: Correlograma empírico
+.                                 // ---------------------------------
+.                                 if "`scenario'" == "D" {
+223. 
+.                                         // Creamos las variables
+.                                         capture drop dy_lag_b1 instr_l2_b1 instr_l3_b1
+224. 
+.                                         // El delta endógeno a instrumentar (\Delta y_{i.t-1})
+.                                         gen dy_lag_b1   = L.y_i - L2.y_i
+225.                                         // El instrumento a distancia 2
+.                                         gen instr_l2_b1 = L2.y_i
+226.                                         // El instrumento a distancia 3
+.                                         gen instr_l3_b1 = L3.y_i
+227. 
+.                                         // Vacío por defecto, si no hay error numérico almaceno corr.
+.                                         local corr_l2 = .
+228.                                         local corr_l3 = .
+229. 
+.                                         capture quietly corr dy_lag_b1 instr_l2_b1
+230.                                         if !_rc {
+231.                                                 local corr_l2 = r(rho)
+232.                                         }
+233. 
+.                                         capture quietly corr dy_lag_b1 instr_l3_b1
+234.                                         if !_rc {
+235.                                                 local corr_l3 = r(rho)
+236.                                         }
+237. 
+.                                         // Guardo resultado en postfile
+.                                         post handle_b1 ("`scenario'") (`simu') (2) (`corr_l2') // distancia 2
+238.                                         post handle_b1 ("`scenario'") (`simu') (3) (`corr_l3') // distancia 3
+239.                                 }
+240. 
+.                                 // Almacenar resultados dummy
+.                                 /*post handle ("`scenario'") (`simu') ("DGP") ///
+>                                         (`alpha') (`N') (`T') (.) (.) (.) (0) ///
+>                                         (.) (.) (.)*/
+.                         }
+241.                 }
+242.         }
+243. 
+.         // ------------------------------------
+.         // Cerramos los postfiles
+.         // ------------------------------------
+. 
+.         postclose handle
+244.         postclose handle_b1
+245. 
+.         // Acá exporto los resultados raw de Monte Carlo
+.         // TO-DO entender estas lineas
+.         use `e2_results', clear
+246.         save "`outdir'/`run_prefix'__e2_raw.dta", replace
+247.         di "----------------------------------------------"
+248.         di as text "Monte Carlo terminó. Datos exportados."
+249.         di "----------------------------------------------"
+250. 
+.         // TO-DO esto quitarlo, dejarlo solo para debug GPT.
+.         count
+251.         tab scenario estimator
+252.         tab estimator fail
+253. 
+.         // [Error numérico para cada estimador]
+.         preserve // Snapshot del dataset MC
+254. 
+.                 // Se colapsa a los estadísticos de interés 
+.                 collapse ///
+>                         (mean) fail_rate = fail /// 
+>                         (count) reps_total = fail, ///
+>                         by(scenario estimator) // una sola fila por combinación {escenario, estimador}
+255. 
+.                 // Despliegue y exportación
+.                 sort scenario estimator
+256.                 di as text "== E2 diagnostico: fail rates =="
+257.                 list, sepby(scenario) noobs
+258.                 export delimited using "`outdir'/`run_prefix'__e2_raw_failrates.csv", replace
+259.         
+.         restore
+260. 
+. 
+.         //export delimited using "`outdir'/`run_prefix'__e2_raw_failrates.csv", replace
+. 
+.         
+. 
+.         // ------------------------------------
+.         // Parte A: tabla resumen
+.         // ------------------------------------
+. 
+.         preserve
+261. 
+.                 qui keep if fail == 0
+262. 
+.                 gen bias_alpha = alpha_hat - alpha0
+263.                 gen sqerr_alpha = bias_alpha^2
+264. 
+.                 collapse ///
+>                         (mean) mean_alpha = alpha_hat ///
+>                         (sd)   sd_alpha   = alpha_hat ///
+>                         (mean) rmse_aux   = sqerr_alpha ///
+>                         (mean) size_5     = reject ///
+>                         (count) reps_valid = alpha_hat, ///
+>                         by(scenario estimator alpha0 N T)
+265. 
+.                 gen rmse = sqrt(rmse_aux)
+266.                 drop rmse_aux
+267. 
+.                 sort scenario estimator
+268. 
+.                 // Exportar tabla de resumen
+.                 di as text "== E2 Parte A: resumen Monte Carlo =="
+269.                 list scenario estimator alpha0 N T mean_alpha sd_alpha rmse size_5 reps_valid, ///
+>                         sepby(scenario) noobs
+270. 
+.                 export delimited using "`outdir'/`run_prefix'__e2_A.csv", replace
+271.         
+.         restore
+272. 
+.         // ------------------------------------
+.         // Parte B1: instrumentos debiles en D
+.         // ------------------------------------
+. 
+.         preserve
+273. 
+.         use `e2_b1_corr', clear // Uso el holder de correlaciones
+274. 
+.                 collapse ///
+>                         (mean) mean_corr = corr ///      // Saco mean
+>                         (sd)   sd_corr   = corr ///      // SD
+>                         (count) reps_valid = corr, ///   // y simulaciones sin error numérico
+>                         by(scenario lag_depth)           // para D.s=2 y D.s=3 (con s: rezagos)
+275. 
+.                 sort scenario lag_depth
+276. 
+.                 di as text "== E2 Parte B1: correlaciones instrumentos AB en escenario D =="
+277.                 list scenario lag_depth mean_corr sd_corr reps_valid, noobs
+278. 
+.                 export delimited using "`outdir'/`run_prefix'__e2_B1.csv", replace
+279. 
+.         restore
+280. 
+.                 
+.                 // TO-DO Agregar bloques de exportación de parte B siguiendo la convención
+.                 // export delimited using "`outdir'/`run_prefix'__e2_B1.csv", replace
+.                 // export delimited using "`outdir'/`run_prefix'__e2_B2.csv", replace
+.                 // export delimited using "`outdir'/`run_prefix'__e2_B3.csv", replace
+. 
+.         
+. }
+281. di as text "== EJERCICIO 2: fin =="
+282. end
+
+. 
+. /********************************************************************
+> Control de flujo
+> ********************************************************************/
+. 
+. cls
+
+. 
+. quietly {
+== EJERCICIO 2: inicio ==
+E2 run_prefix: 2026-07-10_173642__S2
+(file C:\Users\juanma\AppData\Local\Temp\ST_4344_000001.tmp not found)
+(file C:\Users\juanma\AppData\Local\Temp\ST_4344_000002.tmp not found)
+(file output/e2/2026-07-10_173642__S2__e2_raw.dta not found)
+file output/e2/2026-07-10_173642__S2__e2_raw.dta saved
+----------------------------------------------
+Monte Carlo terminó. Datos exportados.
+----------------------------------------------
+  56
+
+           |                                  estimator
+  scenario |   AB-GMM1    AB-GMM2         AH    BB-GMM1    BB-GMM2     Kiviet       LSDV |     Total
+-----------+-----------------------------------------------------------------------------+----------
+         A |         2          2          2          2          2          2          2 |        14 
+         B |         2          2          2          2          2          2          2 |        14 
+         C |         2          2          2          2          2          2          2 |        14 
+         D |         2          2          2          2          2          2          2 |        14 
+-----------+-----------------------------------------------------------------------------+----------
+     Total |         8          8          8          8          8          8          8 |        56 
+
+             |    fail
+   estimator |         0 |     Total
+-------------+-----------+----------
+     AB-GMM1 |         8 |         8 
+     AB-GMM2 |         8 |         8 
+          AH |         8 |         8 
+     BB-GMM1 |         8 |         8 
+     BB-GMM2 |         8 |         8 
+      Kiviet |         8 |         8 
+        LSDV |         8 |         8 
+-------------+-----------+----------
+       Total |        56 |        56 
+== E2 diagnostico: fail rates ==
+
+  +-------------------------------------------+
+  | scenario   estima~r   fail_r~e   reps_t~l |
+  |-------------------------------------------|
+  |        A    AB-GMM1          0          2 |
+  |        A    AB-GMM2          0          2 |
+  |        A         AH          0          2 |
+  |        A    BB-GMM1          0          2 |
+  |        A    BB-GMM2          0          2 |
+  |        A     Kiviet          0          2 |
+  |        A       LSDV          0          2 |
+  |-------------------------------------------|
+  |        B    AB-GMM1          0          2 |
+  |        B    AB-GMM2          0          2 |
+  |        B         AH          0          2 |
+  |        B    BB-GMM1          0          2 |
+  |        B    BB-GMM2          0          2 |
+  |        B     Kiviet          0          2 |
+  |        B       LSDV          0          2 |
+  |-------------------------------------------|
+  |        C    AB-GMM1          0          2 |
+  |        C    AB-GMM2          0          2 |
+  |        C         AH          0          2 |
+  |        C    BB-GMM1          0          2 |
+  |        C    BB-GMM2          0          2 |
+  |        C     Kiviet          0          2 |
+  |        C       LSDV          0          2 |
+  |-------------------------------------------|
+  |        D    AB-GMM1          0          2 |
+  |        D    AB-GMM2          0          2 |
+  |        D         AH          0          2 |
+  |        D    BB-GMM1          0          2 |
+  |        D    BB-GMM2          0          2 |
+  |        D     Kiviet          0          2 |
+  |        D       LSDV          0          2 |
+  +-------------------------------------------+
+(file output/e2/2026-07-10_173642__S2__e2_raw_failrates.csv not found)
+file output/e2/2026-07-10_173642__S2__e2_raw_failrates.csv saved
+== E2 Parte A: resumen Monte Carlo ==
+
+  +-----------------------------------------------------------------------------------------------+
+  | scenario   estima~r   alpha0     N    T   mean_a~a   sd_alpha        rmse   size_5   reps_v~d |
+  |-----------------------------------------------------------------------------------------------|
+  |        A    AB-GMM1       .5    30   10   .4366065   .0544133   .07415616        0          2 |
+  |        A    AB-GMM2       .5    30   10    .390728    .049099   .11465483        0          2 |
+  |        A         AH       .5    30   10   .3697088   .2062963   .19558853        0          2 |
+  |        A    BB-GMM1       .5    30   10   .6475432   .0105946   .14773329        1          2 |
+  |        A    BB-GMM2       .5    30   10   .6451443   .0272358   .14641635       .5          2 |
+  |        A     Kiviet       .5    30   10   .5211086   .0393976   .03495225        0          2 |
+  |        A       LSDV       .5    30   10   .4453405    .047376    .0641085       .5          2 |
+  |-----------------------------------------------------------------------------------------------|
+  |        B    AB-GMM1       .5   100   10   .5463623     .02081   .04864149        0          2 |
+  |        B    AB-GMM2       .5   100   10   .5548166   .0005667    .0548181        0          2 |
+  |        B         AH       .5   100   10   .5516925   .0593127   .06656658        0          2 |
+  |        B    BB-GMM1       .5   100   10   .5888707   .0277903   .09101732        1          2 |
+  |        B    BB-GMM2       .5   100   10   .5940178   .0006057   .09401881       .5          2 |
+  |        B     Kiviet       .5   100   10   .5386872   .0191043   .04097791       .5          2 |
+  |        B       LSDV       .5   100   10   .4747702    .011289   .02646246        0          2 |
+  |-----------------------------------------------------------------------------------------------|
+  |        C    AB-GMM1       .8    30    7   .8532577    .000786   .05326056        0          2 |
+  |        C    AB-GMM2       .8    30    7   .8560228   .0393049    .0625379        0          2 |
+  |        C         AH       .8    30    7   .7851953   .0375944   .03042772        0          2 |
+  |        C    BB-GMM1       .8    30    7   .9239022   .0430857   .12759286        1          2 |
+  |        C    BB-GMM2       .8    30    7   .9260314   .0325278   .12811301        1          2 |
+  |        C     Kiviet       .8    30    7   .8419462     .01726    .0436857        0          2 |
+  |        C       LSDV       .8    30    7   .7573518   .0344668   .04912082        0          2 |
+  |-----------------------------------------------------------------------------------------------|
+  |        D    AB-GMM1      .92   100    4   .7968915   .1117114   .14627177        0          2 |
+  |        D    AB-GMM2      .92   100    4   .7942014   .1058505    .1463812        0          2 |
+  |        D         AH      .92   100    4   .8505059   .2176507   .16886485        0          2 |
+  |        D    BB-GMM1      .92   100    4   .9820164   .0047613   .06210767        1          2 |
+  |        D    BB-GMM2      .92   100    4   .9762278   .0113704   .05679968        0          2 |
+  |        D     Kiviet      .92   100    4   .8495723   .1011702   .10038804       .5          2 |
+  |        D       LSDV      .92   100    4   .6822411   .0526313    .2406539        1          2 |
+  +-----------------------------------------------------------------------------------------------+
+(file output/e2/2026-07-10_173642__S2__e2_A.csv not found)
+file output/e2/2026-07-10_173642__S2__e2_A.csv saved
+== E2 Parte B1: correlaciones instrumentos AB en escenario D ==
+
+  +-------------------------------------------------------+
+  | scenario   lag_de~h   mean_c~r     sd_corr   reps_v~d |
+  |-------------------------------------------------------|
+  |        D          2   .2414471    .0418186          2 |
+  |        D          3   .1690801   .02851478          2 |
+  +-------------------------------------------------------+
+(file output/e2/2026-07-10_173642__S2__e2_B1.csv not found)
+file output/e2/2026-07-10_173642__S2__e2_B1.csv saved
+== EJERCICIO 2: fin ==
+
+. 
+. log close
+      name:  <unnamed>
+       log:  C:\AcademicRepos\Panel\Luna5243.log
+  log type:  text
+ closed on:  10 Jul 2026, 17:36:46
+--------------------------------------------------------------------------------------------------------------------
