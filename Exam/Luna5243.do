@@ -938,6 +938,28 @@ if $RUN_E2 {
 	local yi_0 = 0
 
 	// ------------------------------------
+	// Escribir a disco resultados de E1
+	// ------------------------------------
+
+	// Numero de simulaciones
+	local S = 2
+
+	capture mkdir "output"
+	capture mkdir "output/e2"
+
+	local dnum = daily("`c(current_date)'", "DMY")
+	local yyyy = string(year(`dnum'), "%04.0f")
+	local mm   = string(month(`dnum'), "%02.0f")
+	local dd   = string(day(`dnum'), "%02.0f")
+	local hhmmss = subinstr("`c(current_time)'", ":", "", .)
+
+	local run_stamp = "`yyyy'`mm'`dd'_`hhmmss'"
+	local run_tag   = "S_`S'_`run_stamp'"
+	local outdir    = "output/e2"
+
+	di as text "E2 run_tag: `run_tag'"
+
+	// ------------------------------------
 	// Holder de resultados E2
 	// ------------------------------------
 	
@@ -990,7 +1012,6 @@ if $RUN_E2 {
 		// Loop de simulaciones intra-escenario
 		// ------------------------------------
 
-		local S = 20 // Simulaciones TO-DO cambiar a valor grande
 		forvalues simu = 1/`S' {
 			// -------------
 			// Panel setup
@@ -1005,10 +1026,10 @@ if $RUN_E2 {
 			local T_full_plus1 = `T_full' + 1
 			local NT_full = `N' * `T_full_plus1'
 			
-			set obs `NT_full'
+			qui set obs `NT_full'
 			egen id     = seq(), f(1) t(`N') b(`T_full_plus1')
 			egen t_full = seq(), f(0) t(`T_full')
-			xtset id t_full
+			qui xtset id t_full
 
 			// -------------------------
 			// Creación de variables
@@ -1325,8 +1346,14 @@ if $RUN_E2 {
 
 	use `e2_results', clear
 
+	// Acá exporto los resultados de Monte Carlo
+	save "`outdir'/e2_raw_`run_tag'.dta", replace
+	export delimited using "`outdir'/e2_raw_`run_tag'.csv", replace
+
 	di as text "== E2: resultados posteados =="
-	list, sepby(scenario)
+	count
+	tab scenario estimator
+	tab estimator fail
 
 	// ------------------------------------
 	// Parte A: tabla resumen
@@ -1334,7 +1361,7 @@ if $RUN_E2 {
 
 	preserve
 
-	keep if fail == 0
+	qui keep if fail == 0
 
 	gen bias_alpha = alpha_hat - alpha0
 	gen sqerr_alpha = bias_alpha^2
@@ -1352,9 +1379,12 @@ if $RUN_E2 {
 
 	sort scenario estimator
 
+	// Exportar tabla de resumen
 	di as text "== E2 Parte A: resumen Monte Carlo =="
 	list scenario estimator alpha0 N T mean_alpha sd_alpha rmse size_5 reps_valid, ///
 		sepby(scenario) noobs
+
+	export delimited using "`outdir'/e2_partA_`run_tag'.csv", replace
 
 	restore
 }
