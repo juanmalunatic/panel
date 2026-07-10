@@ -943,7 +943,7 @@ if $RUN_E2 {
 	// ------------------------------------
 
 	// Numero de simulaciones
-	local S = 400
+	local S = 1000
 
 	capture mkdir "output"
 	capture mkdir "output/e2"
