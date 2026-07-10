@@ -5,7 +5,7 @@
   Julio 16, 2026
 ********************************************************************/
 
-cd "C:\AcademicRepos\Panel"
+cd "C:\AcademicRepos\Panel\Exam"
 cls
 version 17
 clear all
