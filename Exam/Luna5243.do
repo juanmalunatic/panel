@@ -943,7 +943,7 @@ if $RUN_E2 {
 	// ------------------------------------
 
 	// Numero de simulaciones
-	local S = 2
+	local S = 400
 
 	capture mkdir "output"
 	capture mkdir "output/e2"
@@ -987,6 +987,18 @@ if $RUN_E2 {
 		double corr ///       // la correlación entre el instrumento y el delta
 		using `e2_b1_corr', replace
 	
+	// ------------------------------------
+	// Timer / progreso Monte Carlo
+	// ------------------------------------
+
+	local n_scenarios = 4
+	local total_jobs = `n_scenarios' * `S'
+	local progress_every = 200
+
+	local run_t0 = clock("`c(current_date)' `c(current_time)'", "DMYhms")
+
+	di as text "E2 progreso: total jobs = " as result `total_jobs'
+	di as text "E2 progreso: reportando cada " as result `progress_every' as text " jobs"
 
 	// Loop de escenarios
 	forvalues esce = 1/4 {
@@ -1254,13 +1266,6 @@ if $RUN_E2 {
 				// También se aplica la corrección de two-step de la documentación.
 				capture xtabond2 y_i L.y_i x_i, gmm(L.y_i) iv(x_i) twostep robust
 
-				// Revisión de instrumentos
-				if !_rc & "`scenario'" == "B" & `simu' == 1 {
-					noisily di as text "== CHECK xtabond2 BB-GMM2 B =="
-					noisily ereturn list
-					noisily di as text "CHECK e(j) = " as result e(j)
-				}
-
 				if _rc {
 					post handle ("`scenario'") (`simu') ("BB-GMM2") ///
 						(`alpha') (`N') (`T') (.) (.) (.) (1) ///
@@ -1387,10 +1392,36 @@ if $RUN_E2 {
 					post handle_b1 ("`scenario'") (`simu') (3) (`corr_l3') // distancia 3
 				}
 
-				// Almacenar resultados dummy
-				/*post handle ("`scenario'") (`simu') ("DGP") ///
-					(`alpha') (`N') (`T') (.) (.) (.) (0) ///
-					(.) (.) (.)*/
+				// ------------------------------------
+				// Progreso / ETA
+				// ------------------------------------
+
+				local job_done = (`esce' - 1) * `S' + `simu'
+
+				if mod(`job_done', `progress_every') == 0 | `job_done' == 1 | `job_done' == `total_jobs' {
+
+					local now = clock("`c(current_date)' `c(current_time)'", "DMYhms")
+
+					local elapsed_sec = (`now' - `run_t0') / 1000
+					local elapsed_min = `elapsed_sec' / 60
+
+					local avg_sec_per_job = `elapsed_sec' / `job_done'
+
+					local jobs_left = `total_jobs' - `job_done'
+					local eta_sec = `avg_sec_per_job' * `jobs_left'
+					local eta_min = `eta_sec' / 60
+
+					local pct_done = 100 * `job_done' / `total_jobs'
+
+					noisily di as text "E2 progress: " ///
+						as result `job_done' "/" `total_jobs' ///
+						as text " (" as result %5.1f `pct_done' as text "%)" ///
+						as text " | scenario " as result "`scenario'" ///
+						as text " | simu " as result `simu' "/" `S' ///
+						as text " | elapsed " as result %6.1f `elapsed_min' as text " min" ///
+						as text " | avg " as result %6.2f `avg_sec_per_job' as text " sec/job" ///
+						as text " | ETA " as result %6.1f `eta_min' as text " min"
+				}
 			}
 		}
 	}
