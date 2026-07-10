@@ -1469,7 +1469,7 @@ if $RUN_E2 {
 
 	preserve
 
-	use `e2_b1_corr', clear // Uso el holder de correlaciones
+		use `e2_b1_corr', clear // Uso el tempfile de correlaciones
 
 		collapse ///
 			(mean) mean_corr = corr ///      // Saco mean
@@ -1486,11 +1486,87 @@ if $RUN_E2 {
 
 	restore
 
+	// ---------------------------------------
+	// Parte B2: Nickell para escenarios A y C
+	// ---------------------------------------
+
+	preserve
+
+		use "`outdir'/`run_prefix'__e2_raw.dta", clear // Uso el tempfile de MonteCarlo
+
+		// Preservo solo LSDV para los escenarios de la consigna
+		keep if estimator == "LSDV"
+		keep if scenario == "A" | scenario == "C"
+		// Remuevo los que fallaron numericamente
+		keep if fail == 0
+
+		// Cálculo del sesgo empírico (vs el parámetro del DGP)
+		gen bias_i = alpha_hat - alpha0
+		// Cálculo vs la fórmula de la consigna
+		gen nickell_approx = -(1 + alpha0) / (T - 1)
+
+		// Promedios entre simulaciones ...
+		collapse ///
+			(mean) mean_alpha = alpha_hat ///
+			(mean) lsdv_bias_sim = bias_i ///                // sesgo empirico
+			(first) alpha0 = alpha0 ///
+			(first) T = T ///
+			(first) nickell_approx = nickell_approx ///      // formula consigna
+			(count) reps_valid = alpha_hat, ///              // si error numerico en LSDV no hay alpha (conteo de cuantas fueron válidas)
+			  by(scenario)  // ... para cada escenario por separado
+
+		gen diff_sim_vs_approx = lsdv_bias_sim - nickell_approx // empirico - consigna
+
+		sort scenario
+
+		di as text "== E2 Parte B2: Nickell analitico vs simulado =="
+		list scenario alpha0 T mean_alpha lsdv_bias_sim nickell_approx diff_sim_vs_approx reps_valid, noobs
+
+		export delimited using "`outdir'/`run_prefix'__e2_B2.csv", replace
+
+	restore
 		
-	// TO-DO Agregar bloques de exportación de parte B siguiendo la convención
-	// export delimited using "`outdir'/`run_prefix'__e2_B1.csv", replace
-	// export delimited using "`outdir'/`run_prefix'__e2_B2.csv", replace
-	// export delimited using "`outdir'/`run_prefix'__e2_B3.csv", replace
+	// ------------------------------------
+	// Parte B3: Sargan Hansen para BB GMM2 en B
+	// ------------------------------------
+
+	preserve
+
+		use "`outdir'/`run_prefix'__e2_raw.dta", clear // Uso el tempfile de MC
+
+		// Me quedo solo con el escenario B + BB-GMM2 + sin errores numéricos
+		keep if scenario == "B"
+		keep if estimator == "BB-GMM2"
+		keep if fail == 0
+
+		// Booleanos: 1 si p < 0.05 para cada test por separado
+		gen reject_hansen = hansen_p < 0.05 if !missing(hansen_p)
+		gen reject_sargan = sargan_p < 0.05 if !missing(sargan_p)
+
+		// Cálculo de tamaño empírico
+		// También extras como:
+		// - cantidad de estimaciones sin errores numericos para
+		//     parámetro, test de hansen, test de sargan   
+		//     esto sirve para evitar errores como en E1 donde 
+		///    inicialmente calculaba "tamaño" sobre muchísimos missing.
+		
+		collapse ///
+			(mean) hansen_size_5 = reject_hansen ///
+			(mean) sargan_size_5 = reject_sargan ///
+			(mean) mean_hansen_p = hansen_p ///
+			(mean) mean_sargan_p = sargan_p ///
+			(mean) mean_ninst    = n_inst ///
+			(count) reps_valid   = alpha_hat ///
+			(count) reps_hansen_valid = hansen_p ///
+			(count) reps_sargan_valid = sargan_p, ///
+			by(scenario estimator)
+
+		di as text "== E2 Parte B3: Sargan Hansen BB-GMM2 escenario B =="
+		list, noobs
+
+		export delimited using "`outdir'/`run_prefix'__e2_B3.csv", replace
+
+	restore
 
 	
 }
