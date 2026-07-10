@@ -1254,6 +1254,13 @@ if $RUN_E2 {
 				// También se aplica la corrección de two-step de la documentación.
 				capture xtabond2 y_i L.y_i x_i, gmm(L.y_i) iv(x_i) twostep robust
 
+				// Revisión de instrumentos
+				if !_rc & "`scenario'" == "B" & `simu' == 1 {
+					noisily di as text "== CHECK xtabond2 BB-GMM2 B =="
+					noisily ereturn list
+					noisily di as text "CHECK e(j) = " as result e(j)
+				}
+
 				if _rc {
 					post handle ("`scenario'") (`simu') ("BB-GMM2") ///
 						(`alpha') (`N') (`T') (.) (.) (.) (1) ///
@@ -1435,18 +1442,31 @@ if $RUN_E2 {
 	// ------------------------------------
 
 	preserve
+		// La idea es que calculo cuántas filas fallaron numéricamente
+		// para encontrar errores de implementación / confiabilidad.
 
-		qui keep if fail == 0
+		// El patrón es agregar . para filas faltantes (es ignorado en mean, etc)
+		
+		// Parámetro
+		gen alpha_for_stats = alpha_hat
+		replace alpha_for_stats = . if fail == 1
 
-		gen bias_alpha = alpha_hat - alpha0
-		gen sqerr_alpha = bias_alpha^2
+		// Rechazos de tests
+		gen reject_for_stats = reject
+		replace reject_for_stats = . if fail == 1
+
+		// Útiles para los valores que se pide reportar/analizar en B4
+		gen bias_i = alpha_for_stats - alpha0
+		gen sqerr_alpha = bias_i^2
 
 		collapse ///
-			(mean) mean_alpha = alpha_hat ///
-			(sd)   sd_alpha   = alpha_hat ///
+			(mean) mean_alpha = alpha_for_stats ///
+			(mean) bias       = bias_i ///
+			(sd)   sd_alpha   = alpha_for_stats ///
 			(mean) rmse_aux   = sqerr_alpha ///
-			(mean) size_5     = reject ///
-			(count) reps_valid = alpha_hat, ///
+			(mean) size_5     = reject_for_stats ///
+			(mean) fail_rate  = fail ///
+			(count) reps_valid = alpha_for_stats, ///
 			by(scenario estimator alpha0 N T)
 
 		gen rmse = sqrt(rmse_aux)
@@ -1456,11 +1476,11 @@ if $RUN_E2 {
 
 		// Exportar tabla de resumen
 		di as text "== E2 Parte A: resumen Monte Carlo =="
-		list scenario estimator alpha0 N T mean_alpha sd_alpha rmse size_5 reps_valid, ///
+		list scenario estimator alpha0 N T mean_alpha bias sd_alpha rmse size_5 fail_rate reps_valid, ///
 			sepby(scenario) noobs
 
 		export delimited using "`outdir'/`run_prefix'__e2_A.csv", replace
-	
+
 	restore
 
 	// ------------------------------------
@@ -1549,7 +1569,7 @@ if $RUN_E2 {
 		//     parámetro, test de hansen, test de sargan   
 		//     esto sirve para evitar errores como en E1 donde 
 		///    inicialmente calculaba "tamaño" sobre muchísimos missing.
-		
+
 		collapse ///
 			(mean) hansen_size_5 = reject_hansen ///
 			(mean) sargan_size_5 = reject_sargan ///
@@ -1567,7 +1587,6 @@ if $RUN_E2 {
 		export delimited using "`outdir'/`run_prefix'__e2_B3.csv", replace
 
 	restore
-
 	
 }
 di as text "== EJERCICIO 2: fin =="
