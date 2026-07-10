@@ -5,6 +5,7 @@
   Julio 16, 2026
 ********************************************************************/
 
+cd "C:\AcademicRepos\Panel"
 cls
 version 17
 clear all
@@ -953,11 +954,11 @@ if $RUN_E2 {
 	local dd   = string(day(`dnum'), "%02.0f")
 	local hhmmss = subinstr("`c(current_time)'", ":", "", .)
 
-	local run_stamp = "`yyyy'`mm'`dd'_`hhmmss'"
-	local run_tag   = "S_`S'_`run_stamp'"
-	local outdir    = "output/e2"
+	local run_stamp  = "`yyyy'-`mm'-`dd'_`hhmmss'"
+	local run_prefix = "`run_stamp'__S`S'"
+	local outdir     = "output/e2"
 
-	di as text "E2 run_tag: `run_tag'"
+	di as text "E2 run_prefix: `run_prefix'"
 
 	// ------------------------------------
 	// Holder de resultados E2
@@ -1346,9 +1347,11 @@ if $RUN_E2 {
 
 	use `e2_results', clear
 
-	// Acá exporto los resultados de Monte Carlo
-	save "`outdir'/e2_raw_`run_tag'.dta", replace
-	export delimited using "`outdir'/e2_raw_`run_tag'.csv", replace
+	// Acá exporto los resultados raw de Monte Carlo
+	save "`outdir'/`run_prefix'__e2_raw.dta", replace
+
+	// TO-DO Agregar bloque de fail rates
+	//export delimited using "`outdir'/`run_prefix'__e2_raw_failrates.csv", replace
 
 	di as text "== E2: resultados posteados =="
 	count
@@ -1384,7 +1387,14 @@ if $RUN_E2 {
 	list scenario estimator alpha0 N T mean_alpha sd_alpha rmse size_5 reps_valid, ///
 		sepby(scenario) noobs
 
-	export delimited using "`outdir'/e2_partA_`run_tag'.csv", replace
+	export delimited using "`outdir'/`run_prefix'__e2_A.csv", replace
+
+	
+	// TO-DO Agregar bloques de exportación de parte B siguiendo la convención
+	// export delimited using "`outdir'/`run_prefix'__e2_B1.csv", replace
+	// export delimited using "`outdir'/`run_prefix'__e2_B2.csv", replace
+	// export delimited using "`outdir'/`run_prefix'__e2_B3.csv", replace
+
 
 	restore
 }
