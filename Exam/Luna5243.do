@@ -1639,7 +1639,7 @@ if $RUN_E3 {
 	set seed $THE_SEED
 
 	// Defino las constantes de tamaño
-	local S  = 500  // 500 simulaciones
+	local S  = 1  // 500 simulaciones
 	local NL = 300  // 300 individuos
 	local T  = 6    // observados por 6 periodos
 
@@ -1663,11 +1663,28 @@ if $RUN_E3 {
 	tempname e3h
 	tempfile e3raw
 
-	// TO-DO: hay dos escenarios ...
-	// TO-DO: llenar acá bien cuando sepa qué hace todo
-	// TO-DO: scenario \in {full, base, mnar}
-	// TO-DO: estimator \in {WRE_full, CF_attr}
 	// rep: simulación actual de MonteCarlo
+
+	// ESCENARIOS
+	// full: sin attrition, se usan todas las observaciones
+	// base: selección ignorable
+	//       attrition + (shocks de seleccion ⟂ shocks de outcome) 
+	//       Corr(ejt​,ωjt​)=0.
+	// mnar: selección no ignorable
+	//       attrition + (shocks de seleccion corr shocks de outcome)
+	//       Corr(ejt​,ωjt​)=0.7.
+	//       "mnar": missing not at random, i.e. hay un factor sistemático
+	//               que genera attrition, entonces esperamos sesgo.
+
+	// ESTIMADORES
+	// E3.5: WRE_full: WRE sobre muestra completa
+	// E3.6: WRE_attr: WRE sobre muestra con attrition	
+	// E3.7:
+	//       lit_phat    : Test phat como se pide literalmente
+	//       WRE_same_t5 : WRE sobre la muestra de lit_phat
+	//       CF_pool     : TO-DO ver qué es
+	// E3.8:
+	//       CF_attr : Test del 7 y corrección del 8
 
 	// (1) escenarios y repeticiones
 	// (2) estimadores
@@ -1695,6 +1712,7 @@ if $RUN_E3 {
 	xtset id time
 	
 	// Check temporal
+	// TO-DO eliminar
 	assert _N == 2100
 	assert inrange(id,1,300)
 	assert inrange(time,0,6)
@@ -1702,9 +1720,91 @@ if $RUN_E3 {
 
 	bysort id: assert _N == 7
 
-	list id time in 1/21, sepby(id)
+	// Bucle principal
+	forvalues rep = 1/`S' {
 
-	* Aquí irán los Chunks 1 a 7
+		qui {
+
+		// Borro las variables de la iteracion anterior
+		cap drop y0 a_i w_i z zbar eta_e eta_w e omega_base omega_mnar
+		
+		// Aseguro el orden del panel para las operaciones que siguen
+		sort id time
+
+		// Probit: Condición inicial. Como runiform genera un # entre 0 y 1
+		// La probabilidad (runiform() < 0.4) da 1 con probabilidad 0.4
+		// Esencialmente la bernoulli(0.4) pedida.
+		by id: gen byte y0 = (runiform() < 0.4) if _n == 1
+		// Se copia y0 para todos los T del mismo i
+		by id: replace y0 = y0[1]
+
+		// Probit: Residuo del error individual ci. Acá el mismo patrón pero con N(0,1),
+		// cada i tiene el mismo error idiosincrático ai.
+		by id: gen double a_i = rnormal(0,1) if _n == 1
+		by id: replace a_i = a_i[1]
+
+		// Selección: efecto individual. Mismo mecanismo: un valor a nivel i.
+		by id: gen double w_i = rnormal(0,sqrt(0.5)) if _n == 1
+		by id: replace w_i = w_i[1]
+
+		// Probit: Regresor z_j ~ N(0,1). Solo para el rango t=1 a t=T
+		// No hay lectura en t=0.
+		gen double z = rnormal(0,1) if inrange(time,1,`T')
+
+		// Probit: Promedio de Mundlak, Zj = \bar{z_j}
+		// Se hace pre-attrition porque así después no se observen, ci las contiene
+		by id: egen double zbar = mean(z)
+
+		// ------------------------------------------------------------------
+		// Shocks comunes para los escenarios base y mnar
+		// Aquí la idea es generar dos shocks independientes (eta_e ⟂ eta_w)
+		// ------------------------------------------------------------------
+		
+		// El shock e_jt del outcome (y_jt) es siempre e_jt = eta_e
+		// El shock ω_jt de selección sí lo cambio de acuerdo al escenario:
+		//   En el escenario attrition ignorable ("base") tengo
+		//      w_jt base = eta_w 
+        //        => Corr(ejt​,ωjt​)=0 porque son independientes.
+		//   En el escenario attrion no ignorable ("mnar") tengo
+		//      w_jt mnar = 0.7 eta_e + sqrt(1-0.7^2) eta_w
+		//        => Corr(ejt​,ωjt​)=0.7 y además Var(ωjt​)=1.
+
+		// La idea detrás de esto es compartir los mismos shocks aleatorios entre
+		// ambos escenarios: si cambian los resultados entre base y mnar, sabemos que la
+		// causa principal es la correlación introducida, no una muestra rara u outliers.
+
+		// Se generan los shocks N(0,1) para cada t excepto t=0
+		gen double eta_e = rnormal(0,1) if inrange(time,1,`T')
+		gen double eta_w = rnormal(0,1) if inrange(time,1,`T')
+
+		// Se sigue la especificación explicada anteriormente
+		gen double e = eta_e
+		gen double omega_base = eta_w
+		gen double omega_mnar = ///
+			`kap' * eta_e + sqrt(1 - `kap'^2) * eta_w
+	}
+
+	// Checks temporales. TO-DO eliminar.
+	if `rep' == 1 {
+
+		bysort id: assert y0 == y0[1]
+		bysort id: assert a_i == a_i[1]
+		bysort id: assert w_i == w_i[1]
+		bysort id: assert zbar == zbar[1]
+
+		assert missing(z) if time == 0
+		assert missing(e) if time == 0
+		assert missing(omega_base) if time == 0
+		assert missing(omega_mnar) if time == 0
+
+		summarize y0 a_i w_i z zbar e omega_base omega_mnar
+
+		list id time y0 a_i w_i z zbar e omega_base omega_mnar ///
+			if id <= 3, sepby(id)
+
+		}
+
+	}   // cierre temporal del loop
 
 	postclose `e3h'
 
