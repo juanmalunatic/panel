@@ -1728,7 +1728,8 @@ if $RUN_E3 {
 		qui {
 
 		// Borro las variables de la iteracion anterior
-		cap drop y0 a_i w_i z zbar eta_e eta_w e omega_base omega_mnar
+		cap drop y0 a_i w_i z zbar eta_e eta_w e omega_* ///
+         y stay_* obs_*
 		
 		// Aseguro el orden del panel para las operaciones que siguen
 		sort id time
@@ -1784,10 +1785,59 @@ if $RUN_E3 {
 		gen double omega_base = eta_w
 		gen double omega_mnar = ///
 			`kap' * eta_e + sqrt(1 - `kap'^2) * eta_w
+
+		// ---------------------------------------------------
+		// yjt y mecanismo de attrition absorbente
+		// ---------------------------------------------------
+		// Asegurar orden //TO-DO revisar si se puede quitar
+		sort id time
+
+		// Iniciamos desde la condición inicial ya generada
+		gen byte y = y0 if time == 0
+
+		// Probit: Binaria y_jt. Se itera t=1 a t=6 usando la especificación
+		forvalues tt = 1/`T' {
+			replace y = ( ///
+				(`psi' + `del' * z  + `rho' * L.y + `xi0' * y0  + `xi'  * zbar + a_i + e ) > 0  ///
+			) if time == `tt'
+		}
+
+		// Selección: Binaria s_jt / obs_t para los escenarios 'base' y 'mnar'
+		// Ponemos la etiqueta de escenario a cada variable 
+		foreach sc in base mnar {
+
+			// En t=1 todos los i son observados
+			gen byte stay_`sc' = 1 if time == 1
+
+			// Desde t=2 hasta t=6 se toma una decision de permanencia usando la especificación
+			replace stay_`sc' = ( ///
+				( `g0' + `g1' * L.y + `g2' * z + w_i + omega_`sc' ) > 0 ///
+			) if inrange(time,2,`T')
+
+			// ------------------------------------------------------
+			// Attrition absorbente: una vez afuera, no se reingresa
+			// ------------------------------------------------------
+
+			// Aquí la idea es que s_jt va a seguir generando 1 o 0 de acuerdo al shock en cada t
+			// - La variable obs(t) se vuelve 0 la primera vez que s_jt lo hace
+			// - La variable obs(t-1) siempre multiplica s_jt
+			// Entonces una vez que obs_* es cero, así s_jt se mueva ya no reaparece el individuo i
+			// obs(t) es la que usamos efectivamente para determinar si la persona está o no en un t
+
+			// En el primer periodo sabemos que está
+			gen byte obs_`sc' = 1 if time == 1
+			// Desde t=2 ponderamos s_jt por obs(t-1) para no reingresarla
+			forvalues tt = 2/`T' {
+				replace obs_`sc' = L.obs_`sc' * stay_`sc' if time == `tt'
+			}
+
+		}
 	}
 
 	// Checks temporales. TO-DO eliminar.
 	if `rep' == 1 {
+
+		// Diagnósticos Chunk 1:
 
 		bysort id: assert y0 == y0[1]
 		bysort id: assert a_i == a_i[1]
@@ -1804,9 +1854,42 @@ if $RUN_E3 {
 		list id time y0 a_i w_i z zbar e omega_base omega_mnar ///
 			if id <= 3, sepby(id)
 
-		}
-
 		noisily corr e omega_base omega_mnar if inrange(time,1,`T')
+
+		// Diagnósticos Chunk 2:
+
+		// El outcome es binario y coincide con y0 en t=0
+		assert y == y0 if time == 0
+		assert inlist(y,0,1) if inrange(time,0,`T')
+
+		// Todos comienzan observados
+		assert stay_base == 1 if time == 1
+		assert stay_mnar == 1 if time == 1
+		assert obs_base  == 1 if time == 1
+		assert obs_mnar  == 1 if time == 1
+
+		// La observacion es absorbente: nunca puede pasar de 0 a 1
+		bysort id (time): assert ///
+			obs_base <= obs_base[_n-1] ///
+			if inrange(time,2,`T')
+
+		bysort id (time): assert ///
+			obs_mnar <= obs_mnar[_n-1] ///
+			if inrange(time,2,`T')
+
+		// Diagnosticos de composicion y supervivencia
+		summarize y obs_base obs_mnar if inrange(time,1,`T')
+
+		tabstat obs_base obs_mnar if inrange(time,1,`T'), ///
+			by(time) statistics(mean count)
+
+		list id time y0 z zbar y ///
+			stay_base obs_base stay_mnar obs_mnar ///
+			if id <= 5, sepby(id)
+
+	}
+
+		
 
 	}   // cierre temporal del loop
 
