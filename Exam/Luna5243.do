@@ -27,8 +27,8 @@ Flags para correr únicamente partes de ejercicios específicos.
 global RUN_E1_A 0
 global RUN_E1_B 0
 
-global RUN_E2   1
-global RUN_E3   0
+global RUN_E2   0
+global RUN_E3   1
 
 
 /*******************************************************************************
@@ -1634,10 +1634,85 @@ program define EJERCICIO_3
 version 17
 di as text "== EJERCICIO 3: inicio =="
 if $RUN_E3 {
-	// TO-DO definir si hay que partir en flags tipo $RUN_E3_Parte1 y $RUN_E3_Parte2
+
+	// Seteo mi seed para reproducibilidad
+	set seed $THE_SEED
+
+	// Defino las constantes de tamaño
+	local S  = 500  // 500 simulaciones
+	local NL = 300  // 300 individuos
+	local T  = 6    // observados por 6 periodos
+
+	// Parámetros del modelo Probit
+	local psi = -0.5
+	local del =  0.8
+	local rho =  0.4
+	local xi  =  0.3
+	local xi0 =  0.5
+	
+	// Parámetros del mecanismo de attrition
+	local g0  =  1.2
+	local g1  =  0.6
+	local g2  = -0.3
+
+	// Correlación para el escenario de contraste (Punto E.7)
+	local kap  = 0.7  // Corr(e_jt, omega_jt) = 0.7
+	local Slit = 100  // Numero reducido de simulaciones para ver fallo
+
+	// Handle para usar postfile para los resultados de cada loop
+	tempname e3h
+	tempfile e3raw
+
+	// TO-DO: hay dos escenarios ...
+	// TO-DO: llenar acá bien cuando sepa qué hace todo
+	// TO-DO: scenario \in {full, base, mnar}
+	// TO-DO: estimator \in {WRE_full, CF_attr}
+	// rep: simulación actual de MonteCarlo
+
+	// (1) escenarios y repeticiones
+	// (2) estimadores
+	// (3) almacenar tests
+	// (4) diagnostico de attrition
+	// (5) test inciso 7
+	// (6) estimación "degenerada" numéricamente
+
+	postfile `e3h' ///
+		str12 scenario ///                                   (1)
+		str24 estimator int rep ///
+		double delta_hat rho_hat xi_hat psi_hat sigu_hat /// (2)		
+		double p_joint5 p_pool1 ///                          (3)
+		double obs_share y_share ///                         (4)
+		double phat_coef phat_y0 phat_y1 ///                 (5)
+		byte fail ///                                        (6)
+		using `e3raw', replace
+
+	// Setup del panel
+	clear
+	local Tfull = `T' + 1      // hay que tener un periodo 0 para la condición inicial
+	set obs `=`NL' * `Tfull''
+	egen id   = seq(), block(`Tfull')
+	egen time = seq(), from(0) to(`T')
+	xtset id time
+	
+	// Check temporal
+	assert _N == 2100
+	assert inrange(id,1,300)
+	assert inrange(time,0,6)
+	isid id time
+
+	bysort id: assert _N == 7
+
+	list id time in 1/21, sepby(id)
+
+	* Aquí irán los Chunks 1 a 7
+
+	postclose `e3h'
+
+	* Aquí irán los Chunks 8 a 10
 }
 di as text "== EJERCICIO 3: fin =="
 end
+
 
 /********************************************************************
 Control de flujo
