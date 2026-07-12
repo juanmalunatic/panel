@@ -1832,6 +1832,120 @@ if $RUN_E3 {
 			}
 
 		}
+
+		// =================================================
+		// Estimación
+		// =================================================
+
+		// Inciso E3.5 - Wooldridge RE sobre muestra completa
+		// Se excluye el t=0
+		capture quietly xtprobit y L.y z y0 zbar ///
+			if inrange(time,1,`T'), ///
+			re intmethod(mvaghermite) intpoints(12)
+
+		// Almaceno en f si hubo fail en xtprobit.
+		local f = (_rc != 0)
+
+		// Si corrió, veo convergencia y que estén los parámetros
+		if (!`f') {
+			// Si alguna de estas falla, marcamos fail
+			local f = ///
+				(e(converged) != 1) | ///
+				missing( ///
+					_b[z], ///
+					_b[L.y], ///
+					_b[y0], ///
+					_b[zbar], ///
+					_b[_cons], ///
+					e(sigma_u) ///
+				)
+		}
+
+		// Cuento el total de filas válidas
+		quietly count if inrange(time,1,`T')
+		local ncells = r(N)
+
+		// Cuento todas las y=1 en la muestra
+		quietly summarize y if inrange(time,1,`T')
+		local ysh = r(mean)
+
+		// Si la estimación fue válida, guardo los resultados.
+		if !`f' {
+			post `e3h' ///
+				("full") ///          // escenario
+				("WRE_full") ///      // estimador
+				(`rep') ///           // simulación
+				(_b[z]) ///           // delta
+				(_b[L.y]) ///         // rho
+				(_b[zbar]) ///        // xi
+				(_b[_cons]) ///       // psi
+				(e(sigma_u)) ///      // varianza
+				(.) ///               // p_joint5 (no se usa)
+				(.) ///               // p_pool1 (no se usa)
+				(1) ///               // obs_share
+				(`ysh') ///           // y_share
+				(.) ///               // phat_coef
+				(.) ///               // phat_y0
+				(.) ///               // phat_y1
+				(0)                   // fail = no
+
+		}
+		else {
+			// Si hubo error o no convergió, guardo una fila de fallo.
+			post `e3h' ///
+				("full") ///
+				("WRE_full") ///
+				(`rep') ///
+				(.) ///
+				(.) ///
+				(.) ///
+				(.) ///
+				(.) ///
+				(.) ///
+				(.) ///
+				(1) ///
+				(`ysh') ///
+				(.) ///
+				(.) ///
+				(.) ///
+				(1)           // esto es lo importante
+		}
+
+		// Diagnóstico visible únicamente para la primera réplica.
+		if `rep' == 1 {
+			if !`f' {
+				noisily display as text ///
+					"== E3 Chunk 3: WRE_full, replica 1 =="
+
+				noisily display as result ///
+					"delta_hat = " %9.4f _b[z]
+
+				noisily display as result ///
+					"rho_hat   = " %9.4f _b[L.y]
+
+				noisily display as result ///
+					"xi0_hat   = " %9.4f _b[y0]
+
+				noisily display as result ///
+					"xi_hat    = " %9.4f _b[zbar]
+
+				noisily display as result ///
+					"psi_hat   = " %9.4f _b[_cons]
+
+				noisily display as result ///
+					"sigma_u   = " %9.4f e(sigma_u)
+
+				noisily display as result ///
+					"y_share   = " %9.4f `ysh'
+
+				noisily display as result ///
+					"N celdas  = " %9.0f `ncells'
+			}
+			else {
+				noisily display as error ///
+					"Chunk 3 fallo en la replica 1. Return code: `rc'"
+			}
+		}
 	}
 
 	// Checks temporales. TO-DO eliminar.
