@@ -1623,6 +1623,22 @@ if $RUN_E2 {
 di as text "== EJERCICIO 2: fin =="
 end
 
+
+
+/*******************************************************************************
+EJERCICIO 3 - Modelos de Respuesta Binaria con Efectos No Observables y Selección Muestral
+*******************************************************************************/
+
+capture program drop EJERCICIO_3
+program define EJERCICIO_3
+version 17
+di as text "== EJERCICIO 3: inicio =="
+if $RUN_E3 {
+	// TO-DO definir si hay que partir en flags tipo $RUN_E3_Parte1 y $RUN_E3_Parte2
+}
+di as text "== EJERCICIO 3: fin =="
+end
+
 /********************************************************************
 Control de flujo
 ********************************************************************/
