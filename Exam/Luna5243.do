@@ -1673,8 +1673,10 @@ if $RUN_E3 {
 	// mnar: selección no ignorable
 	//       attrition + (shocks de seleccion corr shocks de outcome)
 	//       Corr(ejt​,ωjt​)=0.7.
-	//       "mnar": missing not at random, i.e. hay un factor sistemático
-	//               que genera attrition, entonces esperamos sesgo.
+	//       "mnar": missing not at random
+	//          La permanencia depende de un shock (ωjt)
+	//          correlacionado con el shock no observado del outcome (ejt)
+	//          Por eso la seleccion no es ignorable y esperamos sesgo.
 
 	// ESTIMADORES
 	// E3.5: WRE_full: WRE sobre muestra completa
@@ -1803,6 +1805,8 @@ if $RUN_E3 {
 			if id <= 3, sepby(id)
 
 		}
+
+		noisily corr e omega_base omega_mnar if inrange(time,1,`T')
 
 	}   // cierre temporal del loop
 
