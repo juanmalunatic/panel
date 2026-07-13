@@ -1902,113 +1902,115 @@ if $RUN_E3 {
 					(1)           // esto es lo importante
 			}
 		}
-	}
 
-	// =================================================
-	// 3. Diagnósticos: solo primera réplica
-	// =================================================
 
-	if `rep' == 1 {
+		// =================================================
+		// 3. Diagnósticos: solo primera réplica
+		// =================================================
 
-		// -------------------------------------------------
-		// 3.1 Estructura del panel
-		// -------------------------------------------------
+		if `rep' == 1 {
 
-		assert _N == `NL' * `Tfull'
-		assert inrange(id,1,`NL')
-		assert inrange(time,0,`T')
-		isid id time
-		bysort id: assert _N == `Tfull'
+			// -------------------------------------------------
+			// 3.1 Estructura del panel
+			// -------------------------------------------------
 
-		// -------------------------------------------------
-		// 3.2 Variables individuales y shocks
-		// -------------------------------------------------
+			assert _N == `NL' * `Tfull'
+			assert inrange(id,1,`NL')
+			assert inrange(time,0,`T')
+			isid id time
+			bysort id: assert _N == `Tfull'
 
-		bysort id: assert y0   == y0[1]
-		bysort id: assert a_i  == a_i[1]
-		bysort id: assert w_i  == w_i[1]
-		bysort id: assert zbar == zbar[1]
+			// -------------------------------------------------
+			// 3.2 Variables individuales y shocks
+			// -------------------------------------------------
 
-		assert missing(z)          if time == 0
-		assert missing(e)          if time == 0
-		assert missing(omega_base) if time == 0
-		assert missing(omega_mnar) if time == 0
+			bysort id: assert y0   == y0[1]
+			bysort id: assert a_i  == a_i[1]
+			bysort id: assert w_i  == w_i[1]
+			bysort id: assert zbar == zbar[1]
 
-		summarize y0 a_i w_i z zbar e omega_base omega_mnar
+			assert missing(z)          if time == 0
+			assert missing(e)          if time == 0
+			assert missing(omega_base) if time == 0
+			assert missing(omega_mnar) if time == 0
 
-		list id time y0 a_i w_i z zbar e omega_base omega_mnar ///
-			if id <= 3, sepby(id)
+			summarize y0 a_i w_i z zbar e omega_base omega_mnar
 
-		corr e omega_base omega_mnar ///
-			if inrange(time,1,`T')
+			list id time y0 a_i w_i z zbar e omega_base omega_mnar ///
+				if id <= 3, sepby(id)
 
-		// -------------------------------------------------
-		// 3.3 Outcome y attrition
-		// -------------------------------------------------
+			corr e omega_base omega_mnar ///
+				if inrange(time,1,`T')
 
-		assert y == y0 if time == 0
-		assert inlist(y,0,1) if inrange(time,0,`T')
+			// -------------------------------------------------
+			// 3.3 Outcome y attrition
+			// -------------------------------------------------
 
-		assert stay_base == 1 if time == 1
-		assert stay_mnar == 1 if time == 1
-		assert obs_base  == 1 if time == 1
-		assert obs_mnar  == 1 if time == 1
+			assert y == y0 if time == 0
+			assert inlist(y,0,1) if inrange(time,0,`T')
 
-		// Attrition absorbente: obs nunca pasa de 0 a 1
-		bysort id (time): assert ///
-			obs_base <= obs_base[_n-1] ///
-			if inrange(time,2,`T')
+			assert stay_base == 1 if time == 1
+			assert stay_mnar == 1 if time == 1
+			assert obs_base  == 1 if time == 1
+			assert obs_mnar  == 1 if time == 1
 
-		bysort id (time): assert ///
-			obs_mnar <= obs_mnar[_n-1] ///
-			if inrange(time,2,`T')
+			// Attrition absorbente: obs nunca pasa de 0 a 1
+			bysort id (time): assert ///
+				obs_base <= obs_base[_n-1] ///
+				if inrange(time,2,`T')
 
-		summarize obs_base obs_mnar ///
-			if inrange(time,1,`T')
+			bysort id (time): assert ///
+				obs_mnar <= obs_mnar[_n-1] ///
+				if inrange(time,2,`T')
 
-		tabstat obs_base obs_mnar ///
-			if inrange(time,1,`T'), ///
-			by(time) statistics(mean count)
+			summarize obs_base obs_mnar ///
+				if inrange(time,1,`T')
 
-		list id time y0 z zbar y ///
-			stay_base obs_base stay_mnar obs_mnar ///
-			if id <= 5, sepby(id)
+			tabstat obs_base obs_mnar ///
+				if inrange(time,1,`T'), ///
+				by(time) statistics(mean count)
 
-		// -------------------------------------------------
-		// 3.4 Estimador WRE_full
-		// -------------------------------------------------
+			list id time y0 z zbar y ///
+				stay_base obs_base stay_mnar obs_mnar ///
+				if id <= 5, sepby(id)
 
-		display as text ///
-			"== E3: WRE_full, replica 1 =="
+			// -------------------------------------------------
+			// 3.4 Estimador WRE_full
+			// -------------------------------------------------
 
-		if !`full_fail' {
+			display as text ///
+				"== E3: WRE_full, replica 1 =="
 
-			display as result ///
-				"delta_hat = " %9.4f `full_delta'
+			if !`full_fail' {
 
-			display as result ///
-				"rho_hat   = " %9.4f `full_rho'
+				display as result ///
+					"delta_hat = " %9.4f `full_delta'
 
-			display as result ///
-				"xi0_hat   = " %9.4f `full_xi0'
+				display as result ///
+					"rho_hat   = " %9.4f `full_rho'
 
-			display as result ///
-				"xi_hat    = " %9.4f `full_xi'
+				display as result ///
+					"xi0_hat   = " %9.4f `full_xi0'
 
-			display as result ///
-				"psi_hat   = " %9.4f `full_psi'
+				display as result ///
+					"xi_hat    = " %9.4f `full_xi'
 
-			display as result ///
-				"sigma_u   = " %9.4f `full_sigu'
+				display as result ///
+					"psi_hat   = " %9.4f `full_psi'
 
-			display as result ///
-				"N celdas  = " %9.0f `ncells'
+				display as result ///
+					"sigma_u   = " %9.4f `full_sigu'
+
+				display as result ///
+					"N celdas  = " %9.0f `ncells'
+			}
+			else {
+				display as error ///
+					"WRE_full fallo en la replica 1."
+			}
 		}
-		else {
-			display as error ///
-				"WRE_full fallo en la replica 1."
-		}
-	}
+
+	} // Fin del loop Monte Carlo
 
 	postclose `e3h'
 
