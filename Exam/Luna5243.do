@@ -1689,22 +1689,14 @@ if $RUN_E3 {
 	// E3.8:
 	//       CF_attr : Test del 7 y corrección del 8
 
-	// (1) escenarios y repeticiones
-	// (2) estimadores
-	// (3) almacenar tests
-	// (4) registrar attrition
-	// (5) test inciso 7
-	// (6) estimación "degenerada" numéricamente
-
 	postfile `e3h' ///
-		str12 scenario ///                                   (1)
-		str24 estimator int rep ///
-		double delta_hat rho_hat xi_hat psi_hat sigu_hat /// (2)		
-		double p_joint5 p_pool1 ///                          (3)
-		double obs_share ///                                 (4)
-		double phat_coef phat_y0 phat_y1 ///                 (5)
-		byte fail ///                                        (6)
-		using `e3raw', replace
+    	str12 scenario ///                  escenario
+    	str24 estimator ///                 estimador
+    	int rep ///                         repeticion
+    	double delta_hat rho_hat xi_hat /// parametros
+    	double obs_share ///                que masa quedó post attrition \in [0,1]
+        byte fail ///                       falló la estimación numérica?
+    	using `e3raw', replace
 
 	// Setup del panel
 	clear
@@ -1844,13 +1836,13 @@ if $RUN_E3 {
 			// Se excluye el t=0
 			capture quietly xtprobit y L.y z y0 zbar if inrange(time,1,`T'), re
 
-			// Almaceno en f si hubo fail en xtprobit.
-			local f = (_rc != 0)
+			// Almaceno en f si hubo fail en xtprobit (full).
+			local fail_full = (_rc != 0)
 
 			// Si corrió, veo convergencia y que estén los parámetros
-			if (!`f') {
-				// Si alguna de estas falla, marcamos fail
-				local f = ///
+			if !`fail_full' {
+				// Si alguna de estas falla marcamos fail
+				local fail_full = ///
 					(e(converged) != 1) | ///
 					missing( ///
 						_b[z], ///
@@ -1862,44 +1854,36 @@ if $RUN_E3 {
 					)
 			}
 
-			// Si la estimación fue válida, guardo los resultados.
-			if !`f' {
-				post `e3h' ///
-					("full") ///          // escenario
-					("WRE_full") ///      // estimador
-					(`rep') ///           // simulación
-					(_b[z]) ///           // delta
-					(_b[L.y]) ///         // rho
-					(_b[zbar]) ///        // xi
-					(_b[_cons]) ///       // psi
-					(e(sigma_u)) ///      // sd_u
-					(.) ///               // p_joint5 (no se usa)
-					(.) ///               // p_pool1 (no se usa)
-					(1) ///               // obs_share
-					(.) ///               // phat_coef
-					(.) ///               // phat_y0
-					(.) ///               // phat_y1
-					(0)                   // fail = no
+			// Si la estimación es válida, almaceno
+			if !`fail_full' {
 
-			}
-			else {
-				// Si hubo error o no convergió, guardo una fila de fallo.
+				// Parámetros que sí se guardan en el Monte Carlo
+				local delta_full = _b[z]
+				local rho_full   = _b[L.y]
+				local xi_full    = _b[zbar]
+
+				// Solo se necesitan para el diagnóstico de la primera réplica
+				if `rep' == 1 {
+					local xi0_full  = _b[y0]
+					local psi_full  = _b[_cons]
+					local sigu_full = e(sigma_u)
+				}
+
+				// Fila de éxito
 				post `e3h' ///
 					("full") ///
 					("WRE_full") ///
 					(`rep') ///
-					(.) ///
-					(.) ///
-					(.) ///
-					(.) ///
-					(.) ///
-					(.) ///
-					(.) ///
-					(1) ///
-					(.) ///
-					(.) ///
-					(.) ///
-					(1)           // esto es lo importante
+					(`delta_full') ///
+					(`rho_full') ///
+					(`xi_full') ///
+					(1) /// obs_share 100% para full
+					(0)
+			}
+			else {
+				// Si hubo error o no convergió, guardo una fila de fallo
+				post `e3h' ///
+					("full") ("WRE_full") (`rep') (.) (.) (.) (1) (1)
 			}
 		}
 
@@ -1978,35 +1962,34 @@ if $RUN_E3 {
 			// 3.4 Estimador WRE_full
 			// -------------------------------------------------
 
-			display as text ///
-				"== E3: WRE_full, replica 1 =="
+			display as text "== E3: WRE_full, réplica 1 =="
 
-			if !`full_fail' {
-
-				display as result ///
-					"delta_hat = " %9.4f `full_delta'
+			if !`fail_full' {
 
 				display as result ///
-					"rho_hat   = " %9.4f `full_rho'
+					"delta_hat = " %9.4f `delta_full'
 
 				display as result ///
-					"xi0_hat   = " %9.4f `full_xi0'
+					"rho_hat   = " %9.4f `rho_full'
 
 				display as result ///
-					"xi_hat    = " %9.4f `full_xi'
+					"xi0_hat   = " %9.4f `xi0_full'
 
 				display as result ///
-					"psi_hat   = " %9.4f `full_psi'
+					"xi_hat    = " %9.4f `xi_full'
 
 				display as result ///
-					"sigma_u   = " %9.4f `full_sigu'
+					"psi_hat   = " %9.4f `psi_full'
+
+				display as result ///
+					"sigma_u   = " %9.4f `sigu_full'
 
 				display as result ///
 					"N celdas  = " %9.0f `ncells'
 			}
 			else {
 				display as error ///
-					"WRE_full fallo en la replica 1."
+					"WRE_full falló en la réplica 1."
 			}
 		}
 
