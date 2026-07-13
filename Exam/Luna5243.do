@@ -1642,6 +1642,7 @@ if $RUN_E3 {
 	local S  = 1  // 500 simulaciones
 	local NL = 300  // 300 individuos
 	local T  = 6    // observados por 6 periodos
+	local ncells = `NL' * `T' // observaciones t x i posibles (sin attrition)
 
 	// Parámetros del modelo Probit
 	local psi = -0.5
@@ -1712,243 +1713,224 @@ if $RUN_E3 {
 	egen id   = seq(), block(`Tfull')
 	egen time = seq(), from(0) to(`T')
 	xtset id time
-	
-	// Check temporal
-	// TO-DO eliminar
-	assert _N == 2100
-	assert inrange(id,1,300)
-	assert inrange(time,0,6)
-	isid id time
 
-	bysort id: assert _N == 7
+	// =====================================================
+	// Bucle principal de Monte Carlo
+	// =====================================================
 
-	// Bucle principal
 	forvalues rep = 1/`S' {
+		// -------------------------------
+		// 1. Implementación del DGP
+		// -------------------------------
+		qui {
+			// Borro las variables de la iteracion anterior
+			cap drop y0 a_i w_i z zbar eta_e eta_w e omega_* ///
+			y stay_* obs_*
+			
+			// Aseguro el orden del panel para las operaciones que siguen
+			sort id time
 
+			// Probit: Condición inicial. Como runiform genera un # entre 0 y 1
+			// La probabilidad (runiform() < 0.4) da 1 con probabilidad 0.4
+			// Esencialmente la bernoulli(0.4) pedida.
+			by id: gen byte y0 = (runiform() < 0.4) if _n == 1
+			// Se copia y0 para todos los T del mismo i
+			by id: replace y0 = y0[1]
+
+			// Probit: Residuo del error individual ci. Acá el mismo patrón pero con N(0,1),
+			// cada i tiene el mismo error idiosincrático ai.
+			by id: gen double a_i = rnormal(0,1) if _n == 1
+			by id: replace a_i = a_i[1]
+
+			// Selección: efecto individual. Mismo mecanismo: un valor a nivel i.
+			by id: gen double w_i = rnormal(0,sqrt(0.5)) if _n == 1
+			by id: replace w_i = w_i[1]
+
+			// Probit: Regresor z_j ~ N(0,1). Solo para el rango t=1 a t=T
+			// No hay lectura en t=0.
+			gen double z = rnormal(0,1) if inrange(time,1,`T')
+
+			// Probit: Promedio de Mundlak, Zj = \bar{z_j}
+			// Se hace pre-attrition porque así después no se observen, ci las contiene
+			by id: egen double zbar = mean(z)
+
+			// ------------------------------------------------------------------
+			// Shocks comunes para los escenarios base y mnar
+			// Aquí la idea es generar dos shocks independientes (eta_e ⟂ eta_w)
+			// ------------------------------------------------------------------
+			
+			// El shock e_jt del outcome (y_jt) es siempre e_jt = eta_e
+			// El shock ω_jt de selección sí lo cambio de acuerdo al escenario:
+			//   En el escenario attrition ignorable ("base") tengo
+			//      w_jt base = eta_w 
+			//        => Corr(ejt​,ωjt​)=0 porque son independientes.
+			//   En el escenario attrion no ignorable ("mnar") tengo
+			//      w_jt mnar = 0.7 eta_e + sqrt(1-0.7^2) eta_w
+			//        => Corr(ejt​,ωjt​)=0.7 y además Var(ωjt​)=1.
+
+			// La idea detrás de esto es compartir los mismos shocks aleatorios entre
+			// ambos escenarios: si cambian los resultados entre base y mnar, sabemos que la
+			// causa principal es la correlación introducida, no una muestra rara u outliers.
+
+			// Se generan los shocks N(0,1) para cada t excepto t=0
+			gen double eta_e = rnormal(0,1) if inrange(time,1,`T')
+			gen double eta_w = rnormal(0,1) if inrange(time,1,`T')
+
+			// Se sigue la especificación explicada anteriormente
+			gen double e = eta_e
+			gen double omega_base = eta_w
+			gen double omega_mnar = ///
+				`kap' * eta_e + sqrt(1 - `kap'^2) * eta_w
+
+			// ---------------------------------------------------
+			// y_jt y mecanismo de attrition absorbente
+			// ---------------------------------------------------
+			// Asegurar orden //TO-DO revisar si se puede quitar
+			sort id time
+
+			// Iniciamos desde la condición inicial ya generada
+			gen byte y = y0 if time == 0
+
+			// Probit: Binaria y_jt. Se itera t=1 a t=6 usando la especificación
+			forvalues tt = 1/`T' {
+				replace y = ( ///
+					(`psi' + `del' * z  + `rho' * L.y + `xi0' * y0  + `xi'  * zbar + a_i + e ) > 0  ///
+				) if time == `tt'
+			}
+
+			// Selección: Binaria s_jt / obs_t para los escenarios 'base' y 'mnar'
+			// Ponemos la etiqueta de escenario a cada variable 
+			foreach sc in base mnar {
+
+				// En t=1 todos los i son observados
+				gen byte stay_`sc' = 1 if time == 1
+
+				// Desde t=2 hasta t=6 se toma una decision de permanencia usando la especificación
+				replace stay_`sc' = ( ///
+					( `g0' + `g1' * L.y + `g2' * z + w_i + omega_`sc' ) > 0 ///
+				) if inrange(time,2,`T')
+
+				// ------------------------------------------------------
+				// Attrition absorbente: una vez afuera, no se reingresa
+				// ------------------------------------------------------
+
+				// Aquí la idea es que s_jt va a seguir generando 1 o 0 de acuerdo al shock en cada t
+				// - La variable obs(t) se vuelve 0 la primera vez que s_jt lo hace
+				// - La variable obs(t-1) siempre multiplica s_jt
+				// Entonces una vez que obs_* es cero, así s_jt se mueva ya no reaparece el individuo i
+				// obs(t) es la que usamos efectivamente para determinar si la persona está o no en un t
+
+				// En el primer periodo sabemos que está
+				gen byte obs_`sc' = 1 if time == 1
+				// Desde t=2 ponderamos s_jt por obs(t-1) para no reingresarla
+				forvalues tt = 2/`T' {
+					replace obs_`sc' = L.obs_`sc' * stay_`sc' if time == `tt'
+				}
+
+			}
+
+		}
+
+		// ---------------------------------------------
+		// 2. Estimadores y almacenamiento
+		// ---------------------------------------------
 		qui {
 
-		// Borro las variables de la iteracion anterior
-		cap drop y0 a_i w_i z zbar eta_e eta_w e omega_* ///
-         y stay_* obs_*
-		
-		// Aseguro el orden del panel para las operaciones que siguen
-		sort id time
+			// ====================================================
+			// 2.1 - Inciso 5: Wooldridge RE sobre muestra completa
+			// ====================================================
 
-		// Probit: Condición inicial. Como runiform genera un # entre 0 y 1
-		// La probabilidad (runiform() < 0.4) da 1 con probabilidad 0.4
-		// Esencialmente la bernoulli(0.4) pedida.
-		by id: gen byte y0 = (runiform() < 0.4) if _n == 1
-		// Se copia y0 para todos los T del mismo i
-		by id: replace y0 = y0[1]
+			// Inciso E3.5 - Wooldridge RE sobre muestra completa
+			// Se excluye el t=0
+			capture quietly xtprobit y L.y z y0 zbar if inrange(time,1,`T'), re
 
-		// Probit: Residuo del error individual ci. Acá el mismo patrón pero con N(0,1),
-		// cada i tiene el mismo error idiosincrático ai.
-		by id: gen double a_i = rnormal(0,1) if _n == 1
-		by id: replace a_i = a_i[1]
+			// Almaceno en f si hubo fail en xtprobit.
+			local f = (_rc != 0)
 
-		// Selección: efecto individual. Mismo mecanismo: un valor a nivel i.
-		by id: gen double w_i = rnormal(0,sqrt(0.5)) if _n == 1
-		by id: replace w_i = w_i[1]
-
-		// Probit: Regresor z_j ~ N(0,1). Solo para el rango t=1 a t=T
-		// No hay lectura en t=0.
-		gen double z = rnormal(0,1) if inrange(time,1,`T')
-
-		// Probit: Promedio de Mundlak, Zj = \bar{z_j}
-		// Se hace pre-attrition porque así después no se observen, ci las contiene
-		by id: egen double zbar = mean(z)
-
-		// ------------------------------------------------------------------
-		// Shocks comunes para los escenarios base y mnar
-		// Aquí la idea es generar dos shocks independientes (eta_e ⟂ eta_w)
-		// ------------------------------------------------------------------
-		
-		// El shock e_jt del outcome (y_jt) es siempre e_jt = eta_e
-		// El shock ω_jt de selección sí lo cambio de acuerdo al escenario:
-		//   En el escenario attrition ignorable ("base") tengo
-		//      w_jt base = eta_w 
-        //        => Corr(ejt​,ωjt​)=0 porque son independientes.
-		//   En el escenario attrion no ignorable ("mnar") tengo
-		//      w_jt mnar = 0.7 eta_e + sqrt(1-0.7^2) eta_w
-		//        => Corr(ejt​,ωjt​)=0.7 y además Var(ωjt​)=1.
-
-		// La idea detrás de esto es compartir los mismos shocks aleatorios entre
-		// ambos escenarios: si cambian los resultados entre base y mnar, sabemos que la
-		// causa principal es la correlación introducida, no una muestra rara u outliers.
-
-		// Se generan los shocks N(0,1) para cada t excepto t=0
-		gen double eta_e = rnormal(0,1) if inrange(time,1,`T')
-		gen double eta_w = rnormal(0,1) if inrange(time,1,`T')
-
-		// Se sigue la especificación explicada anteriormente
-		gen double e = eta_e
-		gen double omega_base = eta_w
-		gen double omega_mnar = ///
-			`kap' * eta_e + sqrt(1 - `kap'^2) * eta_w
-
-		// ---------------------------------------------------
-		// y_jt y mecanismo de attrition absorbente
-		// ---------------------------------------------------
-		// Asegurar orden //TO-DO revisar si se puede quitar
-		sort id time
-
-		// Iniciamos desde la condición inicial ya generada
-		gen byte y = y0 if time == 0
-
-		// Probit: Binaria y_jt. Se itera t=1 a t=6 usando la especificación
-		forvalues tt = 1/`T' {
-			replace y = ( ///
-				(`psi' + `del' * z  + `rho' * L.y + `xi0' * y0  + `xi'  * zbar + a_i + e ) > 0  ///
-			) if time == `tt'
-		}
-
-		// Selección: Binaria s_jt / obs_t para los escenarios 'base' y 'mnar'
-		// Ponemos la etiqueta de escenario a cada variable 
-		foreach sc in base mnar {
-
-			// En t=1 todos los i son observados
-			gen byte stay_`sc' = 1 if time == 1
-
-			// Desde t=2 hasta t=6 se toma una decision de permanencia usando la especificación
-			replace stay_`sc' = ( ///
-				( `g0' + `g1' * L.y + `g2' * z + w_i + omega_`sc' ) > 0 ///
-			) if inrange(time,2,`T')
-
-			// ------------------------------------------------------
-			// Attrition absorbente: una vez afuera, no se reingresa
-			// ------------------------------------------------------
-
-			// Aquí la idea es que s_jt va a seguir generando 1 o 0 de acuerdo al shock en cada t
-			// - La variable obs(t) se vuelve 0 la primera vez que s_jt lo hace
-			// - La variable obs(t-1) siempre multiplica s_jt
-			// Entonces una vez que obs_* es cero, así s_jt se mueva ya no reaparece el individuo i
-			// obs(t) es la que usamos efectivamente para determinar si la persona está o no en un t
-
-			// En el primer periodo sabemos que está
-			gen byte obs_`sc' = 1 if time == 1
-			// Desde t=2 ponderamos s_jt por obs(t-1) para no reingresarla
-			forvalues tt = 2/`T' {
-				replace obs_`sc' = L.obs_`sc' * stay_`sc' if time == `tt'
+			// Si corrió, veo convergencia y que estén los parámetros
+			if (!`f') {
+				// Si alguna de estas falla, marcamos fail
+				local f = ///
+					(e(converged) != 1) | ///
+					missing( ///
+						_b[z], ///
+						_b[L.y], ///
+						_b[y0], ///
+						_b[zbar], ///
+						_b[_cons], ///
+						e(sigma_u) ///
+					)
 			}
 
-		}
-
-		// =================================================
-		// Estimación
-		// =================================================
-
-		// Inciso E3.5 - Wooldridge RE sobre muestra completa
-		// Se excluye el t=0
-		capture quietly xtprobit y L.y z y0 zbar if inrange(time,1,`T'), re
-
-		// Almaceno en f si hubo fail en xtprobit.
-		local f = (_rc != 0)
-
-		// Si corrió, veo convergencia y que estén los parámetros
-		if (!`f') {
-			// Si alguna de estas falla, marcamos fail
-			local f = ///
-				(e(converged) != 1) | ///
-				missing( ///
-					_b[z], ///
-					_b[L.y], ///
-					_b[y0], ///
-					_b[zbar], ///
-					_b[_cons], ///
-					e(sigma_u) ///
-				)
-		}
-
-		// Cuento el total de filas válidas
-		quietly count if inrange(time,1,`T')
-		local ncells = r(N)
-
-		// Si la estimación fue válida, guardo los resultados.
-		if !`f' {
-			post `e3h' ///
-				("full") ///          // escenario
-				("WRE_full") ///      // estimador
-				(`rep') ///           // simulación
-				(_b[z]) ///           // delta
-				(_b[L.y]) ///         // rho
-				(_b[zbar]) ///        // xi
-				(_b[_cons]) ///       // psi
-				(e(sigma_u)) ///      // sd_u
-				(.) ///               // p_joint5 (no se usa)
-				(.) ///               // p_pool1 (no se usa)
-				(1) ///               // obs_share
-				(.) ///               // phat_coef
-				(.) ///               // phat_y0
-				(.) ///               // phat_y1
-				(0)                   // fail = no
-
-		}
-		else {
-			// Si hubo error o no convergió, guardo una fila de fallo.
-			post `e3h' ///
-				("full") ///
-				("WRE_full") ///
-				(`rep') ///
-				(.) ///
-				(.) ///
-				(.) ///
-				(.) ///
-				(.) ///
-				(.) ///
-				(.) ///
-				(1) ///
-				(.) ///
-				(.) ///
-				(.) ///
-				(1)           // esto es lo importante
-		}
-
-		// Diagnóstico visible únicamente para la primera réplica.
-		if `rep' == 1 {
+			// Si la estimación fue válida, guardo los resultados.
 			if !`f' {
-				noisily display as text ///
-					"== E3 Chunk 3: WRE_full, replica 1 =="
+				post `e3h' ///
+					("full") ///          // escenario
+					("WRE_full") ///      // estimador
+					(`rep') ///           // simulación
+					(_b[z]) ///           // delta
+					(_b[L.y]) ///         // rho
+					(_b[zbar]) ///        // xi
+					(_b[_cons]) ///       // psi
+					(e(sigma_u)) ///      // sd_u
+					(.) ///               // p_joint5 (no se usa)
+					(.) ///               // p_pool1 (no se usa)
+					(1) ///               // obs_share
+					(.) ///               // phat_coef
+					(.) ///               // phat_y0
+					(.) ///               // phat_y1
+					(0)                   // fail = no
 
-				noisily display as result ///
-					"delta_hat = " %9.4f _b[z]
-
-				noisily display as result ///
-					"rho_hat   = " %9.4f _b[L.y]
-
-				noisily display as result ///
-					"xi0_hat   = " %9.4f _b[y0]
-
-				noisily display as result ///
-					"xi_hat    = " %9.4f _b[zbar]
-
-				noisily display as result ///
-					"psi_hat   = " %9.4f _b[_cons]
-
-				noisily display as result ///
-					"sigma_u   = " %9.4f e(sigma_u)
-
-				noisily display as result ///
-					"N celdas  = " %9.0f `ncells'
 			}
 			else {
-				noisily display as error ///
-					"Chunk 3 fallo en la replica 1."
+				// Si hubo error o no convergió, guardo una fila de fallo.
+				post `e3h' ///
+					("full") ///
+					("WRE_full") ///
+					(`rep') ///
+					(.) ///
+					(.) ///
+					(.) ///
+					(.) ///
+					(.) ///
+					(.) ///
+					(.) ///
+					(1) ///
+					(.) ///
+					(.) ///
+					(.) ///
+					(1)           // esto es lo importante
 			}
 		}
 	}
 
-	// Checks temporales. TO-DO eliminar.
+	// =================================================
+	// 3. Diagnósticos: solo primera réplica
+	// =================================================
+
 	if `rep' == 1 {
 
-		// Diagnósticos Chunk 1:
+		// -------------------------------------------------
+		// 3.1 Estructura del panel
+		// -------------------------------------------------
 
-		bysort id: assert y0 == y0[1]
-		bysort id: assert a_i == a_i[1]
-		bysort id: assert w_i == w_i[1]
+		assert _N == `NL' * `Tfull'
+		assert inrange(id,1,`NL')
+		assert inrange(time,0,`T')
+		isid id time
+		bysort id: assert _N == `Tfull'
+
+		// -------------------------------------------------
+		// 3.2 Variables individuales y shocks
+		// -------------------------------------------------
+
+		bysort id: assert y0   == y0[1]
+		bysort id: assert a_i  == a_i[1]
+		bysort id: assert w_i  == w_i[1]
 		bysort id: assert zbar == zbar[1]
 
-		assert missing(z) if time == 0
-		assert missing(e) if time == 0
+		assert missing(z)          if time == 0
+		assert missing(e)          if time == 0
 		assert missing(omega_base) if time == 0
 		assert missing(omega_mnar) if time == 0
 
@@ -1957,21 +1939,22 @@ if $RUN_E3 {
 		list id time y0 a_i w_i z zbar e omega_base omega_mnar ///
 			if id <= 3, sepby(id)
 
-		noisily corr e omega_base omega_mnar if inrange(time,1,`T')
+		corr e omega_base omega_mnar ///
+			if inrange(time,1,`T')
 
-		// Diagnósticos Chunk 2:
+		// -------------------------------------------------
+		// 3.3 Outcome y attrition
+		// -------------------------------------------------
 
-		// El outcome es binario y coincide con y0 en t=0
 		assert y == y0 if time == 0
 		assert inlist(y,0,1) if inrange(time,0,`T')
 
-		// Todos comienzan observados
 		assert stay_base == 1 if time == 1
 		assert stay_mnar == 1 if time == 1
 		assert obs_base  == 1 if time == 1
 		assert obs_mnar  == 1 if time == 1
 
-		// La observacion es absorbente: nunca puede pasar de 0 a 1
+		// Attrition absorbente: obs nunca pasa de 0 a 1
 		bysort id (time): assert ///
 			obs_base <= obs_base[_n-1] ///
 			if inrange(time,2,`T')
@@ -1980,18 +1963,52 @@ if $RUN_E3 {
 			obs_mnar <= obs_mnar[_n-1] ///
 			if inrange(time,2,`T')
 
-		// Diagnosticos de composicion y supervivencia
-		summarize y obs_base obs_mnar if inrange(time,1,`T')
+		summarize obs_base obs_mnar ///
+			if inrange(time,1,`T')
 
-		tabstat obs_base obs_mnar if inrange(time,1,`T'), ///
+		tabstat obs_base obs_mnar ///
+			if inrange(time,1,`T'), ///
 			by(time) statistics(mean count)
 
 		list id time y0 z zbar y ///
 			stay_base obs_base stay_mnar obs_mnar ///
 			if id <= 5, sepby(id)
 
+		// -------------------------------------------------
+		// 3.4 Estimador WRE_full
+		// -------------------------------------------------
+
+		display as text ///
+			"== E3: WRE_full, replica 1 =="
+
+		if !`full_fail' {
+
+			display as result ///
+				"delta_hat = " %9.4f `full_delta'
+
+			display as result ///
+				"rho_hat   = " %9.4f `full_rho'
+
+			display as result ///
+				"xi0_hat   = " %9.4f `full_xi0'
+
+			display as result ///
+				"xi_hat    = " %9.4f `full_xi'
+
+			display as result ///
+				"psi_hat   = " %9.4f `full_psi'
+
+			display as result ///
+				"sigma_u   = " %9.4f `full_sigu'
+
+			display as result ///
+				"N celdas  = " %9.0f `ncells'
+		}
+		else {
+			display as error ///
+				"WRE_full fallo en la replica 1."
+		}
 	}
-	}   // cierre temporal del loop
 
 	postclose `e3h'
 
