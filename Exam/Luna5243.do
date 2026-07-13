@@ -1691,7 +1691,7 @@ if $RUN_E3 {
 	// (1) escenarios y repeticiones
 	// (2) estimadores
 	// (3) almacenar tests
-	// (4) diagnostico de attrition
+	// (4) registrar attrition
 	// (5) test inciso 7
 	// (6) estimación "degenerada" numéricamente
 
@@ -1700,7 +1700,7 @@ if $RUN_E3 {
 		str24 estimator int rep ///
 		double delta_hat rho_hat xi_hat psi_hat sigu_hat /// (2)		
 		double p_joint5 p_pool1 ///                          (3)
-		double obs_share y_share ///                         (4)
+		double obs_share ///                                 (4)
 		double phat_coef phat_y0 phat_y1 ///                 (5)
 		byte fail ///                                        (6)
 		using `e3raw', replace
@@ -1787,7 +1787,7 @@ if $RUN_E3 {
 			`kap' * eta_e + sqrt(1 - `kap'^2) * eta_w
 
 		// ---------------------------------------------------
-		// yjt y mecanismo de attrition absorbente
+		// y_jt y mecanismo de attrition absorbente
 		// ---------------------------------------------------
 		// Asegurar orden //TO-DO revisar si se puede quitar
 		sort id time
@@ -1839,9 +1839,7 @@ if $RUN_E3 {
 
 		// Inciso E3.5 - Wooldridge RE sobre muestra completa
 		// Se excluye el t=0
-		capture quietly xtprobit y L.y z y0 zbar ///
-			if inrange(time,1,`T'), ///
-			re intmethod(mvaghermite) intpoints(12)
+		capture quietly xtprobit y L.y z y0 zbar if inrange(time,1,`T'), re
 
 		// Almaceno en f si hubo fail en xtprobit.
 		local f = (_rc != 0)
@@ -1865,10 +1863,6 @@ if $RUN_E3 {
 		quietly count if inrange(time,1,`T')
 		local ncells = r(N)
 
-		// Cuento todas las y=1 en la muestra
-		quietly summarize y if inrange(time,1,`T')
-		local ysh = r(mean)
-
 		// Si la estimación fue válida, guardo los resultados.
 		if !`f' {
 			post `e3h' ///
@@ -1879,11 +1873,10 @@ if $RUN_E3 {
 				(_b[L.y]) ///         // rho
 				(_b[zbar]) ///        // xi
 				(_b[_cons]) ///       // psi
-				(e(sigma_u)) ///      // varianza
+				(e(sigma_u)) ///      // sd_u
 				(.) ///               // p_joint5 (no se usa)
 				(.) ///               // p_pool1 (no se usa)
 				(1) ///               // obs_share
-				(`ysh') ///           // y_share
 				(.) ///               // phat_coef
 				(.) ///               // phat_y0
 				(.) ///               // phat_y1
@@ -1904,7 +1897,6 @@ if $RUN_E3 {
 				(.) ///
 				(.) ///
 				(1) ///
-				(`ysh') ///
 				(.) ///
 				(.) ///
 				(.) ///
@@ -1936,14 +1928,11 @@ if $RUN_E3 {
 					"sigma_u   = " %9.4f e(sigma_u)
 
 				noisily display as result ///
-					"y_share   = " %9.4f `ysh'
-
-				noisily display as result ///
 					"N celdas  = " %9.0f `ncells'
 			}
 			else {
 				noisily display as error ///
-					"Chunk 3 fallo en la replica 1. Return code: `rc'"
+					"Chunk 3 fallo en la replica 1."
 			}
 		}
 	}
@@ -2002,9 +1991,6 @@ if $RUN_E3 {
 			if id <= 5, sepby(id)
 
 	}
-
-		
-
 	}   // cierre temporal del loop
 
 	postclose `e3h'
