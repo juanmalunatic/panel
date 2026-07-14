@@ -1639,7 +1639,7 @@ if $RUN_E3 {
 	set seed $THE_SEED
 
 	// Defino las constantes de tamaño
-	local S  = 1  // 500 simulaciones
+	local S  = 20  // 500 simulaciones
 	local NL = 300  // 300 individuos
 	local T  = 6    // observados por 6 periodos
 	local ncells = `NL' * `T' // observaciones t x i posibles (sin attrition)
@@ -1894,8 +1894,8 @@ if $RUN_E3 {
 			foreach sc in base mnar {
 
 				// En obs_* se cuenta qué porcentaje de filas del total
-				// quedan al final de todo. Algo así como ¿qué tanto % 
-				// del panel quedó post-attrition?
+				// quedan observadas en el panel entre t=1 y t=T.
+				// Algo así como ¿qué tanto % del panel quedó post-attrition en total?
 
 				// Es un promedio excluyendo t=0, como son 0 o 1 queda la share de 1s.
 				quietly summarize obs_`sc' if inrange(time,1,`T'), meanonly
@@ -2115,7 +2115,131 @@ if $RUN_E3 {
 
 	postclose `e3h'
 
-	* Aquí irán los Chunks 8 a 10
+	// =================================================
+	// 4. Tablas de resultados
+	// =================================================
+
+	use `e3raw', clear
+
+	// -------------------------------------------------
+	// 4.1 Inciso 5: WRE sobre muestra completa
+	// -------------------------------------------------
+
+	preserve
+
+		// Solo estimaciones válidas del inciso 5
+		keep if scenario == "full"
+		keep if estimator == "WRE_full"
+		keep if fail == 0
+
+		// Errores cuadráticos contra los valores verdaderos
+		gen double sqerr_delta = (delta_hat - `del')^2
+		gen double sqerr_rho   = (rho_hat   - `rho')^2
+		gen double sqerr_xi    = (xi_hat    - `xi')^2
+
+		// Media, desvío estándar y MSE
+		collapse ///
+			(mean) ///
+				mean_delta = delta_hat ///
+				mean_rho   = rho_hat ///
+				mean_xi    = xi_hat ///
+				mse_delta  = sqerr_delta ///
+				mse_rho    = sqerr_rho ///
+				mse_xi     = sqerr_xi ///
+			(sd) ///
+				sd_delta = delta_hat ///
+				sd_rho   = rho_hat ///
+				sd_xi    = xi_hat, ///
+			by(scenario)
+
+		// RMSE = raíz del MSE
+		gen double rmse_delta = sqrt(mse_delta)
+		gen double rmse_rho   = sqrt(mse_rho)
+		gen double rmse_xi    = sqrt(mse_xi)
+
+		drop mse_delta mse_rho mse_xi
+
+		order ///
+			scenario ///
+			mean_delta sd_delta rmse_delta ///
+			mean_rho   sd_rho   rmse_rho ///
+			mean_xi    sd_xi    rmse_xi
+
+		format mean_* sd_* rmse_* %9.4f
+
+		di as text ///
+			"== E3 Inciso 5: WRE muestra completa =="
+
+		list, noobs
+
+	restore
+
+
+	// -------------------------------------------------
+	// 4.2 Inciso 6: comparación con attrition
+	// -------------------------------------------------
+
+	preserve
+
+		// Full para comparar con el inciso anterior
+		// y las dos muestras con attrition
+		keep if ///
+			(scenario == "full" & estimator == "WRE_full") | ///
+			(inlist(scenario, "base", "mnar") & ///
+			 estimator == "WRE_attr")
+
+		keep if fail == 0
+
+		// Errores cuadráticos contra los valores verdaderos
+		gen double sqerr_delta = (delta_hat - `del')^2
+		gen double sqerr_rho   = (rho_hat   - `rho')^2
+		gen double sqerr_xi    = (xi_hat    - `xi')^2
+
+		// Mismos estadísticos, ahora por escenario
+		collapse ///
+			(mean) ///
+				mean_delta = delta_hat ///
+				mean_rho   = rho_hat ///
+				mean_xi    = xi_hat ///
+				mse_delta  = sqerr_delta ///
+				mse_rho    = sqerr_rho ///
+				mse_xi     = sqerr_xi ///
+			(sd) ///
+				sd_delta = delta_hat ///
+				sd_rho   = rho_hat ///
+				sd_xi    = xi_hat, ///
+			by(scenario)
+
+		// RMSE = raíz del MSE
+		gen double rmse_delta = sqrt(mse_delta)
+		gen double rmse_rho   = sqrt(mse_rho)
+		gen double rmse_xi    = sqrt(mse_xi)
+
+		drop mse_delta mse_rho mse_xi
+
+		// Orden de comparación: full, base, MNAR
+		gen byte scenario_order = ///
+			cond(scenario == "full", 1, ///
+			cond(scenario == "base", 2, 3))
+
+		sort scenario_order
+		drop scenario_order
+
+		order ///
+			scenario ///
+			mean_delta sd_delta rmse_delta ///
+			mean_rho   sd_rho   rmse_rho ///
+			mean_xi    sd_xi    rmse_xi
+
+		format mean_* sd_* rmse_* %9.4f
+
+		di as text ///
+			"== E3 Inciso 6: comparación con attrition =="
+
+		list, noobs
+
+	restore
+
 }
 di as text "== EJERCICIO 3: fin =="
 end
