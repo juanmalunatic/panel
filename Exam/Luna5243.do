@@ -233,7 +233,7 @@ if $RUN_E1_A {
 	frame change E1A_DATA
 	
 	// Setup del panel y simus
-	local S = 100
+	local S = 2000
 	local N = 200
 	local T = 6
 	local NT = `N' * `T'
@@ -725,7 +725,7 @@ if $RUN_E1_B {
 	frame change E1B_DATA
 	
 	// Tres setups
-	local S = 100
+	local S = 2000
 	local TAMS = 3 // 3 configs de tamanios muestrales
 
 	// Como antes, pongo S en el nombre del output
