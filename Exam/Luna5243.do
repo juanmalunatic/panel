@@ -447,8 +447,6 @@ if $RUN_E1_A {
 							  haus_base_cor haus_size_cor ///
 							  mundlak
 
-	svmat double results, names(col)
-
 	// Creo primero las S observaciones y la variable que identifica
 	// cada simulación, para que svmat no resetee las observaciones.
 	set obs `S'
