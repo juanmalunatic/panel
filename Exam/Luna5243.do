@@ -196,8 +196,29 @@ program define EJERCICIO_1
 version 17
 di as text "== EJERCICIO 1: inicio =="
 
+// ------------------------------------------------
+// Creo timestamps para almacenar datos con fecha
+// ------------------------------------------------
+capture mkdir "output"
+capture mkdir "output/e1"
+
+local dnum = daily("`c(current_date)'", "DMY")
+local yyyy = string(year(`dnum'), "%04.0f")
+local mm   = string(month(`dnum'), "%02.0f")
+local dd   = string(day(`dnum'), "%02.0f")
+local hhmmss = subinstr("`c(current_time)'", ":", "", .)
+
+local run_stamp = "`yyyy'-`mm'-`dd'_`hhmmss'"
+local outdir    = "output/e1"
+
+di as text "E1 run_stamp: `run_stamp'"
+
+// -------------------------------------------------------------
+// Configuro flags para permitir correr por separado E1.A y E1.B
+// -------------------------------------------------------------
 if $RUN_E1_A {
-	// Reproducibilidad
+
+	// Reproducibilidad: Reinicio el seed para ambas partes
 	set seed $THE_SEED
 	di as text "!!! ---------- 1A -------------- !!! "
 	
@@ -211,6 +232,10 @@ if $RUN_E1_A {
 	local N = 200
 	local T = 6
 	local NT = `N' * `T'
+
+	// Agrego el número de simulaciones al prefijo, asi se cuantas hice
+	local run_prefix = "`run_stamp'__S`S'"
+	di as text "E1A run_prefix: `run_prefix'"
 	
 	set obs `NT'
 	egen id = seq(), f(1) t(`N') b(`T')
@@ -351,6 +376,10 @@ if $RUN_E1_A {
 		matrix haus_man_c[`s',1] = r(reject_cor) // Corregido
 		*/
 
+		// hausman_stata_pair devuelve dos resultados:
+		//  si rechaza el test "verbatim" (o da . si error numerico)
+		//  si rechaza el test corregido con sigmamore
+
 		// DGP base: AR(1) + endogeneidad, Hausman de Stata
 		quietly hausman_stata_pair ///
 			y_it x1_it x2_it
@@ -371,11 +400,12 @@ if $RUN_E1_A {
 		matrix haus_al2[`s',1]   = r(reject_raw)
 		matrix haus_al2_c[`s',1] = r(reject_cor)
 		
-		// Inciso 5
+		// Inciso 5: Según la consigna
 		bysort id: egen mean_x1 = mean(x1_it) // calculamos las medias
 		bysort id: egen mean_x2 = mean(x2_it)
         xtreg y_it x1_it x2_it mean_x1 mean_x2, re  // RE con medias como regres.
 		test mean_x1 mean_x2
+		// se almacena un 1 si se rechaza, 0 si no
 		matrix mundlak[`s',1] = (r(p) < 0.05)	
 		
 		
@@ -383,6 +413,7 @@ if $RUN_E1_A {
 	}
 	
 	// Se usa el truco de la práctica para manejar los resultados en un dataframe
+	capture frame drop E1A_RESULTS
 	frame create E1A_RESULTS
 	frame change E1A_RESULTS
 	
@@ -417,89 +448,118 @@ if $RUN_E1_A {
 							  mundlak
 
 	svmat double results, names(col)
-	
+
+	// Una vez que está armado el dataset, lo exporto:
+	// Una fila por simulación con los nombres de colnames results
+	gen int rep = _n
+	order rep
+	save "`outdir'/`run_prefix'__e1_A_raw.dta", replace
+
 	// --------------------------------------------------
-	// Tabla final: beta1
-	// Media, desvio estandar Monte Carlo y RMSE
+	// Tabla E1A.1-E1A.3: desempeño de los estimadores
+	// Ambos parámetros en una sola tabla
 	// --------------------------------------------------
 
-	gen sqerr_b1_ols = (b1_ols - `beta1')^2
-	gen sqerr_b1_re  = (b1_re  - `beta1')^2
-	gen sqerr_b1_fe  = (b1_fe  - `beta1')^2
-
-	matrix TAB_B1 = J(3,3,.)
-	matrix rownames TAB_B1 = POLS RE FE
-	matrix colnames TAB_B1 = mean sd rmse
-
-	local r = 1
+	// Se calculan diferencias al cuadrado para cada estimador (ols, re, fe)
 	foreach est in ols re fe {
-		quietly summarize b1_`est'
-		matrix TAB_B1[`r',1] = r(mean)
-		matrix TAB_B1[`r',2] = r(sd)
-
-		quietly summarize sqerr_b1_`est'
-		matrix TAB_B1[`r',3] = sqrt(r(mean))
-
-		local r = `r' + 1
+		gen sqerr_b1_`est' = (b1_`est' - `beta1')^2
+		gen sqerr_b2_`est' = (b2_`est' - `beta2')^2
 	}
 
-	di as text "== beta1: media, SD Monte Carlo, RMSE =="
-	matrix list TAB_B1, format(%12.4f)
-	
-	
-	// --------------------------------------------------
-	// Tabla final: beta2
-	// Media, desvio estandar Monte Carlo y RMSE
-	// --------------------------------------------------
-
-	gen sqerr_b2_ols = (b2_ols - `beta2')^2
-	gen sqerr_b2_re  = (b2_re  - `beta2')^2
-	gen sqerr_b2_fe  = (b2_fe  - `beta2')^2
-
-	matrix TAB_B2 = J(3,3,.)
-	matrix rownames TAB_B2 = POLS RE FE
-	matrix colnames TAB_B2 = mean sd rmse
+	// Se arma la matriz para la tabla del informe
+	matrix TAB_ESTIMATORS = J(6,4,.)
+	matrix rownames TAB_ESTIMATORS = ///
+		beta1_POLS beta1_RE beta1_FE ///
+		beta2_POLS beta2_RE beta2_FE
+	// La idea es mostrar beta, \hat{beta}, mean, sd, rmse para cada estimador:
+	matrix colnames TAB_ESTIMATORS = true_value mean sd rmse
 
 	local r = 1
-	foreach est in ols re fe {
-		quietly summarize b2_`est'
-		matrix TAB_B2[`r',1] = r(mean)
-		matrix TAB_B2[`r',2] = r(sd)
 
-		quietly summarize sqerr_b2_`est'
-		matrix TAB_B2[`r',3] = sqrt(r(mean))
+	// Se itera cada beta
+	foreach b in 1 2 {
+		// Si b=1 -> beta1, si no beta2.
+		local btrue = cond(`b' == 1, `beta1', `beta2')
 
-		local r = `r' + 1
+		// Se itera cada estimador agarrando los valores
+		foreach est in ols re fe {
+			matrix TAB_ESTIMATORS[`r',1] = `btrue'
+
+			// Acá se computan media y sd de b1_est
+			quietly summarize b`b'_`est'
+			matrix TAB_ESTIMATORS[`r',2] = r(mean)
+			matrix TAB_ESTIMATORS[`r',3] = r(sd)
+
+			// Acá el RMSE a partir de las diferencias al cuadrdo
+			quietly summarize sqerr_b`b'_`est'
+			matrix TAB_ESTIMATORS[`r',4] = sqrt(r(mean))
+
+			local r = `r' + 1
+		}
 	}
 
-	di as text "== beta2: media, SD Monte Carlo, RMSE =="
-	matrix list TAB_B2, format(%12.4f)
+	di as text "== E1A: desempeño de POLS, RE y FE =="
+	matrix list TAB_ESTIMATORS, format(%12.4f)
+
+	// Acá preserve guarda un snapshot del dataset
+	// porque lo vamos a modificar y luego a restaurar
+	preserve
+
+		// Convierto la matriz en variables
+		svmat double TAB_ESTIMATORS, names(col)
+
+		// Formateo salida:
+		// 1, 4 son b1 y b2 de POLS
+		// 2, 5 son b1 y b2 de RE
+		// 3, 6 son b1 y b2 de FE
+		keep in 1/6
+		gen str8 parameter = cond(_n <= 3, "beta1", "beta2")
+		gen str8 estimator = ""
+		replace estimator = "POLS" if inlist(_n, 1, 4)
+		replace estimator = "RE"   if inlist(_n, 2, 5)
+		replace estimator = "FE"   if inlist(_n, 3, 6)
+
+		// Dejo solo las columnas de interés para el output
+		keep parameter estimator true_value mean sd rmse
+		order parameter estimator true_value mean sd rmse
+
+		// Exporto CSV para el informe
+		export delimited using "`outdir'/`run_prefix'__e1_A_estimators.csv", replace
+
+	// restauro el dataset
+	restore
 	
 	// --------------------------------------------------
-	// Comparacion de errores estandar FE
+	// Parte A3: Comparacion de errores estandar FE
 	// --------------------------------------------------
+	// Queremos analizar los errores convencionales
+	// con los robustos por cluster
 
+	// La idea es tener SD_montecarlo, SE_conv, SE_cluster, y sus dos ratios vs el MC_se
+	// Fila 1 para b1, fila 2 para b2
 	matrix TAB_SE_FE = J(2,5,.)
-	matrix rownames TAB_SE_FE = beta1 beta2
+	matrix rownames TAB_SE_FE = beta1 beta2	
 	matrix colnames TAB_SE_FE = MC_sd mean_SE_conv mean_SE_cluster ratio_conv ratio_cluster
 
 	// beta1
-	quietly summarize b1_fe
-	local mc_sd = r(sd)
+
+	quietly summarize b1_fe 
+	local mc_sd = r(sd) // SD para cada estimacion
 
 	quietly summarize se1_fe_conv
-	local se_conv = r(mean)
+	local se_conv = r(mean) // promedio de SE convencional
 
 	quietly summarize se1_fe_rc
-	local se_cl = r(mean)
+	local se_cl = r(mean)   // promedio de SE robusto
 
+	// Almacenar donde corresponde:
 	matrix TAB_SE_FE[1,1] = `mc_sd'
 	matrix TAB_SE_FE[1,2] = `se_conv'
 	matrix TAB_SE_FE[1,3] = `se_cl'
-	matrix TAB_SE_FE[1,4] = `se_conv' / `mc_sd'
-	matrix TAB_SE_FE[1,5] = `se_cl' / `mc_sd'
+	matrix TAB_SE_FE[1,4] = `se_conv' / `mc_sd'  // Qué share del SD empírico ...
+	matrix TAB_SE_FE[1,5] = `se_cl' / `mc_sd'    // ... tiene cada se_*
 
-	// beta2
+	// beta2 es idéntico en estructura
 	quietly summarize b2_fe
 	local mc_sd = r(sd)
 
@@ -518,52 +578,92 @@ if $RUN_E1_A {
 	di as text "== FE: comparacion de SE convencionales vs cluster =="
 	matrix list TAB_SE_FE, format(%12.4f)
 	
-	
+	// Creación de la tabla para comparar FE
+	preserve
+		// Pasamos la matriz a las variables
+		svmat double TAB_SE_FE, names(col)
+
+		// Me quedo con las dos filas (b1, b2) y nombramos
+		keep in 1/2
+		gen str8 parameter = cond(_n == 1, "beta1", "beta2")
+
+		// Me quedo con las columnas de la tabla y ordeno
+		keep parameter MC_sd mean_SE_conv mean_SE_cluster ///
+			ratio_conv ratio_cluster
+		order parameter MC_sd mean_SE_conv mean_SE_cluster ///
+			ratio_conv ratio_cluster
+
+		// Exporto el CSV
+		export delimited using "`outdir'/`run_prefix'__e1_A_se_fe.csv", replace
+	restore
+
 	// --------------------------------------------------
-	// Hausman: potencia y tamaño empirico
-	// --------------------------------------------------
-
-	matrix TAB_HAUS = J(4,2,.)
-	matrix rownames TAB_HAUS = base_raw base_sigmamore size_raw size_sigmamore
-	matrix colnames TAB_HAUS = rejection_rate valid_N
-
-	quietly summarize haus_base_raw
-	matrix TAB_HAUS[1,1] = r(mean)
-	matrix TAB_HAUS[1,2] = r(N)
-
-	quietly summarize haus_base_cor
-	matrix TAB_HAUS[2,1] = r(mean)
-	matrix TAB_HAUS[2,2] = r(N)
-
-	quietly summarize haus_size_raw
-	matrix TAB_HAUS[3,1] = r(mean)
-	matrix TAB_HAUS[3,2] = r(N)
-
-	quietly summarize haus_size_cor
-	matrix TAB_HAUS[4,1] = r(mean)
-	matrix TAB_HAUS[4,2] = r(N)
-
-	di as text "== Hausman: potencia y tamaño empirico =="
-	matrix list TAB_HAUS, format(%12.4f)
-	
-	// --------------------------------------------------
-	// Mundlak: potencia comparada con Hausman
+	// Parte A4 - A5: Hausman y Mundlak: tamaño y potencia
 	// --------------------------------------------------
 
-	matrix TAB_POWER = J(2,2,.)
-	matrix rownames TAB_POWER = Hausman_sigmamore Mundlak
-	matrix colnames TAB_POWER = rejection_rate valid_N
+	// Recordemos que ambos tests devuelven variables binarias (1 o 0) que significan rechazo
+	// - hausman_stata_pair devuelve un par (X,Y) \in {0,1} x {0,1}
+	//   donde X es si rechazó el "raw", Y si rechazó el corregido (sigmamore)
+	// - mundlak devuelve un solo valor de rechazo
 
-	quietly summarize haus_base_cor
-	matrix TAB_POWER[1,1] = r(mean)
-	matrix TAB_POWER[1,2] = r(N)
+	// Creo una tabla para almacenar los resultados de los tests
+	matrix TAB_TESTS = J(5,2,.)
 
-	quietly summarize mundlak
-	matrix TAB_POWER[2,1] = r(mean)
-	matrix TAB_POWER[2,2] = r(N)
+	// Recordemos que hay dos escenarios:
+	// - Base,      generado con y_it x1_it x2_it, con endogeneidad.
+    //   Esperamos alto rechazo.
+	// - True_null, generado con yalt2_it x1alt_it x2_it 
+	//   En este escenario se cumple la nula, con rho=0 y exogeneidad con c_i
+	//   Esperamos que el tamaño sea ~5%
 
-	di as text "== Potencia: Hausman vs Mundlak =="
-	matrix list TAB_POWER, format(%12.4f)
+	// 5 filas:
+	matrix rownames TAB_TESTS =     /// Escenario base:
+		Hausman_raw_base            ///   "Raw" con potencial error numérico
+		Hausman_sigmamore_base      ///   Con corrección, potencia?
+		///                          // Escenario H0:                              
+		Hausman_raw_true_null       ///   "Raw" con potencial error numérico
+		Hausman_sigmamore_true_null ///   Con corrección, tamaño empírico
+		///                          // Escenario base:
+		Mundlak_base                 //   Mundlak, sobre la base
+	matrix colnames TAB_TESTS = rejection_rate valid_N
+
+	local r = 1
+
+	// Itero cada test
+	foreach result_var in ///
+		haus_base_raw haus_base_cor haus_size_raw haus_size_cor mundlak {
+
+		quietly summarize `result_var'
+		matrix TAB_TESTS[`r',1] = r(mean)  // Tomo la media
+		matrix TAB_TESTS[`r',2] = r(N)     // Y la cantidad de filas válidas (importante para "raw")
+		local r = `r' + 1
+	}
+
+	di as text "== E1A: tests de Hausman y Mundlak =="
+	// Doy formato numérico
+	matrix list TAB_TESTS, format(%12.4f)
+
+	preserve
+		// Paso la tabla al dataset
+		svmat double TAB_TESTS, names(col)
+		keep in 1/5
+
+		// Labels adecuados
+		gen str20 test = ""
+		replace test = "Hausman_raw"       in 1
+		replace test = "Hausman_sigmamore" in 2
+		replace test = "Hausman_raw"       in 3
+		replace test = "Hausman_sigmamore" in 4
+		replace test = "Mundlak"           in 5
+
+		gen str12 scenario = "base"
+		replace scenario = "true_null" if inlist(_n, 3, 4)
+
+		// Ordeno y almaceno
+		keep test scenario rejection_rate valid_N
+		order test scenario rejection_rate valid_N
+		export delimited using "`outdir'/`run_prefix'__e1_A_tests.csv", replace
+	restore
 	
 	// TO-DO: Retirar
 	
