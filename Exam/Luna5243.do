@@ -1639,7 +1639,7 @@ if $RUN_E3 {
 	set seed $THE_SEED
 
 	// Defino las constantes de tamaño
-	local S  = 20  // 500 simulaciones
+	local S  = 500  // 500 simulaciones
 	local NL = 300  // 300 individuos
 	local T  = 6    // observados por 6 periodos
 	local ncells = `NL' * `T' // observaciones t x i posibles (sin attrition)
@@ -1658,6 +1658,27 @@ if $RUN_E3 {
 
 	// Correlación para el escenario de contraste (Punto E.7)
 	local kap  = 0.7  // Corr(e_jt, omega_jt) = 0.7
+
+	// ------------------------------------
+	// Manejo de datos y archivos de salida
+	// ------------------------------------
+
+	// Creo los directorios si no existen
+	capture mkdir "output"
+	capture mkdir "output/e3"
+	
+	// Genero un timestamp como en E2
+	local dnum = daily("`c(current_date)'", "DMY")
+	local yyyy = string(year(`dnum'), "%04.0f")
+	local mm   = string(month(`dnum'), "%02.0f")
+	local dd   = string(day(`dnum'), "%02.0f")
+	local hhmmss = subinstr("`c(current_time)'", ":", "", .)
+
+	local run_stamp  = "`yyyy'-`mm'-`dd'_`hhmmss'"
+	local run_prefix = "`run_stamp'__S`S'"
+	local outdir     = "output/e3"
+
+	di as text "E3 run_prefix: `run_prefix'"
 
 	// Handle para usar postfile para los resultados de cada loop
 	tempname e3h
@@ -2115,6 +2136,40 @@ if $RUN_E3 {
 
 	postclose `e3h'
 
+	// --------------------------------------
+	// Guardado de  resultados de MC
+	// --------------------------------------
+	use `e3raw', clear
+	save "`outdir'/`run_prefix'__e3_raw.dta", replace
+
+	di "----------------------------------------------"
+	di as text "E3 Monte Carlo terminó. Raw exportado."
+	di as text "`outdir'/`run_prefix'__e3_raw.dta"
+	di "----------------------------------------------"
+
+	// ------------------------------------
+	// Diagnóstico de fallos numéricos
+	// ------------------------------------
+
+	preserve
+
+		// Con base a la columna fail podemos ver
+		collapse ///
+			(mean) fail_rate = fail ///       cuantos fallaron
+			(count) reps_total = fail, ///    del total
+			by(scenario estimator)     //     para cada escenario x estimador
+
+		sort scenario estimator
+
+		di as text "== E3 diagnóstico: fail rates =="
+
+		list, noobs
+
+		// Exporto el CSV
+		export delimited using "`outdir'/`run_prefix'__e3_raw_failrates.csv", replace
+
+	restore
+
 	// =================================================
 	// 4. Tablas de resultados
 	// =================================================
@@ -2127,7 +2182,7 @@ if $RUN_E3 {
 
 	preserve
 
-		// Solo estimaciones válidas del inciso 5
+		// Elijo del dataset solo las estimaciones válidas del inciso 5
 		keep if scenario == "full"
 		keep if estimator == "WRE_full"
 		keep if fail == 0
@@ -2157,8 +2212,10 @@ if $RUN_E3 {
 		gen double rmse_rho   = sqrt(mse_rho)
 		gen double rmse_xi    = sqrt(mse_xi)
 
+		// Quito las variables temporales
 		drop mse_delta mse_rho mse_xi
 
+		// Ordeno y formateo para display final
 		order ///
 			scenario ///
 			mean_delta sd_delta rmse_delta ///
@@ -2172,6 +2229,9 @@ if $RUN_E3 {
 
 		list, noobs
 
+		// Exporto los datos de E3.5 a CSV
+		export delimited using "`outdir'/`run_prefix'__e3_5.csv", replace
+
 	restore
 
 
@@ -2181,21 +2241,22 @@ if $RUN_E3 {
 
 	preserve
 
-		// Full para comparar con el inciso anterior
-		// y las dos muestras con attrition
+		// Dejo full para comparar con el inciso anterior
+		// y permito también los dos escenarios de attrition
 		keep if ///
 			(scenario == "full" & estimator == "WRE_full") | ///
 			(inlist(scenario, "base", "mnar") & ///
 			 estimator == "WRE_attr")
 
+		// Elimino las filas fallidas
 		keep if fail == 0
 
-		// Errores cuadráticos contra los valores verdaderos
+		// Esto es la misma estructura que la tabla anterior
 		gen double sqerr_delta = (delta_hat - `del')^2
 		gen double sqerr_rho   = (rho_hat   - `rho')^2
 		gen double sqerr_xi    = (xi_hat    - `xi')^2
 
-		// Mismos estadísticos, ahora por escenario
+		// Mismos estadísticos...
 		collapse ///
 			(mean) ///
 				mean_delta = delta_hat ///
@@ -2208,7 +2269,7 @@ if $RUN_E3 {
 				sd_delta = delta_hat ///
 				sd_rho   = rho_hat ///
 				sd_xi    = xi_hat, ///
-			by(scenario)
+			by(scenario) //... ahora por escenario
 
 		// RMSE = raíz del MSE
 		gen double rmse_delta = sqrt(mse_delta)
@@ -2218,12 +2279,15 @@ if $RUN_E3 {
 		drop mse_delta mse_rho mse_xi
 
 		// Orden de comparación: full, base, MNAR
+		// Esto es un switch más fancy: si full, 1. Si base, 2. Si no, 3.
 		gen byte scenario_order = ///
 			cond(scenario == "full", 1, ///
 			cond(scenario == "base", 2, 3))
 
 		sort scenario_order
 		drop scenario_order
+
+		// Igual que en el bloque anterior.
 
 		order ///
 			scenario ///
@@ -2237,6 +2301,9 @@ if $RUN_E3 {
 			"== E3 Inciso 6: comparación con attrition =="
 
 		list, noobs
+
+		// Exporto los datos de E3.6 a CSV
+		export delimited using "`outdir'/`run_prefix'__e3_6.csv", replace
 
 	restore
 
