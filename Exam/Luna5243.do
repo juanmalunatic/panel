@@ -94,6 +94,11 @@ end
 // Aquí implementamos lo mismo como check y herramienta pedagógica
 // pero con las ecuaciones matriciales vistas en clase y el escalado
 // que reporta la documentación de Stata que hace con `sigmamore'
+
+// Fue implementado para chequear que sigmamore diera lo mismo (y da)
+// pero no se usa en el flujo del programa de abajo reportado
+// porque prefiero confiar en Stata :)
+
 capture program drop hausman_manual_pair
 program define hausman_manual_pair, rclass
     version 17
@@ -367,14 +372,6 @@ if $RUN_E1_A {
 		matrix se2_fe_rc[`s',1] = _se[x2_it]
 		
 		// Inciso 4
-		
-		/*
-		// DGP base: AR(1) + endogeneidad, Hausman manual
-		quietly hausman_manual_pair ///
-			y_it x1_it x2_it
-		matrix haus_man[`s',1]   = r(reject_raw) // Sin corregir
-		matrix haus_man_c[`s',1] = r(reject_cor) // Corregido
-		*/
 
 		// hausman_stata_pair devuelve dos resultados:
 		//  si rechaza el test "verbatim" (o da . si error numerico)
@@ -386,15 +383,15 @@ if $RUN_E1_A {
 		matrix haus_sta[`s',1]   = r(reject_raw)
 		matrix haus_sta_c[`s',1] = r(reject_cor)
 
-		/*
 		// Alt1: rho = 0, pero endogeneidad. Hausman de Stata
+		// Este es el test que pide la consigna pero no es realmente tamaño empírico
 		quietly hausman_stata_pair /// 
 			yalt1_it x1_it x2_it
 		matrix haus_al1[`s',1]   = r(reject_raw)
 		matrix haus_al1_c[`s',1] = r(reject_cor)
-		*/
 
 		// Alt2: rho = 0 y exogeneidad respecto de c_i. Hausman de Stata
+		// Este sí es el tamaño real del test.
 		quietly hausman_stata_pair ///  
 			yalt2_it x1alt_it x2_it
 		matrix haus_al2[`s',1]   = r(reject_raw)
@@ -417,34 +414,16 @@ if $RUN_E1_A {
 	frame create E1A_RESULTS
 	frame change E1A_RESULTS
 	
-	
-	// TO-DO remove: Versión vieja con todos los Hausmans
-	/*
 	matrix results = b1h_ols, b2h_ols, b1h_re, b2h_re, b1h_fe, b2h_fe, ///
 					 se1_fe_conv, se2_fe_conv, se1_fe_rc, se2_fe_rc, ///
-					 haus_man,   haus_sta,   haus_al1,   haus_al2, ///
-					 haus_man_c, haus_sta_c, haus_al1_c, haus_al2_c, ///
-					 mundlak
-					 
-
-	matrix colnames results = b1_ols b2_ols b1_re b2_re b1_fe b2_fe ///
-							  se1_fe_conv se2_fe_conv se1_fe_rc se2_fe_rc ///
-							  haus_man   haus_sta   haus_alt1   haus_alt2 ///
-							  haus_man_c haus_sta_c haus_alt1_c haus_alt2_c ///
-							  mundlak
-
-	svmat double results, names(col)
-	*/
-	
-	matrix results = b1h_ols, b2h_ols, b1h_re, b2h_re, b1h_fe, b2h_fe, ///
-					 se1_fe_conv, se2_fe_conv, se1_fe_rc, se2_fe_rc, ///
-					 haus_sta, haus_al2, haus_sta_c, haus_al2_c, ///
+					 haus_sta, haus_al1, haus_al2, ///
+					 haus_sta_c, haus_al1_c, haus_al2_c, ///
 					 mundlak
 
 	matrix colnames results = b1_ols b2_ols b1_re b2_re b1_fe b2_fe ///
 							  se1_fe_conv se2_fe_conv se1_fe_rc se2_fe_rc ///
-							  haus_base_raw haus_size_raw ///
-							  haus_base_cor haus_size_cor ///
+							  haus_base_raw haus_rho0_raw haus_true_null_raw ///
+							  haus_base_cor haus_rho0_cor haus_true_null_cor ///
 							  mundlak
 
 	// Creo primero las S observaciones y la variable que identifica
@@ -610,31 +589,42 @@ if $RUN_E1_A {
 	// - mundlak devuelve un solo valor de rechazo
 
 	// Creo una tabla para almacenar los resultados de los tests
-	matrix TAB_TESTS = J(5,2,.)
+	matrix TAB_TESTS = J(7,2,.)
 
-	// Recordemos que hay dos escenarios:
-	// - Base,      generado con y_it x1_it x2_it, con endogeneidad.
-    //   Esperamos alto rechazo.
-	// - True_null, generado con yalt2_it x1alt_it x2_it 
-	//   En este escenario se cumple la nula, con rho=0 y exogeneidad con c_i
-	//   Esperamos que el tamaño sea ~5%
+	// Recordemos que hay tres escenarios:
+	// - Base, generado con y_it x1_it x2_it, con rho=0.6 y endogeneidad.
+	//   Esperamos alto rechazo: mide potencia bajo el DGP base.
+	//
+	// - Rho0_literal, generado con yalt1_it x1_it x2_it.
+	//   Cumple literalmente rho=0, pero sigue habiendo endogeneidad con c_i.
+	//   RE sigue siendo inconsistente y esperamos alto rechazo.
+	//
+	// - True_null, generado con yalt2_it x1alt_it x2_it.
+	//   En este escenario se cumple la nula, con rho=0 y exogeneidad con c_i.
+	//   Esperamos que el tamaño sea ~5%.
 
-	// 5 filas:
-	matrix rownames TAB_TESTS =     /// Escenario base:
-		Hausman_raw_base            ///   "Raw" con potencial error numérico
-		Hausman_sigmamore_base      ///   Con corrección, potencia?
-		///                          // Escenario H0:                              
-		Hausman_raw_true_null       ///   "Raw" con potencial error numérico
-		Hausman_sigmamore_true_null ///   Con corrección, tamaño empírico
-		///                          // Escenario base:
-		Mundlak_base                 //   Mundlak, sobre la base
+	// 7 filas:
+	matrix rownames TAB_TESTS =       /// Escenario base:
+		Hausman_raw_base              ///   "Raw" con potencial error numérico
+		Hausman_sigmamore_base        ///   Con corrección, potencia
+		///                            // Escenario literal rho=0:
+		Hausman_raw_rho0_literal      ///   "Raw" con potencial error numérico
+		Hausman_sigmamore_rho0_literal ///  Con corrección
+		///                            // Escenario H0:
+		Hausman_raw_true_null         ///   "Raw" con potencial error numérico
+		Hausman_sigmamore_true_null   ///   Con corrección, tamaño empírico
+		///                            // Escenario base:
+		Mundlak_base                   //   Mundlak, sobre la base
 	matrix colnames TAB_TESTS = rejection_rate valid_N
 
 	local r = 1
 
 	// Itero cada test
 	foreach result_var in ///
-		haus_base_raw haus_base_cor haus_size_raw haus_size_cor mundlak {
+		haus_base_raw haus_base_cor ///
+		haus_rho0_raw haus_rho0_cor ///
+		haus_true_null_raw haus_true_null_cor ///
+		mundlak {
 
 		quietly summarize `result_var'
 		matrix TAB_TESTS[`r',1] = r(mean)  // Tomo la media
@@ -649,18 +639,17 @@ if $RUN_E1_A {
 	preserve
 		// Paso la tabla al dataset
 		svmat double TAB_TESTS, names(col)
-		keep in 1/5
+		keep in 1/7
 
 		// Labels adecuados
 		gen str20 test = ""
-		replace test = "Hausman_raw"       in 1
-		replace test = "Hausman_sigmamore" in 2
-		replace test = "Hausman_raw"       in 3
-		replace test = "Hausman_sigmamore" in 4
-		replace test = "Mundlak"           in 5
+		replace test = "Hausman_raw"       if inlist(_n, 1, 3, 5)
+		replace test = "Hausman_sigmamore" if inlist(_n, 2, 4, 6)
+		replace test = "Mundlak"           in 7
 
 		gen str12 scenario = "base"
-		replace scenario = "true_null" if inlist(_n, 3, 4)
+		replace scenario = "rho0_literal" if inlist(_n, 3, 4)
+		replace scenario = "true_null"    if inlist(_n, 5, 6)
 
 		// Ordeno y almaceno
 		keep test scenario rejection_rate valid_N
@@ -701,35 +690,19 @@ if $RUN_E1_A {
 		format(%12.4f) ///
 		varwidth(14)
 	
-	/* TO-DO remove
 	// Hausman sin corregir: tasas de rechazo entre simulaciones válidas
-	tabstat haus_man haus_sta haus_alt1 haus_alt2, ///
+	tabstat haus_base_raw haus_rho0_raw haus_true_null_raw, ///
         statistics(mean count) ///
         columns(statistics) ///
         format(%12.4f) ///
-        varwidth(18)
+        varwidth(20)
 	
 	// Hausman corregido: tasas de rechazo entre simulaciones válidas	
-	tabstat haus_man_c haus_sta_c haus_alt1_c haus_alt2_c, ///
+	tabstat haus_base_cor haus_rho0_cor haus_true_null_cor, ///
         statistics(mean count) ///
         columns(statistics) ///
         format(%12.4f) ///
-        varwidth(18)
-	*/
-	
-	// Hausman sin corregir: tasas de rechazo entre simulaciones válidas
-	tabstat haus_base_raw haus_size_raw, ///
-        statistics(mean count) ///
-        columns(statistics) ///
-        format(%12.4f) ///
-        varwidth(18)
-	
-	// Hausman corregido: tasas de rechazo entre simulaciones válidas	
-	tabstat haus_base_cor haus_size_cor, ///
-        statistics(mean count) ///
-        columns(statistics) ///
-        format(%12.4f) ///
-        varwidth(18)
+        varwidth(20)
 		
 	tabstat mundlak, ///
 		statistics(mean count) ///
