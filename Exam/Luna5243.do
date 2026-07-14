@@ -24,11 +24,11 @@ log using "Luna5243.log", replace text
 Flags para correr únicamente partes de ejercicios específicos.
 ********************************************************************/
 
-global RUN_E1_A 0
-global RUN_E1_B 0
+global RUN_E1_A 1
+global RUN_E1_B 1
 
 global RUN_E2   0
-global RUN_E3   1
+global RUN_E3   0
 
 
 /*******************************************************************************
@@ -228,7 +228,7 @@ if $RUN_E1_A {
 	frame change E1A_DATA
 	
 	// Setup del panel y simus
-	local S = 10
+	local S = 100
 	local N = 200
 	local T = 6
 	local NT = `N' * `T'
@@ -449,9 +449,14 @@ if $RUN_E1_A {
 
 	svmat double results, names(col)
 
+	// Creo primero las S observaciones y la variable que identifica
+	// cada simulación, para que svmat no resetee las observaciones.
+	set obs `S'
+	gen int rep = _n
+	svmat double results, names(col)
+
 	// Una vez que está armado el dataset, lo exporto:
 	// Una fila por simulación con los nombres de colnames results
-	gen int rep = _n
 	order rep
 	save "`outdir'/`run_prefix'__e1_A_raw.dta", replace
 
@@ -749,7 +754,7 @@ if $RUN_E1_B {
 	frame change E1B_DATA
 	
 	// Tres setups
-	local S = 20
+	local S = 100
 	local TAMS = 3 // 3 configs de tamanios muestrales
 
 	// Como antes, pongo S en el nombre del output
@@ -910,12 +915,15 @@ if $RUN_E1_B {
 		se2_fe_conv_n50t4 se2_fe_conv_n200t6 se2_fe_conv_n500t10 ///
 		se2_fe_rc_n50t4   se2_fe_rc_n200t6   se2_fe_rc_n500t10
 
+	// Como en E1A, creo primero las S observaciones y la variable que identifica
+	// cada simulación, para que svmat no resetee las observaciones.
 	set obs `S'
+	gen int rep = _n
+
 	svmat double results, names(col)
 
 	// Como en E1A, guardo el dataset antes de manipular para los resultados.
 	// Hay una fila por simulación.
-	gen int rep = _n
 	order rep
 	save "`outdir'/`run_prefix'__e1_B_raw.dta", replace
 
