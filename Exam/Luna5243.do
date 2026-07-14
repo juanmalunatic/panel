@@ -228,7 +228,7 @@ if $RUN_E1_A {
 	frame change E1A_DATA
 	
 	// Setup del panel y simus
-	local S = 500
+	local S = 10
 	local N = 200
 	local T = 6
 	local NT = `N' * `T'
@@ -739,7 +739,7 @@ if $RUN_E1_A {
 }
 
 if $RUN_E1_B {
-	// Reproducibilidad
+	// Reproducibilidad: como antes, se inicia del mismo seed
 	set seed $THE_SEED
 	di as text "!!! ---------- 1B -------------- !!! "
 	
@@ -749,8 +749,12 @@ if $RUN_E1_B {
 	frame change E1B_DATA
 	
 	// Tres setups
-	local S = 300
+	local S = 20
 	local TAMS = 3 // 3 configs de tamanios muestrales
+
+	// Como antes, pongo S en el nombre del output
+	local run_prefix = "`run_stamp'__S`S'"
+	di as text "E1B run_prefix: `run_prefix'"
 	
 	// Matrices de almacenamiento
 	matrix b1h_ols = J(`S',`TAMS',.)  // OLS
@@ -909,6 +913,12 @@ if $RUN_E1_B {
 	set obs `S'
 	svmat double results, names(col)
 
+	// Como en E1A, guardo el dataset antes de manipular para los resultados.
+	// Hay una fila por simulación.
+	gen int rep = _n
+	order rep
+	save "`outdir'/`run_prefix'__e1_B_raw.dta", replace
+
 
 	// --------------------------------------------------
 	// Tabla 1B.7: beta1
@@ -916,26 +926,36 @@ if $RUN_E1_B {
 	// bajo las tres combinaciones (N,T)
 	// --------------------------------------------------
 
-	matrix TAB_E1B_B1 = J(9,3,.)
+	// Se arma la tabla para E1.B7: 9 filas para beta1
+	matrix TAB_E1B_B1 = J(9,4,.)
 	matrix rownames TAB_E1B_B1 = ///
-		POLS_n50t4 POLS_n200t6 POLS_n500t10 ///
-		RE_n50t4   RE_n200t6   RE_n500t10 ///
-		FE_n50t4   FE_n200t6   FE_n500t10
+		POLS_n50t4   /// POLS
+		POLS_n200t6  ///
+		POLS_n500t10 ///
+		RE_n50t4     /// RE
+		RE_n200t6    ///
+		RE_n500t10   ///
+		FE_n50t4     /// FE
+		FE_n200t6    /// 
+		FE_n500t10
 
-	matrix colnames TAB_E1B_B1 = mean sd rmse
+	// Cuatro columnas, parametro, promedio, sd, rmse
+	matrix colnames TAB_E1B_B1 = true_value mean sd rmse
 
 	local r = 1
 	foreach est in ols re fe {
 		foreach tam in n50t4 n200t6 n500t10 {
 
 			gen sqerr_b1_`est'_`tam' = (b1_`est'_`tam' - `beta1')^2
+			
+			matrix TAB_E1B_B1[`r',1] = `beta1' // parametro real
 
 			quietly summarize b1_`est'_`tam'
-			matrix TAB_E1B_B1[`r',1] = r(mean)
-			matrix TAB_E1B_B1[`r',2] = r(sd)
+			matrix TAB_E1B_B1[`r',2] = r(mean) // mean
+			matrix TAB_E1B_B1[`r',3] = r(sd)   // sd
 
 			quietly summarize sqerr_b1_`est'_`tam'
-			matrix TAB_E1B_B1[`r',3] = sqrt(r(mean))
+			matrix TAB_E1B_B1[`r',4] = sqrt(r(mean)) //rmse
 
 			local r = `r' + 1
 		}
@@ -944,25 +964,72 @@ if $RUN_E1_B {
 	di as text "== E1B.7: beta1, media, SD Monte Carlo y RMSE =="
 	matrix list TAB_E1B_B1, format(%12.4f)
 
+	// Una vez lista la matriz, exporto
+	preserve
+		// Matriz al dataset y elijo filas relevantes
+		svmat double TAB_E1B_B1, names(col)
+		keep in 1/9
+
+		// Igual que antes, elegir qué filas corresponden a que
+		// estimador para label
+		gen str8 estimator = ""
+		replace estimator = "POLS" if inrange(_n, 1, 3)
+		replace estimator = "RE"   if inrange(_n, 4, 6)
+		replace estimator = "FE"   if inrange(_n, 7, 9)
+
+		// Aquí parecido:
+		// Los elementos 1,4,7 son con N=50
+		//               2,5,8 son con N=200 (es el N de la parte A, ilustra mejor)
+		//               3,6,9 son con N=500
+		gen int N = cond(inlist(_n, 1, 4, 7), 50, ///
+			cond(inlist(_n, 2, 5, 8), 200, 500))
+
+		// Misma lógica para T={4,6,10}
+		gen int T = cond(inlist(_n, 1, 4, 7), 4, ///
+			cond(inlist(_n, 2, 5, 8), 6, 10))
+
+		// Elijo columnas y ordeno
+		keep estimator N T true_value mean sd rmse
+		order estimator N T true_value mean sd rmse
+
+		// Finalmente exporto en el formato del informe
+		export delimited using "`outdir'/`run_prefix'__e1_B_b1.csv", replace
+	restore
 
 	// --------------------------------------------------
 	// Tabla 1B.6: comparación FE
 	// SE convencionales vs cluster por tamaño muestral
+	// Acá sí se calculan b1 y b2
 	// --------------------------------------------------
 
+	// 6 filas, 6 columnas	
 	matrix TAB_E1B_SE_FE = J(6,6,.)
 	matrix rownames TAB_E1B_SE_FE = ///
-		beta1_n50t4 beta1_n200t6 beta1_n500t10 ///
-		beta2_n50t4 beta2_n200t6 beta2_n500t10
+		///            // b   N  T
+		beta1_n50t4   /// b1  50 4, etcétera
+		beta1_n200t6  ///
+		beta1_n500t10 ///
+		beta2_n50t4   /// 
+		beta2_n200t6  ///
+		beta2_n500t10
 
+	// Repito las métricas del inciso E1.A3, con ratios informativos.
 	matrix colnames TAB_E1B_SE_FE = ///
-		MC_sd mean_SE_conv mean_SE_cluster ///
-		ratio_conv_MC ratio_cluster_MC ratio_conv_cluster
+		MC_sd              /// SD de Monte Carlo
+		mean_SE_conv       /// SE convencional
+		mean_SE_cluster    /// SE cluster
+		ratio_conv_MC      /// ratio conv/MC
+		ratio_cluster_MC   /// ratio clus/MC
+		ratio_conv_cluster  // ratio conv/cluster
 
+	// Ingreso valores a la tabla iterando ...
 	local r = 1
+	// ... betas
 	foreach b in 1 2 {
+	    // ... y escenarios
 		foreach tam in n50t4 n200t6 n500t10 {
 
+			// Calculo como antes.
 			quietly summarize b`b'_fe_`tam'
 			local mc_sd = r(sd)
 
@@ -976,7 +1043,7 @@ if $RUN_E1_B {
 			matrix TAB_E1B_SE_FE[`r',2] = `se_conv'
 			matrix TAB_E1B_SE_FE[`r',3] = `se_cl'
 			matrix TAB_E1B_SE_FE[`r',4] = `se_conv' / `mc_sd'
-			matrix TAB_E1B_SE_FE[`r',5] = `se_cl' / `mc_sd'
+			matrix TAB_E1B_SE_FE[`r',5] = `se_cl'   / `mc_sd'
 			matrix TAB_E1B_SE_FE[`r',6] = `se_conv' / `se_cl'
 
 			local r = `r' + 1
@@ -986,6 +1053,28 @@ if $RUN_E1_B {
 	di as text "== E1B.6: FE, comparación SE convencionales vs cluster =="
 	matrix list TAB_E1B_SE_FE, format(%12.4f)
 
+	// Una vez la matriz está organizada, exporto a CSV con 
+	// el mismo patrón que antes
+	preserve
+		svmat double TAB_E1B_SE_FE, names(col)
+		keep in 1/6
+		
+		// Labels apropiados
+		gen str8 parameter = cond(_n <= 3, "beta1", "beta2")
+		gen int N = cond(inlist(_n, 1, 4), 50, ///
+			cond(inlist(_n, 2, 5), 200, 500))
+		gen int T = cond(inlist(_n, 1, 4), 4, ///
+			cond(inlist(_n, 2, 5), 6, 10))
+
+		// Ordenamiento
+		keep parameter N T MC_sd mean_SE_conv mean_SE_cluster ///
+			ratio_conv_MC ratio_cluster_MC ratio_conv_cluster
+		order parameter N T MC_sd mean_SE_conv mean_SE_cluster ///
+			ratio_conv_MC ratio_cluster_MC ratio_conv_cluster
+
+		// Exportación
+		export delimited using "`outdir'/`run_prefix'__e1_B_se_fe.csv", replace
+	restore
 
 	// --------------------------------------------------
 	// Diagnóstico opcional: medias crudas de SE
