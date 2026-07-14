@@ -1827,7 +1827,9 @@ if $RUN_E3 {
 			// 2.1 - Inciso 5: Wooldridge RE sobre muestra completa
 			// ====================================================
 
-			// Inciso E3.5 - Wooldridge RE sobre muestra completa
+			// ----------------------------------------------------
+			// Wooldridge RE sobre muestra completa
+			// ----------------------------------------------------
 			// Se excluye el t=0
 			capture quietly xtprobit y L.y z y0 zbar if inrange(time,1,`T'), re
 
@@ -1879,6 +1881,81 @@ if $RUN_E3 {
 				// Si hubo error o no convergió, guardo una fila de fallo
 				post `e3h' ///
 					("full") ("WRE_full") (`rep') (.) (.) (.) (1) (1)
+			}
+
+			// ====================================================
+			// 2.2 - Inciso 6: Wooldridge RE con attrition
+			// ====================================================
+
+			// Bucle para los dos escenarios:
+			// base con Corr(e_jt, omega_jt) = 0
+			// mnar con Corr(e_jt, omega_jt) = 0.7
+			// sc almacena el string de escenario :)
+			foreach sc in base mnar {
+
+				// En obs_* se cuenta qué porcentaje de filas del total
+				// quedan al final de todo. Algo así como ¿qué tanto % 
+				// del panel quedó post-attrition?
+
+				// Es un promedio excluyendo t=0, como son 0 o 1 queda la share de 1s.
+				quietly summarize obs_`sc' if inrange(time,1,`T'), meanonly
+				local obs_share_attr = r(mean)
+				local obs_share_`sc' = `obs_share_attr'
+
+				// Mismo estimador WRE Probit, restringido a la muestra observada
+				// Lo que cambia es el selector obs_* que generamos en el DGP anteriormente
+				// Solo una parte del panel entra al estimador
+				capture quietly xtprobit ///
+					y L.y z y0 zbar if inrange(time,1,`T') & obs_`sc' == 1, re
+
+				// Misma lógica de antes: si corrió, reviso convergencia y parámetros
+				local fail_attr = (_rc != 0)
+				if !`fail_attr' {
+					// Si alguna lectura falla marcamos error
+					local fail_attr = ///
+						(e(converged) != 1) | ///
+						missing( ///
+							_b[z], ///
+							_b[L.y], ///
+							_b[y0], ///
+							_b[zbar], ///
+							_b[_cons], ///
+							e(sigma_u) ///
+						)
+				}
+
+				// Acá algo adicional: guardo el indicador con nombre de escenario
+				local fail_`sc' = `fail_attr'
+
+				// Si todo está bien
+				if !`fail_attr' {
+
+					// Estos van directos a ser posteados
+					local delta_attr = _b[z]
+					local rho_attr   = _b[L.y]
+					local xi_attr    = _b[zbar]
+
+					// Guardo copia con prefijo para debug
+					local delta_`sc' = `delta_attr'
+					local rho_`sc'   = `rho_attr'
+					local xi_`sc'    = `xi_attr'
+
+					// Fila de éxito
+					post `e3h' ///
+						("`sc'") ///
+						("WRE_attr") ///
+						(`rep') ///
+						(`delta_attr') ///
+						(`rho_attr') ///
+						(`xi_attr') ///
+						(`obs_share_attr') ///
+						(0)
+				}
+				else {
+					// Fila de fallo
+					post `e3h' ///
+						("`sc'") ("WRE_attr") (`rep') (.) (.) (.) (`obs_share_attr') (1)
+				}
 			}
 		}
 
@@ -1985,6 +2062,52 @@ if $RUN_E3 {
 			else {
 				display as error ///
 					"WRE_full falló en la réplica 1."
+			}
+
+			// -------------------------------------------------
+			// 3.5 Estimador WRE_attr
+			// -------------------------------------------------
+
+			display as text ///
+				"== E3: WRE_attr base, réplica 1 =="
+
+			if !`fail_base' {
+				display as result ///
+					"delta_hat = " %9.4f `delta_base'
+
+				display as result ///
+					"rho_hat   = " %9.4f `rho_base'
+
+				display as result ///
+					"xi_hat    = " %9.4f `xi_base'
+
+				display as result ///
+					"obs_share = " %9.4f `obs_share_base'
+			}
+			else {
+				display as error ///
+					"WRE_attr base falló en la réplica 1."
+			}
+
+			display as text ///
+				"== E3: WRE_attr MNAR, réplica 1 =="
+
+			if !`fail_mnar' {
+				display as result ///
+					"delta_hat = " %9.4f `delta_mnar'
+
+				display as result ///
+					"rho_hat   = " %9.4f `rho_mnar'
+
+				display as result ///
+					"xi_hat    = " %9.4f `xi_mnar'
+
+				display as result ///
+					"obs_share = " %9.4f `obs_share_mnar'
+			}
+			else {
+				display as error ///
+					"WRE_attr MNAR falló en la réplica 1."
 			}
 		}
 
