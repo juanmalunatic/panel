@@ -1658,7 +1658,6 @@ if $RUN_E3 {
 
 	// Correlación para el escenario de contraste (Punto E.7)
 	local kap  = 0.7  // Corr(e_jt, omega_jt) = 0.7
-	local Slit = 100  // Numero reducido de simulaciones para ver fallo
 
 	// Handle para usar postfile para los resultados de cada loop
 	tempname e3h
@@ -1681,13 +1680,9 @@ if $RUN_E3 {
 
 	// ESTIMADORES
 	// E3.5: WRE_full: WRE sobre muestra completa
-	// E3.6: WRE_attr: WRE sobre muestra con attrition	
-	// E3.7:
-	//       lit_phat    : Test phat como se pide literalmente
-	//       WRE_same_t5 : WRE sobre la muestra de lit_phat
-	//       CF_pool     : TO-DO ver qué es
-	// E3.8:
-	//       CF_attr : Test del 7 y corrección del 8
+	// E3.6: WRE_attr: WRE sobre muestra con attrition para base y MNAR
+	// E3.7: TO-DO: phat_literal
+	// E3.8: TO-DO: RB_literal
 
 	postfile `e3h' ///
     	str12 scenario ///                  escenario
