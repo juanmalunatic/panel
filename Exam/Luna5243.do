@@ -24,8 +24,9 @@ log using "Luna5243.log", replace text
 Flags para correr únicamente partes de ejercicios específicos.
 ********************************************************************/
 
-global RUN_E1_A 1
-global RUN_E1_B 1
+global RUN_E1_A 0
+global RUN_E1_B 0
+global RUN_E1_B6_FE_TABLE 1
 
 global RUN_E2   0
 global RUN_E3   0
@@ -1076,6 +1077,80 @@ if $RUN_E1_B {
     //frame change E1B_DATA
 }
 
+// Me quedó faltando esto del E1B.6, así que reuso el .dta para no re-simular
+if $RUN_E1_B6_FE_TABLE {
+
+	local S = 2000
+	// Agrego el número de simulaciones al prefijo, asi se cuantas hice
+	local run_prefix = "`run_stamp'__S`S'"
+	di as text "E1A run_prefix: `run_prefix'"
+
+    use "output/e1/2026-07-14_193747__S2000__e1_B_raw.dta", clear
+
+	// Estructura de salida de la otra tabla que ya tenía
+    matrix TAB_E1B_FE = J(6,4,.)
+    matrix colnames TAB_E1B_FE = true_value mean sd rmse
+    matrix rownames TAB_E1B_FE = ///
+        beta1_n50t4   ///
+        beta1_n200t6  ///
+        beta1_n500t10 ///
+        beta2_n50t4   ///
+        beta2_n200t6  ///
+        beta2_n500t10
+
+    local r = 1
+
+	// Loop para cada estimador
+    foreach b in 1 2 {
+
+        local true = cond(`b' == 1, 0.6, -0.4)
+
+        foreach tam in n50t4 n200t6 n500t10 {
+
+            quietly summarize b`b'_fe_`tam'
+
+            matrix TAB_E1B_FE[`r',1] = `true'
+            matrix TAB_E1B_FE[`r',2] = r(mean)
+            matrix TAB_E1B_FE[`r',3] = r(sd)
+
+            capture drop __sqerr
+            generate double __sqerr = ///
+                (b`b'_fe_`tam' - `true')^2
+
+            quietly summarize __sqerr
+            matrix TAB_E1B_FE[`r',4] = sqrt(r(mean))
+
+            drop __sqerr
+            local r = `r' + 1
+        }
+    }
+
+    matrix list TAB_E1B_FE, format(%12.4f)
+
+    preserve
+		// Agrego columnas al dataset y preservo las relevantes
+        svmat double TAB_E1B_FE, names(col)
+        keep in 1/6
+
+		// Agrego labels relevantes
+        generate str8 parameter = ///
+            cond(_n <= 3, "beta1", "beta2")
+
+        generate int N = ///
+            cond(inlist(_n,1,4), 50, ///
+            cond(inlist(_n,2,5), 200, 500))
+
+        generate int T = ///
+            cond(inlist(_n,1,4), 4, ///
+            cond(inlist(_n,2,5), 6, 10))
+
+        keep parameter N T true_value mean sd rmse
+        order parameter N T true_value mean sd rmse
+		
+		export delimited using "`outdir'/`run_prefix'__e1_B_fe_summary_from_raw.csv", replace
+
+    restore
+}
 di as text "== EJERCICIO 1: fin =="
 end
 /******************************************************************************/
