@@ -1,0 +1,2 @@
+scenario,estimator,hansen_size_5,sargan_size_5,mean_hansen_p,mean_sargan_p,mean_ninst,reps_valid,reps_hansen_valid,reps_sargan_valid
+B,BB-GMM2,.008,.602,.4280674174717791,.1181008429683191,46,1000,1000,1000

@@ -1,0 +1,4 @@
+scenario,estimator,fail_rate,reps_total
+base,WRE_attr,0,500
+full,WRE_full,0,500
+mnar,WRE_attr,0,500

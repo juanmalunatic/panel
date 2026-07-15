@@ -1083,7 +1083,7 @@ if $RUN_E1_B6_FE_TABLE {
 	local S = 2000
 	// Agrego el número de simulaciones al prefijo, asi se cuantas hice
 	local run_prefix = "`run_stamp'__S`S'"
-	di as text "E1A run_prefix: `run_prefix'"
+	di as text "E1B.6 run_prefix: `run_prefix'"
 
     use "output/e1/2026-07-14_193747__S2000__e1_B_raw.dta", clear
 
@@ -2562,7 +2562,7 @@ Control de flujo
 cls
 
 quietly {
-    if $RUN_E1_A == 1 | $RUN_E1_B == 1 {
+    if ($RUN_E1_A == 1 | $RUN_E1_B == 1 | $RUN_E1_B6_FE_TABLE == 1 ) {
         noisily EJERCICIO_1
     }
 

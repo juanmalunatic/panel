@@ -1,0 +1,8 @@
+test,scenario,rejection_rate,valid_N
+Hausman_raw,base,,0
+Hausman_sigmamore,base,1,2000
+Hausman_raw,rho0_literal,,0
+Hausman_sigmamore,rho0_literal,1,2000
+Hausman_raw,true_null,.107035175879397,1990
+Hausman_sigmamore,true_null,.0475,2000
+Mundlak,base,1,2000
