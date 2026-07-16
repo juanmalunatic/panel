@@ -26,11 +26,11 @@ Flags para correr únicamente partes de ejercicios específicos.
 
 global RUN_E1_A 0
 global RUN_E1_B 0
-global RUN_E1_B6_FE_TABLE 1
+global RUN_E1_B6_FE_TABLE 0
 
 global RUN_E2   0
 global RUN_E3   0
-
+global RUN_E3_7 1
 
 /*******************************************************************************
 EJERCICIO 1 - Pruebas de Especificación, Hausman y Errores Estándar Robustos
@@ -2555,6 +2555,249 @@ di as text "== EJERCICIO 3: fin =="
 end
 
 
+/*******************************************************************************
+EJERCICIO 3.7 - Test de attrition
+*******************************************************************************/
+
+capture program drop EJERCICIO_3_7
+program define EJERCICIO_3_7
+version 17
+di as text "== EJERCICIO 3.7: inicio =="
+
+if $RUN_E3_7 {
+
+	// Desde aquí hasta donde está marcado es una copia literal del DGP
+	// del Ejercicio 3 base. No se comenta por brevedad.
+
+	set seed $THE_SEED
+
+	local S  = 500 
+	local NL = 300
+	local T  = 6
+	local ncells = `NL' * `T'
+
+	// Parámetros del modelo Probit
+	local psi = -0.5
+	local del =  0.8
+	local rho =  0.4
+	local xi  =  0.3
+	local xi0 =  0.5
+	
+	// Parámetros del mecanismo de attrition
+	local g0  =  1.2
+	local g1  =  0.6
+	local g2  = -0.3
+
+	local kap  = 0.7  // Corr(e_jt, omega_jt) = 0.7
+
+	// ------------------------------------
+	// Manejo de datos y archivos de salida
+	// ------------------------------------
+
+	capture mkdir "output"
+	capture mkdir "output/e3"
+	
+	local dnum = daily("`c(current_date)'", "DMY")
+	local yyyy = string(year(`dnum'), "%04.0f")
+	local mm   = string(month(`dnum'), "%02.0f")
+	local dd   = string(day(`dnum'), "%02.0f")
+	local hhmmss = subinstr("`c(current_time)'", ":", "", .)
+
+	local run_stamp  = "`yyyy'-`mm'-`dd'_`hhmmss'"
+	local run_prefix = "`run_stamp'__S`S'"
+	local outdir     = "output/e3"
+
+	di as text "E3.7 run_prefix: `run_prefix'"
+
+	// Handle para usar postfile para los resultados de cada loop
+	tempname e3h
+	tempfile e3raw
+
+	// [Acá difiere el código de E3]
+
+	postfile `e3h' ///
+		str12 scenario ///
+		str24 estimator ///
+		int rep ///
+		double delta_hat rho_hat xi_hat ///
+		double obs_share ///
+		byte fail ///
+		using `e3raw', replace
+
+	// [Fin diferencia]
+	
+	clear
+	local Tfull = `T' + 1
+	set obs `=`NL' * `Tfull''
+	egen id   = seq(), block(`Tfull')
+	egen time = seq(), from(0) to(`T')
+	xtset id time
+
+	forvalues rep = 1/`S' {
+		qui {
+			cap drop y0 a_i w_i z zbar eta_e eta_w e omega_* ///
+			y stay_* obs_*
+	
+			sort id time
+
+			by id: gen byte y0 = (runiform() < 0.4) if _n == 1
+			by id: replace y0 = y0[1]
+			by id: gen double a_i = rnormal(0,1) if _n == 1
+			by id: replace a_i = a_i[1]
+			by id: gen double w_i = rnormal(0,sqrt(0.5)) if _n == 1
+			by id: replace w_i = w_i[1]
+			gen double z = rnormal(0,1) if inrange(time,1,`T')
+			by id: egen double zbar = mean(z)
+
+			gen double eta_e = rnormal(0,1) if inrange(time,1,`T')
+			gen double eta_w = rnormal(0,1) if inrange(time,1,`T')
+
+			gen double e = eta_e
+			gen double omega_base = eta_w
+			gen double omega_mnar = ///
+				`kap' * eta_e + sqrt(1 - `kap'^2) * eta_w
+
+			sort id time
+			gen byte y = y0 if time == 0
+			forvalues tt = 1/`T' {
+				replace y = ( ///
+					(`psi' + `del' * z  + `rho' * L.y + `xi0' * y0  + `xi'  * zbar + a_i + e ) > 0  ///
+				) if time == `tt'
+			}
+
+			foreach sc in base mnar {
+
+				gen byte stay_`sc' = 1 if time == 1
+				replace stay_`sc' = ( ///
+					( `g0' + `g1' * L.y + `g2' * z + w_i + omega_`sc' ) > 0 ///
+				) if inrange(time,2,`T')
+
+				gen byte obs_`sc' = 1 if time == 1
+				forvalues tt = 2/`T' {
+					replace obs_`sc' = L.obs_`sc' * stay_`sc' if time == `tt'
+				}
+
+			}
+
+		}
+
+		// Acá finaliza la copia verbatim del E3
+
+		// =====================================================
+		// NUEVO E3.7 - ESTIMACIÓN Y TEST
+		// =====================================================
+
+		// Para cada escenario base y mnar:
+		//
+		// 1. Construir la variable de permanencia futura s_{j,t+1}.
+		//
+		// 2. Estimar:
+		//
+		//    P(s_{j,t+1}=1 | y_jt, z_jt, y_j0, Z_j)
+		//
+		//    usando solamente los individuos observados en t
+		//    y los periodos para los cuales existe t+1.
+		//
+		// 3. Generar la probabilidad estimada.
+		//
+		// 4. Incorporarla como regresor adicional en el modelo
+		//    de Wooldridge estimado sobre la muestra con attrition.
+		//
+		// 5. Testear que el coeficiente de la probabilidad estimada
+		//    sea igual a cero.
+		//
+		// 6. Guardar coeficiente, p-value, rechazo, parámetros
+		//    principales y fallos numéricos.
+		//
+		// Acá debería entrar un:
+		//
+		// foreach sc in base mnar {
+		//     primera etapa
+		//     predicción
+		//     segunda etapa
+		//     test
+		//     post
+		// }
+
+		// =================================================
+		// NUEVO E3.7 - DIAGNÓSTICOS DE LA PRIMERA RÉPLICA
+		// =================================================
+
+		if `rep' == 1 {
+
+			// Revisar acá, para cada escenario:
+			//
+			// - distribución de la permanencia futura
+			// - número de observaciones de primera etapa
+			// - distribución de la probabilidad estimada
+			// - resultados de primera etapa
+			// - resultados del modelo aumentado de Wooldridge
+			// - resultado del test
+			// - fallos de convergencia o separación
+
+		}
+
+	} // Fin del loop Monte Carlo
+
+	postclose `e3h'
+
+	// Esto también es verbatim de E3, exepto los cambios marcados
+
+	// --------------------------------------
+	// Guardado de resultados de MC
+	// --------------------------------------
+
+	use `e3raw', clear
+
+	// ÚNICO CAMBIO respecto del output anterior:
+	// el nombre identifica específicamente al inciso 7.
+	save "`outdir'/`run_prefix'__e3_7_raw.dta", replace
+
+	di "----------------------------------------------"
+	di as text "E3.7 Monte Carlo terminó. Raw exportado."
+	di as text "`outdir'/`run_prefix'__e3_7_raw.dta"
+	di "----------------------------------------------"
+
+	// =====================================================
+	// NUEVO E3.7 - DIAGNÓSTICO DE FALLOS
+	// =====================================================
+
+	// Adaptar acá el bloque anterior de fail rates para distinguir:
+	//
+	// - fallo de la primera etapa
+	// - fallo de la segunda etapa
+	// - fallo total
+	//
+	// Exportar como:
+	//
+	// "`outdir'/`run_prefix'__e3_7_failrates.csv"
+
+	// =====================================================
+	// NUEVO E3.7 - TABLA FINAL
+	// =====================================================
+
+	// Colapsar por escenario y reportar:
+	//
+	// - número de simulaciones válidas
+	// - media del indicador de rechazo al 5 %
+	// - coeficiente medio de la probabilidad estimada
+	// - desvío estándar del coeficiente
+	// - tasa de fallos
+	//
+	// Interpretación:
+	//
+	// - escenario base: tamaño empírico
+	// - escenario mnar: potencia
+	//
+	// Exportar como:
+	//
+	// "`outdir'/`run_prefix'__e3_7.csv"
+
+}
+
+di as text "== EJERCICIO 3.7: fin =="
+end
+
 /********************************************************************
 Control de flujo
 ********************************************************************/
@@ -2573,6 +2816,10 @@ quietly {
     if $RUN_E3 {
         noisily EJERCICIO_3
     }
+
+	if $RUN_E3_7 {
+		noisily EJERCICIO_3_7	
+	}
 }
 
 log close
