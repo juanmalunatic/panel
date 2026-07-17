@@ -24,12 +24,12 @@ log using "Luna5243.log", replace text
 Flags para correr únicamente partes de ejercicios específicos.
 ********************************************************************/
 
-global RUN_E1_A 0
-global RUN_E1_B 0
-global RUN_E1_B6_FE_TABLE 0
+global RUN_E1_A 1
+global RUN_E1_B 1
+global RUN_E1_B6_FE_TABLE 1
 
-global RUN_E2   0
-global RUN_E3   0
+global RUN_E2   1
+global RUN_E3   1
 global RUN_E3_7 1
 
 /*******************************************************************************
@@ -308,8 +308,6 @@ if $RUN_E1_A {
 		// Creación de variables
 		// --------------------------
 		
-		// AI: Error del que me salvó la IA: sqrt(sig^2) en vez de sig^2 solo
-		
 		gen c_i = .
 		forvalues i = 1/`N' {
 			scalar c_i_aux = rnormal(0, sqrt(`sig2_c'))
@@ -344,8 +342,6 @@ if $RUN_E1_A {
 		// --------------------------
 		// Estimaciones
 		// --------------------------
-		
-		// AI: Error del que me salvó la IA: c_i incluido
 		
 		// Inciso 1, POLS
 		reg y_it x1_it x2_it
@@ -657,8 +653,6 @@ if $RUN_E1_A {
 		order test scenario rejection_rate valid_N
 		export delimited using "`outdir'/`run_prefix'__e1_A_tests.csv", replace
 	restore
-	
-	// TO-DO: Retirar
 	
 	di as text "== Diagnósticos raw == "
 	
@@ -1172,13 +1166,13 @@ if $RUN_E2 {
 
 
 	// Parametros que no cambian
-	local beta = 1 // TO-DO consultar con Iara
+	local beta = 1
 	local sig_c = 1
 	local sig_u = 1
 	local sig_v = sqrt(0.9)
 
 	// Valores iniciales DGP
-	local xi_0 = 0 // TO-DO consultar con Iara
+	local xi_0 = 0
 	local yi_0 = 0
 
 	// ------------------------------------
@@ -1677,14 +1671,12 @@ if $RUN_E2 {
 	postclose handle_b1
 
 	// Acá exporto los resultados raw de Monte Carlo
-	// TO-DO entender estas lineas
 	use `e2_results', clear
 	save "`outdir'/`run_prefix'__e2_raw.dta", replace
 	di "----------------------------------------------"
 	di as text "Monte Carlo terminó. Datos exportados."
 	di "----------------------------------------------"
 
-	// TO-DO esto quitarlo, dejarlo solo para debug GPT.
 	count
 	tab scenario estimator
 	tab estimator fail
@@ -1945,8 +1937,6 @@ if $RUN_E3 {
 	// ESTIMADORES
 	// E3.5: WRE_full: WRE sobre muestra completa
 	// E3.6: WRE_attr: WRE sobre muestra con attrition para base y MNAR
-	// E3.7: TO-DO: phat_literal
-	// E3.8: TO-DO: RB_literal
 
 	postfile `e3h' ///
     	str12 scenario ///                  escenario
@@ -2036,7 +2026,6 @@ if $RUN_E3 {
 			// ---------------------------------------------------
 			// y_jt y mecanismo de attrition absorbente
 			// ---------------------------------------------------
-			// Asegurar orden //TO-DO revisar si se puede quitar
 			sort id time
 
 			// Iniciamos desde la condición inicial ya generada
@@ -2703,6 +2692,9 @@ if $RUN_E3_7 {
 
 			gen byte obs_next_`sc' = F.obs_`sc'
 
+			// La especificación literal se desactiva en la corrida final porque
+			// no convergió en la segunda etapa en ninguna de las réplicas ensayadas.
+			// Esto era `foreach spec in timing literal`.
 			foreach spec in timing {
 
 				// Especificaciones alternativas de la primera etapa
