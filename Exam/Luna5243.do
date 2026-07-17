@@ -2571,7 +2571,7 @@ if $RUN_E3_7 {
 
 	set seed $THE_SEED
 
-	local S  = 1 
+	local S  = 500 
 	local NL = 300
 	local T  = 6
 	local ncells = `NL' * `T'
@@ -2637,6 +2637,11 @@ if $RUN_E3_7 {
 	xtset id time
 
 	forvalues rep = 1/`S' {
+
+		if `rep' == 1 | mod(`rep',10) == 0 | `rep' == `S' {
+			display as text "E3.7: réplica `rep' de `S' — `c(current_time)'"
+		}
+
 		qui {
 			cap drop y0 a_i w_i z zbar eta_e eta_w e omega_* ///
     			y stay_* obs_*
