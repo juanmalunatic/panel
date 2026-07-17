@@ -2703,7 +2703,7 @@ if $RUN_E3_7 {
 
 			gen byte obs_next_`sc' = F.obs_`sc'
 
-			foreach spec in literal timing {
+			foreach spec in timing {
 
 				// Especificaciones alternativas de la primera etapa
 				if "`spec'" == "literal" {
@@ -2746,7 +2746,7 @@ if $RUN_E3_7 {
 				if !`fail_stage1' {
 					capture quietly xtprobit ///
 						y L.y z y0 zbar phat_`sc'_`spec' ///
-						if obs_`sc' == 1, re
+						if obs_`sc' == 1, re intpoints(8)
 
 					local fail_stage2 = (_rc != 0)
 
