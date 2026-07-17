@@ -2638,8 +2638,9 @@ if $RUN_E3_7 {
 
 	forvalues rep = 1/`S' {
 		qui {
-			cap drop y0 a_i w_i z zbar eta_e eta_w e omega_* obs_next_* phat_* ///
-			y stay_* obs_*
+			cap drop y0 a_i w_i z zbar eta_e eta_w e omega_* ///
+    			y stay_* obs_*
+			cap drop phat_*
 	
 			sort id time
 
@@ -2806,7 +2807,7 @@ if $RUN_E3_7 {
 	// --------------------------------------
 
 	use `e3raw', clear
-
+	save "`outdir'/`run_prefix'__e3_7_raw.dta", replace
 	
 	collapse ///
 		(count) reps_total = fail ///
@@ -2817,9 +2818,7 @@ if $RUN_E3_7 {
 		(sd) sd_phat_coef = phat_coef, ///
 		by(scenario specification)
 
-	// ÚNICO CAMBIO respecto del output anterior:
-	// el nombre identifica específicamente al inciso 7.
-	save "`outdir'/`run_prefix'__e3_7_raw.dta", replace
+	export delimited using "`outdir'/`run_prefix'__e3_7.csv", replace
 
 	di "----------------------------------------------"
 	di as text "E3.7 Monte Carlo terminó. Raw exportado."
