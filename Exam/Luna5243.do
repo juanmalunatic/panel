@@ -2571,7 +2571,7 @@ if $RUN_E3_7 {
 
 	set seed $THE_SEED
 
-	local S  = 500 
+	local S  = 1 
 	local NL = 300
 	local T  = 6
 	local ncells = `NL' * `T'
@@ -2687,37 +2687,26 @@ if $RUN_E3_7 {
 		// NUEVO E3.7 - ESTIMACIÓN Y TEST
 		// =====================================================
 
-		// Para cada escenario base y mnar:
-		//
-		// 1. Construir la variable de permanencia futura s_{j,t+1}.
-		//
-		// 2. Estimar:
-		//
-		//    P(s_{j,t+1}=1 | y_jt, z_jt, y_j0, Z_j)
-		//
-		//    usando solamente los individuos observados en t
-		//    y los periodos para los cuales existe t+1.
-		//
-		// 3. Generar la probabilidad estimada.
-		//
-		// 4. Incorporarla como regresor adicional en el modelo
-		//    de Wooldridge estimado sobre la muestra con attrition.
-		//
-		// 5. Testear que el coeficiente de la probabilidad estimada
-		//    sea igual a cero.
-		//
-		// 6. Guardar coeficiente, p-value, rechazo, parámetros
-		//    principales y fallos numéricos.
-		//
-		// Acá debería entrar un:
-		//
-		// foreach sc in base mnar {
-		//     primera etapa
-		//     predicción
-		//     segunda etapa
-		//     test
-		//     post
-		// }
+		foreach sc in base mnar {
+
+			// Permanencia efectiva en el próximo período
+			gen byte obs_next_`sc' = F.obs_`sc'
+
+			// Primera etapa: probabilidad de permanecer en t+1
+			probit obs_next_`sc' y z y0 zbar ///
+				if obs_`sc' == 1 & time < `T'
+
+			predict double phat_`sc' if e(sample), pr
+
+			// Segunda etapa: Wooldridge aumentado
+			xtprobit y L.y z y0 zbar phat_`sc' ///
+				if obs_`sc' == 1, re
+
+			test phat_`sc' = 0
+
+			// 6. Guardar coeficiente, p-value, rechazo, parámetros
+			//    principales y fallos numéricos.
+		}
 
 		// =================================================
 		// NUEVO E3.7 - DIAGNÓSTICOS DE LA PRIMERA RÉPLICA
