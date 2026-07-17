@@ -2704,7 +2704,7 @@ if $RUN_E3_7 {
 					local selection_rhs "y z y0 zbar"
 				}
 				else if "`spec'" == "timing" {
-					local selection_rhs "y z F.z y0 zbar"
+					local selection_rhs "y F.z y0 zbar"
 				}
 
 				local fail_stage1 = 0
@@ -2777,15 +2777,6 @@ if $RUN_E3_7 {
 			}
 		}
 
-		collapse ///
-			(count) reps_total = fail ///
-			(sum) failures = fail ///
-			(mean) fail_rate = fail ///
-			(mean) rejection_rate = reject5 ///
-			(mean) mean_phat_coef = phat_coef ///
-			(sd) sd_phat_coef = phat_coef, ///
-			by(scenario specification)
-
 		// =================================================
 		// NUEVO E3.7 - DIAGNÓSTICOS DE LA PRIMERA RÉPLICA
 		// =================================================
@@ -2815,6 +2806,16 @@ if $RUN_E3_7 {
 	// --------------------------------------
 
 	use `e3raw', clear
+
+	
+	collapse ///
+		(count) reps_total = fail ///
+		(sum) failures = fail ///
+		(mean) fail_rate = fail ///
+		(mean) rejection_rate = reject5 ///
+		(mean) mean_phat_coef = phat_coef ///
+		(sd) sd_phat_coef = phat_coef, ///
+		by(scenario specification)
 
 	// ÚNICO CAMBIO respecto del output anterior:
 	// el nombre identifica específicamente al inciso 7.
