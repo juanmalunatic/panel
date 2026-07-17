@@ -2617,11 +2617,14 @@ if $RUN_E3_7 {
 
 	postfile `e3h' ///
 		str12 scenario ///
-		str24 estimator ///
+		str12 specification ///
 		int rep ///
 		double delta_hat rho_hat xi_hat ///
+		double phat_coef phat_p ///
+		byte reject5 ///
 		double obs_share ///
-		byte fail ///
+		int n_stage1 n_stage2 ///
+		byte fail_stage1 fail_stage2 fail ///
 		using `e3raw', replace
 
 	// [Fin diferencia]
@@ -2635,7 +2638,7 @@ if $RUN_E3_7 {
 
 	forvalues rep = 1/`S' {
 		qui {
-			cap drop y0 a_i w_i z zbar eta_e eta_w e omega_* ///
+			cap drop y0 a_i w_i z zbar eta_e eta_w e omega_* obs_next_* phat_* ///
 			y stay_* obs_*
 	
 			sort id time
@@ -2689,24 +2692,99 @@ if $RUN_E3_7 {
 
 		foreach sc in base mnar {
 
-			// Permanencia efectiva en el próximo período
+			quietly summarize obs_`sc' if inrange(time,1,`T'), meanonly
+			local obs_share = r(mean)
+
 			gen byte obs_next_`sc' = F.obs_`sc'
 
-			// Primera etapa: probabilidad de permanecer en t+1
-			probit obs_next_`sc' y z y0 zbar ///
-				if obs_`sc' == 1 & time < `T'
+			foreach spec in literal timing {
 
-			predict double phat_`sc' if e(sample), pr
+				// Especificaciones alternativas de la primera etapa
+				if "`spec'" == "literal" {
+					local selection_rhs "y z y0 zbar"
+				}
+				else if "`spec'" == "timing" {
+					local selection_rhs "y z F.z y0 zbar"
+				}
 
-			// Segunda etapa: Wooldridge aumentado
-			xtprobit y L.y z y0 zbar phat_`sc' ///
-				if obs_`sc' == 1, re
+				local fail_stage1 = 0
+				local fail_stage2 = 0
+				local fail        = 0
 
-			test phat_`sc' = 0
+				local delta_hat = .
+				local rho_hat   = .
+				local xi_hat    = .
+				local phat_coef = .
+				local phat_p    = .
+				local reject5   = .
+				local n_stage1  = .
+				local n_stage2  = .
 
-			// 6. Guardar coeficiente, p-value, rechazo, parámetros
-			//    principales y fallos numéricos.
+				// Primera etapa
+				capture quietly probit obs_next_`sc' `selection_rhs' ///
+					if obs_`sc' == 1 & time < `T'
+
+				local fail_stage1 = (_rc != 0)
+
+				if !`fail_stage1' {
+					local fail_stage1 = (e(converged) != 1)
+					local n_stage1 = e(N)
+				}
+
+				if !`fail_stage1' {
+					capture predict double phat_`sc'_`spec' if e(sample), pr
+					local fail_stage1 = (_rc != 0)
+				}
+
+				// Segunda etapa
+				if !`fail_stage1' {
+					capture quietly xtprobit ///
+						y L.y z y0 zbar phat_`sc'_`spec' ///
+						if obs_`sc' == 1, re
+
+					local fail_stage2 = (_rc != 0)
+
+					if !`fail_stage2' {
+						local fail_stage2 = (e(converged) != 1)
+						local n_stage2 = e(N)
+					}
+				}
+
+				if !`fail_stage1' & !`fail_stage2' {
+					local delta_hat = _b[z]
+					local rho_hat   = _b[L.y]
+					local xi_hat    = _b[zbar]
+					local phat_coef = _b[phat_`sc'_`spec']
+
+					capture quietly test phat_`sc'_`spec' = 0
+					local fail_stage2 = (_rc != 0)
+
+					if !`fail_stage2' {
+						local phat_p  = r(p)
+						local reject5 = (`phat_p' < 0.05)
+					}
+				}
+
+				local fail = (`fail_stage1' | `fail_stage2')
+
+				post `e3h' ///
+					("`sc'") ("`spec'") (`rep') ///
+					(`delta_hat') (`rho_hat') (`xi_hat') ///
+					(`phat_coef') (`phat_p') (`reject5') ///
+					(`obs_share') ///
+					(`n_stage1') (`n_stage2') ///
+					(`fail_stage1') (`fail_stage2') (`fail')
+			}
 		}
+
+		collapse ///
+			(count) reps_total = fail ///
+			(sum) failures = fail ///
+			(mean) fail_rate = fail ///
+			(mean) rejection_rate = reject5 ///
+			(mean) mean_phat_coef = phat_coef ///
+			(sd) sd_phat_coef = phat_coef, ///
+			by(scenario specification)
 
 		// =================================================
 		// NUEVO E3.7 - DIAGNÓSTICOS DE LA PRIMERA RÉPLICA
